@@ -1,5 +1,17 @@
+
+@font-face {font-family: icon;src: url(../images/icon/icon.ttf) ;}
+
 *{box-sizing: border-box; margin:0;padding: 0}
 html,body{display:flex;  width: 100%; height:100%; flex-direction:column; font-family: 'Noto Sans', sans-serif; font-size: 14px;}
-body{padding:70px}
+body{padding:40px}
 logo{display:flex; background:url(../images/logo.svg); height:70px; width:200px;  background-repeat:no-repeat;}
-p{margin:40px 0;}
+p{margin:40px 0; max-width:350px;}
+
+a{text-decoration:none; color:initial}
+
+a:active{transform:translateY(1px)}
+
+separator{margin:0 20px; display:flex; min-height:40px; width:1px; background:rgba(0,0,0,.1)}
+toolbar{display:flex; align-items:center;}
+
+icon {width: 30px; height: 30px; display: block; -moz-font-feature-settings: "liga=1, dlig=1"; -ms-font-feature-settings: "liga","dlig"; -webkit-font-feature-settings: "liga","dlig"; -o-font-feature-settings: "liga","dlig"; font-feature-settings: "liga","dlig"; font-variant-ligatures: common-ligatures; text-rendering: optimizeLegibility; font-family: icon; display: flex; display: -ms-flexbox; display: -webkit-flex; align-items: center; -ms-flex-align: center; justify-content: center; -ms-flex-pack: center; font-size: 25px; font-weight: 400; font-style: normal; user-select: none; text-transform: lowercase; position: relative; z-index: 9; }
