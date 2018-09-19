@@ -1,2 +1,5 @@
 *{box-sizing: border-box; margin:0;padding: 0}
-html,body{display:flex; align-items:center; justify-content: center; width: 100%; height:100%; flex-direction:column}
+html,body{display:flex;  width: 100%; height:100%; flex-direction:column; font-family: 'Noto Sans', sans-serif; font-size: 14px;}
+body{padding:70px}
+logo{display:flex; background:url(../images/logo.svg); height:70px; width:200px;  background-repeat:no-repeat;}
+p{margin:40px 0;}
