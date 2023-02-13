@@ -1,8 +1,7 @@
 
-@font-face {font-family: icon;src: url(../images/icon/icon.ttf) ;}
 
 *{box-sizing: border-box; margin:0;padding: 0; /*box-shadow: inset 0 0 0 1px red*/}
-html,body{display:flex;  width: 100%; height:100%; flex-direction:column; font-family: 'Noto Sans', sans-serif; font-size: 14px;}
+html,body{display:flex;  width: 100%;  flex-direction:column; font-family: 'Noto Sans', sans-serif; font-size: 14px;}
 body{padding:40px}
 logo{display:flex; }
 p{margin:40px 0; max-width:350px;}
@@ -24,6 +23,7 @@ content{ display:grid; margin:40px 0; max-width:450px; flex-wrap:wrap;
     grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
 
     overflow: hidden;
+    flex-shrink: 0;
 
 }
 wrap{ display:flex; aspect-ratio: 1;}
