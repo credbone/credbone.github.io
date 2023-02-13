@@ -4,7 +4,7 @@
 *{box-sizing: border-box; margin:0;padding: 0; /*box-shadow: inset 0 0 0 1px red*/}
 html,body{display:flex;  width: 100%; height:100%; flex-direction:column; font-family: 'Noto Sans', sans-serif; font-size: 14px;}
 body{padding:40px}
-logo{display:flex; background:url(../images/logo.svg); min-height:70px; width:200px;  background-repeat:no-repeat;}
+logo{display:flex; }
 p{margin:40px 0; max-width:350px;}
 
 a{text-decoration:none; color:initial}
@@ -17,7 +17,15 @@ toolbar{display:flex; align-items:center;min-height: 30px;}
 icon {width: 30px; height: 30px; display: block; -moz-font-feature-settings: "liga=1, dlig=1"; -ms-font-feature-settings: "liga","dlig"; -webkit-font-feature-settings: "liga","dlig"; -o-font-feature-settings: "liga","dlig"; font-feature-settings: "liga","dlig"; font-variant-ligatures: common-ligatures; text-rendering: optimizeLegibility; font-family: icon; display: flex; display: -ms-flexbox; display: -webkit-flex; align-items: center; -ms-flex-align: center; justify-content: center; -ms-flex-pack: center; font-size: 25px; font-weight: 400; font-style: normal; user-select: none; text-transform: lowercase; position: relative; z-index: 9; }
 
 
-content{ display:flex; margin:40px 0; max-width:450px; flex-wrap:wrap;}
-wrap{ display:flex; min-width:150px; width:150px; height:150px;  padding:2px;}
+content{ display:grid; margin:40px 0; max-width:450px; flex-wrap:wrap;
+
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+
+    overflow: hidden;
+
+}
+wrap{ display:flex; aspect-ratio: 1;}
 item{background:rgba(0,0,0,.1);display:flex; width:100%; height:100%;}
 /*item[large]{height:250px; width:250px;}*/
