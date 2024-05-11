@@ -4,10 +4,12 @@
 
 @import url(control.css);
 @import url(project.css);
+@import url(font.css);
+
 
 
 :root {
-    --main-font:'Plus Jakarta Sans', sans-serif;
+    --main-font: 'gilroy', sans-serif;
     --text:13px;
 }
 
