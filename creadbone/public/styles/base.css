@@ -4,14 +4,30 @@
 
 @import url(control.css);
 @import url(project.css);
+@import url(font.css);
+
 
 
 :root {
-    --main-font:'Plus Jakarta Sans', sans-serif;
+    --main-font: 'gilroy', sans-serif;
     --text:13px;
 }
 
 
+
+:root {
+    --main-color-lighter: #598b7f2b;
+    --main-color-light: #598b7f75;
+    --main-color: #598b7f;
+    --main-color-dark:  #35534C;
+    --main-color-darker:  #243833;
+
+    --secondary-color-lighter: #83749f2b;
+    --secondary-color-light: #83749f75;
+    --secondary-color: #83749f;
+    --secondary-color-dark:  #4F465F;
+    --secondary-color-darker:  #342E40;
+}
 
 
 
