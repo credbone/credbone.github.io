@@ -3,13 +3,27 @@ import logo from './logo.svg';
 import Marquee from './components/Marquee';
 import Button from './components/button';
 import { SvgHamburger, SvgHamburgerToLeft, SvgHamburgerToRight, SvgLoader, SvgLoaderCircle, SvgLoaderCircleSmall, SvgMinus, SvgPlus } from './components/svg';
+import Tabstrip from './components/tabstrip';
+import Tab from './components/tabstrip/tab';
+import Colors from './template/Colors';
+import Layout from './template/layout';
 
 
 function App() {
   return (
     <view data-scroll="" data-adaptive=""  >
-
-<view data-gap="20">
+<group data-space="20" data-border="">
+<group >
+  <icon>home</icon>
+  </group>
+</group>
+<space></space>
+<Tabstrip>
+<Tab title="Layout">
+    <Layout/>
+  </Tab>
+  <Tab title="Home">
+  <view data-gap="20">
 <group data-type="group"   data-space="20" data-background="highlight" data-radius="20" data-interactive="" data-cursor="pointer">
 
 <group data-type="interact">
@@ -404,6 +418,11 @@ function App() {
               </group>
             </group>
           </view>
+  </Tab>
+  <Tab title="second tab">
+    <Colors/>
+  </Tab>
+</Tabstrip>
 
     </view>
   );
