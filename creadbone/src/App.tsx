@@ -7,6 +7,8 @@ import Tabstrip from './components/tabstrip';
 import Tab from './components/tabstrip/tab';
 import Colors from './template/Colors';
 import Layout from './template/layout';
+import Switchable from './components/Switchable';
+import ThemePicker from './template/themePicker';
 
 
 function App() {
@@ -17,7 +19,40 @@ function App() {
   <icon>home</icon>
   </group>
 </group>
-<space></space>
+
+
+
+<view data-vertical data-index="2">
+        <Switchable
+          data-switch-size="60"
+            defaultExpanded={false}
+          icon="palette"
+          data-type="overlap"
+          data-length="60"
+
+          data-timing="fancy"
+          data-duration=".225"
+          
+
+          togglerProps={{
+            "data-adaptive": "mobile",
+            "data-order": "2",
+            "data-justify":"center",
+            // "data-background": "main",
+            // "data-color": "white",
+          }}
+        >
+          <view
+            data-border=""
+            data-background="main-background"
+            data-length="60"
+          >
+            <ThemePicker />
+          </view>
+        </Switchable>
+
+        <view>
+          <space data-height="10"></space>
 <Tabstrip>
 <Tab title="Layout">
     <Layout/>
@@ -423,7 +458,8 @@ function App() {
     <Colors/>
   </Tab>
 </Tabstrip>
-
+</view>
+    </view>
     </view>
   );
 }
