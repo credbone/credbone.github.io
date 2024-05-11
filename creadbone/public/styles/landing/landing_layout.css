@@ -1,0 +1,79 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+
+:root
+{
+    --app-width:1300px;
+}
+
+
+/*temp*/
+main > view {flex: 1;}
+header {position: sticky;top: 0;z-index: 99;margin-top: 80px;min-height: 80px; background: #fff; flex-wrap:nowrap ; padding: 0 20px; /*backdrop-filter: blur(5px); background: rgba(255,255,255,.55);*/} 
+header.stick { color: #000; box-shadow: var(--elevation); }
+header wrapper {justify-content:center;}
+
+
+
+wrapper {width: 100%;position: relative; margin: auto; display: flex; flex-direction: column; /* align-items: flex-start;*/max-width: var(--app-width); }
+wrapper[data-type="wide"]{max-width: calc(var(--app-width) + 100px); }
+logo {display: flex; max-width: 100%;align-items:center;justify-content:center;gap:20px;}
+logo:active {transform: translateY(1px);}
+logo a {display: flex;}
+logo svg { max-width: 100%;fill:var(--text-color) }
+
+
+
+header logo svg[data-adaptive] path { fill: #fff; }
+header logo { transition: .125s; transform-origin:left; }
+header.stick logo, header[invert] logo { max-width:180px; }
+header.stick logo svg[data-adaptive] path { fill: #000; }
+
+
+@media (max-width: 600px)
+    {header logo,header.stick logo{max-width:180px};}
+@media (max-width: 500px)
+    {header logo,header.stick logo{max-width:130px};}
+
+
+header[invert] { color: #000; margin-top: 20px; }
+header[invert] logo svg path { fill: #000; }
+header.stick logo svg path,
+header[invert] logo svg path { fill: #000; }
+header[invert] icon svg, header.stick icon svg { stroke: #000; }
+
+
+
+section {width: 100%;display: flex;flex-direction: column;position: relative; padding: 0 20px;}
+section[highlight] { background: #f3f3f3;}
+
+section[data-stretch]{margin-top: -250px;padding-top: 250px;} 
+section[data-stretch][data-highlight]:after{content:"";position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -1; background:var(--main-color-light); opacity: .5;}
+
+
+/**/
+
+footer { width: 100%; padding: 0 20px;}
+footer { display: flex; flex-direction: column; flex-shrink: 0 }
+
+footer logo {max-width:180px;}
+
+logo[small]{max-width:100px;}
+
+footer nav { width: 100%; display: flex; flex-wrap: wrap; }
+footer nav > ul { display: flex; width: 100%; flex-wrap: wrap; }
+footer nav > ul > li { flex-shrink: 0; padding: 50px 80px 0 0; }
+footer nav ul li ul { flex-direction: column }
+
+footer nav > ul > li > a { display: flex; margin-bottom: 30px; font-weight: 700 }
+footer nav li ul li { line-height: 2; margin: 10px 0; position: relative; cursor: pointer; user-select: none; display: flex }
+footer nav li ul li a { opacity: 0.6; }
+footer nav ul li ul li a:hover { opacity: 1 }
+
+footer nav [hide] { display: none }
+/**/
+
+
+/* stylelint-enable */

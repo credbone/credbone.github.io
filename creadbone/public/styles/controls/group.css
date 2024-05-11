@@ -1,0 +1,128 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+
+group, [data-type="group"] { display: flex; flex-wrap: wrap; width: 100%; position: relative;max-width: 100%; }
+group[data-type="grid"]{display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));}
+
+group[data-type="grid"][data-grid-template="80"]{grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));} 
+group[data-type="grid"][data-grid-template="100"]{grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));} 
+group[data-type="grid"][data-grid-template="110"]{grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));} 
+group[data-type="grid"][data-grid-template="120"]{grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));} 
+group[data-type="grid"][data-grid-template="180"]{grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));} 
+group[data-type="grid"][data-grid-template="200"]{grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));} 
+group[data-type="grid"][data-grid-template="240"]{grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));} 
+group[data-type="grid"][data-grid-template="300"]{grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));} 
+group[data-type="grid"][data-grid-template="320"]{grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));} 
+group[data-type="grid"][data-grid-template="400"]{grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));} 
+group[data-type="grid"][data-grid-template="600"]{grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));} 
+
+
+
+@media (max-width: 300px) {
+group[data-type="grid"],
+group[data-type="grid"][data-grid-template]
+
+
+{grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));}
+
+
+}
+
+
+    [data-container-type="grid"]{container-type: inline-size; container-name:grid;}
+
+    @container grid (max-width: 300px)
+
+    {
+        group[data-type="grid"],
+        group[data-type="grid"][data-grid-template]
+        {grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));}
+
+    } 
+    
+
+
+
+
+
+group[data-type="column"] {display: block; flex-direction: column; columns: 6 300px; column-rule: 1px var(--border-color) solid; column-gap: 20px; }
+
+[data-type="column"][data-column-template="4"]{ columns: 4 300px;}
+[data-type="column"][data-column-template="5"]{ columns: 5 300px;}
+[data-type="column"][data-column-template="7"]{ columns: 7 300px;}
+[data-type="column"][data-column-template="8"]{ columns: 8 300px;}
+
+[data-type="column"][data-column-size="200"]{ column-width: 200px;}
+[data-type="column"][data-column-size="240"]{ column-width: 240px;}
+[data-type="column"][data-column-size="320"]{ column-width: 320px;}
+[data-type="column"][data-column-size="400"]{ column-width: 400px;}
+
+
+
+
+[data-break-after="column"]{break-after: column;}
+[data-type="column"][data-column-gap="0"] {column-gap: 0;}
+[data-type="column"][data-column-gap="1"] {column-gap: 1px;}
+[data-type="column"][data-column-gap="20"] {column-gap: 20px;}
+[data-type="column"][data-column-gap="30"] {column-gap: 30px;}
+[data-type="column"][data-column-gap="40"] {column-gap: 40px;}
+
+@media (max-width: 1200px) {
+
+    [data-break-after="column"] {
+        break-after: avoid-page;
+    }
+
+}
+
+group[data-type="column"] > group {/*display: inline-flex;*/ flex-direction: column; width: 100%; break-inside: avoid; }
+
+
+group[sections] { padding: 20px;box-shadow: 0 0 0 1px var(--outline); border-radius: 15px; }
+group[empty] { min-height: 100px; text-align: center; display: flex; align-items: center; flex-direction: column; justify-content: space-around; margin:auto;}
+
+
+group[fit] { width: 100% }
+
+
+
+group[data-wrap="no"],[data-type="group"][data-wrap="no"] { flex-wrap: nowrap; }
+group[width="initial"] ,
+group[data-width="auto"],
+
+[data-wrap="no"][data-width="auto"],
+[data-type="group"][data-width="auto"]
+
+{ width: initial }
+group[layout='block'] { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); flex-wrap: wrap; gap: 15px; width: 100%; }
+
+
+
+group.hide { display: none }
+   
+@media (max-width: 900px) {group[hide] {display:none;}}
+
+
+
+
+
+
+
+
+
+
+group[data-adaptive="mobile"] {display: none;}
+
+@media (max-width: 800px)
+
+{
+    group[data-adaptive="mobile"] {display: flex;}
+    group[data-adaptive="desktop"] {display: none;}
+}
+
+
+
+
+/* stylelint-enable */

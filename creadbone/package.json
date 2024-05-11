@@ -1,7 +1,7 @@
 {
   "name": "creadbone",
   "version": "0.1.0",
-  "homepage": "https://github.com/credbone/credbone.github.io",
+  "homepage": "https://credbone.com/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

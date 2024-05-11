@@ -1,0 +1,97 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+/* windows */
+
+
+
+:root { --dim: rgba(230, 230, 230, 0.8); }
+
+.window_container { height: 100vh; width: 100%; left: 0; position: absolute; display: none; z-index: 999; height: -moz-available; height: -webkit-fill-available; height: fill-available; }
+.window_container.open { display: flex;height: 100%; }
+.window_container > div { height: 100%; width: 100%; position: absolute; z-index: 1009; overflow: hidden; padding: 10px; opacity: 0; visibility: hidden; display: flex; align-items: center; flex-direction: column; justify-content: center; overflow: hidden; background-color: var(--dim); }
+
+.window_container > div.no_overlay { background: none; pointer-events: none; }
+.window_container > div.no_overlay > div { pointer-events: all; }
+.window_container > div.open { opacity: 1; visibility: visible; }
+/* .window_container > div > div.react-draggable-dragged { align-items: flex-start; justify-content: flex-start; } */
+
+@keyframes window_appear {from{opacity: 0; transform: scale(.9);}}
+
+.window_container > div > div {animation: window_appear both .225s; border-radius: 10px; box-sizing: border-box; position: relative; overflow: hidden; justify-content: center; display: flex; flex-direction: column; max-height: 100%; max-width: 100%; box-shadow: var(--elevation); }
+.window_container > div.no_overlay > div { box-shadow: var(--elevation_2); }
+
+.window_container > div > div > header { width: 100%; min-height: var(--area); user-select: none; -webkit-user-select: none; cursor: default; position: relative; z-index: 2; background: var(--background); display: flex; align-items: center; padding: 30px 30px 10px; flex-shrink: 0; }
+.window_container > div > div > header > wrap { display: flex; align-items: center; overflow: hidden; position: absolute; width: 100%; left: 0; padding: 0 10px; }
+
+.window_container > div > div > header p { text-align: left; box-sizing: border-box; margin: 0; padding: 0 0 0 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; align-items: center; font-weight: 700; }
+.window_container > div > div > header .button.close { margin-left: auto; }
+.window_container > div > div > div { display: flex; flex-direction: column; max-height: 100%; overflow: hidden; z-index: 1; }
+
+.window_container > div > div > header group { flex-shrink: 0; }
+
+text[data-ellipsis][data-name="popup_title"] {position: absolute; max-width: calc(100% - 30px);}
+
+/*.window_container > div.fullscreen{height: calc(100% - var(--area));
+    bottom: 0;
+    background: none;
+    padding-top: 10px;
+    --radius-small: 5px;}
+
+*/
+
+/*.window_container > div.fullscreen > div:not(.fullscreen) > div{display:none} 
+
+
+*/
+
+/*.window_container.fullscreen > div:not(.fullscreen) > div{display:none}*/
+
+.window_container > div.fullscreen > div,
+.window_container > div.fullscreen > div > div,
+.window_container > div.fullscreen > div > div > .window_cont { height: 100%; width: 100%; }
+
+.window_cont { position: relative; display: flex; flex-direction: column; max-height: 100%; width: 100%; overflow: hidden; background: var(--background); }
+
+.window_cont > form { display: flex; flex-direction: column; max-height: 100%; min-height: 100%; overflow: hidden; }
+
+
+
+.window_cont[fixed='large'] { width: 1200px; height: 650px; }
+.window_cont[fixed='middle'] { width: 450px; }
+.window_cont[fixed='medium'] { width: 800px; height: 600px; }
+.window_cont[fixed='small'] { width: 350px; }
+
+@media (max-width: 490px) {
+    .window_cont[fixed='small'] { width: calc(100vw - 40px); }
+}
+
+@media (max-width: 490px) {
+    .window_cont[fixed='middle'] {
+        width: calc(100vw - 40px);
+    }
+}
+
+@media (max-width: 840px) {
+    .window_cont[fixed='medium'] { width: calc(100vw - 40px); }
+}
+
+@media (max-width: 1140px) {
+    .window_cont[fixed='large'] { width: calc(100vw - 40px); }
+}
+
+/*.window_container.fullscreen{ height:calc(100% - var(--area)); bottom:0; --radius-small: 5px;}
+*/
+
+/*.window_container.fullscreen > .open:not(.fullscreen)
+
+{    max-width: calc(100% - 20px);
+    border-radius: var(--radius-small);
+    left: 10px;
+    height: calc(100% - 10px);}*/
+
+/* ----- */
+
+
+/* stylelint-enable */
