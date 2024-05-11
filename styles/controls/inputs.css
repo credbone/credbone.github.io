@@ -1,0 +1,208 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+:root
+
+{
+    --input-size:30px;
+    --input-color: rgba(136, 136, 136, 0.1);
+    --input-padding: 5px;
+    --input-radius: 3px;
+}
+
+
+.field[data-size="large"]
+{
+--input-size: 40px;
+--input-padding: 10px;
+--input-radius: 5px;
+}
+
+
+[data-height="input"] {height:var(--input-size)}
+[data-margin="input"]{margin:0 var(--input-padding)}
+[data-length="input"]{width:var(--input-size)}
+[data-space-horizontal="input"]{padding-left: var(--input-padding);padding-right: var(--input-padding);}
+
+.field { display: flex; justify-content: flex-start; align-items: center; --gap: 10px; position: relative; flex-direction: column;  max-width: 100%;}
+.form_fields { box-sizing: border-box; position: relative;  width: 100%;  display: flex; justify-content: flex-start; flex-wrap: wrap; gap:10px; }
+
+
+.field_cont {/* flex-direction: column; */width: 100%;display: flex;align-items: center;position: relative;z-index: 1;flex-grow: 1;cursor: text; line-height: var(--input-size);}
+
+.field_cont:has([disabled]),
+.field_cont:has([class*="disabled"])
+
+{cursor:default}
+
+.field_cont .button { /*position: absolute; right: 0; padding: 0 20px;*/ flex-shrink: 0; --button-radius:var(--input-radius); border-radius: 0px;/*margin: 0;*/}
+
+/* .third_part .field_cont .button {border-radius: var(--button-radius)} */
+
+
+[dir="rtl"] .field_cont .button:first-child,
+.field_cont .button:nth-last-child(2) {
+    border-radius: 0 var(--button-radius) var(--button-radius) 0;
+}
+
+
+[dir="rtl"] .field_cont .button:nth-last-child(2),
+.field_cont .button:first-child {
+    border-radius: var(--button-radius) 0 0 var(--button-radius);
+}
+
+.field_cont > input {display: flex;align-items: center;height: var(--input-size);padding: 0 var(--input-padding);-webkit-transition: none;width: 100%;white-space: nowrap;text-overflow: ellipsis;color: inherit;position: relative;overflow: hidden;background-color: transparent;}
+
+.field_cont >.form_field_ant,
+
+.field_cont>.ant-input-number,
+.field_cont>.ant-input-number,
+.form_field_ant>.ant-picker
+{ width:100%; overflow: hidden;}
+
+
+
+.third_part .field_cont {
+    padding: 0;
+}
+
+.field_cont i { position: absolute; display: flex; z-index:-1; height: 100%; width: 100%; left: 0; top: 0; pointer-events: none; background: var(--background); box-shadow: 0 0 0 1px var(--outline); border-radius: var(--input-radius); }
+
+
+.form_fields textarea {width: 100%;color: inherit;position: relative; line-height: 1.5;background-color: transparent; resize: none;padding:var(--input-padding);}
+
+/* .field_cont input:-internal-autofill-selected ~ i { background: rgb(232, 240, 254); } */
+
+/*.field_cont > separator + input,
+.field_cont > .button + input{padding: 0;}
+
+.field_cont > [data-space-left]{margin-left: var(--gap);}
+.field_cont > [data-space-right]{right:var(--gap);}*/
+
+
+
+
+
+/*ant focused highlight style*/
+
+/*.form_fields textarea:focus ~ i {box-shadow: 0 0 0 1px var(--input-focused-color), 0 0 0 3px rgb(255 72 5 / 6%);z-index: -1;}*/
+
+.form_fields:hover i
+
+{ box-shadow:0 0 0 1px var(--main-color-light);z-index: -1;}
+
+
+
+.form_fields .field_cont input:focus ~ i,
+.form_fields textarea:focus ~ i ,
+
+.form_fields .field_cont [class*="focused"] ~ i
+
+{ box-shadow:0 0 0 1px var(--main-color), 0 0 0 3px var(--main-color-light);z-index: -1;}
+
+
+
+
+
+.field_cont :disabled ~ i,
+
+.field_cont [class*="disabled"]~i
+
+{background-color: var(--hover); box-shadow: 0 0 0 1px var(--outline);}
+
+
+
+.form_fields .data_label {cursor: default;display: flex;align-items: center;flex: 1 100%;font-weight: 700;overflow: hidden;text-overflow: ellipsis;}
+
+
+[data-label=left] .form_fields{align-items: center;
+    justify-content: center; }
+[data-label=left] .form_fields .data_label{flex:none;}
+[data-label=left]:only-of-type .form_fields .data_label{min-width:auto; max-width:initial;}
+
+/* [data-container]{container-type: inline-size; container-name:input;}
+
+    @container input (min-width: 600px)
+
+    {
+    
+    [data-label=left] .form_fields{align-items:center;flex-wrap:nowrap;}
+    [data-label=left] .form_fields .data_label{flex:none;}
+    [data-label=left]:only-of-type .form_fields .data_label{min-width:auto; max-width:initial;}
+    
+    
+    } */
+    
+
+
+
+
+input[disabled] ~ box,
+input[disabled] ~ text,
+input:disabled,
+textarea:disabled
+
+{opacity: 0.5; cursor: default;}
+[disabled] {pointer-events: none;}
+
+
+
+
+[data-multi-element] .field_cont{/* padding:0 5px; */}
+[data-multi-element] .field_cont > text:first-child{/* margin-left: 5px; */}
+
+[data-multi-element] .field_cont > icon + separator,
+[data-multi-element] .field_cont > separator + icon{/* margin-left:-5px; */}
+
+[data-multi-element] .field_cont > separator + input,
+[data-multi-element] .field_cont > icon + input,
+[data-multi-element] .field_cont > input + icon{/* margin-left: -10px; */}
+
+/*.field_cont > text,
+.field_cont > separator,
+.field_cont > icon{}
+
+.field_cont > .button {margin:0 5px}
+
+.field_cont > input + separator,
+.field_cont > input + .button{}
+
+.field_cont > separator + icon{}
+
+
+
+
+.field_cont > text:first-child{margin-left:10px;}
+
+.field_cont > .button:first-child, 
+.field_cont > icon:first-child{margin-left:5px;}*/
+
+
+
+.field_cont>icon+input { margin-left:calc(-1 * var(--input-padding))}
+/* .field_cont>separator {height: 30px;} */
+
+/* .field_cont>separator+.button,
+.field_cont>.button+separator
+{margin-left: var(--input-padding)} */
+
+
+/*validationError*/
+
+
+.validationError errormessage {color: var(--error-color);position: relative;display: none; overflow: hidden; width: 100%;pointer-events: none;}
+.validationError errormessage {display: flex;}
+
+errormessage { display: flex;overflow: hidden;width: 100%;}
+
+.validationError .data_label {color: var(--error-color);}
+.validationError .field_cont  i { background: none; border: none; box-shadow: 0 0 0 1.5px var(--error-color)}
+.validationError .field_cont  i:after { content: ""; height: 100%; width: 100%; background: var(--error-color); opacity: .05; pointer-events: none;}
+
+.error .field_cont i { background: none; border: none; box-shadow: 0 0 0 1.5px var(--error-color)}
+
+.form_fields.validationError textarea, 
+.form_fields.validationError textarea:focus {    background: none;    }
+
+/* stylelint-enable */

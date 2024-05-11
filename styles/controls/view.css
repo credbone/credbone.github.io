@@ -1,0 +1,147 @@
+
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+
+
+
+/*view*/
+view,
+.ka-wrapper,
+.ka-content
+
+
+
+
+{ display: flex; width: 100%; height: 100%; position: relative; overflow: hidden;box-shadow: 0 0 0 1px var(--border-color);flex-direction: column; z-index: 1;background: var(--background); }  
+view[shrink="no"]{flex-shrink:0}
+
+view[space] {padding:30px}
+view[auto] { width: auto; flex-shrink: 0; }
+
+view[data-vertical] { flex-direction: row; }
+view[horizontal] { flex-direction: column; }
+
+
+
+
+
+
+
+
+
+view > form { display: flex; overflow: hidden; flex-direction: column; width: 100%; height: 100%; }
+
+view[data-scroll],[data-scroll] { overflow: auto; overflow: overlay; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;}
+view[data-align="center"] {align-items:center; justify-content:center }
+
+view[data-scroll] scroller { flex: 1 }
+
+view[data-size="small"] { max-width: 340px;}
+view[data-size="medium"] { max-width: 500px;}
+view[data-size="large"] { max-width: 720px;}
+
+@media (max-width: 800px)
+
+
+{
+
+    view[data-adaptive][data-vertical] { flex-direction: column;
+    
+        overflow: auto;
+        overflow: overlay;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        display: block;
+        -moz-overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        z-index: 1;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+    }
+    view[data-adaptive][data-vertical] view {max-width: initial;height: initial;flex-shrink: 0;overflow: initial;}
+
+}
+
+
+
+
+
+view.hide { display:none; }
+
+view[data-border="none"]{box-shadow:none}
+view[data-background="none"]{background:none}
+
+spliter { width: 10px; background: var(--highlight); height: 100%; flex-shrink: 0; z-index: 9; box-shadow: 0 0 0 1px var(--border-color) }
+spliter[horizontal] { width: 100%; height: 10px }
+
+
+
+
+/**/
+
+
+
+:root{
+    --switch-size:50px
+}
+
+
+[data-switch-size="60"] { --switch-size: 60px }
+
+
+[data-name="switchable"]   {transition: .125s; transition-property: width, height,max-height, flex-shrink, max-width;}
+[data-name="switch"]{transition: .225s; transition-property: width, height; min-height: var(--switch-size); }
+
+
+
+[data-name="switchable"][data-expanded="false"]:not([data-type="overlap"]):not([data-switch-direction="horizontal"]){width: var(--switch-size);flex-shrink: 0; flex-direction: row;}
+[data-name="switchable"][data-expanded="false"]:not([data-type="overlap"]):not([data-switch-direction="horizontal"]) > [data-name="switch"]{width: var(--switch-size); max-width: var(--switch-size);  height: 100%; writing-mode: vertical-rl; text-orientation: mixed; }
+[data-name="switchable"][data-expanded="false"][data-switch-direction="horizontal"] {height: var(--switch-size); flex-shrink: 0; }
+
+
+[data-name="switchable"][data-type="adaptive"][data-placement="right"],
+[dir="rtl"] [data-name="switchable"][data-type="adaptive"][data-placement="left"] 
+
+{right:0; left:initial}
+
+[data-name="switchable"][data-type="adaptive"][data-placement="left"],
+[dir="rtl"] [data-name="switchable"][data-type="adaptive"][data-placement="right"] 
+
+
+{left:0; right: initial;}
+
+
+
+
+
+@media (min-width: 800px)
+{
+
+[data-name="switchable"][data-expanded="false"][data-type="overlap"]:not([data-switch-direction="horizontal"]){width: var(--switch-size);flex-shrink: 0; flex-direction: row;}
+[data-name="switchable"][data-expanded="false"][data-type="overlap"]:not([data-switch-direction="horizontal"]) > [data-name="switch"]{width: var(--switch-size); height: 100%; writing-mode: vertical-rl; text-orientation: mixed; }
+    
+
+
+}
+
+
+[data-name="switch-gap"]{display: none;width:var(--switch-size);}
+
+
+@media (max-width: 800px)
+
+{
+
+[data-name="switchable"][data-type="overlap"] {bottom: 0; max-width: calc(100% - 30px); max-height: calc(100% - 30px); border-radius: 10px; margin: 15px; box-shadow: var(--elevation); position: absolute; z-index: 10; }
+[data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
+[data-name="switchable"][data-expanded="false"][data-type="overlap"]{height: var(--switch-size); max-height: var(--switch-size); }
+
+[data-name="switchable"][data-type="adaptive"]{position: absolute;}
+[data-name="switch-gap"]{display: flex;}
+
+}
+
+
+/* stylelint-enable */

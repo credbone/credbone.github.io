@@ -1,0 +1,39 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+badge{ --badge-color:var(--main-color); white-space: nowrap; border-radius: 30px; padding: 6px 10px;;  z-index: 2; line-height:1; position: relative; text-align: center;   max-width: 100%; overflow: hidden; text-overflow: ellipsis;  flex-shrink: 0 }
+
+badge[data-filled]{background: var(--badge-color); color:var(--background)}
+badge[data-outline]{ color:var(--badge-color);/*box-shadow: inset 0 0 0 1.22px;*/}
+badge[data-outline]::after{content: ""; color:var(--badge-color); height: 100%; width: 100%; position: absolute; top: 0; left: 0; pointer-events: none; opacity: .1; box-shadow: inset 0 0 0 15px var(--badge-color);}
+
+
+
+badge[data-color="turquoise"]{--badge-color:#1ABC9C}
+badge[data-color="emerland"]{--badge-color:#2ECC71}
+badge[data-color="peterriver"]{--badge-color:#3498DB}
+
+
+
+badge[data-color="red"] {--badge-color:#f44336;}
+badge[data-color="pink"] {--badge-color:#e91e63;}
+badge[data-color="purple"] {--badge-color:#9c27b0;}
+badge[data-color="deep-purple"] {--badge-color:#673ab7;}
+badge[data-color="indigo"] {--badge-color:#3f51b5;}
+badge[data-color="blue"] {--badge-color:#2196f3;}
+badge[data-color="light-blue"] {--badge-color:#03a9f4;}
+badge[data-color="cyan"] {--badge-color:#00bcd4;}
+badge[data-color="teal"] {--badge-color:#009688;}
+badge[data-color="green"] {--badge-color:#4caf50;}
+badge[data-color="light-green"] {--badge-color:#8bc34a;}
+badge[data-color="lime"] {--badge-color:#cddc39;}
+badge[data-color="yellow"] {--badge-color:#ffeb3b;}
+badge[data-color="amber"] {--badge-color:#ffc107;}
+badge[data-color="orange"] {--badge-color:#ff9800;}
+badge[data-color="deep-orange"] {--badge-color:#ff5722;}
+badge[data-color="brown"] {--badge-color:#795548;}
+badge[data-color="grey"] {--badge-color:#9e9e9e;}
+badge[data-color="blue-grey"] {--badge-color:#607d8b;} 
+
+/* stylelint-enable */

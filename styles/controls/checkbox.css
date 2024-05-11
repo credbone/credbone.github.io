@@ -1,0 +1,102 @@
+/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* stylelint-disable */
+
+
+
+input[disabled] ~ box,
+input[disabled] ~ text { opacity: 0.5; cursor: default; }
+
+
+/* [checkbox] */
+
+[checkbox],
+[radio],
+[classic] { display: flex; align-items: center; min-height: 32px; white-space: nowrap; position: relative; /*overflow: hidden;*/ cursor: pointer; max-width: 100%;}
+
+[checkbox]:active,
+[radio]:active,
+[classic]:active { transform: translateY(1px); }
+
+[checkbox] input,
+[radio] input,
+[classic] input { display: none; }
+
+[checkbox] box { height: 20px; width: 36px; display: flex; position: relative; border-radius: 10px; flex-shrink: 0; cursor: pointer; box-shadow: inset 0 0 0 2px; }
+
+[checkbox] text,
+[radio] text,
+[classic] text { padding: 0 10px; white-space: nowrap; width: 100%; overflow: hidden; position: relative; text-overflow: ellipsis; }
+
+box ink { width: 50px; height: 50px; position: absolute; top: -16px; left: -16px; border-radius: 25px; overflow: hidden; z-index: 1; }
+box ink:hover { background-color: var(--hover); }
+
+[checkbox] name,
+[radio] name { padding: 0 10px 0 0; }
+
+[checkbox] check { height: 10px; width: 10px; box-shadow: inset 0 0 0 7px; top: 5px; left: 5px; transition: 0.25s; background: var(--background); border-radius: 20px; position: absolute; }
+
+[checkbox]:not([minimal]):active box check { width: 15px; }
+[checkbox]:not([minimal]):active input:checked ~ box check { left: 0px; }
+
+[checkbox] input:checked ~ box { box-shadow: inset 0 0 0 20px; color: var(--main-color); }
+[checkbox] input:checked ~ box check { transform: translateX(16px); box-shadow: inset 0 0 0 0px; }
+
+/* [checkbox][simple] text:after { content: 'No'; }
+[checkbox][simple] input:checked ~ text:after { content: 'Yes'; } */
+
+[checkbox] tip { opacity: 0.5; padding: 0 10px; }
+[checkbox][simple] tip:after { content: 'Off'; }
+[checkbox][simple] input:checked ~ tip:after { content: 'On'; }
+
+[checkbox][minimal] box { height: 2px; width: 28px; }
+[checkbox][minimal] check { height: 16px; width: 16px; display: flex; top: -7px; box-shadow: inset 0 0 0 2px, 0 0 0 3px var(--background); background: var(--background); left: 0; }
+[checkbox][minimal] input:checked ~ box { }
+[checkbox][minimal] input:checked ~ box check { transform: translateX(12px); box-shadow: inset 0 0 0 10px; }
+
+/* ----- */
+
+/* radio */
+
+[radio] box { display: flex; position: relative; border-radius: 10px; flex-shrink: 0; box-shadow: inset 0 0 0 2px; }
+[radio] box { height: 18px; width: 18px; }
+[radio] check { height: 8px; width: 8px; transition: 0.25s; background: white; border-radius: 20px; position: absolute; top: 5px; left: 5px; transform: scale(0); background: var(--main-color); }
+[radio] input:checked ~ box { color: var(--main-color); }
+[radio] input:checked ~ box check { transform: scale(1); }
+/* ----- */
+
+[classic] box { display: flex; position: relative; flex-shrink: 0; box-shadow: inset 0 0 0 2px; transition: 0.125s; border-radius: 3px; }
+[classic] box { height: 18px; width: 18px; /*border-radius: 3px;*/ }
+[classic] check { transform: scale(0); top: 0; left: 0; height: 18px; width: 18px; transition: 0.125s; 
+
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M13.991,7.456L8.4,13,5.01,9.637,6.474,8.183,8.4,10.093,12.526,6Z'/%3E%3C/svg%3E");
+
+}
+
+/* [classic]:active box {box-shadow: inset 0 0 0 2px, inset 0 0 0 10px var(--main-color-lighter)} */
+
+[classic] input:checked ~ box { color: var(--main-color); box-shadow: inset 0 0 0 10px; }
+
+[classic] input:checked ~ box check { transform: none; }
+
+[classic] separator + box { margin-left: 10px; }
+[classic] box + separator { margin-left: 20px; }
+
+/**/
+
+
+
+label[minimal] { display: flex; align-items: center; overflow: hidden; position: relative;  cursor: pointer; }
+label[minimal] .ant-select { display: flex; align-items: center;  }
+label[minimal] separator { --gap: 20px; height: 20px; }
+label[minimal] separator + .ant-select { padding: 0; }
+label[minimal]:active .ant-select .ant-select-selection-item text { transform: translateY(1px); }
+
+
+
+
+
+
+
+
+/* stylelint-enable */
