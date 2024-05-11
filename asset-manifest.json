@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/credbone/credbone.github.io/static/css/main.f855e6bc.css",
-    "main.js": "/credbone/credbone.github.io/static/js/main.77d6fc14.js",
+    "main.js": "/credbone/credbone.github.io/static/js/main.b097f8ee.js",
     "static/js/453.37bbc361.chunk.js": "/credbone/credbone.github.io/static/js/453.37bbc361.chunk.js",
     "static/media/logo.svg": "/credbone/credbone.github.io/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/credbone/credbone.github.io/index.html",
     "main.f855e6bc.css.map": "/credbone/credbone.github.io/static/css/main.f855e6bc.css.map",
-    "main.77d6fc14.js.map": "/credbone/credbone.github.io/static/js/main.77d6fc14.js.map",
+    "main.b097f8ee.js.map": "/credbone/credbone.github.io/static/js/main.b097f8ee.js.map",
     "453.37bbc361.chunk.js.map": "/credbone/credbone.github.io/static/js/453.37bbc361.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.77d6fc14.js"
+    "static/js/main.b097f8ee.js"
   ]
 }
