@@ -257,7 +257,7 @@ const Colors: React.FC = () => {
         <group data-height="60"></group>
       </view>
 
-      <view  data-dark="" data-scroll="" data-space="10" data-border="none" >
+      {/* <view  data-dark="" data-scroll="" data-space="10" data-border="none" >
         <group data-direction="column" data-gap="15" data-space="20">
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
             Dark Theme
@@ -279,7 +279,7 @@ const Colors: React.FC = () => {
         <group data-type="grid" data-gap="10" data-space="20">
           <Content></Content>
         </group>
-      </view>
+      </view> */}
     </view>
   );
 };

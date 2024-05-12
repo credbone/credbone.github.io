@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //import { Tooltip, message, notification } from "antd";
 
 
-// Assuming MaterialIcons is an array of objects with 'name' as the unique identifier for each icon
+
     const Icons = [
 { label: "Search Icon" , name: "search" , Title: "Search"},
 { label: "Home Icon" , name: "home" , Title: "Home"},
@@ -390,7 +390,7 @@ const MaterialIcons = () => {
 const [selectedIcon, setSelectedIcon] = useState<string | null>(null); 
 //const [api, contextHolder] = notification.useNotification();
 const handleIconClick = (iconName: string) => {
-  const key = "updatable";
+ // const key = "updatable";
     
  
   
