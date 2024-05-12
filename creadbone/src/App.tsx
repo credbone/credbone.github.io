@@ -9,12 +9,11 @@ import Navigation from "./components/navigation";
 function App() {
   return (
     < >
-
-
+     
+     
 
       <Router>
-
-      <Navigation/>
+        <Navigation />
         <Routes>
           <Route path='/' element={<Template />} />
           <Route path='/about' element={<About />} />

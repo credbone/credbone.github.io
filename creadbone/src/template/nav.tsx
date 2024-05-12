@@ -127,7 +127,7 @@ const Landing: React.FC = () => {
 </Scroll>
 </group>
 
-          <group data-wrap="no" data-length="50"> <separator data-vertical="" data-height="fit"></separator><Button className="mini primary extra" toggleClassName="open"  > <icon> <SvgHamburger /> </icon> </Button> </group>
+          <group data-wrap="no" data-length="50"> <separator data-vertical="" data-height="fit"></separator><Button className="primary extra" toggleClassName="open"  > <icon> <SvgHamburger /> </icon> </Button> </group>
 
             </nav>
           </group>

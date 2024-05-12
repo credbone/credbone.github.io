@@ -1,21 +1,12 @@
 import React from "react";
 
-// import { setColorTheme } from "../../store/componentsSlice";
-// import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getPalette } from "../styles/skin";
+
+
 import Scroll from "../components/scroll";
 import Button from "../components/button";
 
 const ThemePicker: React.FC = () => {
-//  const dispatch = useAppDispatch();
 
-  // const { colorPrimary, colorSecondary } = useAppSelector(
-  //   (state) => state.components.skinConfig.colorPalette
-  // );
-  // const onSelectPrimary = (color: string) =>
-  //   dispatch(setColorTheme(getPalette(color, colorSecondary)));
-  // const onSelectSecondary = (color: string) =>
-  //   dispatch(setColorTheme(getPalette(colorPrimary, color)));
 
   const colors = [
     "#934f9a",
