@@ -2,9 +2,12 @@ import React from "react";
 
 function About() {
   return (
-    <div>
-      <h1>About</h1>
-    </div>
+    <view data-space="30" >
+<group data-align="center" data-gap="10">
+<icon>info</icon>
+      <text>About</text>
+</group>
+    </view>
   );
 }
 
