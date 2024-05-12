@@ -19,19 +19,9 @@ export type ColorPalette = {
     colorSecondaryDark?: string;
     colorSecondaryDarker?: string;
 
-    colorInfo?: string;
-    colorSuccess?: string;
-    colorWarning?: string;
-    colorError?: string;
+
 };
-export type SkinConfig = {
-    colorPalette: ColorPalette;
-    sizeConfig: {
-        fontSize: number;
-        borderRadius: number;
-        fontFamily: string;
-    };
-};
+
 
 export const getCSSByPalette = ({
     colorLighter,

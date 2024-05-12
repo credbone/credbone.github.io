@@ -1,12 +1,10 @@
-import React from "react";
-
-
-
+import React, { useState } from "react";
 import Scroll from "../components/scroll";
 import Button from "../components/button";
+import { getPalette, ColorPalette, getCSSByPalette } from "../styles/skin"; // Import getPalette and ColorPalette from your file
 
 const ThemePicker: React.FC = () => {
-
+  const [selectedColors, setSelectedColors] = useState<ColorPalette | null>(null);
 
   const colors = [
     "#934f9a",
@@ -19,17 +17,24 @@ const ThemePicker: React.FC = () => {
     "#db6b5d",
     "#ff705e",
   ];
+
   const seccolors = [
     "#cbacd8",
     "#83749f",
     "#6cc5cc",
     "#06969e",
     "#055b5c",
-
     "#7da10d",
     "#dcda63",
-   
   ];
+
+  const handleColorSelection = (color: string, isPrimary: boolean) => {
+    const primaryColor = isPrimary ? color : selectedColors?.colorPrimary || "#000000";
+    const secondaryColor = isPrimary ? selectedColors?.colorSecondary || "#000000" : color;
+    const palette = getPalette(primaryColor, secondaryColor);
+    setSelectedColors(palette);
+  };
+
   return (
     <group data-width="auto" data-snap-button="15" data-height="fit" data-contain="">
       <Scroll vertical>
@@ -44,13 +49,12 @@ const ThemePicker: React.FC = () => {
           </text>
           {colors.map((c) => (
             <Button
-              style={{ ["--main-color-lighter" as string]: `${c}75` }}
               key={c}
-          //    outline={colorPrimary === c}
               mini
               rounded
               material
-       //       onClick={() => onSelectPrimary(c)}
+         //     style={{ backgroundColor: c }}
+              onClick={() => handleColorSelection(c, true)}
             >
               <icon>
                 <svg width="20" height="20" viewBox="0 0 20 20">
@@ -64,13 +68,12 @@ const ThemePicker: React.FC = () => {
           </text>
           {seccolors.map((c) => (
             <Button
-              style={{ ["--main-color-lighter" as string]: `${c}75` }}
               key={c}
-           //   outline={colorSecondary === c}
               mini
               rounded
               material
-         //     onClick={() => onSelectSecondary(c)}
+         //     style={{ backgroundColor: c }}
+              onClick={() => handleColorSelection(c, false)}
             >
               <icon>
                 <svg width="20" height="20" viewBox="0 0 20 20">
@@ -82,7 +85,14 @@ const ThemePicker: React.FC = () => {
           <space data-height="10"></space>
         </group>
       </Scroll>
+      {/* Render CSS variables using the selected colors */}
+      {selectedColors && (
+        <style>
+          {getCSSByPalette(selectedColors)}
+        </style>
+      )}
     </group>
   );
 };
+
 export default ThemePicker;
