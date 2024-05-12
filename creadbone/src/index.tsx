@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "./configs/customTags";
-import './index.css';
+//import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { isDesktop, isMobile } from "react-device-detect";
+
+isMobile && document.documentElement.classList.add("mobile");
+isDesktop && document.documentElement.classList.add("desktop");
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
