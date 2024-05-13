@@ -4,6 +4,8 @@ import "./configs/customTags";
 //import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { HashRouter as Router } from "react-router-dom";
+
 
 import { isDesktop, isMobile } from "react-device-detect";
 
