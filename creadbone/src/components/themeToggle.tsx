@@ -6,21 +6,6 @@ const ThemeToggle: React.FC = () => {
     return savedMode || 'light';
   });
 
-  useEffect(() => {
-    const handleSystemThemeChange = () => {
-      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (themeMode === 'auto') {
-        setThemeMode(prefersDarkScheme ? 'dark' : 'light');
-        updateTheme(prefersDarkScheme ? 'dark' : 'light');
-      }
-    };
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handleSystemThemeChange);
-
-    return () => {
-      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', handleSystemThemeChange);
-    };
-  }, [themeMode]);
 
   useEffect(() => {
     updateTheme(themeMode);
@@ -31,6 +16,8 @@ const ThemeToggle: React.FC = () => {
     document.documentElement.setAttribute('data-theme', mode);
     document.documentElement.classList.toggle('dark-mode', mode === 'dark');
   };
+
+
 
   const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
