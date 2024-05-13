@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Scroll from "../components/scroll";
 import Button from "../components/button";
 import { getPalette, ColorPalette, getCSSByPalette } from "../styles/skin"; // Import getPalette and ColorPalette from your file
 
 const ThemePicker: React.FC = () => {
   const [selectedColors, setSelectedColors] = useState<ColorPalette | null>(null);
+
+  useEffect(() => {
+    const storedColors = localStorage.getItem("selectedColors");
+    if (storedColors) {
+      const parsedColors = JSON.parse(storedColors);
+      setSelectedColors(parsedColors);
+      updateGlobalStyles(parsedColors);
+    }
+  }, []); // Empty dependency array to run only on mount
 
   const colors = [
     "#934f9a",
@@ -29,11 +38,19 @@ const ThemePicker: React.FC = () => {
   ];
 
   const handleColorSelection = (color: string, isPrimary: boolean) => {
-    const primaryColor = isPrimary ? color : selectedColors?.colorPrimary || "#544f9a";
-    const secondaryColor = isPrimary ? selectedColors?.colorSecondary || "#055b5c" : color;
+    let primaryColor = selectedColors?.colorPrimary || "#544f9a";
+    let secondaryColor = selectedColors?.colorSecondary || "#055b5c";
+
+    if (isPrimary) {
+      primaryColor = color;
+    } else {
+      secondaryColor = color;
+    }
+
     const palette = getPalette(primaryColor, secondaryColor);
     setSelectedColors(palette);
     updateGlobalStyles(palette);
+    localStorage.setItem("selectedColors", JSON.stringify(palette));
   };
 
   const updateGlobalStyles = (palette: ColorPalette) => {
@@ -63,9 +80,9 @@ const ThemePicker: React.FC = () => {
               key={c}
               mini
               rounded
-              material
-         //     style={{ backgroundColor: c }}
+             
               onClick={() => handleColorSelection(c, true)}
+              data-background={selectedColors?.colorPrimary === c ? "main-lighter" : ""}
             >
               <icon>
                 <svg width="20" height="20" viewBox="0 0 20 20">
@@ -82,9 +99,9 @@ const ThemePicker: React.FC = () => {
               key={c}
               mini
               rounded
-              material
-         //     style={{ backgroundColor: c }}
+          
               onClick={() => handleColorSelection(c, false)}
+              data-background={selectedColors?.colorSecondary === c ? "secondary-lighter" : ""}
             >
               <icon>
                 <svg width="20" height="20" viewBox="0 0 20 20">
