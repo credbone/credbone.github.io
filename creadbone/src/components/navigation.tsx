@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import Ripple from "./Ripple";
+import ThemeToggle from "./themeToggle";
 
 
 
@@ -11,7 +12,7 @@ import Ripple from "./Ripple";
 function Navigation() {
   return (
 
-    <group data-space="10" data-gap="10" data-align="center">
+    <group data-space="15" data-gap="10" data-align="center" data-wrap="no">
 
 
       <NavLink data-type="group" to="/" data-width="auto"data-name="nav-item" data-radius="5"  data-contain="" 
@@ -32,6 +33,12 @@ function Navigation() {
           </group>
         </Ripple>
       </NavLink>
+
+
+<group  data-position="right" data-width="auto">
+  <ThemeToggle/>
+</group>
+
     </group>
 
   );

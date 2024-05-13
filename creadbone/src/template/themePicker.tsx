@@ -29,10 +29,21 @@ const ThemePicker: React.FC = () => {
   ];
 
   const handleColorSelection = (color: string, isPrimary: boolean) => {
-    const primaryColor = isPrimary ? color : selectedColors?.colorPrimary || "#000000";
-    const secondaryColor = isPrimary ? selectedColors?.colorSecondary || "#000000" : color;
+    const primaryColor = isPrimary ? color : selectedColors?.colorPrimary || "#544f9a";
+    const secondaryColor = isPrimary ? selectedColors?.colorSecondary || "#055b5c" : color;
     const palette = getPalette(primaryColor, secondaryColor);
     setSelectedColors(palette);
+    updateGlobalStyles(palette);
+  };
+
+  const updateGlobalStyles = (palette: ColorPalette) => {
+    const cssContent = getCSSByPalette(palette);
+
+    const styleElement = document.createElement("style");
+    styleElement.appendChild(document.createTextNode(cssContent));
+
+    const head = document.head || document.getElementsByTagName("head")[0];
+    head.appendChild(styleElement);
   };
 
   return (
