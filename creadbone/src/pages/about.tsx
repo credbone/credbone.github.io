@@ -10,7 +10,7 @@ function About() {
         </group>
 
         <text data-wrap="wrap" data-text-size="medium" data-length="610" data-line="1.5" data-light="">
-        Experiment App, featuring a curated collection of UI components and patterns as React components.
+        Experimental App, featuring a curated collection of UI components and patterns as React components.
          Each element is crafted to enhance your applications with both beauty and functionality,
           ensuring seamless integration and easy customization. Dive in, explore, 
           and elevate your design capabilities effortlessly using our intuitive interface.
