@@ -531,6 +531,9 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-background="context"]{ background-color: var(--context) }
 
 
+[data-fill="main"] { fill: var(--main-color) }
+
+
 [data-background="main-lighter"] { background-color: var(--main-color-lighter) }
 [data-background="main-light"] { background-color: var(--main-color-light) }
 [data-background="main"] { background-color: var(--main-color) }
