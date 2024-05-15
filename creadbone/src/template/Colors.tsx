@@ -70,7 +70,7 @@ const Colors: React.FC = () => {
               data-contain=""
          //     data-space="10"
               data-radius="10"
-              data-elevation="1"
+              data-elevation="2"
             >
               <group
                 data-background="main-lighter"
@@ -117,7 +117,7 @@ const Colors: React.FC = () => {
               data-contain=""
       //        data-space="10"
               data-radius="10"
-              data-elevation="1"
+              data-elevation="2"
             >
               <group
                 data-background="secondary-lighter"
@@ -169,7 +169,7 @@ const Colors: React.FC = () => {
               data-contain=""
         //      data-space="10"
               data-radius="10"
-              data-elevation="1"
+              data-elevation="2"
               data-color="white"
             >
               {BaseColors.map((colors) => (
