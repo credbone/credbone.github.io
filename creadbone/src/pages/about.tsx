@@ -5,7 +5,7 @@ function About() {
   return (
     <view data-space="50" data-scroll="">
       <group  data-gap="30" data-direction="column">
-        <group data-max-length="300">
+        <group data-max-length="200">
           <Logo />
         </group>
 
