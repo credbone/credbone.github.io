@@ -55,12 +55,15 @@ const ThemePicker: React.FC = () => {
 
   const updateGlobalStyles = (palette: ColorPalette) => {
     const cssContent = getCSSByPalette(palette);
+    let styleElement = document.querySelector("#theme-styles") as HTMLStyleElement;
 
-    const styleElement = document.createElement("style");
-    styleElement.appendChild(document.createTextNode(cssContent));
+    if (!styleElement) {
+      styleElement = document.createElement("style");
+      styleElement.id = "theme-styles";
+      document.head.appendChild(styleElement);
+    }
 
-    const head = document.head || document.getElementsByTagName("head")[0];
-    head.appendChild(styleElement);
+    styleElement.textContent = cssContent;
   };
 
   return (
