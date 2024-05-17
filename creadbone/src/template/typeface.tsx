@@ -2,17 +2,17 @@ import React from "react";
 
 const Typeface: React.FC = () => {
   return (
-    <view data-vertical="" data-adaptive="">
-      <view data-size="small" data-scroll="">
+    <view data-vertical="" data-adaptive="" data-space="30" data-gap="15" data-align="start">
+      <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1">
         <group
-          data-border=""
+          data-border="overprint"
           data-space="10"
-          data-sticky="top"
-          data-backdrop=""
+          data-index="1"
+        
         >
           <text data-space="10">Currently in Use</text>
         </group>
-        <group data-space="20" data-border="none">
+        <group data-space="20" data-border="none" data-scroll="">
           <text
             data-weight="700"
             data-text-size="xxx-large"
@@ -24,29 +24,27 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <text
             data-wrap="wrap"
-            light="" //NOSONAR
+            data-light=""
             data-line="1.5"
           >
             Gilroy Font Family was designed by Radomir Tinkov and published by
             Radomir Tinkov. Gilroy contains 20 styles and family package
             options.
           </text>
-          <space></space>
         </group>
       </view>
 
-      <view data-size="small" data-scroll="">
+      <view data-size="small"   data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1">
         <group
-          data-border=""
+          data-border="overprint"
           data-space="10"
-          data-sticky="top"
-          data-backdrop=""
+          data-index="1"
         >
           <text data-space="10">Preview</text>
         </group>
-        <group data-space="20" data-border="none">
+        <group data-scroll="" data-space="20" data-border="none">
           <text
-            light=""  //NOSONAR
+            data-light=""
           >
             Thin 100
           </text>
@@ -57,7 +55,7 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <separator data-horizontal=""></separator>
           <text
-            light="" //NOSONAR
+            data-light=""
           >
             Light 300
           </text>
@@ -68,7 +66,7 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <separator data-horizontal=""></separator>
           <text
-            light="" //NOSONAR
+            data-light=""
           >
             Regular 400
           </text>
@@ -79,7 +77,7 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <separator data-horizontal=""></separator>
           <text
-            light="" //NOSONAR
+            data-light=""
           >
             Medium 600
           </text>
@@ -90,7 +88,7 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <separator data-horizontal=""></separator>
           <text
-            light="" //NOSONAR
+            data-light=""
           >
             Bold 700
           </text>
@@ -101,7 +99,7 @@ const Typeface: React.FC = () => {
           <space data-height="30"></space>
           <separator data-horizontal=""></separator>
           <text
-            light="" //NOSONAR
+            data-light=""
           >
             Bold 800
           </text>
@@ -112,17 +110,20 @@ const Typeface: React.FC = () => {
         </group>
       </view>
 
-      <view data-scroll="">
+      <view   data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1">
         <group
-          data-border=""
+          data-border="overprint"
           data-space="10"
-          data-sticky="top"
-          data-backdrop=""
+          data-index="1"
+        
         >
           <text data-space="10">Glyphs</text>
         </group>
+        <group
+        data-scroll=""
+        >
 
-        <grid>
+<grid>
           <wrap
             mini="" //NOSONAR
           >
@@ -403,6 +404,9 @@ const Typeface: React.FC = () => {
             <div>{"*"}</div>
           </wrap>
         </grid>
+
+        </group>
+       
       </view>
     </view>
   );

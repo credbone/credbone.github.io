@@ -47,16 +47,14 @@ view[data-size="large"] { max-width: 720px;}
     
         overflow: auto;
         overflow: overlay;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        display: block;
-        -moz-overflow-y: scroll;
+
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
         z-index: 1;
         scroll-behavior: smooth;
         overscroll-behavior: contain;
     }
-    view[data-adaptive][data-vertical] view {max-width: initial;height: initial;flex-shrink: 0;overflow: initial;}
+    view[data-adaptive][data-vertical] view {max-width: initial;height: initial; max-height: initial; flex-shrink: 0;}
 
 }
 

@@ -95,7 +95,9 @@ const ThemePicker: React.FC = () => {
            </icon>
          </Button>
           ))}
+                  <space data-height="10"></space>
         </group>
+
       </Scroll>
     </group>
   );

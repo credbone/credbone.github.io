@@ -11,9 +11,11 @@ import Switchable from "../components/Switchable";
 
 const Layout: React.FC = () => {
   return (
-    <view data-vertical=""  >
-      <view data-direction="row">
+    <view data-vertical=""   >
+      <view data-direction="row" data-gap="20" data-space="20">
         <Switchable
+          
+          data-radius="10"
           defaultExpanded={false}
           icon={ <icon data-fill="" data-color="amber">folder</icon>}
           title={"Adaptive Switchable To The Left"}
@@ -48,21 +50,26 @@ const Layout: React.FC = () => {
           </>
         </Switchable>
 
-        <view data-name="switchable" data-direction="column" data-align="start">
-          <view data-scroll=""  data-container-type="grid">
+        <view data-name="switchable" data-direction="column" data-align="start" data-radius="10">
+          <view data-scroll="" data-container-type="grid">
+            
+
+
+            <group data-space="20"data-sticky="top">
             <group
               data-align="center"
               data-gap="5"
               data-elevation="1"
               data-index="2"
               data-backdrop=""
-              data-wrap="no"
-              data-sticky="top"
+                data-wrap="no"
+                data-radius="5"
+              
               
             >
-              <Marquee data-space="10">
+              <Marquee data-space="15">
                 <group data-wrap="no" data-align="center" data-gap="10">
-                  <icon data-length="30">info</icon>
+                  <icon data-length="30">transition_slide</icon>
                   <text>
                     This extensive text is intended as a showcase of the marquee
                     effect, wherein, upon mouse hover, the text will smoothly
@@ -72,6 +79,7 @@ const Layout: React.FC = () => {
                 </group>
               </Marquee>
             </group>
+</group>
             <group data-space="20" data-align="center" data-justify="center">
             <space></space>
             <icon data-opacity="20" data-icon-size="large">responsive_layout</icon>
@@ -99,9 +107,10 @@ const Layout: React.FC = () => {
             </group>
           </view>
         </view>
-      </view>
 
-      <Switchable
+        <Switchable
+        
+        data-radius="10"
         data-type="adaptive"
        data-placement="right"
         icon={<><SvgHamburgerToRight/></>}
@@ -109,8 +118,8 @@ const Layout: React.FC = () => {
         collapseThreshold={800}
         data-size="large"
         title={"Switchable To The Right"}>
-        <view>
-          <view data-scroll="">
+        <view >
+          <view data-scroll="" >
             <group data-direction="column" data-gap="10" data-space="20" data-container-type="grid">
               <group data-space="20" data-align="center" data-justify="center">
 
@@ -138,7 +147,7 @@ const Layout: React.FC = () => {
           </view>
 
           <Switchable
-            
+              
             data-type="overlap"
             data-elevation="1"
             data-switch-direction="horizontal"
@@ -173,6 +182,10 @@ const Layout: React.FC = () => {
         </view>
       </Switchable>
       <group data-name="switch-gap" data-shrink="no"></group>
+
+      </view>
+
+
     </view>
   );
 };

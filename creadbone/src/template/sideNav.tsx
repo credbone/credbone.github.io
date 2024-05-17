@@ -168,7 +168,7 @@ const SideNav = () => {
               Cart
             </text>
             <dot data-adaptive="open-state"></dot>
-            <text data-adaptive="open-state">5</text>
+            <group data-adaptive="open-state"  data-length="25" data-ratio="1:1" data-radius="20" data-color="white" data-justify="center" data-align="center" data-background="red"><text data-weight="700">3</text> </group> 
           </group>
           <group data-position="bottom"  ref={bottomRef}></group>
 
