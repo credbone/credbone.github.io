@@ -182,6 +182,30 @@ const ContentSlide: React.FC = () => {
                 egestas dapibus risus non aliquet.
               </text>
             </group>
+
+            
+            <group
+              data-border=""
+              data-radius="15"
+              data-space="30"
+              data-min-length="240"
+              data-length="360"
+              data-height="300"
+              data-contain=""
+              data-direction="column"
+              data-align="start"
+              data-gap="20"
+            >
+              <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
+                Sample Content
+              </text>
+              <text data-wrap="wrap" data-line="1.5">
+                Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat
+                fringilla ante. Mauris hendrerit tristique sagittis. Cras
+                egestas dapibus risus non aliquet.
+              </text>
+            </group>
+
           </group>
         </Scroll>
       </group>

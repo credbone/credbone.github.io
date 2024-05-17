@@ -52,7 +52,9 @@ function Template() {
 
         <view>
           <space data-height="10"></space>
-          <Tabstrip>
+          <Tabstrip
+          
+          >
           <Tab title="Typeface">
               <Typeface />
             </Tab>

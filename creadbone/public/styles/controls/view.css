@@ -84,6 +84,7 @@ view[data-background="none"]{background:none}
 
 [data-switch-size="60"] { --switch-size: 60px }
 
+[data-name="switchable"][data-expanded="true"]{z-index: 11;}
 
 [data-name="switchable"]   {transition: .125s; transition-property: width, height,max-height, flex-shrink, max-width;}
 [data-name="switch"]{transition: .225s; transition-property: width, height; min-height: var(--switch-size); }
@@ -140,6 +141,7 @@ view[data-background="none"]{background:none}
 [data-float="5"]{--float-gap:5px}
 [data-float="10"]{--float-gap:10px}
 [data-float="15"]{--float-gap:15px}
+[data-float="20"]{--float-gap:20px}
 
 [data-name="switchable"][data-float]{max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);}
 

@@ -18,6 +18,7 @@ const SideNav = () => {
   return (
     <>
       <group
+        data-shrink="no"
         data-name="side_nav"
         data-background="main-background"
         data-expanded={isNavOpen ? "open" : "close"}

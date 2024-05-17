@@ -12,7 +12,8 @@ import Switchable from "../components/Switchable";
 const Layout: React.FC = () => {
   return (
     <view data-vertical=""   >
-      <view data-direction="row" data-gap="20" data-space="20">
+      <view data-space="20" data-border="no" >
+      <view data-direction="row" data-gap="20" data-border="no" data-contain="visible" >
         <Switchable
           
           data-radius="10"
@@ -184,6 +185,7 @@ const Layout: React.FC = () => {
       <group data-name="switch-gap" data-shrink="no"></group>
 
       </view>
+</view>
 
 
     </view>

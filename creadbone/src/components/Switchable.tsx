@@ -54,6 +54,7 @@ const Switchable: React.FC<SwitchableProps> = ({
     >
       <Ripple>
         <group
+          data-background="context"
           data-name="switch"
           data-wrap="no"
           data-border=""
