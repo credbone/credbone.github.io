@@ -13,16 +13,13 @@ import {
 
 const Buttons: React.FC = () => {
   return (
-    <view data-vertical="" data-scroll="">
-      <group data-space="30" data-gap="30">
-        <group
-          data-direction=""
-          data-gap="20"
-          data-align="start"
-          data-width="auto"
-        >
-          <group data-direction="column" data-gap="15" data-width="auto">
-            <text
+    <view data-vertical="" data-adaptive="" data-space="30" data-gap="15" data-align="start" >
+
+      <view data-size="small" data-height="auto" data-max-height="fit" data-space="30" data-gap="30"  data-radius="10" data-elevation="1" >
+
+
+        <group  data-direction="column">
+        <text
               data-weight="700"
               data-text-size="xxx-large"
               data-wrap="wrap"
@@ -39,20 +36,21 @@ const Buttons: React.FC = () => {
               Buttons allow users to take actions, and make choices, with a
               single tap.
             </text>
-          </group>
+        </group>
+        <group  data-length="fit"  >
+        <Button
+        data-zoom="3"
+            primary
+            large
 
-          <group
-            data-max-length="300"
-            data-width="auto"
-            data-direction="column"
-            data-gap="10"
-            data-background="main-background"
-            data-align="start"
-            data-elevation="1"
-            data-radius="10"
-            data-space="20"
+                  
+                ><icon>touch_app</icon><text >Button</text></Button>
+        </group>
+          </view>
+
+          <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1"
           >
-            <group data-contain="" data-gap="1">
+            <group data-scroll="" data-gap="1">
               <group data-border="" data-space="20">
                 <Button primary text="Primary Button" />
               </group>
@@ -108,22 +106,16 @@ const Buttons: React.FC = () => {
             </group>
           </Tooltip> */}
             </group>
-          </group>
-          <group
-            data-max-length="400"
-            data-elevation="1"
-            data-radius="10"
-            data-width="auto"
-            data-direction="column"
-            data-gap="10"
-            data-space="20"
-            data-background="main-background"
+          </view>
+          <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1"
           >
-            <group
+        <group data-scroll="">
+        <group
               data-type="grid"
               data-grid-template="80"
               data-gap="1"
-              data-contain=""
+            data-contain=""
+            data-border=""
             >
               <group
                 data-align="center"
@@ -306,19 +298,11 @@ const Buttons: React.FC = () => {
                 </Button>
               </group>
             </group>
-          </group>
-          <group
-            data-max-length="400"
-            data-elevation="1"
-            data-radius="10"
-            data-width="auto"
-            data-direction="column"
-            data-gap="10"
-            data-space="20"
-            data-background="main-background"
-            data-align="start"
+</group>
+          </view>
+          <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1"
           >
-            <group data-contain="" data-gap="1">
+            <group data-scroll="" data-gap="1">
               <group data-border="" data-space="15">
                 <Button
                   primary
@@ -350,9 +334,8 @@ const Buttons: React.FC = () => {
                 <Button highlight large fit text="Large Button Wide" />{" "}
               </group>
             </group>
-          </group>
-        </group>
-      </group>
+          </view>
+
     </view>
   );
 };
