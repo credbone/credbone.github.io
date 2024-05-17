@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
+import sampleImage9 from "../styles/images/samples/sample_5.jpg";
 import {
   SvgHamburger,
   SvgHamburgerToLeft,
@@ -15,10 +16,10 @@ const Buttons: React.FC = () => {
   return (
     <view data-vertical="" data-adaptive="" data-space="30" data-gap="15" data-align="start" >
 
-      <view data-size="small" data-height="auto" data-max-height="fit" data-space="30" data-gap="30"  data-radius="10" data-elevation="1" >
+      <view data-size="medium" data-height="auto" data-max-height="fit"   data-radius="10" data-elevation="1" >
 
 
-        <group  data-direction="column">
+        <group  data-direction="column"  data-space="30">
         <text
               data-weight="700"
               data-text-size="xxx-large"
@@ -37,15 +38,36 @@ const Buttons: React.FC = () => {
               single tap.
             </text>
         </group>
-        <group  data-length="fit"  >
+
+
+
+        <group
+              data-background="main-darker"
+             
+
+              data-contain=""
+
+              data-dark=""
+              data-align="center"
+            >
+              <picture data-position="absolute" data-opacity="60" >
+                <img src={sampleImage9} alt="" />
+              </picture>
+              <group  data-length="fit" data-space="40"  >
         <Button
         data-zoom="3"
             primary
             large
 
                   
-                ><icon>touch_app</icon><text >Button</text></Button>
+                ><icon>touch_app</icon><text >Hello There</text></Button>
         </group>
+            </group>
+
+
+
+
+
           </view>
 
           <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1"

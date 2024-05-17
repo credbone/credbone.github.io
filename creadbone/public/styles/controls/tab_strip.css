@@ -236,7 +236,7 @@ bottom: initial;
 
 .nav_strip.classic.invert:not(.bottom) {border-bottom:2px var(--nav-color) solid}
 .nav_strip.classic.invert.bottom {border-top:2px var(--nav-color) solid}
-.nav_strip.classic.invert  ul > li.selected{background:var(--nav-color);color:#fff}
+.nav_strip.classic.invert  ul > li.selected{background:var(--nav-color);color:var(--main-color-text)}
 
 
 /**/
@@ -245,7 +245,7 @@ bottom: initial;
 
 .nav_strip.semiround {--area:50px}
 .nav_strip.semiround  ul > li {border-radius: 5px 5px 0 0;}
-.nav_strip.semiround  ul > li.selected{background:var(--nav-color);color:#fff; box-shadow: none;}
+.nav_strip.semiround  ul > li.selected{background:var(--nav-color);color:var(--main-color-text); box-shadow: none;}
 
 /**/
 
@@ -254,7 +254,7 @@ bottom: initial;
 .nav_strip.round{height: initial;}
 .nav_strip.round  ul {align-items:center;}
 .nav_strip.round  ul > li{height: 30px; line-height:30px; border-radius: 30px; background: var(--over-color);}
-.nav_strip.round  ul > li.selected{box-shadow:none;color:#fff;background:var(--nav-color)}
+.nav_strip.round  ul > li.selected{box-shadow:none;color:var(--main-color-text);background:var(--nav-color)}
 .nav_strip.round  ul > li[zone].selected{opacity:1;box-shadow:none;}
 .nav_strip.round  ul > li > text{padding: 0 5px; }
 

@@ -86,7 +86,7 @@ const Colors: React.FC = () => {
               >
                  Light
               </group>
-              <group data-background="main"  data-color="white" data-height="160" data-align="end" data-width="auto" data-space="15">
+              <group data-background="main"  data-color="main-text" data-height="160" data-align="end" data-width="auto" data-space="15">
                 Main 
               </group>
               <group
@@ -137,7 +137,7 @@ const Colors: React.FC = () => {
                 data-background="secondary"
                 data-width="auto"
                 data-space="15"
-                data-color="white"
+                data-color="secondary-text"
               >
                 Secondary 
               </group>

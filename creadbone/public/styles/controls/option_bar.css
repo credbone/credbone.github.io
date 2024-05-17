@@ -158,7 +158,7 @@
 .option_bar[data-palette="secondary"]{--over-color: linear-gradient(to top, var(--secondary-color-lighter) 0%, var(--secondary-color-lighter) 100%);}
 .option_bar[data-palette="secondary"] label input:checked ~ wrap{ background-color: var(--secondary-color);   }
 
-.option_bar label input:checked ~ wrap{ background-color: var(--main-color); color: #fff;}
+.option_bar label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);}
 
 .option_bar.dynamic label input:checked ~ wrap text:not(:only-child),
 .option_bar label[separate] > wrap text

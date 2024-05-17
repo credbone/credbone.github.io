@@ -35,7 +35,7 @@ function Navigation() {
       </NavLink>
 
 
-<group  data-position="right" data-width="auto">
+<group  data-position="right" data-width="auto" data-weight="600">
   <ThemeToggle/>
 </group>
 

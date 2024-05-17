@@ -440,4 +440,4 @@ th,td {height: 36px; min-width: 36px;}
 }
 
 
-[data-name="nav-item"].active {background-color: var(--main-color); color:#fff}
+[data-name="nav-item"].active {background-color: var(--main-color); color:var(--main-color-text)}
