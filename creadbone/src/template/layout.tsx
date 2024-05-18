@@ -153,7 +153,7 @@ const Layout: React.FC = () => {
             data-elevation="1"
             data-switch-direction="horizontal"
             icon="shopping_basket"
-            togglerProps={{"data-background":"main", "data-color":"white", "data-ink-color":"main-dark","data-order": "2"}}
+            togglerProps={{"data-background":"main", "data-color":"main-text", "data-ink-color":"main-dark","data-order": "2"}}
             title={"Switchable To The Bottom"}
             
             data-container-type="grid"

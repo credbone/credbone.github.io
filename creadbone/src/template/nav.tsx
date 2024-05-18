@@ -70,10 +70,10 @@ const Landing: React.FC = () => {
 </group>
 <separator data-horizontal=""></separator>
 
-<group data-space="30" data-gap="20"  data-elevation="1" data-radius="15" data-background="main">
-<group data-direction="column"  data-width="auto" data-color="white">
+<group data-space="30" data-gap="20"  data-elevation="1" data-radius="15" data-background="main" >
+<group data-direction="column"  data-width="auto" data-color="main-text">
 <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Sample Navigation </text>
-<text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Left  Aligned Navigation with Fixed Home Button </text>
+<text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Left Aligned Navigation with Fixed Home Button </text>
 </group>
 <group
 data-border=""
@@ -125,7 +125,7 @@ data-weight="600"
         <group data-align="center" data-space="15"><text data-light="" data-ellipsis=""> Sample Tip Message ...</text></group>
         <group data-background="secondary" data-color="secondary-text" data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="5" data-wrap="no" data-align="center" data-interactive=""><text data-adaptive="desktop">New</text><icon data-fill="" data-adaptive="mobile">star</icon> </group></Ripple></group>
         <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="5" data-wrap="no" data-align="center" data-interactive=""> <text>Warranty History</text> </group></Ripple></group>
-        <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="">shopping_basket</icon>  <text data-adaptive="desktop">Cart</text><dot></dot><group   data-length="25" data-ratio="1:1" data-radius="20" data-color="main-text" data-justify="center" data-align="center" data-background="secondary"><text data-weight="700">5</text> </group> </group></Ripple></group>    
+        <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="">shopping_basket</icon>  <text data-adaptive="desktop">Cart</text><dot></dot><group   data-length="25" data-ratio="1:1" data-radius="20" data-color="secondary-text" data-justify="center" data-align="center" data-background="secondary"><text data-weight="700">5</text> </group> </group></Ripple></group>    
         <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="">person_4</icon><text data-adaptive="desktop"> Welcome Username </text> </group></Ripple></group>
   </group>
 </Scroll>

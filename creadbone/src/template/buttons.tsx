@@ -312,7 +312,7 @@ const Buttons: React.FC = () => {
                 </Button>
               </group>
               <group data-border="" data-space="15">
-                <Button fit outline large text="Please Wait" textFirst={false}>
+                <Button fit secondary large text="Please Wait" textFirst={false}>
                   <icon>
                     <SvgLoaderCircleSmall />
                   </icon>
@@ -327,21 +327,28 @@ const Buttons: React.FC = () => {
             <group data-scroll="" data-gap="1">
               <group data-border="" data-space="15">
                 <Button
-                  primary
+                  secondary
                   large
-                  icon="inventory_2"
+                  icon="drafts"
                   text="Large Button"
                   textFirst={false}
-                />{" "}
+                />
+                
               </group>
               <group data-border="" data-space="15">
-                <Button accent large icon="arrow_outward" text="Large Button" />
+                <Button accent large icon="arrow_outward" text="Sample Large Button"   textFirst={true} />
               </group>
               <group data-border="" data-space="15">
                 <Button large text="Large Button" />{" "}
               </group>
               <group data-border="" data-space="15">
-                <Button outline large text="Large Button" />{" "}
+                <Button outline large >
+
+
+                  <text>Large Button</text>
+                  <separator data-vertical="" data-height="40"></separator>
+                  <icon>shopping_bag</icon>
+                </Button>
               </group>
               <group data-gap="10" data-border="" data-space="15">
                 <Button highlight large text="Button" data-shrink="no" />

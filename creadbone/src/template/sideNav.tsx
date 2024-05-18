@@ -164,12 +164,14 @@ const SideNav = () => {
             data-align="center"
             data-wrap="no"
           >
-            <icon data-length="30">shopping_basket</icon>
+            <icon data-adaptive="open-state" data-length="30">shopping_basket</icon>
             <text data-light="" data-ellipsis="" data-adaptive="open-state">
               Cart
             </text>
             <dot data-adaptive="open-state"></dot>
-            <group data-adaptive="open-state"  data-length="25" data-ratio="1:1" data-radius="20" data-color="white" data-justify="center" data-align="center" data-background="red"><text data-weight="700">3</text> </group> 
+            <group data-length="30" data-height="30" data-direction="column">
+            <group  data-position="center" data-length="25" data-ratio="1:1" data-radius="20" data-color="white" data-justify="center" data-align="center" data-background="red"><text data-weight="700">3</text> </group> 
+            </group>
           </group>
           <group data-position="bottom"  ref={bottomRef}></group>
 

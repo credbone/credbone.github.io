@@ -53,7 +53,7 @@ function Template() {
         <view>
           <space data-height="10"></space>
           <Tabstrip
-          
+          selectedIndex={3}
           >
           <Tab title="Typeface">
               <Typeface />
@@ -64,7 +64,7 @@ function Template() {
             <Tab title="Button">
               <Buttons />
             </Tab>
-            <Tab title="Color">
+            <Tab title="Color" >
               <Colors />
             </Tab>
             <Tab title="Layout">

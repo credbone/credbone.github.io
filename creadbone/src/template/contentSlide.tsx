@@ -162,6 +162,7 @@ const ContentSlide: React.FC = () => {
 
             <group
               data-background="main"
+              data-color="main-text"
               data-radius="15"
               data-space="30"
               data-min-length="240"
@@ -171,7 +172,7 @@ const ContentSlide: React.FC = () => {
               data-direction="column"
               data-align="start"
               data-gap="20"
-              data-dark=""
+             // data-dark=""
             >
               <text data-weight="700" data-text-size="72" data-wrap="wrap">
                 128
@@ -183,21 +184,24 @@ const ContentSlide: React.FC = () => {
               </text>
             </group>
 
-            
+
+
             <group
-              data-border=""
+              data-background="secondary"
+              data-color="secondary-text"
               data-radius="15"
               data-space="30"
               data-min-length="240"
-              data-length="360"
+              data-length="240"
               data-height="300"
               data-contain=""
               data-direction="column"
               data-align="start"
               data-gap="20"
+             // data-dark=""
             >
-              <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
-                Sample Content
+              <text data-weight="700" data-text-size="72" data-wrap="wrap">
+                256
               </text>
               <text data-wrap="wrap" data-line="1.5">
                 Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat

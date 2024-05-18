@@ -2,6 +2,8 @@
 import React from "react";
 import ContentSlide from "./contentSlide";
 import Content from "./content";
+import sampleImage from "../styles/images/samples/res_15.jpg";
+import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 const Colors: React.FC = () => {
   const BaseColors = [
@@ -28,10 +30,10 @@ const Colors: React.FC = () => {
 
   return (
     <view data-vertical="" data-adaptive>
-      <view data-space="20" data-scroll="">
+      <view data-space="30" data-scroll="">
 
         
-        <group data-direction="column" data-gap="15" data-space="10">
+        <group data-direction="column" data-gap="10">
           <text
             data-weight="700"
             data-text-size="xxx-large"
@@ -42,7 +44,7 @@ const Colors: React.FC = () => {
           </text>
           <text
             data-wrap="wrap"
-            data-length="610"
+            data-length="400"
             data-line="1.5"
             data-light=""
           >
@@ -53,6 +55,55 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <space></space>
+
+
+
+        <group  data-max-length="1200"   data-shrink="no"      data-contain="" data-width="auto" data-radius="15"  >
+        <group data-contain="" data-direction="column" data-height="240"  data-width="auto" data-length='auto'    data-color="main-text"   data-space="30" data-background="main" data-gap="10" data-justify="end"> <text data-wrap="wrap" data-light="" data-max-length="300">This primary color you selected will be used extensively in the UI, with other shades being automatically generated from it.</text> <text data-wrap="wrap" data-weight="700" data-text-size="x-large">Primary Color</text> </group>
+           
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="main-lighter" ><text data-weight="700">Lighter</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="main-light"><text data-weight="700">Light</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="main-dark" data-color="white"><text data-weight="700">Dark</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="main-darker" data-color="white"><text data-weight="700">Darker</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+           
+              <group data-contain=""  data-width="auto" data-height="240"  data-length='auto'  data-background="main-dark" >
+                 <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture>
+              
+              
+              <group 
+              data-color="main-text-lighter-white" 
+               data-direction="column"   data-space="30"  data-gap="10" data-justify="end">
+              <text data-wrap="wrap" data-light="" data-max-length="200">The generated color ensures that the text remains readable on the chosen color.</text> 
+              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">Text Color</text>
+              </group>
+
+               </group>
+           
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="secondary-lighter" ><text data-weight="700">Seondary Lighter</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+             
+
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="secondary-light"><text data-weight="700">Seondary Light</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="secondary-dark" data-color="white"><text data-weight="700">Seondary Dark</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+              <group data-contain="" data-height="240" data-length='auto' data-shrink="no"  data-direction="column"  data-orientation="vertical-bottom" data-justify="start"  data-width="auto"  data-space="30" data-background="secondary-darker" data-color="white"><text data-weight="700">Seondary Darker</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+             
+              <group data-contain=""  data-width="auto" data-height="240"  data-length='auto'  data-background="secondary-darker" >
+                 <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage2} alt="" /> </picture>
+              
+              
+              <group 
+              data-color="secondary-text-lighter-white" 
+               data-direction="column"   data-space="30"  data-gap="10" data-justify="end">
+              <text data-wrap="wrap" data-light="" data-max-length="200">The generated color ensures that the text remains readable on the chosen color.</text> 
+              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">Text Color</text>
+              </group>
+
+               </group>
+
+              <group data-contain="" data-height="240" data-direction="column"  data-width="auto" data-length='auto'   data-color="secondary-text"   data-space="30" data-background="secondary" data-gap="10" data-justify="end"> <text data-wrap="wrap" data-light="" data-max-length="300">This Secondary color you selected will be used extensively in the UI, with other shades being automatically generated from it.</text> <text data-wrap="wrap" data-weight="700" data-text-size="x-large">Secondary Color</text> </group>
+    
+          </group>
+
+
         <group
           data-gap="20"
           data-align="start"
@@ -61,106 +112,11 @@ const Colors: React.FC = () => {
           data-column-size="240"
           data-column-gap="20"
         >
-          <group data-space="10" data-gap="20">
-            <text data-wrap="wrap" data-text-size="medium">
-              Primary Color
-            </text>
-            <group
-              data-direction="column"
-              data-contain=""
-         //     data-space="10"
-              data-radius="10"
-              data-elevation="2"
-            >
-              <group
-                data-background="main-lighter"
-                data-width="auto"
-                data-space="15"
-              >
-                 Lighter
-              </group>
-              <group
-                data-background="main-light"
-                data-width="auto"
-                data-space="15"
-              >
-                 Light
-              </group>
-              <group data-background="main"  data-color="main-text" data-height="160" data-align="end" data-width="auto" data-space="15">
-                Main 
-              </group>
-              <group
-                data-background="main-dark"
-                data-width="auto"
-                data-space="15"
-                data-color="white"
-              >
-                 Dark
-              </group>
-              <group
-                data-background="main-darker"
-                data-width="auto"
-                data-space="15"
-                data-color="white"
-              >
-                 Darker
-              </group>
-            </group>
-          </group>
 
-          <group data-space="10" data-gap="20">
-            <text data-wrap="wrap" data-text-size="medium">
-              Secondary Color
-            </text>
-            <group
-              data-direction="column"
-              data-contain=""
-      //        data-space="10"
-              data-radius="10"
-              data-elevation="2"
-            >
-              <group
-                data-background="secondary-lighter"
-                data-width="auto"
-                data-space="15"
-              >
-                 Lighter
-              </group>
-              <group
-                data-background="secondary-light"
-                data-width="auto"
-                data-space="15"
-              >
-                 Light
-              </group>
-              <group
-                data-background="secondary"
-                data-width="auto"
-                data-space="15"
-                data-color="secondary-text"
-              >
-                Secondary 
-              </group>
-              <group
-                data-background="secondary-dark"
-                data-width="auto"
-                data-space="15"
-                data-color="white"
-              >
-                 Dark
-              </group>
-              <group
-                data-background="secondary-darker"
-                data-width="auto"
-                data-space="15"
-                data-color="white"
-              >
-                 Darker
-              </group>
-            </group>
-          </group>
 
-          <group data-space="10" data-gap="20">
+
+
+          {/* <group data-space="10" data-gap="20">
             <text data-wrap="wrap" data-text-size="medium">
               Base Colors
             </text>
@@ -185,9 +141,9 @@ const Colors: React.FC = () => {
                 </group>
               ))}
             </group>
-          </group>
+          </group> */}
 
-          <group data-gap="20" data-space="10">
+          {/* <group data-gap="20" data-space="10">
             <text data-wrap="wrap" data-text-size="medium">
               Special Color & Backgrounds
             </text>
@@ -254,34 +210,13 @@ const Colors: React.FC = () => {
 
               
             </group>
-          </group>
+          </group> */}
         </group>
         <group data-height="60"></group>
       </view>
 
-      {/* <view  data-dark="" data-scroll="" data-space="10" data-border="none" >
-        <group data-direction="column" data-gap="15" data-space="20">
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-            Dark Theme
-          </text>
-          <text
-            data-wrap="wrap"
-            data-length="610"
-            data-line="1.5"
-            data-light=""
-          >
-            A dark theme is a low-light UI that displays mostly dark surfaces.
-          </text>
-        </group>
 
-        
-        
-        <ContentSlide></ContentSlide>
 
-        <group data-type="grid" data-gap="10" data-space="20">
-          <Content></Content>
-        </group>
-      </view> */}
     </view>
   );
 };

@@ -26,16 +26,38 @@ const ThemePicker: React.FC = () => {
     "#e89468",
     "#db6b5d",
     "#ff705e",
+  
   ];
 
   const seccolors = [
-    "#cbacd8",
-    "#83749f",
-    "#6cc5cc",
-    "#06969e",
-    "#055b5c",
-    "#7da10d",
-    "#dcda63",
+    "#ec5b55",
+    "#f08c34",
+    "#f9dd6c",
+    "#388174",
+    "#49c5b6",
+    "#a9d1d5",
+    "#7a55e7",
+    "#495de6",
+    "#3983dd",
+
+    
+"#1673e0",
+"#19a598",
+"#76cec6",
+"#d1eeec",
+"#fd9326",
+"#fdb457",
+"#feebd0",
+"#fd7b5e",
+"#fdab97",
+"#fee7e1",
+"#5a4a99",
+"#a59cc7",
+"#e1ddeb",
+"#cf455d",
+"#df8c97",
+"#f5dde1",
+
   ];
 
   const handleColorSelection = (color: string, isPrimary: boolean) => {

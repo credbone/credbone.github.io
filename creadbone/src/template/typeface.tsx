@@ -3,7 +3,7 @@ import React from "react";
 const Typeface: React.FC = () => {
   return (
     <view data-vertical="" data-adaptive="" data-space="30" data-gap="15" data-align="start">
-      <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1">
+      <view data-size="small"  data-height="auto" data-max-height="fit" data-radius="10" data-elevation="1" data-background="main" data-color="main-text">
         <group
           data-border="overprint"
           data-space="10"
@@ -17,7 +17,7 @@ const Typeface: React.FC = () => {
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
-            data-accent=""
+            
           >
             Gilroy Typeface
           </text>
