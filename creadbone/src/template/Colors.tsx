@@ -131,7 +131,7 @@ const Colors: React.FC = () => {
 
 
         <group
-          data-shrink="no" data-weight="600" data-contain="" data-width="auto" data-gap="10"
+          data-shrink="no" data-weight="600" data-max-length="1200" data-contain="" data-width="auto" data-type="grid" data-grid-template="120" data-gap="10"
         >
           {BaseColors.map((colors) => (
 
