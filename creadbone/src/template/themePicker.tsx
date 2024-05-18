@@ -41,20 +41,16 @@ const ThemePicker: React.FC = () => {
     "#3983dd",
 
     
-"#1673e0",
-"#19a598",
-"#76cec6",
-"#d1eeec",
-"#fd9326",
-"#fdb457",
-"#feebd0",
-"#fd7b5e",
-"#fdab97",
-"#fee7e1",
-"#5a4a99",
+"#8ecae6",
+"#219ebc",
+"#023047", 
+"#ffb703",
+"#fb8500",
+
+
 "#a59cc7",
 "#e1ddeb",
-"#cf455d",
+
 "#df8c97",
 "#f5dde1",
 
