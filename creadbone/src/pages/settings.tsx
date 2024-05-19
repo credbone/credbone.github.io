@@ -7,7 +7,10 @@ function Settings() {
   return (
     <view data-space="30" data-scroll="">
       <group  data-gap="30" data-direction="column">
+      <group data-direction="column" data-gap="10">
+        <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" >Settings</text>
 
+        </group>
 
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-color="main" data-text-size="large">Apperance</text>
