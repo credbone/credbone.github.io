@@ -6,7 +6,7 @@ import React from "react";
 
 
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/sample_1.jpg";
+import sampleImage from "../styles/images/samples/res_15.jpg";
 import SideNav from "./sideNav";
 import Marquee from "../components/Marquee";
 import Scroll from "../components/scroll";
@@ -148,9 +148,9 @@ data-weight="600"
 
 
 
-<view data-scroll="" data-size="large" data-space="30" data-gap="20"  >
+<view data-scroll="" data-size="large" data-gap="20"  >
 
-  <group  >
+  <group   data-space="30" >
     <group>
       <nav className="nav_strip classic invert">
         <ul>
@@ -187,13 +187,13 @@ data-weight="600"
     </group>
   </group>
 
-          <separator data-horizontal=""></separator>
+        
           
-  <group data-shrink="no" data-background="secondary-dark" data-radius="10" data-contain="" >
-  <picture data-mask="" data-position="absolute" data-opacity="60">
+  <group data-shrink="no" data-background="secondary-dark"  data-contain="" >
+  <picture data-position="absolute" data-opacity="60" data-name="color-demo">
         <img src={sampleImage} alt="" />
       </picture>
-    <group data-space="20">
+    <group data-space="30">
 
             <group>
         <Scroll className="nav_strip classic transparent">
@@ -240,8 +240,8 @@ data-weight="600"
     </group>
     
   </group>
-  <separator data-horizontal=""></separator>
-  <group >
+
+  <group  data-space="30">
     <group
       data-space="30"
       data-background="context"

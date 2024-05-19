@@ -17,7 +17,7 @@ import Scroll from '../components/scroll';
 
 function Template() {
   return (
-    <view data-scroll="" data-adaptive="" data-border="no" data-index="4" >
+    <view data-scroll="" data-adaptive="" data-border="no" >
 
 
 
