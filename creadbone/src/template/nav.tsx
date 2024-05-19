@@ -70,7 +70,7 @@ const Landing: React.FC = () => {
 </group>
 <separator data-horizontal=""></separator>
 
-<group data-space="30" data-gap="20"  data-elevation="1" data-radius="15" data-background="main" >
+<group data-space="20" data-gap="20"  data-elevation="1" data-radius="15" data-background="main" >
 <group data-direction="column"  data-width="auto" data-color="main-text">
 <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Sample Navigation </text>
 <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Left Aligned Navigation with Fixed Home Button </text>
@@ -104,7 +104,7 @@ data-weight="600"
 </group>
 </group>
 
-<group data-space="30" data-elevation="1" data-radius="15" data-background="main-background" data-dark="" data-gap="20" >
+<group data-space="20" data-elevation="1" data-radius="15" data-background="main-background" data-dark="" data-gap="20" >
 <group data-direction="column"  data-width="auto">
 <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Sample Navigation </text>
 <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Right Aligned Navigation with Fixed Menu Button </text>
@@ -189,25 +189,21 @@ data-weight="600"
 
           <separator data-horizontal=""></separator>
           
-  <group  data-background="secondary-dark" data-radius="10" data-contain="" >
+  <group data-shrink="no" data-background="secondary-dark" data-radius="10" data-contain="" >
   <picture data-mask="" data-position="absolute" data-opacity="60">
         <img src={sampleImage} alt="" />
       </picture>
-    <group data-space="30">
+    <group data-space="20">
 
             <group>
         <Scroll className="nav_strip classic transparent">
 
                   <ul>
-                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
+                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>Home</icon> </group> </li>
                     <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty</text> </group> </li>
                     <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text> History</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Directon</text> </group> </li>
-                    <li> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Order History</text> </group> </li>
-                    <li> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Directon</text> </group> </li>
-                    <li> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Sample</text> </group> </li>
-                    <li> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Account</text> </group> </li>
+
+
                   </ul>
 
               </Scroll>
@@ -222,7 +218,7 @@ data-weight="600"
               data-radius="5"
             >
               
-              <text data-weight="700" data-text-size="xx-large" data-wrap="wrap" > Tabbed Invert Navigation </text>
+              <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Tabbed Invert Navigation </text>
               <text data-wrap="wrap" data-length="610" data-line="1.5" data-light="">
                 Aenean tempus at nisl et tempor. Morbi et tincidunt justo.
                 Curabitur luctus condimentum justo, sit amet suscipit justo

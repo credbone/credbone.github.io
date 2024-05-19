@@ -3,7 +3,7 @@ import { Logo } from "../resources/logo";
 
 function About() {
   return (
-    <view data-space="50" data-scroll="">
+    <view data-space="50" data-scroll=""  data-border="no">
       <group  data-gap="30" data-direction="column">
         <group data-max-length="200">
           <Logo />

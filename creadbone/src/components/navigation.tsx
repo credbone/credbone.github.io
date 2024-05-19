@@ -12,7 +12,7 @@ import Ripple from "./Ripple";
 function Navigation() {
   return (
 
-    <group group data-type="grid" data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-adaptive-order="2" data-index="3" data-elevation="1" data-background="context" >
+    <group group data-type="grid" data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-adaptive-order="2" data-index="3" data-border="overprint" >
 
 
 

@@ -5,10 +5,10 @@ import RichThemePicker from "../template/richThemePicker";
 
 function Settings() {
   return (
-    <view data-space="30" data-scroll="">
+    <view data-space="30" data-scroll=""  data-border="no">
       <group  data-gap="30" data-direction="column">
       <group data-direction="column" data-gap="10">
-        <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" >Settings</text>
+        <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-opacity="20">Settings</text>
 
         </group>
 
@@ -28,13 +28,15 @@ function Settings() {
         <text data-light="" data-wrap="wrap" data-line="20" data-max-length="400">Select Blue for calm, Green for natural, Red for vibrant, or Custom to personalize your colors.</text>
         </group>
 
+        <group data-max-length="600">
+      <RichThemePicker />
+      </group>
+
         
       </group>
 
 
-      <group data-max-length="1200">
-      <RichThemePicker />
-      </group>
+
     </view>
   );
 }

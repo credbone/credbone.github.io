@@ -41,8 +41,8 @@ export const getCSSByPalette = (palette: ColorPalette) => {
         :root {
            
 
-            --main-color-lighter-white: ${colorLight || getColorShade(colorPrimary, "20")};
-            --main-color-light-white: ${colorLighter || getColorShade(colorPrimary, "70")};
+            --main-color-lighter-white: ${colorLighter || getColorShade(colorPrimary, "20")};
+            --main-color-light-white: ${colorLight || getColorShade(colorPrimary, "70")};
 
             --main-color-lighter: ${colorPrimary}2b;
             --main-color-light: ${colorPrimary}75;
@@ -50,8 +50,8 @@ export const getCSSByPalette = (palette: ColorPalette) => {
             --main-color-dark: ${colorDark || getColorShade(colorPrimary, "500")};
             --main-color-darker: ${colorDarker || getColorShade(colorPrimary, "800")};
 
-            --secondary-color-light-white: ${colorSecondaryLighter || getColorShade(colorSecondary, "70")};
-            --secondary-color-lighter-white: ${colorSecondaryLight || getColorShade(colorSecondary, "20")};
+            --secondary-color-light-white: ${colorSecondaryLight || getColorShade(colorSecondary, "70")};
+            --secondary-color-lighter-white: ${colorSecondaryLighter || getColorShade(colorSecondary, "20")};
   
 
             --secondary-color-lighter: ${colorSecondary}2b;
