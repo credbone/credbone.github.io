@@ -12,6 +12,7 @@ import "./../styles/demo.css";
 import Buttons from './buttons';
 import Typeface from './typeface';
 import Landing from './nav';
+import Scroll from '../components/scroll';
 
 
 function Template() {
@@ -46,7 +47,14 @@ function Template() {
             data-background="main-background"
             data-length="60"
           >
-            <ThemePicker />
+
+<group data-width="auto" data-snap-button="15" data-height="fit" data-contain="">
+      <Scroll vertical>
+        
+      <ThemePicker />
+        </Scroll>
+        </group>
+
           </view>
         </Switchable>
 
@@ -64,7 +72,7 @@ function Template() {
             <Tab title="Button">
               <Buttons />
             </Tab>
-            <Tab title="Color" >
+            <Tab title="Color System" >
               <Colors />
             </Tab>
             <Tab title="Layout">

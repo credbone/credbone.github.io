@@ -135,20 +135,55 @@ const Colors: React.FC = () => {
         >
           {BaseColors.map((colors) => (
 
-            <group data-radius="15"
-              data-contain="" data-length='auto' data-color={colors.dark === "true" ? "white" : "black"} data-shrink="no" data-direction="row" data-justify="start" data-width="auto"
-              data-background={colors.value}
-            // data-interactive=""
-            >
 
-              {colors.picture === "true" && <><picture data-position="absolute" data-name="color-demo"> <img src={sampleImage2} alt="" /> </picture></>}
+            <group data-radius="15" data-contain="">
 
-              <group data-space="30" data-gap="5">
-                <text data-ellipsis="" data-height="200" data-orientation="vertical-bottom">
-                {colors.name}
+              {/* <group data-space="30" data-background={colors.value + "-dark"}>
+                <text data-ellipsis="" data-color={colors.value + "-light"} 
+
+                >
+                {"Dark " + colors.name}
               </text>
-                <text data-wrap="wrap" data-height="200" data-light=""  data-orientation="vertical-bottom">{colors.description}</text></group>
+              
+              </group> */}
+
+
+              <group
+                data-contain="" data-length='auto' data-color={colors.dark === "true" ? "white" : "black"} data-shrink="no" data-direction="row" data-justify="start" data-width="auto"
+                data-background={colors.value}
+
+              >
+
+               
+{colors.picture === "true" && <><picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture></>}
+                <group data-space="30" data-gap="5">
+                  <text data-ellipsis=""
+                   data-height="200"
+                    data-orientation="vertical-bottom"
+                    >
+                    {colors.name}
+                  </text>
+                  <text
+                   data-wrap="wrap"
+                   data-light=""
+                   data-line="20"
+                    data-height="200" 
+                     data-orientation="vertical-bottom"
+                     
+                     >{colors.description}</text></group>
+
+
+              </group>
+
+              {/* <group data-space="30" data-background={colors.value + "-light"} data-color={colors.value + "-dark"}>
+                <text data-ellipsis=""   >
+                  {colors.name + " Light"}
+                </text>
+              </group> */}
+
+              
             </group>
+
           ))}
         </group>
 

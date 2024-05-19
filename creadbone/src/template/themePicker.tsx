@@ -3,7 +3,7 @@ import { ThemeContext } from "../components/ThemeProvider";
 import { defaultPrimaryColor, defaultSecondaryColor } from "../styles/skin";
 import Scroll from "../components/scroll";
 import Button from "../components/button";
-
+import { colors, seccolors } from "../styles/colorData";
 
 
 const ThemePicker: React.FC = () => {
@@ -16,45 +16,7 @@ const ThemePicker: React.FC = () => {
 
   const { theme, setTheme } = themeContext;
 
-  const colors = [
-    "#934f9a",
-    "#544f9a",
-    "#0066ff",
-    "#598b7f",
-    "#adbb88",
-    "#ebd187",
-    "#e89468",
-    "#db6b5d",
-    "#ff705e",
-  
-  ];
 
-  const seccolors = [
-    "#ec5b55",
-    "#f08c34",
-    "#f9dd6c",
-    "#388174",
-    "#49c5b6",
-    "#a9d1d5",
-    "#7a55e7",
-    "#495de6",
-    "#3983dd",
-
-    
-"#8ecae6",
-"#219ebc",
-"#023047", 
-"#ffb703",
-"#fb8500",
-
-
-"#a59cc7",
-"#e1ddeb",
-
-"#df8c97",
-"#f5dde1",
-
-  ];
 
   const handleColorSelection = (color: string, isPrimary: boolean) => {
     const newTheme = {
@@ -79,15 +41,15 @@ const ThemePicker: React.FC = () => {
           </text>
           {colors.map((c) => (
             <Button
-  key={c}
+  key={c.code}
   mini
   rounded
-  onClick={() => handleColorSelection(c, true)}
-  data-background={theme.colorPrimary === c ? "main-lighter" : ""}
+  onClick={() => handleColorSelection(c.code, true)}
+  data-background={theme.colorPrimary === c.code ? "main-lighter" : ""}
 >
   <icon>
     <svg width="20" height="20" viewBox="0 0 20 20">
-      <circle cx="10" cy="10" r="10" fill={c}></circle>
+      <circle cx="10" cy="10" r="10" fill={c.code}></circle>
     </svg>
   </icon>
 </Button>
@@ -100,15 +62,15 @@ const ThemePicker: React.FC = () => {
           </text>
           {seccolors.map((c) => (
            <Button
-           key={c}
+           key={c.code}
            mini
            rounded
-           onClick={() => handleColorSelection(c, false)}
-           data-background={theme.colorSecondary === c ? "secondary-lighter" : ""}
+           onClick={() => handleColorSelection(c.code, false)}
+           data-background={theme.colorSecondary === c.code ? "secondary-lighter" : ""}
          >
            <icon>
              <svg width="20" height="20" viewBox="0 0 20 20">
-               <circle cx="10" cy="10" r="10" fill={c}></circle>
+               <circle cx="10" cy="10" r="10" fill={c.code}></circle>
              </svg>
            </icon>
          </Button>

@@ -1,23 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useTheme } from '../components/ThemeProvider';
 
 const ThemeToggle: React.FC = () => {
-  const [themeMode, setThemeMode] = useState<string>(() => {
-    const savedMode = localStorage.getItem('themeMode');
-    return savedMode || 'light';
-  });
-
-
-  useEffect(() => {
-    updateTheme(themeMode);
-    localStorage.setItem('themeMode', themeMode);
-  }, [themeMode]);
-
-  const updateTheme = (mode: string) => {
-    document.documentElement.setAttribute('data-theme', mode);
-    document.documentElement.classList.toggle('dark-mode', mode === 'dark');
-  };
-
-
+  const { themeMode, setThemeMode } = useTheme();
 
   const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
