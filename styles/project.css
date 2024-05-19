@@ -441,3 +441,5 @@ th,td {height: 36px; min-width: 36px;}
 
 
 [data-name="nav-item"].active {background-color: var(--main-color); color:var(--main-color-text)}
+
+.mobile [data-adaptive-order="2"]{order:2}

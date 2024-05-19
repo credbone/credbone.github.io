@@ -1,5 +1,5 @@
-/* Ogma UI Framefork Component / Layout / Version 2.0.0 */
-/* Copyright 1998 - 2023 Ogma Inc. Design Department. All rights reserved */
+/* CredBone UI Framefork Component / Layout / Version 2.0.0 */
+/* Copyright 2024 Ogma Inc. Design Department. All rights reserved */
 /* stylelint-disable */
 
 
@@ -322,3 +322,12 @@ padding: 0 5px;
 /* ----- */
 
 /* stylelint-enable */
+
+
+
+/* @media (max-width: 900px) {
+
+    .option_bar label[separate] > wrap icon + text,
+    .option_bar.dynamic label > wrap icon + text { display: none; }
+
+} */

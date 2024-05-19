@@ -180,8 +180,7 @@
       .button.adaptive icon { display: flex; }
 
       .button.adaptive text,
-      .option_bar label[separate] > wrap icon + text,
-      .option_bar.dynamic label > wrap icon + text { display: none; }
+
       .button.adaptive { min-width: 40px; width: 40px; /*min-height: 40px; height: 40px;*/ padding-left: 0; padding-right: 0; }
       .button.adaptive.compact { /* min-width: 30px; width: 30px;*/ min-height: 30px; height: 30px; }
   }
