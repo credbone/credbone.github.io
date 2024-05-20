@@ -29,7 +29,9 @@ const TabStrip: React.FC<
     id?: string;
     classic?: boolean;
     invert?: boolean;
+    modern?: boolean;
     bottom?: boolean;
+    separator?: boolean;
     tabStripProps?: any;
     tabStripContentProps?: any;
     tabStripNavProps?: any;
@@ -43,6 +45,8 @@ const TabStrip: React.FC<
   id,
   classic = true,
   invert = true,
+  modern = false,
+  separator = true,
   bottom,
   tabStripProps,
   tabStripContentProps,
@@ -97,7 +101,7 @@ const TabStrip: React.FC<
       <div className="tab_strip_nav" id={id} {...tabStripNavProps}>
         <group data-type="snap">
           <Scroll
-            className={classNames("nav_strip", { classic, invert, bottom })}
+            className={classNames("nav_strip", { modern, classic, invert, bottom })}
           >
             <ul>
               {React.Children.map(
@@ -113,11 +117,15 @@ const TabStrip: React.FC<
                           disabled: child.props.disabled,
                         })}
                       >
-                        <separator data-vertical="" data-height="15"></separator>
+                        {separator && <separator data-vertical="" data-height="15"></separator>}
+               
                         <group
+
+                          data-space={modern ? "10" : "5"}
+                          data-height={modern ? "50" : null}
                           data-wrap="no"
                           data-align="center"
-                          data-space="5"
+                          
                         >
                           {child?.props.icon && <icon>{child.props.icon}</icon>}
 

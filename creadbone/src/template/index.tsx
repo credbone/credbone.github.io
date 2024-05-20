@@ -61,6 +61,10 @@ function Template() {
         <view>
           <space data-height="10"></space>
           <Tabstrip
+           separator={false}
+          // classic={false}
+          // invert={false}
+          // modern={true}
           selectedIndex={3}
           >
           <Tab title="Typeface">

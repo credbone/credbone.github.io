@@ -26,7 +26,7 @@ const RichThemePicker: React.FC = () => {
 
   return (
     <group data-gap="20">
-      <group data-scroll-mask="false">
+      <group data-scroll-mask="false" data-snap-button="15">
         <Scroll>
           <group
             data-position="left"
@@ -89,7 +89,7 @@ const RichThemePicker: React.FC = () => {
         </Scroll>
       </group>
 
-      <group data-scroll-mask="false">
+      <group data-scroll-mask="false" data-snap-button="15">
         <Scroll>
           <group
             data-position="left"
