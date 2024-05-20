@@ -59,7 +59,7 @@ const RichThemePicker: React.FC = () => {
                         data-contain=""
                         data-duration=".125"
 
-                        data-text-size={theme.colorPrimary === c.code ? "" : "0"}
+                  //      data-text-size={theme.colorPrimary === c.code ? "" : "0"}
 
                         key={c.code}
                         data-direction="column"
@@ -126,7 +126,7 @@ const RichThemePicker: React.FC = () => {
                   <group
                     data-justify="end"
                     data-duration=".125"
-                    data-text-size={theme.colorSecondary === c.code ? "" : "0"}
+                 //   data-text-size={theme.colorSecondary === c.code ? "" : "0"}
                     data-contain=""
                     key={c.code}
                     data-direction="column"
