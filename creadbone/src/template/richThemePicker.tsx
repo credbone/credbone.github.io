@@ -45,6 +45,7 @@ const RichThemePicker: React.FC = () => {
                 data-height="60"
                 data-wrap="no"
                 data-contain=""
+                data-name="theme-item"
                 onClick={() => handleColorSelection(c.code, true)}
               >
                 <group
@@ -103,6 +104,7 @@ const RichThemePicker: React.FC = () => {
           >
             {seccolors.map((c) => (
               <group
+              data-name="theme-item"
                 data-shrink="no"
                 data-interactive=""
                 data-width="auto"

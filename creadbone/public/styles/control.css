@@ -423,6 +423,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-margin="40"] {margin:40px}
 
 
+[data-margin-horizontal="5"] {margin-left:5px; margin-right: 5px;}
 [data-margin-vertical="5"] {margin-top:5px; margin-bottom: 5px;}
 [data-margin-vertical="10"] {margin-top:10px; margin-bottom: 10px;}
 
