@@ -28,10 +28,13 @@ function Settings() {
         <text data-light="" data-wrap="wrap" data-line="20" data-max-length="400">Select Blue for calm, Green for natural, Red for vibrant, or Custom to personalize your colors.</text>
         </group>
 
-        <group data-max-length="600">
+        <group >
       <RichThemePicker />
       </group>
 
+        <group data-height="200">
+
+        </group>
         
       </group>
 
