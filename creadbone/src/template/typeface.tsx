@@ -62,20 +62,22 @@ const Typeface: React.FC = () => {
 
       
         {fontData.map((font, index) => (
-        <group key={index} data-space="30" data-gap="20" data-border="" data-background="main-background">
-          <text data-light="">{font.name}</text>
+        <group key={index} data-space="30" data-gap="20" data-border="" data-background="main-background" data-interactive="">
+          <group data-opacity="40">{font.name}</group>
             <group
               data-contain=""
               data-wrap="wrap"
               data-cursor="auto"
               data-weight={font.weight}
               data-text-size={font.textSize}
-              contenteditable="plaintext-only"
+              
 
               
 
           >
-            {font.previewText}
+              <group contenteditable="plaintext-only" data-break="break-all">
+              {font.previewText}
+</group>
           </group>
         </group>
       ))}
