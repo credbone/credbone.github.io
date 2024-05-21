@@ -27,10 +27,14 @@ grid toolbar { position: sticky; top: 0 }
 
 grid wrap { gap:10px; position: relative; display: flex; flex-wrap: wrap; align-content: flex-start; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 
-grid wrap[mini] { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); padding: 0; margin: 20px; overflow: hidden; grid-gap: 1px; }
-grid wrap[mini] div { font-size: 18px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px var(--border-color); background: var(--background); }
+grid wrap[mini] { grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); padding: 0; margin: 20px; overflow: hidden;  }
+grid wrap[mini] div {  overflow: hidden; aspect-ratio: 1 / 1;  display: flex; align-items: center; justify-content: center;  }
 
 
+
+grid wrap[mini] [data-type="highlight"]
+{grid-column-end: span 2;
+    grid-row-end: span 2;}
 
 
 grid wrap item { overflow: hidden; cursor: pointer; padding: 15px; width: 100%; flex-direction: column; transition: .125s; position: relative; align-items: center; justify-content: center; display: flex;  background: var(--hover); border-radius: 10px; }
