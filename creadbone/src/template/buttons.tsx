@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "./../components/button";
 import sampleImage9 from "../styles/images/samples/sample_5.jpg";
+import sampleImage from "../styles/images/samples/res_16.jpg";
+
 import {
   SvgHamburger,
   SvgHamburgerToLeft,
@@ -42,7 +44,7 @@ const Buttons: React.FC = () => {
 
 
         <group
-              data-background="main-darker"
+              data-background="secondary"
              
 
               data-contain=""
@@ -50,17 +52,17 @@ const Buttons: React.FC = () => {
               data-dark=""
               data-align="center"
             >
-              <picture data-position="absolute" data-opacity="60" >
-                <img src={sampleImage9} alt="" />
-              </picture>
+          <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture>
+          
               <group  data-length="fit" data-space="40"  >
         <Button
+        
         data-zoom="3"
             primary
             large
 
                   
-                ><icon>touch_app</icon><text >Hello There</text></Button>
+                ><icon>arrow_outward</icon><text >Button</text></Button>
         </group>
             </group>
 

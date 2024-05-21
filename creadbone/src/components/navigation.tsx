@@ -14,7 +14,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
     <NavLink data-type="group" to={to} data-width="auto" data-name="nav-item" data-radius="10" data-contain="" data-interactive="">
       <Ripple>
         <group data-direction="column" data-align="center" data-space="10" data-gap="5">
-         <icon data-length="30">{icon}</icon>
+          <icon data-length="30">{icon}</icon>
           <text data-ellipsis="">{label}</text>
         </group>
       </Ripple>
