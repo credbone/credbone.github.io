@@ -5,9 +5,15 @@ function About() {
   return (
     <view data-space="50" data-scroll=""  data-border="no">
       <group  data-gap="30" data-direction="column">
-        <group data-max-length="200">
+        {/* <group data-max-length="200">
           <Logo />
-        </group>
+        </group> */}
+
+<group data-direction="column" data-gap="10">
+
+<text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-opacity="20">About</text>
+
+</group>
 
         <text data-wrap="wrap" data-text-size="medium" data-length="610" data-line="1.5" data-light="">
         Experimental App, featuring a curated collection of UI components and patterns as React components.

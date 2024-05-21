@@ -84,8 +84,8 @@ const Colors: React.FC = () => {
 
 
           <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="secondary-light"><text data-weight="700">Seondary Light</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
-          <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="secondary-dark" data-color="white"><text data-weight="700">Seondary Dark</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
-          <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="secondary-darker" data-color="white"><text data-weight="700">Seondary Darker</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+          <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="secondary-dark" data-color="white"><text data-weight="700">Secondary Dark</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
+          <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="secondary-darker" data-color="white"><text data-weight="700">Secondary Darker</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
 
           <group data-contain="" data-width="auto" data-height="240" data-length='auto' data-background="secondary-darker" >
             <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage2} alt="" /> </picture>

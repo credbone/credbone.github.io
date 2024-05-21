@@ -105,7 +105,8 @@ const Layout: React.FC = () => {
 
             <group data-type="grid" data-gap="10" data-space="20">
               <Content></Content>
-            </group>
+              </group>
+              <space data-height="60"></space>
           </view>
         </view>
 
@@ -147,8 +148,9 @@ const Layout: React.FC = () => {
             </group>
           </view>
 
-          <Switchable
-              
+              <Switchable
+               
+                defaultExpanded={false}
             data-type="overlap"
             data-elevation="1"
             data-switch-direction="horizontal"
@@ -158,7 +160,8 @@ const Layout: React.FC = () => {
             
             data-container-type="grid"
           >
-            <group data-space="20" data-align="center" data-justify="center">
+                <group >
+                <group data-space="20"  data-align="center" data-justify="center">
             <space></space>
             <icon data-opacity="20" data-icon-size="large">view_stream</icon>
               <space></space>
@@ -179,6 +182,7 @@ const Layout: React.FC = () => {
             <group data-type="grid" data-gap="10" data-space="20"  >
               <Content></Content>
             </group>
+</group>
           </Switchable>
         </view>
       </Switchable>

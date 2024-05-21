@@ -26,7 +26,7 @@ function Template() {
         <Switchable
           data-switch-size="60"
           defaultExpanded={false}
-          icon="palette"
+          icon="invert_colors"
           data-type="overlap"
           data-length="60"
 
