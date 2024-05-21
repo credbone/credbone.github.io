@@ -12,7 +12,24 @@ import Marquee from "../components/Marquee";
 import Scroll from "../components/scroll";
 import Button from "../components/button";
 import { SvgHamburger } from "../components/svg";
+import Tabstrip from "../components/tabstrip";
+import Tab from "../components/tabstrip/tab";
 
+
+const tabsData = [
+  {
+    title: 'Home',
+    index: 1,
+  },
+  {
+    title: 'Orders',
+    index: 2,
+  },
+  {
+    title: 'Account',
+    index: 3,
+  },
+];
 
 const Landing: React.FC = () => {
   return (
@@ -154,11 +171,10 @@ data-weight="600"
     <group>
       <nav className="nav_strip classic invert">
         <ul>
-          <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>mail</icon> </group> </li>
-          <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>search</icon> </group> </li>
-          <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" ><icon>home</icon> <text> History</text> </group> </li>
-                  <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" > <text>Warranty</text> </group> </li>
-                  <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" > <text>Direction</text> </group> </li>
+          <li > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>drafts</icon> </group> </li>
+          <li  className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>search</icon> </group> </li>
+          <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" ><text>Products</text> </group> </li>
+          <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" > <text>Warranty</text> </group> </li>
         </ul>
       </nav>
     </group>
@@ -199,11 +215,9 @@ data-weight="600"
         <Scroll className="nav_strip classic transparent">
 
                   <ul>
-                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>Home</icon> </group> </li>
-                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text> History</text> </group> </li>
-
-
+                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon data-fill="">Home</icon> </group> </li>
+                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>About</text> </group> </li>
+                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Settings</text> </group> </li>
                   </ul>
 
               </Scroll>
@@ -231,8 +245,8 @@ data-weight="600"
                 <Scroll>
                   <ul>
                     <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
-                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty History</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text> History</text> </group> </li>
+                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>History</text> </group> </li>
+                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>Orders</text></group></li>
                   </ul>
                 </Scroll>
               </nav>
@@ -242,31 +256,53 @@ data-weight="600"
   </group>
 
   <group  data-space="30">
-    <group
-      data-space="30"
-      data-background="context"
-      data-gap="10"
-      data-direction="column"
-      data-elevation="1"
-      data-radius-top="10"
-    >
-             <group data-direction="column"  data-width="auto">
-    <text data-weight="700" data-text-size="x-large" data-wrap="wrap" >Bottom Navigation </text>
-    <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Bottom Aligned Tabbed Navigation </text>
+
+
+
+
+<group>
+
+
+
+
+<Tabstrip
+           // separator={false}
+           bottom
+          // classic={false}
+          // invert={false}
+          // modern={true}
+          selectedIndex={1}
+          tabStripProps={{"data-contain":"visible"}}
+          tabStripContentProps={{
+            "data-space":"30",
+            "data-background":"context",
+            "data-elevation":"1",
+            "data-radius-top":"10",
+
+          }}
+          >
+           {tabsData.map((tab) => (
+      <Tab key={tab.index} title={tab.title}>
+        <group data-wrap="no" data-gap="30" data-align="center">
+          <group data-width="auto">
+            <text data-text-size="48" data-weight="700">{tab.index}</text>
+          </group>
+          <group data-direction="column" data-width="auto" data-contain="" >
+            <text data-weight="700" data-text-size="x-large" data-ellipsis="">{tab.title}</text>
+            <text data-ellipsis=""  data-line="1.5" data-light="">Bottom Aligned Navigation</text>
+          </group>
+        </group>
+      </Tab>
+    ))}
+
+            </Tabstrip>
+</group>
+
+
   </group>
-    </group>
-    <group>
-      <Scroll className="nav_strip classic invert bottom">
-        <ul>
-          <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
-          <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group  data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty</text> </group> </li>
-          <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Order History</text> </group> </li>
-          <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Warranty History</text> </group> </li>
-          <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Account Details</text> </group> </li>
-        </ul>
-      </Scroll>
-    </group>
-  </group>
+
+
+
 
   <group data-height="90"></group>
 
