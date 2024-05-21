@@ -45,7 +45,11 @@ icon[data-icon-size="24"]      {font-size: 18px; height: 24px;  max-width: 24px;
 icon[data-icon-size="48"]      {font-size: 30px; height: 48px;  width: 48px; max-width: 48px;}
 icon[data-icon-size="mini"]  {font-size:24px; }
 icon[data-icon-size="medium"]  {font-size:48px;  height: 48px;  max-width: 48px;}
-icon[data-icon-size="large"]   {font-size:64px;  height: 64px;  max-width: 64px;}
+icon[data-icon-size="large"] {
+    font-size: 60px;
+    height: 60px;
+    max-width: 60px;
+}
 icon[data-icon-size="x-large"] {font-size:96px;  height: 96px;  max-width: 96px;}
 icon[data-icon-size="x-large"] {font-size:112px; height: 112px; max-width: 112px;}
 
@@ -138,24 +142,6 @@ icon svg { max-width: 100%; max-height: 100%;  }
 
 
 
-icon[data-color="red"] {color:#f44336;}
-icon[data-color="pink"] {color:#e91e63;}
-icon[data-color="purple"] {color:#9c27b0;}
-icon[data-color="deep-purple"] {color:#673ab7;}
-icon[data-color="indigo"] {color:#3f51b5;}
-icon[data-color="blue"] {color:#2196f3;}
-icon[data-color="light-blue"] {color:#03a9f4;}
-icon[data-color="cyan"] {color:#00bcd4;}
-icon[data-color="teal"] {color:#009688;}
-icon[data-color="green"] {color:#4caf50;}
-icon[data-color="light-green"] {color:#8bc34a;}
-icon[data-color="lime"] {color:#cddc39;}
-icon[data-color="yellow"] {color:#ffeb3b;}
-icon[data-color="amber"] {color:#ffc107;}
-icon[data-color="orange"] {color:#ff9800;}
-icon[data-color="deep-orange"] {color:#ff5722;}
-icon[data-color="brown"] {color:#795548;}
-icon[data-color="grey"] {color:#9e9e9e;}
-icon[data-color="blue-grey"] {color:#607d8b;} 
+
 
 /* stylelint-enable */

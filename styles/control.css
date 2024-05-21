@@ -160,11 +160,13 @@ text[data-width="auto"]{width: initial;}
 
 
 [data-break="break-all"]{word-break: break-all;}
+[data-break="break-word"]{word-break: break-word;}
 
 
 [data-text-size="0"] {font-size:0;}
 [data-text-size="12"] {font-size:12px;}
 [data-text-size="13"] {font-size:13px;}
+[data-text-size="small"] {font-size:12px;}
 [data-text-size="medium"] {font-size:16px;}
 [data-text-size="large"] {font-size:18px;}
 [data-text-size="larger"] {font-size:20px;}
@@ -172,6 +174,7 @@ text[data-width="auto"]{width: initial;}
 [data-text-size="xx-large"] {font-size:32px;}
 [data-text-size="xxx-large"] {font-size:48px;}
 
+[data-text-size="36"] {font-size:36px;}
 [data-text-size="64"] {font-size:64px;}
 [data-text-size="72"] {font-size:72px;}
 [data-text-size="96"] {font-size:96px;}
@@ -558,8 +561,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-interactive="select"]{}
 
+[data-cursor="auto"]{cursor: auto;}
 [data-cursor="pointer"]{cursor: pointer;}
 [data-cursor="default"]{cursor: default;}
+
 [data-type="link"]{cursor: pointer; color:var(--main-color)}
 [data-type="link"]:hover{text-decoration: underline;}
 [data-type="link"]:active{transform: translateY(1px);}
