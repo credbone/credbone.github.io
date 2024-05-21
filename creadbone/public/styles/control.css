@@ -160,11 +160,13 @@ text[data-width="auto"]{width: initial;}
 
 
 [data-break="break-all"]{word-break: break-all;}
+[data-break="break-word"]{word-break: break-word;}
 
 
 [data-text-size="0"] {font-size:0;}
 [data-text-size="12"] {font-size:12px;}
 [data-text-size="13"] {font-size:13px;}
+[data-text-size="small"] {font-size:12px;}
 [data-text-size="medium"] {font-size:16px;}
 [data-text-size="large"] {font-size:18px;}
 [data-text-size="larger"] {font-size:20px;}

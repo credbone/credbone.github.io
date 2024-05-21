@@ -32,9 +32,7 @@ grid wrap[mini] div {  overflow: hidden; aspect-ratio: 1 / 1;  display: flex; al
 
 
 
-grid wrap[mini] [data-type="highlight"]
-{grid-column-end: span 2;
-    grid-row-end: span 2;}
+
 
 
 grid wrap item { overflow: hidden; cursor: pointer; padding: 15px; width: 100%; flex-direction: column; transition: .125s; position: relative; align-items: center; justify-content: center; display: flex;  background: var(--hover); border-radius: 10px; }
@@ -75,3 +73,7 @@ div.palette div {min-width: 24px; height: 30px;}
 [data-name="color-demo"]{mix-blend-mode: overlay;
     opacity: .5;
     filter: grayscale(1);}
+
+    [data-glyph-size="double"]
+{grid-column-end: span 2;
+    grid-row-end: span 2;}

@@ -65,7 +65,7 @@ function Template() {
           // classic={false}
           // invert={false}
           // modern={true}
-          selectedIndex={3}
+        //  selectedIndex={3}
           >
           <Tab title="Typeface">
               <Typeface />
