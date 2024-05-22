@@ -6,8 +6,9 @@ import About from "./pages/about";
 
 import { ThemeProvider } from "./components/ThemeProvider";
 import Settings from "./pages/settings";
-import { LeftNavigation, Navigation } from "./components/navigation";
-import { SvgHamburger } from "./components/svg";
+import { Navigation } from "./components/navigation";
+
+import VerticalNav from "./template/verticalNav";
 
 
 
@@ -25,13 +26,8 @@ function App() {
             </group>
           </group>
           <view data-vertical="">
-            <group data-adaptive="desktop" data-width="auto" data-direction="column" data-space="15" data-gap="5" data-index="3" data-border=""  >
-              {/* <group data-interactive="" data-space="10" data-radius="10" data-justify="center" data-background="main-lighter">
-                <icon><SvgHamburger /></icon>
-                </group>
-              <separator data-horizontal=""></separator> */}
-              <LeftNavigation />
-            </group>
+
+<VerticalNav data-adaptive="desktop"/>
             <Routes>
               <Route path='/*' element={<Navigate replace to="/home" />} />
               <Route path='/Home/*' element={<Template />} />

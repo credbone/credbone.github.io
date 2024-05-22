@@ -117,6 +117,8 @@ const RichThemePicker: React.FC = () => {
                 data-wrap="no"
                 data-contain=""
                 onClick={() => handleColorSelection(c.code, false)}
+
+                
               >
                 <group
                   data-shrink="no"
