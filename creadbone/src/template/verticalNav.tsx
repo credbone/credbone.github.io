@@ -32,7 +32,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
 
 
-{/* <group
+<group
 
           data-background="main-dark"
           data-color="main-text-lighter-white"
@@ -50,7 +50,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           <group data-direction="column"  data-gap="10" data-adaptive="open-state" data-width="auto" data-max-length="300">
             <text data-text-size="xxx-large" data-weight="700">Hello</text>
           </group>
-        </group> */}
+        </group>
 
 
         <group

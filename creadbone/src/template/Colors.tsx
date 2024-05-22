@@ -5,6 +5,9 @@ import Content from "./content";
 import sampleImage from "../styles/images/samples/res_15.jpg";
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
+import samplevideo from "../styles/images/samples/res_23.mp4";
+import samplevideo2 from "../styles/images/samples/res_24.mp4";
+
 const Colors: React.FC = () => {
   const BaseColors = [
     { value: "red", name: "Red", description: "A muted brick red, vibrant yet grounded.", dark: "true", picture: "true" },
@@ -68,8 +71,8 @@ const Colors: React.FC = () => {
           <group data-contain="" data-height="240" data-length='auto' data-shrink="no" data-direction="column" data-orientation="vertical-bottom" data-justify="start" data-width="auto" data-space="30" data-background="main-darker" data-color="white"><text data-weight="700">Darker</text><text data-ellipsis="" data-light="">Auto-generated shade</text></group>
 
           <group data-contain="" data-width="auto" data-height="240" data-length='auto' data-background="main-dark" >
-            <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture>
-
+            {/* <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture> */}
+            <video data-name="color-demo" data-position="absolute" src={samplevideo} autoPlay muted loop playsInline data-object-fit="cover" data-height="fit" data-min-length='fit' data-max-length="fit" ></video>
 
             <group
               data-color="main-text-lighter-white"
