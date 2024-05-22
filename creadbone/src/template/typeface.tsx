@@ -16,8 +16,8 @@ const textSizeOptions = [
 
 const initialFontData = [
  // { name: 'Thin 100', weight: 100, previewText: previewText },
-  { name: 'Light 300', weight: 300, previewText:"🦊" + previewText },
-  { name: 'Regular 400', weight: 400, previewText: previewText + "🐶"},
+  { name: 'Light 300', weight: 300, previewText:"🦊 " + previewText },
+  { name: 'Regular 400', weight: 400, previewText: previewText + " 🐶"},
   { name: 'Medium 600', weight: 600, previewText: previewText },
   { name: 'Bold 700', weight: 700, previewText: previewText },
   { name: 'Bold 800', weight: 800, previewText: previewText }
@@ -72,7 +72,7 @@ const Typeface: React.FC = () => {
       </view>
 
       <view
-        data-size="small"
+        data-size="medium"
         data-height="auto"
         data-max-height="fit"
         data-radius="10"
