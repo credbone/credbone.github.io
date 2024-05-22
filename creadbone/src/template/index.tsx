@@ -65,8 +65,10 @@ const Template: React.FC = () => {
 
         <view>
 
-          <group>
+          <group  data-adaptive-order="2" data-index="3">
+            <Scroll>
             <SubNavigation />
+            </Scroll>
           </group>
 
           <Routes>

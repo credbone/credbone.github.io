@@ -11,7 +11,7 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
   return (
-    <NavLink data-type="group"  to={to} data-width="auto" data-name="nav-item" data-radius="5" data-contain="" data-interactive="">
+    <NavLink data-type="group"  to={to} data-width="auto" data-name="nav-item" data-radius="5" data-contain="" data-shrink="no" data-interactive="">
       <Ripple>
         <group  data-wrap="no" data-align="center" data-space="10" data-gap="5">
          
@@ -24,7 +24,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
 
 const SubNavigation: React.FC = () => {
   return (
-    <group group  data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-adaptive-order="2" data-index="3" >
+    <group group  data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-wrap="no" >
       <NavItem to="Typeface" icon="star" label="Typeface" />
       <NavItem to="Icons" icon="star" label="Icons" />
       <NavItem to="Buttons" icon="star" label="Buttons" />
