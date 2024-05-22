@@ -2,40 +2,43 @@ import React from "react";
 import { NavLink } from 'react-router-dom';
 import Ripple from "./Ripple";
 
-
-interface NavItemProps {
-  to: string;
-  icon: string;
-  label: string;
-}
-
-const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
-  return (
-    <NavLink data-type="group"  to={to} data-width="auto" data-name="nav-item" data-radius="5" data-contain="" data-shrink="no" data-interactive="">
-      <Ripple>
-        <group  data-wrap="no" data-align="center" data-space="10" data-gap="5">
-         
-          <text data-ellipsis="">{label}</text>
-        </group>
-      </Ripple>
-    </NavLink>
-  );
-};
+const navItems = [
+  { to: "Typeface", icon: "star", label: "Typeface" },
+  { to: "Icons", icon: "star", label: "Icons" },
+  { to: "Buttons", icon: "star", label: "Buttons" },
+  { to: "Colors", icon: "star", label: "Colors" },
+  { to: "Layout", icon: "star", label: "Layout" },
+  { to: "Navigation", icon: "star", label: "Navigation" },
+];
 
 const SubNavigation: React.FC = () => {
   return (
-    <group group  data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-wrap="no" >
-      <NavItem to="Typeface" icon="star" label="Typeface" />
-      <NavItem to="Icons" icon="star" label="Icons" />
-      <NavItem to="Buttons" icon="star" label="Buttons" />
-      <NavItem to="Colors" icon="star" label="Colors" />
-      <NavItem to="Layout" icon="star" label="Layout" />
-      <NavItem to="Navigation" icon="star" label="Navigation" />
-    </group>
-
-
+    <>
     
-
+    <group data-weight="600" data-gap="5" data-space="10" data-wrap="no">
+      {navItems.map((item, index) => (
+        <NavLink
+          key={index}
+          data-type="group"
+          to={item.to}
+          data-width="auto"
+          data-name="nav-item"
+          data-radius="5"
+          data-contain=""
+          data-shrink="no"
+          data-interactive=""
+        >
+          <Ripple>
+            <group data-wrap="no" data-align="center" data-space="10" data-gap="5">
+              <text data-ellipsis="">{item.label}</text>
+            </group>
+          </Ripple>
+        </NavLink>
+      ))}
+    </group>
+    {/* <group data-name="indicator" data-position="absolute" data-background="main"></group> */}
+      
+    </>
   );
 };
 
