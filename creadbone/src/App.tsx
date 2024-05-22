@@ -13,8 +13,20 @@ function App() {
   return (
     <>
        <ThemeProvider>
-      <Router>
-        <Navigation />
+        <Router>
+
+          
+
+          <group data-adaptive="mobile" data-adaptive-order="2" data-index="3" data-border="overprint" data-background="main-background">
+          <group  data-type="grid" data-weight="600" data-grid-template="100" data-gap="5" data-space="10"  >
+          <Navigation />
+          </group>
+</group>
+        
+          <view data-vertical="">
+          <group data-adaptive="desktop" data-length="110" data-direction="column" data-space="10" data-gap="5" data-index="3" data-border=""  >
+          <Navigation />
+          </group>
           <Routes>
             
               <Route path='/*'  element={<Navigate replace to="/home" />} />
@@ -24,6 +36,7 @@ function App() {
 
             
         </Routes>
+</view>
         </Router>
         </ThemeProvider>
     </>
