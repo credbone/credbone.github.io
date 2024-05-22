@@ -25,7 +25,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
 const Navigation: React.FC = () => {
   return (
     <group group data-type="grid" data-weight="600" data-grid-template="100" data-gap="5" data-space="10" data-adaptive-order="2" data-index="3" data-border="overprint">
-      <NavItem to="/" icon="space_dashboard" label="Home" />
+      <NavItem to="/Home" icon="space_dashboard" label="Home" />
       <NavItem to="/About" icon="lightbulb" label="About" />
       <NavItem to="/Settings" icon="apps" label="Settings" />
     </group>

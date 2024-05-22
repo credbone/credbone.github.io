@@ -34,7 +34,7 @@ const tabsData = [
 const Landing: React.FC = () => {
   return (
 
-    <>
+    <view data-vertical="">
         <view data-vertical="" data-adaptive="" data-border="no">
 
 
@@ -317,7 +317,7 @@ data-weight="600"
         
 
 
-    </>
+    </view>
   );
 };
 export default Landing;

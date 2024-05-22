@@ -1,5 +1,9 @@
 import React from 'react';
 
+
+import { Routes, Route, Link, Outlet, Navigate } from 'react-router-dom';
+
+
 import Tabstrip from './../components/tabstrip';
 import Tab from './../components/tabstrip/tab';
 import Colors from './../template/Colors';
@@ -13,9 +17,10 @@ import Buttons from './buttons';
 import Typeface from './typeface';
 import Landing from './nav';
 import Scroll from '../components/scroll';
+import SubNavigation from '../components/subnav';
 
 
-function Template() {
+const Template: React.FC = () => {
   return (
     <view data-scroll="" data-adaptive="" data-border="no" >
 
@@ -59,7 +64,22 @@ function Template() {
         </Switchable>
 
         <view>
-          <space data-height="10"></space>
+
+          <group>
+            <SubNavigation />
+          </group>
+
+          <Routes>
+            <Route path="/" element={<Navigate replace to="Icons" />} />
+            <Route path="Typeface" element={<Typeface />} />
+            <Route path="Icons" element={<Icons />} />
+            <Route path="Buttons" element={<Buttons />} />
+            <Route path="Colors" element={<Colors />} />
+            <Route path="Layout" element={<Layout />} />
+            <Route path="Navigation" element={<Landing />} />
+      </Routes>
+
+          {/* <space data-height="10"></space>
           <Tabstrip
            separator={false}
           // classic={false}
@@ -85,10 +105,10 @@ function Template() {
             <Tab title="Navigation">
               <Landing />
             </Tab>
-
-
-          </Tabstrip>
+          </Tabstrip> */}
         </view>
+
+        
       </view>
     </view>
   );
