@@ -132,7 +132,7 @@ const Typeface: React.FC = () => {
        
 
       </view>
-<space data-height="60"></space>
+
     </view>
   );
 };
