@@ -27,8 +27,19 @@ const Template: React.FC = () => {
 
 
 
-      <view data-vertical data-index="2">
-        <Switchable
+
+
+
+
+
+          <group  data-adaptive-order="2" data-index="3">
+            <Scroll>
+            <SubNavigation />
+            </Scroll>
+          </group>
+
+          <view data-vertical >
+          <Switchable
           data-switch-size="60"
           defaultExpanded={false}
           icon="invert_colors"
@@ -61,15 +72,8 @@ const Template: React.FC = () => {
         </group>
 
           </view>
-        </Switchable>
-
-        <view>
-
-          <group  data-adaptive-order="2" data-index="3">
-            <Scroll>
-            <SubNavigation />
-            </Scroll>
-          </group>
+            </Switchable>
+            
 
           <Routes>
             <Route path="/" element={<Navigate replace to="Icons" />} />
@@ -80,6 +84,7 @@ const Template: React.FC = () => {
             <Route path="Layout" element={<Layout />} />
             <Route path="Navigation" element={<Landing />} />
       </Routes>
+</view>
 
           {/* <space data-height="10"></space>
           <Tabstrip
@@ -108,10 +113,10 @@ const Template: React.FC = () => {
               <Landing />
             </Tab>
           </Tabstrip> */}
-        </view>
+
 
         
-      </view>
+
     </view>
   );
 }

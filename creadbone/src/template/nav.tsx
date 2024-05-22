@@ -304,7 +304,7 @@ data-weight="600"
 
 
 
-  <group data-height="90"></group>
+  <group data-height="40"></group>
 
 </view>
 

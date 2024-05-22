@@ -273,7 +273,7 @@ const Colors: React.FC = () => {
             </group>
           </group> */}
         </group>
-        <group data-height="60"></group>
+        <group ></group>
       </view>
 
 

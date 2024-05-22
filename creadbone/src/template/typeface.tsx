@@ -128,8 +128,11 @@ const Typeface: React.FC = () => {
         ))}
        </group>
         </group>
-      </view>
 
+       
+
+      </view>
+<space data-height="60"></space>
     </view>
   );
 };
