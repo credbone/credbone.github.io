@@ -37,6 +37,7 @@ export const getCSSByPalette = (palette: ColorPalette) => {
     const mainColorText = isMainColorLight ? "--main-color-text: var(--main-color-darker);" : "--main-color-text: var(--main-color-lighter-white);";
     const secondaryColorText = isSecondaryColorLight ? "--secondary-color-text: var(--secondary-color-darker);" : "--secondary-color-text: var(--secondary-color-lighter-white);";
 
+    
     return `
         :root {
            

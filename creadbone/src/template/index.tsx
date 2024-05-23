@@ -32,7 +32,7 @@ const Template: React.FC = () => {
 
 
 
-          <group  data-adaptive-order="2" data-index="3">
+          <group  data-index="3" data-scroll-mask="false" data-elevation="1" data-background="main-background" >
             <Scroll>
             <SubNavigation />
             </Scroll>

@@ -117,7 +117,8 @@ const Layout: React.FC = () => {
        data-placement="right"
         icon={<><SvgHamburgerToRight/></>}
         data-elevation="1"
-        collapseThreshold={800}
+        defaultExpanded={false}
+       // collapseThreshold={800}
         data-size="large"
         title={"Switchable To The Right"}>
         <view >
