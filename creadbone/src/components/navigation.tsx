@@ -5,7 +5,7 @@ import Ripple from "./Ripple";
 const navItems = [
   { to: "/Home", icon: "space_dashboard", label: "Home" },
   { to: "/About", icon: "lightbulb", label: "About" },
-  { to: "/Settings", icon: "tune  ", label: "Settings" },
+  { to: "/Settings", icon: "tune", label: "Settings" },
 ];
 
 const Navigation: React.FC = () => {
