@@ -66,6 +66,8 @@ const LeftNavigation: React.FC = () => {
         </NavLink>
       ))}
       <group
+            data-timing="fancy"
+            data-duration=".325"
         data-name="vertical-indicator"
         data-position="absolute"
         data-background="main"

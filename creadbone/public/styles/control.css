@@ -628,6 +628,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
     [data-timing="fancy"]{transition-timing-function: cubic-bezier(0,1.3,.7,1);}
+    [data-duration=".325"]{transition-duration: .325s;}
     [data-duration=".225"]{transition-duration: .225s;}
     [data-duration=".125"]{transition-duration: .125s;}
 

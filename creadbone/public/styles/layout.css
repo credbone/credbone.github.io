@@ -68,6 +68,7 @@ textarea,
 li {
     font-family: var(--main-font);
     font-size: var(--text);
+    text-rendering: optimizeLegibility;
 }
 
 
