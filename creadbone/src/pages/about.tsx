@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo } from "../resources/logo";
+// import { Logo } from "../resources/logo";
 
 function About() {
   return (
@@ -15,7 +15,7 @@ function About() {
 
 </group>
 
-        <text data-wrap="wrap"  data-length="610" data-line="1.5" data-light="">
+        <text data-wrap="wrap"  data-length="610" data-line="20" data-light="">
         Experimental App, featuring a curated collection of UI components and patterns as React components.
          Each element is crafted to enhance your applications with both beauty and functionality,
           ensuring seamless integration and easy customization. Dive in, explore, 

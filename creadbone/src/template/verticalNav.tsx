@@ -29,38 +29,12 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-scroll=""
         {...props}
       >
-
-
-
-<group
-
-          data-background="main-dark"
-          data-color="main-text-lighter-white"
-          
-          data-ratio="1:1"
-          data-align="center"
-          data-justify="center"
-          data-contain=""
-          data-shrink="no"
-          data-cursor="pointer"
-          data-interactive=""
-          onClick={handleNavToggle}
-        >
-            <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture>
-          <group data-direction="column"  data-gap="10" data-adaptive="open-state" data-width="auto" data-max-length="300">
-            <text data-text-size="xxx-large" data-weight="700">Hello</text>
-          </group>
-        </group>
-
-
         <group
           data-height="autofit"
           data-weight="600"
           data-space="15"
           data-direction="column"
         >
-
-
 
           <Ripple>
             <group
@@ -87,7 +61,6 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           <separator data-horizontal=""></separator>
           <LeftNavigation />
 
-
           <group data-position="bottom"></group>
           <separator data-horizontal=""></separator>
           <group
@@ -98,18 +71,26 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             data-align="center"
             data-wrap="no"
           >
-            <icon data-length="30">
-              info
-            </icon>
+            <icon data-length="30">info</icon>
             <text data-ellipsis="" data-adaptive="open-state">
               Version
             </text>
-            <separator data-vertical="" data-height="20"  data-adaptive="open-state"></separator>
-            <text  data-adaptive="open-state" data-weight="700">3.0</text>
+            <separator
+              data-vertical=""
+              data-height="20"
+              data-adaptive="open-state"
+            ></separator>
+            <text data-adaptive="open-state" data-weight="700">
+              3.0
+            </text>
           </group>
         </group>
       </group>
-      <group data-name="side_nav-space" data-length="80" data-adaptive="desktop"></group>
+      <group
+        data-name="side_nav-space"
+        data-length="80"
+        data-adaptive="desktop"
+      ></group>
     </>
   );
 };

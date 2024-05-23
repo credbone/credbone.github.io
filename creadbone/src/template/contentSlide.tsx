@@ -2,7 +2,7 @@ import React from "react";
 import Scroll from "../components/scroll";
 
 import sampleImage8 from "../styles/images/samples/sample_8.jpg";
-import sampleImage9 from "../styles/images/samples/sample_11.jpg";
+import sampleImage9 from "../styles/images/samples/res_16.jpg";
 import sampleImage14 from "../styles/images/samples/sample_14.mp4";
 
 
@@ -55,15 +55,18 @@ const ContentSlide: React.FC = () => {
             </group>
 
             <group
-              data-background="highlight"
+              
               data-radius="15"
               data-height="300"
               data-contain=""
               data-length="410"
               data-min-length="240"
-              data-dark=""
+             
+              data-color="main-text"
+              data-background="main"
+              
             >
-              <picture data-position="absolute" data-opacity="60">
+              <picture data-position="absolute" data-name="color-demo" >
                 <img src={sampleImage9} alt="" />
               </picture>
               <group
@@ -115,6 +118,7 @@ const ContentSlide: React.FC = () => {
               data-length="240"
             >
               <video
+              
                 data-position="absolute"
                 src={sampleImage14}
                 autoPlay

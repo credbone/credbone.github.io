@@ -1,12 +1,11 @@
 
 import React from "react";
-import ContentSlide from "./contentSlide";
-import Content from "./content";
+
 import sampleImage from "../styles/images/samples/res_15.jpg";
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
-import samplevideo2 from "../styles/images/samples/res_24.mp4";
+
 
 const Colors: React.FC = () => {
   const BaseColors = [
