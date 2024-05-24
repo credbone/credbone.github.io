@@ -220,64 +220,7 @@ export const SvgLoaderCircleSmall: React.FC = () => {
 
 };
 
-export const SvgFrFlag: React.FC = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      viewBox="0 0 30 30"
-    >
-      <rect fill="#324095" x="6" y="8" width="6" height="14"></rect>
-      <rect fill="#f4f4f4" x="12" y="8" width="6" height="14"></rect>
-      <rect fill="#d81e34" x="18" y="8" width="6" height="14"></rect>
-    </svg>
-  );
-};
 
-export const SvgItFlag: React.FC = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      viewBox="0 0 30 30"
-    >
-      <rect fill="#009434" x="6" y="8" width="6" height="14"></rect>
-      <rect fill="#f4f4f4" x="12" y="8" width="6" height="14"></rect>
-      <rect fill="#d81e34" x="18" y="8" width="6" height="14"></rect>
-    </svg>
-  );
-};
-
-export const SvgDeFlag: React.FC = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      viewBox="0 0 30 30"
-    >
-      <rect fill="currentColor" x="6" y="8" width="18" height="5"></rect>
-      <rect fill="#cd2626" x="6" y="13" width="18" height="5"></rect>
-      <rect fill="#ffd700" x="6" y="18" width="18" height="5"></rect>
-    </svg>
-  );
-};
-export const SvgEsFlag: React.FC = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      viewBox="0 0 30 30"
-    >
-      <rect fill="#AA151B" x="6" y="8" width="18" height="5"></rect>
-      <rect fill="#F1BF00" x="6" y="13" width="18" height="5"></rect>
-      <rect fill="#AA151B" x="6" y="18" width="18" height="5"></rect>
-    </svg>
-  );
-};
 
 // export const Svg: React.FC = () => {
 //   return (

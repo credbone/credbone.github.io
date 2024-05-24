@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
-import sampleImage9 from "../styles/images/samples/sample_5.jpg";
-import sampleImage from "../styles/images/samples/res_16.jpg";
+import sampleImage from "../styles/images/samples/res_15.jpg";
 
 import {
   SvgHamburger,
@@ -37,6 +36,7 @@ const Buttons: React.FC = () => {
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-color="main"
+            data-ellipsis=""
           >
             Buttons
           </text>
@@ -52,7 +52,7 @@ const Buttons: React.FC = () => {
         </group>
 
         <group
-          data-background="secondary"
+          data-background="secondary-dark"
           data-contain=""
           // data-dark=""
           data-align="center"
