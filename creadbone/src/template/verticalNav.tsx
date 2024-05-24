@@ -38,6 +38,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-direction="column"
           data-gap="5"
         >
+          
 
           <Ripple>
             <group

@@ -21,6 +21,7 @@ const SubNavigation: React.FC = () => {
       const currentIndex = navItems.findIndex(item => location.pathname.endsWith(item.to));
       const activeItem = navRefs.current[currentIndex];
   
+      
       if (activeItem) {
         const { left, width } = activeItem.getBoundingClientRect();
         const parentLeft = activeItem.parentElement?.getBoundingClientRect().left || 0;
