@@ -114,7 +114,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 
 
 [data-name="side_nav"][data-expanded="close"] [data-adaptive-direction="column"] {flex-direction: column;}
-[data-name="side_nav"][data-expanded="close"] [data-adaptive="vertical"]
+[data-name="side_nav"][data-expanded="close"] [data-adaptive="vertical-state"]
 
  {
     writing-mode: vertical-rl;
@@ -143,7 +143,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
    
 }
 
-[data-name="vertical-indicator"] { width: 2px; right:0; top:0; height: 0; transition: height .225s .125s, transform .325s;}
+[data-name="vertical-indicator"] { width: 2px; right:0; top:0; height: 0; transition: height .325s, transform .225s;}
 [data-name="horizontal-indicator"] { height: 2px; left:0; bottom: 0; transition: width .225s .125s, transform .325s;   }
 
 

@@ -5,7 +5,7 @@ import Ripple from "./Ripple";
 const navItems = [
   { to: "/Home", icon: "space_dashboard", label: "Home" },
   { to: "/About", icon: "lightbulb", label: "About" },
-  { to: "/Settings", icon: "tune", label: "Settings", vertical: "" },
+  { to: "/Settings", icon: "tune", label: "Settings", vertical: "true" },
 ];
 
 const Navigation: React.FC = () => {
@@ -57,7 +57,21 @@ const LeftNavigation: React.FC = () => {
   
     // Optional: Recalculate on window resize to handle responsive layouts
     window.addEventListener('resize', updateIndicator);
-    return () => window.removeEventListener('resize', updateIndicator);
+  
+    const parentElement = navRefs.current[0]?.parentElement;
+    let resizeObserver: ResizeObserver | null = null;
+  
+    if (parentElement) {
+      resizeObserver = new ResizeObserver(() => updateIndicator());
+      resizeObserver.observe(parentElement);
+    }
+  
+    return () => {
+      window.removeEventListener('resize', updateIndicator);
+      if (resizeObserver && parentElement) {
+        resizeObserver.unobserve(parentElement);
+      }
+    };
   }, [location.pathname]);
 
   return (
@@ -78,16 +92,17 @@ const LeftNavigation: React.FC = () => {
           // className={({ isActive }) => isActive ? 'active' : ''}
         >
           <Ripple>
-            <group data-align="center" data-space="10" data-gap="10" data-wrap="no" >
+            <group data-align="center" data-space="10" data-gap="10" data-wrap="no" data-adaptive-direction={item.vertical ? "column" : ""} >
               <icon data-length="30">{item.icon}</icon>
-              <text data-adaptive="open-state" data-ellipsis="" >{item.label}</text>
+              <text data-adaptive={item.vertical ? "vertical-state" : "open-state"} data-ellipsis="" >{item.label}</text>
+             
             </group>
           </Ripple>
         </NavLink>
       ))}
         
         <group
-      data-timing="fancy"
+      //data-timing="fancy"
         data-name="vertical-indicator"
         data-position="absolute"
         data-background="main"
