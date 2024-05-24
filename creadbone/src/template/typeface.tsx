@@ -57,6 +57,7 @@ const Typeface: React.FC = () => {
         data-border="no"
         data-background="main"
         data-color="main-text"
+        data-break="break-word"
       >
         <group data-space="30" data-border="none" data-scroll="">
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">

@@ -31,6 +31,10 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
       data-scrollbar="none"
         {...props}
       >
+
+
+
+
         <group
           data-height="autofit"
           data-weight="600"
@@ -38,7 +42,8 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-direction="column"
           data-gap="5"
         >
-          
+
+
 
           <Ripple>
             <group
