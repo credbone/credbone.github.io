@@ -5,7 +5,7 @@ import Ripple from "./Ripple";
 const navItems = [
   { to: "/Home", icon: "space_dashboard", label: "Home" },
   { to: "/About", icon: "lightbulb", label: "About" },
-  { to: "/Settings", icon: "tune", label: "Settings" },
+  { to: "/Settings", icon: "tune", label: "Settings", vertical: "" },
 ];
 
 const Navigation: React.FC = () => {
@@ -32,21 +32,38 @@ const LeftNavigation: React.FC = () => {
   const navRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
   useEffect(() => {
-    const currentIndex = navItems.findIndex(item => location.pathname.startsWith(item.to));
-    if (navRefs.current[currentIndex]) {
+    const updateIndicator = () => {
+      const currentIndex = navItems.findIndex(item => location.pathname.startsWith(item.to));
       const activeItem = navRefs.current[currentIndex];
-      const rect = activeItem?.getBoundingClientRect();
-      const top = rect?.top ?? 0;
-      const height = rect?.height ?? 0;
-      setIndicatorTop(top);
-      setIndicatorHeight(height);
+  
+      if (activeItem) {
+        const rect = activeItem.getBoundingClientRect();
+        const parentRect = activeItem.parentElement?.getBoundingClientRect();
+        const parentScrollTop = activeItem.parentElement?.scrollTop || 0;
+  
+        const top = (rect.top - (parentRect?.top || 0)) + parentScrollTop;
+        const height = rect.height ?? 0;
+  
+        setIndicatorTop(top);
+        setIndicatorHeight(height);
+      }
+    };
+  
+    if (document.fonts.ready) {
+      document.fonts.ready.then(updateIndicator);
+    } else {
+      updateIndicator();
     }
+  
+    // Optional: Recalculate on window resize to handle responsive layouts
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
   }, [location.pathname]);
 
   return (
     <>
 
-      <group data-direction="column" data-gap="5">
+
       {navItems.map((item, index) => (
         <NavLink
           key={index}
@@ -68,15 +85,18 @@ const LeftNavigation: React.FC = () => {
           </Ripple>
         </NavLink>
       ))}
-      </group>
-      
-      <group
+        
+        <group
       data-timing="fancy"
         data-name="vertical-indicator"
         data-position="absolute"
         data-background="main"
         style={{ transform: `translateY(${indicatorTop}px)`, height: `${indicatorHeight}px` }}
       ></group>
+
+
+      
+
     </>
   );
 };

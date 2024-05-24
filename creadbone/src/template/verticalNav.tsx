@@ -2,7 +2,7 @@ import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
 import React, { useState } from "react";
 import { LeftNavigation } from "../components/navigation";
-import sampleImage from "../styles/images/samples/res_15.jpg";
+
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -14,6 +14,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   return (
     <>
       <group
+       
         data-placement="left"
         data-shrink="no"
         data-name="side_nav"
@@ -27,6 +28,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-wrap="no"
         data-direction="column"
         data-scroll=""
+      data-scrollbar="none"
         {...props}
       >
         <group
@@ -34,6 +36,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-weight="600"
           data-space="15"
           data-direction="column"
+          data-gap="5"
         >
 
           <Ripple>
