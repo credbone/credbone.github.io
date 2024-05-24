@@ -34,10 +34,13 @@ view[data-align="center"] {align-items:center; justify-content:center }
 
 view[data-scroll] scroller { flex: 1 }
 
-view[data-size="small"] { max-width: 340px;}
-view[data-size="medium"] { max-width: 500px;}
-view[data-size="large"] { max-width: 720px;}
 
+
+
+view[data-size="small"] { max-width: 340px;}
+view[data-size="medium"]{ max-width: 500px;}
+view[data-size="large"] { max-width: 720px;}
+max-
 [data-scrollbar="none"]{scrollbar-width: none;}
 
 
@@ -94,10 +97,12 @@ view[data-background="none"]{background:none}
 
 [data-name="switchable"][data-expanded="true"]{z-index: 11;}
 
-[data-name="switchable"][data-expanded="false"] > [data-name="switch_content"] {}
+[data-name="switchable"][data-expanded="false"] > [data-name="switch_content"] { }
 
 
-[data-name="switchable"]   {transition: .125s; transition-property: width, height,max-height, flex-shrink, max-width;}
+
+
+[data-name="switchable"]   {transition:  .225s; transition-property: width, height, max-height, flex-shrink, max-width;}
 [data-name="switch"]{transition: .225s; transition-property: width, height; min-height: var(--switch-size); }
 
 
