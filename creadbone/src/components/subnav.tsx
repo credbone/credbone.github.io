@@ -40,8 +40,25 @@ const SubNavigation: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <group>
-      <group data-weight="600" data-wrap="no">
+    <group >
+
+<group
+        //data-timing="fancy"
+       // data-height="5"
+       // data-radius="5"
+       
+        data-name="horizontal-indicator"
+        data-width="auto"
+        data-position="absolute"
+        data-background="main"
+        
+        style={{ transform: `translateX(${indicatorStyle.left}px)`, width: `${indicatorStyle.width}px` }}
+
+      >
+      </group>
+
+      <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" >
+
         {navItems.map((item, index) => (
           <NavLink
             key={index}
@@ -52,25 +69,18 @@ const SubNavigation: React.FC = () => {
             data-name="nav-item"
             data-contain=""
             data-shrink="no"
-            data-interactive=""
+             data-interactive=""
+            data-radius="5" 
           >
             <Ripple>
-              <group data-height="50" data-space="15" data-radius="5" data-wrap="no" data-align="center" data-gap="5">
+              <group data-height="40" data-space="10"  data-wrap="no" data-align="center" data-gap="5">
                 <text data-ellipsis="">{item.label}</text>
               </group>
             </Ripple>
           </NavLink>
         ))}
       </group>
-      <group
-      data-timing="fancy"
-      data-duration=".325"
-        data-name="horizontal-indicator"
-        data-width="auto"
-        data-position="absolute"
-        data-background="main"
-        style={{ left: `${indicatorStyle.left}px`, width: `${indicatorStyle.width}px` }}
-      ></group>
+
     </group>
   );
 };
