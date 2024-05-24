@@ -52,7 +52,7 @@ const Switchable: React.FC<SwitchableProps> = ({
       data-expanded={isExpanded}
       {...rest}
     >
-      <Ripple>
+
         <group
           data-background="context"
           data-name="switch"
@@ -78,7 +78,7 @@ const Switchable: React.FC<SwitchableProps> = ({
             </>
           )}
         </group>
-      </Ripple>
+
       <view data-scroll="" data-border="no" data-name="switch_content">
         {children}
       </view>

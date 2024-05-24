@@ -58,7 +58,7 @@ const SubNavigation: React.FC = () => {
       >
       </group>
 
-      <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" >
+      <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" data-width="auto" data-max-length='auto' >
 
         {navItems.map((item, index) => (
           <NavLink

@@ -89,7 +89,7 @@
   .button.mini { width: 40px; /* height: 40px;*/ padding-left: 0; padding-right: 0; flex-shrink: 0; }
   .button.mini.rounded { height: 40px; }
   
-  .button.micro { width: 30px; height: 30px; padding-left: 0; padding-right: 0; flex-shrink: 0; }
+  .button.micro { width: var(--button-size);  padding-left: 0; padding-right: 0; flex-shrink: 0; }
   
   .button.accent{ box-shadow: inset 0 0 0 1.52px; /*margin: 0 5px;*/ }
   
