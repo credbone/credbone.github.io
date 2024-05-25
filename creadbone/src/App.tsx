@@ -21,7 +21,7 @@ function App() {
 
 
           <group data-adaptive="mobile" data-adaptive-order="2" data-index="3" data-border="overprint" data-background="main-background">
-            <group data-type="grid" data-grid-template="100" data-gap="5" data-space="10"  >
+            <group data-wrap="no" data-gap="5" data-space="10"  >
               <Navigation />
             </group>
           </group>

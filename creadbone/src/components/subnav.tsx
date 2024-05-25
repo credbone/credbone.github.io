@@ -6,7 +6,7 @@ const navItems = [
   { to: "Typeface", icon: "star", label: "Typeface" },
   { to: "Icons", icon: "star", label: "Icons" },
   { to: "Buttons", icon: "star", label: "Buttons" },
-  { to: "Colors", icon: "star", label: "Theme System" },
+  { to: "Colors", icon: "star", label: "Color System" },
   { to: "Layout", icon: "star", label: "Layout & Switches" },
   { to: "Navigation", icon: "star", label: "Navigation & Tabs" },
 ];

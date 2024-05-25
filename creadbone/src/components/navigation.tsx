@@ -12,10 +12,10 @@ const Navigation: React.FC = () => {
   return (
     <>
       {navItems.map((item, index) => (
-        <NavLink key={index} data-type="group" to={item.to} data-width="auto" data-name="nav-item" data-radius="10" data-contain="" data-interactive="" data-weight="600">
+        <NavLink key={index} data-type="group" to={item.to} data-width="autofit" data-max-length="120" data-name="nav-item" data-select-theme="main" data-radius="10" data-contain="" data-interactive="" data-weight="600">
           <Ripple>
-            <group data-direction="column" data-align="center" data-space="10" data-gap="5">
-              <icon data-length="30">{item.icon}</icon>
+            <group data-direction="column" data-gap="5" data-align="center" data-space="10" >
+              <icon data-length="30" data-height="auto">{item.icon}</icon>
               <text data-ellipsis="">{item.label}</text>
             </group>
           </Ripple>

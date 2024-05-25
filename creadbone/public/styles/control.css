@@ -251,6 +251,7 @@ text[data-width="auto"]{width: initial;}
 [data-max-length='auto']{max-width:initial;}
 [data-max-length='fit']{max-width:100%;}
 [data-max-length='100']{max-width:100px;}
+[data-max-length='120']{max-width:120px;}
 [data-max-length='180']{max-width:180px;}
 [data-max-length='200']{max-width:200px;}
 [data-max-length='300']{max-width:300px;}
