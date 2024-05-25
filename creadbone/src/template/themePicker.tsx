@@ -73,6 +73,15 @@ const ThemePicker: React.FC = () => {
             Secondary Color
           </text>
           {seccolors.map((c) => (
+                        <Tooltip
+                        content={
+                          <group data-direction="column">
+                            <text data-weight="700">{c.name}</text>
+                            <text>{c.description}</text>
+                          </group>
+                        }
+                        placement="right"
+                      >
             <Button
               key={c.code}
               mini
@@ -88,6 +97,7 @@ const ThemePicker: React.FC = () => {
                 </svg>
               </icon>
             </Button>
+            </Tooltip>
           ))}
           <space data-height="10"></space>
         </group>

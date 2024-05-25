@@ -12,7 +12,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
   placement = "top",
-  delay = 5000,
+  delay = 300,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<CSSProperties>({});
@@ -136,7 +136,6 @@ const Tooltip: React.FC<TooltipProps> = ({
         ReactDOM.createPortal(
           <group
             data-width="auto"
-            data-backdrop=""
             data-dark=""
             data-radius="5"
             data-space="10"

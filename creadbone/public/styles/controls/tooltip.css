@@ -7,6 +7,8 @@
   
   .tooltip {
     animation: tooltip .125s forwards;
+    color:#fff;
+    background-color: #2d2d2d;
     position: absolute;
     z-index: 9999;
 pointer-events: none;
