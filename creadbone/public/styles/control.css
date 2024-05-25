@@ -1,7 +1,7 @@
 /* stylelint-disable */
 
 @import url(controls/view.css);
-@import url(controls/toolbar.css);
+
 @import url(controls/icon.css);
 @import url(controls/button.css);
 @import url(controls/tab_strip.css);
@@ -16,14 +16,14 @@
 @import url(controls/checkbox.css);
 @import url(controls/option_bar.css);
 @import url(controls/list.css);
-@import url(controls/context_menu.css);
-@import url(controls/nav_tree_menu.css);
+
+
 @import url(controls/inputs.css);
 @import url(controls/popup.css);
 @import url(controls/loader.css);
 
 @import url(controls/color.css);
-
+@import url(controls/animation.css);
 
 
 :root {

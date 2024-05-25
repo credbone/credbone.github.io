@@ -9,18 +9,31 @@ function About() {
           <Logo />
         </group> */}
 
-<group data-direction="column" data-gap="10">
+<group data-direction="column" data-gap="10"
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="125"
+
+>
 
 <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-opacity="20">About</text>
 
 </group>
 
-        <text data-wrap="wrap"  data-length="610" data-line="20" data-light="">
+<group
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="15"
+>
+<text data-wrap="wrap"  data-length="610" data-line="20" data-light="">
         Experimental App, featuring a curated collection of UI components and patterns as React components.
          Each element is crafted to enhance your applications with both beauty and functionality,
           ensuring seamless integration and easy customization. Dive in, explore, 
           and elevate your design capabilities effortlessly using our intuitive interface.
         </text>
+</group>
       </group>
     </view>
   );
