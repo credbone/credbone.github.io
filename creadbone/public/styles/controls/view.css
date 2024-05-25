@@ -38,7 +38,7 @@ view[data-scroll] scroller { flex: 1 }
 view[data-size="small"] { max-width: 340px;}
 view[data-size="medium"]{ max-width: 500px;}
 view[data-size="large"] { max-width: 720px;}
-max-
+
 [data-scrollbar="none"]{scrollbar-width: none;}
 
 
