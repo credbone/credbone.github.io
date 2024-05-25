@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from 'react-router-dom';
 import Ripple from "./Ripple";
+import Tooltip from "./tooltip";
 
 const navItems = [
   { to: "/Home", icon: "space_dashboard", label: "Home" },
@@ -79,7 +80,8 @@ const LeftNavigation: React.FC = () => {
 
 
       {navItems.map((item, index) => (
-        <NavLink
+<Tooltip content={item.vertical ? "" : item.label} placement="right">
+<NavLink
           key={index}
           to={item.to}
           ref={(el: HTMLAnchorElement | null) => navRefs.current[index] = el}
@@ -99,6 +101,7 @@ const LeftNavigation: React.FC = () => {
             </group>
           </Ripple>
         </NavLink>
+</Tooltip>
       ))}
         
         <group

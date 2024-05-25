@@ -1,0 +1,15 @@
+
+  
+
+@keyframes tooltip {from{ opacity: 0; transform: scale(.9);}}
+  
+  
+  
+  .tooltip {
+    animation: tooltip .125s forwards;
+    position: absolute;
+    z-index: 9999;
+pointer-events: none;
+max-width: calc(100%  - 20px);
+  }
+  

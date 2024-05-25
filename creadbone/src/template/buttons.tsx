@@ -13,6 +13,8 @@ import {
   SvgPlus,
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
+import Tooltip from "../components/tooltip";
+import { Link } from "react-router-dom";
 
 const Buttons: React.FC = () => {
   return (
@@ -108,6 +110,10 @@ const Buttons: React.FC = () => {
         data-elevation="1"
       >
         <group data-scroll="" data-gap="1">
+
+
+
+
           <group data-border="" data-space="20">
             <Button primary text="Primary Button" />
           </group>
@@ -136,32 +142,8 @@ const Buttons: React.FC = () => {
           <group data-border="" data-space="20">
             <Button text="Simple Button" />
           </group>
-          {/* <group data-border="" data-space="20">
-            
-            <Link effect="material" to="" className="button">
-              <text>Anchor Button</text>
-            </Link>
-          </group> */}
-          {/* <Tooltip
-            arrow={false}
-            title={
-              <group
-                data-direction="column"
-                data-gap="10"
-                data-space="10"
-              >
-                <text data-weight="700">Responsive Button</text>
-                <text data-wrap="wrap">
-                  Icon or alternate text will appear, on small screens.
-                </text>
-              </group>
-            }
-          >
-            <group data-border="" data-space="15">
-              
-              <Button icon="star" adaptive text="Responsive Button" />
-            </group>
-          </Tooltip> */}
+
+
         </group>
       </view>
       <view

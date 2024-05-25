@@ -4,6 +4,7 @@ import { defaultPrimaryColor, defaultSecondaryColor } from "../styles/skin";
 import Button from "../components/button";
 import { colors, seccolors } from "../styles/colorData";
 import Scroll from "../components/scroll";
+import Tooltip from "../components/tooltip";
 
 const RichThemePicker: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -35,55 +36,49 @@ const RichThemePicker: React.FC = () => {
             data-width="auto"
           >
             {colors.map((c) => (
-              <group
-                data-shrink="no"
-                data-interactive=""
-                data-width="auto"
-                data-cursor="pointer"
-                className={theme.colorPrimary === c.code ? "selected" : ""}
-                data-color={theme.colorPrimary === c.code ? "main-text" : ""}
-                data-height="60"
-                data-wrap="no"
-                data-contain=""
-                data-name="theme-item"
-                onClick={() => handleColorSelection(c.code, true)}
+              <Tooltip
+                content={
+                  theme.colorPrimary === c.code ? (
+                    ""
+                  ) : (
+                    <group data-direction="column">
+                      <text data-weight="700">{c.name}</text>
+                      <text>{c.description}</text>
+                    </group>
+                  )
+                }
               >
                 <group
-                  //data-radius="5"
-                  style={{ backgroundColor: c.code }}
-                  data-space="15"
+                  data-shrink="no"
+                  data-interactive=""
+                  data-width="auto"
+                  data-cursor="pointer"
+                  className={theme.colorPrimary === c.code ? "selected" : ""}
+                  data-color={theme.colorPrimary === c.code ? "main-text" : ""}
+                  data-height="60"
+                  data-wrap="no"
+                  data-contain=""
+                  data-name="theme-item"
+                  onClick={() => handleColorSelection(c.code, true)}
                 >
-                      <group
-                        data-justify="end"
-                      
-                        data-contain=""
-                        data-duration=".125"
-
-                  //      data-text-size={theme.colorPrimary === c.code ? "" : "0"}
-
-                        key={c.code}
-                        data-direction="column"
-                      >
-                        <text
-                          data-ellipsis=""
-                          data-weight="700"
-
-                          // data-height="120"
-                          // data-orientation="vertical-bottom"
-                        >
-                          {c.name}
-                        </text>
-                        <text
-                          data-wrap="wrap"
-                          data-light=""
-                          // data-height="120"
-                          // data-orientation="vertical-bottom"
-                        >
-                          {c.description}
-                        </text>
-                      </group>
+                  <group style={{ backgroundColor: c.code }} data-space="15">
+                    <group
+                      data-justify="end"
+                      data-contain=""
+                      data-duration=".125"
+                      key={c.code}
+                      data-direction="column"
+                    >
+                      <text data-ellipsis="" data-weight="700">
+                        {c.name}
+                      </text>
+                      <text data-wrap="wrap" data-light="">
+                        {c.description}
+                      </text>
+                    </group>
+                  </group>
                 </group>
-              </group>
+              </Tooltip>
             ))}
           </group>
         </Scroll>
@@ -94,65 +89,75 @@ const RichThemePicker: React.FC = () => {
           <group
             data-position="left"
             data-wrap="no"
-            //   data-contain=""
+
             data-radius="5"
             data-width="auto"
-            //data-type="grid"
-            // data-gap="5"
+
             data-align="start"
             data-grid-template="50"
           >
             {seccolors.map((c) => (
-              <group
-              data-name="theme-item"
-                data-shrink="no"
-                data-interactive=""
-                data-width="auto"
-                data-cursor="pointer"
-                className={theme.colorSecondary === c.code ? "selected" : ""}
-                data-color={
-                  theme.colorSecondary === c.code ? "secondary-text" : ""
-                }
-                data-height="60"
-                data-wrap="no"
-                data-contain=""
-                onClick={() => handleColorSelection(c.code, false)}
-
-                
+              <Tooltip
+              content={
+                theme.colorSecondary === c.code ? (
+                  ""
+                ) : (
+                  <group data-direction="column">
+                    <text data-weight="700">{c.name}</text>
+                    <text>{c.description}</text>
+                  </group>
+                )
+              }
               >
                 <group
+                  data-name="theme-item"
                   data-shrink="no"
-                  style={{ backgroundColor: c.code }}
-                  data-space="15"
+                  data-interactive=""
+                  data-width="auto"
+                  data-cursor="pointer"
+                  className={theme.colorSecondary === c.code ? "selected" : ""}
+                  data-color={
+                    theme.colorSecondary === c.code ? "secondary-text" : ""
+                  }
+                  data-height="60"
+                  data-wrap="no"
+                  data-contain=""
+                  onClick={() => handleColorSelection(c.code, false)}
                 >
                   <group
-                    data-justify="end"
-                    data-duration=".125"
-                 //   data-text-size={theme.colorSecondary === c.code ? "" : "0"}
-                    data-contain=""
-                    key={c.code}
-                    data-direction="column"
+                    data-shrink="no"
+                    style={{ backgroundColor: c.code }}
+                    data-space="15"
                   >
-                    <text
-                      data-ellipsis=""
-                      data-weight="700"
+                    <group
+                      data-justify="end"
+                      data-duration=".125"
+                      //   data-text-size={theme.colorSecondary === c.code ? "" : "0"}
+                      data-contain=""
+                      key={c.code}
+                      data-direction="column"
+                    >
+                      <text
+                        data-ellipsis=""
+                        data-weight="700"
 
-                      // data-height="120"
-                      // data-orientation="vertical-bottom"
-                    >
-                      {c.name}
-                    </text>
-                    <text
-                      data-wrap="wrap"
-                      data-light=""
-                      // data-height="120"
-                      // data-orientation="vertical-bottom"
-                    >
-                      {c.description}
-                    </text>
+                        // data-height="120"
+                        // data-orientation="vertical-bottom"
+                      >
+                        {c.name}
+                      </text>
+                      <text
+                        data-wrap="wrap"
+                        data-light=""
+                        // data-height="120"
+                        // data-orientation="vertical-bottom"
+                      >
+                        {c.description}
+                      </text>
+                    </group>
                   </group>
                 </group>
-              </group>
+              </Tooltip>
             ))}
           </group>
         </Scroll>

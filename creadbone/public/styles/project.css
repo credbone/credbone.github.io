@@ -458,4 +458,3 @@ th,td {height: 36px; min-width: 36px;}
 [data-name="theme-item"].selected:last-child{margin-right:0px ;}
 
 
-.tooltip{position: absolute; background: red; padding: 20px;z-index: 999; border-radius: 5px;}
