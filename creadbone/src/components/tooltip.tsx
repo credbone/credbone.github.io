@@ -37,49 +37,27 @@ const Tooltip: React.FC<TooltipProps> = ({
     switch (placement) {
       case "top":
         position.top = Math.max(10, targetRect.top - tooltipRect.height);
-        position.left = Math.max(
-          10,
-          Math.min(
-            targetRect.left + targetRect.width / 2 - tooltipRect.width / 2,
-            window.innerWidth - tooltipRect.width - 25
-          )
-        );
+        position.left = Math.max( 10, Math.min( targetRect.left + targetRect.width / 2 - tooltipRect.width / 2, window.innerWidth - tooltipRect.width ) );
+        if (window.innerWidth - position.left > tooltipRect.width) {
+         // position.right = "auto";
+      
+        } else {
+          position.left = "auto";
+          position.right = 10;
+        }
+        break;
         break;
       case "bottom":
-        position.top = Math.min(
-          window.innerHeight - tooltipRect.height,
-          targetRect.bottom
-        );
-        position.left = Math.max(
-          10,
-          Math.min(
-            targetRect.left + targetRect.width / 2 - tooltipRect.width / 2,
-            window.innerWidth - tooltipRect.width
-          )
-        );
+        position.top = Math.min( window.innerHeight - tooltipRect.height, targetRect.bottom );
+        position.left = Math.max( 10, Math.min( targetRect.left + targetRect.width / 2 - tooltipRect.width / 2, window.innerWidth - tooltipRect.width ) );
         break;
       case "left":
-        position.top = Math.max(
-          10,
-          Math.min(
-            targetRect.top + targetRect.height / 2 - tooltipRect.height / 2,
-            window.innerHeight - tooltipRect.height
-          )
-        );
+        position.top = Math.max( 10, Math.min( targetRect.top + targetRect.height / 2 - tooltipRect.height / 2, window.innerHeight - tooltipRect.height ) );
         position.left = Math.max(10, targetRect.left - tooltipRect.width);
         break;
       case "right":
-        position.top = Math.max(
-          10,
-          Math.min(
-            targetRect.top + targetRect.height / 2 - tooltipRect.height / 2,
-            window.innerHeight - tooltipRect.height
-          )
-        );
-        position.left = Math.min(
-          window.innerWidth - tooltipRect.width,
-          targetRect.right
-        );
+        position.top = Math.max( 10, Math.min( targetRect.top + targetRect.height / 2 - tooltipRect.height / 2, window.innerHeight - tooltipRect.height ) );
+        position.left = Math.min( window.innerWidth - tooltipRect.width, targetRect.right );
         break;
       default:
         break;
@@ -132,6 +110,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
+          data-contain=""
            data-background="tooltip"
            data-color="white"
             data-width="auto"

@@ -13,6 +13,7 @@
     z-index: 9999;
 pointer-events: none;
 max-width: calc(100%  - 20px);
+
   }
   
   [data-background="tooltip"] {background-color: #2d2d2d;}
