@@ -7,11 +7,12 @@
   
   .tooltip {
     animation: tooltip .125s .425s  backwards;
-    color:#fff;
-    background-color: #2d2d2d;
+
+
     position: absolute;
     z-index: 9999;
 pointer-events: none;
 max-width: calc(100%  - 20px);
   }
   
+  [data-background="tooltip"] {background-color: #2d2d2d;}
