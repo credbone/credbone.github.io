@@ -5,14 +5,14 @@ interface TooltipProps {
   content: any;
   children: React.ReactNode;
   placement?: "top" | "bottom" | "left" | "right";
-  delay?: number;
+
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
   placement = "top",
-  delay = 300,
+
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<CSSProperties>({});
@@ -20,16 +20,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   const childRef = useRef<HTMLElement>(null);
   let timer: NodeJS.Timeout;
 
-  const handleMouseEnter = () => {
-    timer = setTimeout(() => {
-      setIsVisible(true);
-    }, delay);
-  };
 
-  const handleMouseLeave = () => {
-    clearTimeout(timer);
-    setIsVisible(false);
-  };
 
   const handleTouchStart = () => {
     setIsVisible(false);
@@ -121,6 +112,11 @@ const Tooltip: React.FC<TooltipProps> = ({
   const handleTooltipTrigger = (showTooltip: boolean) => {
     setIsVisible(showTooltip);
   };
+
+
+
+  
+
 
   return (
     <>

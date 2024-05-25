@@ -6,7 +6,7 @@
   
   
   .tooltip {
-    animation: tooltip .125s forwards;
+    animation: tooltip .125s .425s  backwards;
     color:#fff;
     background-color: #2d2d2d;
     position: absolute;
