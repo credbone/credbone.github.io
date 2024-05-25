@@ -24,6 +24,7 @@
 
 @import url(controls/color.css);
 @import url(controls/animation.css);
+@import url(controls/tooltip.css);
 
 
 :root {
