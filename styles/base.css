@@ -15,17 +15,31 @@
 
 
 
+
 :root {
-    --main-color-lighter: #544f9a2b;
-    --main-color-light: #544f9a75;
-    --main-color: #544f9a;
-    --main-color-dark: #322F5C;
-    --main-color-darker: #22203E;
-    --secondary-color-lighter: #055b5c2b;
-    --secondary-color-light: #055b5c75;
-    --secondary-color: #055b5c;
-    --secondary-color-dark: #033737;
-    --secondary-color-darker: #022425;
+           
+
+    --main-color-lighter-white: #CCE0FF;
+    --main-color-light-white: #4D94FF;
+
+    --main-color-lighter: #0066ff2b;
+    --main-color-light: #0066ff75;
+    --main-color: #0066ff;
+    --main-color-dark: #003D99;
+    --main-color-darker: #001F4D;
+
+    --secondary-color-light-white: #FBE798;
+    --secondary-color-lighter-white: #FEF8E2;
+
+
+    --secondary-color-lighter: #f9dd6c2b;
+    --secondary-color-light: #f9dd6c75;
+    --secondary-color: #f9dd6c;
+    --secondary-color-dark: #958541;
+    --secondary-color-darker: #4B4220;
+
+    --main-color-text: var(--main-color-lighter-white);
+    --secondary-color-text: var(--secondary-color-darker);
 }
 
 
