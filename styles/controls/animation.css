@@ -1,0 +1,48 @@
+/* CredBone UI Framefork Component / Layout / Version 3.0.0 */
+/* Copyright 2024. Design Department. All rights reserved */
+
+
+
+@keyframes appear-left {from{opacity: 0;transform: translateX(-50px);}to{}}
+@keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
+@keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
+
+
+
+[data-fill-mode="backwards"]{animation-fill-mode: backwards;}
+[data-fill-mode="both"]{animation-fill-mode: both;}
+[data-fill-mode="forwards"]{animation-fill-mode:forwards}
+
+
+
+
+
+[data-animation-delay="125"] {animation-delay: .125s;}
+[data-animation-delay="15"]  {animation-delay: .15s;}
+[data-animation-delay="175"] {animation-delay: .175s;}
+[data-animation-delay="225"] {animation-delay: .225s;}
+[data-animation-delay="2"]   {animation-delay: .2s;}
+[data-animation-delay="25"]  {animation-delay: .25s;}
+[data-animation-delay="325"] {animation-delay: .325s;}
+
+
+
+[data-animation-duration="125"] {animation-duration: .125s;}
+[data-animation-duration="15"]  {animation-duration: .15s;}
+[data-animation-duration="175"] {animation-duration: .175s;}
+[data-animation-duration="2"]   {animation-duration: .2s;}
+[data-animation-duration="225"] {animation-duration: .225s;}
+[data-animation-duration="25"]  {animation-duration: .25s;}
+
+[data-animation-duration="325"] {animation-duration: .325s;}
+[data-animation-duration="35"]  {animation-duration: .35s;}
+[data-animation-duration="375"] {animation-duration: .375s;}
+
+
+
+
+
+
+[data-animation-name="appear-left"]{animation-name: appear-left;}
+[data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
+[data-animation-name="appear-top"]{animation-name: appear-top;}
