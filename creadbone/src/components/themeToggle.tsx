@@ -44,16 +44,19 @@ const ThemeToggle: React.FC = () => {
           </wrap>
         </label>
         <Tooltip
-          data-space="15"
-          data-space-horizontal="20"
-          data-radius="10"
-          data-weight="600"
-          data-max-length="300"
+
+data-space="15"
+          data-width=""
+          data-length="300"
           content={
-            <text  data-line="20" data-wrap="wrap">
+
+            <group data-gap="10" >
+                        <text data-weight="700">Auto Mode</text>
+            <text data-line="1.3"   data-wrap="wrap">
               Enable Auto Theme Toggle to switch between light and dark modes
               based on your system settings.
             </text>
+            </group>
           }
         >
           <label data-fit="true">

@@ -13,8 +13,7 @@ import {
   SvgPlus,
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
-import Tooltip from "../components/tooltip";
-import { Link } from "react-router-dom";
+
 
 const Buttons: React.FC = () => {
   return (

@@ -4,9 +4,11 @@ import Ripple from "./Ripple";
 
 const navItems = [
   { to: "Typeface", icon: "star", label: "Typeface" },
+  { to: "Colors", icon: "star", label: "Color System" },
   { to: "Icons", icon: "star", label: "Icons" },
   { to: "Buttons", icon: "star", label: "Buttons" },
-  { to: "Colors", icon: "star", label: "Color System" },
+  { to: "CheckboxSwitchers", icon: "star", label: "Checkbox & Switchers" },
+  { to: "InputsAndForms", icon: "star", label: "Input & Forms" },
   { to: "Layout", icon: "star", label: "Layout & Switches" },
   { to: "Navigation", icon: "star", label: "Navigation & Tabs" },
 ];
