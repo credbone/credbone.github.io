@@ -248,15 +248,16 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
         </view>
-        <view
-          data-size="large"
-          data-scroll=""
-          data-height="auto"
-          data-max-height="fit"
-          data-radius="10"
-          data-elevation="1"
+        <group
+          data-length="400"
+         
+         data-gap="15"
+
         >
-          <group data-direction="column" data-space="30">
+          <group data-direction="column" data-space="30"
+                    data-radius="10"
+                    data-elevation="1"
+          >
             <text
               data-weight="700"
               data-text-size="xxx-large"
@@ -275,9 +276,11 @@ const CheckboxAndSwitchers: React.FC = () => {
             </text>
           </group>
 
-          <group>
-            <group data-contain="">
-              <group
+
+<group   data-radius="10"
+                data-elevation="1"
+                data-contain="">
+<group
                 data-gap="10"
                 data-space="20"
                 data-border=""
@@ -297,7 +300,6 @@ const CheckboxAndSwitchers: React.FC = () => {
                     radioType={RadioType.Button}
                     name="RadioDemo1"
                     radioValue="Listview"
-
                     label="Month"
                   />
                 </OptionBar>
@@ -308,7 +310,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-border=""
                 data-background="main-background"
               >
-                <OptionBar compact dynamic  data-palette="secondary">
+                <OptionBar compact dynamic data-palette="secondary">
                   <group>
                     <Radio
                       control={control}
@@ -338,15 +340,18 @@ const CheckboxAndSwitchers: React.FC = () => {
                     />
                   </group>
                 </OptionBar>
-
               </group>
+</group>
 
-<group    data-gap="10"
+              <group
+                data-gap="10"
                 data-space="20"
                 data-border=""
-                data-background="main-background">
-<OptionBar compact dynamic data-palette="lighter">
-
+                data-background="context"
+                data-radius="10"
+                data-elevation="1"
+              >
+                <OptionBar compact dynamic data-palette="lighter">
                   <group>
                     <Radio
                       control={control}
@@ -356,15 +361,15 @@ const CheckboxAndSwitchers: React.FC = () => {
                       radioValue="leaf"
                       label="Leaf"
                       icon="nest_eco_leaf"
-             //         tooltip="Leaf"
+                      //         tooltip="Leaf"
                     />
                     <Radio
                       control={control}
                       radioType={RadioType.Button}
                       name="RadioDemo6"
                       radioValue="Sample_View"
-                      label="Sample Label"
-                //      tooltip="Column View"
+                      label="Degree"
+                      //      tooltip="Column View"
                     />
                     <Radio
                       control={control}
@@ -372,19 +377,20 @@ const CheckboxAndSwitchers: React.FC = () => {
                       name="RadioDemo6"
                       radioValue="Table View"
                       icon="humidity_low"
-
                     />
                   </group>
                 </OptionBar>
-</group>
+              </group>
 
               <group
-               
                 data-space="20"
                 data-border=""
-                data-background="main-background"
+                
                 data-align="center"
-                data-gap="20"
+                data-gap="10"
+                data-background="context"
+                data-radius="10"
+                data-elevation="1"
               >
                 <OptionBar compact dynamic>
                   <Radio
@@ -413,37 +419,79 @@ const CheckboxAndSwitchers: React.FC = () => {
                   />
                 </OptionBar>
 
- 
-<group data-align="center" data-width="auto">
-
-
-
-<OptionBar  animate data-length="100">
-  <Radio
-    control={control}
-    radioType={RadioType.Button}
-    name="RadioDemo4"
-    radioValue="yes"
-    label="Yes"
-  />
-  <Radio
-    control={control}
-    radioType={RadioType.Button}
-    name="RadioDemo4"
-    radioValue="no"
-    label="No"
-  />
-</OptionBar>
-<text data-opacity="30" data-space="10"> Animated Switcher </text>
-</group>
+<separator data-horizontal="dotted"></separator>
+                <group data-align="center" data-width="auto" >
+                  <OptionBar animate data-length="100">
+                    <Radio
+                      control={control}
+                      radioType={RadioType.Button}
+                      name="RadioDemo4"
+                      radioValue="yes"
+                      label="On"
+                    />
+                    <Radio
+                      control={control}
+                      radioType={RadioType.Button}
+                      name="RadioDemo4"
+                      radioValue="no"
+                      label="Off"
+                    />
+                  </OptionBar>
+                  <text data-opacity="30" data-space="10">
+                    Animated Switcher
+                  </text>
+                </group>
               </group>
+
+
               <group
                 data-gap="10"
                 data-space="20"
-                data-border=""
-                data-background="main-background"
+                data-radius="10"
+                data-elevation="1"
+                
               >
-                <OptionBar data-length="400" data-height="40" >
+                <OptionBar
+                  data-length="autofit"
+                  data-height="40"
+                  // data-palette="lighter"
+                >
+                  <Checkbox
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name="checkox_option_9"
+                    label="Chair"
+                  />
+                  <Checkbox
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name="checkox_option_10"
+                    label="Shirt"
+                  />
+                                    <Checkbox
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name="checkox_option_11"
+                    label="Pet"
+                  />
+                  <Checkbox
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name="checkox_option_12"
+                    label="Pet"
+                  />
+                </OptionBar>
+              </group>
+
+
+          <group
+                data-gap="10"
+               
+                data-radius="10"
+                    data-elevation="2"
+                    
+              >
+                <OptionBar data-length="400" data-height="40">
                   <Checkbox
                     control={control}
                     checkboxType={CheckboxType.Button}
@@ -489,43 +537,10 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </OptionBar>
               </group>
 
-              <group
-                data-gap="10"
-                data-space="20"
-                data-border=""
-                data-background="main-background"
-              >
-                <OptionBar
-                  data-length="300"
-                  data-height="40"
-                  // data-palette="lighter"
-                >
-                  <Checkbox
-               
-                    control={control}
-                    checkboxType={CheckboxType.Button}
-                    name="checkox_option_9"
-                    label="Chair"
-                  />
-                  <Checkbox
-                 
-                    control={control}
-                    checkboxType={CheckboxType.Button}
-                    name="checkox_option_10"
-                    label="Shirt"
-                  />
-                  <Checkbox
-                   
-                    control={control}
-                    checkboxType={CheckboxType.Button}
-                    name="checkox_option_11"
-                    label="Pet"
-                  />
-                </OptionBar>
-              </group>
-            </group>
-          </group>
-        </view>
+        </group>
+
+
+
       </view>
 
       <group data-space="20">
