@@ -135,7 +135,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
    /* [dir="rtl"] [data-name="side_nav"]{left:0; right:initial} */
 }
 
-@media (min-width: 1000px) 
+@media (min-width: 1001px) 
 
 {
     [data-name="side_nav-space"]{display: none;}
