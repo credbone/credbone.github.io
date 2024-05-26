@@ -1,8 +1,18 @@
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
-import React, { useState, useEffect, useRef } from "react";
-import { LeftNavigation } from "../components/navigation";
+import React, { useState, useEffect, useRef, createContext, useContext } from "react";
 import Tooltip from "../components/tooltip";
+import { LeftNavigation } from "../components/navigation";
+
+
+// Define an interface for the context
+interface NavContextType {
+  isNavOpen: boolean;
+  setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+// Create the context with the specified type and provide a default value
+const NavContext = createContext<NavContextType | undefined>(undefined);
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -26,7 +36,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   }, []);
 
   return (
-    <>
+    <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
       <group
         ref={navRef}
         data-placement="left"
@@ -80,7 +90,6 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           </Tooltip>
           <separator data-horizontal=""></separator>
           <LeftNavigation />
-
           <group data-position="bottom"></group>
           <separator data-horizontal=""></separator>
           <group
@@ -111,8 +120,9 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-length="80"
         data-adaptive="desktop"
       ></group>
-    </>
+    </NavContext.Provider>
   );
 };
 
+export { NavContext };
 export default VerticalNav;

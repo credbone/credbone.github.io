@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
+import { NavContext } from "../template/verticalNav";
+
+
 
 const navItems = [
   { to: "/Home", icon: "space_dashboard", label: "Home" },
@@ -46,6 +49,15 @@ const Navigation: React.FC = () => {
 };
 
 const LeftNavigation: React.FC = () => {
+  
+  const context = useContext(NavContext);
+
+  if (!context) {
+    throw new Error("LeftNavigation must be used within a NavProvider");
+  }
+
+  const { isNavOpen } = context;
+
   const location = useLocation();
   const [indicatorTop, setIndicatorTop] = useState(0);
   const [indicatorHeight, setIndicatorHeight] = useState(0);
@@ -111,7 +123,9 @@ const LeftNavigation: React.FC = () => {
           data-interactive=""
           // className={({ isActive }) => isActive ? 'active' : ''}
         >
-          <Ripple>
+          <Tooltip content={isNavOpen ? "" : (item.vertical ? "" : item.label)}  placement="right">
+<group>
+<Ripple>
             <group
               data-align="center"
               data-space="10"
@@ -128,6 +142,8 @@ const LeftNavigation: React.FC = () => {
               </text>
             </group>
           </Ripple>
+</group>
+</Tooltip>
         </NavLink>
       ))}
 
