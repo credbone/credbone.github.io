@@ -1,7 +1,7 @@
 import Marquee from "../components/Marquee";
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToRight } from "../components/svg";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import sampleImage from "../styles/images/samples/p_6.png";
 import sampleImage2 from "../styles/images/samples/p_1.png";
@@ -13,11 +13,27 @@ const SideNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      setIsNavOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const bottomRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+
 
   return (
     <>
       <group
+       ref={navRef}
       data-placement="right"
         data-shrink="no"
         data-name="side_nav"
@@ -31,6 +47,7 @@ const SideNav = () => {
         data-align="start"
         data-wrap="no"
         data-direction="column"
+        data-scrollbar="none"
         data-scroll=""
        
       >

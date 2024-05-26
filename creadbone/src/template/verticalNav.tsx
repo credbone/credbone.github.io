@@ -1,20 +1,33 @@
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { LeftNavigation } from "../components/navigation";
-
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      setIsNavOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <group
-       
+        ref={navRef}
         data-placement="left"
         data-shrink="no"
         data-name="side_nav"

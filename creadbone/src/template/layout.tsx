@@ -22,7 +22,7 @@ const Layout: React.FC = () => {
           title={"Adaptive Switchable To The Left"}
       //    togglerProps={{ "data-order": "2" }}
           data-type="overlap"
-          data-size="small"
+          data-max-length="300"
           data-container-type="grid"
           data-elevation="1"
           data-index="3"
@@ -119,7 +119,7 @@ const Layout: React.FC = () => {
         data-elevation="1"
         defaultExpanded={false}
        // collapseThreshold={800}
-        data-size="large"
+       data-max-length='600'
         title={"Switchable To The Right"}>
         <view >
           <view data-scroll="" >

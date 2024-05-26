@@ -33,6 +33,8 @@ const Template: React.FC = () => {
 
       <view data-vertical>
         <Switchable
+        
+        closeOnOutsideClick={true}
           data-switch-size="60"
           defaultExpanded={false}
           icon="invert_colors"
