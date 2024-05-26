@@ -1,12 +1,12 @@
 @keyframes tooltip {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    
   }
 }
 
 .tooltip {
-  animation: tooltip 0.125s 0.425s backwards;
+  animation: tooltip 0.225s .225s  backwards;
   position: absolute;
   z-index: 9999;
   pointer-events: none;
