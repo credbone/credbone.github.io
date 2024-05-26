@@ -2,6 +2,7 @@ import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
 import React, { useState, useEffect, useRef } from "react";
 import { LeftNavigation } from "../components/navigation";
+import Tooltip from "../components/tooltip";
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -20,7 +21,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -41,13 +42,9 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-wrap="no"
         data-direction="column"
         data-scroll=""
-      data-scrollbar="none"
+        data-scrollbar="none"
         {...props}
       >
-
-
-
-
         <group
           data-height="autofit"
           data-weight="600"
@@ -55,31 +52,32 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-direction="column"
           data-gap="5"
         >
-
-
-
-          <Ripple>
-            <group
-              className={isNavOpen ? "open" : ""}
-              data-name="side_nav_switch"
-              onClick={handleNavToggle}
-              data-contain=""
-              data-cursor="pointer"
-              data-interactive=""
-              data-space="10"
-              data-gap="10"
-              data-radius="10"
-              data-align="center"
-              data-wrap="no"
-            >
-              <icon data-length="30">
-                <SvgHamburgerToLeft />
-              </icon>
-              <text data-ellipsis="" data-adaptive="open-state">
-                Close
-              </text>
+          <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
+            <group>
+              <Ripple>
+                <group
+                  className={isNavOpen ? "open" : ""}
+                  data-name="side_nav_switch"
+                  onClick={handleNavToggle}
+                  data-contain=""
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-space="10"
+                  data-gap="10"
+                  data-radius="10"
+                  data-align="center"
+                  data-wrap="no"
+                >
+                  <icon data-length="30">
+                    <SvgHamburgerToLeft />
+                  </icon>
+                  <text data-ellipsis="" data-adaptive="open-state">
+                    Close
+                  </text>
+                </group>
+              </Ripple>
             </group>
-          </Ripple>
+          </Tooltip>
           <separator data-horizontal=""></separator>
           <LeftNavigation />
 

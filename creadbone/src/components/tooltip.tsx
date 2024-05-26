@@ -36,11 +36,11 @@ const Tooltip: React.FC<TooltipProps> = ({
 
     switch (placement) {
       case "top":
-        position.top = Math.max(10, targetRect.top - tooltipRect.height);
+        position.top = Math.max(10, targetRect.top - tooltipRect.height - 10);
         position.left = Math.max( 10, Math.min( targetRect.left + targetRect.width / 2 - tooltipRect.width / 2 ) ) ;
         if (window.innerWidth - position.left > tooltipRect.width + 20) {
          // position.right = "auto";
-         console.log(window.innerWidth , position.left, tooltipRect.width)
+         console.log(targetRect.width , tooltipRect.width)
       
         } else {
           position.left = "auto";
@@ -58,7 +58,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         break;
       case "right":
         position.top = Math.max( 10, Math.min( targetRect.top + targetRect.height / 2 - tooltipRect.height / 2, window.innerHeight - tooltipRect.height ) );
-        position.left = Math.min( window.innerWidth - tooltipRect.width, targetRect.right );
+        position.left = Math.min( window.innerWidth - tooltipRect.width, targetRect.right + 10 );
         break;
       default:
         break;
