@@ -59,26 +59,32 @@ data-max-length="350"
             <Password
               size="large"
               icon="key"
-              placeholder="Old Password"
+              placeholder="Current Password"
               dataLength="autofit"
               name="password_1"
+            //  autocomplete="current-password"
+              autocomplete="off"
             />
 
             <separator data-horizontal=""></separator>
 
             <Input
+              type="password"
               size="large"
               // icon="key"
               placeholder="Create Password"
               dataLength="autofit"
               name="password_1"
+              autocomplete="new-password"
             />
             <Input
+              type="password"
               size="large"
               //    icon="key"
               placeholder="Repeat Password"
               dataLength="autofit"
               name="password_1"
+              autocomplete="new-password"
             />
           </group>
 
