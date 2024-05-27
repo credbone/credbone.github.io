@@ -17,24 +17,49 @@ const CheckboxAndSwitchers: React.FC = () => {
       7: true,
       6: true,
       8: "Option3",
-      checkox_option_9: true,
-      checkox_option_7: true,
-      checkox_option_6: true,
+      option_9: true,
+      option_7: true,
+      option_6: true,
       RadioDemo4: "yes",
       RadioDemo2: "table_View",
       RadioDemo6: "leaf",
+      RadioDemo: "RadioDemo1",
     },
   });
+
+  const weekdays = [
+    { name: "option_1", label: "Mo" },
+    { name: "option_2", label: "Tu" },
+    { name: "option_3", label: "We" },
+    { name: "option_4", label: "Th" },
+    { name: "option_5", label: "Fr" },
+    { name: "option_6", label: "Sa" },
+    { name: "option_7", label: "Su" },
+  ];
+
+  const checkboxData = [
+    { name: "checkbox_option_1", label: "Phone", icon: "phone" },
+    { name: "checkbox_option_2", label: "Book", icon: "book_2" },
+    { name: "checkbox_option_4", label: "Home", icon: "home" },
+    { name: "checkbox_option_5", label: "Music", icon: "headphones" },
+  ];
+
+  const radioData = [
+    { key: "1", name: "RadioDemo", label: "Phone", icon: "phone" },
+    { key: "2", name: "RadioDemo", label: "Book", icon: "book_2" },
+    { key: "3", name: "RadioDemo", label: "Home", icon: "home" },
+    { key: "4", name: "RadioDemo", label: "Music", icon: "headphones" },
+  ];
+
   return (
     <view
-      
       data-adaptive=""
       data-space="30"
       data-gap="15"
       data-align="start"
       data-scroll=""
     >
-      <group data-gap="15" data-align="start">
+      <group data-gap="15" data-align="start" data-container-type="grid">
         <group
           data-max-length="900"
           data-contain=""
@@ -315,34 +340,32 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-palette="secondary"
                 data-height="40"
               >
-                <group>
-                  <Radio
-                    control={control}
-                    radioType={RadioType.Button}
-                    allowUncheck
-                    name="RadioDemo2"
-                    radioValue="Thumbnail_View"
-                    icon="window"
-                    tooltip="Thumbnail View"
-                  />
-                  <Radio
-                    control={control}
-                    radioType={RadioType.Button}
-                    name="RadioDemo2"
-                    radioValue="Column_View"
-                    icon="view_stream"
-                    tooltip="Column View"
-                  />
-                  <Radio
-                    control={control}
-                    radioType={RadioType.Button}
-                    name="RadioDemo2"
-                    radioValue="table_View"
-                    icon="table_rows"
-                    tooltip="Table View"
-                    label="Table View"
-                  />
-                </group>
+                <Radio
+                  control={control}
+                  radioType={RadioType.Button}
+                  allowUncheck
+                  name="RadioDemo2"
+                  radioValue="Thumbnail_View"
+                  icon="window"
+                  tooltip="Thumbnail View"
+                />
+                <Radio
+                  control={control}
+                  radioType={RadioType.Button}
+                  name="RadioDemo2"
+                  radioValue="Column_View"
+                  icon="view_stream"
+                  tooltip="Column View"
+                />
+                <Radio
+                  control={control}
+                  radioType={RadioType.Button}
+                  name="RadioDemo2"
+                  radioValue="table_View"
+                  icon="table_rows"
+                  tooltip="Table View"
+                  label="Table View"
+                />
               </OptionBar>
             </group>
           </group>
@@ -355,67 +378,38 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-radius="10"
             data-elevation="1"
           >
-            <OptionBar compact dynamic data-palette="lighter">
-              <group>
+            <OptionBar compact dynamic data-palette="lighter" data-height="40">
+              {radioData.map((radio, index) => (
                 <Radio
+                  icon={radio.icon}
+                  key={index}
+                  radioValue={radio.name + radio.key}
                   control={control}
                   radioType={RadioType.Button}
-                  allowUncheck
-                  name="RadioDemo6"
-                  radioValue="leaf"
-                  label="Leaf"
-                  icon="nest_eco_leaf"
+                  name={radio.name}
+                  label={radio.label}
                 />
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo6"
-                  radioValue="Sample_View"
-                  label="Eco Mode"
-                />
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo6"
-                  radioValue="Table View"
-                  icon="humidity_low"
-                />
-              </group>
+              ))}
             </OptionBar>
 
-<separator data-horizontal=""></separator>
+            <separator data-horizontal=""></separator>
 
             <OptionBar
               data-length="autofit"
               data-height="40"
               // data-palette="lighter"
             >
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_9"
-                label="Chair"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_10"
-                label="Shirt"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_11"
-                label="Pet"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_12"
-                label="Pet"
-              />
+              {checkboxData.map((checkbox, index) => (
+                <Checkbox
+                  icon={checkbox.icon}
+                  key={index}
+                  control={control}
+                  checkboxType={CheckboxType.Button}
+                  name={checkbox.name}
+                  label={checkbox.label}
+                />
+              ))}
             </OptionBar>
-
           </group>
 
           <group
@@ -455,7 +449,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             </OptionBar>
 
             <separator data-horizontal=""></separator>
-            <group data-align="center" data-width="auto">
+            <group data-align="center" data-width="auto" data-wrap="no">
               <OptionBar animate data-length="100" data-height="40">
                 <Radio
                   control={control}
@@ -472,75 +466,33 @@ const CheckboxAndSwitchers: React.FC = () => {
                   label="Off"
                 />
               </OptionBar>
-              <text data-opacity="30" data-space="10">
+              <text data-opacity="30" data-space="10" data-ellipsis="">
                 Animated Switcher
               </text>
             </group>
           </group>
 
-
-
           <group data-gap="10" data-radius="10" data-elevation="2">
             <OptionBar data-length="autofit" data-height="40">
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_1"
-                label="Mo"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_2"
-                label="Tu"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_3"
-                label="We"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_4"
-                label="Th"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_5"
-                label="Fr"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_6"
-                label="Sa"
-              />
-              <Checkbox
-                control={control}
-                checkboxType={CheckboxType.Button}
-                name="checkox_option_7"
-                label="Su"
-              />
+              {weekdays.map((option) => (
+                <Checkbox
+                  key={option.name}
+                  control={control}
+                  checkboxType={CheckboxType.Button}
+                  name={option.name}
+                  label={option.label}
+                />
+              ))}
             </OptionBar>
           </group>
         </group>
-
-
       </group>
 
-      <group
-        data-max-length="400"
-          data-sticky="bottom"
-          data-space="10"
-          data-elevation="1"
-          data-background="context"
-          data-radius="10"
-        >
-          <Button secondary wide large text="Reset" onClick={() => reset()} />
+      <Tooltip content="Reset">
+        <group data-position="right" data-width="auto" data-sticky="bottom">
+          <Button secondary fab icon="restart_alt" onClick={() => reset()} />
         </group>
+      </Tooltip>
     </view>
   );
 };
