@@ -7,7 +7,7 @@ import OptionBar from "../components/inputs/optionBar";
 import Button from "../components/button";
 import Ripple from "../components/Ripple";
 
-import sampleImage from "../styles/images/samples/res_15.jpg";
+import sampleImage from "../styles/images/samples/res_20.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control } = useForm<FieldValues>({
@@ -45,10 +45,10 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   const radioData = [
-    { key: "1", name: "RadioDemo", label: "Phone", icon: "phone" },
-    { key: "2", name: "RadioDemo", label: "Book", icon: "book_2" },
-    { key: "3", name: "RadioDemo", label: "Home", icon: "home" },
-    { key: "4", name: "RadioDemo", label: "Music", icon: "headphones" },
+    { key: "1", name: "RadioDemo",  icon: "nest_eco_leaf" },
+    { key: "2", name: "RadioDemo", label: "Nature", icon: "Nature" },
+    { key: "3", name: "RadioDemo", label: "Explore" },
+    { key: "4", name: "RadioDemo", label: "Nutrition"},
   ];
 
   return (
@@ -87,7 +87,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               </text>
             </group>
 
-            <group data-background="main" data-contain="" data-align="center">
+            <group data-background="main-dark" data-contain="" data-align="center">
               <picture data-position="absolute" data-name="color-demo">
                 <img src={sampleImage} alt="" />
               </picture>
@@ -124,7 +124,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-background="context"
               >
                 <Tooltip content="No Label">
-                  <group data-width="auto">
+                  <group data-width="auto" >
                     <Checkbox name="4" control={control} />
                   </group>
                 </Tooltip>
@@ -401,7 +401,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             >
               {checkboxData.map((checkbox, index) => (
                 <Checkbox
-                  icon={checkbox.icon}
+          //        icon={checkbox.icon}
                   key={index}
                   control={control}
                   checkboxType={CheckboxType.Button}

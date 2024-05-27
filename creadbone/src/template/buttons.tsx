@@ -53,7 +53,7 @@ const Buttons: React.FC = () => {
         </group>
 
         <group
-          data-background="secondary-dark"
+          data-background="main-dark"
           data-contain=""
           // data-dark=""
           data-align="center"

@@ -3,7 +3,7 @@ import { forwardRef, PropsWithChildren, ReactElement } from "react";
 
 import Input, { InputProps, InputType } from "./input";
 import Ripple from "../Ripple";
-
+import { SvgCheckbox } from "../svg";
 
 export const enum CheckboxType {
   Button,
@@ -94,7 +94,11 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
         ) : (
           <>
             <box>
-              <check></check>
+              <check>{!minimal && !simple && !noInk && (
+                <>
+                <SvgCheckbox></SvgCheckbox>
+                </>
+              )} </check>
 
               {!minimal && !simple && !noInk && (
                 <Ripple>
