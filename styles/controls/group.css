@@ -37,7 +37,7 @@ group[data-type="grid"][data-grid-template]
 
     [data-container-type="grid"]{container-type: inline-size; container-name:grid;}
 
-    @container grid (max-width: 300px)
+    @container grid (max-width: 400px)
 
     {
         group[data-type="grid"],
