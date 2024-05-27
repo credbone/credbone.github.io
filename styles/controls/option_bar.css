@@ -11,6 +11,11 @@
 
 /*filter options*/
 
+:root
+{
+    
+}
+
 .options { max-width: 100%; display: flex; flex-wrap: wrap; }
 
 .options label input { display: none }
