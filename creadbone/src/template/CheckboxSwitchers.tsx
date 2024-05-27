@@ -26,21 +26,21 @@ const CheckboxAndSwitchers: React.FC = () => {
     },
   });
   return (
-    <view>
       <view
         data-vertical=""
         data-adaptive=""
         data-space="30"
         data-gap="15"
         data-align="start"
+        data-scroll=""
       >
         <view
           data-size="900"
           data-height="auto"
-          data-max-height="fit"
+          
           data-radius="10"
           data-elevation="1"
-          data-scroll=""
+         
         >
           <group>
             <group data-direction="column" data-space="30">
@@ -310,7 +310,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-border=""
                 data-background="main-background"
               >
-                <OptionBar compact dynamic data-palette="secondary">
+                <OptionBar compact dynamic data-palette="secondary" data-height="40">
                   <group>
                     <Radio
                       control={control}
@@ -319,7 +319,8 @@ const CheckboxAndSwitchers: React.FC = () => {
                       name="RadioDemo2"
                       radioValue="Thumbnail_View"
                       icon="window"
-                      tooltip="Thumbnail View"
+                  tooltip="Thumbnail View"
+                  
                     />
                     <Radio
                       control={control}
@@ -539,22 +540,9 @@ const CheckboxAndSwitchers: React.FC = () => {
 
         </group>
 
-
+        <Button outline large text="Reset" onClick={() => reset()} />
 
       </view>
-
-      <group data-space="20">
-        <group data-type="grid" data-gap="10">
-          <Button
-            primary
-            large
-            text="Submit"
-            onClick={handleSubmit((data: any) => console.log(data))}
-          />
-          <Button outline large text="Reset" onClick={() => reset()} />
-        </group>
-      </group>
-    </view>
   );
 };
 export default CheckboxAndSwitchers;
