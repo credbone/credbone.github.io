@@ -23,11 +23,13 @@ const SubNavigation: React.FC = () => {
       const currentIndex = navItems.findIndex(item => location.pathname.endsWith(item.to));
       const activeItem = navRefs.current[currentIndex];
   
-      
       if (activeItem) {
         const { left, width } = activeItem.getBoundingClientRect();
         const parentLeft = activeItem.parentElement?.getBoundingClientRect().left || 0;
         setIndicatorStyle({ left: left - parentLeft, width });
+        
+        // Scroll the active item into view
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     };
     
@@ -44,24 +46,14 @@ const SubNavigation: React.FC = () => {
 
   return (
     <group >
-
-<group
-        //data-timing="fancy"
-       // data-height="5"
-       // data-radius="5"
-       
+      <group
         data-name="horizontal-indicator"
         data-width="auto"
         data-position="absolute"
         data-background="main"
-        
         style={{ transform: `translateX(${indicatorStyle.left}px)`, width: `${indicatorStyle.width}px` }}
-
-      >
-      </group>
-
-      <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" data-width="auto" data-max-length='auto' >
-
+      />
+      <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" data-width="auto" data-max-length='auto'>
         {navItems.map((item, index) => (
           <NavLink
             key={index}
@@ -72,18 +64,17 @@ const SubNavigation: React.FC = () => {
             data-name="nav-item"
             data-contain=""
             data-shrink="no"
-             data-interactive=""
-            data-radius="5" 
+            data-interactive=""
+            data-radius="5"
           >
             <Ripple>
-              <group data-height="40" data-space="10"  data-wrap="no" data-align="center" data-gap="5">
+              <group data-height="40" data-space="10" data-wrap="no" data-align="center" data-gap="5">
                 <text data-ellipsis="">{item.label}</text>
               </group>
             </Ripple>
           </NavLink>
         ))}
       </group>
-
     </group>
   );
 };
