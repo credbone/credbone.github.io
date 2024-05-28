@@ -3,7 +3,7 @@ import { SvgHamburgerToLeft } from "../components/svg";
 import React, { useState, useEffect, useRef, createContext, useContext } from "react";
 import Tooltip from "../components/tooltip";
 import { LeftNavigation } from "../components/navigation";
-
+import buildInfo from "../buildInfo.json";
 
 // Define an interface for the context
 interface NavContextType {
@@ -101,17 +101,24 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             data-wrap="no"
           >
             <icon data-length="30">info</icon>
-            <text data-ellipsis="" data-adaptive="open-state">
+            <Tooltip content={buildInfo.buildDateTime}>
+           <group data-align="center" data-adaptive="open-state" data-gap="10" >
+           <text data-ellipsis="" >
               Version
             </text>
             <separator
               data-vertical=""
               data-height="20"
-              data-adaptive="open-state"
+            
             ></separator>
-            <text data-adaptive="open-state" data-weight="700">
-              3.0
+           
+            <text  data-weight="700">
+            {buildInfo.version}
             </text>
+           </group>
+            </Tooltip>
+           
+
           </group>
         </group>
       </group>
