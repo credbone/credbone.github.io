@@ -1,20 +1,20 @@
-
 import classNames from 'classnames';
 import { forwardRef, PropsWithChildren, ReactElement } from 'react';
 import Input, { InputProps, InputType } from './input';
 import Tooltip from '../tooltip';
 import Ripple from '../Ripple';
 
-
 export const enum RadioType {
   Button,
 }
+
 export type RadioProps = InputProps & {
   radioValue?: string | number;
   allowUncheck?: boolean;
   fitLabel?: boolean;
   radioType?: RadioType;
   icon?: string;
+  iconProps?: any;
   tooltip?: string;
   labelProps?: Record<string, any>;
 };
@@ -29,6 +29,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
       label,
       tooltip,
       icon,
+      iconProps, // Destructured iconProps here
       className,
       value,
       isDirty,
@@ -77,7 +78,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
           {input}
           {isButton ? (
             <wrap>
-              {icon && <icon>{icon}</icon>}
+              {icon && <icon {...iconProps}>{icon}</icon>} {/* Spread iconProps here */}
               {label && <text>{label}</text>}
             </wrap>
           ) : (

@@ -94,7 +94,7 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
         ) : (
           <>
             <box>
-              <check>{!minimal && !simple && !noInk && (
+              <check>{!minimal && !simple &&  (
                 <>
                 <SvgCheckbox></SvgCheckbox>
                 </>

@@ -21,8 +21,8 @@ const CheckboxAndSwitchers: React.FC = () => {
       option_7: true,
       option_6: true,
       RadioDemo4: "yes",
-      RadioDemo2: "table_View",
-      RadioDemo6: "leaf",
+      RadioViewDemo: "RadioViewDemo2",
+      RadioViewDemo3: "RadioViewDemo1",
       RadioDemo: "RadioDemo1",
     },
   });
@@ -45,10 +45,32 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   const radioData = [
-    { key: "1", name: "RadioDemo",  icon: "nest_eco_leaf" },
-    { key: "2", name: "RadioDemo", label: "Nature", icon: "Nature" },
+    { key: "1", name: "RadioDemo", icon: "nest_eco_leaf" },
+    { key: "2", name: "RadioDemo", label: "Nature", icon: "photo_camera" },
     { key: "3", name: "RadioDemo", label: "Explore" },
-    { key: "4", name: "RadioDemo", label: "Nutrition"},
+    { key: "4", name: "RadioDemo", label: "Nutrition" },
+  ];
+
+  const radioViewData = [
+    {
+      key: "1",
+      name: "RadioViewDemo",
+      label: "Stream Layout",
+      icon: "view_stream",
+    },
+    {
+      key: "2",
+      name: "RadioViewDemo",
+      label: "Table Layout",
+      icon: "table_rows",
+    },
+    { key: "3", name: "RadioViewDemo", label: "Grid Layout", icon: "window" },
+    {
+      key: "4",
+      name: "RadioViewDemo",
+      label: "Column Layout",
+      icon: "view_column",
+    },
   ];
 
   return (
@@ -87,14 +109,28 @@ const CheckboxAndSwitchers: React.FC = () => {
               </text>
             </group>
 
-            <group data-background="main-dark" data-contain="" data-align="center">
+            <group
+              data-background="main-dark"
+              data-contain=""
+              data-align="center"
+            >
               <picture data-position="absolute" data-name="color-demo">
                 <img src={sampleImage} alt="" />
               </picture>
 
-              <group data-length="fit" data-space="40" data-space-vertical="30">
-                <group data-zoom="3" data-color="main-text">
-                  <Checkbox name="1" control={control} />
+              <group
+                data-length="fit"
+                data-space="40"
+                data-space-vertical="30"
+                data-height="150"
+              >
+                <group
+                  data-scale="3"
+                  data-origin="left"
+                  data-color="main-text"
+                  data-width="auto"
+                >
+                  <Checkbox name="1" noInk={true} control={control} />
                 </group>
               </group>
             </group>
@@ -123,8 +159,8 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space-vertical="15"
                 data-background="context"
               >
-                <Tooltip content="No Label">
-                  <group data-width="auto" >
+                <Tooltip content="No Label Here" placement="right">
+                  <group data-width="auto">
                     <Checkbox name="4" control={control} />
                   </group>
                 </Tooltip>
@@ -265,8 +301,9 @@ const CheckboxAndSwitchers: React.FC = () => {
                   name="8"
                   radioValue="Option4"
                   allowUncheck
-                  label="Radio Button allowed uncheck"
+                  label="Uncheck Me"
                   control={control}
+                  tooltip="Radio Button Allowed Uncheck"
                 />
               </group>
             </group>
@@ -295,7 +332,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             </text>
             <text
               data-wrap="wrap"
-              data-max-length="200"
+              
               data-line="1.5"
               data-light=""
             >
@@ -317,14 +354,14 @@ const CheckboxAndSwitchers: React.FC = () => {
                   radioType={RadioType.Button}
                   name="RadioDemo1"
                   radioValue="Dashboard"
-                  label="Week"
+                  label="Weekly"
                 />
                 <Radio
                   control={control}
                   radioType={RadioType.Button}
                   name="RadioDemo1"
                   radioValue="Listview"
-                  label="Month"
+                  label="Monthly"
                 />
               </OptionBar>
             </group>
@@ -334,38 +371,26 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-border=""
               data-background="main-background"
             >
+
+
               <OptionBar
                 compact
                 dynamic
                 data-palette="secondary"
                 data-height="40"
               >
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  allowUncheck
-                  name="RadioDemo2"
-                  radioValue="Thumbnail_View"
-                  icon="window"
-                  tooltip="Thumbnail View"
-                />
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo2"
-                  radioValue="Column_View"
-                  icon="view_stream"
-                  tooltip="Column View"
-                />
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo2"
-                  radioValue="table_View"
-                  icon="table_rows"
-                  tooltip="Table View"
-                  label="Table View"
-                />
+                {radioViewData.map((radio, index) => (
+                  <Radio
+                    iconProps={{ "data-length": "30" }}
+                    tooltip={radio.label}
+                    icon={radio.icon}
+                    key={index}
+                    radioValue={radio.name + radio.key}
+                    control={control}
+                    radioType={RadioType.Button}
+                    name={radio.name}
+                  />
+                ))}
               </OptionBar>
             </group>
           </group>
@@ -378,9 +403,16 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-radius="10"
             data-elevation="1"
           >
-            <OptionBar compact dynamic data-palette="lighter" data-height="40">
+            <OptionBar
+              compact
+              dynamic
+              data-palette="lighter"
+              data-height="40"
+              data-weight="600"
+            >
               {radioData.map((radio, index) => (
                 <Radio
+                  iconProps={{ "data-length": "30" }}
                   icon={radio.icon}
                   key={index}
                   radioValue={radio.name + radio.key}
@@ -398,10 +430,11 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-length="autofit"
               data-height="40"
               // data-palette="lighter"
+              data-weight="600"
             >
               {checkboxData.map((checkbox, index) => (
                 <Checkbox
-          //        icon={checkbox.icon}
+                  //        icon={checkbox.icon}
                   key={index}
                   control={control}
                   checkboxType={CheckboxType.Button}
@@ -422,30 +455,17 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-elevation="1"
           >
             <OptionBar compact dynamic>
-              <Radio
-                control={control}
-                radioType={RadioType.Button}
-                name="RadioDemo3"
-                radioValue="Grid View"
-                icon="window"
-                label="Grid View"
-              />
-              <Radio
-                control={control}
-                radioType={RadioType.Button}
-                name="RadioDemo3"
-                radioValue="List View"
-                icon="table_rows"
-                label="List View"
-              />
-              <Radio
-                control={control}
-                radioType={RadioType.Button}
-                name="RadioDemo3"
-                radioValue="Dashboard"
-                icon="view_stream"
-                label="Dashboard"
-              />
+              {radioViewData.map((radio, index) => (
+                <Radio
+                  label={radio.label}
+                  icon={radio.icon}
+                  key={index}
+                  radioValue={radio.name + radio.key}
+                  control={control}
+                  radioType={RadioType.Button}
+                  name={radio.name + 3}
+                />
+              ))}
             </OptionBar>
 
             <separator data-horizontal=""></separator>
@@ -490,7 +510,9 @@ const CheckboxAndSwitchers: React.FC = () => {
 
       <Tooltip content="Reset">
         <group data-position="right" data-width="auto" data-sticky="bottom">
-          <Button secondary fab icon="restart_alt" onClick={() => reset()} />
+          <Button secondary fab onClick={() => reset()} toggleClassName="open">
+          <icon data-icon-size="mini">restart_alt</icon>
+          </Button>
         </group>
       </Tooltip>
     </view>
