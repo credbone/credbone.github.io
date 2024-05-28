@@ -27,9 +27,11 @@ const SubNavigation: React.FC = () => {
         const { left, width } = activeItem.getBoundingClientRect();
         const parentLeft = activeItem.parentElement?.getBoundingClientRect().left || 0;
         setIndicatorStyle({ left: left - parentLeft, width });
-        
-        // Scroll the active item into view
-        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      
+        // Scroll the active item into view after a delay
+        setTimeout(() => {
+          activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }, 0); // trick for chromium
       }
     };
     
