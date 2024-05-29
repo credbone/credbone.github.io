@@ -1,6 +1,6 @@
 export const glyphs = [
     { content: "A", primary: "true", large: "true" },
-    { content: "B", secondary: "true"  },
+    { content: "B"  },
     { content: "C" },
     { content: "Č" },
     { content: "Ć" },
@@ -30,7 +30,7 @@ export const glyphs = [
     { content: "Y" },
     { content: "Z" },
     { content: "Ž" },
-    { content: "a" },
+    { content: "a", secondary: "true" },
     { content: "b" },
     { content: "c" },
     { content: "č" },

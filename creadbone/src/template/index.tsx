@@ -4,8 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Colors from "./../template/Colors";
 import Layout from "./../template/layout";
-import Switchable from "./../components/Switchable";
-import ThemePicker from "./../template/themePicker";
+
 import Icons from "./../template/icons";
 import "./../styles/demo.css";
 
@@ -32,42 +31,8 @@ const Template: React.FC = () => {
       </group>
 
       <view data-vertical>
-        <Switchable
-        
-        closeOnOutsideClick={true}
-          data-switch-size="60"
-          defaultExpanded={false}
-          icon="invert_colors"
-          data-type="overlap"
-          data-length="60"
-          data-timing="fancy"
-          data-duration=".225"
-          togglerProps={{
-            "data-adaptive": "mobile",
-            "data-order": "2",
-            "data-justify": "center",
-          }}
-        >
-          <view
-            data-border=""
-            data-background="main-background"
-            data-length="60"
-          >
-            <group
-              data-width="auto"
-              data-snap-button="15"
-              data-height="fit"
-              data-contain=""
-            >
-              <Scroll vertical>
-                <ThemePicker />
-              </Scroll>
-            </group>
-          </view>
-        </Switchable>
-
         <Routes>
-          <Route path="/" element={<Navigate replace to="Typeface" />} />
+          <Route path="/" element={<Navigate replace to="Colors" />} />
           <Route path="Typeface" element={<Typeface />} />
           <Route path="Icons" element={<Icons />} />
           <Route path="Buttons" element={<Buttons />} />

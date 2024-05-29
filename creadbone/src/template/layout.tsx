@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
       <view data-space="20" data-border="no" >
       <view data-direction="row" data-gap="20" data-border="no" data-contain="visible" >
         <Switchable
-          
+           data-float="20"
           data-radius="10"
           defaultExpanded={false}
           icon={ <icon data-fill="" data-color="amber">folder</icon>}
@@ -150,7 +150,7 @@ const Layout: React.FC = () => {
           </view>
 
               <Switchable
-               
+               data-float="30"
                 defaultExpanded={false}
             data-type="overlap"
             data-elevation="1"

@@ -2,32 +2,34 @@ import React, { useState } from "react";
 import Button from "../components/button";
 import { glyphs } from "./glyphData";
 
-const previewText = 'The quick brown fox jumps over the lazy dog';
+const previewText = "The quick brown fox jumps over the lazy dog";
 
 const textSizeOptions = [
-  { value: 'small', display: '12' },
-  { value: 'medium', display: '16' },
-  { value: 'large', display: '18' },
-  { value: 'larger', display: '20' },
-  { value: 'x-large', display: '24' },
-  { value: 'xx-large', display: '32' },
-  { value: 'xxx-large', display: '48' }
+  { value: "small", display: "12" },
+  { value: "medium", display: "16" },
+  { value: "large", display: "18" },
+  { value: "larger", display: "20" },
+  { value: "x-large", display: "24" },
+  { value: "xx-large", display: "32" },
+  { value: "xxx-large", display: "48" },
 ];
 
 const initialFontData = [
- // { name: 'Thin 100', weight: 100, previewText: previewText },
-  { name: 'Light 300', weight: 300, previewText:"🦊 " + previewText },
-  { name: 'Regular 400', weight: 400, previewText: previewText + " 🐶"},
-  { name: 'Medium 600', weight: 600, previewText: previewText },
-  { name: 'Bold 700', weight: 700, previewText: previewText },
-  { name: 'Bold 800', weight: 800, previewText: previewText }
+  // { name: 'Thin 100', weight: 100, previewText: previewText },
+  { name: "Light 300", weight: 300, previewText: "🦊 " + previewText },
+  { name: "Regular 400", weight: 400, previewText: previewText + " 🐶" },
+  { name: "Medium 600", weight: 600, previewText: previewText },
+  { name: "Bold 700", weight: 700, previewText: previewText },
+  { name: "Bold 800", weight: 800, previewText: previewText },
 ];
 
 const Typeface: React.FC = () => {
   const [textSizeIndex, setTextSizeIndex] = useState(4); // 'x-large' is the 5th item, index 4
 
   const increaseTextSize = () => {
-    setTextSizeIndex((prevIndex) => Math.min(prevIndex + 1, textSizeOptions.length - 1));
+    setTextSizeIndex((prevIndex) =>
+      Math.min(prevIndex + 1, textSizeOptions.length - 1)
+    );
   };
 
   const decreaseTextSize = () => {
@@ -36,9 +38,9 @@ const Typeface: React.FC = () => {
 
   const currentTextSize = textSizeOptions[textSizeIndex];
 
-  const updatedFontData = initialFontData.map(font => ({
+  const updatedFontData = initialFontData.map((font) => ({
     ...font,
-    textSize: currentTextSize.value
+    textSize: currentTextSize.value,
   }));
 
   return (
@@ -59,15 +61,21 @@ const Typeface: React.FC = () => {
         data-color="main-text"
         data-break="break-word"
       >
-        <group data-space="30" data-border="none" data-scroll="" data-direction="column" data-gap="20">
+        <group
+          data-space="30"
+          data-border="none"
+          data-scroll=""
+          data-direction="column"
+          data-gap="20"
+        >
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-             Typeface
+            Typeface
           </text>
 
           <text data-wrap="wrap" data-opacity="60" data-line="1.5">
-            <text data-weight="700">Gilroy</text> Font Family was designed by Radomir Tinkov and published by
-            Radomir Tinkov. Gilroy contains 20 styles and family package
-            options.
+            <text data-weight="700">Gilroy</text> Font Family was designed by
+            Radomir Tinkov and published by Radomir Tinkov. Gilroy contains 20
+            styles and family package options.
           </text>
         </group>
       </view>
@@ -79,19 +87,59 @@ const Typeface: React.FC = () => {
         data-radius="10"
         data-elevation="1"
       >
-        <group data-border="overprint" data-space="15" data-align="center" data-index="1">
-          <text data-space="10" data-weight="600">Preview</text>
-          <group data-border="outline" data-contain="" data-radius="5" data-width="auto" data-wrap="no" data-length="40" data-position="right">
-            <Button data-radius="none" data-index="3" large icon="remove" onClick={decreaseTextSize}></Button>
-            <group data-length="40" data-align="center" data-justify="center" data-ratio="1:1" data-border="">
+        <group
+          data-border="overprint"
+          data-space="15"
+          data-align="center"
+          data-index="1"
+        >
+          <text data-space="10" data-weight="600">
+            Preview
+          </text>
+          <group
+            data-border="outline"
+            data-contain=""
+            data-radius="5"
+            data-width="auto"
+            data-wrap="no"
+            data-length="40"
+            data-position="right"
+          >
+            <Button
+              data-radius="none"
+              data-index="3"
+              large
+              icon="remove"
+              onClick={decreaseTextSize}
+            ></Button>
+            <group
+              data-length="40"
+              data-align="center"
+              data-justify="center"
+              data-ratio="1:1"
+              data-border=""
+            >
               <text data-text-align="center">{currentTextSize.display}</text>
             </group>
-            <Button data-radius="none" data-index="3" large icon="add" onClick={increaseTextSize}></Button>
+            <Button
+              data-radius="none"
+              data-index="3"
+              large
+              icon="add"
+              onClick={increaseTextSize}
+            ></Button>
           </group>
         </group>
         <group data-scroll="" data-border="none">
           {updatedFontData.map((font, index) => (
-            <group key={index} data-space="30" data-gap="15" data-border="" data-background="main-background" data-interactive="">
+            <group
+              key={index}
+              data-space="30"
+              data-gap="15"
+              data-border=""
+              data-background="main-background"
+              data-interactive=""
+            >
               <group data-opacity="40">{font.name}</group>
               <group
                 data-contain=""
@@ -100,7 +148,11 @@ const Typeface: React.FC = () => {
                 data-weight={font.weight}
                 data-text-size={font.textSize}
               >
-                <group contentEditable="plaintext-only" data-break="break-word" data-duration=".225">
+                <group
+                  contentEditable="plaintext-only"
+                  data-break="break-word"
+                  data-duration=".225"
+                >
                   {font.previewText}
                 </group>
               </group>
@@ -110,30 +162,53 @@ const Typeface: React.FC = () => {
       </view>
 
       <view
-      data-size="large"
+        data-size="large"
         data-height="auto"
         data-max-height="fit"
         data-radius="10"
         data-elevation="1"
       >
         <group data-border="overprint" data-space="10" data-index="1">
-          <text data-space="10" data-weight="600">Glyphs</text>
+          <text data-space="10" data-weight="600">
+            Glyphs
+          </text>
         </group>
-        <group data-scroll="" data-space="20">
-       
-       <group data-type="grid" data-grid-template="50" data-text-size="larger" data-gap="10">
-       {glyphs.map((glyphs) => (
-<group data-ratio="1:1"  data-background={glyphs.primary ? "main" : (glyphs.secondary ? "secondary" : "")} data-color={glyphs.primary ? "main-text" : (glyphs.secondary ? "secondary-text" : "")} data-glyph-size={glyphs.large ? "double" : ""} data-text-size={glyphs.large ? "64" : ""} data-align="center" data-justify="center" data-interactive="" data-radius="10">
-  <text>{glyphs.content}</text>
-</group>
-        ))}
-       </group>
+        <group data-scroll="" data-space="30">
+          <group
+            data-type="grid"
+            data-grid-template="50"
+            data-text-size="larger"
+            data-gap="1"
+            data-contain=""
+            
+          >
+            {glyphs.map((glyphs) => (
+              <group
+                data-border=""
+                data-ratio="1:1"
+                data-background={
+                  glyphs.primary ? "main" : glyphs.secondary ? "secondary" : ""
+                }
+                data-color={
+                  glyphs.primary
+                    ? "main-text"
+                    : glyphs.secondary
+                    ? "secondary-text"
+                    : ""
+                }
+                data-glyph-size={glyphs.large ? "double" : ""}
+                data-text-size={glyphs.large ? "64" : ""}
+                data-align="center"
+                data-justify="center"
+                data-interactive=""
+                //data-radius="10"
+              >
+                <text>{glyphs.content}</text>
+              </group>
+            ))}
+          </group>
         </group>
-
-       
-
       </view>
-
     </view>
   );
 };
