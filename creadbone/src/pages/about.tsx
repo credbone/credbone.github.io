@@ -43,14 +43,14 @@ function About() {
           data-gap="10"
         >
           <group data-align="center" data-gap="10">
-            <text>Version</text>
-            <separator data-vertical="" data-height="20"></separator>
-            <text data-weight="700">{buildInfo.version}</text>
-          </group>
-          <group data-align="center" data-gap="10">
             <text>Build Date & Time</text>
             <separator data-vertical="" data-height="20"></separator>
             <text data-weight="700">{buildInfo.buildDateTime}</text>
+          </group>
+          <group data-align="center" data-gap="10">
+            <text>Version</text>
+            <separator data-vertical="" data-height="20"></separator>
+            <text data-weight="700">{buildInfo.version}</text>
           </group>
         </group>
       </group>

@@ -59,13 +59,13 @@ const Typeface: React.FC = () => {
         data-color="main-text"
         data-break="break-word"
       >
-        <group data-space="30" data-border="none" data-scroll="">
+        <group data-space="30" data-border="none" data-scroll="" data-direction="column" data-gap="20">
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-            Gilroy Typeface
+             Typeface
           </text>
-          <space data-height="30"></space>
-          <text data-wrap="wrap" data-light="" data-line="1.5">
-            Gilroy Font Family was designed by Radomir Tinkov and published by
+
+          <text data-wrap="wrap" data-opacity="60" data-line="1.5">
+            <text data-weight="700">Gilroy</text> Font Family was designed by Radomir Tinkov and published by
             Radomir Tinkov. Gilroy contains 20 styles and family package
             options.
           </text>
