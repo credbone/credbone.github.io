@@ -106,7 +106,7 @@ view[data-background="none"]{background:none}
 
 
 
-[data-name="switchable"]   {transition:  .125s; transition-property: width, height, max-height, flex-shrink, max-width, border-radius, margin;}
+[data-name="switchable"]   {transition:  .125s; transition-property: width, height, max-height, flex-shrink, max-width, border-radius;}
 [data-name="switch"]{/*transition: .225s; transition-property: width, height;*/ min-height: var(--switch-size); }
 
 
