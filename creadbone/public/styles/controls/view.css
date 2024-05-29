@@ -106,7 +106,7 @@ view[data-background="none"]{background:none}
 
 
 
-[data-name="switchable"]   {transition:  .125s; transition-property: width, height, max-height, flex-shrink, max-width;}
+[data-name="switchable"]   {transition:  .125s; transition-property: width, height, max-height, flex-shrink, max-width, border-radius, margin;}
 [data-name="switch"]{/*transition: .225s; transition-property: width, height;*/ min-height: var(--switch-size); }
 
 
@@ -165,6 +165,8 @@ view[data-background="none"]{background:none}
 
 {
 
+    [data-collapse-radius="30"][data-name="switchable"][data-expanded="false"][data-type="overlap"] {border-radius:30px;}
+    [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;--float-gap:15px}
 
 [data-name="switchable"][data-type="overlap"] {   bottom: 0; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap))); border-radius: 10px; margin: var(--float-gap); box-shadow: var(--elevation); position: absolute; z-index: 10; }
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}

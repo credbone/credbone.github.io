@@ -37,12 +37,13 @@ const Colors: React.FC = () => {
   return (
     <view data-vertical="" >
 
-<Switchable
+      <Switchable
+        data-collapse-radius="30"
         data-float="20"
         closeOnOutsideClick={true}
           data-switch-size="60"
           defaultExpanded={false}
-          icon="invert_colors"
+          icon="opacity"
           data-type="overlap"
           data-length="60"
           data-timing="fancy"
