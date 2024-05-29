@@ -83,6 +83,7 @@ const ThemePicker: React.FC = () => {
                         placement="right"
                       >
             <Button
+            data-ink-color="secondary-light"
               key={c.code}
               mini
               rounded
