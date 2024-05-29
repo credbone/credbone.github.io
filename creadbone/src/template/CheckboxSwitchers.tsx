@@ -81,7 +81,7 @@ const CheckboxAndSwitchers: React.FC = () => {
       data-align="start"
       data-scroll=""
     >
-      <group data-gap="15" data-align="start" data-container-type="grid">
+      <group data-gap="15" data-align="start" >
         <group
           data-max-length="900"
           data-contain=""
@@ -454,9 +454,10 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-radius="10"
             data-elevation="1"
           >
-            <OptionBar compact dynamic>
+            <OptionBar compact dynamic data-height="40">
               {radioViewData.map((radio, index) => (
                 <Radio
+                iconProps={{ "data-length": "30" }}
                   label={radio.label}
                   icon={radio.icon}
                   key={index}

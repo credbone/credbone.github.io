@@ -314,7 +314,7 @@ const Colors: React.FC = () => {
             </group>
           </group> */}
         </group>
-        <group ></group>
+        <group data-height="10" data-shrink="no"></group>
       </view>
 
       </view>
