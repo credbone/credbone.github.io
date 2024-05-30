@@ -71,7 +71,7 @@
 
 
 
-.option_bar label { display: flex; flex: 1; position: relative; overflow: hidden; margin-right:-1px; background: var(--context);     min-height: 30px; }
+.option_bar label { display: flex; flex: 1; position: relative; overflow: hidden; margin-right:-1px;     min-height: 30px; }
 [dir="rtl"] .option_bar label {margin-left: -1px; margin-right: initial;}
 
 .option_bar label:last-of-type, .option_bar label:only-of-type,.option_bar.single:not(.list) label {margin:0}
@@ -83,12 +83,12 @@
 .option_bar label:has(input:checked){z-index:2}
 .option_bar label:has(input:checked):hover{z-index:3}
 
-.option_bar label:after{position:absolute; content:""; pointer-events:none; top:0; left:0; height:100%; width:100%;box-shadow: inset 0 0 0 1px var(--outline) }
+.option_bar label [data-name="option-decor"]{position:absolute;pointer-events:none; top:0; left:0; height:100%; width:100%;box-shadow: inset 0 0 0 1px; opacity: .1;}
 
 .option_bar.compact {min-width:unset}
 .option_bar.compact label{ flex:initial}
 
-.option_bar label wrap { display: flex; flex: 1;  position: relative; overflow: hidden; cursor: pointer; justify-content: center; align-items: center; padding: 0 5px;/* box-shadow: inset 0 1px var(--outline),inset 0 -1px var(--outline),inset 1px 0 var(--outline);*/ }
+.option_bar label wrap { display: flex; flex: 1;  position: relative; overflow: hidden; cursor: pointer; justify-content: center; align-items: center; padding: 0 5px; }
 
 
 .option_bar label wrap[gap="none"]{padding:0}
@@ -100,21 +100,21 @@
 
 .option_bar label:first-of-type,
 .option_bar label:first-of-type wrap,
-.option_bar label:first-of-type:after,
+.option_bar label:first-of-type [data-name="option-decor"],
 
 [dir="rtl"] .option_bar label:last-of-type,
 [dir="rtl"] .option_bar label:last-of-type wrap,
-[dir="rtl"] .option_bar label:last-of-type:after
+[dir="rtl"] .option_bar label:last-of-type [data-name="option-decor"]
 
 { border-radius: var(--radius) 0 0 var(--radius) }
 
 
 .option_bar label:last-of-type,
 .option_bar label:last-of-type wrap,
-.option_bar label:last-of-type:after,
+.option_bar label:last-of-type [data-name="option-decor"],
 [dir="rtl"] .option_bar label:first-of-type,
 [dir="rtl"] .option_bar label:first-of-type wrap,
-[dir="rtl"] .option_bar label:first-of-type:after
+[dir="rtl"] .option_bar label:first-of-type [data-name="option-decor"]
 
 
 { border-radius:0 var(--radius) var(--radius) 0 }
@@ -122,17 +122,17 @@
 
 .option_bar label:only-of-type,
 .option_bar label:only-of-type wrap,
-.option_bar label:only-of-type:after,
+.option_bar label:only-of-type [data-name="option-decor"],
 
 .option_bar.single label:not([select_view]),
-.option_bar.single label:not([select_view]):after,
+.option_bar.single label:not([select_view]) [data-name="option-decor"],
 .option_bar.single label:not([select_view]).selected wrap
 
 {border-radius:var(--radius);}
 
 
  .option_bar.single.list action label:not([select_view]),
- .option_bar.single.list action label:not([select_view]):after,
+ .option_bar.single.list action label:not([select_view]) [data-name="option-decor"],
  .option_bar.single.list action label:not([select_view]) wrap
 
  {border-radius: var(--radius) 0 0 var(--radius)}
@@ -160,16 +160,19 @@
 
 
 .option_bar[data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-lighter); color:var(--text-color) }
-
+.option_bar[data-palette="lighter"] label input:checked ~  [data-name="option-decor"]{ color:var(--text-color)}
 
 
 
 .option_bar label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);}
+.option_bar label input:checked ~ [data-name="option-decor"]{  color:var(--main-color-text);}
 
 
 
 .option_bar[data-palette="secondary"]{--over-color: linear-gradient(to top, var(--secondary-color-lighter) 0%, var(--secondary-color-lighter) 100%);}
 .option_bar[data-palette="secondary"] label input:checked ~ wrap{ background-color: var(--secondary-color); color:var(--secondary-color-text);  }
+.option_bar[data-palette="secondary"] label input:checked ~ [data-name="option-decor"]{  color:var(--secondary-color-text);}
+
 
 .option_bar.dynamic label input:checked ~ wrap text:not(:only-child),
 .option_bar label[separate] > wrap text
