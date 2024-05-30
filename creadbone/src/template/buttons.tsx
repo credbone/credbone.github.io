@@ -8,12 +8,10 @@ import {
   SvgHamburgerToRight,
   SvgLoader,
   SvgLoaderCircle,
-  SvgLoaderCircleSmall,
   SvgMinus,
   SvgPlus,
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
-
 
 const Buttons: React.FC = () => {
   return (
@@ -63,8 +61,6 @@ const Buttons: React.FC = () => {
           </picture>
 
           <group data-length="fit" data-space="40">
-
-
             <Ripple>
               <group
                 data-wrap="no"
@@ -81,10 +77,7 @@ const Buttons: React.FC = () => {
                 data-height="120"
                 data-gap="20"
               >
-                <icon
-                  data-index="1"
-                  data-icon-size="large"
-                >
+                <icon data-index="1" data-icon-size="large">
                   arrow_outward
                 </icon>
                 <text
@@ -109,10 +102,6 @@ const Buttons: React.FC = () => {
         data-elevation="1"
       >
         <group data-scroll="" data-gap="1">
-
-
-
-
           <group data-border="" data-space="20">
             <Button primary text="Primary Button" />
           </group>
@@ -141,8 +130,6 @@ const Buttons: React.FC = () => {
           <group data-border="" data-space="20">
             <Button text="Simple Button" />
           </group>
-
-
         </group>
       </view>
       <view
@@ -283,10 +270,10 @@ const Buttons: React.FC = () => {
               <Button outline mini large>
                 <icon>
                   <SvgLoader />
-                </icon>{" "}
+                </icon>
               </Button>
             </group>
-            <group
+            {/* <group
               data-align="center"
               data-justify="center"
               data-ratio="1:1"
@@ -298,7 +285,7 @@ const Buttons: React.FC = () => {
                   <SvgLoaderCircle />
                 </icon>
               </Button>
-            </group>
+            </group> */}
           </group>
 
           <group data-contain="" data-gap="1">
@@ -313,8 +300,8 @@ const Buttons: React.FC = () => {
                 textFirst={false}
               >
                 <icon>
-                  <SvgHamburgerToLeft />{" "}
-                </icon>{" "}
+                  <SvgHamburgerToLeft />
+                </icon>
                 <separator data-vertical="" data-height="40"></separator>
               </Button>
               <Button
@@ -326,18 +313,18 @@ const Buttons: React.FC = () => {
                 data-shrink="no"
                 textFirst={true}
               >
-                <separator data-vertical="" data-height="40"></separator>{" "}
+                <separator data-vertical="" data-height="40"></separator>
                 <icon>
-                  <SvgHamburgerToRight />{" "}
-                </icon>{" "}
+                  <SvgHamburgerToRight />
+                </icon>
               </Button>
             </group>
             <group data-border="" data-space="15">
               <Button fit secondary large text="Please Wait" textFirst={false}>
                 <icon>
-                  <SvgLoaderCircleSmall />
+                  <SvgLoaderCircle />
                 </icon>
-                <separator data-vertical="" data-height="40"></separator>{" "}
+                <separator data-vertical="" data-height="40"></separator>
               </Button>
             </group>
           </group>
@@ -370,7 +357,7 @@ const Buttons: React.FC = () => {
             />
           </group>
           <group data-border="" data-space="15">
-            <Button large text="Large Button" />{" "}
+            <Button large text="Large Button" />
           </group>
           <group data-border="" data-space="15">
             <Button outline large>
@@ -389,7 +376,7 @@ const Buttons: React.FC = () => {
           </group>
 
           <group data-border="" data-space="15">
-            <Button highlight large fit text="Large Button Wide" />{" "}
+            <Button highlight large fit text="Large Button Wide" />
           </group>
         </group>
       </view>

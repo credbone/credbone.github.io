@@ -123,6 +123,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space="40"
                 data-space-vertical="30"
                 data-height="150"
+               
               >
                 <group
                   data-scale="3"
@@ -136,15 +137,18 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
 
-          <group data-type="grid" data-grid-template="200" data-gap="1">
+          <group data-type="grid" data-grid-template="200" data-gap="1" >
             <group data-direction="column" data-wrap="no" data-border="">
               <group
                 data-border=""
                 data-space="20"
                 data-space-vertical="15"
                 data-background="context"
+                data-color="default"
+                
               >
                 <Checkbox
+                  
                   name="1"
                   label="Classic Checkbox"
                   checkbox
