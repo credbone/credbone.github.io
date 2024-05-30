@@ -24,6 +24,7 @@ const CheckboxAndSwitchers: React.FC = () => {
       RadioViewDemo: "RadioViewDemo2",
       RadioViewDemo3: "RadioViewDemo1",
       RadioDemo: "RadioDemo1",
+      RadioDemo1:"day"
     },
   });
 
@@ -123,7 +124,6 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space="40"
                 data-space-vertical="30"
                 data-height="150"
-               
               >
                 <group
                   data-scale="3"
@@ -137,7 +137,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
 
-          <group data-type="grid" data-grid-template="200" data-gap="1" >
+          <group data-type="grid" data-grid-template="200" data-gap="1">
             <group data-direction="column" data-wrap="no" data-border="">
               <group
                 data-border=""
@@ -145,10 +145,8 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space-vertical="15"
                 data-background="context"
                 data-color="default"
-                
               >
                 <Checkbox
-                  
                   name="1"
                   label="Classic Checkbox"
                   checkbox
@@ -319,65 +317,74 @@ const CheckboxAndSwitchers: React.FC = () => {
           data-max-length="800"
           data-type="column"
         >
+          <group
+            data-direction="column"
+            data-radius="10"
+            data-elevation="1"
+            data-contain=""
+          >
+            <group data-space="30">
+              <text
+                data-weight="700"
+                data-text-size="xxx-large"
+                data-wrap="wrap"
+                data-color="main"
+              >
+                Switch
+              </text>
+              <text data-wrap="wrap" data-line="1.5" data-light="">
+                Switches toggle the selection of an item on or off
+              </text>
+            </group>
 
             <group
-              data-direction="column"
-              data-radius="10"
-              data-elevation="1"
+              data-background="main-dark"
               data-contain=""
-              
+              data-align="center"
             >
-              <group data-space="30">
-                <text
-                  data-weight="700"
-                  data-text-size="xxx-large"
-                  data-wrap="wrap"
-                  data-color="main"
-                >
-                  Switch
-                </text>
-                <text data-wrap="wrap" data-line="1.5" data-light="">
-                  Switches toggle the selection of an item on or off
-                </text>
-              </group>
+              <picture data-position="absolute" data-name="color-demo">
+                <img src={sampleImage_2} alt="" />
+              </picture>
 
-              <group
-                data-background="main-dark"
-                data-contain=""
-                data-align="center"
-              >
-                <picture data-position="absolute" data-name="color-demo">
-                  <img src={sampleImage_2} alt="" />
-                </picture>
+              <group data-space="30" data-gap="20" data-direction="column">
+                <OptionBar data-height="40">
+                  <Radio
+                    control={control}
+                    radioType={RadioType.Button}
+                    name="RadioDemo1"
+                    radioValue="day"
+                    label="Day"
+                  />
+                  <Radio
+                    control={control}
+                    radioType={RadioType.Button}
+                    name="RadioDemo1"
+                    radioValue="week"
+                    label="Week"
+                  />
+                  <Radio
+                    control={control}
+                    radioType={RadioType.Button}
+                    name="RadioDemo1"
+                    radioValue="month"
+                    label="Month"
+                  />
+                </OptionBar>
 
-                <group data-space="30">
-                  <OptionBar data-height="40" data-length="autofit">
-                    <Radio
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="day"
-                      label="Day"
-                    />
-                    <Radio
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="week"
-                      label="Week"
-                    />
-                    <Radio
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="month"
-                      label="Month"
-                    />
-                  </OptionBar>
+                <group data-color="main-text">
+                  <text
+                    data-wrap="wrap"
+                    data-light=""
+                    data-line="1.5"
+                    data-max-length="300"
+                  >
+                    Component configured to use a secondary color pallete and
+                    tooltips.
+                  </text>
                 </group>
               </group>
             </group>
-
+          </group>
 
           <group
             data-radius="10"
@@ -386,15 +393,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-space="20"
             data-gap="10"
           >
-
-         
-
-            <group
-              data-gap="10"
-              
-              
-              data-background="main-background"
-            >
+            <group data-gap="10" data-background="main-background">
               <OptionBar
                 compact
                 dynamic
@@ -417,8 +416,16 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
 
             <separator data-horizontal=""></separator>
-          <text data-wrap="wrap" data-light="" data-line="1.5" data-max-length="300">  Component configured to use a secondary color pallete and tooltips.</text>
-         
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-line="1.5"
+              data-max-length="300"
+            >
+              {" "}
+              Component configured to use a secondary color pallete and
+              tooltips.
+            </text>
           </group>
 
           <group
@@ -428,7 +435,6 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-background="context"
             data-radius="10"
             data-elevation="1"
-            
           >
             <OptionBar
               compact
@@ -472,12 +478,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             </OptionBar>
           </group>
 
-          <group
-            data-gap="10"
-            data-radius="10"
-            data-elevation="2"
-            
-          >
+          <group data-gap="10" data-radius="10" data-elevation="2">
             <OptionBar data-length="autofit" data-height="40">
               {weekdays.map((option) => (
                 <Checkbox
@@ -490,7 +491,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               ))}
             </OptionBar>
           </group>
-          
+
           <group
             data-space="20"
             data-border=""
@@ -499,7 +500,6 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-background="context"
             data-radius="10"
             data-elevation="1"
-            
           >
             <OptionBar compact dynamic data-height="40">
               {radioViewData.map((radio, index) => (
@@ -539,8 +539,6 @@ const CheckboxAndSwitchers: React.FC = () => {
               </text>
             </group>
           </group>
-
-
         </group>
       </group>
 
