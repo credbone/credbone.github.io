@@ -252,6 +252,7 @@ text[data-width="auto"]{width: initial;}
 [data-max-length='200']{max-width:200px;}
 [data-max-length='300']{max-width:300px;}
 [data-max-length='350']{max-width:350px;}
+[data-max-length='360']{max-width:360px;}
 [data-max-length='400']{max-width:400px;}
 [data-max-length='500']{max-width:500px;}
 [data-max-length='600']{max-width:600px;}

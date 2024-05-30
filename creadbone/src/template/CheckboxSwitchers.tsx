@@ -5,9 +5,9 @@ import Tooltip from "../components/tooltip";
 import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
 import Button from "../components/button";
-import Ripple from "../components/Ripple";
 
 import sampleImage from "../styles/images/samples/res_20.jpg";
+import sampleImage_2 from "../styles/images/samples/res_18.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control } = useForm<FieldValues>({
@@ -81,7 +81,7 @@ const CheckboxAndSwitchers: React.FC = () => {
       data-align="start"
       data-scroll=""
     >
-      <group data-gap="15" data-align="start" >
+      <group data-gap="15" data-align="start">
         <group
           data-max-length="900"
           data-contain=""
@@ -310,69 +310,87 @@ const CheckboxAndSwitchers: React.FC = () => {
           </group>
         </group>
         <group
-          data-type="grid"
-          data-grid-template="360"
-          data-gap="15"
+          data-column-gap="15"
           data-align="start"
           data-max-length="800"
+          data-type="column"
         >
+
+            <group
+              data-direction="column"
+              data-radius="10"
+              data-elevation="1"
+              data-contain=""
+              
+            >
+              <group data-space="30">
+                <text
+                  data-weight="700"
+                  data-text-size="xxx-large"
+                  data-wrap="wrap"
+                  data-color="main"
+                >
+                  Switch
+                </text>
+                <text data-wrap="wrap" data-line="1.5" data-light="">
+                  Switches toggle the selection of an item on or off
+                </text>
+              </group>
+
+              <group
+                data-background="main-dark"
+                data-contain=""
+                data-align="center"
+              >
+                <picture data-position="absolute" data-name="color-demo">
+                  <img src={sampleImage_2} alt="" />
+                </picture>
+
+                <group data-space="30">
+                  <OptionBar data-height="40" data-length="autofit">
+                    <Radio
+                      control={control}
+                      radioType={RadioType.Button}
+                      name="RadioDemo1"
+                      radioValue="day"
+                      label="Day"
+                    />
+                    <Radio
+                      control={control}
+                      radioType={RadioType.Button}
+                      name="RadioDemo1"
+                      radioValue="week"
+                      label="Week"
+                    />
+                    <Radio
+                      control={control}
+                      radioType={RadioType.Button}
+                      name="RadioDemo1"
+                      radioValue="month"
+                      label="Month"
+                    />
+                  </OptionBar>
+                </group>
+              </group>
+            </group>
+
+
           <group
-            data-direction="column"
-            data-space="30"
             data-radius="10"
             data-elevation="1"
+            data-contain=""
+            data-space="20"
+            data-gap="10"
           >
-            <text
-              data-weight="700"
-              data-text-size="xxx-large"
-              data-wrap="wrap"
-              data-color="main"
-            >
-              Switch
-            </text>
-            <text
-              data-wrap="wrap"
+
+         
+
+            <group
+              data-gap="10"
               
-              data-line="1.5"
-              data-light=""
-            >
-              Switches toggle the selection of an item on or off
-            </text>
-          </group>
-
-          <group data-radius="10" data-elevation="1" data-contain="">
-            <group
-              data-gap="10"
-              data-space="20"
-              data-border=""
-              data-background="main-background"
-              data-weight="600"
-            >
-              <OptionBar autosize data-height="40" data-length="200">
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo1"
-                  radioValue="Dashboard"
-                  label="Weekly"
-                />
-                <Radio
-                  control={control}
-                  radioType={RadioType.Button}
-                  name="RadioDemo1"
-                  radioValue="Listview"
-                  label="Monthly"
-                />
-              </OptionBar>
-            </group>
-            <group
-              data-gap="10"
-              data-space="20"
-              data-border=""
+              
               data-background="main-background"
             >
-
-
               <OptionBar
                 compact
                 dynamic
@@ -393,6 +411,10 @@ const CheckboxAndSwitchers: React.FC = () => {
                 ))}
               </OptionBar>
             </group>
+
+            <separator data-horizontal=""></separator>
+          <text data-wrap="wrap" data-light="" data-line="1.5" data-max-length="300">  Component configured to use a secondary color pallete and tooltips.</text>
+         
           </group>
 
           <group
@@ -402,6 +424,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-background="context"
             data-radius="10"
             data-elevation="1"
+            
           >
             <OptionBar
               compact
@@ -446,6 +469,25 @@ const CheckboxAndSwitchers: React.FC = () => {
           </group>
 
           <group
+            data-gap="10"
+            data-radius="10"
+            data-elevation="2"
+            
+          >
+            <OptionBar data-length="autofit" data-height="40">
+              {weekdays.map((option) => (
+                <Checkbox
+                  key={option.name}
+                  control={control}
+                  checkboxType={CheckboxType.Button}
+                  name={option.name}
+                  label={option.label}
+                />
+              ))}
+            </OptionBar>
+          </group>
+          
+          <group
             data-space="20"
             data-border=""
             data-align="center"
@@ -453,11 +495,12 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-background="context"
             data-radius="10"
             data-elevation="1"
+            
           >
             <OptionBar compact dynamic data-height="40">
               {radioViewData.map((radio, index) => (
                 <Radio
-                iconProps={{ "data-length": "30" }}
+                  iconProps={{ "data-length": "30" }}
                   label={radio.label}
                   icon={radio.icon}
                   key={index}
@@ -493,26 +536,14 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
 
-          <group data-gap="10" data-radius="10" data-elevation="2">
-            <OptionBar data-length="autofit" data-height="40">
-              {weekdays.map((option) => (
-                <Checkbox
-                  key={option.name}
-                  control={control}
-                  checkboxType={CheckboxType.Button}
-                  name={option.name}
-                  label={option.label}
-                />
-              ))}
-            </OptionBar>
-          </group>
+
         </group>
       </group>
 
       <Tooltip content="Reset">
         <group data-position="right" data-width="auto" data-sticky="bottom">
           <Button secondary fab onClick={() => reset()} toggleClassName="open">
-          <icon data-icon-size="mini">restart_alt</icon>
+            <icon data-icon-size="mini">restart_alt</icon>
           </Button>
         </group>
       </Tooltip>
