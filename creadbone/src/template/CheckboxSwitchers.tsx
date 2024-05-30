@@ -7,7 +7,7 @@ import OptionBar from "../components/inputs/optionBar";
 import Button from "../components/button";
 
 import sampleImage from "../styles/images/samples/res_20.jpg";
-import sampleImage_2 from "../styles/images/samples/res_26.jpg";
+import sampleImage_2 from "../styles/images/samples/res_18.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control } = useForm<FieldValues>({
