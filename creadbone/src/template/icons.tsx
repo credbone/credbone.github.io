@@ -50,7 +50,7 @@ const Icons: React.FC = () => {
             data-width="auto"
           
           >
-            <group data-length="400" data-radius="10" data-elevation="1" data-align="center"   data-backdrop=""
+            <group data-length="400" data-radius="10" data-elevation="1" data-align="center"   data-backdrop="10"
             data-contain=""
             data-shrink="no" >
                                     <Ripple>
