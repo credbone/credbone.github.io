@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import { forwardRef, PropsWithChildren, ReactElement } from 'react';
-import Input, { InputProps, InputType } from './input';
-import Tooltip from '../tooltip';
-import Ripple from '../Ripple';
+import classNames from "classnames";
+import { forwardRef, PropsWithChildren, ReactElement } from "react";
+import Input, { InputProps, InputType } from "./input";
+import Tooltip from "../tooltip";
+import Ripple from "../Ripple";
 
 export const enum RadioType {
   Button,
@@ -51,7 +51,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
         ref={ref as any}
         value={radioValue}
         checked={value === radioValue}
-        onChange={() => { }}
+        onChange={() => {}}
         {...inputProps}
       />
     );
@@ -59,7 +59,8 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
     const isButton = radioType === RadioType.Button;
     let content = (
       <Tooltip content={tooltip}>
-        <label //NOSONAR
+        <label
+          data-background={isButton? "context":""}
           {...(isButton ? null : { radio: "" })}
           {...(fitLabel ? { "data-fit": true } : null)}
           className={classNames(className, {
@@ -77,10 +78,14 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
         >
           {input}
           {isButton ? (
-            <wrap>
-              {icon && <icon {...iconProps}>{icon}</icon>} {/* Spread iconProps here */}
-              {label && <text>{label}</text>}
-            </wrap>
+            <>
+              <wrap>
+                {icon && <icon {...iconProps}>{icon}</icon>}{" "}
+                {/* Spread iconProps here */}
+                {label && <text>{label}</text>}
+              </wrap>
+              <group data-name="option-decor"></group>
+            </>
           ) : (
             <>
               <box>

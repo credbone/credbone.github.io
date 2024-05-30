@@ -4,6 +4,7 @@ import { forwardRef, PropsWithChildren, ReactElement } from "react";
 import Input, { InputProps, InputType } from "./input";
 import Ripple from "../Ripple";
 import { SvgCheckbox } from "../svg";
+import Tooltip from "../tooltip";
 
 export const enum CheckboxType {
   Button,
@@ -17,6 +18,7 @@ export type CheckboxProps = InputProps & {
   simple?: boolean;
   checkboxType?: CheckboxType;
   checkboxProps?: any;
+  tooltip?: string;
 };
 
 export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
@@ -39,6 +41,7 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
       isTouched,
       invalid,
       error,
+      tooltip,
       checkboxType,
       checkboxProps,
       ...inputProps
@@ -75,7 +78,9 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
     }
 
     let content = (
+      <Tooltip content={tooltip}>
       <label
+      data-background={isButton? "context":""}
         {...type}
         {...checkboxProps}
         className={classNames(className, {
@@ -87,10 +92,13 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
         {input}
 
         {isButton ? (
-          <wrap>
+<>
+<wrap>
             {icon && <icon>{icon}</icon>}
             {label && <text>{label}</text>}
           </wrap>
+          <group data-name="option-decor"></group>
+</>
         ) : (
           <>
             <box>
@@ -110,6 +118,7 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
           </>
         )}
       </label>
+      </Tooltip>
     );
 
     return content;

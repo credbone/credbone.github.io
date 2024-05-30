@@ -7,7 +7,7 @@ import OptionBar from "../components/inputs/optionBar";
 import Button from "../components/button";
 
 import sampleImage from "../styles/images/samples/res_20.jpg";
-import sampleImage_2 from "../styles/images/samples/res_18.jpg";
+import sampleImage_2 from "../styles/images/samples/res_26.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control } = useForm<FieldValues>({
@@ -24,18 +24,18 @@ const CheckboxAndSwitchers: React.FC = () => {
       RadioViewDemo: "RadioViewDemo2",
       RadioViewDemo3: "RadioViewDemo1",
       RadioDemo: "RadioDemo1",
-      RadioDemo1:"day"
+      RadioDemo1: "day",
     },
   });
 
   const weekdays = [
-    { name: "option_1", label: "Mo" },
-    { name: "option_2", label: "Tu" },
-    { name: "option_3", label: "We" },
-    { name: "option_4", label: "Th" },
-    { name: "option_5", label: "Fr" },
-    { name: "option_6", label: "Sa" },
-    { name: "option_7", label: "Su" },
+    { name: "option_1", label: "Mo", tooltip: "Monday" },
+    { name: "option_2", label: "Tu", tooltip: "Tuesday" },
+    { name: "option_3", label: "We", tooltip: "Wednesday" },
+    { name: "option_4", label: "Th", tooltip: "Thursday" },
+    { name: "option_5", label: "Fr", tooltip: "Friday" },
+    { name: "option_6", label: "Sa", tooltip: "Saturday" },
+    { name: "option_7", label: "Su", tooltip: "Sunday" },
   ];
 
   const checkboxData = [
@@ -323,7 +323,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-elevation="1"
             data-contain=""
           >
-            <group data-space="30">
+            <group data-space="30" data-direction="column">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"
@@ -341,14 +341,30 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-background="main-dark"
               data-contain=""
               data-align="center"
+              data-dark=""
             >
               <picture data-position="absolute" data-name="color-demo">
                 <img src={sampleImage_2} alt="" />
               </picture>
 
-              <group data-space="30" data-gap="20" data-direction="column">
-                <OptionBar data-height="40">
+              <group
+                data-space="30"
+                data-gap="20"
+                data-direction="column"
+                data-weight="600"
+              >
+                <OptionBar
+                  data-height="40"
+                  data-backdrop="3"
+                  data-background="main-lighter"
+                  data-radius="5"
+                  data-border="outline"
+                >
                   <Radio
+                    labelProps={{
+                      "data-background": "none",
+                      "data-color": "main-text-lighter-white",
+                    }}
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
@@ -356,6 +372,10 @@ const CheckboxAndSwitchers: React.FC = () => {
                     label="Day"
                   />
                   <Radio
+                    labelProps={{
+                      "data-background": "none",
+                      "data-color": "main-text-lighter-white",
+                    }}
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
@@ -363,6 +383,10 @@ const CheckboxAndSwitchers: React.FC = () => {
                     label="Week"
                   />
                   <Radio
+                    labelProps={{
+                      "data-background": "none",
+                      "data-color": "main-text-lighter-white",
+                    }}
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
@@ -371,15 +395,15 @@ const CheckboxAndSwitchers: React.FC = () => {
                   />
                 </OptionBar>
 
-                <group data-color="main-text">
+                <group>
                   <text
                     data-wrap="wrap"
                     data-light=""
                     data-line="1.5"
                     data-max-length="300"
                   >
-                    Component configured to use a secondary color pallete and
-                    tooltips.
+                    A component is configured to utilize a backdrop effect,
+                    which is rendered over a background image.
                   </text>
                 </group>
               </group>
@@ -478,10 +502,11 @@ const CheckboxAndSwitchers: React.FC = () => {
             </OptionBar>
           </group>
 
-          <group data-gap="10" data-radius="10" data-elevation="2">
-            <OptionBar data-length="autofit" data-height="40">
+          <group data-gap="10" data-radius="5" data-elevation="2">
+            <OptionBar data-length="autofit" data-height="40" data-weight="600">
               {weekdays.map((option) => (
                 <Checkbox
+                tooltip={option.tooltip}
                   key={option.name}
                   control={control}
                   checkboxType={CheckboxType.Button}

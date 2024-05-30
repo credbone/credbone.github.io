@@ -62,7 +62,7 @@ const Layout: React.FC = () => {
               data-gap="5"
               data-elevation="1"
               data-index="2"
-              data-backdrop=""
+              data-backdrop="10"
                 data-wrap="no"
                 data-radius="5"
               

@@ -15,6 +15,8 @@ import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
+import Switchable from "../components/Switchable";
+import ThemePicker from "./themePicker";
 
 const Template: React.FC = () => {
   return (
@@ -30,6 +32,45 @@ const Template: React.FC = () => {
         </Scroll>
       </group>
 
+
+
+<view data-vertical>
+<Switchable
+        data-collapse-radius="30"
+        data-float="20"
+        closeOnOutsideClick={true}
+          data-switch-size="60"
+          defaultExpanded={false}
+          icon="opacity"
+          data-type="overlap"
+          data-length="60"
+          data-timing="fancy"
+          data-duration=".225"
+          togglerProps={{
+            "data-adaptive": "mobile",
+            "data-order": "2",
+            "data-justify": "center",
+          }}
+        >
+          <view
+            data-border=""
+            data-background="main-background"
+            data-length="60"
+          >
+            <group
+              data-width="auto"
+              data-snap-button="15"
+              data-height="fit"
+              data-contain=""
+            >
+              <Scroll vertical>
+                <ThemePicker />
+              </Scroll>
+            </group>
+          </view>
+        </Switchable>
+
+
       <view data-vertical>
         <Routes>
           <Route path="/" element={<Navigate replace to="Colors" />} />
@@ -43,6 +84,8 @@ const Template: React.FC = () => {
           <Route path="InputsAndForms" element={<InputsAndForms />} />
         </Routes>
       </view>
+</view>
+
     </view>
   );
 };

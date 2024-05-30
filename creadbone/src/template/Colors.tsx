@@ -5,9 +5,6 @@ import sampleImage from "../styles/images/samples/res_15.jpg";
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
-import Switchable from "../components/Switchable";
-import Scroll from "../components/scroll";
-import ThemePicker from "./themePicker";
 
 
 const Colors: React.FC = () => {
@@ -37,40 +34,7 @@ const Colors: React.FC = () => {
   return (
     <view data-vertical="" >
 
-      <Switchable
-        data-collapse-radius="30"
-        data-float="20"
-        closeOnOutsideClick={true}
-          data-switch-size="60"
-          defaultExpanded={false}
-          icon="opacity"
-          data-type="overlap"
-          data-length="60"
-          data-timing="fancy"
-          data-duration=".225"
-          togglerProps={{
-            "data-adaptive": "mobile",
-            "data-order": "2",
-            "data-justify": "center",
-          }}
-        >
-          <view
-            data-border=""
-            data-background="main-background"
-            data-length="60"
-          >
-            <group
-              data-width="auto"
-              data-snap-button="15"
-              data-height="fit"
-              data-contain=""
-            >
-              <Scroll vertical>
-                <ThemePicker />
-              </Scroll>
-            </group>
-          </view>
-        </Switchable>
+
 <view data-adaptive>
       <view data-space="30" data-gap="30" data-scroll="">
 
