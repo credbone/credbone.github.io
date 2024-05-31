@@ -411,6 +411,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='300'] { height:300px; }
 [data-height='360'] { height:360px; }
 
+[data-height='600'] { height:600px; }
+
 
 [data-height='fit'] { height:100%; }
 [data-height='auto'] { height:initial; }
@@ -649,5 +651,11 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
     [data-zoom="3"]{zoom:3}
 
+    [data-scale="2"]{transform: scale(2);}
     [data-scale="3"]{transform: scale(3);}
     [data-origin="left"]{transform-origin: left;}
+
+
+
+    [data-translate-vertical="200"] {transform: translateY(-200px);}
+    [data-translate-vertical="400"] {transform: translateY(-400px);}

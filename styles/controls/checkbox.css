@@ -21,7 +21,7 @@ input[disabled] ~ text { opacity: 0.5; cursor: default; }
 [radio] input,
 [classic] input { display: none; }
 
-[checkbox] box { height: 20px; width: 36px; display: flex; position: relative; border-radius: 10px; flex-shrink: 0; cursor: pointer; box-shadow: inset 0 0 0 2px; }
+[checkbox][simple] box { height: 20px; width: 34px; display: flex; position: relative; border-radius: 10px; flex-shrink: 0; cursor: pointer; box-shadow: inset 0 0 0 2px; }
 
 [checkbox] text,
 [radio] text,
@@ -30,34 +30,39 @@ input[disabled] ~ text { opacity: 0.5; cursor: default; }
 box ink { width: 50px; height: 50px; position: absolute; top: -16px; left: -16px; border-radius: 25px; overflow: hidden; z-index: 1; }
 box ink:hover { background-color: var(--hover); }
 
-[checkbox] name,
-[radio] name { padding: 0 10px 0 0; }
 
-[checkbox] check { height: 10px; width: 10px; box-shadow: inset 0 0 0 7px; top: 5px; left: 5px; transition: 0.25s; background: var(--background); border-radius: 20px; position: absolute; }
+[checkbox] input:checked ~ box { color: var(--main-color); }
 
-[checkbox]:not([minimal]):active box check { width: 15px; }
-[checkbox]:not([minimal]):active input:checked ~ box check { left: 0px; }
+[checkbox][simple] check { height: 10px; width: 10px; box-shadow: inset 0 0 0 7px; top: 5px; left: 5px; transition: 0.25s;  border-radius: 20px; position: absolute;
+    }
 
-[checkbox] input:checked ~ box { box-shadow: inset 0 0 0 20px; color: var(--main-color); }
-[checkbox] input:checked ~ box check { transform: translateX(16px); box-shadow: inset 0 0 0 0px; }
+[checkbox][simple]:active box check { width: 15px; }
+[checkbox][simple]:active input:checked ~ box check { left: 0px; }
 
-/* [checkbox][simple] text:after { content: 'No'; }
-[checkbox][simple] input:checked ~ text:after { content: 'Yes'; } */
+[checkbox][simple] input:checked ~ box { box-shadow: inset 0 0 0 20px;}
+[checkbox][simple] input:checked ~ box check { transform: translateX(14px); box-shadow: inset 0 0 0 0px; }
 
-[checkbox] tip { opacity: 0.5; padding: 0 10px; }
-[checkbox][simple] tip:after { content: 'Off'; }
-[checkbox][simple] input:checked ~ tip:after { content: 'On'; }
+[checkbox][simple] check {background: var(--background);}
 
-[checkbox][minimal] box { height: 2px; width: 28px; }
-[checkbox][minimal] check { height: 16px; width: 16px; display: flex; top: -7px; box-shadow: inset 0 0 0 2px, 0 0 0 3px var(--background); background: var(--background); left: 0; }
-[checkbox][minimal] input:checked ~ box { }
-[checkbox][minimal] input:checked ~ box check { transform: translateX(12px); box-shadow: inset 0 0 0 10px; }
+
+
+
+[checkbox][minimal] box { height: 28px; width: 28px; flex-shrink: 0; display: flex; align-items: center;  overflow: hidden; }
+
+[checkbox][minimal] check { height: 2px;  position: relative; display: flex; box-shadow: inset 0 0 0 2px;transition: transform .275s;flex-shrink: 0; transform: translateX(-12px);  }
+[checkbox][minimal] check[data-name="handle"] { height: 16px; width: 16px; display: flex; border-radius: 16px; transition-property: box-shadow, transform; }
+[checkbox][minimal] check:first-child {width: 12px; border-radius: 2px 0 0 2px;}
+[checkbox][minimal] check:last-child {width: 9px;left:3px; border-radius: 2px;}
+
+
+
+[checkbox][minimal] input:checked ~ box check {  box-shadow: inset 0 0 0 10px; transform: none; }
 
 /* ----- */
 
 /* radio */
 
-[radio] box { display: flex; position: relative; border-radius: 10px; flex-shrink: 0; box-shadow: inset 0 0 0 2px; }
+[radio] box { display: flex; position: relative; border-radius: 10px; flex-shrink: 0; box-shadow: inset 0 0 0 2px;  }
 [radio] box { height: 18px; width: 18px; }
 [radio] check { height: 8px; width: 8px; transition: 0.25s; background: white; border-radius: 20px; position: absolute; top: 5px; left: 5px; transform: scale(0); background: var(--main-color); }
 [radio] input:checked ~ box { color: var(--main-color); }
