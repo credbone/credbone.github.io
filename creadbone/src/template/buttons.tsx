@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
-import sampleImage from "../styles/images/samples/res_15.jpg";
+import sampleImage from "../styles/images/samples/res_32.jpg";
 
 import {
   SvgHamburger,

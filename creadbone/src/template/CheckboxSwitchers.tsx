@@ -7,7 +7,7 @@ import OptionBar from "../components/inputs/optionBar";
 import Button from "../components/button";
 
 import sampleImage from "../styles/images/samples/res_20.jpg";
-import sampleImage_2 from "../styles/images/samples/res_18.jpg";
+import sampleImage_2 from "../styles/images/samples/res_31.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch  } = useForm<FieldValues>({
@@ -24,7 +24,7 @@ const CheckboxAndSwitchers: React.FC = () => {
       RadioViewDemo: "RadioViewDemo2",
       RadioViewDemo3: "RadioViewDemo1",
       RadioDemo: "RadioDemo1",
-      RadioDemo1: "1",
+      RadioDemo1: "0",
     },
   });
 
@@ -347,7 +347,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-dark=""
              
             >
-              <picture data-height="600" data-top="0"  data-translate-vertical={radioValue} data-transition="" data-duration=".125" data-position="absolute" data-name="color-demo">
+              <picture data-height="600" data-top="0"  data-translate-vertical={radioValue} data-transition="" data-duration=".725" data-position="absolute" data-name="color-demo">
                 <img src={sampleImage_2} alt="" />
               </picture>
 
