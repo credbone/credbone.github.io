@@ -107,7 +107,12 @@ export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<
                 <SvgCheckbox></SvgCheckbox>
                 </>
               )} </check>
-
+              {minimal && (
+                    <>
+                      <check data-name="handle"></check>
+                      <check></check>
+                    </>
+              )}
               {!minimal && !simple && !noInk && (
                 <Ripple>
                   <ink></ink>

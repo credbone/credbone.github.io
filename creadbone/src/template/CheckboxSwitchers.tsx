@@ -84,7 +84,7 @@ const CheckboxAndSwitchers: React.FC = () => {
     >
       <group data-gap="15" data-align="start">
         <group
-          data-max-length="900"
+          data-max-length="800"
           data-contain=""
           data-radius="10"
           data-elevation="1"
@@ -132,12 +132,13 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-width="auto"
                 >
                   <Checkbox name="1" noInk={true} control={control} />
+
                 </group>
               </group>
             </group>
           </group>
 
-          <group data-type="grid" data-grid-template="200" data-gap="1">
+          <group data-type="grid" data-grid-template="180" data-gap="1">
             <group data-direction="column" data-wrap="no" data-border="">
               <group
                 data-border=""
@@ -332,8 +333,8 @@ const CheckboxAndSwitchers: React.FC = () => {
               >
                 Switch
               </text>
-              <text data-wrap="wrap" data-line="1.5" data-light="">
-                Switches toggle the selection of an item on or off
+              <text data-wrap="wrap" data-line="1.5" data-light="" data-max-length="300">
+              Switches are used to toggle the selection of an item, turning it on or off as needed.
               </text>
             </group>
 
