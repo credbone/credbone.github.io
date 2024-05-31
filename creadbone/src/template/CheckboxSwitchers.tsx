@@ -10,7 +10,7 @@ import sampleImage from "../styles/images/samples/res_20.jpg";
 import sampleImage_2 from "../styles/images/samples/res_18.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
-  const { reset, control } = useForm<FieldValues>({
+  const { reset, control, watch  } = useForm<FieldValues>({
     defaultValues: {
       1: true,
       4: true,
@@ -24,9 +24,11 @@ const CheckboxAndSwitchers: React.FC = () => {
       RadioViewDemo: "RadioViewDemo2",
       RadioViewDemo3: "RadioViewDemo1",
       RadioDemo: "RadioDemo1",
-      RadioDemo1: "day",
+      RadioDemo1: "1",
     },
   });
+
+  const radioValue = watch('RadioDemo1');
 
   const weekdays = [
     { name: "option_1", label: "Mo", tooltip: "Monday" },
@@ -343,8 +345,9 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-contain=""
               data-align="center"
               data-dark=""
+             
             >
-              <picture data-position="absolute" data-name="color-demo">
+              <picture data-height="600" data-top="0"  data-translate-vertical={radioValue} data-transition="" data-duration=".125" data-position="absolute" data-name="color-demo">
                 <img src={sampleImage_2} alt="" />
               </picture>
 
@@ -369,7 +372,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
-                    radioValue="day"
+                    radioValue="0"
                     label="Day"
                   />
                   <Radio
@@ -380,7 +383,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
-                    radioValue="week"
+                    radioValue="200"
                     label="Week"
                   />
                   <Radio
@@ -391,9 +394,10 @@ const CheckboxAndSwitchers: React.FC = () => {
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
-                    radioValue="month"
+                    radioValue="400"
                     label="Month"
                   />
+                  
                 </OptionBar>
 
                 <group>
@@ -447,7 +451,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-line="1.5"
               data-max-length="300"
             >
-              {" "}
+
               Component configured to use a secondary color pallete and
               tooltips.
             </text>
