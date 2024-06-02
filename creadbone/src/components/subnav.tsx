@@ -41,9 +41,14 @@ const SubNavigation: React.FC = () => {
       updateIndicator();
     }
 
+
+
+   
     // Optional: Recalculate on window resize to handle responsive layouts
     window.addEventListener('resize', updateIndicator);
     return () => window.removeEventListener('resize', updateIndicator);
+
+
   }, [location.pathname]);
 
   return (

@@ -37,7 +37,7 @@ const Template: React.FC = () => {
 <view data-vertical>
 <Switchable
         data-collapse-radius="30"
-        data-float="20"
+        data-float="30"
         closeOnOutsideClick={true}
           data-switch-size="60"
           defaultExpanded={false}
