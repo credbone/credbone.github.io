@@ -69,7 +69,7 @@ view[data-size="900"] { max-width: 900px;}
     view[data-adaptive][data-vertical] view
     
     
-    {max-width: initial;height: initial; max-height: initial; flex-shrink: 0;}
+    {max-width: initial;height: initial; max-height: initial; flex-shrink: 0; overflow: initial;}
 
 }
 

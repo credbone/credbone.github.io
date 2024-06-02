@@ -143,3 +143,15 @@ icon svg { max-width: 100%; max-height: 100%;  }
 
 
 /* stylelint-enable */
+
+@keyframes cred-icon-demo_draw{100%{stroke-dashoffset:0;}}@keyframes cred-icon-demo_fade{0%{stroke-opacity:1;}93.54838709677419%{stroke-opacity:1;}100%{stroke-opacity:0;}}
+
+.cred-icon-demo_0{stroke-dasharray:41 43;stroke-dashoffset:42;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_1{stroke-dasharray:6 8;stroke-dashoffset:7;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_2{stroke-dasharray:96 98;stroke-dashoffset:97;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_3{stroke-dasharray:96 98;stroke-dashoffset:97;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_4{stroke-dasharray:30 32;stroke-dashoffset:31;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_5{stroke-dasharray:11 13;stroke-dashoffset:12;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_6{stroke-dasharray:11 13;stroke-dashoffset:12;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_7{stroke-dasharray:51 53;stroke-dashoffset:52;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}
+.cred-icon-demo_8{stroke-dasharray:96 98;stroke-dashoffset:97;animation:cred-icon-demo_draw 2000ms ease-out 0ms forwards;}

@@ -9,100 +9,100 @@ const InputsAndForms: React.FC = () => {
     <view
       data-vertical=""
       data-adaptive=""
-    
+      data-scroll=""
       data-gap="15"
       data-align="start"
       data-space="30"
     >
-
-
-<group
-data-max-length="350"
-       // data-border=""
-        data-radius="15"
-        data-contain=""
-        data-background="main-background"
-
-        data-shrink="no"
-        data-elevation="1"
-      >
+      <group>
         <group
-          data-background="main"
+          data-max-length="350"
+          // data-border=""
+          data-radius="15"
           data-contain=""
-          data-min-length="240"
-          data-dark=""
+          data-background="context"
+          data-shrink="no"
+          data-elevation="1"
         >
-          {/* <picture data-position="absolute" data-name="color-demo">
+          <group
+            data-background="main"
+            data-contain=""
+            data-min-length="240"
+            data-dark=""
+          >
+            {/* <picture data-position="absolute" data-name="color-demo">
             <img src={sampleImage} alt="" />
           </picture> */}
-          <group
-            //   data-radius="15"
-            data-space="30"
-            data-direction="column"
-            data-align="start"
-            data-gap="10"
-            data-color="main-text"
-          >
-            <text data-weight="700" data-text-size="36" data-wrap="wrap">
-              Password Change
-            </text>
-            <text data-wrap="wrap" data-line="1.5">
-              Your password is Case Sensitive. It should contain a minimum of 8
-              characters and at least one each of Uppercase, Lowercase, and
-              Special characters
-            </text>
+            <group
+              //   data-radius="15"
+              data-space="30"
+              data-direction="column"
+              data-align="start"
+              data-gap="10"
+              data-color="main-text"
+            >
+              <text data-weight="700" data-text-size="36" data-wrap="wrap">
+                Password Change
+              </text>
+              <text data-wrap="wrap" data-line="1.5">
+                Your password is Case Sensitive. It should contain a minimum of
+                8 characters and at least one each of Uppercase, Lowercase, and
+                Special characters
+              </text>
+            </group>
           </group>
-        </group>
 
-        <group data-space="30">
-          <group data-direction="column" data-gap="10">
-            <Password
-              size="large"
-              icon="key"
-              placeholder="Current Password"
-              dataLength="autofit"
-              name="password_1"
-            //  autocomplete="current-password"
-              autocomplete="off"
-            />
+          <group data-space="30">
+            <group data-direction="column" data-gap="10">
+              <Password
+                size="large"
+                icon="key"
+                placeholder="Current Password"
+                dataLength="autofit"
+                name="password_1"
+                //  autocomplete="current-password"
+                autocomplete="off"
+              />
 
+              <separator data-horizontal=""></separator>
+
+              <Input
+                type="password"
+                size="large"
+                // icon="key"
+                placeholder="Create Password"
+                dataLength="autofit"
+                name="password_1"
+                autocomplete="new-password"
+              />
+              <Input
+                type="password"
+                size="large"
+                //    icon="key"
+                placeholder="Repeat Password"
+                dataLength="autofit"
+                name="password_1"
+                autocomplete="new-password"
+              />
+            </group>
+
+            <space data-height="10"></space>
             <separator data-horizontal=""></separator>
+            <space data-height="10"></space>
 
-            <Input
-              type="password"
-              size="large"
-              // icon="key"
-              placeholder="Create Password"
-              dataLength="autofit"
-              name="password_1"
-              autocomplete="new-password"
-            />
-            <Input
-              type="password"
-              size="large"
-              //    icon="key"
-              placeholder="Repeat Password"
-              dataLength="autofit"
-              name="password_1"
-              autocomplete="new-password"
-            />
-          </group>
-
-          <space data-height="10"></space>
-          <separator data-horizontal=""></separator>
-          <space data-height="10"></space>
-
-          <group data-gap="10">
-            <Button large highlight data-shrink="no">
-              <text>Cancel</text>
-            </Button>
-            <Button large secondary fit>
-              <text>Update Password</text>
-            </Button>
+            <group data-gap="10">
+              <Button large highlight data-shrink="no">
+                <text>Cancel</text>
+              </Button>
+              <Button large secondary fit>
+                <text>Update Password</text>
+              </Button>
+            </group>
           </group>
         </group>
-      </group>
 
+        <space data-height="90"></space>
+      </group>
     </view>
   );
 };
