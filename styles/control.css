@@ -419,8 +419,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='autofit'] { flex:1 }
 
 
-[data-margin="-30"] {margin-top:-30px}
-[data-margin="-60"] {margin-top:-60px}
+[data-margin-top="-30"] {margin-top:-30px}
+[data-margin-top="-60"] {margin-top:-60px}
+[data-maring-right="-30"]{margin-right:-30px}
+[data-maring-bottom="-30"]{margin-bottom:-30px}
 
 
 
