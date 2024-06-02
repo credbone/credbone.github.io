@@ -169,7 +169,7 @@ view[data-background="none"]{background:none}
     [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
 
 
-[data-name="switchable"][data-type="overlap"] {   bottom: 0; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap))); border-radius: 10px; margin: var(--float-gap); box-shadow: var(--elevation); position: absolute; z-index: 10; }
+[data-name="switchable"][data-type="overlap"] {   bottom: 0; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap))); border-radius: 5px; margin: var(--float-gap); box-shadow: var(--elevation); position: absolute; z-index: 10; }
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
 
 

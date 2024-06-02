@@ -403,7 +403,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='120'] { height:120px; }
 [data-height='160'] { height:160px; }
 [data-height='150'] { height:150px; }
-
+[data-height='180'] { height:180px; }
 [data-height='200'] { height:200px; }
 [data-height='220'] { height:220px; }
 [data-height='240'] { height:240px; }
