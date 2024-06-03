@@ -86,6 +86,7 @@ const Typeface: React.FC = () => {
         data-max-height="fit"
         data-radius="10"
         data-elevation="1"
+        data-contain=""
       >
         <group
           data-border="overprint"
@@ -167,6 +168,7 @@ const Typeface: React.FC = () => {
         data-max-height="fit"
         data-radius="10"
         data-elevation="1"
+        data-contain=""
       >
         <group data-border="overprint" data-space="10" data-index="1">
           <text data-space="10" data-weight="600">

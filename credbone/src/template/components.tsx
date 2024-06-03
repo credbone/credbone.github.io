@@ -5,6 +5,7 @@ import { IconHome, IconSearch } from "../components/icon/credIcons";
 import Scroll from "../components/scroll";
 
 import sampleImage from "../styles/images/samples/res_16.jpg";
+import sampleImage_2 from "../styles/images/samples/res_34.jpg";
 
 const Components: React.FC = () => {
   return (
@@ -85,13 +86,16 @@ const Components: React.FC = () => {
 
               <group
                 data-radius="15"
-                data-space="30"
                 data-elevation="1"
                 data-background="context"
                 data-length="350"
                 data-height="300"
+                data-contain=""
               >
-                <group data-direction="column" data-gap="15">
+                <picture data-position="absolute">
+                  <img src={sampleImage_2} alt="" />
+                </picture>
+                <group data-direction="column" data-gap="15" data-space="30">
                   <text
                     data-text-size="xx-large"
                     data-weight="700"
@@ -102,6 +106,15 @@ const Components: React.FC = () => {
                   <text data-wrap="wrap" data-line="1.5" data-max-length="200">
                     Beautifully crafted and carefully designed icons.
                   </text>
+                </group>
+                <group
+                  data-position="bottom"
+                  data-space="30"
+                  data-width="auto"
+                  data-radius-top-right="15"
+                  data-backdrop="10"
+                >
+                  <IconHome size={60} />
                 </group>
               </group>
 
@@ -114,8 +127,8 @@ const Components: React.FC = () => {
                 data-contain=""
               >
                 <picture data-position="absolute" data-name="color-demo">
-            <img src={sampleImage} alt="" />
-          </picture>
+                  <img src={sampleImage} alt="" />
+                </picture>
 
                 <group
                   data-index="1"
@@ -131,13 +144,15 @@ const Components: React.FC = () => {
                     Buttons
                   </text>
                   <text data-wrap="wrap" data-line="1.5" data-max-length="200">
-                    Allow users to take actions, and make choices, with a single tap.
+                    Allow users to take actions, and make choices, with a single
+                    tap.
                   </text>
                 </group>
 
                 <group data-position="bottom">
                   <Ripple>
                     <group
+                      data-radius-top-right="15"
                       data-wrap="no"
                       data-width="auto"
                       data-ink-color="secondary-dark"
@@ -168,6 +183,7 @@ const Components: React.FC = () => {
                 data-length="400"
                 data-height="300"
               >
+
                 <group data-direction="column" data-gap="15">
                   <text
                     data-text-size="xx-large"
