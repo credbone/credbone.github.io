@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Ripple from "./Ripple";
 
 const navItems = [
+  { to: "Components", icon: "star", label: "Components" },
   { to: "Typeface", icon: "star", label: "Typeface" },
   { to: "Colors", icon: "star", label: "Color System" },
   { to: "Icons", icon: "star", label: "Icons" },

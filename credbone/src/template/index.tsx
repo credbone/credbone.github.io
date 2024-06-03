@@ -17,6 +17,7 @@ import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
 import Switchable from "../components/Switchable";
 import ThemePicker from "./themePicker";
+import Components from "./components";
 
 const Template: React.FC = () => {
   return (
@@ -73,7 +74,8 @@ const Template: React.FC = () => {
 
       <view data-vertical>
         <Routes>
-          <Route path="/" element={<Navigate replace to="Colors" />} />
+          <Route path="/" element={<Navigate replace to="Components" />} />
+          <Route path="Components" element={<Components />} />
           <Route path="Typeface" element={<Typeface />} />
           <Route path="Icons" element={<Icons />} />
           <Route path="Buttons" element={<Buttons />} />
