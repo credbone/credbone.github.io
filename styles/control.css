@@ -542,6 +542,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-radius-bottom-left="0"]{border-bottom-left-radius: 0px;}
 [data-radius-top-left="0"]{border-top-left-radius: 0px;}
 [data-radius-bottom-right="0"]{border-bottom-right-radius: 0px;}
+[data-radius-top-right="15"]{border-top-right-radius: 15px;}
 
 
 
