@@ -47,7 +47,7 @@ const Components: React.FC = () => {
       <group data-gap="15" data-wrap="no" data-space-horizontal="30" >
         
         <Ripple>
-        <Link data-type="group" data-ink-color="main-dark" data-contain="" data-interactive=""   to="../Colors"  data-background="main" data-color="main-text" data-length="200" data-height="300" data-radius="15">
+        <Link data-drag="none" data-type="group" data-ink-color="main-dark" data-contain="" data-interactive=""   to="../Colors"  data-background="main" data-color="main-text" data-length="200" data-height="300" data-radius="15">
             <group data-index="1"data-direction="column" data-gap="15" data-space="30">
             <text data-text-size="x-large" data-weight="700" data-wrap="wrap">Color System</text>
           <text data-wrap="wrap" data-line="1.5">
@@ -61,6 +61,9 @@ const Components: React.FC = () => {
         
         <group data-space="30" data-background="main-dark" data-color="white"  data-length="200" data-height="300" data-radius="15">
           <text data-text-size="x-large" data-weight="700" data-wrap="wrap">Icons</text>
+          <text data-wrap="wrap" data-line="1.5">
+          Beautifully crafted and carefully designed icons.
+          </text>
         </group>
 
         <group data-space="30" data-background="secondary" data-color="secondary-text"  data-length="200" data-height="300" data-radius="15">
