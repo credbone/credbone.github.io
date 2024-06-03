@@ -301,7 +301,8 @@
 [data-opacity="90"]{opacity:90%;}
 
 
-
+[data-background="main-text"] { background-color: var(--main-color-text) }
+[data-background="secondary-text"] { background-color: var(--secondary-color-text) }
 
 
 [data-color="main-background"] { color: var(--background) }
