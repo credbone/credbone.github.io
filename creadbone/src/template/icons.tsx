@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialIcons from "./materialIcons";
 import Ripple from "../components/Ripple";
-import { IconDemo, IconHome, IconSeach } from "../components/icon/credIcons";
+import { IconDemo, IconHome, IconSearch  } from "../components/icon/credIcons";
 
 
 const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,12 +38,7 @@ const ColorIcons = [
   { label: "Pizza Icon", name: "local_pizza", title: "Pizza", color: "" },
   { label: "Folder Icon", name: "folder", title: "Folder", color: "amber" },
   { label: "Favorite Icon", name: "favorite", title: "Heart", color: "red" },
-  {
-    label: "Leaf Icon",
-    name: "nest_eco_leaf",
-    title: "Leaf",
-    color: "light-green",
-  },
+  { label: "Leaf Icon", name: "nest_eco_leaf", title: "Leaf", color: "teal", },
 ];
 
 const WeightIcons = [
@@ -54,7 +49,6 @@ const WeightIcons = [
   { label: "Leaf Icon - 500", name: "nest_eco_leaf", title: "Leaf - 500", color: "", weight: "500" },
   { label: "Leaf Icon - 600", name: "nest_eco_leaf", title: "Leaf - 600", color: "", weight: "600" },
   { label: "Leaf Icon - 700", name: "nest_eco_leaf", title: "Leaf - 700", color: "", weight: "700" }
-
 ];
 
 const Icons: React.FC = () => {
@@ -108,7 +102,7 @@ const Icons: React.FC = () => {
             // data-dark=""
             data-align="center"
           >
-            <group data-length="fit" data-space="40" data-color="white">
+            <group data-length="fit" data-space="40" data-color="main-text">
               <IconDemo />
             </group>
           </group>
@@ -125,7 +119,7 @@ const Icons: React.FC = () => {
         <group data-space="30" data-sticky="top" data-width="auto">
           <group
             data-length="600"
-            data-radius="10"
+            data-radius="30"
             data-elevation="1"
             data-align="center"
             data-backdrop="10"
@@ -138,13 +132,13 @@ const Icons: React.FC = () => {
                 data-label="left"
                 data-multi-element=""
                 data-length="autofit"
-                data-space-horizontal="10"
+                data-space-horizontal="15"
               >
                 <div className="form_fields">
                   <div className="field_cont">
-                    <icon data-space="5">
-                      <IconSeach />
-                    </icon>
+                   
+                      <IconSearch size={20} />
+                    
                     <separator data-vertical="" data-margin="10"></separator>
                     <input
                       className="icon_search"
@@ -161,21 +155,32 @@ const Icons: React.FC = () => {
         <group data-space-horizontal="30" data-gap="30">
 
 <group data-name="icon-group" data-gap="30">
-<group data-align="center" data-gap="10">
-            <text data-weight="700" data-ellipsis="">
+<group data-align="center" data-gap="15">
+
+              <group  data-width="auto">
+              <text data-weight="700" data-ellipsis="">
               Material Icons Demo
             </text>
-            <separator data-vertical=""></separator>
-            <a
-              data-link=""
-              target="_blank"
-              rel="noreferrer"
-              href="https://fonts.google.com/icons?icon.style=Rounded"
-            >
-              <text data-weight="700" data-ellipsis="">
-                More icons ...
-              </text>
-            </a>
+              </group>
+           
+              <group data-name="autoseparation" data-width="auto" data-align="center">
+              <separator data-vertical=""></separator>
+                <a
+                  data-radius="5"
+                  data-interactive=""
+                  data-space="10"
+                  data-space-horizontal="15"
+                data-link=""
+                target="_blank"
+                rel="noreferrer"
+                href="https://fonts.google.com/icons?icon.style=Rounded"
+                >
+                   
+                <text data-weight="700" data-ellipsis="">
+                  More icons ...
+                </text>
+              </a>
+</group>
           </group>
 
           <group>
@@ -310,7 +315,8 @@ const Icons: React.FC = () => {
                 data-name="icon-demo"
                 data-contain=""
                 data-interactive=""
-                data-background="main-background"
+                  data-background="main-background"
+                 
                 data-space="15"
                 data-cursor="pointer"
                 data-ratio="1:1"
@@ -323,7 +329,7 @@ const Icons: React.FC = () => {
                   data-direction="column"
                 >
                   <icon>
-                    <IconHome data-height="30" />
+                    <IconHome/>
                   </icon>
                   <text data-ellipsis="">Home</text>
                 </group>
@@ -347,7 +353,7 @@ const Icons: React.FC = () => {
                   data-direction="column"
                 >
                   <icon>
-                    <IconSeach />
+                  <IconSearch/>
                   </icon>
                   <text data-ellipsis="">Search</text>
                 </group>
