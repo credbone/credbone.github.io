@@ -19,3 +19,10 @@
 {
   background-color: #2d2d2d;
 }
+
+group.popover {
+  animation: tooltip 0.225s  backwards;
+  position: absolute;
+  z-index: 9999;
+  max-width: calc(100% - 20px);
+}

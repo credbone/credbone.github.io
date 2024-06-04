@@ -15,9 +15,12 @@ import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
-import Switchable from "../components/Switchable";
-import ThemePicker from "./themePicker";
+
 import Components from "./components";
+import Popover from "../components/popover";
+import RichThemePicker from "./richThemePicker";
+import Ripple from "../components/Ripple";
+import Tooltip from "../components/tooltip";
 
 const Template: React.FC = () => {
   return (
@@ -33,63 +36,64 @@ const Template: React.FC = () => {
         </Scroll>
       </group>
 
-
-
-<view data-vertical>
-<Switchable
-        data-collapse-radius="30"
-        data-float="30"
-        closeOnOutsideClick={true}
-          data-switch-size="60"
-          defaultExpanded={false}
-          icon="opacity"
-          data-type="overlap"
-          data-length="60"
-          data-timing="fancy"
-          data-duration=".225"
-          togglerProps={{
-            "data-adaptive": "mobile",
-            "data-order": "2",
-            "data-justify": "center",
-          }}
-        >
-          <view
-            data-border=""
-            data-background="main-background"
-            data-length="60"
-          >
-            <group
-              data-width="auto"
-              data-snap-button="15"
-              data-height="fit"
-              data-contain=""
-              data-align="center"
-              data-direction="column"
-            >
-
-                <ThemePicker />
-
-            </group>
-          </view>
-        </Switchable>
-
-
       <view data-vertical>
-        <Routes>
-          <Route path="/" element={<Navigate replace to="Components" />} />
-          <Route path="Components" element={<Components />} />
-          <Route path="Typeface" element={<Typeface />} />
-          <Route path="Icons" element={<Icons />} />
-          <Route path="Buttons" element={<Buttons />} />
-          <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
-          <Route path="Colors" element={<Colors />} />
-          <Route path="Layout" element={<Layout />} />
-          <Route path="Navigation" element={<Landing />} />
-          <Route path="InputsAndForms" element={<InputsAndForms />} />
-        </Routes>
-      </view>
-</view>
+        <group
+          data-position="absolute"
+          data-index="3"
+          data-space="30"
+          data-bottom="0"
+          data-width="auto"
+          data-direction="column"
+        >
+          <Popover
+            content={<RichThemePicker />}
+            data-length="600"
+            data-space="20"
+            data-radius="20"
+            data-backdrop="10"
+          >
+            <group>
+              <Tooltip
+                content="Primary & Secondary Color Scheme"
+                placement="right"
+              >
+                <group>
+                  <Ripple>
+                    <group
+                      data-contain=""
+                      data-length="60"
+                      data-height="60"
+                      data-radius="30"
+                      data-background="context"
+                      data-cursor="pointer"
+                      data-shrink="no"
+                      data-elevation="6"
+                      data-interactive=""
+                    >
+                      <icon data-position="center">colors</icon>
+                    </group>
+                  </Ripple>
+                </group>
+              </Tooltip>
+            </group>
+          </Popover>
+        </group>
 
+        <view data-vertical>
+          <Routes>
+            <Route path="/" element={<Navigate replace to="Components" />} />
+            <Route path="Components" element={<Components />} />
+            <Route path="Typeface" element={<Typeface />} />
+            <Route path="Icons" element={<Icons />} />
+            <Route path="Buttons" element={<Buttons />} />
+            <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
+            <Route path="Colors" element={<Colors />} />
+            <Route path="Layout" element={<Layout />} />
+            <Route path="Navigation" element={<Landing />} />
+            <Route path="InputsAndForms" element={<InputsAndForms />} />
+          </Routes>
+        </view>
+      </view>
     </view>
   );
 };
