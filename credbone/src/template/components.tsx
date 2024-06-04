@@ -92,7 +92,7 @@ const Components: React.FC = () => {
                 data-height="300"
                 data-contain=""
               >
-                <picture data-position="absolute">
+                <picture data-position="absolute" data-brightness="adaptive">
                   <img src={sampleImage_2} alt="" />
                 </picture>
                 <group data-direction="column" data-gap="15" data-space="30">

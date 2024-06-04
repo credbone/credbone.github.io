@@ -63,10 +63,12 @@ const Template: React.FC = () => {
               data-snap-button="15"
               data-height="fit"
               data-contain=""
+              data-align="center"
+              data-direction="column"
             >
-              <Scroll vertical>
+
                 <ThemePicker />
-              </Scroll>
+
             </group>
           </view>
         </Switchable>
