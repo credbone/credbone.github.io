@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect, CSSProperties } from "react";
+import React, { useState, useRef, useEffect, CSSProperties, ReactNode } from "react";
 import ReactDOM from "react-dom";
 
 interface PopoverProps {
-  content: any;
+  content: ReactNode | ((closePopover: () => void) => ReactNode);
   children: React.ReactNode;
   placement?: "top" | "bottom" | "left" | "right";
 }
@@ -33,16 +33,16 @@ const Popover: React.FC<PopoverProps> = ({
     setIsVisible(false);
   };
 
-  const handleScroll = (event: Event) => {
-    if (
-      popoverRef.current &&
-      !popoverRef.current.contains(event.target as Node) &&
-      childRef.current &&
-      !childRef.current.contains(event.target as Node)
-    ) {
-      setIsVisible(false);
-    }
-  };
+  // const handleScroll = (event: Event) => {
+  //   if (
+  //     popoverRef.current &&
+  //     !popoverRef.current.contains(event.target as Node) &&
+  //     childRef.current &&
+  //     !childRef.current.contains(event.target as Node)
+  //   ) {
+  //     setIsVisible(false);
+  //   }
+  // };
 
   const calculatePosition = () => {
     if (!childRef.current || !popoverRef.current) return {};
@@ -111,7 +111,7 @@ const Popover: React.FC<PopoverProps> = ({
       setPopoverPosition(position);
       document.addEventListener("click", handleDocumentClick);
       window.addEventListener("resize", handleResize);
-      window.addEventListener("scroll", handleScroll, true); // capture scroll events in the capture phase
+   //   window.addEventListener("scroll", handleScroll, true); // capture scroll events in the capture phase
 
       // Add the data-popover-expand attribute to the child element when popover is open
       if (childRef.current) {
@@ -120,7 +120,7 @@ const Popover: React.FC<PopoverProps> = ({
     } else {
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll, true);
+   //   window.removeEventListener("scroll", handleScroll, true);
 
       // Remove the data-popover-expand attribute when popover is closed
       if (childRef.current) {
@@ -131,13 +131,20 @@ const Popover: React.FC<PopoverProps> = ({
     return () => {
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll, true);
+   //   window.removeEventListener("scroll", handleScroll, true);
     };
   }, [isVisible]);
 
   const handlePopoverTrigger = () => {
     setIsVisible(!isVisible);
   };
+
+  const closePopover = () => {
+    setIsVisible(false);
+  };
+
+  const renderedContent =
+    typeof content === "function" ? content(closePopover) : content;
 
   return (
     <>
@@ -150,19 +157,18 @@ const Popover: React.FC<PopoverProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
-          data-position="absolute"
-          data-background="context"
-          data-elevation="1"
-          data-radius="10"
-          data-index="3"
-          data-space="15"
-          
+            data-position="absolute"
+            data-background="context"
+            data-elevation="1"
+            data-radius="10"
+            data-index="3"
+            data-space="15"
             ref={popoverRef}
             className={`popover ${placement}`}
             style={popoverPosition}
             {...rest}
           >
-            {content}
+             {renderedContent}
           </group>,
           document.body
         )}

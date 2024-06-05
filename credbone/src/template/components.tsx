@@ -107,15 +107,20 @@ const Components: React.FC = () => {
                     Beautifully crafted and carefully designed icons.
                   </text>
                 </group>
-                <group
+                <Link
+                  data-interactive=""
+                  to="/Home/Icons"
+                  Data-type="group"
                   data-position="bottom"
                   data-space="30"
                   data-width="auto"
                   data-radius-top-right="15"
                   data-backdrop="10"
+                  data-drag="none"
                 >
-                  <IconHome size={60} />
-                </group>
+                  <group data-type="interact"> <IconHome size={60} /></group>
+                 
+                </Link>
               </group>
 
               <group
@@ -149,7 +154,7 @@ const Components: React.FC = () => {
                   </text>
                 </group>
 
-                <group data-position="bottom">
+                <Link data-type="group" to="/Home/Buttons" data-position="bottom" data-drag="none">
                   <Ripple>
                     <group
                       data-radius-top-right="15"
@@ -172,7 +177,7 @@ const Components: React.FC = () => {
                       </icon>
                     </group>
                   </Ripple>
-                </group>
+                </Link>
               </group>
 
               <group

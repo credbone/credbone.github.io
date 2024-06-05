@@ -21,6 +21,7 @@ import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
+import TooltipPopover from "./TooltipPopover";
 
 const Template: React.FC = () => {
   return (
@@ -47,10 +48,12 @@ const Template: React.FC = () => {
         >
           <Popover
             content={<RichThemePicker />}
-            data-length="600"
-            data-space="20"
-            data-radius="20"
+           // data-length="600"
+            data-space="5"
+            data-radius="10"
             data-backdrop="10"
+           // data-elevation="2"
+            data-width="auto"
           >
             <group>
               <Tooltip
@@ -91,6 +94,7 @@ const Template: React.FC = () => {
             <Route path="Layout" element={<Layout />} />
             <Route path="Navigation" element={<Landing />} />
             <Route path="InputsAndForms" element={<InputsAndForms />} />
+            <Route path="TooltipAndPopover" element={<TooltipPopover />} />
           </Routes>
         </view>
       </view>

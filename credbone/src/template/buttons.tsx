@@ -80,14 +80,14 @@ const Buttons: React.FC = () => {
                 <icon data-index="1" data-icon-size="large">
                   arrow_outward
                 </icon>
-                <text
+                {/* <text
                   data-ellipsis=""
                   data-weight="700"
                   data-text-size="36"
                   data-index="1"
                 >
                   Button
-                </text>
+                </text> */}
               </group>
             </Ripple>
           </group>

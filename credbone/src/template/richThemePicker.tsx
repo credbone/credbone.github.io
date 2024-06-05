@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
-import { defaultPrimaryColor, defaultSecondaryColor } from "../styles/skin";
-import Button from "../components/button";
 import { colors, seccolors } from "../styles/colorData";
 import Scroll from "../components/scroll";
 import Tooltip from "../components/tooltip";
@@ -26,8 +24,8 @@ const RichThemePicker: React.FC = () => {
   };
 
   return (
-    <group data-gap="20">
-      <group data-scroll-mask="false" data-snap-button="15">
+    <group data-gap="5" data-width="auto" data-direction="column">
+      <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll>
           <group
             data-position="left"
@@ -84,7 +82,7 @@ const RichThemePicker: React.FC = () => {
         </Scroll>
       </group>
 
-      <group data-scroll-mask="false" data-snap-button="15">
+      <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll>
           <group
             data-position="left"
