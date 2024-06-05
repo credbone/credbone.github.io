@@ -47,6 +47,7 @@ const Template: React.FC = () => {
           data-direction="column"
         >
           <Popover
+          hideOnScroll={false}
             content={<RichThemePicker />}
            // data-length="600"
             data-space="5"

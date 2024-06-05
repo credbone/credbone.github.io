@@ -28,6 +28,7 @@ const Buttons: React.FC = () => {
         data-max-height="fit"
         data-radius="10"
         data-elevation="1"
+        data-contain=""
       >
         <group data-direction="column" data-space="30">
           <text
