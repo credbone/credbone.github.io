@@ -5,7 +5,7 @@
   }
 }
 
-.tooltip {
+group.tooltip {
   animation: tooltip 0.225s .225s  backwards;
   position: absolute;
   z-index: 9999;
@@ -23,6 +23,6 @@
 group.popover {
   animation: tooltip 0.225s  backwards;
   position: absolute;
-  z-index: 9999;
+  z-index: 9998;
   max-width: calc(100% - 20px);
 }
