@@ -59,6 +59,7 @@ const TooltipPopover: React.FC = () => {
           <group data-length="fit" data-space="30">
            
             <Popover
+            data-elevation="2"
               placement="top"
               data-width="auto"
               data-space="20"

@@ -38,11 +38,11 @@
     --highlight: #212121;
 
     --dim: rgba(6, 6, 6, 0.9);
-    --backdrop:rgba(25, 25, 25, 0.8);
+    --backdrop:rgba(34, 34, 34, 0.8);
 
-    --elevation: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
-    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
+    --elevation: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
+    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%); */
     
 
 }
@@ -71,11 +71,11 @@
     --highlight: #212121;
 
     --dim: rgba(6, 6, 6, 0.9);
-    --backdrop:rgba(25, 25, 25, 0.8);
+    --backdrop:rgba(34, 34, 34, 0.8);
 
-    --elevation: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
-    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
+    --elevation: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
+    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%); */
 
 }
     
