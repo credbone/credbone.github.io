@@ -444,7 +444,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               </OptionBar>
             </group>
 
-            <separator data-horizontal=""></separator>
+            <separator data-horizontal="" data-interval='10'></separator>
             <text
               data-wrap="wrap"
               data-light=""
@@ -486,7 +486,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               ))}
             </OptionBar>
 
-            <separator data-horizontal=""></separator>
+            <separator data-horizontal="" data-interval='10'></separator>
 
             <OptionBar
               data-length="autofit"
@@ -546,7 +546,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               ))}
             </OptionBar>
 
-            <separator data-horizontal=""></separator>
+            <separator data-horizontal="" data-interval='10'></separator>
             <group data-align="center" data-width="auto" data-wrap="no">
               <OptionBar animate data-length="100" data-height="40">
                 <Radio

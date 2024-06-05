@@ -121,7 +121,7 @@ const SideNav = () => {
               </text>
             </group>
           </Ripple>
-          <separator data-horizontal=""></separator>
+          <separator data-horizontal="" data-interval='10'></separator>
           <Ripple>
             <group
               data-contain=""
@@ -158,7 +158,7 @@ const SideNav = () => {
               </text>
             </group>
           </Ripple>
-          <separator data-horizontal=""></separator>
+          <separator data-horizontal="" data-interval='10'></separator>
           {/* <group
             data-interactive=""
             data-space="10"
@@ -194,7 +194,7 @@ const SideNav = () => {
           </group>
           <group data-position="bottom"  ref={bottomRef}></group>
 
-          <separator data-horizontal=""></separator>
+          <separator data-horizontal="" data-interval='10'></separator>
           <Ripple>
           <group
               // data-space="10"

@@ -88,10 +88,10 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
               </Ripple>
             </group>
           </Tooltip>
-          <separator data-horizontal=""></separator>
+          <separator data-horizontal="" data-interval='10'></separator>
           <LeftNavigation />
           <group data-position="bottom"></group>
-          <separator data-horizontal=""></separator>
+          <separator data-horizontal="" data-interval='10'></separator>
           <group
             data-contain=""
             data-space="10"

@@ -42,7 +42,7 @@ function Settings() {
           <ThemeToggle />
         </group>
 
-        <separator data-horizontal="0"></separator>
+        <separator data-horizontal="" data-interval='10'></separator>
 
         <group data-direction="column" data-gap="10"
         

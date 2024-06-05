@@ -64,7 +64,7 @@ const InputsAndForms: React.FC = () => {
                 autocomplete="off"
               />
 
-              <separator data-horizontal=""></separator>
+              <separator data-horizontal="" data-interval='10'></separator>
 
               <Input
                 type="password"
@@ -87,7 +87,7 @@ const InputsAndForms: React.FC = () => {
             </group>
 
             <space data-height="10"></space>
-            <separator data-horizontal=""></separator>
+            <separator data-horizontal="" data-interval='10'></separator>
             <space data-height="10"></space>
 
             <group data-gap="10">

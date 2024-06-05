@@ -68,7 +68,7 @@ const Landing: React.FC = () => {
 
               </group>
               
-              <separator data-horizontal=""></separator>
+              <separator data-horizontal="" data-interval='10'></separator>
 
 <group >
 <group>
@@ -85,7 +85,7 @@ const Landing: React.FC = () => {
 
 </group>
 </group>
-<separator data-horizontal=""></separator>
+<separator data-horizontal=""data-interval='10'></separator>
 
 <group data-space="20" data-gap="20"  data-elevation="1" data-radius="15" data-background="main" >
 <group data-direction="column"  data-width="auto" data-color="main-text">

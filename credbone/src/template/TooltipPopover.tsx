@@ -1,6 +1,6 @@
 import React from "react";
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/res_15.jpg";
+import sampleImage from "../styles/images/samples/res_18.jpg";
 import Popover from "../components/popover";
 import Button from "../components/button";
 import { Link } from "react-router-dom";
@@ -14,6 +14,7 @@ const TooltipPopover: React.FC = () => {
       data-space="30"
       data-gap="15"
       data-align="start"
+
     >
       <view
         data-size="medium"
@@ -55,10 +56,10 @@ const TooltipPopover: React.FC = () => {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-length="fit">
-            <group data-space="40"></group>
+          <group data-length="fit" data-space="30">
+           
             <Popover
-              placement="right"
+              placement="top"
               data-width="auto"
               data-space="20"
               content={(closePopover) => (
@@ -85,12 +86,12 @@ const TooltipPopover: React.FC = () => {
                 data-color="secondary-text"
                 data-interactive=""
                 data-space-horizontal="30"
-                data-radius-top-right="15"
+                data-radius="15"
                 data-height="120"
                 data-gap="20"
               >
                 <icon data-index="1" data-icon-size="large">
-                lightbulb
+                more_horiz
                 </icon>
                 {/* <text
                   data-ellipsis=""
@@ -107,6 +108,9 @@ const TooltipPopover: React.FC = () => {
           </group>
         </group>
       </view>
+      <group data-height="300" data-width="auto" data-shrink="no">
+        
+      </group>
     </view>
   );
 };
