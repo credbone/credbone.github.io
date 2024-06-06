@@ -64,7 +64,7 @@ const TooltipPopover: React.FC = () => {
                       data-wrap="wrap"
                       data-max-length="300"
                     >
-                      Comparing with{" "}
+                      Comparing with
                       <Tooltip content="Sample Tooltip">
                         <text data-weight="700">Tooltip</text>
                       </Tooltip>

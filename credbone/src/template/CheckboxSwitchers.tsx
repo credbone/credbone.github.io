@@ -507,7 +507,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             </OptionBar>
           </group>
 
-          <group data-gap="10" data-radius="5" data-elevation="2">
+          <group data-gap="10" data-radius="5" >
             <OptionBar data-length="autofit" data-height="40" data-weight="600">
               {weekdays.map((option) => (
                 <Checkbox

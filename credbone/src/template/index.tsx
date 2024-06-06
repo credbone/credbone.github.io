@@ -31,6 +31,7 @@ const Template: React.FC = () => {
         data-scroll-mask="false"
         data-elevation="1"
         data-background="main-background"
+        data-contain=""
       >
         <Scroll>
           <SubNavigation />

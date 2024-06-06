@@ -4,6 +4,9 @@ import React, { useState, useEffect, useRef, createContext, useContext } from "r
 import Tooltip from "../components/tooltip";
 import { LeftNavigation } from "../components/navigation";
 import buildInfo from "../buildInfo.json";
+import ThemeToggle from "../components/themeToggle";
+import Popover from "../components/popover";
+import ThemeIcon from "../components/ThemeIcon";
 
 // Define an interface for the context
 interface NavContextType {
@@ -90,7 +93,34 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           </Tooltip>
           <separator data-horizontal="" data-interval='10'></separator>
           <LeftNavigation />
-          <group data-position="bottom"></group>
+
+          <Popover data-width="auto" data-space="5"   content={isNavOpen ? "" : <ThemeToggle/>} >
+            <group
+              data-cursor="pointer"
+            data-interactive=""
+            data-position="bottom"
+            data-contain=""
+            data-space="10"
+            data-gap="10"
+            data-radius="10"
+            data-align="center"
+            data-wrap="no"
+            >
+              {isNavOpen ? "" :  <ThemeIcon/>}
+
+           
+
+           <group data-align="center" data-adaptive="open-state" data-gap="10" >
+
+           {isNavOpen ? <ThemeToggle/> : ""}
+
+           </group>
+
+           
+
+          </group>
+          </Popover>
+          <group ></group>
           <separator data-horizontal="" data-interval='10'></separator>
           <group
             data-contain=""

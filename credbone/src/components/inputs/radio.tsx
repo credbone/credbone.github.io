@@ -15,7 +15,7 @@ export type RadioProps = InputProps & {
   radioType?: RadioType;
   icon?: string;
   iconProps?: any;
-  tooltip?: string;
+  tooltip?: any;
   labelProps?: Record<string, any>;
 };
 

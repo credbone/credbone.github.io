@@ -15,9 +15,9 @@ export const SvgHamburger: React.FC<{ toLeft?: boolean; toRight?: never; } | { t
         data-icon={dataIcon}
         fill="currentColor"
         >
-        <rect x="3" y="4" width="14" height="2"></rect>
-        <rect x="3" y="9" width="14" height="2"></rect>
-        <rect x="3" y="14" width="14" height="2"></rect>
+        <rect rx="1" x="3" y="4" width="14" height="2"></rect>
+        <rect rx="1" x="3" y="9" width="14" height="2"></rect>
+        <rect rx="1" x="3" y="14" width="14" height="2"></rect>
         </svg>
     );
 };
@@ -40,8 +40,8 @@ export const SvgPlus: React.FC = () => {
         data-icon="plus"
         fill="currentColor"
         >
-            <rect x="9" y="3" width="2" height="14" />
-            <rect x="3" y="9" width="14" height="2" />
+            <rect rx="1" x="9" y="3" width="2" height="14" />
+            <rect rx="1" x="3" y="9" width="14" height="2" />
         </svg>
     );
 };
@@ -56,8 +56,8 @@ export const SvgMinus: React.FC = () => {
         data-icon="minus"
         fill="currentColor"
         >
-            <rect x="3" y="9" width="14" height="2" />
-            <rect x="3" y="9" width="14" height="2" />
+            <rect rx="1" x="3" y="9" width="14" height="2" />
+            <rect rx="1" x="3" y="9" width="14" height="2" />
         </svg>
     );
 };
