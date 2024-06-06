@@ -4,6 +4,7 @@ import sampleImage from "../styles/images/samples/res_15.jpg";
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
+import Popover from "../components/popover";
 
 const Colors: React.FC = () => {
   const BaseColors = [
@@ -462,54 +463,96 @@ const Colors: React.FC = () => {
             data-type="grid"
             data-grid-template="120"
             data-gap="10"
-
           >
             {BaseColors.map((colors) => (
-              <group data-contain="" >
-                <group
-              data-radius="15"
-                  data-contain=""
-                  data-length="auto"
-                  data-color={colors.dark === "true" ? "white" : "black"}
-                  data-shrink="no"
-                  data-direction="row"
-                  data-justify="start"
-                  data-width="auto"
-                  data-background={colors.value}
-                >
-                  {colors.picture === "true" && (
-                    <>
-                      <picture data-position="absolute" data-name="color-demo">
-                        <img src={sampleImage} alt="" />
-                      </picture>
-                    </>
-                  )}
-                  <group data-space="30" data-gap="5" data-wrap="no">
-                    <text
-                      data-ellipsis=""
-                      data-height="200"
-                      data-orientation="vertical-bottom"
+              <Popover
+                data-space="5"
+                data-width="auto"
+                content={
+                  <group data-length="180" data-gap="10">
+                    <group
+                      data-radius="5"
+                      data-contain=""
+                      data-color={colors.dark === "true" ? "white" : "black"}
+                      data-weight="600"
                     >
-                      {colors.name}
-                    </text>
-                    <text
-                      data-wrap="wrap"
-                      data-light=""
-                      data-line="20"
-                      data-height="200"
-                      data-orientation="vertical-bottom"
-                    >
-                      {colors.description}
-                    </text>
+                      <group
+                        data-space="15"
+                        data-color="white"
+                        data-background={colors.value + "-dark"}
+                      >
+                        <text data-ellipsis="">Dark {colors.name}</text>
+                      </group>
+                      <group data-space="15" data-background={colors.value}>
+                        <text data-ellipsis="">{colors.name}</text>
+                      </group>
+                      <group
+                        data-space="15"
+                        data-background={colors.value + "-light"}
+                      >
+                        <text data-ellipsis="">Light {colors.name}</text>
+                      </group>
+                    </group>
+                    <group data-space="10" data-direction="column" data-gap="5">
+                      <text data-weight="700">{colors.name}</text>
+                      <text data-wrap="wrap" data-light="">
+                        {colors.description}
+                      </text>
+                    </group>
                   </group>
-                </group>
+                }
+              >
+                <group data-contain="">
+                  <group
+                    data-cursor="pointer"
+                    //  data-interactive=""
+                    data-radius="15"
+                    data-contain=""
+                    data-length="auto"
+                    data-color={colors.dark === "true" ? "white" : "black"}
+                    data-shrink="no"
+                    data-direction="row"
+                    data-justify="start"
+                    data-width="auto"
+                    data-background={colors.value}
+                  >
+                    {colors.picture === "true" && (
+                      <>
+                        <picture
+                          data-position="absolute"
+                          data-name="color-demo"
+                        >
+                          <img src={sampleImage} alt="" />
+                        </picture>
+                      </>
+                    )}
+                    <group data-space="30" data-gap="5" data-wrap="no">
+                      <text
+                        data-ellipsis=""
+                        data-height="200"
+                        data-orientation="vertical-bottom"
+                      >
+                        {colors.name}
+                      </text>
+                      <text
+                        data-wrap="wrap"
+                        data-light=""
+                        data-line="20"
+                        data-height="200"
+                        data-orientation="vertical-bottom"
+                      >
+                        {colors.description}
+                      </text>
+                    </group>
+                  </group>
 
-                {/* <group data-space="30" data-background={colors.value + "-light"} data-color={colors.value + "-dark"}>
+                  {/* <group data-space="30" data-background={colors.value + "-light"} data-color={colors.value + "-dark"}>
                 <text data-ellipsis=""   >
                   {colors.name + " Light"}
                 </text>
               </group> */}
-              </group>
+                </group>
+              </Popover>
             ))}
           </group>
 
@@ -520,8 +563,7 @@ const Colors: React.FC = () => {
             data-type="column"
             data-column-size="240"
             data-column-gap="20"
-          >
-          </group>
+          ></group>
           <group data-height="10" data-shrink="no"></group>
         </view>
       </view>
