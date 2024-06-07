@@ -43,7 +43,7 @@ const Template: React.FC = () => {
         <group
           data-position="absolute"
           data-index="3"
-          data-space="30"
+          data-margin="30"
           data-bottom="0"
           data-width="auto"
           data-direction="column"

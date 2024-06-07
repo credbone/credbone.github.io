@@ -207,7 +207,7 @@ const Components: React.FC = () => {
         </group>
       </group>
 
-      <group data-height="60" data-shrink="no"></group>
+      <group data-height="200" data-shrink="no"></group>
     </view>
   );
 };
