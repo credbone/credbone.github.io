@@ -13,7 +13,7 @@ group.tooltip {
   max-width: calc(100% - 20px);
 }
 
-[data-length].tooltip{max-width: calc(100% - 20px);;}
+[data-length].tooltip{max-width: calc(100% - 20px);}
 
 [data-background="tooltip"]
 {
@@ -25,6 +25,7 @@ group.popover {
   position: absolute;
   z-index: 9998;
   max-width: calc(100% - 20px);
+  max-height: calc(100% - 20px);
 }
 
 

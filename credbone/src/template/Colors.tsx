@@ -5,6 +5,7 @@ import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
 import Popover from "../components/popover";
+import ThemePicker from "./themePicker";
 
 const Colors: React.FC = () => {
   const BaseColors = [
@@ -153,6 +154,9 @@ const Colors: React.FC = () => {
             data-width="auto"
             data-radius="15"
           >
+
+
+
             <group
               data-contain=""
               data-direction="column"
@@ -164,8 +168,14 @@ const Colors: React.FC = () => {
               data-background="main"
               data-gap="10"
               data-justify="end"
+              data-align="start"
             >
-              {" "}
+             
+             
+
+
+
+
               <text
                 data-wrap="wrap"
                 data-light=""
@@ -174,10 +184,16 @@ const Colors: React.FC = () => {
               >
                 This primary color you selected will be used extensively in the
                 UI, with other shades being automatically generated from it.
-              </text>{" "}
+              </text>
+
               <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
                 Primary Color
-              </text>{" "}
+              </text>
+              {/* <Popover placement="right" data-space="0" data-length="60" data-height='360' content={<ThemePicker/>}>
+<group data-width="auto" data-interactive="" data-cursor="pointer">
+
+</group>
+              </Popover> */}
             </group>
 
             <group

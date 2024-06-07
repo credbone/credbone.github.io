@@ -27,10 +27,12 @@ const ThemePicker: React.FC = () => {
 
   return (
     <group
-      data-width="auto"
+      //data-width="auto"
       data-snap-button="15"
       data-height="fit"
       data-contain=""
+      data-direction="column"
+      data-max-height="fit"
     >
       <Scroll vertical>
         <group

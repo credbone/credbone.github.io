@@ -35,7 +35,7 @@ const ThemeIcon = () => {
       break;
   }
 
-  return <icon data-length="30">{icon}</icon>;
+  return <icon data-length="30" data-type="interact">{icon}</icon>;
 };
 
 export default ThemeIcon;

@@ -96,10 +96,10 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           <separator data-horizontal="" data-interval='10'></separator>
           <LeftNavigation />
 
-          <Popover data-width="auto" data-space="5"   content={isNavOpen ? "" : <ThemeToggle/>} >
+          <Popover data-width="auto" data-space="5" content={isNavOpen ? "" : <ThemeToggle/>} >
             <group
               data-cursor="pointer"
-            data-interactive=""
+            data-interactive="color"
             data-position="bottom"
             data-contain=""
             data-space="10"
@@ -108,15 +108,13 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             data-align="center"
             data-wrap="no"
             >
-              {isNavOpen ? "" : <ThemeIcon/>}
+  
+
+
+
+           {isNavOpen ? <ThemeToggle/> : <ThemeIcon/>}
 
            
-
-           <group data-align="center" data-adaptive="open-state" data-gap="10" >
-
-           {isNavOpen ? <ThemeToggle/> : ""}
-
-           </group>
 
            
 
