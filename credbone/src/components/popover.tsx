@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   content: ReactNode | ((closePopover: () => void) => ReactNode);
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right";
+  placement?: "top" | "bottom" | "left" | "right" | "over";
   hideOnScroll?: boolean;
 }
 
@@ -102,6 +102,22 @@ const Popover: React.FC<PopoverProps> = ({
           targetRect.right + 10
         );
         break;
+        case "over":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height ,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width  - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
       default:
         break;
     }

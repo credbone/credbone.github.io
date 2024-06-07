@@ -466,7 +466,9 @@ const Colors: React.FC = () => {
           >
             {BaseColors.map((colors) => (
               <Popover
+                placement="over"
                 data-space="5"
+                data-elevation="2"
                 data-width="auto"
                 content={
                   <group data-length="180" data-gap="10">
@@ -481,16 +483,16 @@ const Colors: React.FC = () => {
                         data-color="white"
                         data-background={colors.value + "-dark"}
                       >
-                        <text data-ellipsis="">Dark {colors.name}</text>
+                        <text data-ellipsis="" data-color={colors.value + "-light"}>Dark {colors.name}</text>
                       </group>
                       <group data-space="15" data-background={colors.value}>
-                        <text data-ellipsis="">{colors.name}</text>
+                        <text data-ellipsis="" data-opacity="80">{colors.name}</text>
                       </group>
                       <group
                         data-space="15"
                         data-background={colors.value + "-light"}
                       >
-                        <text data-ellipsis="">Light {colors.name}</text>
+                        <text data-ellipsis="" data-color={colors.value + "-dark"}>Light {colors.name}</text>
                       </group>
                     </group>
                     <group data-space="10" data-direction="column" data-gap="5">
