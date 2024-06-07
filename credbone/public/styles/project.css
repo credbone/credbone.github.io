@@ -21,6 +21,22 @@
     [data-theme="dark"] [data-brightness="adaptive"]{filter: brightness(.5);}
 
 
+
+
+
+[data-name="rays"]{transition: .325s; transform-origin: center;}
+[data-name="moon"]{transition: .325s;transform-origin: center;}
+[data-name="sun"]{transition: .425s;transform-origin: center;}
+
+[data-theme="dark"] [data-name="rays"]{transform: scale(0) rotate(-90deg); opacity: 0;}
+[data-theme="dark"] [data-name="sun"]{r:8; transform: rotate(-90deg);}
+[data-theme="dark"] [data-name="moon"]{cx: 16;cy: 16;r: 6;}
+
+
+
+
+
+
 [data-dark],
 [data-theme="dark"]
 
@@ -54,6 +70,13 @@
   {
 
     [data-theme="auto"] [data-brightness="adaptive"]{filter: brightness(.5);}
+
+
+    [data-theme="auto"] [data-name="rays"]{transform: scale(0) rotate(-90deg); opacity: 0;}
+    [data-theme="auto"] [data-name="sun"]{r:8; transform: rotate(-90deg);}
+    [data-theme="auto"] [data-name="moon"]{cx: 16;cy: 16;r: 6;}
+
+
 
     [data-theme="auto"]
 
@@ -167,5 +190,6 @@ transition: background-color 5000s 0s, color 5000s 0s;
 [data-name="theme-item"].selected {margin:0 5px; border-radius: 5px;}
 [data-name="theme-item"].selected:first-child{margin-left:0px ;}
 [data-name="theme-item"].selected:last-child{margin-right:0px ;}
+
 
 

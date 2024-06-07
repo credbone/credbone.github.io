@@ -58,11 +58,6 @@ const Template: React.FC = () => {
            // data-elevation="2"
             data-width="auto"
           >
-            <group>
-              <Tooltip
-                content="Primary & Secondary Color Scheme"
-                placement="right"
-              >
                 <group>
                   <Ripple>
                     <group
@@ -80,8 +75,6 @@ const Template: React.FC = () => {
                     </group>
                   </Ripple>
                 </group>
-              </Tooltip>
-            </group>
           </Popover>
         </group>
 
