@@ -40,35 +40,35 @@ export const IconHome: React.FC<IconProps> = (props) => {
   );
 };
 
-export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
-  const id = useId();
-  return (
-    <Icon {...props}>
-       <mask id={`mask-${id}`}>
-        <rect x="0" y="0" width="100%" height="100%" fill="white" /> 
-        <circle cx="12" cy="12" r="4" fill="black" data-name="moon" />    
-      </mask>
-      <circle data-name="sun" cx="12" cy="12" r="6" mask={`url(#mask-${id})`} />
-      <g
-        fill="none"
-        stroke="currentcolor"
-        strokeLinecap="round"
-        strokeMiterlimit="10"
-        strokeWidth="2"
-        data-name="rays"
-      >
-        <line x1="12" y1="1" x2="12" y2="3" />
-        <line x1="12" y1="21" x2="12" y2="23" />
-        <line x1="1" y1="12" x2="3" y2="12" />
-        <line x1="21" y1="12" x2="23" y2="12" />
-        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6" />
-        <line x1="18.4" y1="18.4" x2="19.8" y2="19.8" />
-        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4" />
-        <line x1="18.4" y1="5.6" x2="19.8" y2="4.2" />
-      </g>
-    </Icon>
-  );
-};
+// export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
+//   const id = useId();
+//   return (
+//     <Icon {...props}>
+//        <mask id={`mask-${id}`}>
+//         <rect x="0" y="0" width="100%" height="100%" fill="white" /> 
+//         <circle cx="12" cy="12" r="4" fill="black" data-name="moon" />    
+//       </mask>
+//       <circle data-name="sun" cx="12" cy="12" r="6" mask={`url(#mask-${id})`} />
+//       <g
+//         fill="none"
+//         stroke="currentcolor"
+//         strokeLinecap="round"
+//         strokeMiterlimit="10"
+//         strokeWidth="2"
+//         data-name="rays"
+//       >
+//         <line x1="12" y1="1" x2="12" y2="3" />
+//         <line x1="12" y1="21" x2="12" y2="23" />
+//         <line x1="1" y1="12" x2="3" y2="12" />
+//         <line x1="21" y1="12" x2="23" y2="12" />
+//         <line x1="4.2" y1="4.2" x2="5.6" y2="5.6" />
+//         <line x1="18.4" y1="18.4" x2="19.8" y2="19.8" />
+//         <line x1="4.2" y1="19.8" x2="5.6" y2="18.4" />
+//         <line x1="18.4" y1="5.6" x2="19.8" y2="4.2" />
+//       </g>
+//     </Icon>
+//   );
+// };
 
 export const IconSun: React.FC<IconProps> = (props) => {
   return (

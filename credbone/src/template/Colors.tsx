@@ -466,7 +466,7 @@ const Colors: React.FC = () => {
           >
             {BaseColors.map((colors) => (
               <Popover
-                placement="over"
+
                 data-space="5"
                 data-elevation="2"
                 data-width="auto"

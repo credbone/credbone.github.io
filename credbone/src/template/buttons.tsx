@@ -110,22 +110,21 @@ const Buttons: React.FC = () => {
             <Button secondary text="Secondary Button" />
           </group>
           <group data-border="" data-space="20">
-            <Button accent text="Accent Button" icon="arrow_forward" />
+            <Button accent text="Accent Button" />
           </group>
           <group data-border="" data-space="20">
             <Button
               outline
               text="Outline Button"
               textFirst={false}
-              icon="search"
+             
             />
           </group>
           <group data-border="" data-space="20">
             <Button
               highlight
               text="Highlighted"
-              icon="folder"
-              textFirst={true}
+ 
             ></Button>
           </group>
           <group data-border="" data-space="20">
@@ -343,7 +342,7 @@ const Buttons: React.FC = () => {
             <Button
               secondary
               large
-              icon="drafts"
+            //  icon="drafts"
               text="Large Button"
               textFirst={false}
             />

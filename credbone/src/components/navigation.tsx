@@ -140,6 +140,9 @@ const LeftNavigation: React.FC = () => {
               >
                 {item.label}
               </text>
+              {item.vertical === "true" && (
+                <group data-width="auto"></group>
+              )}
             </group>
           </Ripple>
 </group>

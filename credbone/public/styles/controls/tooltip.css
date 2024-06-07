@@ -26,3 +26,11 @@ group.popover {
   z-index: 9998;
   max-width: calc(100% - 20px);
 }
+
+
+group.context-menu {
+  animation: tooltip 0.225s  backwards;
+  position: absolute;
+  z-index: 9997;
+  max-width: calc(100% - 20px);
+}

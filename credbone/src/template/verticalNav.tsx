@@ -7,7 +7,7 @@ import buildInfo from "../buildInfo.json";
 import ThemeToggle from "../components/themeToggle";
 import Popover from "../components/popover";
 //import ThemeIcon from "../components/ThemeIcon";
-import { IconAdaptiveTheme } from "../components/icon/credIcons";
+
 import ThemeIcon from "../components/ThemeIcon";
 
 // Define an interface for the context
@@ -134,7 +134,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           >
             <icon data-length="30">info</icon>
             <Tooltip content={buildInfo.buildDateTime}>
-           <group data-align="center" data-adaptive="open-state" data-gap="10" >
+           <group data-align="center" data-adaptive="open-state" data-gap="10"  data-wrap="no">
            <text data-ellipsis="" >
               Version
             </text>

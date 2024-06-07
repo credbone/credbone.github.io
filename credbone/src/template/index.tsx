@@ -71,7 +71,7 @@ const Template: React.FC = () => {
                       data-elevation="6"
                       data-interactive=""
                     >
-                      <icon data-position="center">colors</icon>
+                      <icon data-position="center">opacity</icon>
                     </group>
                   </Ripple>
                 </group>

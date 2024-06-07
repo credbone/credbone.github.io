@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialIcons from "./materialIcons";
 import Ripple from "../components/Ripple";
-import { IconAdaptiveTheme, IconDemo, IconHome, IconSearch, IconSun  } from "../components/icon/credIcons";
+import { IconDemo, IconHome, IconSearch, IconSun  } from "../components/icon/credIcons";
 
 
 const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -360,30 +360,7 @@ const Icons: React.FC = () => {
                 </group>
                 
 
-                <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
-                <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
-                >
-                  <icon>
-                  <IconAdaptiveTheme/>
-                  </icon>
-                    <text data-ellipsis="">Adaptive Theme</text>
-                    <text data-hidden="">theme moon sun dark light</text>
-                </group>
-                </group>
+
                 
                 <group
                 data-radius="10"
