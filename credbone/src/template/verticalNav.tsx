@@ -8,6 +8,7 @@ import ThemeToggle from "../components/themeToggle";
 import Popover from "../components/popover";
 //import ThemeIcon from "../components/ThemeIcon";
 import { IconAdaptiveTheme } from "../components/icon/credIcons";
+import ThemeIcon from "../components/ThemeIcon";
 
 // Define an interface for the context
 interface NavContextType {
@@ -107,7 +108,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             data-align="center"
             data-wrap="no"
             >
-              {isNavOpen ? "" : <icon data-length="30"><IconAdaptiveTheme size={20} /></icon>}
+              {isNavOpen ? "" : <ThemeIcon/>}
 
            
 
