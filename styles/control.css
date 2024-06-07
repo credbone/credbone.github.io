@@ -454,6 +454,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-min-height='400']{min-height:400px;}
 [data-min-height='fit']{min-height: 100%;}
 
+
+[data-space='0'] { padding:0px;}
 [data-space='5'] { padding:5px;}
 [data-space='7'] { padding:7px;}
 [data-space='8'] { padding:8px;}
@@ -556,14 +558,14 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 
-[data-interactive=""]:hover{ background-image: var(--over-color); }
+[data-interactive]:hover{ background-image: var(--over-color); }
 
 
 
 [data-interactive=""]:active text,
 [data-interactive=""]:active dot,
 [data-interactive=""]:active icon,
-[data-interactive=""]:active [data-type="interact"]
+[data-interactive]:active [data-type="interact"]
 
 {transform: translateY(1px);}
 
