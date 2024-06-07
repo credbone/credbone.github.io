@@ -66,7 +66,7 @@ const TooltipPopover: React.FC = () => {
                     >
                       Comparing with
                       <Tooltip content="Sample Tooltip">
-                        <text data-weight="700">Tooltip</text>
+                        <text data-weight="700"> Tooltip</text>
                       </Tooltip>
                       , besides information Popover card can also provide action
                       elements like links and buttons.
