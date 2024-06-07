@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface IconProps {
   size?: number;
@@ -41,13 +41,14 @@ export const IconHome: React.FC<IconProps> = (props) => {
 };
 
 export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
+  const id = useId();
   return (
     <Icon {...props}>
-       <mask id="mask">
+       <mask id={`mask-${id}`}>
         <rect x="0" y="0" width="100%" height="100%" fill="white" /> 
         <circle cx="12" cy="12" r="4" fill="black" data-name="moon" />    
       </mask>
-      <circle data-name="sun" cx="12" cy="12" r="6" mask="url(#mask)" />
+      <circle data-name="sun" cx="12" cy="12" r="6" mask={`url(#mask-${id})`} />
       <g
         fill="none"
         stroke="currentcolor"
