@@ -6,6 +6,9 @@ group, [data-type="group"] { display: flex; flex-wrap: wrap; width: 100%; positi
 group[data-type="grid"]{display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));}
 
 
+
+group[data-type="grid"][data-grid-template="fit"]{grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));} 
+
 group[data-type="grid"][data-grid-template="40"]{grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));} 
 group[data-type="grid"][data-grid-template="50"]{grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));} 
 
