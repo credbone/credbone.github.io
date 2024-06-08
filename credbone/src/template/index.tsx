@@ -22,6 +22,7 @@ import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import TooltipPopover from "./TooltipPopover";
+import Cards from "./Cards";
 
 const Template: React.FC = () => {
   return (
@@ -91,6 +92,7 @@ const Template: React.FC = () => {
             <Route path="Navigation" element={<Landing />} />
             <Route path="InputsAndForms" element={<InputsAndForms />} />
             <Route path="TooltipAndPopover" element={<TooltipPopover />} />
+            <Route path="Cards" element={<Cards />} />
           </Routes>
         </view>
       </view>
