@@ -117,32 +117,32 @@ html.mobile .snapcont.vertical.right > .snapscroll {-webkit-mask-image: linear-g
 html.mobile .snapcont.vertical.left.right > .snapscroll {-webkit-mask-image:linear-gradient(to bottom, transparent 0%,#000 var(--mask-size),#000 calc(100% - var(--mask-size)),transparent 100%)}
 
 
-.snapcont .button.slider {position: absolute; z-index: 9;    transform-origin: center center; transition-delay: 0s; margin: 0; transition: .225s; transition-property: width, visibility;  }
+.snapcont .slide-button {position: absolute; z-index: 9;    transform-origin: center center; transition-delay: 0s; margin: 0; transition: .225s; transition-property: width, visibility;  }
 
-.snapcont.horizontal .button.slider {top: 50%; transform: translateX(0) translateY(-50%); }
-.snapcont.horizontal .button.slider.prev { left: var(--scroll-button-position) }
-.snapcont.horizontal .button.slider.next { right: var(--scroll-button-position) }
+.snapcont.horizontal .slide-button {top: 50%; transform: translateX(0) translateY(-50%); }
+.snapcont.horizontal .slide-button.prev { left: var(--scroll-button-position) }
+.snapcont.horizontal .slide-button.next { right: var(--scroll-button-position) }
 
-.snapcont.vertical .button.slider {left: 50%; transform: translateX(-50%) translateY(0); }
-.snapcont.vertical .button.slider.prev { top: var(--scroll-button-position) }
-.snapcont.vertical .button.slider.next { bottom: var(--scroll-button-position) }
+.snapcont.vertical .slide-button {left: 50%; transform: translateX(-50%) translateY(0); }
+.snapcont.vertical .slide-button.prev { top: var(--scroll-button-position) }
+.snapcont.vertical .slide-button.next { bottom: var(--scroll-button-position) }
 
 
 [data-snap-button="compact"] {--scroll-button-position:5px;}
 [data-snap-button="15"] {--scroll-button-position:15px;}
 
 
-.snapcont .button.slider:not(.show)
+.snapcont .slide-button:not(.show)
 
 ,
-html.mobile .snapcont .button.slider
+html.mobile .snapcont .slide-button
 {visibility: hidden; 
 
     width: 0px;
 
 } 
 
-.snapcont .button.slider:not(.show) icon {opacity: 0;}
+.snapcont .slide-button:not(.show) icon {opacity: 0;}
 
 
 /**/

@@ -2,20 +2,53 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import classNames from "classnames";
 import Button from "./button";
 
+// ButtonTemplate component
+const ButtonTemplate: React.FC<{
+  vertical: boolean;
+  direction: "prev" | "next";
+  show: boolean;
+  onClick: () => void;
+}> = ({ vertical, direction, show, onClick }) => {
+  const icon = vertical
+    ? direction === "prev"
+      ? "expand_less"
+      : "expand_more"
+    : direction === "prev"
+    ? "chevron_left"
+    : "chevron_right";
+
+  return (
+    <Button
+      data-contain="visible"
+      micro
+      primary
+      className={classNames("slide-button", direction, { show })}
+      icon={icon}
+      onClick={onClick}
+    />
+  );
+};
+
 const Scroll: React.FC<{
-  children: React.ReactChild; //NOSONAR
+  children: React.ReactNode; // Updated from React.ReactChild to React.ReactNode
   className?: string;
   vertical?: boolean;
 }> = ({ children, className, vertical }) => {
-  const [{ showLB, showRB }, setShowButtons] = useState({
+  const [{ showLB, showRB }, setShowButtons] = useState<{
+    showB: boolean;
+    showLB: boolean;
+    showRB: boolean;
+  }>({
     showB: false,
     showLB: false,
     showRB: false,
   });
+
   const [element, setElement] = useState<HTMLElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const horizontal = !vertical;
+  
   useEffect(() => {
     let pos = { x: 0, y: 0, left: 0, top: 0 };
     const mouseDownHandler = function (e: MouseEvent) {
@@ -36,13 +69,11 @@ const Scroll: React.FC<{
         element!.addEventListener("mousemove", mouseMoveHandler);
         document.addEventListener("mouseup", mouseUpHandler);
       }
-      // How far the mouse has been moved
       if (vertical) {
         const dy = e.clientY - pos.y;
         element!.scrollTop = pos.top - dy;
       } else {
         const dx = e.clientX - pos.x;
-        // Scroll the element
         element!.scrollLeft = pos.left - dx;
       }
     };
@@ -169,20 +200,16 @@ const Scroll: React.FC<{
       >
         {children}
       </div>
-      <Button
-        data-contain="visible"
-        micro
-        primary
-        className={classNames("slider", "prev", { show: showLB })}
-        icon={vertical ? "expand_less" : "chevron_left"}
+      <ButtonTemplate
+        vertical={vertical ?? false}
+        direction="prev"
+        show={showLB}
         onClick={() => scrollHandler(false)}
       />
-      <Button
-        data-contain="visible"
-        micro
-        primary
-        className={classNames("slider", "next", { show: showRB })}
-        icon={vertical ? "expand_more" : "chevron_right"}
+      <ButtonTemplate
+        vertical={vertical ?? false}
+        direction="next"
+        show={showRB}
         onClick={() => scrollHandler(true)}
       />
     </div>

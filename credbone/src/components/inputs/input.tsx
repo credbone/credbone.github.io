@@ -264,7 +264,7 @@ export const Password: React.FC<InputProps> = React.forwardRef<
           <separator data-vertical="" data-height="input"></separator>
           <Tooltip
             
-            content={show ? ("HidePassword") : ("ShowPassword")}
+            content={show ? ("Hide Password") : ("Show Password")}
           >
             <div //NOSONAR
               className="button"

@@ -191,7 +191,7 @@ const Colors: React.FC = () => {
               </text>
               {/* <Popover placement="right" data-space="0" data-length="60" data-height='360' content={<ThemePicker/>}>
 <group data-width="auto" data-interactive="" data-cursor="pointer">
-
+test
 </group>
               </Popover> */}
             </group>
