@@ -558,7 +558,9 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 
-[data-interactive]:hover{ background-image: var(--over-color); }
+[data-interactive]:hover,
+[data-interact="popover"][data-popover-expand="true"]
+{ background-image: var(--over-color); }
 
 
 
@@ -568,6 +570,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-interactive]:active [data-type="interact"]
 
 {transform: translateY(1px);}
+
 
 /* [data-interactive=""] icon{ transition: .225s;}
 [data-interactive=""].open.rotate icon{transform: rotate(180deg);} */
