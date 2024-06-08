@@ -189,6 +189,7 @@ const Popover: React.FC<PopoverProps> = ({
             data-radius="10"
             data-index="3"
             data-space="15"
+            data-contain=""
             ref={popoverRef}
             className={`popover ${placement}`}
             style={popoverPosition}

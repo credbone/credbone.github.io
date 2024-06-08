@@ -199,6 +199,8 @@ text[data-width="auto"]{width: initial;}
 
 [data-length]{flex-shrink: 0; max-width: 100%;}
 
+[data-length="auto"] {width:initial}
+
 [data-length='5'] { width: 5px; }
 [data-length='10'] { width: 10px; }
 [data-length='15'] { width: 15px; }

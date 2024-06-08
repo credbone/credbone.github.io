@@ -1,8 +1,8 @@
 import React from "react";
 import Scroll from "../components/scroll";
 
-import sampleImage8 from "../styles/images/samples/sample_8.jpg";
-import sampleImage9 from "../styles/images/samples/res_16.jpg";
+
+import sampleImage9 from "../styles/images/samples/res_32.jpg";
 import sampleImage14 from "../styles/images/samples/sample_14.mp4";
 
 
@@ -63,7 +63,7 @@ const ContentSlide: React.FC = () => {
               data-min-length="240"
              
               data-color="main-text"
-              data-background="main"
+              data-background="main-dark"
               
             >
               <picture data-position="absolute" data-name="color-demo" >
