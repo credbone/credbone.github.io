@@ -92,7 +92,7 @@ const Template: React.FC = () => {
             <Route path="Navigation" element={<Landing />} />
             <Route path="InputsAndForms" element={<InputsAndForms />} />
             <Route path="TooltipAndPopover" element={<TooltipPopover />} />
-            <Route path="Cards" element={<Cards />} />
+            <Route path="CardsAndList" element={<Cards />} />
           </Routes>
         </view>
       </view>
