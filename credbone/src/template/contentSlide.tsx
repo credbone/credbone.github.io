@@ -4,6 +4,8 @@ import Scroll from "../components/scroll";
 
 import sampleImage9 from "../styles/images/samples/res_32.jpg";
 import sampleImage14 from "../styles/images/samples/sample_14.mp4";
+import Count from "../components/Coutner";
+import { IconShare } from "../components/icon/credIcons";
 
 
 const ContentSlide: React.FC = () => {
@@ -48,10 +50,11 @@ const ContentSlide: React.FC = () => {
               data-min-length="240"
               data-length="240"
               data-dark=""
+
             >
-              <icon data-position="center" data-icon-size="large">
-                explore
-              </icon>
+          <group data-position="center" data-width="auto">
+          <IconShare size={90}/>
+          </group>
             </group>
 
             <group
@@ -179,7 +182,7 @@ const ContentSlide: React.FC = () => {
              // data-dark=""
             >
               <text data-weight="700" data-text-size="72" data-wrap="wrap">
-                128
+              <Count from={0} to={128} duration={2500} />
               </text>
               <text data-wrap="wrap" data-line="1.5">
                 Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat

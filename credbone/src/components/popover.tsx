@@ -183,6 +183,7 @@ const Popover: React.FC<PopoverProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
+          data-length="auto"
             data-position="absolute"
             data-background="context"
             data-elevation="1"

@@ -570,13 +570,14 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-interactive=""]:active text,
 [data-interactive=""]:active dot,
 [data-interactive=""]:active icon,
-[data-interactive]:active [data-type="interact"]
+[data-interactive]:active [data-type="interact"],
+[data-interactive]:active [data-interact=""],
+[data-interactive]:active [data-name="cred-icon"]
 
 {transform: translateY(1px);}
 
 
-/* [data-interactive=""] icon{ transition: .225s;}
-[data-interactive=""].open.rotate icon{transform: rotate(180deg);} */
+
 
 
 [data-interactive="select"]{}

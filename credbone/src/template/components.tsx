@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
-import { IconHome, IconSearch } from "../components/icon/credIcons";
+import { IconHome, IconSearch, IconStar } from "../components/icon/credIcons";
 import Scroll from "../components/scroll";
 
 import sampleImage from "../styles/images/samples/res_16.jpg";
 import sampleImage_2 from "../styles/images/samples/res_34.jpg";
+import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
 
 const Components: React.FC = () => {
   return (
@@ -86,7 +87,7 @@ const Components: React.FC = () => {
 
               <group
                 data-radius="15"
-                data-elevation="1"
+               // data-elevation="1"
                 data-background="context"
                 data-length="350"
                 data-height="300"
@@ -177,6 +178,46 @@ const Components: React.FC = () => {
                       </icon>
                     </group>
                   </Ripple>
+                </Link>
+              </group>
+
+              <group
+                data-radius="15"
+               // data-elevation="1"
+                data-background="context"
+                data-length="350"
+                data-height="300"
+                data-contain=""
+                data-color="white"
+              >
+                <picture data-position="absolute" data-brightness="adaptive">
+                  <img src={sampleImage_3} alt="" />
+                </picture>
+                <group data-direction="column" data-gap="15" data-space="30">
+                  <text
+                    data-text-size="xx-large"
+                    data-weight="700"
+                    data-wrap="wrap"
+                  >
+                    Cards
+                  </text>
+                  <text data-wrap="wrap" data-line="1.5" data-max-length="200">
+                    Beautifully crafted and carefully designed icons.
+                  </text>
+                </group>
+                <Link
+                  data-interactive=""
+                  to="/Home/CardsAndList"
+                  Data-type="group"
+                  data-position="bottom"
+                  data-space="30"
+                  data-width="auto"
+                  data-radius-top-right="15"
+                  data-backdrop="10"
+                  data-drag="none"
+                >
+                  <group data-type="interact"> <IconStar size={60} /></group>
+                 
                 </Link>
               </group>
 

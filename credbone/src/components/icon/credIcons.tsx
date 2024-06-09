@@ -12,7 +12,7 @@ const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, 
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      //data-name="cred-icon"
+      data-name="cred-icon"
     >
       {children}
     </svg>
@@ -36,6 +36,41 @@ export const IconHome: React.FC<IconProps> = (props) => {
       <line x1="12" y1="5" x2="20" y2="12" />
       <line x1="4" y1="12" x2="12" y2="5"/>
       </g>
+    </Icon>
+  );
+};
+
+export const IconShare: React.FC<IconProps> = (props) => {
+  return (
+    <Icon {...props}>
+    <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2">
+      <circle cx="7" cy="12" r="3" />
+      <circle cx="17" cy="18" r="3" />
+      <line x1="9.57" y1="13.54" x2="14.43" y2="16.46"/>
+      <circle cx="17" cy="6" r="3"/>
+      <line x1="9.57" y1="10.46" x2="14.43" y2="7.54"/>
+    </g>
+    </Icon>
+  );
+};
+
+export const IconHeart: React.FC<IconProps> = (props) => {
+  return (
+    <Icon {...props}>
+  <g stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill="none">
+    <path d="m5.37,12.3l6.73,6.67,6.73-6.67c1.69-1.68,1.69-4.39,0-6.07-1.69-1.68-4.43-1.68-6.12,0l-.61.61-.61-.61c-1.69-1.68-4.43-1.68-6.12,0s-1.69,4.39,0,6.07Z"/>
+  </g>
+    </Icon>
+  );
+};
+
+export const IconStar: React.FC<IconProps> = (props) => {
+  return (
+    <Icon {...props}>
+  <g stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill="none">
+  <path d="m11.09,5.56c.36-.77,1.45-.77,1.81,0l1.66,3.54,3.88.49c.84.11,1.18,1.14.56,1.72l-2.85,2.68.73,3.84c.16.83-.72,1.47-1.46,1.06l-3.43-1.89-3.43,1.89c-.74.41-1.62-.23-1.46-1.06l.73-3.84-2.85-2.68c-.62-.58-.28-1.62.56-1.72l3.88-.49,1.66-3.54Z"/>
+
+  </g>
     </Icon>
   );
 };

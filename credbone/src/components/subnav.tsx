@@ -10,7 +10,7 @@ const navItems = [
   { to: "Buttons", icon: "star", label: "Buttons" },
   { to: "CheckboxSwitchers", icon: "star", label: "Checkbox & Switchers" },
   { to: "InputsAndForms", icon: "star", label: "Input & Forms" },
-  { to: "CardsAndList", icon: "star", label: "Cards & Lists" },
+  { to: "CardsAndList", icon: "star", label: "Cards & List" },
   { to: "Layout", icon: "star", label: "Layout & Switches" },
   { to: "Navigation", icon: "star", label: "Navigation & Tabs" },
   { to: "TooltipAndPopover", icon: "star", label: "Tooltip & Popover" },

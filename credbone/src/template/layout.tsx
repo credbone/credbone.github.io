@@ -118,7 +118,7 @@ const Layout: React.FC = () => {
         </view>
 
         <Switchable
-          closeOnOutsideClick={true}
+       //   closeOnOutsideClick={true}
           //     data-radius="10"
           data-type="adaptive"
           data-placement="right"
