@@ -16,7 +16,7 @@ import list_res_10 from "../styles/images/samples/list_res/res-10.jpg";
 
 
 import Ripple from "../components/Ripple";
-import { IconHeart, IconShare } from "../components/icon/credIcons";
+import { IconHeart, IconMoreHoriz, IconShare } from "../components/icon/credIcons";
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
@@ -60,6 +60,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
       data-width="auto"
       data-index="1"
       data-align="center"
+      data-gap="5"
     >
       <Tooltip content="Share">
         <group
@@ -67,7 +68,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-space="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="2"
+          data-animation-duration="125"
           data-interactive=""
           data-radius="10"
           data-align="center"
@@ -77,13 +78,18 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           <IconShare />
         </group>
       </Tooltip>
-      <separator data-vertical="" data-height="20"></separator>
+      <dot
+         data-animation-name="appear-bottom"
+         data-fill-mode="backwards"
+         data-animation-duration="15"
+      
+      ></dot>
       <Tooltip content={isFavorite ? 'Remove' : 'Like'}>
         <group
           data-width="auto"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="15"
+          data-animation-duration="2"
           data-align="center"
           data-gap="10"
           data-space="10"
@@ -91,8 +97,10 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-radius="10"
           data-cursor="pointer"
           onClick={handleFavClick}
+          data-wrap="no"
         >
-          <IconHeart fill={isFavorite} />
+     <IconHeart fill={isFavorite} />
+          
           <text data-weight="700">
             <Count from={0} to={count} duration={1500} />
           </text>
@@ -216,9 +224,9 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 <group data-ratio="1:1"  data-length="60"  data-radius="15" data-contain="">
         <picture data-brightness="adaptive"> <img src={item.image} alt={item.description} /> </picture>
       </group>
-<Popover content={<ContentToolbar count={item.count} />} data-space="5" data-radius="15">
+<Popover  content={<ContentToolbar count={item.count} />} data-space="5" data-radius="15">
 <group data-width="auto" data-position="right">
-        <icon>more_vert</icon>
+      <IconMoreHoriz/>
       </group>
 </Popover>
 </group>

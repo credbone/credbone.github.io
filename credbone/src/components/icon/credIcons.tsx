@@ -56,6 +56,33 @@ export const IconShare: React.FC<IconProps> = (props) => {
   );
 };
 
+
+export const IconMore: React.FC<IconProps> = (props) => {
+  return (
+    <Icon {...props}>
+    <g fill="currentcolor">
+    <circle cx="18" cy="12" r="1.5"/>
+      <circle cx="12" cy="12" r="1.5"/>
+      <circle cx="6" cy="12" r="1.5"/>
+    </g>
+    </Icon>
+  );
+};
+
+
+export const IconMoreHoriz: React.FC<IconProps> = (props) => {
+  return (
+    <Icon {...props}>
+    <g fill="currentcolor">
+    <circle cx="12" cy="6" r="1.5"/>
+      <circle cx="12" cy="12" r="1.5"/>
+      <circle cx="12" cy="18" r="1.5"/>
+    </g>
+    </Icon>
+  );
+};
+
+
 export const IconHeart: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>

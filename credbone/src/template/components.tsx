@@ -48,199 +48,225 @@ const Components: React.FC = () => {
           data-width="auto"
         >
           <Scroll>
-            <group data-wrap="no" data-space="30" data-gap="15">
-              <group
-                data-radius="15"
-                data-type="group"
-                data-ink-color="main-dark"
-                data-contain=""
-                data-background="main"
-                data-color="main-text"
-                data-length="300"
-                data-height="300"
-              >
+            <group  >
+              <group data-width="auto" data-wrap="no" data-max-length="auto" data-space="30" data-gap="15">
                 <group
-                  data-index="1"
-                  data-direction="column"
-                  data-gap="15"
-                  data-space="30"
-                  data-align="start"
+                  data-radius="15"
+                  data-type="group"
+                  data-ink-color="main-dark"
+                  data-contain=""
+                  data-background="main"
+                  data-color="main-text"
+                  data-length="300"
+                  data-height="300"
                 >
-                  <text
-                    data-text-size="xx-large"
-                    data-weight="700"
-                    data-wrap="wrap"
+                  <group
+                    data-index="1"
+                    data-direction="column"
+                    data-gap="15"
+                    data-space="30"
+                    data-align="start"
                   >
-                    Color System
-                  </text>
-                  <text data-wrap="wrap" data-line="1.5">
-                    Flexible theme customization, Color system can assist in
-                    crafting a color palette...
-                  </text>
+                    <text
+                      data-text-size="xx-large"
+                      data-weight="700"
+                      data-wrap="wrap"
+                    >
+                      Color System
+                    </text>
+                    <text data-wrap="wrap" data-line="1.5">
+                      Flexible theme customization, Color system can assist in
+                      crafting a color palette...
+                    </text>
 
-                  {/* <Link data-type="group"  data-interactive=""  data-drag="none"  to="../Colors" data-position="bottom" >
+                    {/* <Link data-type="group"  data-interactive=""  data-drag="none"  to="../Colors" data-position="bottom" >
                <group  data-index="1"  data-background="main-text" data-width="auto" data-space="10" data-space-horizontal="20" data-radius="5" data-color="main" data-weight="700"> <text>More ...</text></group>
                
                </Link> */}
+                  </group>
                 </group>
-              </group>
-
-              <group
-                data-radius="15"
-               // data-elevation="1"
-                data-background="context"
-                data-length="350"
-                data-height="300"
-                data-contain=""
-              >
-                <picture data-position="absolute" data-brightness="adaptive">
-                  <img src={sampleImage_2} alt="" />
-                </picture>
-                <group data-direction="column" data-gap="15" data-space="30">
-                  <text
-                    data-text-size="xx-large"
-                    data-weight="700"
-                    data-wrap="wrap"
-                  >
-                    Icons
-                  </text>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="200">
-                    Beautifully crafted and carefully designed icons.
-                  </text>
-                </group>
-                <Link
-                  data-interactive=""
-                  to="/Home/Icons"
-                  Data-type="group"
-                  data-position="bottom"
-                  data-space="30"
-                  data-width="auto"
-                  data-radius-top-right="15"
-                  data-backdrop="10"
-                  data-drag="none"
-                >
-                  <group data-type="interact"> <IconHome size={60} /></group>
-                 
-                </Link>
-              </group>
-
-              <group
-                data-radius="15"
-                data-background="main-dark"
-                data-color="white"
-                data-length="240"
-                data-height="300"
-                data-contain=""
-              >
-                <picture data-position="absolute" data-name="color-demo">
-                  <img src={sampleImage} alt="" />
-                </picture>
 
                 <group
-                  data-index="1"
-                  data-direction="column"
-                  data-gap="15"
-                  data-space="30"
+                  data-radius="15"
+                  // data-elevation="1"
+                  data-background="context"
+                  data-length="350"
+                  data-height="300"
+                  data-contain=""
                 >
-                  <text
-                    data-text-size="xx-large"
-                    data-weight="700"
-                    data-wrap="wrap"
-                  >
-                    Buttons
-                  </text>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="200">
-                    Allow users to take actions, and make choices, with a single
-                    tap.
-                  </text>
-                </group>
-
-                <Link data-type="group" to="/Home/Buttons" data-position="bottom" data-drag="none">
-                  <Ripple>
-                    <group
-                      data-radius-top-right="15"
-                      data-wrap="no"
-                      data-width="auto"
-                      data-ink-color="secondary-dark"
-                      data-align="center"
-                      data-cursor="pointer"
-                      data-contain=""
-                      data-background="secondary"
-                      data-color="secondary-text"
-                      data-interactive=""
-                      data-space-horizontal="30"
-                      //data-radius="15"
-                      data-height="120"
-                      data-gap="20"
+                  <picture data-position="absolute" data-brightness="adaptive">
+                    <img src={sampleImage_2} alt="" />
+                  </picture>
+                  <group data-direction="column" data-gap="15" data-space="30">
+                    <text
+                      data-text-size="xx-large"
+                      data-weight="700"
+                      data-wrap="wrap"
                     >
-                      <icon data-index="1" data-icon-size="large">
-                        arrow_outward
-                      </icon>
+                      Icons
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-max-length="200"
+                    >
+                      Beautifully crafted and carefully designed icons.
+                    </text>
+                  </group>
+                  <Link
+                    data-interactive=""
+                    to="/Home/Icons"
+                    Data-type="group"
+                    data-position="bottom"
+                    data-space="30"
+                    data-width="auto"
+                    data-radius-top-right="15"
+                    data-backdrop="10"
+                    data-drag="none"
+                  >
+                    <group data-type="interact">
+                      {" "}
+                      <IconHome size={60} />
                     </group>
-                  </Ripple>
-                </Link>
-              </group>
-
-              <group
-                data-radius="15"
-               // data-elevation="1"
-                data-background="context"
-                data-length="350"
-                data-height="300"
-                data-contain=""
-                data-color="white"
-              >
-                <picture data-position="absolute" data-brightness="adaptive">
-                  <img src={sampleImage_3} alt="" />
-                </picture>
-                <group data-direction="column" data-gap="15" data-space="30">
-                  <text
-                    data-text-size="xx-large"
-                    data-weight="700"
-                    data-wrap="wrap"
-                  >
-                    Cards
-                  </text>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="200">
-                    Beautifully crafted and carefully designed icons.
-                  </text>
+                  </Link>
                 </group>
-                <Link
-                  data-interactive=""
-                  to="/Home/CardsAndList"
-                  Data-type="group"
-                  data-position="bottom"
-                  data-space="30"
-                  data-width="auto"
-                  data-radius-top-right="15"
-                  data-backdrop="10"
-                  data-drag="none"
+
+                <group
+                  data-radius="15"
+                  data-background="main-dark"
+                  data-color="white"
+                  data-length="240"
+                  data-height="300"
+                  data-contain=""
                 >
-                  <group data-type="interact"> <IconStar size={60} /></group>
-                 
-                </Link>
-              </group>
+                  <picture data-position="absolute" data-name="color-demo">
+                    <img src={sampleImage} alt="" />
+                  </picture>
 
-              <group
-                data-radius="15"
-                data-space="30"
-                data-background="main"
-                data-color="main-text"
-                data-length="400"
-                data-height="300"
-              >
-
-                <group data-direction="column" data-gap="15">
-                  <text
-                    data-text-size="xx-large"
-                    data-weight="700"
-                    data-wrap="wrap"
+                  <group
+                    data-index="1"
+                    data-direction="column"
+                    data-gap="15"
+                    data-space="30"
                   >
-                    Checkbox & Switches
-                  </text>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="200">
-                    Beautifully crafted and carefully designed icons.
-                  </text>
+                    <text
+                      data-text-size="xx-large"
+                      data-weight="700"
+                      data-wrap="wrap"
+                    >
+                      Buttons
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-max-length="200"
+                    >
+                      Allow users to take actions, and make choices, with a
+                      single tap.
+                    </text>
+                  </group>
+
+                  <Link
+                    data-type="group"
+                    to="/Home/Buttons"
+                    data-position="bottom"
+                    data-drag="none"
+                  >
+                    <Ripple>
+                      <group
+                        data-radius-top-right="15"
+                        data-wrap="no"
+                        data-width="auto"
+                        data-ink-color="secondary-dark"
+                        data-align="center"
+                        data-cursor="pointer"
+                        data-contain=""
+                        data-background="secondary"
+                        data-color="secondary-text"
+                        data-interactive=""
+                        data-space-horizontal="30"
+                        //data-radius="15"
+                        data-height="120"
+                        data-gap="20"
+                      >
+                        <icon data-index="1" data-icon-size="large">
+                          arrow_outward
+                        </icon>
+                      </group>
+                    </Ripple>
+                  </Link>
+                </group>
+
+                <group
+                  data-radius="15"
+                  // data-elevation="1"
+                  data-background="context"
+                  data-length="350"
+                  data-height="300"
+                  data-contain=""
+                  data-color="white"
+                >
+                  <picture data-position="absolute" data-brightness="adaptive">
+                    <img src={sampleImage_3} alt="" />
+                  </picture>
+                  <group data-direction="column" data-gap="15" data-space="30">
+                    <text
+                      data-text-size="xx-large"
+                      data-weight="700"
+                      data-wrap="wrap"
+                    >
+                      Cards
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-max-length="200"
+                    >
+                      Beautifully crafted and carefully designed icons.
+                    </text>
+                  </group>
+                  <Link
+                    data-interactive=""
+                    to="/Home/CardsAndList"
+                    Data-type="group"
+                    data-position="bottom"
+                    data-space="30"
+                    data-width="auto"
+                    data-radius-top-right="15"
+                    data-backdrop="10"
+                    data-drag="none"
+                  >
+                    <group data-type="interact">
+                      {" "}
+                      <IconStar size={60} />
+                    </group>
+                  </Link>
+                </group>
+
+                <group
+                  data-radius="15"
+                  data-space="30"
+                  data-background="main"
+                  data-color="main-text"
+                  data-length="400"
+                  data-height="300"
+                >
+                  <group data-direction="column" data-gap="15">
+                    <text
+                      data-text-size="xx-large"
+                      data-weight="700"
+                      data-wrap="wrap"
+                    >
+                      Checkbox & Switches
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-max-length="200"
+                    >
+                      Beautifully crafted and carefully designed icons.
+                    </text>
+                  </group>
                 </group>
               </group>
             </group>
