@@ -84,7 +84,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
          data-animation-duration="15"
       
       ></dot>
-      <Tooltip content={isFavorite ? 'Remove' : 'Like'}>
+      <Tooltip content="Like">
         <group
           data-width="auto"
           data-animation-name="appear-bottom"
