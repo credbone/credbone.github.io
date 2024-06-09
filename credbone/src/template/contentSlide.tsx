@@ -2,8 +2,8 @@ import React from "react";
 import Scroll from "../components/scroll";
 
 
-import sampleImage9 from "../styles/images/samples/res_32.jpg";
-import sampleImage14 from "../styles/images/samples/sample_14.mp4";
+import sampleImage9 from "../styles/images/samples/list_res/res-02.jpg";
+
 import Count from "../components/Coutner";
 import { IconShare } from "../components/icon/credIcons";
 
@@ -65,11 +65,11 @@ const ContentSlide: React.FC = () => {
               data-length="410"
               data-min-length="240"
              
-              data-color="main-text"
+              data-color="white"
               data-background="main-dark"
               
             >
-              <picture data-position="absolute" data-name="color-demo" >
+              <picture data-position="absolute"  >
                 <img src={sampleImage9} alt="" />
               </picture>
               <group
@@ -80,7 +80,7 @@ const ContentSlide: React.FC = () => {
                 data-gap="20"
               >
                 <text data-weight="700" data-text-size="72" data-wrap="wrap">
-                  64
+                <Count from={0} to={64} duration={1500}></Count>
                 </text>
                 <text data-wrap="wrap" data-line="1.5">
                   Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat
@@ -115,12 +115,13 @@ const ContentSlide: React.FC = () => {
             <group
               data-height="300"
               data-contain=""
-              data-background="highlight"
+              data-background="main"
+              data-color="main-text"
               data-radius="15"
               data-min-length="240"
               data-length="240"
             >
-              <video
+              {/* <video
               
                 data-position="absolute"
                 src={sampleImage14}
@@ -131,7 +132,7 @@ const ContentSlide: React.FC = () => {
                 data-object-fit="cover"
                 data-height="fit"
                 data-max-length="fit"
-              ></video>
+              ></video> */}
 
               <group
                 data-radius="15"
@@ -182,7 +183,7 @@ const ContentSlide: React.FC = () => {
              // data-dark=""
             >
               <text data-weight="700" data-text-size="72" data-wrap="wrap">
-              <Count from={0} to={128} duration={2500} />
+             128
               </text>
               <text data-wrap="wrap" data-line="1.5">
                 Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat

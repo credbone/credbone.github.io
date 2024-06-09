@@ -4,6 +4,7 @@ import sampleImage from "../styles/images/samples/res_32.jpg";
 import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";
+import Count from "../components/Coutner";
 
 
 
@@ -111,6 +112,8 @@ const SampleData = (
 const SampleTooltipData = (
 
     <group data-direction="column" data-space="20" data-gap="15">
+      <text data-weight="700"
+        data-text-size="xxx-large"> <Count from={0} duration={1500} to={37}/> </text>
       <text
         data-weight="700"
         data-text-size="large"
@@ -122,8 +125,7 @@ const SampleTooltipData = (
       </text>
       <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
         Tooltips display informative text when users hover over, focus on, or
-        tap an element, while a popover is a floating card that appears when
-        users click or hover over an element.
+        tap an element.
       </text>
     </group>
 
