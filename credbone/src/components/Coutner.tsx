@@ -33,7 +33,7 @@ const Count: React.FC<CountProps> = ({ from, to, duration }) => {
     requestAnimationFrame(updateCount);
   }, [from, to, duration]);
 
-  return <div>{count}</div>;
+  return <>{count}</>;
 };
 
 export default Count;

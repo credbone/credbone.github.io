@@ -2,15 +2,17 @@ import React, { useId } from 'react';
 
 interface IconProps {
   size?: number;
+  fill?: boolean;
 }
 
-const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, children }) => {
+const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, fill = false, children }) => {
   return (
     <svg
       data-shrink="no"
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
+      fill={fill ? "currentColor" : "none"}
       viewBox="0 0 24 24"
       data-name="cred-icon"
     >
@@ -54,20 +56,20 @@ export const IconShare: React.FC<IconProps> = (props) => {
   );
 };
 
-export const IconHeart: React.FC<IconProps> = (props) => {
+export const IconHeart: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
-    <Icon {...props}>
-  <g stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill="none">
-    <path d="m5.37,12.3l6.73,6.67,6.73-6.67c1.69-1.68,1.69-4.39,0-6.07-1.69-1.68-4.43-1.68-6.12,0l-.61.61-.61-.61c-1.69-1.68-4.43-1.68-6.12,0s-1.69,4.39,0,6.07Z"/>
-  </g>
+    <Icon fill={fill} {...restProps}>
+      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+        <path d="m5.37,12.3l6.73,6.67,6.73-6.67c1.69-1.68,1.69-4.39,0-6.07-1.69-1.68-4.43-1.68-6.12,0l-.61.61-.61-.61c-1.69-1.68-4.43-1.68-6.12,0s-1.69,4.39,0,6.07Z"  />
+      </g>
     </Icon>
   );
 };
 
-export const IconStar: React.FC<IconProps> = (props) => {
+export const IconStar: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
-    <Icon {...props}>
-  <g stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill="none">
+    <Icon fill={fill} {...restProps}>
+      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
   <path d="m11.09,5.56c.36-.77,1.45-.77,1.81,0l1.66,3.54,3.88.49c.84.11,1.18,1.14.56,1.72l-2.85,2.68.73,3.84c.16.83-.72,1.47-1.46,1.06l-3.43-1.89-3.43,1.89c-.74.41-1.62-.23-1.46-1.06l.73-3.84-2.85-2.68c-.62-.58-.28-1.62.56-1.72l3.88-.49,1.66-3.54Z"/>
 
   </g>

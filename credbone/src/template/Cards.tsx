@@ -41,48 +41,66 @@ interface ContentToolbarProps {
   count: number;
 }
 
-const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => (
-  <group 
-  onClick={(e: { stopPropagation: () => any; }) => e.stopPropagation()} 
-  onMouseDown={(e: { stopPropagation: () => any; }) => e.stopPropagation()}
-  
-  data-wrap="no" data-jusitify="start"   data-width="auto" data-index="1" data-align="center">
 
-<Tooltip content="Share">
-<group data-width="auto" data-space="10"
-  data-animation-name="appear-bottom"
-  data-fill-mode="backwards"
-  data-animation-duration="2"
-  data-interactive=""
-  data-radius="10"
-  data-align="center"
-data-gap="10"
-data-cursor="pointer"
->
-    <IconShare/>
 
-  </group>
-</Tooltip>
-<separator data-vertical="" data-height="20"></separator>
-<Tooltip content="Like">
-<group data-width="auto"  
 
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="15"
-data-align="center"
-data-gap="10"
-data-space="10"
-data-interactive=""
-data-radius="10"
-data-cursor="pointer"
->
-    <IconHeart/>
-    <text data-weight="700"><Count from={0} to={count} duration={1500} /></text>
-  </group>
-</Tooltip>
-</group>
-);
+const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
+  const [isFavorite, setIsFavorite] = React.useState(false); // for demo
+
+  const handleFavClick = () => { // for demo
+    setIsFavorite(!isFavorite);  
+  };
+
+  return (
+    <group
+      onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
+      onMouseDown={(e: { stopPropagation: () => any }) => e.stopPropagation()}
+      data-wrap="no"
+      data-jusitify="start"
+      data-width="auto"
+      data-index="1"
+      data-align="center"
+    >
+      <Tooltip content="Share">
+        <group
+          data-width="auto"
+          data-space="10"
+          data-animation-name="appear-bottom"
+          data-fill-mode="backwards"
+          data-animation-duration="2"
+          data-interactive=""
+          data-radius="10"
+          data-align="center"
+          data-gap="10"
+          data-cursor="pointer"
+        >
+          <IconShare />
+        </group>
+      </Tooltip>
+      <separator data-vertical="" data-height="20"></separator>
+      <Tooltip content={isFavorite ? 'Remove' : 'Like'}>
+        <group
+          data-width="auto"
+          data-animation-name="appear-bottom"
+          data-fill-mode="backwards"
+          data-animation-duration="15"
+          data-align="center"
+          data-gap="10"
+          data-space="10"
+          data-interactive=""
+          data-radius="10"
+          data-cursor="pointer"
+          onClick={handleFavClick}
+        >
+          <IconHeart fill={isFavorite} />
+          <text data-weight="700">
+            <Count from={0} to={count} duration={1500} />
+          </text>
+        </group>
+      </Tooltip>
+    </group>
+  );
+};
 
 
 const ViewSwitch = [

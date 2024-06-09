@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialIcons from "./materialIcons";
 import Ripple from "../components/Ripple";
-import { IconDemo, IconHeart, IconHome, IconSearch, IconShare, IconSun  } from "../components/icon/credIcons";
+import { IconDemo, IconHeart, IconHome, IconSearch, IconShare, IconStar, IconSun  } from "../components/icon/credIcons";
 
 
 const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -435,9 +435,36 @@ const Icons: React.FC = () => {
                   data-direction="column"
                 >
                   <icon>
-                  <IconHeart/>
+                  <IconHeart />
                   </icon>
                     <text data-ellipsis="">Heart</text>
+                   
+                </group>
+
+                
+              </group>
+
+              <group
+                data-radius="10"
+                data-name="icon-demo"
+                data-contain=""
+                data-interactive=""
+                data-background="main-background"
+                data-space="15"
+                data-cursor="pointer"
+                data-ratio="1:1"
+              >
+                <group
+                  data-index="1"
+                  data-justify="center"
+                  data-align="center"
+                  data-gap="20"
+                  data-direction="column"
+                >
+                  <icon>
+                  <IconStar/>
+                  </icon>
+                    <text data-ellipsis="">Star</text>
                    
                 </group>
 
