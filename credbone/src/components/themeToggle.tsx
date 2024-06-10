@@ -3,13 +3,18 @@ import { useTheme } from "../components/ThemeProvider";
 import OptionBar from "./inputs/optionBar";
 import Radio, { RadioType } from "./inputs/radio";
 import { FieldValues, useForm } from "react-hook-form";
+import { useSnackbar } from "./snackbar/SnackbarContainer";
 
 const ThemeToggle: React.FC = () => {
   const { themeMode, setThemeMode } = useTheme();
-
+  const { addSnackbar } = useSnackbar();
+  
   const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    
+    
     setThemeMode(value);
+    addSnackbar(`Theme changed to ${value}.`);
   };
 
   const { control } = useForm<FieldValues>({

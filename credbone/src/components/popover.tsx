@@ -6,6 +6,7 @@ interface PopoverProps {
   children: React.ReactNode;
   placement?: "top" | "bottom" | "left" | "right" | "over";
   hideOnScroll?: boolean;
+  containerId?: string; // Optional custom container ID
 }
 
 const Popover: React.FC<PopoverProps> = ({
@@ -13,12 +14,23 @@ const Popover: React.FC<PopoverProps> = ({
   children,
   placement = "top",
   hideOnScroll = true,
+  containerId = "popover-container", // Default to "popover-container" if not specified
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState<CSSProperties>({});
   const popoverRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
+
+  // Ensure popover container exists
+  useEffect(() => {
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+  }, [containerId]);
 
   const handleDocumentClick = (event: MouseEvent) => {
     if (
@@ -102,22 +114,22 @@ const Popover: React.FC<PopoverProps> = ({
           targetRect.right + 10
         );
         break;
-        case "over":
-          position.top = Math.max(
-            10,
-            Math.min(
-              targetRect.top + targetRect.height / 2 - popoverRect.height ,
-              window.innerHeight - popoverRect.height - 10
-            )
-          );
-          position.left = Math.max(
-            10,
-            Math.min(
-              targetRect.left + targetRect.width  - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - 10
-            )
-          );
-          break;
+      case "over":
+        position.top = Math.max(
+          10,
+          Math.min(
+            targetRect.top + targetRect.height / 2 - popoverRect.height,
+            window.innerHeight - popoverRect.height - 10
+          )
+        );
+        position.left = Math.max(
+          10,
+          Math.min(
+            targetRect.left + targetRect.width - popoverRect.width / 2,
+            window.innerWidth - popoverRect.width - 10
+          )
+        );
+        break;
       default:
         break;
     }
@@ -198,7 +210,7 @@ const Popover: React.FC<PopoverProps> = ({
           >
              {renderedContent}
           </group>,
-          document.body
+          document.getElementById(containerId)!
         )}
     </>
   );

@@ -9,6 +9,7 @@ import Settings from "./pages/settings";
 import { Navigation } from "./components/navigation";
 
 import VerticalNav from "./template/verticalNav";
+import SnackbarContainer from "./components/snackbar/SnackbarContainer";
 
 
 
@@ -17,7 +18,7 @@ function App() {
     <>
       <ThemeProvider>
         <Router>
-
+        <SnackbarContainer>
 
 
           <group data-adaptive="mobile" data-adaptive-order="2" data-index="3" data-border="overprint" data-background="main-background">
@@ -35,6 +36,8 @@ function App() {
               <Route path='/Settings' element={<Settings />} />
             </Routes>
           </view>
+          <div id="popover-container"></div>
+          </SnackbarContainer>
         </Router>
       </ThemeProvider>
     </>

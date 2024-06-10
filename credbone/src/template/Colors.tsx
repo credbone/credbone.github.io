@@ -124,7 +124,7 @@ const Colors: React.FC = () => {
   return (
     <view data-vertical="">
       <view data-adaptive>
-        <view data-space="30" data-gap="30" data-scroll="">
+        <view data-space="30" data-gap="30" data-scroll="" id="inner-popover-container">
           <group data-direction="column" data-gap="10">
             <text
               data-weight="700"
@@ -471,6 +471,7 @@ test
           </group>
 
           <group
+          
             data-shrink="no"
             data-weight="600"
             data-max-length="1200"
@@ -482,7 +483,8 @@ test
           >
             {BaseColors.map((colors) => (
               <Popover
-
+                // containerId="inner-popover-container"
+                // hideOnScroll={false}
                 data-space="5"
                 data-elevation="2"
                 data-width="auto"
@@ -583,6 +585,7 @@ test
             data-column-gap="20"
           ></group>
           <group data-height="10" data-shrink="no"></group>
+
         </view>
       </view>
     </view>
