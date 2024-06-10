@@ -86,6 +86,8 @@
 [data-backdrop="3"]{-webkit-backdrop-filter: blur(3px);backdrop-filter: blur(3px); }
 
 
+text{position: relative;}
+
 text{white-space: nowrap; /*color:var(--main-text)*/}
 
 text[data-wrap="wrap"]{white-space: normal;}
@@ -179,6 +181,7 @@ text[data-width="auto"]{width: initial;}
 [data-text-size="64"] {font-size:64px;}
 [data-text-size="72"] {font-size:72px;}
 [data-text-size="96"] {font-size:96px;}
+[data-text-size="128"] {font-size:128px;}
 
 
 

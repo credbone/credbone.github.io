@@ -179,11 +179,12 @@ transition: background-color 5000s 0s, color 5000s 0s;
 
 
 
-[data-name="theme-item"]:has( + .selected){ border-radius: 0 5px 5px 0}
-[data-name="theme-item"].selected + [data-name="theme-item"]{border-radius: 5px 0 0 5px;}
-[data-name="theme-item"].selected {margin:0 5px; border-radius: 5px;}
-[data-name="theme-item"].selected:first-child{margin-left:0px ;}
-[data-name="theme-item"].selected:last-child{margin-right:0px ;}
+[data-name="theme-item"]:has( + .selected){ border-bottom-right-radius: 5px;border-top-right-radius: 5px;}
+[data-name="theme-item"].selected + [data-name="theme-item"]{border-top-left-radius: 5px;border-bottom-left-radius: 5px;}
+[data-name="theme-item"].selected {margin-left:5px; margin-right: 5px; border-radius: 5px;}
+[data-name="theme-item"].selected:first-child{margin-left:0px;}
+[data-name="theme-item"].selected:last-child{margin-right:0px;}
 
 
-
+[data-name="theme-item"]:first-child{border-top-left-radius: 5px;border-bottom-left-radius: 5px;}
+[data-name="theme-item"]:last-child{border-bottom-right-radius: 5px;border-top-right-radius: 5px;}
