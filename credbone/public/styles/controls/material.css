@@ -5,34 +5,63 @@
 /* material ink effect */
 
 
-:root
-{
+:root {
     --ink-color: var(--main-color-lighter);
 }
 
 
 
-[data-ink-color="main"] { --ink-color: var(--main-color);}
-[data-ink-color="main-dark"] { --ink-color: var(--main-color-dark);}
-[data-ink-color="secondary"] { --ink-color: var(--secondary-color);}
-[data-ink-color="secondary-light"] { --ink-color: var(--secondary-color-light);}
-[data-ink-color="secondary-dark"] { --ink-color: var(--secondary-color-dark);}
+[data-ink-color="main"] {
+    --ink-color: var(--main-color);
+}
 
+[data-ink-color="main-dark"] {
+    --ink-color: var(--main-color-dark);
+}
 
-.material_ink { height: 100%; width: 100%; position: absolute; left: 0; top: 0; pointer-events: none; transition: 0.35s; overflow: hidden; }
-.material_ink circle { animation: ink_anim 0.35s; animation-timing-function: cubic-bezier(0.25, 0.1, 0.5, 1);  fill:var(--ink-color); }
+[data-ink-color="secondary"] {
+    --ink-color: var(--secondary-color);
+}
+
+[data-ink-color="secondary-light"] {
+    --ink-color: var(--secondary-color-light);
+}
+
+[data-ink-color="secondary-dark"] {
+    --ink-color: var(--secondary-color-dark);
+}
+
+.material_ink {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    transition: 0.55s;
+    overflow: hidden;
+}
+
+.material_ink circle {
+    animation: ink_anim 0.3s;
+    animation-timing-function: linear;
+    fill: var(--ink-color);
+  
+}
 
 
 
 .button.primary .material_ink circle,
 .button.accent .material_ink circle,
-li.selected .material_ink circle
+li.selected .material_ink circle {
+    --ink-color: var(--main-color-dark);
+    /* opacity: .5;  */
+}
 
-{ --ink-color: var(--main-color-dark); }
 
-
-.button.secondary .material_ink circle{
+.button.secondary .material_ink circle {
     --ink-color: var(--secondary-color-dark);
+    /* opacity: .5; */
 }
 
 
@@ -42,12 +71,28 @@ li.selected .material_ink circle
 }
 
 
-.material_ink.ready.finish {  opacity: 0;}
+
+/* [data-ink-color="main-dark"] .material_ink circle,
+[data-ink-color="secondary-dark"] .material_ink circle
+
+
+{ opacity: .5;} */
+
+
+.material_ink.ready.finish {
+    opacity: 0;
+}
 
 @keyframes ink_anim {
-    from { transform: scale(0); }
+    from {
+        transform: scale(.2);
+      
+    }
 
-    to { }
+
+    to {
+        
+    }
 }
 
 

@@ -53,7 +53,7 @@ export const useMaterialEffect = ({
                 })
               );
             }
-          }, 350);
+          }, 300);
         }
       }
     };

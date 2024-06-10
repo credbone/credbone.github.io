@@ -86,6 +86,8 @@
 [data-backdrop="3"]{-webkit-backdrop-filter: blur(3px);backdrop-filter: blur(3px); }
 
 
+text{position: relative;}
+
 text{white-space: nowrap; /*color:var(--main-text)*/}
 
 text[data-wrap="wrap"]{white-space: normal;}

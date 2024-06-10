@@ -233,7 +233,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 
    
       <group data-gap="5" data-direction="column">
-        <text data-weight="700" data-text-size="medium">{item.title}</text>
+        <text data-weight="700" data-text-size="medium" data-wrap="wrap">{item.title}</text>
         <text data-opacity="60" data-wrap="wrap" data-line="1.5">
           {item.description}
         </text>

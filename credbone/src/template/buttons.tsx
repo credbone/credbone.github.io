@@ -78,7 +78,7 @@ const Buttons: React.FC = () => {
                 data-height="120"
                 data-gap="20"
               >
-                <icon data-index="1" data-icon-size="large">
+                <icon  data-icon-size="large">
                   arrow_outward
                 </icon>
                 {/* <text

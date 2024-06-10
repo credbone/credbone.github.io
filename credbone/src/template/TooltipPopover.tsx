@@ -5,6 +5,7 @@ import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
+import { IconMore } from "../components/icon/credIcons";
 
 
 
@@ -56,9 +57,10 @@ const ClosePopover = (
           data-height="120"
           data-gap="20"
         >
-          <icon data-index="1" data-icon-size="large">
-            more_horiz
-          </icon>
+        
+          <group data-index="1">
+          <IconMore size={60}/>
+         </group>
 
         </group>
       </Ripple>
