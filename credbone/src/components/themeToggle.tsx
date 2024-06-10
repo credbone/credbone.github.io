@@ -14,7 +14,7 @@ const ThemeToggle: React.FC = () => {
     
     
     setThemeMode(value);
-    addSnackbar(`Theme changed to ${value}.`);
+    addSnackbar(<text><text data-opacity="60">Theme changed to </text><text data-weight="700" data-text-transform="capitalize">{value}</text></text>);
   };
 
   const { control } = useForm<FieldValues>({

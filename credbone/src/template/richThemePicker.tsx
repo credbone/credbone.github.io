@@ -23,7 +23,7 @@ const RichThemePicker: React.FC = () => {
     };
     setTheme(newTheme);
     const colorType = isPrimary ? 'Primary' : 'Secondary';
-    addSnackbar(`${colorType} color set to ${colorName}.`);
+    addSnackbar(<text><text data-opacity="60">{colorType} color set to</text> <text data-weight="700">{colorName}</text></text>);
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
 

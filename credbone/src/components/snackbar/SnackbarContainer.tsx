@@ -4,12 +4,12 @@ import Snackbar from './Snackbar';
 
 interface SnackbarMessage {
   id: string;
-  message: string;
+  message: any;
   duration?: number;
 }
 
 interface SnackbarContextProps {
-  addSnackbar: (message: string, duration?: number) => void;
+  addSnackbar: (message: any, duration?: number) => void;
 }
 
 interface SnackbarContainerProps {
