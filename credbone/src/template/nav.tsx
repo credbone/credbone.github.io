@@ -6,7 +6,7 @@ import React from "react";
 
 
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/res_15.jpg";
+import sampleImage from "../styles/images/samples/res_32.jpg";
 import SideNav from "./sideNav";
 import Marquee from "../components/Marquee";
 import Scroll from "../components/scroll";

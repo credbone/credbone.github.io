@@ -1,33 +1,35 @@
+import { useState, MouseEventHandler, RefObject } from "react";
 import classNames from "classnames";
-import { MouseEventHandler, RefObject, useState } from "react";
-export const useMaterialEffect = ({
-  ref,
-  isMaterial,
-}: {
+
+interface MaterialEffectProps {
   ref?: RefObject<HTMLDivElement>;
   isMaterial?: boolean;
-}) => {
-  const [circles, setCircles] = useState<any[]>([]);
-  let onMouseDown: MouseEventHandler<HTMLDivElement> | undefined;
-  let onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined;
-  if (isMaterial) {
-    onMouseDown = (e) => {
-      let current = ref?.current;
-      if (current) {
-        let clientRect = current.getBoundingClientRect(),
-          mouseX =
-            e.pageX - (clientRect.left + document.documentElement.scrollLeft),
-          mouseY =
-            e.pageY - (clientRect.top + document.documentElement.scrollTop),
-          radius = Math.sqrt(
-            Math.pow(current.offsetWidth, 2) + Math.pow(current.offsetHeight, 2)
+}
+
+interface Circle {
+  key: number;
+  classNames: string[];
+  element: JSX.Element;
+}
+
+export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
+  const [circles, setCircles] = useState<Circle[]>([]);
+
+  const onMouseDown: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
+    ? (e) => {
+        const current = ref?.current;
+        if (current) {
+          const clientRect = current.getBoundingClientRect();
+          const mouseX = e.clientX - clientRect.left;
+          const mouseY = e.clientY - clientRect.top;
+          const radius = Math.sqrt(
+            current.offsetWidth ** 2 + current.offsetHeight ** 2
           );
 
-        if (ref?.current) {
-          const newCircle = {
+          const newCircle: Circle = {
             key: Date.now(),
             classNames: [],
-            value: (
+            element: (
               <circle
                 r={radius}
                 cx={mouseX}
@@ -39,69 +41,57 @@ export const useMaterialEffect = ({
             ),
           };
 
-          setCircles((c) => {
-            return [...c, newCircle];
-          });
+          setCircles((prevCircles) => [...prevCircles, newCircle]);
 
           setTimeout(() => {
-            if (ref?.current) {
-              setCircles((prev) =>
-                prev.map((c) => {
-                  return c.key === newCircle.key
-                    ? { ...c, classNames: [...c.classNames, "ready"] }
-                    : c;
-                })
-              );
-            }
+            setCircles((prevCircles) =>
+              prevCircles.map((circle) =>
+                circle.key === newCircle.key
+                  ? { ...circle, classNames: [...circle.classNames, "ready"] }
+                  : circle
+              )
+            );
           }, 300);
         }
       }
-    };
+    : undefined;
 
-    onEffectEnd = () => {
-      let removingCircles = circles;
+  const onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
+    ? () => {
+        const currentCircles = circles;
 
-      setCircles((prev) => {
-        return prev.length
-          ? prev.map((c) => ({
-              ...c,
-              classNames: c.classNames.includes("finish")
-                ? c.classNames
-                : [c.classNames, "finish"],
-            }))
-          : prev;
-      });
+        setCircles((prevCircles) =>
+          prevCircles.map((circle) => ({
+            ...circle,
+            classNames: circle.classNames.includes("finish")
+              ? circle.classNames
+              : [...circle.classNames, "finish"],
+          }))
+        );
 
-      setTimeout(() => {
-        if (ref?.current) {
-          setCircles((prev) =>
-            prev.length
-              ? [
-                  ...prev.filter(
-                    (currentCircle) =>
-                      !removingCircles.some(
-                        (removing) => removing.key === currentCircle.key
-                      )
-                  ),
-                ]
-              : prev
+        setTimeout(() => {
+          setCircles((prevCircles) =>
+            prevCircles.filter(
+              (circle) =>
+                !currentCircles.some((c) => c.key === circle.key)
+            )
           );
-        }
-      }, 1000);
-    };
-  }
+        }, 1000);
+      }
+    : undefined;
+
   return {
     onMouseDown,
     onMouseUp: onEffectEnd,
     onMouseLeave: onEffectEnd,
     svg: circles.length > 0 && (
       <>
-        {circles.map((c) => (
+        {circles.map((circle) => (
           <svg
-            key={c.key}
-            className={classNames("material_ink", ...c.classNames)}
+            key={circle.key}
+            className={classNames("material_ink", ...circle.classNames)}
           >
-            {c.value}
+            {circle.element}
           </svg>
         ))}
       </>
