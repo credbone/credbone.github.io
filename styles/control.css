@@ -681,3 +681,5 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
     [data-drag="none"]{-webkit-user-drag: none;}
+
+[data-text-transform="capitalize"]{text-transform: capitalize;}
