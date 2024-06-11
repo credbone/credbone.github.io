@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
-import sampleImage from "../styles/images/samples/res_44.jpg";
+import sampleImage from "../styles/images/samples/res_41.jpg";
 
 import {
   SvgHamburger,
@@ -61,7 +61,7 @@ const Buttons: React.FC = () => {
           // data-dark=""
           data-align="center"
         >
-          <picture data-position="absolute" data-name="color-demo">
+          <picture data-position="absolute" >
             <img src={sampleImage} alt="" />
           </picture>
 
