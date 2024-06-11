@@ -1,7 +1,7 @@
 import React from "react";
 import Scroll from "../components/scroll";
 
-import sampleImage9 from "../styles/images/samples/list_res/res-02.jpg";
+import sampleImage9 from "../styles/images/samples/list_res/res-04.jpg";
 
 import Count from "../components/Coutner";
 import { IconShare } from "../components/icon/credIcons";

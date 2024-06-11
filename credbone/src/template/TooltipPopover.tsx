@@ -129,8 +129,7 @@ const SampleData = (
 const SampleTooltipData = (
   <group data-direction="column" data-space="20" data-gap="15">
     <text data-weight="700" data-text-size="xxx-large">
-      {" "}
-      <Count from={0} duration={1500} to={37} />{" "}
+      <Count from={0} duration={1500} to={128} />
     </text>
     <text
       data-weight="700"
@@ -151,22 +150,22 @@ const TooltipPopover: React.FC = () => {
   const { addSnackbar } = useSnackbar();
 
   const messages = [
-    "🌟 Welcome! You're now connected.",
+    "⭐ Welcome! You're now connected.",
     "Hey there! New notification incoming.",
-    "Alert! Important message ahead. 🌟",
+    "Alert! Important message ahead. ⭐",
     "Success! Button clicked successfully. 🎉",
     "Heads up! A different message for you. ",
     "Hello! How are you today? ",
     "Reminder: Meeting at 2 PM tomorrow.",
     "Don't forget to check your email.",
     "You've got a new follower! ",
-    "Congratulations! You've reached a milestone."
+    "Congratulations! You've reached a milestone.",
   ];
-  
+
   const handleSeriesClick = () => {
     const randomIndex = Math.floor(Math.random() * messages.length);
     const randomMessage = messages[randomIndex];
-  
+
     const messageNode = <text data-ellipsis="">{randomMessage}</text>;
     addSnackbar(messageNode, 3000, "custom-source", true);
   };
@@ -218,7 +217,12 @@ const TooltipPopover: React.FC = () => {
             </group>
           </group>
 
-          <group data-space="20" data-gap="15" data-weight="600">
+          <group
+            data-space="20"
+            data-gap="15"
+            data-weight="600"
+            data-background="context"
+          >
             <group>
               <Popover content={SimplePopover} data-width="auto">
                 <group
@@ -294,8 +298,6 @@ const TooltipPopover: React.FC = () => {
                   <text decoration="">Show Rich Tooltip</text>
                 </group>
               </Tooltip>
-
-
             </group>
           </group>
         </group>
@@ -327,7 +329,8 @@ const TooltipPopover: React.FC = () => {
                 data-light=""
                 data-max-length="300"
               >
-               Snackbars provide brief notifications about app activities at the bottom of the screen.
+                Snackbars provide brief notifications about app activities at
+                the bottom of the screen.
               </text>
             </group>
 
@@ -354,21 +357,21 @@ const TooltipPopover: React.FC = () => {
                 data-direction="column"
                 data-weight="600"
               >
-                            <group>
-              <group
-                data-width="auto"
-                data-interactive=""
-                data-interact="popover"
-                data-space="15"
-                data-radius="5"
+                <group>
+                  <group
+                    data-width="auto"
+                    data-interactive=""
+                    data-interact="popover"
+                    data-space="15"
+                    data-radius="5"
                     data-cursor="pointer"
                     data-background="secondary"
                     data-color="secondary-text"
-                onClick={() => addSnackbar(<>{SnackbarContent}</>)}
-              >
-                <text decoration="">Show Snackbar</text>
-              </group>
-            </group>
+                    onClick={() => addSnackbar(<>{SnackbarContent}</>)}
+                  >
+                    <text data-weight="700">Show Snackbar</text>
+                  </group>
+                </group>
                 <group>
                   <text
                     data-wrap="wrap"
@@ -376,7 +379,8 @@ const TooltipPopover: React.FC = () => {
                     data-line="1.5"
                     data-max-length="300"
                   >
-                   Click to view a sample snackbar. The default duration is 3000 milliseconds.
+                    Click to view a sample snackbar. The default duration is
+                    3000 milliseconds.
                   </text>
                 </group>
               </group>
@@ -384,6 +388,7 @@ const TooltipPopover: React.FC = () => {
           </group>
 
           <group
+            data-background="context"
             data-width="auto"
             data-height="auto"
             data-radius="10"
@@ -404,7 +409,7 @@ const TooltipPopover: React.FC = () => {
                 data-cursor="pointer"
                 onClick={() => addSnackbar(<>{SnackbarContent}</>)}
               >
-                <text decoration="">Show Snackbar</text>
+                <text>Show Snackbar</text>
               </group>
             </group>
             <separator data-horizontal=""></separator>

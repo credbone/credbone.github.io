@@ -60,82 +60,82 @@ const Popover: React.FC<PopoverProps> = ({
     }
   };
 
-  const calculatePosition = () => {
-    if (!childRef.current || !popoverRef.current) return {};
+    const calculatePosition = () => {
+      if (!childRef.current || !popoverRef.current) return {};
 
-    const targetRect = childRef.current.getBoundingClientRect();
-    const popoverRect = popoverRef.current.getBoundingClientRect();
-    const position: CSSProperties = {};
+      const targetRect = childRef.current.getBoundingClientRect();
+      const popoverRect = popoverRef.current.getBoundingClientRect();
+      const position: CSSProperties = {};
 
-    switch (placement) {
-      case "top":
-        position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
-        position.left = Math.max(
-          10,
-          Math.min(
-            targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-            window.innerWidth - popoverRect.width - 10
-          )
-        );
-        break;
-      case "bottom":
-        position.top = Math.min(
-          window.innerHeight - popoverRect.height - 10,
-          targetRect.bottom + 10
-        );
-        position.left = Math.max(
-          10,
-          Math.min(
-            targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-            window.innerWidth - popoverRect.width - 10
-          )
-        );
-        break;
-      case "left":
-        position.top = Math.max(
-          10,
-          Math.min(
-            targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-            window.innerHeight - popoverRect.height - 10
-          )
-        );
-        position.left = Math.max(10, targetRect.left - popoverRect.width - 10);
-        break;
-      case "right":
-        position.top = Math.max(
-          10,
-          Math.min(
-            targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-            window.innerHeight - popoverRect.height - 10
-          )
-        );
-        position.left = Math.min(
-          window.innerWidth - popoverRect.width - 10,
-          targetRect.right + 10
-        );
-        break;
-      case "over":
-        position.top = Math.max(
-          10,
-          Math.min(
-            targetRect.top + targetRect.height / 2 - popoverRect.height,
-            window.innerHeight - popoverRect.height - 10
-          )
-        );
-        position.left = Math.max(
-          10,
-          Math.min(
-            targetRect.left + targetRect.width - popoverRect.width / 2,
-            window.innerWidth - popoverRect.width - 10
-          )
-        );
-        break;
-      default:
-        break;
-    }
+      switch (placement) {
+        case "top":
+          position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
+        case "bottom":
+          position.top = Math.min(
+            window.innerHeight - popoverRect.height - 10,
+            targetRect.bottom + 10
+          );
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
+        case "left":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.max(10, targetRect.left - popoverRect.width - 10);
+          break;
+        case "right":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.min(
+            window.innerWidth - popoverRect.width - 10,
+            targetRect.right + 10
+          );
+          break;
+        case "over":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
+        default:
+          break;
+      }
 
-    return position;
-  };
+      return position;
+    };
 
   useEffect(() => {
     if (isVisible) {

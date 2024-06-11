@@ -5,7 +5,7 @@ import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
 import Popover from "../components/popover";
-import ThemePicker from "./themePicker";
+//import ThemePicker from "./themePicker";
 
 const Colors: React.FC = () => {
   const BaseColors = [
