@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   content: ReactNode | ((closePopover: () => void) => ReactNode);
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right" | "over";
+  placement?: "top" | "bottom" | "left" | "right" | "auto";
   hideOnScroll?: boolean;
   containerId?: string; // Optional custom container ID
 }
@@ -60,13 +60,20 @@ const Popover: React.FC<PopoverProps> = ({
     }
   };
 
-    const calculatePosition = () => {
-      if (!childRef.current || !popoverRef.current) return {};
-
-      const targetRect = childRef.current.getBoundingClientRect();
-      const popoverRect = popoverRef.current.getBoundingClientRect();
-      const position: CSSProperties = {};
-
+  const calculatePosition = () => {
+    if (!childRef.current || !popoverRef.current) return {};
+  
+    const targetRect = childRef.current.getBoundingClientRect();
+    const popoverRect = popoverRef.current.getBoundingClientRect();
+    const position: CSSProperties = {};
+  
+    const spaceAbove = targetRect.top;
+    const spaceBelow = window.innerHeight - targetRect.bottom;
+  
+    const fitTop = spaceAbove >= popoverRect.height + 10;
+    const fitBottom = spaceBelow >= popoverRect.height + 10;
+  
+    const determinePosition = (placement: string) => {
       switch (placement) {
         case "top":
           position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
@@ -114,28 +121,30 @@ const Popover: React.FC<PopoverProps> = ({
             targetRect.right + 10
           );
           break;
-        case "over":
-          position.top = Math.max(
-            10,
-            Math.min(
-              targetRect.top + targetRect.height / 2 - popoverRect.height,
-              window.innerHeight - popoverRect.height - 10
-            )
-          );
-          position.left = Math.max(
-            10,
-            Math.min(
-              targetRect.left + targetRect.width - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - 10
-            )
-          );
-          break;
+       
         default:
           break;
       }
-
-      return position;
     };
+  
+    switch (placement) {
+      case "auto":
+        if (fitTop) {
+          determinePosition("top");
+        } else if (fitBottom) {
+          determinePosition("bottom");
+        } else {
+          // Default to bottom if neither fit perfectly
+          determinePosition("bottom");
+        }
+        break;
+      default:
+        determinePosition(placement);
+        break;
+    }
+  
+    return position;
+  };
 
   useEffect(() => {
     if (isVisible) {

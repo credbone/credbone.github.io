@@ -38,7 +38,7 @@ const SnackbarContent = (
 const ClosePopover = (
   <Popover
     data-elevation="2"
-    placement="top"
+    placement="auto"
     data-width="auto"
     data-space="20"
     content={(closePopover) => (
@@ -242,7 +242,7 @@ const TooltipPopover: React.FC = () => {
 
             <group>
               <Popover
-                placement="top"
+                placement="auto"
                 data-radius="10"
                 data-space="0"
                 data-elevation="2"
@@ -280,7 +280,7 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </Tooltip> */}
               <Tooltip
-                //  placement="bottom"
+                  placement="auto"
                 data-radius="10"
                 data-space="0"
                 data-elevation="2"

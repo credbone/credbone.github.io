@@ -58,7 +58,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
 
     const isButton = radioType === RadioType.Button;
     let content = (
-      <Tooltip content={tooltip}>
+      <Tooltip content={tooltip} placement="auto">
         <label
           data-background={isButton? "context":""}
           {...(isButton ? null : { radio: "" })}

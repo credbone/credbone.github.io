@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 interface TooltipProps {
   content: any;
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right";
+  placement?: "top" | "bottom" | "left" | "right" | "auto";
 
 }
 
@@ -29,41 +29,87 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const calculatePosition = () => {
     if (!childRef.current || !tooltipRef.current) return {};
-
+  
     const targetRect = childRef.current.getBoundingClientRect();
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
+    const popoverRect = tooltipRef.current.getBoundingClientRect();
     const position: CSSProperties = {};
-
+  
+    const spaceAbove = targetRect.top;
+    const spaceBelow = window.innerHeight - targetRect.bottom;
+  
+    const fitTop = spaceAbove >= popoverRect.height + 10;
+    const fitBottom = spaceBelow >= popoverRect.height + 10;
+  
+    const determinePosition = (placement: string) => {
+      switch (placement) {
+        case "top":
+          position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
+        case "bottom":
+          position.top = Math.min(
+            window.innerHeight - popoverRect.height - 10,
+            targetRect.bottom + 10
+          );
+          position.left = Math.max(
+            10,
+            Math.min(
+              targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
+              window.innerWidth - popoverRect.width - 10
+            )
+          );
+          break;
+        case "left":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.max(10, targetRect.left - popoverRect.width - 10);
+          break;
+        case "right":
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
+              window.innerHeight - popoverRect.height - 10
+            )
+          );
+          position.left = Math.min(
+            window.innerWidth - popoverRect.width - 10,
+            targetRect.right + 10
+          );
+          break;
+       
+        default:
+          break;
+      }
+    };
+  
     switch (placement) {
-      case "top":
-        position.top = Math.max(10, targetRect.top - tooltipRect.height - 10);
-        position.left = Math.max( 10, Math.min( targetRect.left + targetRect.width / 2 - tooltipRect.width / 2 ) ) ;
-        if (window.innerWidth - position.left > tooltipRect.width + 20) {
-         // position.right = "auto";
-        //console.log(targetRect.width , tooltipRect.width)
-      
+      case "auto":
+        if (fitTop) {
+          determinePosition("top");
+        } else if (fitBottom) {
+          determinePosition("bottom");
         } else {
-          position.left = "auto";
-          position.right = 10;
+          // Default to bottom if neither fit perfectly
+          determinePosition("bottom");
         }
         break;
-        break;
-      case "bottom":
-        position.top = Math.min( window.innerHeight - tooltipRect.height, targetRect.bottom );
-        position.left = Math.max( 10, Math.min( targetRect.left + targetRect.width / 2 - tooltipRect.width / 2, window.innerWidth - tooltipRect.width ) );
-        break;
-      case "left":
-        position.top = Math.max( 10, Math.min( targetRect.top + targetRect.height / 2 - tooltipRect.height / 2, window.innerHeight - tooltipRect.height ) );
-        position.left = Math.max(10, targetRect.left - tooltipRect.width);
-        break;
-      case "right":
-        position.top = Math.max( 10, Math.min( targetRect.top + targetRect.height / 2 - tooltipRect.height / 2, window.innerHeight - tooltipRect.height ) );
-        position.left = Math.min( window.innerWidth - tooltipRect.width, targetRect.right + 10 );
-        break;
       default:
+        determinePosition(placement);
         break;
     }
-
+  
     return position;
   };
 
