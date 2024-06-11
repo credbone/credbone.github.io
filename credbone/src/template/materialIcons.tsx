@@ -1,5 +1,6 @@
 import Ripple from "../components/Ripple";
 import React, { useState } from "react";
+import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 //import { Tooltip, message, notification } from "antd";
 
 
@@ -387,54 +388,22 @@ import React, { useState } from "react";
 
 
 const MaterialIcons = () => {
+  const { addSnackbar } = useSnackbar();
 const [selectedIcon, setSelectedIcon] = useState<string | null>(null); 
-//const [api, contextHolder] = notification.useNotification();
+
 const handleIconClick = (iconName: string) => {
- // const key = "updatable";
-    
- 
-  
-    setSelectedIcon(iconName); 
+  setSelectedIcon(iconName); 
 
-    navigator.clipboard
-      .writeText(iconName)
-      .then(() => {
-        // api.open({
-        //   closeIcon:false,
-        //   duration: 3,
-        //   placement: "bottomRight",
-          
-          
-          
-        
-        //   key,
-        //   message: (
-        //     <>
-        //       <group
-        //         data-direction="row"
-        //         data-wrap="no"
-        //         data-gap="15"
-        //         data-space="10"
-        //         data-align="center"
-        //         data-text-align="left"
-        //       >
-        //         <icon data-icon-size="mini" data-length="30">{iconName}</icon>
-        //         <separator data-vertical="" data-height="40"></separator>
-        //         <group data-direction="column" data-gap="5">
-        //           <text data-weight="700">{iconName}</text>
-        //           <text>Icon name copied to clipboard</text>
-        //         </group>
-        //       </group>
-        //     </>
-        //   ),
-        // });
-       // console.log("Icon name copied to clipboard:", iconName);
-      })
-      .catch((error) => {
-        console.error("Failed to copy icon name to clipboard:", error);
-      });
-
-  };
+  if (navigator.clipboard) {
+      navigator.clipboard.writeText(iconName)
+          .catch((error) => {
+              console.error("Failed to copy icon name to clipboard:", error);
+          });
+  } else {
+   // console.error("Clipboard API is not supported in this environment.");
+    addSnackbar(<text data-ellipsis="">Clipboard API not supported here</text>, 2000, 'icon-source', true);
+  }
+};
 
   const isSelected = (iconName: string) => {
    
@@ -443,7 +412,7 @@ const handleIconClick = (iconName: string) => {
 
   return (
     <>
-      {/* {contextHolder} */}
+
       {Icons.map((icon) => (
         <Ripple>
           <group

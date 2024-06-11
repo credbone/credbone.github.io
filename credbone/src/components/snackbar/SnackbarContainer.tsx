@@ -1,15 +1,15 @@
 import React, { createContext, useState, useContext, useCallback, ReactNode } from 'react';
 import Snackbar from './Snackbar';
 
-
 interface SnackbarMessage {
   id: string;
   message: any;
   duration?: number;
+  source?: string; // Optional source identifier
 }
 
 interface SnackbarContextProps {
-  addSnackbar: (message: any, duration?: number) => void;
+  addSnackbar: (message: any, duration?: number, source?: string, clearPrevious?: boolean) => void;
 }
 
 interface SnackbarContainerProps {
@@ -29,9 +29,15 @@ export const useSnackbar = (): SnackbarContextProps => {
 const SnackbarContainer: React.FC<SnackbarContainerProps> = ({ children }) => {
   const [snackbars, setSnackbars] = useState<SnackbarMessage[]>([]);
 
-  const addSnackbar = useCallback((message: string, duration: number = 3000) => {
+  const addSnackbar = useCallback((message: string, duration: number = 3000, source?: string, clearPrevious: boolean = false) => {
     const id = new Date().getTime().toString();
-    setSnackbars((prev) => [...prev, { id, message, duration }]);
+    setSnackbars((prev) => {
+      let newSnackbars = [...prev];
+      if (clearPrevious && source) {
+        newSnackbars = newSnackbars.filter(snackbar => snackbar.source !== source);
+      }
+      return [...newSnackbars, { id, message, duration, source }];
+    });
   }, []);
 
   const removeSnackbar = useCallback((id: string) => {
@@ -41,7 +47,7 @@ const SnackbarContainer: React.FC<SnackbarContainerProps> = ({ children }) => {
   return (
     <SnackbarContext.Provider value={{ addSnackbar }}>
       {children}
-      <group className="snackbar-container" data-gap="10" data-align="center">
+      <div className="snackbar-container" data-gap="10" data-align="center" data-contain="">
         {snackbars.map((snackbar) => (
           <Snackbar
             key={snackbar.id}
@@ -51,7 +57,7 @@ const SnackbarContainer: React.FC<SnackbarContainerProps> = ({ children }) => {
             onClose={removeSnackbar}
           />
         ))}
-      </group>
+      </div>
     </SnackbarContext.Provider>
   );
 };

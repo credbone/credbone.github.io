@@ -18,8 +18,8 @@ function App() {
     <>
       <ThemeProvider>
         <Router>
+      
         <SnackbarContainer>
-
 
           <group data-adaptive="mobile" data-adaptive-order="2" data-index="3" data-border="overprint" data-background="main-background">
             <group data-wrap="no" data-gap="5" data-space="10"  >
@@ -27,17 +27,19 @@ function App() {
             </group>
           </group>
           <view data-vertical="">
-
+         
 <VerticalNav data-adaptive="desktop"/>
             <Routes>
               <Route path='/*' element={<Navigate replace to="/home" />} />
               <Route path='/Home/*' element={<Template />} />
               <Route path='/About' element={<About />} />
               <Route path='/Settings' element={<Settings />} />
-            </Routes>
-          </view>
-          <div id="popover-container"></div>
-          </SnackbarContainer>
+              </Routes>
+              
+              
+            </view>
+            <div id="popover-container" data-max-length="fit"></div>
+            </SnackbarContainer>
         </Router>
       </ThemeProvider>
     </>

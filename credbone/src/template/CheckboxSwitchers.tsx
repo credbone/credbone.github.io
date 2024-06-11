@@ -474,6 +474,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             >
               {radioData.map((radio, index) => (
                 <Radio
+                 // tooltip={ radio.label}
                   iconProps={{ "data-length": "30" }}
                   icon={radio.icon}
                   key={index}

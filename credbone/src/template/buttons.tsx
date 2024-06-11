@@ -12,11 +12,11 @@ import {
   SvgPlus,
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
-import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+
 
 const Buttons: React.FC = () => {
 
-  const { addSnackbar } = useSnackbar();
+ 
 
   return (
     <view
@@ -81,7 +81,7 @@ const Buttons: React.FC = () => {
                 data-radius="15"
                 data-height="120"
                 data-gap="20"
-                onClick={() => addSnackbar('Hello, this is a snackbar!')}
+
               >
                 <icon  data-icon-size="large">
                   arrow_outward
