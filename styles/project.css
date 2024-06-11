@@ -190,7 +190,7 @@ transition: background-color 5000s 0s, color 5000s 0s;
 [data-name="theme-item"]:last-child{border-bottom-right-radius: 5px;border-top-right-radius: 5px;}
 
 
-.snackbar-container {position: absolute; bottom: 0; width: 100%; display: flex; padding: 40px;z-index: 9999; flex-direction: column; pointer-events: none;}
+.snackbar-container {position: absolute; bottom: 0; width: 100%; display: flex; padding: 20px;z-index: 9999; flex-direction: column; pointer-events: none;}
 .snackbar {}
 
 [data-background="snackbar"]
