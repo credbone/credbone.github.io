@@ -230,7 +230,7 @@ const Icons: React.FC = () => {
                     >
                       <icon
                         data-icon-size="mini"
-                        data-fill=""
+                        data-fill="fill"
                         data-color={coloricon.color}
                       >
                         {coloricon.name}

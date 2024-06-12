@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 
 
@@ -6,7 +6,7 @@ import React from "react";
 
 
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/res_32.jpg";
+import sampleImage from "../styles/images/samples/res_40.jpg";
 import SideNav from "./sideNav";
 import Marquee from "../components/Marquee";
 import Scroll from "../components/scroll";
@@ -16,22 +16,41 @@ import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
 
 
+// Demo Data
+
 const tabsData = [
-  {
-    title: 'Home',
-    index: 1,
-  },
-  {
-    title: 'Orders',
-    index: 2,
-  },
-  {
-    title: 'Account',
-    index: 3,
-  },
+  {kay: "1", title: 'Home', index: 1, },
+  {kay: "2", title: 'Orders', index: 2, },
+  {kay: "3", title: 'Account', index: 3, },
+]
+
+// Demo Data
+
+const navData = [
+  { key: 1,  badge: true, icon: 'shopping_basket', title: 'Shopping Cart' },
+  { key: 2,  badge: "", icon: 'local_cafe', title: 'Beverage Deals' },
+  { key: 3,  badge: "", icon: 'laundry', title: 'Laundry Service' },
+  { key: 4,  badge: "", icon: 'local_pizza', title: 'Pizza Orders' },
+  { key: 6,  badge: "", icon: 'cloud', title: 'Cloud Storage' },
+  { key: 12, badge: "", icon: 'spa', title: 'Spa Services' },
+  { key: 14, badge: "", icon: 'local_mall', title: 'Mall Directory' },
+  { key: 16, badge: "", icon: 'school', title: 'Education Courses' }
 ];
 
+
+
+
+
 const Landing: React.FC = () => {
+
+  const [selectedItemKey, setSelectedItemKey] = useState<number | null>(2);
+  const [selectedItem2Key, setSelectedItem2Key] = useState<number | null>(3);
+  const [selectedItem3Key, setSelectedItem3Key] = useState<number | null>(3);
+
+  const handleItemClick = (key: number) => {setSelectedItemKey(key);};
+  const handleItem2Click = (key: number) => {setSelectedItem2Key(key);};
+  const handleItem3Click = (key: number) => {setSelectedItem3Key(key);};
+
   return (
 
     <view data-vertical="">
@@ -48,7 +67,7 @@ const Landing: React.FC = () => {
               <Marquee>
               <text data-space-horizontal="30" data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-color="main" > Navigation </text>
 </Marquee>
-    <text data-space-horizontal="30" data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Navigation bars allow movement between primary destinations in an app.</text>
+    <text data-space-horizontal="30" data-wrap="wrap" data-length="400" data-line="1.5" data-light="" >Navigation bars allow movement between primary destinations in an app.</text>
   </group>
 
 
@@ -57,12 +76,39 @@ const Landing: React.FC = () => {
 
 
 <group data-type="grid" data-weight="600" data-grid-template="120" data-gap="5" >
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer" data-background="main-lighter"   data-color="main"> <group data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>shopping_basket</icon> <text data-ellipsis="">Shopping Cart</text> </group> </group></Ripple>
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer"> <group data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>local_cafe</icon> <text data-ellipsis="">Warranty</text> </group> </group></Ripple>
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer"> <group data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>laundry</icon> <text data-ellipsis=""> History</text> </group> </group></Ripple>
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer"> <group data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>local_pizza</icon> <text data-ellipsis="">Warranty</text> </group> </group></Ripple>
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer" data-ink-color="main-dark" data-background="main"  data-color="main-text"> <group data-index="1" data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>Inventory_2</icon> <text data-ellipsis="">Order History</text> </group> </group></Ripple>
-  <Ripple><group data-contain="" data-radius="10" data-interactive="" data-cursor="pointer"> <group data-direction="column" data-align="center" data-space="10" data-gap="5"> <icon>cloud</icon> <text data-ellipsis="">Order History</text> </group> </group></Ripple>
+
+
+
+
+{navData.map((item) => (
+ <Ripple>
+ <group
+
+  key={item.key}
+  onClick={() => handleItemClick(item.key)} 
+  data-background={item.key === selectedItemKey ? 'main' : ''}
+  data-color={item.key === selectedItemKey ? 'main-text' : ''}
+  data-ink-color={item.key === selectedItemKey ? 'main-dark' : ''}
+
+   data-contain=""
+    data-radius="10"
+     data-interactive="" 
+     data-cursor="pointer"
+     
+     >
+   <group data-direction="column" data-align="center" data-space="10" data-gap="5">
+
+   {item.badge ? (
+      <group data-background={item.key === selectedItemKey ? 'main-text' : 'red'} data-space="5" data-position="absolute" data-width="auto" data-radius="5" data-right="10" data-top="10"></group>
+    ) : null}
+
+     <icon>{item.icon}</icon>
+     <text data-ellipsis="">{item.title}</text>
+   </group>
+ </group>
+</Ripple>
+      ))}
+
 </group>
 
 
@@ -74,13 +120,57 @@ const Landing: React.FC = () => {
 <group>
 
 <group data-gap="5">
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" data-background="main" data-color="main-text"> <icon>home</icon> <text>Home</text> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" data-background="secondary" data-color="secondary-text" > <icon>pet_supplies</icon> <text>Warranty</text> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" > <icon>drafts</icon> <text> History</text><dot></dot>  <group   data-length="25" data-ratio="1:1" data-radius="20" data-color="white" data-justify="center" data-align="center" data-background="red"><text data-weight="700">3</text> </group> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" > <icon>chair</icon> <text>Warranty</text> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" > <icon>nest_eco_leaf</icon> <text>Directon</text> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" > <icon>leaderboard</icon> <text>Order History</text> </group></Ripple>
-<Ripple><group data-contain="" data-interactive="" data-border="outline" data-radius="30" data-width="auto" data-wrap="no" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="10" data-gap="5" > <icon>work</icon> <text>Directon</text> </group></Ripple>
+
+
+
+{navData.map((item2) => (   
+
+
+<Ripple>
+  <group 
+  
+
+  key={item2.key}
+  onClick={() => handleItem2Click(item2.key)} 
+
+  data-background={item2.key === selectedItem2Key ? 'main' : ''}
+  data-color={item2.key === selectedItem2Key ? 'main-text' : ''}
+  data-ink-color={item2.key === selectedItem2Key ? 'main-dark' : ''}
+  
+  
+  data-contain=""
+   data-interactive=""
+    data-border="outline"
+     data-radius="30" 
+     data-width="auto"
+      data-wrap="no"
+       data-cursor="pointer"
+        data-align="center"
+data-space="5" 
+data-space-horizontal="10" 
+data-gap="5" > 
+    <icon  data-fill={item2.key === selectedItem2Key ? 'fill' : ''}>{item2.icon}</icon>
+     <text data-weight="600">{item2.title}</text> 
+
+     {item2.badge ? (
+<>
+      <group data-space="5"><dot></dot></group>
+      <group data-ratio="1:1" data-justify="center" data-align="center" data-length="25"
+       data-background={item2.key === selectedItem2Key ? 'main-text' : 'red'} 
+        data-color={item2.key === selectedItem2Key ? 'main' : 'white'} 
+        data-radius="20"><text data-weight="700">2</text></group>
+</>
+
+    ) : null}
+
+    </group>
+    </Ripple>
+
+ ))}
+
+
+
+
 </group> 
 
 </group>
@@ -93,7 +183,7 @@ const Landing: React.FC = () => {
 <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Left Aligned Navigation with Fixed Home Button </text>
 </group>
 <group
-data-border=""
+
 data-width="auto"
 data-radius="10"
 data-contain=""
@@ -107,14 +197,50 @@ data-weight="600"
 
 <Scroll  >
 <group data-wrap="no" data-space="5">
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" data-background="main" data-color="main-text" > <icon>home</icon> <text> Home</text> </group></Ripple></group>
-   <group  data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="10" data-wrap="no" data-radius="5" data-contain="" > <icon data-fill="" data-color="amber">mail</icon> <text> History</text><dot></dot>  <group   data-length="25" data-ratio="1:1" data-radius="20" data-color="white" data-justify="center" data-align="center" data-background="red"><text data-weight="700">3</text> </group> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Warranty</text> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Directon</text> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Order History</text> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Directon</text> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Sample</text> </group></Ripple></group>
-   <group data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto"><separator data-vertical="" data-height="20"></separator><Ripple><group data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center" data-space="5" data-space-horizontal="15" data-gap="5" data-wrap="no" data-radius="5" data-contain="" > <text>Account</text> </group></Ripple></group>
+
+
+
+{navData.map((item3) => (  
+
+
+<group 
+
+key={item3.key}
+onClick={() => handleItem3Click(item3.key)} 
+
+data-height="40"
+
+data-contain="" data-shrink="no" data-name="autoseparation" data-wrap="no" data-align="center"  data-width="auto">
+  <separator data-vertical="" data-height="20"></separator>
+  <Ripple><group 
+  
+
+  data-background={item3.key === selectedItem3Key ? 'main' : ''}
+data-color={item3.key === selectedItem3Key ? 'main-text' : ''}
+data-ink-color={item3.key === selectedItem3Key ? 'main-dark' : ''}
+  
+  
+  data-height="fit" data-width="auto" data-interactive="" data-cursor="pointer" data-align="center"  data-space-horizontal="10" data-gap="10" data-wrap="no" data-radius="5" data-contain="" > 
+    {/* <icon data-fill={item3.key === selectedItem3Key ? 'fill' : ''}>{item3.icon}</icon> */}
+  <text>{item3.title}</text>
+  {item3.badge ? (
+      <group
+       data-ratio="1:1" 
+       data-justify="center"
+        data-align="center"
+         data-length="25"
+          data-background={item3.key === selectedItem3Key ? 'main-text' : 'red'} 
+           data-color={item3.key === selectedItem3Key ? 'main' : 'white'} 
+           data-radius="20"><text data-weight="700">3</text></group>
+    ) : null}
+   </group>
+   </Ripple>
+ </group>
+
+
+   ))}
+
+
 </group>
 </Scroll>
 
@@ -143,7 +269,7 @@ data-weight="600"
         <group data-background="secondary" data-color="secondary-text" data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="5" data-wrap="no" data-align="center" data-interactive=""><text data-adaptive="desktop">New</text><icon data-fill="" data-adaptive="mobile">star</icon> </group></Ripple></group>
         <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="5" data-wrap="no" data-align="center" data-interactive=""> <text>Warranty History</text> </group></Ripple></group>
         <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="">shopping_basket</icon>  <text data-adaptive="desktop">Cart</text><dot></dot><group   data-length="25" data-ratio="1:1" data-radius="20" data-color="secondary-text" data-justify="center" data-align="center" data-background="secondary"><text data-weight="700">5</text> </group> </group></Ripple></group>    
-        <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="">person_4</icon><text data-adaptive="desktop"> Welcome Username </text> </group></Ripple></group>
+        <group  data-wrap="no" data-width="auto"><separator data-vertical="" data-height="fit"></separator><Ripple><group data-cursor="pointer" data-space="10" data-space-horizontal="15" data-gap="10" data-wrap="no" data-align="center" data-interactive=""> <icon data-fill="fill">person</icon><text data-adaptive="desktop"> Welcome Username </text> </group></Ripple></group>
   </group>
 </Scroll>
 </group>
@@ -170,7 +296,7 @@ data-weight="600"
   <group   data-space="30" >
     <group>
       <nav className="nav_strip classic invert">
-        <ul>
+        <ul data-weight="600">
           <li > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>drafts</icon> </group> </li>
           <li  className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon>search</icon> </group> </li>
           <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="5" data-wrap="no" ><text>Products</text> </group> </li>
@@ -205,21 +331,19 @@ data-weight="600"
 
         
           
-  <group data-shrink="no" data-background="secondary-dark"  data-contain="" >
-  <picture data-position="absolute" data-opacity="60" data-name="color-demo">
-        <img src={sampleImage} alt="" />
-      </picture>
+  <group data-shrink="no" data-background="main"  data-contain=""  >
+
     <group data-space="30">
 
             <group>
         <Scroll className="nav_strip classic transparent">
 
-                  <ul>
-                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon data-fill="">Home</icon> </group> </li>
+                  <ul data-weight="600" data-color="main-text">
+                    <li > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon data-fill="fill">Home</icon> </group> </li>
                     <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>About</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Settings</text> </group> </li>
+                    <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Settings</text> </group> </li>
                   </ul>
-
+    
               </Scroll>
             </group>
 
@@ -243,10 +367,10 @@ data-weight="600"
             <group>
               <nav className="nav_strip classic bottom transparent">
                 <Scroll>
-                  <ul>
-                    <li> <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
+                  <ul data-weight="600" data-color="main-text">
+                    <li  > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
                     <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>History</text> </group> </li>
-                    <li> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>Orders</text></group></li>
+                    <li  > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>Orders</text></group></li>
                   </ul>
                 </Scroll>
               </nav>

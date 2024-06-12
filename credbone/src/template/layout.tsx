@@ -20,7 +20,7 @@ const Layout: React.FC = () => {
           //  data-radius="10"
           defaultExpanded={false}
           icon={
-            <icon data-fill="" data-color="amber">
+            <icon data-fill="fill" data-color="amber">
               folder
             </icon>
           }
