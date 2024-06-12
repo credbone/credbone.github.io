@@ -81,7 +81,7 @@ const Landing: React.FC = () => {
 
 
 {navData.map((item) => (
- <Ripple>
+ <Ripple  key={item.key}>
  <group
 
   key={item.key}
@@ -126,7 +126,7 @@ const Landing: React.FC = () => {
 {navData.map((item2) => (   
 
 
-<Ripple>
+<Ripple   key={item2.key}>
   <group 
   
 

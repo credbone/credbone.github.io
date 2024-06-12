@@ -61,7 +61,7 @@ const InputsAndForms: React.FC = () => {
                 dataLength="autofit"
                 name="password_1"
                 //  autocomplete="current-password"
-                autocomplete="off"
+                autoComplete="off"
               />
 
               <separator data-horizontal="" data-interval='10'></separator>
@@ -73,7 +73,7 @@ const InputsAndForms: React.FC = () => {
                 placeholder="Create Password"
                 dataLength="autofit"
                 name="password_1"
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
               <Input
                 type="password"
@@ -82,7 +82,7 @@ const InputsAndForms: React.FC = () => {
                 placeholder="Repeat Password"
                 dataLength="autofit"
                 name="password_1"
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
             </group>
 

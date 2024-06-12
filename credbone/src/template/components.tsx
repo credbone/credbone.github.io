@@ -116,7 +116,7 @@ const Components: React.FC = () => {
                   <Link
                     data-interactive=""
                     to="/Home/Icons"
-                    Data-type="group"
+                    data-type="group"
                     data-position="bottom"
                     data-space="30"
                     data-width="auto"
@@ -125,7 +125,6 @@ const Components: React.FC = () => {
                     data-drag="none"
                   >
                     <group data-type="interact">
-                      {" "}
                       <IconHome size={60} />
                     </group>
                   </Link>
@@ -228,7 +227,7 @@ const Components: React.FC = () => {
                   <Link
                     data-interactive=""
                     to="/Home/CardsAndList"
-                    Data-type="group"
+                    data-type="group"
                     data-position="bottom"
                     data-space="30"
                     data-width="auto"
@@ -237,7 +236,6 @@ const Components: React.FC = () => {
                     data-drag="none"
                   >
                     <group data-type="interact">
-                      {" "}
                       <IconStar size={60} />
                     </group>
                   </Link>

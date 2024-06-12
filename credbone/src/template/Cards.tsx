@@ -162,7 +162,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
   <>
     {ContentData.map((item) => (
-<Ripple>
+<Ripple key={item.key}>
 <group
       
       key={item.key}

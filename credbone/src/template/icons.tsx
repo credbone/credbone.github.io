@@ -209,10 +209,10 @@ const Icons: React.FC = () => {
               data-grid-template="110"
               data-contain=""
             >
-              {ColorIcons.map((coloricon) => (
-                <Ripple>
+              {ColorIcons.map((coloricon,index) => (
+                <Ripple key={index}  >
                   <group
-                    key={coloricon.name}
+                    key={index}
                     data-name="icon-demo"
                     data-contain=""
                     data-interactive=""
@@ -260,10 +260,10 @@ const Icons: React.FC = () => {
               data-grid-template="110"
               data-contain=""
             >
-              {WeightIcons.map((weighticon) => (
-                <Ripple>
+              {WeightIcons.map((weighticon, index) => (
+                <Ripple key={index} >
                   <group
-                    key={weighticon.name}
+                    key={index} 
                     data-name="icon-demo"
                     data-contain=""
                     data-interactive=""

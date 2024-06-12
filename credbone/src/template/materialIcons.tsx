@@ -413,10 +413,10 @@ const handleIconClick = (iconName: string) => {
   return (
     <>
 
-      {Icons.map((icon) => (
-        <Ripple>
+      {Icons.map((icon, index) => (
+        <Ripple  key={index}>
           <group
-            key={icon.name}
+            key={index}
             onClick={() => handleIconClick(icon.name)}
             className={isSelected(icon.name) ? "selected" : ""}
             data-ink-color={isSelected(icon.name) ? "main-dark" : ""}

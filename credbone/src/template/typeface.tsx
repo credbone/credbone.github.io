@@ -184,8 +184,9 @@ const Typeface: React.FC = () => {
             data-contain=""
             
           >
-            {glyphs.map((glyphs) => (
+            {glyphs.map((glyphs, index) => (
               <group
+              key={index}
                 data-border=""
                 data-ratio="1:1"
                 data-background={

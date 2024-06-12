@@ -37,8 +37,9 @@ const RichThemePicker: React.FC = () => {
             data-radius="5"
             data-width="auto"
           >
-            {colors.map((c) => (
+            {colors.map((c, index) => (
               <Tooltip
+              key={index}
                 content={
                   theme.colorPrimary === c.code ? (
                     ""
@@ -51,6 +52,7 @@ const RichThemePicker: React.FC = () => {
                 }
               >
                 <group
+                 key={index}
                   data-shrink="no"
                   data-interactive=""
                   data-width="auto"
@@ -99,8 +101,9 @@ const RichThemePicker: React.FC = () => {
             data-align="start"
             data-grid-template="50"
           >
-            {seccolors.map((c) => (
+            {seccolors.map((c, index) => (
               <Tooltip
+              key={index}
               content={
                 theme.colorSecondary === c.code ? (
                   ""
@@ -113,6 +116,7 @@ const RichThemePicker: React.FC = () => {
               }
               >
                 <group
+                 key={index}
                   data-name="theme-item"
                   data-shrink="no"
                   data-interactive=""

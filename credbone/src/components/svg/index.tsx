@@ -136,8 +136,8 @@ export const SvgLoaderCircle: React.FC = () => {
           cy="12"
           r="9.5"
           fill="none"
-          stroke-width="3"
-          stroke-linecap="round"
+          strokeWidth="3"
+          strokeLinecap="round"
         >
           <animate
             attributeName="stroke-dasharray"
@@ -178,7 +178,7 @@ export const SvgCheckbox: React.FC = () => {
 
     <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 18 18" >
     
-    <path fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M6,9.2l2.4,2.4L13,7" data-name="check-tick"></path>
+    <path fill="none" stroke="currentcolor" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" d="M6,9.2l2.4,2.4L13,7" data-name="check-tick"></path>
     
     </svg>
     

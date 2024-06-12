@@ -481,8 +481,9 @@ test
             data-grid-template="120"
             data-gap="10"
           >
-            {BaseColors.map((colors) => (
+            {BaseColors.map((colors, index) => (
               <Popover
+              key={index}
                 // containerId="inner-popover-container"
                 // hideOnScroll={false}
                 placement="auto"
@@ -490,7 +491,7 @@ test
                 data-elevation="2"
                 data-width="auto"
                 content={
-                  <group data-length="180" data-gap="10">
+                  <group  data-length="180" data-gap="10">
                     <group
                       data-radius="5"
                       data-contain=""
