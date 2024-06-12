@@ -126,15 +126,20 @@ text[data-width="auto"]{width: initial;}
 [data-text-align="left"] {text-align: left;}
 
 
-[data-align="center"] {align-items: center;}
-[data-align="end"] {align-items: flex-end;}
-[data-align="start"] {align-items: flex-start;}
-[data-align="baseline"] {align-items: baseline;}
-[data-align="stretch"] {align-items: stretch;}
+[data-align="center"] { align-items: center; }
+[data-align="end"] { align-items: flex-end; }
+[data-align="start"] { align-items: flex-start; }
+[data-align="baseline"] { align-items: baseline; }
+[data-align="stretch"] { align-items: stretch; }
 
-[data-justify="center"] {justify-content:center;}
-[data-justify="end"] {justify-content:flex-end;}
-[data-justify="start"] {justify-content:flex-start;}
+[data-justify="center"] { justify-content: center; }
+[data-justify="end"] { justify-content: flex-end; }
+[data-justify="start"] { justify-content: flex-start; }
+[data-justify="space-around"] { justify-content: space-around; }
+[data-justify="space-between"] { justify-content: space-between; }
+[data-justify="space-evenly"] { justify-content: space-evenly; }
+
+
 
 
 [data-position="center"] {margin: auto;}
@@ -149,10 +154,43 @@ text[data-width="auto"]{width: initial;}
 [data-position="absolute"] {position: absolute;}
 
 
-[data-top="0"]{top:0}
-[data-bottom="0"]{bottom:0}
-[data-right="0"]{right:0}
-[data-left="0"]{left:0}
+/* Bottom positions */
+[data-bottom="0"] { bottom: 0px; }
+[data-bottom="5"] { bottom: 5px; }
+[data-bottom="10"] { bottom: 10px; }
+[data-bottom="15"] { bottom: 15px; }
+[data-bottom="20"] { bottom: 20px; }
+[data-bottom="25"] { bottom: 25px; }
+[data-bottom="30"] { bottom: 30px; }
+
+/* Right positions */
+[data-right="-5"] { right: -5px; }
+[data-right="0"] { right: 0px; }
+[data-right="5"] { right: 5px; }
+[data-right="10"] { right: 10px; }
+[data-right="15"] { right: 15px; }
+[data-right="20"] { right: 20px; }
+[data-right="25"] { right: 25px; }
+[data-right="30"] { right: 30px; }
+
+/* Top positions */
+[data-top="0"] { top: 0px; }
+[data-top="5"] { top: 5px; }
+[data-top="10"] { top: 10px; }
+[data-top="15"] { top: 15px; }
+[data-top="20"] { top: 20px; }
+[data-top="25"] { top: 25px; }
+[data-top="30"] { top: 30px; }
+
+/* Left positions */
+[data-left="0"] { left: 0px; }
+[data-left="5"] { left: 5px; }
+[data-left="10"] { left: 10px; }
+[data-left="15"] { left: 15px; }
+[data-left="20"] { left: 20px; }
+[data-left="25"] { left: 25px; }
+[data-left="30"] { left: 30px; }
+
 
 [dir="rtl"] [data-position="right"] {margin-right: auto;margin-left: initial;}
 [dir="rtl"] [data-position="left"] {margin-left: auto;margin-left: initial;}
@@ -614,19 +652,12 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-order="3"]{order:3}
 [data-order="4"]{order:3}
 
-[data-orientation="vertical"]
-
-{    writing-mode: vertical-rl;
-  text-orientation: mixed;}
-
-  [data-orientation="vertical-bottom"]
-
-{            writing-mode: tb-rl;
-  transform: rotate(180deg);}
+[data-orientation="vertical"] {    writing-mode: vertical-rl; text-orientation: mixed;}
+[data-orientation="vertical-bottom"] {            writing-mode: tb-rl; transform: rotate(180deg);}
 
 
-  [data-float="left"]{float: left;}
-    [data-float="right"]{float: right;}
+[data-float="left"]{float: left;}
+[data-float="right"]{float: right;}
 
 
 
@@ -638,20 +669,24 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
     [data-name="autoseparation"]:hover > separator,
     [data-name="autoseparation"]:hover + [data-name="autoseparation"] > separator
-    
+  
     {opacity: 0;}
 
     /* stylelint-enable */
 
 
-    [data-elevation="1"]{box-shadow: var(--elevation);}
+    
+    
+[data-elevation="1"]{box-shadow: var(--elevation);}
 [data-elevation="2"]{box-shadow: var(--elevation_2);}
 [data-elevation="3"]{box-shadow: var(--elevation_3);}
 [data-elevation="4"]{box-shadow: var(--elevation_4);}
 [data-elevation="5"]{box-shadow: var(--elevation_5);}
 [data-elevation="6"]{box-shadow: var(--elevation_6);}
 
-    [data-icon-position="even"] > group:nth-child(even) [data-name="icon"]{order:2}
+
+
+
 
 
 
@@ -671,6 +706,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
     [data-scale="2"]{transform: scale(2);}
     [data-scale="3"]{transform: scale(3);}
+
     [data-origin="left"]{transform-origin: left;}
 
 
@@ -680,6 +716,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 
-    [data-drag="none"]{-webkit-user-drag: none;}
 
-[data-text-transform="capitalize"]{text-transform: capitalize;}
+[data-drag="none"]{-webkit-user-drag: none;}
+
+[data-text-transform="capitalize"] { text-transform: capitalize; }
+[data-text-transform="uppercase"] { text-transform: uppercase; }
+[data-text-transform="lowercase"] { text-transform: lowercase; }
+[data-text-transform="none"] { text-transform: none; }
