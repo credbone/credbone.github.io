@@ -485,6 +485,7 @@ test
               <Popover
                 // containerId="inner-popover-container"
                 // hideOnScroll={false}
+                placement="auto"
                 data-space="5"
                 data-elevation="2"
                 data-width="auto"

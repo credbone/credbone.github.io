@@ -76,7 +76,7 @@ const Popover: React.FC<PopoverProps> = ({
     const determinePosition = (placement: string) => {
       switch (placement) {
         case "top":
-          position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
+          position.top = Math.max(10, targetRect.top - popoverRect.height + 10);
           position.left = Math.max(
             10,
             Math.min(
@@ -88,7 +88,7 @@ const Popover: React.FC<PopoverProps> = ({
         case "bottom":
           position.top = Math.min(
             window.innerHeight - popoverRect.height - 10,
-            targetRect.bottom + 10
+            targetRect.bottom - 10
           );
           position.left = Math.max(
             10,

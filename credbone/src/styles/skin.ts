@@ -2,7 +2,7 @@ import { Shade } from "shade-generator/dist/models";
 import { ShadeGenerator } from "shade-generator/dist/shadeGenerator";
 
 export const defaultPrimaryColor = "#0066ff";
-export const defaultSecondaryColor = "#f9dd6c";
+export const defaultSecondaryColor = "#49c5b6";
 
 export type ColorPalette = {
     colorPrimary: string;
