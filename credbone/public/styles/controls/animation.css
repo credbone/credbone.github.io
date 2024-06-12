@@ -8,6 +8,24 @@
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
 
 
+@keyframes bounce
+ {
+
+20%{transform: scale(1.2);}
+40%{transform: scale(.9);}
+60%{transform: scale(1.1);}
+}
+
+
+
+[data-animation-name="appear-left"]{animation-name: appear-left;}
+[data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
+[data-animation-name="appear-top"]{animation-name: appear-top;}
+[data-animation-name="bounce"]{animation-name: bounce;}
+
+
+[data-animation-timing="fancy"]{animation-timing-function: cubic-bezier(0,1.3,.7,1);}
+
 
 
 [data-fill-mode="backwards"]{animation-fill-mode: backwards;}
@@ -39,11 +57,8 @@
 [data-animation-duration="35"]  {animation-duration: .35s;}
 [data-animation-duration="375"] {animation-duration: .375s;}
 
+[data-animation-duration="475"] {animation-duration: .475s;}
 
 
 
 
-
-[data-animation-name="appear-left"]{animation-name: appear-left;}
-[data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
-[data-animation-name="appear-top"]{animation-name: appear-top;}
