@@ -5,23 +5,21 @@ interface TooltipProps {
   content: any;
   children: React.ReactNode;
   placement?: "top" | "bottom" | "left" | "right" | "auto";
-
+  delay?: number; // New prop for delay in milliseconds
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
   placement = "top",
+  delay = 300, // Default delay of 500 milliseconds
   ...rest
-
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<CSSProperties>({});
   const tooltipRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
   let timer: NodeJS.Timeout;
-
-
 
   const handleTouchStart = () => {
     setIsVisible(false);
@@ -136,13 +134,15 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [isVisible]);
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
-    setIsVisible(showTooltip);
+    clearTimeout(timer); // Clear existing timer
+    if (showTooltip) {
+      timer = setTimeout(() => {
+        setIsVisible(true);
+      }, delay);
+    } else {
+      setIsVisible(false);
+    }
   };
-
-
-
-  
-
 
   return (
     <>
@@ -157,9 +157,9 @@ const Tooltip: React.FC<TooltipProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
-          data-contain=""
-           data-background="tooltip"
-           data-color="white"
+            data-contain=""
+            data-background="tooltip"
+            data-color="white"
             data-length="auto"
             data-radius="5"
             data-space="10"

@@ -33,7 +33,8 @@ const Scroll: React.FC<{
   children: React.ReactNode; // Updated from React.ReactChild to React.ReactNode
   className?: string;
   vertical?: boolean;
-}> = ({ children, className, vertical }) => {
+  wheelEnabled?: boolean;
+}> = ({ children, className, vertical, wheelEnabled = false }) => {
   const [{ showLB, showRB }, setShowButtons] = useState<{
     showB: boolean;
     showLB: boolean;
@@ -183,6 +184,25 @@ const Scroll: React.FC<{
     manageButtonsVisibility();
   }, [children, manageButtonsVisibility]);
 
+  useEffect(() => {
+    // Optional mouse wheel event handler based on wheelEnabled prop
+    const wheelHandler = (e: WheelEvent) => {
+      if (horizontal && wheelEnabled) {
+        e.preventDefault();
+        element?.scrollBy({ left: e.deltaY });
+      }
+    };
+
+    if (wheelEnabled) {
+      element?.addEventListener("wheel", wheelHandler);
+    }
+
+    return () => {
+      if (wheelEnabled) {
+        element?.removeEventListener("wheel", wheelHandler);
+      }
+    };
+  }, [element, horizontal, wheelEnabled]);
   return (
     <div
       className={classNames("snapcont", {

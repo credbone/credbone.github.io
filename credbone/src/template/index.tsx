@@ -35,7 +35,7 @@ const Template: React.FC = () => {
         data-contain=""
         data-shrink="no"
       >
-        <Scroll>
+        <Scroll wheelEnabled={true}>
           <SubNavigation />
         </Scroll>
       </group>

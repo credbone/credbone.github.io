@@ -30,7 +30,7 @@ const RichThemePicker: React.FC = () => {
   return (
     <group data-gap="5" data-width="auto" data-direction="column">
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
-        <Scroll>
+        <Scroll  wheelEnabled={true}>
           <group
             data-position="left"
             data-wrap="no"
@@ -90,7 +90,7 @@ const RichThemePicker: React.FC = () => {
       </group>
 
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
-        <Scroll>
+        <Scroll wheelEnabled={true}>
           <group
             data-position="left"
             data-wrap="no"

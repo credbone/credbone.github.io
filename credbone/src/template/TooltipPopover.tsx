@@ -280,6 +280,7 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </Tooltip> */}
               <Tooltip
+             // delay={0}
                   placement="auto"
                 data-radius="10"
                 data-space="0"
@@ -335,7 +336,7 @@ const TooltipPopover: React.FC = () => {
             </group>
 
             <group
-              data-background="main-dark"
+              data-background="main"
               data-contain=""
               data-align="center"
               data-dark=""
@@ -347,8 +348,9 @@ const TooltipPopover: React.FC = () => {
                 data-duration=".725"
                 data-position="absolute"
                 data-name="color-demo"
+             
               >
-                <img src={sampleImage} alt="" />
+                <img src={sampleImage}    data-opacity="60" alt="" />
               </picture>
 
               <group
@@ -375,7 +377,7 @@ const TooltipPopover: React.FC = () => {
                 <group>
                   <text
                     data-wrap="wrap"
-                    data-light=""
+                    data-color="main-text"
                     data-line="1.5"
                     data-max-length="300"
                   >
