@@ -57,7 +57,7 @@ html.mobile {}
 .snapscroll { display: flex; overflow: hidden; }
 .snapcont.horizontal .snapscroll { flex-direction: column; height: 100%; }
 .snapcont.vertical .snapscroll { flex-direction: row; width:100% }
-.snapscroll > * { overflow: auto; overflow: overlay;  scroll-behavior: smooth; -webkit-overflow-scrolling: touch;scrollbar-gutter: stable; scrollbar-width: thin; }
+.snapscroll > * { overflow: auto; overflow: overlay; /* scroll-behavior: smooth;*/ -webkit-overflow-scrolling: touch;scrollbar-gutter: stable; scrollbar-width: thin; }
 .snapcont.horizontal .snapscroll > * {display: flex; float: left; overflow-y: hidden; scroll-snap-type:var(--scroll-snap); height: 100%; scrollbar-width: none; scroll-padding: var(--scroll-padding);
 -webkit-overflow-scrolling: touch;
     /* scroll-behavior: smooth; */

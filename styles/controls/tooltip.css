@@ -1,12 +1,11 @@
 @keyframes tooltip {
   from {
     opacity: 0;
-    
   }
 }
 
 group.tooltip {
-  animation: tooltip 0.225s .225s  backwards;
+  animation: tooltip .225s backwards;
   position: absolute;
   z-index: 9999;
   pointer-events: none;
@@ -21,7 +20,7 @@ group.tooltip {
 }
 
 group.popover {
-  animation: tooltip 0.225s  backwards;
+  animation: tooltip .225s  backwards;
   position: absolute;
   z-index: 9998;
   max-width: calc(100% - 20px);
@@ -29,9 +28,3 @@ group.popover {
 }
 
 
-group.context-menu {
-  animation: tooltip 0.225s  backwards;
-  position: absolute;
-  z-index: 9997;
-  max-width: calc(100% - 20px);
-}
