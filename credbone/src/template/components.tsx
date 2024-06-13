@@ -57,8 +57,8 @@ const Components: React.FC = () => {
                   data-contain=""
                   data-background="main"
                   data-color="main-text"
-                  data-length="300"
-                  data-height="300"
+                  data-length="200"
+                  data-height="360"
                 >
                   <group
                     data-index="1"
@@ -90,8 +90,8 @@ const Components: React.FC = () => {
                   data-radius="15"
                   // data-elevation="1"
                   data-background="context"
-                  data-length="350"
-                  data-height="300"
+                  data-length="200"
+                  data-height="360"
                   data-contain=""
                 >
                   <picture data-position="absolute" data-brightness="adaptive">
@@ -134,8 +134,8 @@ const Components: React.FC = () => {
                   data-radius="15"
                   data-background="main-dark"
                   data-color="white"
-                  data-length="240"
-                  data-height="300"
+                  data-length="200"
+                  data-height="360"
                   data-contain=""
                 >
                   <picture data-position="absolute" data-name="color-demo">
@@ -201,7 +201,7 @@ const Components: React.FC = () => {
                   // data-elevation="1"
                   data-background="context"
                   data-length="350"
-                  data-height="300"
+                  data-height="360"
                   data-contain=""
                   data-color="white"
                 >
@@ -247,7 +247,7 @@ const Components: React.FC = () => {
                   data-background="main"
                   data-color="main-text"
                   data-length="400"
-                  data-height="300"
+                  data-height="360"
                 >
                   <group data-direction="column" data-gap="15">
                     <text
@@ -272,7 +272,7 @@ const Components: React.FC = () => {
         </group>
       </group>
 
-      <group data-height="200" data-shrink="no"></group>
+      <group data-height="200" data-width="auto" data-shrink="no"></group>
     </view>
   );
 };

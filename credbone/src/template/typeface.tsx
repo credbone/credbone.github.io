@@ -150,9 +150,11 @@ const Typeface: React.FC = () => {
                 data-text-size={font.textSize}
               >
                 <group
+                //  contentEditable={true}
                   contentEditable="plaintext-only"
                   data-break="break-word"
                   data-duration=".225"
+                  suppressContentEditableWarning={true}
                 >
                   {font.previewText}
                 </group>
