@@ -11,12 +11,15 @@ import { isDesktop, isMobile } from "react-device-detect";
 isMobile && document.documentElement.classList.add("mobile");
 isDesktop && document.documentElement.classList.add("desktop");
 
+const TooltipContainer = () => <div id="tooltip-container" data-max-length="fit" />;
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <App />
+    <TooltipContainer />
   </React.StrictMode>
 );
 

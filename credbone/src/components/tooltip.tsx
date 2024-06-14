@@ -1,18 +1,16 @@
-import React, { useState, useRef, useEffect, CSSProperties } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef, useEffect, CSSProperties } from 'react';
+import ReactDOM from 'react-dom';
 
 interface TooltipProps {
   content: any;
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right" | "auto";
-  delay?: number; // New prop for delay in milliseconds
+  placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
-  placement = "top",
-  delay = 300, // Default delay of 500 milliseconds
+  placement = 'top',
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,20 +25,20 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const calculatePosition = () => {
     if (!childRef.current || !tooltipRef.current) return {};
-  
+
     const targetRect = childRef.current.getBoundingClientRect();
     const popoverRect = tooltipRef.current.getBoundingClientRect();
     const position: CSSProperties = {};
-  
+
     const spaceAbove = targetRect.top;
     const spaceBelow = window.innerHeight - targetRect.bottom;
-  
+
     const fitTop = spaceAbove >= popoverRect.height + 10;
     const fitBottom = spaceBelow >= popoverRect.height + 10;
-  
+
     const determinePosition = (placement: string) => {
       switch (placement) {
-        case "top":
+        case 'top':
           position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
           position.left = Math.max(
             10,
@@ -50,7 +48,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             )
           );
           break;
-        case "bottom":
+        case 'bottom':
           position.top = Math.min(
             window.innerHeight - popoverRect.height - 10,
             targetRect.bottom + 10
@@ -63,7 +61,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             )
           );
           break;
-        case "left":
+        case 'left':
           position.top = Math.max(
             10,
             Math.min(
@@ -73,7 +71,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           );
           position.left = Math.max(10, targetRect.left - popoverRect.width - 10);
           break;
-        case "right":
+        case 'right':
           position.top = Math.max(
             10,
             Math.min(
@@ -86,28 +84,28 @@ const Tooltip: React.FC<TooltipProps> = ({
             targetRect.right + 10
           );
           break;
-       
+
         default:
           break;
       }
     };
-  
+
     switch (placement) {
-      case "auto":
+      case 'auto':
         if (fitTop) {
-          determinePosition("top");
+          determinePosition('top');
         } else if (fitBottom) {
-          determinePosition("bottom");
+          determinePosition('bottom');
         } else {
           // Default to bottom if neither fit perfectly
-          determinePosition("bottom");
+          determinePosition('bottom');
         }
         break;
       default:
         determinePosition(placement);
         break;
     }
-  
+
     return position;
   };
 
@@ -116,12 +114,12 @@ const Tooltip: React.FC<TooltipProps> = ({
       setIsVisible(false);
     };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('touchstart', handleTouchStart);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('touchstart', handleTouchStart);
       clearTimeout(timer);
     };
   }, []);
@@ -134,14 +132,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [isVisible]);
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
-    clearTimeout(timer); // Clear existing timer
-    if (showTooltip) {
-      timer = setTimeout(() => {
-        setIsVisible(true);
-      }, delay);
-    } else {
-      setIsVisible(false);
-    }
+    setIsVisible(showTooltip);
   };
 
   return (
@@ -157,9 +148,9 @@ const Tooltip: React.FC<TooltipProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
-            data-contain=""
-            data-background="tooltip"
-            data-color="white"
+          data-contain=""
+           data-background="tooltip"
+           data-color="white"
             data-length="auto"
             data-radius="5"
             data-space="10"
@@ -170,7 +161,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           >
             {content}
           </group>,
-          document.body
+          document.getElementById('tooltip-container')!
         )}
     </>
   );
