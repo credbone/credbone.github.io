@@ -75,7 +75,6 @@ html.mobile {}
 /* .snapscroll > * > * {scroll-snap-stop: always;scroll-snap-align: start;}
 .snapscroll.dragging > * > * {scroll-snap-stop: initial;scroll-snap-align: initial;} */
 
-.snapscroll.dragging{cursor: move;}
 
 
 /* .snapscroll.dragging {
