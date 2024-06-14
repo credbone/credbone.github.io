@@ -94,7 +94,7 @@ const Components: React.FC = () => {
                   data-height="360"
                   data-contain=""
                 >
-                  <picture data-position="absolute" data-brightness="adaptive">
+                  <picture data-position="absolute" data-brightness="adaptive" data-background="grey-light">
                     <img src={sampleImage_2} alt="" />
                   </picture>
                   <group data-direction="column" data-gap="15" data-space="30">
@@ -205,7 +205,7 @@ const Components: React.FC = () => {
                   data-contain=""
                   data-color="white"
                 >
-                  <picture data-position="absolute" data-brightness="adaptive">
+                  <picture data-position="absolute" data-brightness="adaptive" data-background="deep-orange" >
                     <img src={sampleImage_3} alt="" />
                   </picture>
                   <group data-direction="column" data-gap="15" data-space="30">

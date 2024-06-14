@@ -6,7 +6,6 @@ import React, { useState } from "react";
 
 
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/res_40.jpg";
 import SideNav from "./sideNav";
 import Marquee from "../components/Marquee";
 import Scroll from "../components/scroll";
@@ -27,14 +26,14 @@ const tabsData = [
 // Demo Data
 
 const navData = [
-  { key: 1,  badge: true, icon: 'shopping_basket', title: 'Shopping Cart' },
-  { key: 2,  badge: "", icon: 'local_cafe', title: 'Beverage Deals' },
+  { key: 1,  badge: true, icon: 'shopping_basket', title: 'Cart' },
+  { key: 2,  badge: "", icon: 'local_cafe', title: 'Beverage' },
   { key: 3,  badge: "", icon: 'laundry', title: 'Laundry Service' },
   { key: 4,  badge: "", icon: 'local_pizza', title: 'Pizza Orders' },
   { key: 6,  badge: "", icon: 'cloud', title: 'Cloud Storage' },
   { key: 12, badge: "", icon: 'spa', title: 'Spa Services' },
   { key: 14, badge: "", icon: 'local_mall', title: 'Mall Directory' },
-  { key: 16, badge: "", icon: 'school', title: 'Education Courses' }
+  { key: 16, badge: "", icon: 'school', title: 'Courses' }
 ];
 
 
@@ -54,15 +53,18 @@ const Landing: React.FC = () => {
   return (
 
     <view data-vertical="">
-        <view data-vertical="" data-adaptive="" data-border="no">
+<view data-vertical="" data-adaptive="" data-border="no">
 
 
 <view data-vertical="" data-scroll="">
 
+          
+<group data-direction="column" data-wrap="no">
+            
   
 
 
-  <view data-scroll data-border="no">
+
   <group data-direction="column" data-gap="15" data-space-vertical="30" >
               <Marquee>
               <text data-space-horizontal="30" data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-color="main" > Navigation </text>
@@ -71,8 +73,8 @@ const Landing: React.FC = () => {
   </group>
 
 
-            <group data-space="30" data-gap="20">
-            <group data-space="10" data-elevation="1" data-radius="15" data-background="context">
+            <group data-space="30" data-gap="30">
+            <group data-space="10" data-elevation="2" data-radius="15" data-background="context">
 
 
 <group data-type="grid" data-weight="600" data-grid-template="120" data-gap="5" >
@@ -177,10 +179,10 @@ data-gap="5" >
 </group>
 <separator data-horizontal=""data-interval='10'></separator>
 
-<group data-space="20" data-gap="20"  data-elevation="1" data-radius="15" data-background="main" >
-<group data-direction="column"  data-width="auto" data-color="main-text">
-<text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Sample Navigation </text>
-<text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Left Aligned Navigation with Fixed Home Button </text>
+<group data-space="5" data-gap="5"  data-elevation="1" data-radius="15" data-background="main" data-wrap="no" data-direction="column" data-align="start">
+<group data-direction="column"  data-width="auto" data-color="main-text" data-gap="10" data-space="15">
+<text data-weight="700" data-text-size="x-large" data-wrap="wrap" >Horizontal Navigation</text>
+<text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="70">Left Aligned Navigation with Fixed Home Button </text>
 </group>
 <group
 
@@ -195,7 +197,7 @@ data-weight="600"
 
 
 
-<Scroll  >
+                  <Scroll wheelEnabled={true}  >
 <group data-wrap="no" data-space="5">
 
 
@@ -247,10 +249,10 @@ data-ink-color={item3.key === selectedItem3Key ? 'main-dark' : ''}
 </group>
 </group>
 
-<group data-space="20" data-elevation="1" data-radius="15" data-background="main-background" data-dark="" data-gap="20" >
-<group data-direction="column"  data-width="auto">
-<text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Sample Navigation </text>
-<text data-wrap="wrap" data-length="300" data-line="1.5" data-light="" >Right Aligned Navigation with Fixed Menu Button </text>
+<group data-space="20" data-elevation="1" data-radius="15" data-background="main-background" data-dark="" data-gap="20"  >
+<group data-direction="column"  data-width="auto" data-gap="10">
+<text data-weight="700" data-text-size="x-large" data-wrap="wrap" >Horizontal Navigation</text>
+<text data-wrap="wrap" data-length="200" data-line="1.5" data-light="" >Right Aligned Navigation with Fixed Menu Button </text>
 </group>
 <group data-background="context"  data-radius="5" data-contain=""  data-border="outline">
   <group data-position="right" >
@@ -281,19 +283,10 @@ data-ink-color={item3.key === selectedItem3Key ? 'main-dark' : ''}
 
 
 </group>
-</group>
-            </group>
+              </group>
+              
 
-</view>
-
-
-</view>
-
-
-
-<view data-scroll="" data-size="large" data-gap="20"  >
-
-  <group   data-space="30" >
+              <group   >
     <group>
       <nav className="nav_strip classic invert">
         <ul data-weight="600">
@@ -329,62 +322,7 @@ data-ink-color={item3.key === selectedItem3Key ? 'main-dark' : ''}
     </group>
   </group>
 
-        
-          
-  <group data-shrink="no" data-background="main"  data-contain=""  >
-
-    <group data-space="30">
-
-            <group>
-        <Scroll className="nav_strip classic transparent">
-
-                  <ul data-weight="600" data-color="main-text">
-                    <li > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon data-fill="fill">Home</icon> </group> </li>
-                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>About</text> </group> </li>
-                    <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Settings</text> </group> </li>
-                  </ul>
-    
-              </Scroll>
-            </group>
-
-
-            <group
-              data-space="30"
-              data-background="main-background"
-              data-gap="10"
-              data-direction="column"
-              data-radius="5"
-            >
-              
-              <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Tabbed Invert Navigation </text>
-              <text data-wrap="wrap" data-length="610" data-line="1.5" data-light="">
-                Aenean tempus at nisl et tempor. Morbi et tincidunt justo.
-                Curabitur luctus condimentum justo, sit amet suscipit justo
-                laoreet ut. Curabitur ac ornare dolor.
-              </text>
-            </group>
-
-            <group>
-              <nav className="nav_strip classic bottom transparent">
-                <Scroll>
-                  <ul data-weight="600" data-color="main-text">
-                    <li  > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Home</text> </group> </li>
-                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>History</text> </group> </li>
-                    <li  > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" ><text>Orders</text></group></li>
-                  </ul>
-                </Scroll>
-              </nav>
-            </group>
-    </group>
-    
-  </group>
-
-  <group  data-space="30">
-
-
-
-
-<group>
+              <group>
 
 
 
@@ -420,15 +358,70 @@ data-ink-color={item3.key === selectedItem3Key ? 'main-dark' : ''}
     ))}
 
             </Tabstrip>
-</group>
+</group>          
+            </group>
 
 
+
+
+
+          
+
+
+
+        
+          
+  <group data-shrink="no" data-background="main"  data-contain=""  >
+
+    <group data-space="30">
+
+            <group>
+        <Scroll className="nav_strip classic transparent">
+
+                  <ul data-weight="600" data-color="main-text">
+                    <li > <group data-type="group" data-align="center" data-space="10" data-gap="10" data-wrap="no" > <icon data-fill="fill">Home</icon> </group> </li>
+                    <li className="selected"> <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>About</text> </group> </li>
+                    <li > <separator data-vertical="" data-height="20"></separator> <group data-align="center" data-space="10" data-gap="10" data-wrap="no" > <text>Settings</text> </group> </li>
+                  </ul>
+    
+              </Scroll>
+            </group>
+
+
+            <group
+              data-space="30"
+              data-background="main-background"
+              data-gap="10"
+              data-direction="column"
+                  data-radius="10"
+                  data-elevation="2"
+            >
+              
+              <text data-weight="700" data-text-size="x-large" data-wrap="wrap" > Tabbed Invert Navigation </text>
+              <text data-wrap="wrap" data-length="610" data-line="1.5" data-light="">
+                Aenean tempus at nisl et tempor. Morbi et tincidunt justo.
+                Curabitur luctus condimentum justo, sit amet suscipit justo
+                laoreet ut. Curabitur ac ornare dolor.
+              </text>
+            </group>
+
+
+    </group>
+    
+              <group data-height="200">
+
+              </group>
+              
   </group>
 
 
 
 
-  <group data-height="70"></group>
+
+
+
+          </group>
+
 
 </view>
 

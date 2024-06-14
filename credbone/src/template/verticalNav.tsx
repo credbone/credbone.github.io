@@ -1,6 +1,6 @@
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
-import React, { useState, useEffect, useRef, createContext, useContext } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import Tooltip from "../components/tooltip";
 import { LeftNavigation } from "../components/navigation";
 import buildInfo from "../buildInfo.json";
