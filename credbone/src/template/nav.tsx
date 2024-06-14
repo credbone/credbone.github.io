@@ -13,7 +13,8 @@ import Button from "../components/button";
 import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
-import { IconSearch, IconStar } from "../components/icon/credIcons";
+import { IconMore, IconSearch, IconStar } from "../components/icon/credIcons";
+import sampleImage from "../styles/images/samples/res_42.jpg";
 
 
 // Demo Data
@@ -75,10 +76,45 @@ const Landing: React.FC = () => {
 
 
             <group data-space="30" data-gap="30">
-            <group data-space="10" data-elevation="2" data-radius="15" data-background="context" data-max-length="600">
+            <group  data-elevation="2" data-contain="" data-radius="15" data-background="context" data-max-length="600">
+            <group
+      data-background="main-dark"
+      data-contain=""
+      // data-dark=""
+      data-align="center"
+    >
+      <picture data-position="absolute">
+        <img src={sampleImage} alt="" />
+      </picture>
 
+      <group data-length="fit" data-space="30">
+      <group data-width="auto">
+      <Ripple>
+        <group
+          data-wrap="no"
+          data-ink-color="secondary"
+          data-align="center"
+          data-cursor="pointer"
+          data-contain=""
+          data-background="secondary"
+          data-color="secondary-text"
+          data-interactive=""
+          data-space-horizontal="30"
+          data-radius="10"
+          data-height="80"
+          data-gap="20"
+        >
+          <group data-index="1">
+           <IconMore size={60}/>
+          </group>
+        </group>
+      </Ripple>
+    </group>
+      </group>
+    </group>
 
-<group data-type="grid" data-weight="600" data-grid-template="120" data-gap="5" >
+                
+<group data-space="10" data-type="grid" data-weight="600" data-grid-template="120" data-gap="5" >
 
 
 
