@@ -135,7 +135,7 @@ view[data-background="none"]{background:none}
 [data-float="20"]{--float-gap:20px}
 [data-float="30"]{--float-gap:30px}
 
-/* [data-name="switchable"][data-float]{max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);} */
+[data-float]{max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);}
 
 
 

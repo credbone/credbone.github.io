@@ -30,14 +30,18 @@ export const IconSearch: React.FC<IconProps> = (props) => {
   );
 };
 
-export const IconHome: React.FC<IconProps> = (props) => {
+
+
+export const IconHome: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
-    <Icon {...props}>
+    <Icon fill={fill} {...restProps}>
+      <path d="m18.25,17.89c0,1.12-.9,2.02-2,2.02h-8c-1.1,0-2-.91-2-2.02,0,0,0-4.17,0-7.64l6-5.33,6,5.33c0,3.43,0,7.55,0,7.64Z" fill={fill ? 'currentColor' : 'none'} />
       <path d="m18,10.33v7.67c0,1.1-.9,2-2,2h-8c-1.1,0-2-.9-2-2v-7.67" fill="none" stroke="currentcolor" strokeMiterlimit="10" strokeWidth="2"/>
       <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2">
       <line x1="12" y1="5" x2="20" y2="12" />
       <line x1="4" y1="12" x2="12" y2="5"/>
       </g>
+      
     </Icon>
   );
 };
