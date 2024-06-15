@@ -23,6 +23,7 @@ import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
+import Modals from "./Modals";
 
 const Template: React.FC = () => {
   return (
@@ -93,6 +94,7 @@ const Template: React.FC = () => {
             <Route path="InputsAndForms" element={<InputsAndForms />} />
             <Route path="TooltipAndPopover" element={<TooltipPopover />} />
             <Route path="CardsAndList" element={<Cards />} />
+            <Route path="Modals" element={<Modals />} />
           </Routes>
         </view>
       </view>
