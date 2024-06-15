@@ -6,6 +6,7 @@ type ThemeContextType = {
   setTheme: React.Dispatch<React.SetStateAction<ColorPalette>>;
   themeMode: string;
   setThemeMode: (mode: string) => void;
+  resetTheme: () => void;
 };
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -48,8 +49,15 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     document.documentElement.classList.toggle('dark-mode', mode === 'dark');
   };
 
+  const resetTheme = () => {
+    localStorage.removeItem('selectedColors');
+    localStorage.removeItem('themeMode');
+    setTheme(getPalette(defaultPrimaryColor, defaultSecondaryColor));
+    setThemeMode('light');
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, themeMode, setThemeMode }}>
+    <ThemeContext.Provider value={{ theme, setTheme, themeMode, setThemeMode, resetTheme }}>
       {children}
     </ThemeContext.Provider>
   );

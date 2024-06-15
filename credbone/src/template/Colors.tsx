@@ -557,7 +557,7 @@ test
                   <text
                     data-wrap="wrap"
                     data-light=""
-                    data-line="20"
+                    //data-line="20"
                     data-height="200"
                     data-orientation="vertical-bottom"
                   >

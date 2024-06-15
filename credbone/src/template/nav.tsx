@@ -248,6 +248,8 @@ data-ellipsis=""
               </group>
               <separator data-horizontal="" data-interval="10"></separator>
 
+
+
               <group
                 data-space="20"
                 data-gap="20"
@@ -687,96 +689,7 @@ data-ellipsis=""
               <group data-height="200"></group>
             </group>
 <group data-length="100" data-shrink="0" data-adaptive="600"></group>
-            {/* <group data-shrink="no" data-background="main" data-contain="">
-              <group data-space="30">
-                <group>
-                  <Scroll className="nav_strip classic transparent">
-                    <ul data-weight="600" data-color="main-text">
-                      <li>
-                        {" "}
-                        <group
-                          data-type="group"
-                          data-align="center"
-                          data-space="10"
-                          data-gap="10"
-                          data-wrap="no"
-                        >
-                          {" "}
-                          <icon data-fill="fill">Home</icon>{" "}
-                        </group>{" "}
-                      </li>
-                      <li className="selected">
-                        {" "}
-                        <separator
-                          data-vertical=""
-                          data-height="20"
-                        ></separator>{" "}
-                        <group
-                          data-align="center"
-                          data-space="10"
-                          data-gap="10"
-                          data-wrap="no"
-                        >
-                          {" "}
-                          <text>About</text>{" "}
-                        </group>{" "}
-                      </li>
-                      <li>
-                        {" "}
-                        <separator
-                          data-vertical=""
-                          data-height="20"
-                        ></separator>{" "}
-                        <group
-                          data-align="center"
-                          data-space="10"
-                          data-gap="10"
-                          data-wrap="no"
-                        >
-                          {" "}
-                          <text>Settings</text>{" "}
-                        </group>{" "}
-                      </li>
-                    </ul>
-                  </Scroll>
-                </group>
-
-                <group
-                  data-space="30"
-                  data-background="main-background"
-                  data-gap="10"
-                  data-direction="column"
-                  data-radius="10"
-                  data-elevation="2"
-                >
-                  <text
-                    data-weight="700"
-                    data-text-size="x-large"
-                    data-wrap="wrap"
-                  >
-                    {" "}
-                    Tabbed Invert Navigation{" "}
-                  </text>
-                  <text
-                    data-wrap="wrap"
-                    data-length="610"
-                    data-line="1.5"
-                    data-light=""
-                  >
-                    Aenean tempus at nisl et tempor. Morbi et tincidunt justo.
-                    Curabitur luctus condimentum justo, sit amet suscipit justo
-                    laoreet ut. Curabitur ac ornare dolor.
-                  </text>
-                </group>
-              </group>
-
-              
-            </group> */}
-          
           </group>
-  
-
-
         </view>
 
 

@@ -35,12 +35,13 @@ const SideNav = () => {
         ref={navRef}
         data-placement="right"
         data-float={isNavOpen ? "" : "30"}
-        data-radius={isNavOpen ? "" : "15"}
+        data-radius={isNavOpen ? "" : "10"}
+     //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
         data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
-        data-width="auto"
+      //  data-width="auto"
         data-height={isNavOpen ? "fit" : ""}
         // data-max-length="300"
         data-elevation="2"
@@ -113,7 +114,7 @@ const SideNav = () => {
               data-interactive=""
               data-space="10"
               data-gap="10"
-              data-radius="10"
+              data-radius={isNavOpen ? "10" : "5"}
               data-align="center"
               data-wrap="no"
             >

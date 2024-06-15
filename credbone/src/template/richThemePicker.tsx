@@ -46,7 +46,7 @@ const RichThemePicker: React.FC = () => {
                   ) : (
                     <group data-direction="column">
                       <text data-weight="700">{c.name}</text>
-                      <text>{c.description}</text>
+                      <text data-opacity="50">{c.description}</text>
                     </group>
                   )
                 }
@@ -110,7 +110,7 @@ const RichThemePicker: React.FC = () => {
                 ) : (
                   <group data-direction="column">
                     <text data-weight="700">{c.name}</text>
-                    <text>{c.description}</text>
+                    <text data-opacity="50">{c.description}</text>
                   </group>
                 )
               }
