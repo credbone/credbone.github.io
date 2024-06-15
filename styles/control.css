@@ -385,6 +385,13 @@ a[data-link]:active {transform:translateY(1px)}
 
 
 
+@media (max-width: 600px) 
+
+{
+  [data-adaptive="600"]{display: none;}
+}
+
+
 space { display: flex; height: 30px; width: 100%; flex-shrink: 0; }
 
 

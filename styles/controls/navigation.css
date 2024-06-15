@@ -98,7 +98,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 
 
 
-/* stylelint-enable */
+
 
 
 
@@ -128,12 +128,15 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 [data-name="side_nav"][data-placement="right"]{right:0}
 [data-name="side_nav"][data-placement="left"]{left:0}
 
+
+
 @media (max-width: 1000px) 
 
 {
    [data-name="side_nav"]{position: absolute;}
    /* [dir="rtl"] [data-name="side_nav"]{left:0; right:initial} */
 }
+
 
 @media (min-width: 1001px) 
 
@@ -142,6 +145,9 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
    
 }
 
+
+
+
 [data-name="vertical-indicator"] { width: 2px; right:0; top:0; height: 0; transition: height .325s, transform .225s;}
 [data-name="horizontal-indicator"] { height: 2px; left:0; bottom: 0; transition: width .225s .125s, transform .325s;   }
 
@@ -149,12 +155,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 
 
 
-
-
 [data-name="nav-item"]{-webkit-user-drag: none;}
 [data-name="nav-item"].active {background-color: var(--main-color-lighter); }
-
 [data-name="nav-item"].active  icon[data-react="fill"]{font-variation-settings: "FILL" 1;}
-
-
 [data-select-theme="main"][data-name="nav-item"].active {background: var(--main-color); color:var(--main-color-text) }
