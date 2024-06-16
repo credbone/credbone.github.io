@@ -107,13 +107,14 @@ function Settings() {
           data-fill-mode="backwards"
           data-animation-duration="125"
         >
-          <text data-weight="700" data-color="main" data-text-size="large">
+          <text data-weight="700" data-color="main" data-text-size="large" data-ellipsis="">
             Reset to Default Settings
           </text>
 
           <text
             data-light=""
             data-wrap="wrap"
+
             data-line="20"
             data-max-length="400"
           >
@@ -132,15 +133,18 @@ function Settings() {
               onClick={handleReset}
               data-contain=""
               data-space="15"
-              data-space-horizontal="30"
+
               data-interactive=""
-              data-width="auto"
+             // data-width="auto"
               data-cursor="pointer"
-              data-radius="10"
-              //data-border="outline"
-              data-background="main-lighter"
+              data-radius="7"
+              data-border="outline"
+              data-length="180"
+              data-align="center"
+              data-direction="column"
+              data-background="context"
             >
-              <text data-weight="700">Reset</text>
+              <text data-weight="700" data-ellipsis="">Reset</text>
             </group>
           </Ripple>
         </group>

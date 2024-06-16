@@ -420,7 +420,8 @@ const handleIconClick = (iconName: string) => {
             onClick={() => handleIconClick(icon.name)}
             className={isSelected(icon.name) ? "selected" : ""}
             data-ink-color={isSelected(icon.name) ? "main-dark" : ""}
-            data-background={isSelected(icon.name) ? "main-dark" : ""}
+            data-background={isSelected(icon.name) ? "main" : ""}
+            data-color={isSelected(icon.name) ? "main-text" : ""}
            // data-name="icon-demo"
             data-contain=""
             data-interactive=""

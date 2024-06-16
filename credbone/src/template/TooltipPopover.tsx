@@ -321,6 +321,7 @@ const TooltipPopover: React.FC = () => {
                 data-text-size="xxx-large"
                 data-wrap="wrap"
                 data-color="main"
+                data-ellipsis=""
               >
                 Snackbar
               </text>
@@ -371,7 +372,7 @@ const TooltipPopover: React.FC = () => {
                     data-color="secondary-text"
                     onClick={() => addSnackbar(<>{SnackbarContent}</>)}
                   >
-                    <text data-weight="700">Show Snackbar</text>
+                    <text data-weight="700" data-ellipsis="">Show Snackbar</text>
                   </group>
                 </group>
                 <group>
@@ -411,7 +412,7 @@ const TooltipPopover: React.FC = () => {
                 data-cursor="pointer"
                 onClick={() => addSnackbar(<>{SnackbarContent}</>)}
               >
-                <text>Show Snackbar</text>
+                <text data-ellipsis="">Show Snackbar</text>
               </group>
             </group>
             <separator data-horizontal=""></separator>
@@ -425,7 +426,7 @@ const TooltipPopover: React.FC = () => {
                 data-cursor="pointer"
                 onClick={handleSeriesClick}
               >
-                <text decoration="">Replace Snackbars From This Source</text>
+                <text data-ellipsis="">Replace Snackbars From This Source</text>
               </group>
             </group>
           </group>

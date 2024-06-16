@@ -286,6 +286,7 @@ const Cards: React.FC = () => {
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-color="main"
+          data-ellipsis=""
         >
           Cards & List
         </text>
@@ -309,7 +310,8 @@ const Cards: React.FC = () => {
                     {...field}
                     label={radio.label}
                     iconProps={{ "data-length": "30" }}
-                    tooltip={radio.label}
+                    tooltip={field.value === radio.value ? null : radio.label} 
+               //     tooltip={radio.label}
                     icon={radio.icon}
                     radioValue={radio.value}
                     radioType={RadioType.Button}

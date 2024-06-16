@@ -108,7 +108,10 @@ const Scroll: React.FC<{
           }
           scrollSize = item.scrollHeight;
         }
-        element?.scrollBy(0, (right ? 1 : -1) * scrollSize);
+        element?.scrollBy({
+          left: (right ? 1 : -1) * scrollSize,
+          behavior: 'smooth'
+        });
       } else {
         scrollSize = item.scrollWidth;
         while (++i < elementChildren.length) {
@@ -121,7 +124,10 @@ const Scroll: React.FC<{
           }
           scrollSize = item.scrollWidth;
         }
-        element?.scrollBy((right ? 1 : -1) * scrollSize, 0);
+        element?.scrollBy({
+          left: (right ? 1 : -1) * scrollSize,
+          behavior: 'smooth'
+        });
       }
     }
   };

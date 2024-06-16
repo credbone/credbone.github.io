@@ -47,8 +47,9 @@ const SnackbarContainer: React.FC<SnackbarContainerProps> = ({ children }) => {
   return (
     <SnackbarContext.Provider value={{ addSnackbar }}>
       {children}
-      <div className="snackbar-container" data-gap="10" data-align="center" data-contain="">
-        {snackbars.map((snackbar) => (
+      <div className="snackbar-container">
+       <group data-gap="10" data-align="center" data-contain="" data-direction="column" data-space="20" data-position="absolute">
+       {snackbars.map((snackbar) => (
           <Snackbar
             key={snackbar.id}
             id={snackbar.id}
@@ -57,6 +58,7 @@ const SnackbarContainer: React.FC<SnackbarContainerProps> = ({ children }) => {
             onClose={removeSnackbar}
           />
         ))}
+       </group>
       </div>
     </SnackbarContext.Provider>
   );
