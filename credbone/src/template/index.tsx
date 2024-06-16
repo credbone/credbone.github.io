@@ -20,7 +20,7 @@ import Components from "./components";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
-import Tooltip from "../components/tooltip";
+
 import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Modals from "./Modals";
