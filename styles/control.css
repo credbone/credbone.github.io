@@ -90,9 +90,9 @@ text{position: relative;}
 
 text{white-space: nowrap; /*color:var(--main-text)*/}
 
-text[data-wrap="wrap"]{white-space: normal;}
+text[data-wrap="wrap"]{white-space: normal;  }
 text[data-wrap="nowrap"]{white-space: nowrap;}
-text[data-wrap="preline"] { white-space: pre-line; }
+text[data-wrap="preline"] { white-space: pre-line;  }
 
 text[data-ellipsis] {text-overflow: ellipsis; max-width: 100%; overflow: hidden;}
 

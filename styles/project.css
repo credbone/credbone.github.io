@@ -166,7 +166,8 @@ transition: background-color 5000s 0s, color 5000s 0s;
 
 
 @keyframes snackbar-appear {from{ opacity: 0;margin-bottom: -30px; transform: translateY(10px);  }to{ }}
-.snackbar-container {position: absolute; bottom: 0; width: 100%; display: flex; padding: 20px;z-index: 9999; flex-direction: column; pointer-events: none;}
+.snackbar-container {position: relative;width: 100%;pointer-events: none;}
+.snackbar-container > group {bottom: 0;z-index: 9999;  }
 .snackbar {animation: snackbar-appear backwards .325s;transition:  125ms; clip-path: inset(0 0 0 0 round 10px) }
 .snackbar-exit { opacity: 0; transform: translateY(-20px); }
 [data-background="snackbar"] { background-color: #2d2d2d; }
