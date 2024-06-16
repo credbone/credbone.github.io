@@ -12,7 +12,7 @@ function Settings() {
 
   const handleReset = () => {
     resetTheme();
-    addSnackbar("Settings have been successfully reset.");
+    addSnackbar("Settings have been successfully reset",3000,'reset', true);
   };
 
   return (
