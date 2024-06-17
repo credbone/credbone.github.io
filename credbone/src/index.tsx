@@ -1,25 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import "./configs/customTags";
 //import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 import { isDesktop, isMobile } from "react-device-detect";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 isMobile && document.documentElement.classList.add("mobile");
 isDesktop && document.documentElement.classList.add("desktop");
 
-const TooltipContainer = () => <div id="tooltip-container" data-max-length="fit" />;
+const TooltipContainer = () => (
+  <div id="tooltip-container" data-max-length="fit" />
+);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
-    <TooltipContainer />
+    <ThemeProvider>
+      <App />
+      <TooltipContainer />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

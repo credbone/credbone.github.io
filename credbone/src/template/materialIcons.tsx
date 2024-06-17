@@ -422,7 +422,7 @@ const handleIconClick = (iconName: string) => {
             data-ink-color={isSelected(icon.name) ? "main-dark" : ""}
             data-background={isSelected(icon.name) ? "main" : ""}
             data-color={isSelected(icon.name) ? "main-text" : ""}
-           // data-name="icon-demo"
+            data-name="icon-demo"
             data-contain=""
             data-interactive=""
 
