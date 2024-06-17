@@ -447,6 +447,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-height='40'] { height:40px; }
+[data-height='45'] { height:45px; }
 [data-height='50'] { height:50px; }
 [data-height='60'] { height:60px; }
 [data-height='70'] { height:70px; }
@@ -733,3 +734,17 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-text-transform="uppercase"] { text-transform: uppercase; }
 [data-text-transform="lowercase"] { text-transform: lowercase; }
 [data-text-transform="none"] { text-transform: none; }
+
+
+:root {
+
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+
+  --sab: env(safe-area-inset-bottom); /* THIS ONE GETS US THE HOME BAR HEIGHT */
+  --sal: env(safe-area-inset-left);
+}
+
+
+
+[data-space-bottom="15-sab"]{padding-bottom:max(var(--sab), 15px);}
