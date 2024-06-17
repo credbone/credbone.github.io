@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { isDesktop, isMobile } from "react-device-detect";
 import { ThemeProvider } from "./components/ThemeProvider";
+import MetaThemeColorUpdater from "./components/MetaThemeColorUpdater";
 
 isMobile && document.documentElement.classList.add("mobile");
 isDesktop && document.documentElement.classList.add("desktop");
@@ -21,6 +22,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider>
+      
+  <MetaThemeColorUpdater />
       <App />
       <TooltipContainer />
     </ThemeProvider>

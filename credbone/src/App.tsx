@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,39 +8,24 @@ import {
 import Template from "./template";
 import About from "./pages/about";
 
-import { ThemeProvider, useTheme } from "./components/ThemeProvider";
+
 import Settings from "./pages/settings";
 import { Navigation } from "./components/navigation";
 
 import VerticalNav from "./template/verticalNav";
 import SnackbarContainer from "./components/snackbar/SnackbarContainer";
-import { updateMetaThemeColor } from "./utils/hooks/themeUtils";
+import MetaThemeColorUpdater from "./components/MetaThemeColorUpdater";
+import TitleUpdater from "./components/TitleUpdater";
+
 
 function App() {
-  const { themeMode } = useTheme();
-  const [prefersDarkMode, setPrefersDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersDarkMode(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  useEffect(() => {
-    updateMetaThemeColor(themeMode, prefersDarkMode);
-  }, [themeMode, prefersDarkMode]);
 
   return (
     <>
       <Router>
+
+      <TitleUpdater />
+
         <group
           data-adaptive="mobile"
           data-adaptive-order="2"

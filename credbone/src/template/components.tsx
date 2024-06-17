@@ -5,7 +5,7 @@ import { IconHome, IconStar } from "../components/icon/credIcons";
 
 import sampleImage from "../styles/images/samples/res_16.jpg";
 import sampleImage_2 from "../styles/images/samples/res_34.jpg";
-import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
+import sampleImage_3 from "../styles/images/samples/res_48.jpg";
 
 const Components: React.FC = () => {
   return (
@@ -67,7 +67,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //data-length="200"
-              data-height="360"
+              data-height="320"
             >
               <group
                 data-index="1"
@@ -100,7 +100,7 @@ data-interactive=""
               // data-elevation="1"
               data-background="context"
               //data-length="200"
-              data-height="360"
+              data-height="320"
               data-contain=""
               data-react="scale"
             >
@@ -149,7 +149,7 @@ data-interactive=""
               data-background="main-dark"
               data-color="white"
               //data-length="200"
-              data-height="360"
+              data-height="320"
               data-contain=""
             
             >
@@ -212,7 +212,7 @@ data-interactive=""
               // data-elevation="1"
               data-background="context"
               //  data-length="350"
-              data-height="360"
+              data-height="320"
               data-contain=""
               data-color="white"
                data-react="scale"
@@ -262,7 +262,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //   data-length="400"
-              data-height="360"
+              data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
@@ -315,7 +315,7 @@ data-interactive=""
               //     data-background="main"
               //     data-color="main-text"
               //   data-length="400"
-              data-height="360"
+              data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
@@ -367,7 +367,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //   data-length="400"
-              data-height="360"
+              data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
