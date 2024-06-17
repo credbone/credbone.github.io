@@ -408,7 +408,7 @@ picture[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent)
 
 picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:auto;max-height: 100%;max-width: 100%;}
 
-[data-react="scale"] picture {transition: .125s;}
+[data-react="scale"] picture {transition: .325s;}
 [data-react="scale"]:hover  picture {transform: scale(1.05);}
 [data-react="scale"]:active  picture {transform:none;}
 
