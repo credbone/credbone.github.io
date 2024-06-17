@@ -134,9 +134,10 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
         onClick={() => onSelect(item.key)}
         data-interactive=""
         data-cursor="pointer"
+        
       >
 
-<group data-ratio="1:1"  data-radius="15" data-contain="" data-background="highlight">
+<group data-ratio="1:1"  data-radius="15" data-contain="" data-background="highlight"  >
           <picture  data-brightness="adaptive"> <img src={item.image} alt={item.description} /> </picture>
         </group>
         
@@ -264,19 +265,20 @@ type TemplateProps = {
 const Cards: React.FC = () => {
   const { control, watch } = useForm<FieldValues>({
     defaultValues: {
-      ViewSwitch: "CardView",
+      ViewSwitch: "ListView",
     },
   });
 
   const view = watch("ViewSwitch") as ViewTypes; // Ensure the view type is correct
   const { component: ViewComponent, gridTemplate } = ViewTemplates[view];
 
-  const [selectedKey, setSelectedKey] = useState<string>("");
+  const [selectedKey, setSelectedKey] = useState<string>("1");
 
   const handleSelect = (key: string) => {
     setSelectedKey((prevKey) => (prevKey === key ? "" : key));
   };
 
+  
 
   return (
     <view data-space="30" data-gap="30" data-scroll="">

@@ -53,7 +53,7 @@ function App() {
             data-gap="10"
             data-space="15"
             data-space-bottom="15-sab"
-            data-justify="space-around"
+            data-justify="adaptive-space-around"
           >
             <Navigation />
 

@@ -4,8 +4,6 @@ import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
 import { NavContext } from "../template/verticalNav";
 
-
-
 const navItems = [
   { to: "/Home", icon: "home", label: "Home" },
   { to: "/About", icon: "lightbulb", label: "About" },
@@ -22,42 +20,45 @@ const Navigation: React.FC = () => {
           data-type="group"
           to={item.to}
           data-width="auto"
-        //  data-max-length="120"
+          //  data-max-length="120"
           data-name="nav-item"
           data-select-theme="main"
           data-radius="30"
           data-contain=""
           data-interactive=""
           data-weight="600"
-        //  className={({ isActive }) => (isActive ? 'active' : '')}
-
+          data-shrink="0"
+          //  className={({ isActive }) => (isActive ? 'active' : '')}
         >
- {({ isActive }) => ( 
-
-              <group
-                data-justify="center"
-             // data-direction="column"
-            //  data-gap="5"
+          {({ isActive }) => (
+            <group
+              data-justify="center"
+              // data-direction="column"
+              //  data-gap="5"
               data-align="center"
               data-space="10"
               data-height="45"
-                data-space-horizontal="15"
+              data-space-horizontal="15"
               data-wrap="no"
               // {...(isActive ? { 'data-ink-color': 'main-dark', } : {})}
             >
               <icon data-length="30" data-height="auto">
                 {item.icon}
-                </icon>
-                <text data-space-horizontal="5" data-ellipsis="" data-name="dinamic-text">{item.label}</text>
-                {/* {isActive ? (
+              </icon>
+              <text
+                data-space-horizontal="5"
+                data-ellipsis=""
+                data-name="dinamic-text"
+              >
+                {item.label}
+              </text>
+              {/* {isActive ? (
                   ""
               ) : (
                 ""
               )} */}
-            
             </group>
-
- )}
+          )}
         </NavLink>
       ))}
     </>
@@ -65,7 +66,6 @@ const Navigation: React.FC = () => {
 };
 
 const LeftNavigation: React.FC = () => {
-  
   const context = useContext(NavContext);
 
   if (!context) {
@@ -139,30 +139,35 @@ const LeftNavigation: React.FC = () => {
           data-interactive=""
           // className={({ isActive }) => isActive ? 'active' : ''}
         >
-          <Tooltip content={isNavOpen ? "" : (item.vertical ? "" : item.label)}  placement="right">
-<group>
-<Ripple>
-            <group
-              data-align="center"
-              data-space="10"
-              data-gap="10"
-              data-wrap="no"
-              data-adaptive-direction={item.vertical ? "column" : ""}
-            >
-              <icon data-length="30">{item.icon}</icon>
-              <text
-                data-adaptive={item.vertical ? "vertical-state" : "open-state"}
-                data-ellipsis=""
-              >
-                {item.label}
-              </text>
-              {item.vertical === "true" && (
-                <group data-width="auto"></group>
-              )}
+          <Tooltip
+            content={isNavOpen ? "" : item.vertical ? "" : item.label}
+            placement="right"
+          >
+            <group>
+              <Ripple>
+                <group
+                  data-align="center"
+                  data-space="10"
+                  data-gap="10"
+                  data-wrap="no"
+                  data-adaptive-direction={item.vertical ? "column" : ""}
+                >
+                  <icon data-length="30">{item.icon}</icon>
+                  <text
+                    data-adaptive={
+                      item.vertical ? "vertical-state" : "open-state"
+                    }
+                    data-ellipsis=""
+                  >
+                    {item.label}
+                  </text>
+                  {item.vertical === "true" && (
+                    <group data-width="auto"></group>
+                  )}
+                </group>
+              </Ripple>
             </group>
-          </Ripple>
-</group>
-</Tooltip>
+          </Tooltip>
         </NavLink>
       ))}
 

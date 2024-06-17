@@ -28,17 +28,13 @@ const Components: React.FC = () => {
             </text>
             <text
               data-wrap="wrap"
-              data-length="700"
+              data-length="600"
               data-line="1.5"
               data-opacity="70"
             >
-              We're excited to have you here. This platform offers a remarkable
-              collection of carefully crafted UI components, each designed with
-              meticulous attention to detail and a deep understanding of
-              contemporary UI patterns. Whether you're a designer seeking
-              inspiration or a developer in search of the perfect elements to
-              elevate your project, you'll discover everything you need right
-              here.
+              This platform offers a remarkable collection of carefully crafted
+              UI components, each designed with meticulous attention to detail
+              and a deep understanding of contemporary UI patterns. here.
             </text>
           </group>
         </group>
@@ -57,9 +53,11 @@ const Components: React.FC = () => {
             data-space="30"
             data-gap="15"
             data-type="grid"
-            data-grid-template="200"
+            data-grid-template="180"
+            data-weight="600"
           >
             <Link
+data-interactive=""
               data-width="auto"
               to="../Colors"
               data-type="group"
@@ -79,7 +77,7 @@ const Components: React.FC = () => {
                 data-align="start"
               >
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                 >
@@ -93,6 +91,7 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
               //  data-interactive=""
@@ -103,8 +102,10 @@ const Components: React.FC = () => {
               //data-length="200"
               data-height="360"
               data-contain=""
+              data-react="scale"
             >
               <picture
+              
                 data-position="absolute"
                 data-brightness="adaptive"
                 data-background="grey-light"
@@ -113,7 +114,7 @@ const Components: React.FC = () => {
               </picture>
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                 >
@@ -140,6 +141,7 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/Buttons"
@@ -149,6 +151,7 @@ const Components: React.FC = () => {
               //data-length="200"
               data-height="360"
               data-contain=""
+            
             >
               <picture data-position="absolute" data-name="color-demo">
                 <img src={sampleImage} alt="" />
@@ -161,7 +164,7 @@ const Components: React.FC = () => {
                 data-space="30"
               >
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                 >
@@ -200,9 +203,10 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
-             // data-interactive=""
+              // data-interactive=""
               to="/Home/CardsAndList"
               data-radius="15"
               // data-elevation="1"
@@ -211,6 +215,7 @@ const Components: React.FC = () => {
               data-height="360"
               data-contain=""
               data-color="white"
+               data-react="scale"
             >
               <picture
                 data-position="absolute"
@@ -221,7 +226,7 @@ const Components: React.FC = () => {
               </picture>
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                 >
@@ -248,6 +253,7 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/CheckboxSwitchers"
@@ -260,7 +266,7 @@ const Components: React.FC = () => {
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                   data-ellipsis=""
@@ -299,12 +305,13 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/TooltipAndPopover"
               data-radius="15"
               data-contain=""
-              data-elevation="2"
+              data-elevation="1"
               //     data-background="main"
               //     data-color="main-text"
               //   data-length="400"
@@ -312,7 +319,7 @@ const Components: React.FC = () => {
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                   data-ellipsis=""
@@ -351,6 +358,7 @@ const Components: React.FC = () => {
             </Link>
 
             <Link
+data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/Navigation"
@@ -363,7 +371,7 @@ const Components: React.FC = () => {
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
-                  data-text-size="xx-large"
+                  data-text-size="x-large"
                   data-weight="700"
                   data-wrap="wrap"
                   data-ellipsis=""
