@@ -35,6 +35,7 @@ const Template: React.FC = () => {
         data-background="main-background"
         data-contain=""
         data-shrink="no"
+                      data-adaptive-order="2"
       >
         <Scroll wheelEnabled={true}>
           <SubNavigation />
