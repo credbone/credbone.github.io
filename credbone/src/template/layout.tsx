@@ -16,7 +16,7 @@ const Layout: React.FC = () => {
         data-radius="10"
       >
         <Switchable
-       //    data-float="15"
+          //    data-float="15"
           //  data-radius="10"
 
           defaultExpanded={false}
@@ -27,7 +27,7 @@ const Layout: React.FC = () => {
           }
           title={"Adaptive Switchable To The Left"}
           //    togglerProps={{ "data-order": "2" }}
-          data-type="overlap"
+          data-type="adaptive"
           data-length="300"
           closeOnOutsideClick={true}
           data-elevation="1"
@@ -58,7 +58,7 @@ const Layout: React.FC = () => {
             </group>
           </>
         </Switchable>
-
+        <group data-name="switch-gap" data-shrink="no"></group>
         <view
           data-name="switchable"
           data-direction="column"
@@ -66,13 +66,13 @@ const Layout: React.FC = () => {
           // data-radius="10"
         >
           <view data-scroll="" data-align="start">
-            <group data-space="15" data-sticky="top" data-width="auto">
+            <group data-space="15" data-sticky="top" >
               <group
                 data-align="center"
                 data-gap="5"
                 data-elevation="1"
                 data-index="2"
-                data-backdrop="10"
+                data-background="context"
                 data-wrap="no"
                 data-radius="5"
               >
@@ -119,7 +119,7 @@ const Layout: React.FC = () => {
         </view>
 
         <Switchable
-       //   closeOnOutsideClick={true}
+          //   closeOnOutsideClick={true}
           //     data-radius="10"
           data-type="adaptive"
           data-placement="right"
@@ -171,17 +171,17 @@ const Layout: React.FC = () => {
             </view>
 
             <Switchable
-             // data-float="15"
+              // data-float="15"
               defaultExpanded={false}
               data-type="overlap"
               data-elevation="1"
               data-switch-direction="horizontal"
               icon="shopping_basket"
               togglerProps={{
-                "data-background": "main",
-                "data-color": "main-text",
-                "data-ink-color": "main-dark",
-                "data-order": "2",
+            //    "data-background": "main",
+             //   "data-color": "main-text",
+             //   "data-ink-color": "main-dark",
+             //   "data-order": "2",
               }}
               title={"Switchable To The Bottom"}
             >

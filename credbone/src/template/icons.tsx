@@ -119,7 +119,7 @@ const Icons: React.FC = () => {
         <group data-space="30" data-sticky="top" data-width="auto">
           <group
             data-length="600"
-            data-radius="30"
+            data-radius="10"
             data-elevation="1"
             data-align="center"
             data-backdrop="10"
@@ -128,18 +128,22 @@ const Icons: React.FC = () => {
           >
             <Ripple>
               <label
+              
+              data-align="center"
                 className="field"
                 data-label="left"
                 data-multi-element=""
                 data-length="autofit"
-                data-space-horizontal="15"
+                data-space-horizontal="10"
               >
                 <div className="form_fields">
-                  <div className="field_cont">
+                  <div className="field_cont" data-height="50" data-gap="10">
                    
-                      <IconSearch size={20} />
+                  <group data-length="30" data-align="center" data-justify="center">
+                  <IconSearch size={20} />
+                  </group>
                     
-                    <separator data-vertical="" data-margin="10"></separator>
+                    <separator data-vertical="" data-height="20"></separator>
                     <input
                       className="icon_search"
                       placeholder="Search..."

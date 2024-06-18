@@ -299,9 +299,9 @@ const Cards: React.FC = () => {
         </text>
       </group>
 
-      <group>
-        <group data-gap="10" data-background="main-background">
-          <OptionBar compact dynamic data-height="40" data-weight="600">
+      <group data-sticky="top" data-index="3">
+        <group data-gap="10" >
+          <OptionBar compact dynamic data-height="40"  data-radius="5" data-backdrop="10" data-weight="600">
             {ViewSwitch.map((radio) => (
               <Controller
                 key={radio.key}
@@ -309,6 +309,10 @@ const Cards: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <Radio
+                  labelProps={{
+                    "data-background": "none",
+                  
+                  }}
                     {...field}
                     label={radio.label}
                     iconProps={{ "data-length": "30" }}

@@ -1,7 +1,7 @@
 import React from "react";
 import Scroll from "../components/scroll";
 
-import sampleImage9 from "../styles/images/samples/list_res/res-04.jpg";
+import sampleImage9 from "../styles/images/samples/res_42.jpg";
 
 import Count from "../components/Coutner";
 import { IconShare } from "../components/icon/credIcons";
@@ -18,7 +18,7 @@ const ContentSlide: React.FC = () => {
           <group  data-wrap="no" data-max-length="auto">
             <group data-wrap="no"  data-space="20" data-gap="10" data-shrink="no" data-width="auto" data-max-length="auto">
               <group
-                data-background="highlight"
+                data-background="context"
                 data-radius="15"
                 data-space="30"
                 data-min-length="240"
@@ -28,7 +28,8 @@ const ContentSlide: React.FC = () => {
                 data-direction="column"
                 data-align="start"
                 data-gap="20"
-                data-dark=""
+             //   data-dark=""
+             data-border=""
               >
                 <text
                   data-weight="700"
@@ -47,12 +48,13 @@ const ContentSlide: React.FC = () => {
               <group
                 data-height="300"
                 data-contain=""
-                data-background="highlight"
+                data-background="context"
                 data-radius="15"
                 data-space="20"
                 data-min-length="240"
                 data-length="240"
-                data-dark=""
+             //   data-dark=""
+              data-border=""
               >
                 <group data-position="center" data-width="auto">
                   <IconShare size={90} />
@@ -147,7 +149,7 @@ const ContentSlide: React.FC = () => {
                   data-direction="column"
                   data-align="start"
                   data-gap="20"
-                  data-dark=""
+                  
                 >
                   <text
                     data-weight="700"

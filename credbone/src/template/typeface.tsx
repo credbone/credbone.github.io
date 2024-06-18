@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/button";
-import { glyphs } from "./glyphData";
+import { glyphs } from "./utils/glyphData";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 

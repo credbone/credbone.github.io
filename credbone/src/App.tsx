@@ -16,7 +16,7 @@ import VerticalNav from "./template/verticalNav";
 import SnackbarContainer from "./components/snackbar/SnackbarContainer";
 
 import TitleUpdater from "./components/TitleUpdater";
-import Search from "./pages/search";
+import Search from "./pages/search/search";
 
 
 
