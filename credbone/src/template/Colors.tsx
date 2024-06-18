@@ -1,6 +1,6 @@
 import React from "react";
 
-import sampleImage from "../styles/images/samples/res_15.jpg";
+
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
@@ -9,117 +9,29 @@ import Popover from "../components/popover";
 
 const Colors: React.FC = () => {
   const BaseColors = [
-    {
-      value: "red",
-      name: "Red",
-      description: "A muted brick red, vibrant yet grounded.",
-      dark: "true",
-      picture: "true",
-    },
-    {
-      value: "pink",
-      name: "Pink",
-      description: "A rich raspberry, bold with a touch of sophistication.",
-      dark: "true",
-    },
-    {
-      value: "purple",
-      name: "Purple",
-      description: "Deep amethyst, luxurious and elegant.",
-      dark: "true",
-    },
-    {
-      value: "deep-purple",
-      name: "Deep Purple",
-      description: "Royal violet, striking and majestic.",
-      dark: "true",
-    },
-    {
-      value: "indigo",
-      name: "Indigo",
-      description: "Denim blue, classic with a modern twist.",
-      dark: "true",
-    },
-    {
-      value: "blue",
-      name: "Blue",
-      description: "Cerulean blue, bright and clear like the sky.",
-    },
-    {
-      value: "light-blue",
-      name: "Light Blue",
-      description: "Ocean blue, fresh and invigorating.",
-    },
-    {
-      value: "cyan",
-      name: "Cyan",
-      description: "Peacock blue, exotic and lively.",
-    },
-    {
-      value: "teal",
-      name: "Teal",
-      description: "Tropical teal, vibrant with a hint of mystery.",
-      dark: "true",
-    },
-    {
-      value: "green",
-      name: "Green",
-      description: "Fern green, natural and refreshing.",
-    },
-    {
-      value: "light-green",
-      name: "Light Green",
-      text: "black",
-      description: "Moss green, earthy and calm.",
-    },
-    {
-      value: "lime",
-      name: "Lime",
-      text: "black",
-      description: "Chartreuse, bright and zesty.",
-    },
-    {
-      value: "yellow",
-      name: "Yellow",
-      text: "black",
-      description: "Mustard yellow, warm and bold.",
-    },
-    {
-      value: "amber",
-      name: "Amber",
-      text: "black",
-      description: "Golden amber, rich and inviting.",
-    },
-    {
-      value: "orange",
-      name: "Orange",
-      description: "Pumpkin orange, warm and energetic.",
-    },
-    {
-      value: "deep-orange",
-      name: "Deep Orange",
-      description: "Burnt orange, deep and intense.",
-      dark: "true",
-    },
-    {
-      value: "brown",
-      name: "Brown",
-      description: "Cocoa brown, warm and comforting.",
-      dark: "true",
-    },
-    {
-      value: "grey",
-      name: "Grey",
-      description: "Slate grey, neutral and versatile.",
-      dark: "true",
-    },
-    {
-      value: "blue-grey",
-      name: "Blue Grey",
-      description: "Stormy blue-grey, cool and sophisticated.",
-      dark: "true",
-    },
+    {  value: "red", name: "Red", description: "A muted brick red, vibrant yet grounded.", dark: "true", },
+    {  value: "pink", name: "Pink", description: "Vibrant raspberry with refined sophistication.", dark: "true" , },
+    {  value: "purple", name: "Purple", description: "Deep amethyst, luxurious and elegant.", dark: "true" , },
+    {  value: "deep-purple", name: "Deep Purple", description: "Royal violet, striking and majestic.", dark: "true" , },
+    {  value: "indigo", name: "Indigo", description: "Denim blue, classic with a modern twist.", dark: "true" , },
+    {  value: "blue", name: "Blue", description: "Cerulean blue, bright and clear like the sky." , },
+    {  value: "light-blue", name: "Light Blue", description: "Ocean blue, fresh and invigorating." , },
+    {  value: "cyan", name: "Cyan", description: "Peacock blue, exotic and lively." , },
+    {  value: "teal", name: "Teal", description: "Tropical teal, vibrant with a hint of mystery.", dark: "true" , },
+    {  value: "green", name: "Green", description: "Fern green, natural and refreshing." , },
+    {  value: "light-green", name: "Light Green", text: "black", description: "Moss green, earthy and calm." , },
+    {  value: "lime", name: "Lime", text: "black", description: "Chartreuse, bright and zesty." , },
+    {  value: "yellow", name: "Yellow", text: "black", description: "Mustard yellow, warm and bold." , },
+    {  value: "amber", name: "Amber", text: "black", description: "Golden amber, rich and inviting." , },
+    {  value: "orange", name: "Orange", description: "Pumpkin orange, warm and energetic." , },
+    {  value: "deep-orange", name: "Deep Orange", description: "Burnt orange, deep and intense.", dark: "true" , },
+    {  value: "peach", name: "Peach", description: "Soft peach, delicate and warm." , },
+    {  value: "brown", name: "Brown", description: "Cocoa brown, warm and comforting.", dark: "true" , },
+    {  value: "grey", name: "Grey", description: "Slate grey, neutral and versatile.", dark: "true" , },
+    {  value: "blue-grey", name: "Blue Grey", description: "Stormy blue-grey, cool and sophisticated.", dark: "true",  }
   ];
+
+
 
   return (
     <view data-space="30" data-gap="30" data-scroll="" id="inner-popover-container">
@@ -477,7 +389,9 @@ test
         data-width="auto"
         data-type="grid"
         data-grid-template="120"
-        data-gap="10"
+        //data-gap="10"
+        data-radius="15"
+
       >
         {BaseColors.map((colors, index) => (
           <Popover
@@ -489,36 +403,36 @@ test
             data-elevation="2"
             data-width="auto"
             content={
-              <group  data-length="180" data-gap="10">
+              <group   data-gap="10">
                 <group
                   data-radius="5"
                   data-contain=""
                   data-color={colors.dark === "true" ? "white" : "black"}
                   data-weight="600"
+                  data-wrap="no"
                 >
                   <group
+                    
                     data-space="15"
                     data-color="white"
                     data-background={colors.value + "-dark"}
                   >
-                    <text data-ellipsis="" data-color={colors.value + "-light"}>Dark {colors.name}</text>
+                    <text data-ellipsis="" >Dark</text>
                   </group>
-                  <group data-space="15" data-background={colors.value}>
+                  <group data-space="15" data-background={colors.value} data-gap="5">
                     <text data-ellipsis="" data-opacity="80">{colors.name}</text>
+                    {/* <text data-wrap="wrap" data-light="">
+                    {colors.description}
+                  </text> */}
                   </group>
                   <group
                     data-space="15"
                     data-background={colors.value + "-light"}
                   >
-                    <text data-ellipsis="" data-color={colors.value + "-dark"}>Light {colors.name}</text>
+                    <text data-ellipsis="" data-color={colors.value + "-dark"}>Light</text>
                   </group>
                 </group>
-                <group data-space="10" data-direction="column" data-gap="5">
-                  <text data-weight="700">{colors.name}</text>
-                  <text data-wrap="wrap" data-light="">
-                    {colors.description}
-                  </text>
-                </group>
+
               </group>
             }
           >
@@ -526,7 +440,8 @@ test
               <group
                 data-cursor="pointer"
                 //  data-interactive=""
-                data-radius="15"
+                // data-radius="15"
+                data-space="30"
                 data-contain=""
                 data-length="auto"
                 data-color={colors.dark === "true" ? "white" : "black"}
@@ -535,31 +450,26 @@ test
                 data-justify="start"
                 data-width="auto"
                 data-background={colors.value}
+                data-height="240"
               >
-                {colors.picture === "true" && (
-                  <>
-                    <picture
-                      data-position="absolute"
-                      data-name="color-demo"
-                    >
-                      <img src={sampleImage} alt="" />
-                    </picture>
-                  </>
-                )}
-                <group data-space="30" data-gap="5" data-wrap="no">
+
+                <group data-direction="column" data-gap="5"
+                  data-orientation="vertical-bottom">
                   <text
                     data-ellipsis=""
-                    data-height="200"
-                    data-orientation="vertical-bottom"
+                    //  data-height="200"
+                  //  data-text-size="large"
+                    data-weight="700"
+                    
                   >
                     {colors.name}
                   </text>
                   <text
                     data-wrap="wrap"
-                    data-light=""
+                    data-opacity="30"
                     //data-line="20"
-                    data-height="200"
-                    data-orientation="vertical-bottom"
+//data-height="200"
+                    
                   >
                     {colors.description}
                   </text>

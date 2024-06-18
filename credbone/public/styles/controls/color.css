@@ -5,82 +5,86 @@
 
 
 :root {
-    --muted-brick-red: #e74c3c;
-    --muted-brick-red-light: #ff867a;
-    --muted-brick-red-dark: #b83728;
-  
-    --rich-raspberry: #d81b60;
-    --rich-raspberry-light: #ff558b;
-    --rich-raspberry-dark: #a0003b;
-  
-    --deep-amethyst: #8e44ad;
-    --deep-amethyst-light: #c174db;
-    --deep-amethyst-dark: #5f297c;
-  
-    --royal-violet: #5e35b1;
-    --royal-violet-light: #9165e5;
-    --royal-violet-dark: #2e0083;
-  
-    --denim-blue: #3949ab;
-    --denim-blue-light: #6b75dd;
-    --denim-blue-dark: #00217c;
-  
-    --cerulean-blue: #1e88e5;
-    --cerulean-blue-light: #6bbdff;
-    --cerulean-blue-dark: #005db3;
-  
-    --ocean-blue: #039be5;
-    --ocean-blue-light: #63ccff;
-    --ocean-blue-dark: #006cb3;
-  
-    --peacock-blue: #00acc1;
-    --peacock-blue-light: #5fd8ee;
-    --peacock-blue-dark: #007b8f;
-  
-    --tropical-teal: #00897b;
-    --tropical-teal-light: #4ebaaa;
-    --tropical-teal-dark: #005b4d;
-  
-    --fern-green: #43a047;
-    --fern-green-light: #76d275;
-    --fern-green-dark: #00701a;
-  
-    --moss-green: #7cb342;
-    --moss-green-light: #aee571;
-    --moss-green-dark: #4b8300;
-  
-    --chartreuse: #c0ca33;
-    --chartreuse-light: #f5fd58;
-    --chartreuse-dark: #8b9900;
-  
-    --mustard-yellow: #fdd835;
-    --mustard-yellow-light: #ffff6b;
-    --mustard-yellow-dark: #c6a700;
-  
-    --golden-amber: #ffb300;
-    --golden-amber-light: #ffe54c;
-    --golden-amber-dark: #c68400;
-  
-    --pumpkin-orange: #fb8c00;
-    --pumpkin-orange-light: #ffbd45;
-    --pumpkin-orange-dark: #c25e00;
-  
-    --burnt-orange: #f4511e;
-    --burnt-orange-light: #ff844c;
-    --burnt-orange-dark: #b91400;
-  
-    --cocoa-brown: #8d6e63;
-    --cocoa-brown-light: #be9c91;
-    --cocoa-brown-dark: #5f4339;
-  
-    --slate-grey: #757575;
-    --slate-grey-light: #a4a4a4;
-    --slate-grey-dark: #494949;
-  
-    --stormy-blue-grey: #546e7a;
-    --stormy-blue-grey-light: #819ca9;
-    --stormy-blue-grey-dark: #29434e;
-  }
+  --muted-brick-red: #e74c3c;
+  --muted-brick-red-light: #ff867a;
+  --muted-brick-red-dark: #b83728;
+
+  --rich-raspberry: #d81b60;
+  --rich-raspberry-light: #ff558b;
+  --rich-raspberry-dark: #a0003b;
+
+  --deep-amethyst: #8e44ad;
+  --deep-amethyst-light: #c174db;
+  --deep-amethyst-dark: #5f297c;
+
+  --royal-violet: #5e35b1;
+  --royal-violet-light: #9165e5;
+  --royal-violet-dark: #2e0083;
+
+  --denim-blue: #3949ab;
+  --denim-blue-light: #6b75dd;
+  --denim-blue-dark: #00217c;
+
+  --cerulean-blue: #1e88e5;
+  --cerulean-blue-light: #6bbdff;
+  --cerulean-blue-dark: #005db3;
+
+  --ocean-blue: #039be5;
+  --ocean-blue-light: #63ccff;
+  --ocean-blue-dark: #006cb3;
+
+  --peacock-blue: #00acc1;
+  --peacock-blue-light: #5fd8ee;
+  --peacock-blue-dark: #007b8f;
+
+  --tropical-teal: #00897b;
+  --tropical-teal-light: #4ebaaa;
+  --tropical-teal-dark: #005b4d;
+
+  --fern-green: #43a047;
+  --fern-green-light: #76d275;
+  --fern-green-dark: #00701a;
+
+  --moss-green: #7cb342;
+  --moss-green-light: #aee571;
+  --moss-green-dark: #4b8300;
+
+  --chartreuse: #c0ca33;
+  --chartreuse-light: #f5fd58;
+  --chartreuse-dark: #8b9900;
+
+  --mustard-yellow: #fdd835;
+  --mustard-yellow-light: #ffff6b;
+  --mustard-yellow-dark: #c6a700;
+
+  --golden-amber: #ffb300;
+  --golden-amber-light: #ffe54c;
+  --golden-amber-dark: #c68400;
+
+  --pumpkin-orange: #fb8c00;
+  --pumpkin-orange-light: #ffbd45;
+  --pumpkin-orange-dark: #c25e00;
+
+  --burnt-orange: #f4511e;
+  --burnt-orange-light: #ff844c;
+  --burnt-orange-dark: #b91400;
+
+  --soft-peach: #ffb997;
+  --soft-peach-light: #ffceb3;
+  --soft-peach-dark: #d98673;
+
+  --cocoa-brown: #8d6e63;
+  --cocoa-brown-light: #be9c91;
+  --cocoa-brown-dark: #5f4339;
+
+  --slate-grey: #757575;
+  --slate-grey-light: #a4a4a4;
+  --slate-grey-dark: #494949;
+
+  --stormy-blue-grey: #546e7a;
+  --stormy-blue-grey-light: #819ca9;
+  --stormy-blue-grey-dark: #29434e;
+}
 
 
 
@@ -180,6 +184,10 @@
 [data-background="deep-orange-light"] {background-color: var(--burnt-orange-light);}
 [data-background="deep-orange-dark"] {background-color: var(--burnt-orange-dark);}
 
+[data-background="peach"] {background-color: var(--soft-peach);}
+[data-background="peach-light"] {background-color: var(--soft-peach-light);}
+[data-background="peach-dark"] {background-color: var(--soft-peach-dark);}
+
 [data-background="brown"] {background-color: var(--cocoa-brown);}
 [data-background="brown-light"] {background-color: var(--cocoa-brown-light);}
 [data-background="brown-dark"] {background-color: var(--cocoa-brown-dark);}
@@ -259,6 +267,10 @@
 [data-color="deep-orange"] {color: var(--burnt-orange);}
 [data-color="deep-orange-light"] {color: var(--burnt-orange-light);}
 [data-color="deep-orange-dark"] {color: var(--burnt-orange-dark);}
+
+[data-color="peach"] {color: var(--soft-peach);}
+[data-color="peach-light"] {color: var(--soft-peach-light);}
+[data-color="peach-dark"] {color: var(--soft-peach-dark);}
 
 [data-color="brown"] {color: var(--cocoa-brown);}
 [data-color="brown-light"] {color: var(--cocoa-brown-light);}
