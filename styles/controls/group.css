@@ -11,7 +11,8 @@ group[data-type="grid"][data-grid-template="fit"]{grid-template-columns: repeat(
 
 group[data-type="grid"][data-grid-template="40"]{grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));} 
 group[data-type="grid"][data-grid-template="50"]{grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));} 
-
+group[data-type="grid"][data-grid-template="60"]{grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));} 
+group[data-type="grid"][data-grid-template="70"]{grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));} 
 group[data-type="grid"][data-grid-template="80"]{grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));} 
 group[data-type="grid"][data-grid-template="100"]{grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));} 
 group[data-type="grid"][data-grid-template="110"]{grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));} 
