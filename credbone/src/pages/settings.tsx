@@ -137,12 +137,12 @@ function Settings() {
               data-interactive=""
              // data-width="auto"
               data-cursor="pointer"
-              data-radius="7"
-              data-border="outline"
+              data-radius="10"
+             // data-border="outline"
               data-length="180"
               data-align="center"
               data-direction="column"
-              data-background="context"
+              data-background="highlight"
             >
               <text data-weight="700" data-ellipsis="">Reset</text>
             </group>

@@ -163,7 +163,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 
 
 
-@media (max-width: 600px) 
+@media (max-width: 500px) 
 
 {
     [data-name="nav-item"]:not(.active) [data-name="dinamic-text"] { font-size: 0px; opacity: 0;padding: 0;}
