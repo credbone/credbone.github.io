@@ -3,13 +3,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
 import { NavContext } from "../template/verticalNav";
+import { IconHome, IconSearch } from "./icon/credIcons";
+
 
 const navItems = [
-  { to: "/Home", icon: "home", label: "Home" },
+  { to: "/Home", icon: <IconHome size={20} />, label: "Home" },
   { to: "/About", icon: "lightbulb", label: "About" },
   { to: "/Settings", icon: "tune", label: "Settings", vertical: "true" },
-  // { to: "", icon: "search", label: "Search"},
+  { to: "/Search", icon: <IconSearch size={20}/>, label: "Search"},
 ];
+
+
 
 const Navigation: React.FC = () => {
   return (
@@ -43,7 +47,7 @@ const Navigation: React.FC = () => {
               // {...(isActive ? { 'data-ink-color': 'main-dark', } : {})}
             >
               <icon data-length="30" data-height="auto">
-                {item.icon}
+                {item.icon }
               </icon>
               <text
                 data-space-horizontal="5"
