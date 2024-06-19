@@ -23,7 +23,7 @@ function Settings() {
           data-gap="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="225"
+          data-animation-duration="2.25"
         >
           <text
             data-weight="700"
@@ -62,7 +62,7 @@ function Settings() {
           data-max-length="300"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="175"
+          data-animation-duration="1.75"
         >
           <ThemeToggle />
         </group>
@@ -74,7 +74,7 @@ function Settings() {
           data-gap="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="15"
+          data-animation-duration="1.5"
         >
           <text data-weight="700" data-color="main" data-text-size="large">
             Theme
@@ -93,7 +93,7 @@ function Settings() {
         <group
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="125"
+          data-animation-duration="1.25"
         >
           <RichThemePicker />
         </group>
@@ -105,7 +105,7 @@ function Settings() {
           data-gap="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="125"
+          data-animation-duration="1.25"
         >
           <text data-weight="700" data-color="main" data-text-size="large" data-ellipsis="">
             Reset to Default Settings
@@ -126,7 +126,7 @@ function Settings() {
         <group
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="125"
+          data-animation-duration="1.25"
         >
           <Ripple>
             <group

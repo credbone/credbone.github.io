@@ -68,7 +68,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-space="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="125"
+          data-animation-duration="1.25"
           data-interactive=""
           data-radius="10"
           data-align="center"
@@ -81,7 +81,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
       <dot
          data-animation-name="appear-bottom"
          data-fill-mode="backwards"
-         data-animation-duration="15"
+         data-animation-duration="1.5"
       
       ></dot>
       <Tooltip content="Like">

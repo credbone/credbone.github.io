@@ -11,7 +11,7 @@ function About() {
           data-gap="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="125"
+          data-animation-duration="1.25"
         >
           <text
             data-weight="700"
@@ -26,7 +26,7 @@ function About() {
         <group
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="15"
+          data-animation-duration="1.5"
         >
           <text data-wrap="wrap" data-length="610" data-line="20" data-light="">
             Experimental App, featuring a curated collection of UI components
@@ -38,7 +38,7 @@ function About() {
         <group
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="175"
+          data-animation-duration="1.75"
           data-direction="column"
           data-gap="10"
         >
