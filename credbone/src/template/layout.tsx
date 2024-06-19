@@ -1,7 +1,7 @@
 import React from "react";
 import Content from "./content";
 
-import Marquee from "../components/Marquee";
+// import Marquee from "../components/Marquee";
 import ContentSlide from "./contentSlide";
 import { SvgHamburgerToRight } from "../components/svg";
 import Switchable from "../components/Switchable";
@@ -66,7 +66,7 @@ const Layout: React.FC = () => {
           // data-radius="10"
         >
           <view data-scroll="" data-align="start">
-            <group data-space="15" data-sticky="top" >
+            {/* <group data-space="15" data-sticky="top" >
               <group
                 data-align="center"
                 data-gap="5"
@@ -88,7 +88,7 @@ const Layout: React.FC = () => {
                   </group>
                 </Marquee>
               </group>
-            </group>
+            </group> */}
             <group data-space="20" data-align="center" data-justify="center">
               <space></space>
               <icon data-opacity="20" data-icon-size="large">
