@@ -71,12 +71,13 @@ const Navigation: React.FC = () => {
 
 const LeftNavigation: React.FC = () => {
   const context = useContext(NavContext);
+  
 
   if (!context) {
     throw new Error("LeftNavigation must be used within a NavProvider");
   }
 
-  const { isNavOpen } = context;
+  const { isNavOpen, setIsNavOpen } = context;
 
   const location = useLocation();
   const [indicatorTop, setIndicatorTop] = useState(0);
@@ -128,6 +129,10 @@ const LeftNavigation: React.FC = () => {
     };
   }, [location.pathname]);
 
+  const handleItemClick = () => {
+    setIsNavOpen(false);
+  };
+
   return (
     <>
       {navItems.map((item, index) => (
@@ -142,6 +147,7 @@ const LeftNavigation: React.FC = () => {
           data-contain=""
           data-interactive=""
           // className={({ isActive }) => isActive ? 'active' : ''}
+          onClick={handleItemClick} // Close the nav on item click
         >
           <Tooltip
             content={isNavOpen ? "" : item.vertical ? "" : item.label}

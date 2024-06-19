@@ -120,7 +120,7 @@ const Icons: React.FC = () => {
           <group
             data-length="600"
             data-radius="10"
-            data-elevation="1"
+            data-border="outline"
             data-align="center"
             data-backdrop="10"
             data-contain=""
