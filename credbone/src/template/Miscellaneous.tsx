@@ -18,6 +18,12 @@ const Miscellaneous: React.FC = () => {
     setDir((prevDir) => (prevDir === "rtl" ? "ltr" : "rtl"));
   };
 
+  const [isAutoMode, setIsAutoMode] = useState(false);
+
+  const toggleAutoMode = () => {
+    setIsAutoMode((prevMode) => !prevMode);
+  };
+
   return (
     <view data-adaptive="" data-align="start" data-scroll="">
       <group
@@ -70,7 +76,7 @@ const Miscellaneous: React.FC = () => {
             //  data-wrap="no"
           >
             <group data-contain="" dir={dir} data-background="context" >
-              <Marquee>
+              <Marquee auto={isAutoMode}>
                 <group data-space="30">
                   <text data-weight="600">
                     Encompasses a variety of small, diverse UI components that
@@ -83,14 +89,15 @@ const Miscellaneous: React.FC = () => {
           </group>
 
        
-          <group data-space="20" data-gap="20" data-border="">
+          <group data-space="20" data-gap="10" data-border="">
             <group
               data-contain=""
               data-space="15"
               data-interactive=""
               data-cursor="pointer"
               data-radius="10"
-              data-length="180"
+              data-width="auto"
+             // data-length="180"
               data-align="center"
               data-direction="column"
               data-background="highlight"
@@ -98,6 +105,25 @@ const Miscellaneous: React.FC = () => {
             >
               <text data-weight="600">Toggle Direction </text>
             </group>
+
+            <group
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+              data-width="auto"
+           //   data-length="180"
+              data-align="center"
+              data-direction="column"
+             
+              onClick={toggleAutoMode}
+              data-background={isAutoMode ? "main" : "highlight"}
+              data-color={isAutoMode ? "main-text" : ""}
+            >
+              <text data-weight="600">{isAutoMode ? 'Disable Auto Mode' : 'Enable Auto Mode'}</text>
+            </group>
+
           </group>
         </group>
 
@@ -192,7 +218,7 @@ const Miscellaneous: React.FC = () => {
                 data-interactive=""
                 data-cursor="pointer"
                 data-radius="10"
-                data-length="180"
+                data-width="auto"
                 data-align="center"
                 data-direction="column"
                 data-background="highlight"
