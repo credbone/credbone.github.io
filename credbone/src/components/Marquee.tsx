@@ -5,7 +5,8 @@ interface MarqueeEffectProps extends HTMLProps<HTMLDivElement> {
   children: ReactNode;
 }
 
-function Marquee(props: MarqueeEffectProps) {       //NOSONAR
+function Marquee(props: MarqueeEffectProps) {
+  //NOSONAR
   const [marqueeClone, setMarqueeClone] = useState<HTMLElement | null>(null);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
