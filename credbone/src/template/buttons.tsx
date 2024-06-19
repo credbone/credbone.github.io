@@ -34,7 +34,7 @@ const Buttons: React.FC = () => {
         data-elevation="1"
         data-contain=""
       >
-        <group data-direction="column" data-space="30">
+        <group data-direction="column" data-space="30" data-gap="10">
           <text
             data-weight="700"
             data-text-size="xxx-large"

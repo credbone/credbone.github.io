@@ -200,7 +200,7 @@ const Scroll: React.FC<{
     };
 
     if (wheelEnabled) {
-      element?.addEventListener("wheel", wheelHandler);
+      element?.addEventListener("wheel", wheelHandler, { passive: false });
     }
 
     return () => {

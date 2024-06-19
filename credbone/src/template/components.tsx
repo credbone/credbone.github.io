@@ -19,7 +19,7 @@ const Components: React.FC = () => {
           >
             <text
               data-weight="700"
-              data-text-size="64"
+              data-text-size="xxx-large"
               data-wrap="wrap"
               data-color="main"
               data-ellipsis=""

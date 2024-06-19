@@ -1,6 +1,5 @@
 import React from "react";
 
-import sampleImage from "../styles/images/samples/res_16.jpg";
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
 
@@ -52,7 +51,20 @@ const InputsAndForms: React.FC = () => {
             </group>
           </group>
 
-          <group data-space="30">
+          <form data-type="group" data-space="30">
+            <group data-hidden="">
+              <Input
+                type="text"
+                size="large"
+                // icon="key"
+                placeholder="Usename"
+                hidden={true}
+                dataLength="autofit"
+                name="username"
+                autoComplete=""
+              />
+            </group>
+
             <group data-direction="column" data-gap="10">
               <Password
                 size="large"
@@ -64,7 +76,7 @@ const InputsAndForms: React.FC = () => {
                 autoComplete="off"
               />
 
-              <separator data-horizontal="" data-interval='10'></separator>
+              <separator data-horizontal="" data-interval="10"></separator>
 
               <Input
                 type="password"
@@ -87,7 +99,7 @@ const InputsAndForms: React.FC = () => {
             </group>
 
             <space data-height="10"></space>
-            <separator data-horizontal="" data-interval='10'></separator>
+            <separator data-horizontal="" data-interval="10"></separator>
             <space data-height="10"></space>
 
             <group data-gap="10">
@@ -98,7 +110,7 @@ const InputsAndForms: React.FC = () => {
                 <text>Update Password</text>
               </Button>
             </group>
-          </group>
+          </form>
         </group>
 
         <space data-height="90"></space>

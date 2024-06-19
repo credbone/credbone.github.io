@@ -74,7 +74,7 @@ const Icons: React.FC = () => {
           data-elevation="1"
           data-contain=""
         >
-          <group data-direction="column" data-gap="15" data-space="30">
+          <group data-direction="column" data-gap="10" data-space="30">
             <text
               data-weight="700"
               data-text-size="xxx-large"

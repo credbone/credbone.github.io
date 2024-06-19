@@ -14,6 +14,7 @@ const navItems = [
   { to: "Layout", icon: "star", label: "Layout & Switches" },
   { to: "Navigation", icon: "star", label: "Navigation & Tabs" },
   { to: "TooltipAndPopover", icon: "star", label: "Tooltip & Popover" },
+  { to: "Miscellaneous", icon: "star", label: "Miscellaneous" },
 ];
 
 const SubNavigation: React.FC = () => {

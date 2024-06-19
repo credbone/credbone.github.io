@@ -92,7 +92,7 @@ const CheckboxAndSwitchers: React.FC = () => {
           data-elevation="1"
         >
           <group>
-            <group data-direction="column" data-space="30">
+            <group data-direction="column" data-space="30" data-gap="10">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"
@@ -326,7 +326,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-elevation="1"
             data-contain=""
           >
-            <group data-space="30" data-direction="column">
+            <group data-space="30" data-direction="column" data-gap="10">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"

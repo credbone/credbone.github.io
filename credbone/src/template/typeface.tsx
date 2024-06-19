@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../components/button";
 import { glyphs } from "./utils/glyphData";
+import Tooltip from "../components/tooltip";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -106,6 +107,7 @@ const Typeface: React.FC = () => {
             data-length="40"
             data-position="right"
           >
+            <Tooltip content="Decrease Text Size">
             <Button
               data-radius="none"
               data-index="3"
@@ -113,6 +115,7 @@ const Typeface: React.FC = () => {
               icon="remove"
               onClick={decreaseTextSize}
             ></Button>
+</Tooltip>
             <group
               data-length="40"
               data-align="center"
@@ -122,6 +125,7 @@ const Typeface: React.FC = () => {
             >
               <text data-text-align="center">{currentTextSize.display}</text>
             </group>
+            <Tooltip content="Increase Text Size">
             <Button
               data-radius="none"
               data-index="3"
@@ -129,6 +133,7 @@ const Typeface: React.FC = () => {
               icon="add"
               onClick={increaseTextSize}
             ></Button>
+</Tooltip>
           </group>
         </group>
         <group data-scroll="" data-border="none">
