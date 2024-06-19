@@ -229,7 +229,7 @@ function Search() {
 
               data-animation-name="appear-bottom"
               data-fill-mode="backwards"
-              data-animation-duration={(1 + index * 0.25)}
+              data-animation-duration={(2 + index * 0.25)}
 
             >
               <text data-weight="700" data-color="main" data-text-size="medium">

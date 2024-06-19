@@ -56,6 +56,7 @@
 [data-animation-duration="2"] {animation-duration: 0.2s;}
 [data-animation-duration="2.25"] {animation-duration: 0.225s;}
 [data-animation-duration="2.5"] {animation-duration: 0.25s;}
+[data-animation-duration="2.75"] {animation-duration: 0.275s;}
 
 [data-animation-duration="3"] {animation-duration: 0.3s;} /* Added for 3 */
 [data-animation-duration="3.25"] {animation-duration: 0.325s;} /* Added for 3.25 */
