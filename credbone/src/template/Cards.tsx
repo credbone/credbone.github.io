@@ -99,7 +99,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           onClick={handleFavClick}
           data-wrap="no"
         >
-          <group data-animation-duration="475" data-fill-mode="backwards" data-animation-name={isFavorite ? "bounce":""}>
+          <group data-animation-duration="4.75" data-fill-mode="backwards" data-animation-name={isFavorite ? "bounce":""}>
           <IconHeart fill={isFavorite} />
     </group>
           
