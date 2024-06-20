@@ -9,7 +9,6 @@ interface MarqueeEffectProps extends HTMLProps<HTMLDivElement> {
 function Marquee({ auto = false, ...props }: MarqueeEffectProps) {
   const [marqueeClone, setMarqueeClone] = useState<HTMLElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
-  let animationFrameId: number | null = null;
 
   const startMarquee = (parent: HTMLElement, child: HTMLElement) => {
     const parentWidth = Math.round(parent.offsetWidth);
@@ -27,17 +26,10 @@ function Marquee({ auto = false, ...props }: MarqueeEffectProps) {
   };
 
   const stopMarquee = () => {
-    if (marqueeClone && parentRef.current) {
-      const container = parentRef.current;
-      const child = container.querySelector("[data-marquee]") as HTMLElement;
-      const computedStyle = window.getComputedStyle(child);
-      const transformValue = computedStyle.transform;
-      container.style.setProperty("--transform-value", transformValue);
-
-      cancelAnimationFrame(animationFrameId!);
-      container.classList.remove("start");
+    if (parentRef.current && marqueeClone) {
       marqueeClone.remove();
       setMarqueeClone(null);
+      parentRef.current.classList.remove("start");
     }
   };
 
@@ -50,36 +42,25 @@ function Marquee({ auto = false, ...props }: MarqueeEffectProps) {
   };
 
   const handleMouseLeave: EventListener = (e: Event) => {
-    if (!auto && marqueeClone) {
-      const container = e.currentTarget as HTMLDivElement;
-
-      const captureAnimationFrame = () => {
-        const child = container.querySelector("[data-marquee]") as HTMLElement;
-        const computedStyle = window.getComputedStyle(child);
-        const transformValue = computedStyle.transform;
-        container.style.setProperty("--transform-value", transformValue);
-
-        container.removeEventListener("mouseleave", handleMouseLeave);
-        cancelAnimationFrame(animationFrameId!);
-        container.classList.remove("start");
-      };
-
-      animationFrameId = requestAnimationFrame(captureAnimationFrame);
-      marqueeClone.remove();
-      setMarqueeClone(null);
+    if (!auto) {
+      stopMarquee();
     }
   };
 
   useEffect(() => {
-    if (auto && parentRef.current) {
-      const parent = parentRef.current;
-      const child = parent.querySelector("[data-marquee]") as HTMLElement;
-      if (parent && child) {
-        startMarquee(parent, child);
-      }
+    const parent = parentRef.current;
+    const child = parent?.querySelector("[data-marquee]") as HTMLElement;
+
+    if (auto && parent && child) {
+      startMarquee(parent, child);
     } else if (!auto) {
       stopMarquee();
     }
+
+    return () => {
+      // Clean up on unmount or auto change
+      stopMarquee();
+    };
   }, [auto]);
 
   return (
