@@ -7,6 +7,48 @@ import { IconHome, IconStar } from "../components/icon/credIcons";
 // import sampleImage_2 from "../styles/images/samples/res_44.jpg";
 import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
 
+
+
+// const linksArray = [
+//   {
+//     title: "Color System",
+//     description: "Flexible theme customization, Color system can assist in crafting a color palette...",
+//     to: "../Colors"
+//   },
+//   {
+//     title: "Icons",
+//     description: "Beautifully crafted and carefully designed icons.",
+//     to: "/Home/Icons"
+//   },
+//   {
+//     title: "Buttons",
+//     description: "Allow users to take actions, and make choices, with a single tap.",
+//     to: "/Home/Buttons"
+//   },
+//   {
+//     title: "Cards",
+//     description: "Visual containers that hold all the elements and information about a single subject.",
+//     to: "/Home/CardsAndList"
+//   },
+//   {
+//     title: "Checkbox & Switches",
+//     description: "User interface elements that allow for binary selections or toggles.",
+//     to: "/Home/CheckboxSwitchers"
+//   },
+//   {
+//     title: "Tooltip & Popover",
+//     description: "Provide additional information and context on hover or focus.",
+//     to: "/Home/TooltipAndPopover"
+//   },
+//   {
+//     title: "Navigation & Tabs",
+//     description: "Elements to navigate between different views or sections within an app.",
+//     to: "/Home/Navigation"
+//   }
+// ];
+
+
+
 const Components: React.FC = () => {
   return (
     <view data-scroll="">
