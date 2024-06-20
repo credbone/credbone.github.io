@@ -176,7 +176,7 @@ const TooltipPopover: React.FC = () => {
         <group
           data-max-length="800"
           data-height="auto"
-          data-radius="10"
+          data-radius="15"
           data-elevation="1"
           data-contain=""
         >
@@ -229,7 +229,7 @@ const TooltipPopover: React.FC = () => {
                   data-interactive=""
                   data-interact="popover"
                   data-space="15"
-                  data-radius="5"
+                  data-radius="10"
                   data-cursor="pointer"
                   data-width="auto"
                 >
@@ -253,7 +253,7 @@ const TooltipPopover: React.FC = () => {
                   data-interactive=""
                   data-interact="popover"
                   data-space="15"
-                  data-radius="5"
+                  data-radius="10"
                   data-cursor="pointer"
                   data-width="auto"
                 >
@@ -292,7 +292,7 @@ const TooltipPopover: React.FC = () => {
                   data-interactive=""
                   data-interact="popover"
                   data-space="15"
-                  data-radius="5"
+                  data-radius="10"
                   data-cursor="pointer"
                   data-width="auto"
                 >
@@ -311,7 +311,7 @@ const TooltipPopover: React.FC = () => {
         >
           <group
             data-direction="column"
-            data-radius="10"
+            data-radius="15"
             data-elevation="1"
             data-contain=""
           >
@@ -366,7 +366,7 @@ const TooltipPopover: React.FC = () => {
                     data-interactive=""
                     data-interact="popover"
                     data-space="15"
-                    data-radius="5"
+                    data-radius="10"
                     data-cursor="pointer"
                     data-background="secondary"
                     data-color="secondary-text"
@@ -394,7 +394,7 @@ const TooltipPopover: React.FC = () => {
             data-background="context"
             data-width="auto"
             data-height="auto"
-            data-radius="10"
+            data-radius="15"
             data-elevation="1"
             data-contain=""
             data-direction="column"
@@ -408,7 +408,7 @@ const TooltipPopover: React.FC = () => {
                 data-interactive=""
                 data-interact="popover"
                 data-space="15"
-                data-radius="5"
+                data-radius="10"
                 data-cursor="pointer"
                 onClick={() => addSnackbar(<>{SnackbarContent}</>)}
               >
@@ -422,7 +422,7 @@ const TooltipPopover: React.FC = () => {
                 data-interactive=""
                 data-interact="popover"
                 data-space="15"
-                data-radius="5"
+                data-radius="10"
                 data-cursor="pointer"
                 onClick={handleSeriesClick}
               >

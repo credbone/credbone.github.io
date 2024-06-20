@@ -92,7 +92,7 @@ data-ellipsis=""
                       </text>
                     </group>
 
-                    <group data-width="auto">
+                    {/* <group data-width="auto">
                       <Ripple>
                         <group
                           data-wrap="no"
@@ -113,7 +113,7 @@ data-ellipsis=""
                           </group>
                         </group>
                       </Ripple>
-                    </group>
+                    </group> */}
                   </group>
                 </group>
 
