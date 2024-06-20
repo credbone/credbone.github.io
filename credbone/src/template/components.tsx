@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
 import { IconHome, IconStar } from "../components/icon/credIcons";
 
-import sampleImage from "../styles/images/samples/res_16.jpg";
-import sampleImage_2 from "../styles/images/samples/res_34.jpg";
-import sampleImage_3 from "../styles/images/samples/res_48.jpg";
+// import sampleImage from "../styles/images/samples/res_16.jpg";
+// import sampleImage_2 from "../styles/images/samples/res_44.jpg";
+import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
 
 const Components: React.FC = () => {
   return (
@@ -24,23 +24,23 @@ const Components: React.FC = () => {
               data-color="main"
               data-ellipsis=""
             >
-              welcome
+            welcome
             </text>
             <text
               data-wrap="wrap"
-              data-length="600"
+              data-length="400"
               data-line="1.5"
               data-opacity="70"
             >
-              This platform offers a remarkable collection of carefully crafted
-              UI components, each designed with meticulous attention to detail
-              and a deep understanding of contemporary UI patterns. here.
+              This platform offers a collection of carefully crafted UI
+              components, each designed with attention to detail and a deep
+              understanding of UI patterns.
             </text>
           </group>
         </group>
 
         <group
-          data-scroll-mask="false"
+        
           data-border="no"
           data-background="none"
           //  data-width="auto"
@@ -53,11 +53,11 @@ const Components: React.FC = () => {
             data-space="30"
             data-gap="15"
             data-type="grid"
-            data-grid-template="180"
+            data-grid-template="200"
             data-weight="600"
           >
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               to="../Colors"
               data-type="group"
@@ -67,7 +67,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //data-length="200"
-              //data-height="320"
+             data-height="320"
             >
               <group
                 data-index="1"
@@ -91,7 +91,7 @@ data-interactive=""
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               //  data-interactive=""
@@ -99,19 +99,20 @@ data-interactive=""
               data-radius="15"
               // data-elevation="1"
               data-background="context"
+              data-elevation="1"
               //data-length="200"
-              //data-height="320"
+             data-height="320"
               data-contain=""
-              data-react="scale"
+              // data-react="scale"
             >
-              <picture
+              {/* <picture
               
                 data-position="absolute"
                 data-brightness="adaptive"
                 data-background="grey-light"
               >
                 <img src={sampleImage_2} alt="" />
-              </picture>
+              </picture> */}
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
                   data-text-size="x-large"
@@ -130,32 +131,33 @@ data-interactive=""
                 data-space="30"
                 data-width="auto"
                 data-radius-top-right="15"
-                data-backdrop="10"
+                //  data-backdrop="10"
                 data-drag="none"
                 data-interactive=""
+                data-background="secondary"
+                data-color="secondary-text"
               >
                 <group data-type="interact">
-                  <IconHome size={60} />
+                  <IconStar size={60} />
                 </group>
               </group>
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/Buttons"
               data-radius="15"
-              data-background="main-dark"
-              data-color="white"
+              data-background="main"
+              data-color="main-text"
               //data-length="200"
-              //data-height="320"
+             data-height="320"
               data-contain=""
-            
             >
-              <picture data-position="absolute" data-name="color-demo">
+              {/* <picture data-position="absolute" data-name="color-demo">
                 <img src={sampleImage} alt="" />
-              </picture>
+              </picture> */}
 
               <group
                 data-index="1"
@@ -203,7 +205,7 @@ data-interactive=""
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               // data-interactive=""
@@ -212,10 +214,10 @@ data-interactive=""
               // data-elevation="1"
               data-background="context"
               //  data-length="350"
-              //data-height="320"
+             data-height="320"
               data-contain=""
               data-color="white"
-               data-react="scale"
+              //  data-react="scale"
             >
               <picture
                 data-position="absolute"
@@ -253,7 +255,7 @@ data-interactive=""
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/CheckboxSwitchers"
@@ -262,7 +264,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //   data-length="400"
-              //data-height="320"
+             data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
@@ -305,17 +307,18 @@ data-interactive=""
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/TooltipAndPopover"
               data-radius="15"
               data-contain=""
               data-elevation="1"
+              data-background="context"
               //     data-background="main"
               //     data-color="main-text"
               //   data-length="400"
-              //data-height="320"
+             data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
@@ -358,7 +361,7 @@ data-interactive=""
             </Link>
 
             <Link
-data-interactive=""
+              data-interactive=""
               data-width="auto"
               data-type="group"
               to="/Home/Navigation"
@@ -367,7 +370,7 @@ data-interactive=""
               data-background="main"
               data-color="main-text"
               //   data-length="400"
-              //data-height="320"
+             data-height="320"
             >
               <group data-direction="column" data-gap="15" data-space="30">
                 <text
