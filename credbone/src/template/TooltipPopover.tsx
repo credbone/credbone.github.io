@@ -343,7 +343,7 @@ const TooltipPopover: React.FC = () => {
               data-dark=""
             >
               <picture
-                data-height="600"
+               // data-height="600"
                 data-top="0"
                 data-transition=""
                 data-duration=".725"

@@ -503,6 +503,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-min-height='30']{min-height:30px;}
 [data-min-height='130']{min-height:130px;}
+[data-min-height='200']{min-height:200px;}
 [data-min-height='300']{min-height:300px;}
 [data-min-height='400']{min-height:400px;}
 [data-min-height='fit']{min-height: 100%;}

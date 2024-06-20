@@ -142,5 +142,6 @@ group[data-adaptive="mobile"] {display: none;}
 
 
 
+[data-row-end="2"] {grid-row-end: span 2;}
 
 /* stylelint-enable */
