@@ -10,10 +10,10 @@ export const colors = [
   { code: "#db6b5d", name: "Red", description: "A bold red color." },
   { code: "#ff705e", name: "Pink", description: "A soft pink shade." },
 
-
+  { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade." },
   { code: "#03dac5", name: "Mint", description: "A refreshing greenish-blue color." },
   { code: "#e0e721", name: "Yellow", description: "A bright, neon yellow hue." },
-  { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade." }
+
 
 ];
 

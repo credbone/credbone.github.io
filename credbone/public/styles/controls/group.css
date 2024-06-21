@@ -7,7 +7,7 @@ group[data-type="grid"]{display: grid;grid-template-columns: repeat(auto-fill, m
 
 
 
-group[data-type="grid"][data-grid-template="fit"]{grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));} 
+group[data-type="grid"][data-grid-template="fit"]{grid-template-columns: repeat(auto-fill, 100%);} 
 
 group[data-type="grid"][data-grid-template="40"]{grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));} 
 group[data-type="grid"][data-grid-template="50"]{grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));} 
@@ -30,7 +30,7 @@ group[data-type="grid"][data-grid-template="600"]{grid-template-columns: repeat(
 
 @media (max-width: 500px) {
 
-    group[data-type="grid"][data-grid-template^="3"]{grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));} 
+    group[data-type="grid"][data-grid-template^="3"]{grid-template-columns: repeat(auto-fit, 100%);} 
 
 }
 
@@ -39,7 +39,7 @@ group[data-type="grid"],
 group[data-type="grid"][data-grid-template]
 
 
-{grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));}
+{grid-template-columns: repeat(auto-fit, 100%);}
 
 
 }
@@ -52,7 +52,7 @@ group[data-type="grid"][data-grid-template]
     {
         group[data-type="grid"],
         group[data-type="grid"][data-grid-template]
-        {grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));}
+        {grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));}
 
     } 
     

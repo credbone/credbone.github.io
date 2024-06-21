@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
@@ -9,12 +8,13 @@ import Popover from "../components/popover";
 import { BaseColors } from "./utils/colorData";
 
 const Colors: React.FC = () => {
-
-
-
-
   return (
-    <view data-space="30" data-gap="30" data-scroll="" id="inner-popover-container">
+    <view
+      data-space="30"
+      data-gap="30"
+      data-scroll=""
+      id="inner-popover-container"
+    >
       <group data-direction="column" data-gap="10">
         <text
           data-weight="700"
@@ -24,12 +24,7 @@ const Colors: React.FC = () => {
         >
           Color System
         </text>
-        <text
-          data-wrap="wrap"
-          data-length="400"
-          data-line="1.5"
-          data-light=""
-        >
+        <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
           A color system can assist in crafting a color palette that mirrors
           brand or personal style, while also considering features like dark
           mode compatibility for a seamless user experience across different
@@ -44,9 +39,6 @@ const Colors: React.FC = () => {
         data-width="auto"
         data-radius="15"
       >
-
-
-
         <group
           data-contain=""
           data-direction="column"
@@ -60,30 +52,19 @@ const Colors: React.FC = () => {
           data-justify="end"
           data-align="start"
         >
-         
-         
-
-
-
-
           <text
             data-wrap="wrap"
             data-light=""
             data-max-length="300"
             data-line="20"
           >
-            This primary color you selected will be used extensively in the
-            UI, with other shades being automatically generated from it.
+            This primary color you selected will be used extensively in the UI,
+            with other shades being automatically generated from it.
           </text>
 
           <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
             Primary Color
           </text>
-          {/* <Popover placement="right" data-space="0" data-length="60" data-height='360' content={<ThemePicker/>}>
-<group data-width="auto" data-interactive="" data-cursor="pointer">
-test
-</group>
-          </Popover> */}
         </group>
 
         <group
@@ -192,14 +173,10 @@ test
               data-max-length="200"
               data-line="20"
             >
-              The generated color ensures that the text remains readable on
-              the chosen color.
+              The generated color ensures that the text remains readable on the
+              chosen color.
             </text>
-            <text
-              data-wrap="wrap"
-              data-weight="700"
-              data-text-size="x-large"
-            >
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
               Text Color
             </text>
           </group>
@@ -302,14 +279,10 @@ test
               data-max-length="200"
               data-line="20"
             >
-              The generated color ensures that the text remains readable on
-              the chosen color.
+              The generated color ensures that the text remains readable on the
+              chosen color.
             </text>
-            <text
-              data-wrap="wrap"
-              data-weight="700"
-              data-text-size="x-large"
-            >
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
               Text Color
             </text>
           </group>
@@ -334,8 +307,8 @@ test
             data-max-length="300"
             data-line="20"
           >
-            This Secondary color you selected will be used extensively in
-            the UI, with other shades being automatically generated from it.
+            This Secondary color you selected will be used extensively in the
+            UI, with other shades being automatically generated from it.
           </text>{" "}
           <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
             Secondary Color
@@ -347,12 +320,7 @@ test
         <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
           Base Colors
         </text>
-        <text
-          data-wrap="wrap"
-          data-length="400"
-          data-line="1.5"
-          data-light=""
-        >
+        <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
           A color system can assist in crafting a color palette that mirrors
           brand or personal style, while also considering features like dark
           mode compatibility for a seamless user experience across different
@@ -361,108 +329,50 @@ test
       </group>
 
       <group
-      
         data-shrink="no"
         data-weight="600"
         data-max-length="1200"
-        data-contain=""
         data-width="auto"
         data-type="grid"
-        data-grid-template="120"
-        //data-gap="10"
-        data-radius="15"
-
+        data-gap="15"
       >
         {BaseColors.map((colors, index) => (
-          <Popover
-          key={index}
-            // containerId="inner-popover-container"
-            // hideOnScroll={false}
-            placement="auto"
-            data-space="5"
-            data-elevation="2"
-            data-width="auto"
-            content={
-              <group   data-gap="10">
-                <group
-                  data-radius="5"
-                  data-contain=""
-                  data-color={colors.dark === "true" ? "white" : "black"}
-                  data-weight="600"
-                  data-wrap="no"
-                >
-                  <group
-                    
-                    data-space="15"
-                    data-color="white"
-                    data-background={colors.value + "-dark"}
-                  >
-                    <text data-ellipsis="" >Dark</text>
-                  </group>
-                  <group data-space="15" data-background={colors.value} data-gap="5">
-                    <text data-ellipsis="" data-opacity="80">{colors.name}</text>
-                    {/* <text data-wrap="wrap" data-light="">
-                    {colors.description}
-                  </text> */}
-                  </group>
-                  <group
-                    data-space="15"
-                    data-background={colors.value + "-light"}
-                  >
-                    <text data-ellipsis="" data-color={colors.value + "-dark"}>Light</text>
-                  </group>
-                </group>
-
-              </group>
-            }
+          <group
+            key={index}
+            data-contain=""
+            // data-border=""
+            data-radius="15"
+            data-direction="column"
+            data-border=""
           >
-            <group data-contain="">
-              <group
-                data-cursor="pointer"
-                //  data-interactive=""
-                // data-radius="15"
-                data-space="30"
-                data-contain=""
-                data-length="auto"
-                data-color={colors.dark === "true" ? "white" : "black"}
-                data-shrink="no"
-                data-direction="row"
-                data-justify="start"
-                data-width="auto"
-                data-background={colors.value}
-                data-height="240"
-              >
-
-                <group data-direction="column" data-gap="5"
-                  data-orientation="vertical-bottom">
-                  <text
-                    data-ellipsis=""
-                    //  data-height="200"
-                  //  data-text-size="large"
-                    data-weight="700"
-                    
-                  >
-                    {colors.name}
-                  </text>
-                  <text
-                    data-wrap="wrap"
-                    data-opacity="30"
-                    //data-line="20"
-//data-height="200"
-                    
-                  >
-                    {colors.description}
-                  </text>
-                </group>
+            <group
+              data-space="20"
+              data-contain=""
+              data-length="auto"
+              data-shrink="no"
+              data-direction="column"
+              data-width="auto"
+              data-background="context"
+            >
+              <group data-direction="column" data-gap="5">
+                <text
+                  data-ellipsis=""
+                  data-weight="700"
+                  data-text-size="medium"
+                >
+                  {colors.name}
+                </text>
+                <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
+                  {colors.description}
+                </text>
               </group>
-
-              {/* <group data-space="30" data-background={colors.value + "-light"} data-color={colors.value + "-dark"}>
-            <text data-ellipsis=""   >
-              {colors.name + " Light"}
-            </text>
-          </group> */}
             </group>
-          </Popover>
+            <group data-wrap="no" data-direction="column">
+              <group data-height="50" data-background={colors.value + "-dark"}></group>
+              <group data-height="50" data-background={colors.value}></group>
+              <group data-height="50" data-background={colors.value + "-light"}></group>
+            </group>
+          </group>
         ))}
       </group>
 
@@ -475,7 +385,6 @@ test
         data-column-gap="20"
       ></group>
       <group data-height="10" data-shrink="no"></group>
-
     </view>
   );
 };
