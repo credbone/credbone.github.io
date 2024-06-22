@@ -21,6 +21,7 @@ const Colors: React.FC = () => {
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-color="main"
+          data-ellipsis=""
         >
           Color System
         </text>
@@ -37,12 +38,14 @@ const Colors: React.FC = () => {
         data-shrink="no"
         data-contain=""
         data-width="auto"
-        data-radius="15"
+        data-radius="20"
+        data-gap="5"
       >
         <group
+          data-radius="5"
           data-contain=""
           data-direction="column"
-          data-height="240"
+          data-min-height="240"
           data-width="auto"
           data-length="auto"
           data-color="main-text"
@@ -51,6 +54,7 @@ const Colors: React.FC = () => {
           data-gap="10"
           data-justify="end"
           data-align="start"
+          data-wrap="no"
         >
           <text
             data-wrap="wrap"
@@ -68,6 +72,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -85,6 +90,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
+          data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -102,8 +108,9 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
+          data-radius="5"
           data-contain=""
-          data-height="240"
+          data-min-height="240"
           data-length="auto"
           data-shrink="no"
           data-direction="column"
@@ -120,6 +127,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
+          data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -139,9 +147,10 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
           data-width="auto"
-          data-height="240"
+          data-min-height="240"
           data-length="auto"
           data-background="main-dark"
         >
@@ -183,6 +192,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -201,8 +211,9 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
-          data-height="240"
+          data-min-eight="240"
           data-length="auto"
           data-shrink="no"
           data-direction="column"
@@ -218,8 +229,9 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
+          data-radius="5"
           data-contain=""
-          data-height="240"
+          data-min-height="240"
           data-length="auto"
           data-shrink="no"
           data-direction="column"
@@ -236,6 +248,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
+          data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -255,9 +268,10 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
           data-width="auto"
-          data-height="240"
+          data-min-height="240"
           data-length="auto"
           data-background="secondary-darker"
         >
@@ -289,8 +303,9 @@ const Colors: React.FC = () => {
         </group>
 
         <group
+          data-radius="5"
           data-contain=""
-          data-height="240"
+          data-min-height="240"
           data-direction="column"
           data-width="auto"
           data-length="auto"
@@ -334,17 +349,29 @@ const Colors: React.FC = () => {
         data-max-length="1200"
         data-width="auto"
         data-type="grid"
-        data-gap="15"
+        data-gap="10"
+        data-grid-template="120"
       >
         {BaseColors.map((colors, index) => (
           <group
             key={index}
             data-contain=""
             // data-border=""
-            data-radius="15"
+            data-radius="10"
             data-direction="column"
             data-border=""
           >
+            <group data-wrap="no" data-direction="column">
+              <group
+                data-height="50"
+                data-background={colors.value + "-dark"}
+              ></group>
+              <group data-height="50" data-background={colors.value}></group>
+              <group
+                data-height="50"
+                data-background={colors.value + "-light"}
+              ></group>
+            </group>
             <group
               data-space="20"
               data-contain=""
@@ -354,9 +381,10 @@ const Colors: React.FC = () => {
               data-width="auto"
               data-background="context"
             >
-              <group data-direction="column" data-gap="5">
+              <group data-direction="column" data-gap="10">
                 <text
                   data-ellipsis=""
+                  data-wrap="wrap"
                   data-weight="700"
                   data-text-size="medium"
                 >
@@ -366,11 +394,6 @@ const Colors: React.FC = () => {
                   {colors.description}
                 </text>
               </group>
-            </group>
-            <group data-wrap="no" data-direction="column">
-              <group data-height="50" data-background={colors.value + "-dark"}></group>
-              <group data-height="50" data-background={colors.value}></group>
-              <group data-height="50" data-background={colors.value + "-light"}></group>
             </group>
           </group>
         ))}
