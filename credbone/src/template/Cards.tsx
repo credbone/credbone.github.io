@@ -138,7 +138,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
       >
 
 <group data-ratio="1:1"  data-radius="15" data-contain="" data-background="highlight"  >
-          <picture  data-brightness="adaptive"> <img src={item.image} alt={item.description} /> </picture>
+          <picture  data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
         </group>
         
 
@@ -186,7 +186,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 
 
 <group data-ratio="1:1"  data-length="60"  data-radius="15" data-contain="" data-index="1">
-        <picture data-brightness="adaptive"> <img src={item.image} alt={item.description} /> </picture>
+        <picture data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
       </group>
 
 
@@ -225,7 +225,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
     >
 <group>
 <group data-ratio="1:1"  data-length="60"  data-radius="15" data-contain="">
-        <picture data-brightness="adaptive"> <img src={item.image} alt={item.description} /> </picture>
+        <picture data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
       </group>
 <Popover  content={<ContentToolbar count={item.count} />} data-space="5" data-radius="15">
 <group data-width="auto" data-position="right">

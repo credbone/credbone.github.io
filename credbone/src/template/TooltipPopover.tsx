@@ -209,7 +209,7 @@ const TooltipPopover: React.FC = () => {
             data-align="center"
           >
             <picture data-position="absolute">
-              <img src={sampleImage} alt="" />
+              <img src={sampleImage} alt="" data-name="color-demo" />
             </picture>
 
             <group data-length="fit" data-space="30">
@@ -337,10 +337,11 @@ const TooltipPopover: React.FC = () => {
             </group>
 
             <group
-              data-background="main"
+              data-background="secondary"
+               data-color="secondary-text"
               data-contain=""
               data-align="center"
-              data-dark=""
+             // data-dark=""
             >
               <picture
                // data-height="600"
@@ -348,10 +349,10 @@ const TooltipPopover: React.FC = () => {
                 data-transition=""
                 data-duration=".725"
                 data-position="absolute"
-                data-name="color-demo"
+                
              
               >
-                <img src={sampleImage}    data-opacity="60" alt="" />
+                <img src={sampleImage}    data-opacity="60" alt="" data-name="color-demo" />
               </picture>
 
               <group
@@ -368,8 +369,8 @@ const TooltipPopover: React.FC = () => {
                     data-space="15"
                     data-radius="10"
                     data-cursor="pointer"
-                    data-background="secondary"
-                    data-color="secondary-text"
+                    data-background="main"
+                    data-color="main-text"
                     onClick={() => addSnackbar(<>{SnackbarContent}</>)}
                   >
                     <text data-weight="700" data-ellipsis="">Show Snackbar</text>
@@ -378,7 +379,7 @@ const TooltipPopover: React.FC = () => {
                 <group>
                   <text
                     data-wrap="wrap"
-                    data-color="main-text"
+                   
                     data-line="1.5"
                     data-max-length="300"
                   >

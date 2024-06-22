@@ -62,7 +62,7 @@ const Buttons: React.FC = () => {
           data-align="center"
         >
           <picture data-position="absolute" >
-            <img src={sampleImage} alt="" />
+            <img src={sampleImage} alt="" data-name="color-demo"/>
           </picture>
 
           <group data-length="fit" data-space="40">

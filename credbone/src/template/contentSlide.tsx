@@ -67,11 +67,11 @@ const ContentSlide: React.FC = () => {
                 data-contain=""
                 data-length="410"
                 data-min-length="240"
-                data-color="white"
-                data-background="main-dark"
+                data-color="secondary-text"
+                data-background="secondary"
               >
                 <picture data-position="absolute">
-                  <img src={sampleImage9} alt="" />
+                  <img src={sampleImage9} alt="" data-name="color-demo" />
                 </picture>
                 <group
                   data-radius="15"
@@ -83,7 +83,7 @@ const ContentSlide: React.FC = () => {
                   <text data-weight="700" data-text-size="72" data-wrap="wrap">
                     <Count from={0} to={64} duration={1500}></Count>
                   </text>
-                  <text data-wrap="wrap" data-line="1.5">
+                  <text  data-weight="600" data-wrap="wrap" data-line="1.5">
                     Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat
                     fringilla ante. Mauris hendrerit tristique sagittis. Cras
                     egestas dapibus risus non aliquet.

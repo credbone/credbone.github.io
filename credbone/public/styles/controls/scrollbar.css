@@ -6,8 +6,14 @@
 
 
 
-:root{
+.desktop:root
+
+{
     --scrollbar-size: 10px;
+}
+
+:root{
+
     --mask-size: 50px;
     --scroll-button-position:10px;
     --scroll-snap:initial;
@@ -26,7 +32,7 @@ ul[section]::-webkit-scrollbar,
 
 .desktop ::-webkit-scrollbar-track {  }
 .desktop ::-webkit-scrollbar { width: var(--scrollbar-size); height: var(--scrollbar-size); background-color: rgba(136, 136, 136, 0.1) }
-.desktop ::-webkit-scrollbar-thumb { background-color: rgba(136, 136, 136, 0); height: var(--scrollbar-size); width: var(--scrollbar-size); background-color: rgba(136, 136, 136, 0.3); background-clip: content-box; }
+.desktop ::-webkit-scrollbar-thumb {  height: var(--scrollbar-size); width: var(--scrollbar-size); background-color: rgba(136, 136, 136, 0.3); background-clip: content-box; }
 
 
 /* .desktop ::-webkit-scrollbar-thumb:vertical { border-left: var(--scrollbar-size) solid transparent; border-right: var(--scrollbar-size) solid transparent; }
@@ -131,9 +137,7 @@ html.mobile .snapcont.vertical.left.right > .snapscroll {-webkit-mask-image:line
 [data-snap-button="15"] {--scroll-button-position:15px;}
 
 
-.snapcont .slide-button:not(.show)
-
-,
+.snapcont .slide-button:not(.show),
 html.mobile .snapcont .slide-button
 {visibility: hidden; 
 

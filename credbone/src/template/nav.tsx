@@ -61,17 +61,18 @@ const Landing: React.FC = () => {
                 data-max-length="600"
               >
                 <group
-                  data-background="red-light"
+                  data-background="secondary"
+                  data-color="secondary-text"
                   data-contain=""
                   // data-dark=""
                   data-align="center"
                 >
                   <picture data-position="absolute">
-                    <img src={sampleImage} alt="" />
+                    <img src={sampleImage} alt="" data-name="color-demo" />
                   </picture>
 
                   <group data-length="fit" data-space="30" data-gap="30">
-                    <group data-direction="column" data-gap="10" data-color="white">
+                    <group data-direction="column" data-gap="10" >
                       <text
                         data-weight="700"
                         data-text-size="xxx-large"

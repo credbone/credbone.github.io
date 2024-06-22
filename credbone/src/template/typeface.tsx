@@ -182,7 +182,7 @@ const Typeface: React.FC = () => {
             Glyphs
           </text>
         </group>
-        <group data-scroll="" data-space="30">
+        <group data-scroll="" >
           <group
             data-type="grid"
             data-grid-template="50"
