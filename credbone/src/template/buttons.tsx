@@ -99,7 +99,6 @@ const Buttons: React.FC = () => {
           </group>
         </group>
       </view>
-
       <view
         data-size="small"
         data-height="auto"
@@ -384,7 +383,9 @@ const Buttons: React.FC = () => {
             <Button highlight large fit text="Large Button Wide" />
           </group>
         </group>
+
       </view>
+
     </view>
   );
 };

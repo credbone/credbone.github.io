@@ -16,6 +16,7 @@ const routeTitles: { [key: string]: string } = {
   'Modals': 'Modals',
   'About': 'About',
   'Settings': 'Settings',
+  'Search': 'Search',
   '': 'Home',
   'Home': 'Home',
 };

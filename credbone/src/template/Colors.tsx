@@ -373,7 +373,7 @@ const Colors: React.FC = () => {
               ></group>
             </group>
             <group
-              data-space="20"
+              data-space="15"
               data-contain=""
               data-length="auto"
               data-shrink="no"
@@ -407,7 +407,7 @@ const Colors: React.FC = () => {
         data-column-size="240"
         data-column-gap="20"
       ></group>
-      <group data-height="10" data-shrink="no"></group>
+      <group data-height="30" data-shrink="no"></group>
     </view>
   );
 };
