@@ -4,7 +4,7 @@ interface CountProps {
   from: number;
   to: number;
   duration: number;
-  direction?: 'up' | 'down'; // New optional prop for direction
+  direction?: 'up' | 'down'; // Optional prop for direction
 }
 
 const easeOutQuad = (t: number) => t * (2 - t);
@@ -18,6 +18,7 @@ const Count: React.FC<CountProps> = ({ from, to, duration, direction = 'up' }) =
     const range = Math.abs(end - start);
     const startTime = Date.now();
     const isCountingUp = direction === 'up';
+    let animationFrameId: number;
 
     const updateCount = () => {
       const currentTime = Date.now();
@@ -30,11 +31,13 @@ const Count: React.FC<CountProps> = ({ from, to, duration, direction = 'up' }) =
       setCount(currentCount);
 
       if (progress < 1) {
-        requestAnimationFrame(updateCount);
+        animationFrameId = requestAnimationFrame(updateCount);
       }
     };
 
-    requestAnimationFrame(updateCount);
+    animationFrameId = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(animationFrameId); // Cleanup on unmount
   }, [from, to, duration, direction]);
 
   return <>{count}</>;

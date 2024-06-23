@@ -32,6 +32,7 @@ const Navigation: React.FC = () => {
           data-interactive=""
           data-weight="600"
           data-shrink="0"
+       
           //  className={({ isActive }) => (isActive ? 'active' : '')}
         >
           {({ isActive }) => (

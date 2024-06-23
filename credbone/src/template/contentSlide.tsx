@@ -3,7 +3,7 @@ import Scroll from "../components/scroll";
 
 import sampleImage9 from "../styles/images/samples/res_42.jpg";
 
-import Count from "../components/Coutner";
+
 import { IconShare } from "../components/icon/credIcons";
 
 const ContentSlide: React.FC = () => {
@@ -16,14 +16,14 @@ const ContentSlide: React.FC = () => {
       >
         <Scroll>
           <group  data-wrap="no" data-max-length="auto">
-            <group data-wrap="no"  data-space="20" data-gap="10" data-shrink="no" data-width="auto" data-max-length="auto">
+            <group data-wrap="no"  data-space="15" data-gap="15" data-shrink="no" data-width="auto" data-max-length="auto">
               <group
                 data-background="context"
-                data-radius="15"
+                data-radius="10"
                 data-space="30"
                 data-min-length="240"
                 data-length="240"
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-direction="column"
                 data-align="start"
@@ -32,7 +32,7 @@ const ContentSlide: React.FC = () => {
              data-border=""
               >
                 <text
-                  data-weight="700"
+                  data-weight="800"
                   data-text-size="x-large"
                   data-wrap="wrap"
                 >
@@ -46,10 +46,10 @@ const ContentSlide: React.FC = () => {
               </group>
 
               <group
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-background="context"
-                data-radius="15"
+                data-radius="10"
                 data-space="20"
                 data-min-length="240"
                 data-length="240"
@@ -62,26 +62,23 @@ const ContentSlide: React.FC = () => {
               </group>
 
               <group
-                data-radius="15"
-                data-height="300"
+                data-radius="10"
+                data-min-height="240"
                 data-contain=""
                 data-length="410"
                 data-min-length="240"
-                data-color="secondary-text"
-                data-background="secondary"
+ data-border=""
               >
-                <picture data-position="absolute">
-                  <img src={sampleImage9} alt="" data-name="color-demo" />
-                </picture>
+
                 <group
-                  data-radius="15"
+                  data-radius="10"
                   data-space="30"
                   data-direction="column"
                   data-align="start"
                   data-gap="20"
                 >
                   <text data-weight="700" data-text-size="72" data-wrap="wrap">
-                    <Count from={0} to={64} duration={1500}></Count>
+                   64
                   </text>
                   <text  data-weight="600" data-wrap="wrap" data-line="1.5">
                     Nam maximus ante eu arcu mollis rhoncus. Nulla volutpat
@@ -93,11 +90,11 @@ const ContentSlide: React.FC = () => {
 
               <group
                 data-border=""
-                data-radius="15"
+                data-radius="10"
                 data-space="30"
                 data-min-length="240"
                 data-length="240"
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-direction="column"
                 data-align="start"
@@ -118,11 +115,11 @@ const ContentSlide: React.FC = () => {
               </group>
 
               <group
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-background="main"
                 data-color="main-text"
-                data-radius="15"
+                data-radius="10"
                 data-min-length="240"
                 data-length="240"
               >
@@ -140,11 +137,11 @@ const ContentSlide: React.FC = () => {
               ></video> */}
 
                 <group
-                  data-radius="15"
+                  data-radius="10"
                   data-space="30"
                   data-min-length="240"
                   data-length="240"
-                  data-height="300"
+                  data-min-height="240"
                   data-contain=""
                   data-direction="column"
                   data-align="start"
@@ -161,26 +158,15 @@ const ContentSlide: React.FC = () => {
                 </group>
               </group>
 
-              {/* <group
-              data-background="highlight"
-              data-radius="15"
-              data-contain=""
-              data-min-length="240" data-length="240"
-            >
-              <picture data-position="absolute">
-                <img src={sampleImage9} alt="" />
-              </picture>
-
-            </group> */}
 
               <group
                 data-background="main"
                 data-color="main-text"
-                data-radius="15"
+                data-radius="10"
                 data-space="30"
                 data-min-length="240"
                 data-length="240"
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-direction="column"
                 data-align="start"
@@ -200,11 +186,11 @@ const ContentSlide: React.FC = () => {
               <group
                 data-background="secondary"
                 data-color="secondary-text"
-                data-radius="15"
+                data-radius="10"
                 data-space="30"
                 data-min-length="240"
                 data-length="240"
-                data-height="300"
+                data-min-height="240"
                 data-contain=""
                 data-direction="column"
                 data-align="start"

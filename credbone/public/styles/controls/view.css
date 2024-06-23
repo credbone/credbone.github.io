@@ -101,7 +101,7 @@ view[data-background="none"]{background:none}
 
 [data-name="switchable"][data-expanded="true"]{z-index: 11;}
 
-[data-name="switchable"][data-expanded="false"] > [data-name="switch_content"] { }
+[data-name="switchable"][data-expanded="false"] > [data-name="switch_content"] { display: none; }
 
 
 
@@ -173,11 +173,13 @@ view[data-background="none"]{background:none}
 
 {
 
+
+
     [data-collapse-radius="30"][data-name="switchable"][data-expanded="false"][data-type="overlap"] {border-radius:30px;}
     [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
 
 
-[data-name="switchable"][data-type="overlap"] {   bottom: 0; border-radius: 5px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap); box-shadow: var(--elevation_1); position: absolute; z-index: 10; }
+[data-name="switchable"][data-type="overlap"] {   border-radius: 5px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap); box-shadow: var(--elevation_1); position: absolute; z-index: 10; }
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
 
 
