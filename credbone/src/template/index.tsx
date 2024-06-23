@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Colors from "./../template/Colors";
 import Layout from "./../template/layout";
@@ -24,11 +24,36 @@ import Ripple from "../components/Ripple";
 import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
+import { isDesktop } from "react-device-detect";
 
 const Template: React.FC = () => {
+
+  const location = useLocation();
+  const viewRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Scroll to the top of the view element with smooth behavior on route change
+
+    window.requestAnimationFrame(() => {
+      if (viewRef.current) {
+      
+
+      
+        viewRef.current.scrollTo({
+          top: 0,
+          behavior: isDesktop ? "smooth" : "auto",
+        });
+      }
+    });
+  
+  }, [location]);
+
   return (
-    <view data-scroll=""  data-border="no">
-      <group data-scroll="">
+
+
+    
+
+      <group data-scroll="" data-align="start" ref={viewRef}>
         <group
           data-adaptive-order="2"
           data-sticky="adaptive-top-bottom"
@@ -111,7 +136,7 @@ const Template: React.FC = () => {
 
         </group>
       </group>
-    </view>
+
   );
 };
 

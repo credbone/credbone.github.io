@@ -185,6 +185,7 @@ text[data-width="auto"]{width: initial;}
 [data-top="20"] { top: 20px; }
 [data-top="25"] { top: 25px; }
 [data-top="30"] { top: 30px; }
+[data-top="60"] { top: 60px; }
 [data-top="90"] { top: 90px; }
 
 /* Left positions */
