@@ -53,18 +53,17 @@ const WeightIcons = [
 
 const Icons: React.FC = () => {
   return (
-    <view
-      data-vertical=""
-      data-adaptive=""
-      data-align="start"
+    <group
+    data-direction="column"
+
     >
-      <view
-        data-size="medium"
-        data-max-height="fit"
+      <group
+        data-max-length="400"
+
         data-space="30"
         data-border="no"
-        data-background="none"
-        data-contain="visible"
+
+       
         data-maring-right="-30"
         data-maring-bottom="-30"
       >
@@ -107,14 +106,11 @@ const Icons: React.FC = () => {
             </group>
           </group>
         </group>
-      </view>
+      </group>
 
-      <view
-        data-scroll=""
-        data-height="auto"
-        data-max-height="fit"
-        data-border="no"
-        data-background="none"
+      <group
+        
+        
       >
         <group data-space="30" data-sticky="top" data-width="auto">
           <group
@@ -482,8 +478,8 @@ const Icons: React.FC = () => {
 
           <group></group>
         </group>
-      </view>
-    </view>
+      </group>
+    </group>
   );
 };
 export default Icons;

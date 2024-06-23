@@ -162,6 +162,10 @@ text[data-width="auto"]{width: initial;}
 [data-bottom="20"] { bottom: 20px; }
 [data-bottom="25"] { bottom: 25px; }
 [data-bottom="30"] { bottom: 30px; }
+[data-bottom="60"] { bottom: 60px; }
+[data-bottom="90"] { bottom: 90px; }
+[data-bottom="100"] { bottom: 100px; }
+[data-bottom="110"] { bottom: 110px; }
 
 /* Right positions */
 [data-right="-5"] { right: -5px; }
@@ -181,6 +185,7 @@ text[data-width="auto"]{width: initial;}
 [data-top="20"] { top: 20px; }
 [data-top="25"] { top: 25px; }
 [data-top="30"] { top: 30px; }
+[data-top="90"] { top: 90px; }
 
 /* Left positions */
 [data-left="0"] { left: 0px; }
@@ -647,7 +652,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-interactive=""][data-elevation="1"]:active,
 [data-interactive=""][data-elevation="2"]:active,
-[data-interactive=""][data-elevation="6"]:active 
+[data-interactive=""][data-elevation="6"]:active,
+[data-popover-expand="true"] [data-interactive=""][data-elevation="6"]
 
 {box-shadow: var(--elevation_0);}
 

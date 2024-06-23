@@ -51,7 +51,7 @@ const SideNav = () => {
         data-direction="column"
         data-scrollbar="none"
         data-scroll=""
-        data-position="absolute"
+       // data-position="absolute"
       >
         <group
           // data-adaptive="open-state"

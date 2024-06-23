@@ -19,17 +19,17 @@ const linksArray = [
 
 const Components: React.FC = () => {
   return (
-    <view data-scroll="">
-      <group data-direction="column" data-space-vertical="30">
+    <>
+      <group data-direction="column" data-space="30" data-gap="30">
         <group data-width="auto">
           <group
             data-direction="column"
             data-gap="20"
-            data-space-horizontal="30"
+          
           >
             <text
               data-weight="700"
-              data-text-size="xxx-large"
+              data-text-size="64"
               data-wrap="wrap"
               data-color="main"
               data-ellipsis=""
@@ -54,7 +54,7 @@ const Components: React.FC = () => {
           data-background="none"
           //  data-width="auto"
           data-align="start"
-          data-space="30"
+        
         >
           <group
             //data-width="auto"
@@ -121,8 +121,8 @@ const Components: React.FC = () => {
         </group>
       </group>
 
-      <group data-height="200" data-width="auto" data-shrink="no"></group>
-    </view>
+
+    </>
   );
 };
 export default Components;

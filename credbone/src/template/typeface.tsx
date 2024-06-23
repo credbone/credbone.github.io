@@ -51,6 +51,8 @@ const Typeface: React.FC = () => {
       data-space="30"
       data-gap="15"
       data-align="start"
+      data-border="no"
+      data-contain="visible"
     >
       <view
         data-size="small"

@@ -48,10 +48,10 @@ const Landing: React.FC = () => {
   };
 
   return (
-    <view data-vertical="">
+    <group data-align="start" >
 
-        <view data-vertical="" data-scroll="">
-          <group>
+
+
             <group data-space="30" data-gap="30" data-direction="column" data-shrink="0" data-contain="" data-wrap="no" data-fit='1' data-align="start">
               <group
                 data-elevation="1"
@@ -689,14 +689,9 @@ data-ellipsis=""
 
               <group data-height="200"></group>
             </group>
-<group data-length="100" data-shrink="0" data-adaptive="600"></group>
-          </group>
-        </view>
-
-
 
       <SideNav></SideNav>
-    </view>
+    </group>
   );
 };
 export default Landing;

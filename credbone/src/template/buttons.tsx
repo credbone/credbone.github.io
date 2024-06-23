@@ -19,14 +19,15 @@ const Buttons: React.FC = () => {
  
 
   return (
-    <view
-      data-vertical=""
-      data-adaptive=""
+    <group
+
       data-space="30"
       data-gap="15"
       data-align="start"
+      data-type="column"
+      data-column-gap="15"
     >
-      <view
+      <group
         data-size="medium"
         data-height="auto"
         data-max-height="fit"
@@ -98,8 +99,8 @@ const Buttons: React.FC = () => {
             </Ripple>
           </group>
         </group>
-      </view>
-      <view
+      </group>
+      <group
         data-size="small"
         data-height="auto"
         data-max-height="fit"
@@ -135,8 +136,8 @@ const Buttons: React.FC = () => {
             <Button text="Simple Button" />
           </group>
         </group>
-      </view>
-      <view
+      </group>
+      <group
         data-size="small"
         data-height="auto"
         data-max-height="fit"
@@ -333,8 +334,8 @@ const Buttons: React.FC = () => {
             </group>
           </group>
         </group>
-      </view>
-      <view
+      </group>
+      <group
         data-size="small"
         data-height="auto"
         data-max-height="fit"
@@ -384,9 +385,9 @@ const Buttons: React.FC = () => {
           </group>
         </group>
 
-      </view>
-
-    </view>
+      </group>
+              
+    </group>
   );
 };
 export default Buttons;

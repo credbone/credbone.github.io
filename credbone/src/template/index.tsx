@@ -25,64 +25,33 @@ import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 
-
 const Template: React.FC = () => {
   return (
-    <view data-scroll="" data-adaptive="" data-border="no">
-      <group
-        data-index="3"
-        data-scroll-mask="false"
-        data-elevation="1"
-        data-background="main-background"
-        data-contain=""
-        data-shrink="no"
-                      data-adaptive-order="2"
-      >
-        <Scroll wheelEnabled={true}>
-          <SubNavigation />
-        </Scroll>
-      </group>
-
-      <view data-vertical>
+    <view data-scroll=""  data-border="no">
+      <group data-scroll="">
         <group
-          data-position="absolute"
-          data-index="3"
-          data-margin="30"
-          data-bottom="0"
-          data-width="auto"
-          data-direction="column"
+          data-adaptive-order="2"
+          data-sticky="adaptive-top-bottom"
+
+          //  data-space="10"
         >
-          <Popover
-          hideOnScroll={false}
-            content={<RichThemePicker />}
-           // data-length="600"
-            data-space="5"
-            data-radius="10"
+          <group
+            // data-radius="10"
+            data-index="3"
+            data-scroll-mask="false"
+            data-elevation="1"
+            data-background="main-background"
             data-backdrop="10"
-           // data-elevation="2"
-            data-width="auto"
+            data-contain=""
+            data-shrink="no"
           >
-                <group>
-                  <Ripple>
-                    <group
-                      data-contain=""
-                      data-length="60"
-                      data-height="60"
-                      data-radius="30"
-                      data-background="context"
-                      data-cursor="pointer"
-                      data-shrink="no"
-                      data-elevation="6"
-                      data-interactive=""
-                    >
-                      <icon data-position="center">opacity</icon>
-                    </group>
-                  </Ripple>
-                </group>
-          </Popover>
+            <Scroll wheelEnabled={true}>
+              <SubNavigation />
+            </Scroll>
+          </group>
         </group>
 
-        <view data-vertical>
+        <group>
           <Routes>
             <Route path="/" element={<Navigate replace to="Components" />} />
             <Route path="Components" element={<Components />} />
@@ -98,8 +67,50 @@ const Template: React.FC = () => {
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
           </Routes>
-        </view>
-      </view>
+        </group>
+
+        <group
+          //    data-position="absolute"
+          data-index="3"
+          data-space-horizontal="30"
+          data-bottom="30/90"
+          data-width="auto"
+          data-direction="column"
+          data-sticky="bottom"
+        >
+          <Popover
+            //hideOnScroll={false}
+            content={<RichThemePicker />}
+            // data-length="600"
+            data-space="5"
+            data-radius="10"
+            data-backdrop="10"
+            // data-elevation="2"
+            data-width="auto"
+          >
+            <group>
+              <Ripple>
+                <group
+                  data-contain=""
+                  data-length="60"
+                  data-height="60"
+                  data-radius="30"
+                  data-background="context"
+                  data-cursor="pointer"
+                  data-shrink="no"
+                  data-elevation="6"
+                  data-interactive=""
+                >
+                  <icon data-position="center">opacity</icon>
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
+        </group>
+        <group data-height="100">
+
+        </group>
+      </group>
     </view>
   );
 };

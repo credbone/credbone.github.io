@@ -3,17 +3,19 @@ import React from "react";
 import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
-import Popover from "../components/popover";
+
 
 import { BaseColors } from "./utils/colorData";
 
 const Colors: React.FC = () => {
   return (
-    <view
+    <group
       data-space="30"
       data-gap="30"
-      data-scroll=""
-      id="inner-popover-container"
+
+      data-direction="column"
+      data-align="start"
+
     >
       <group data-direction="column" data-gap="10">
         <text
@@ -37,7 +39,7 @@ const Colors: React.FC = () => {
         data-max-length="1200"
         data-shrink="no"
         data-contain=""
-        data-width="auto"
+     //   data-width="auto"
         data-radius="20"
         data-gap="5"
       >
@@ -347,7 +349,7 @@ const Colors: React.FC = () => {
         data-shrink="no"
         data-weight="600"
         data-max-length="1200"
-        data-width="auto"
+    //    data-width="auto"
         data-type="grid"
         data-gap="10"
         data-grid-template="120"
@@ -399,16 +401,9 @@ const Colors: React.FC = () => {
         ))}
       </group>
 
-      <group
-        data-gap="20"
-        data-align="start"
-        data-weight="600"
-        data-type="column"
-        data-column-size="240"
-        data-column-gap="20"
-      ></group>
-      <group data-height="30" data-shrink="no"></group>
-    </view>
+
+
+    </group>
   );
 };
 export default Colors;

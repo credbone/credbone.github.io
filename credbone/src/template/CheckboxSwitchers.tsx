@@ -77,14 +77,11 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   return (
-    <view
-      data-adaptive=""
-      data-space="30"
+    <>
+      <group 
       data-gap="15"
-      data-align="start"
-      data-scroll=""
-    >
-      <group data-gap="15" data-align="start">
+      data-space="30"
+      data-align="start">
         <group
           data-max-length="800"
           data-contain=""
@@ -573,16 +570,21 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
         </group>
-      </group>
 
-      <Tooltip content="Reset">
-        <group data-position="right" data-width="auto" data-sticky="bottom">
-          <Button secondary fab onClick={() => reset()} toggleClassName="open">
+<group data-sticky="bottom" data-bottom="110">
+<Tooltip content="Reset">
+        <group   data-width="auto" >
+          <Button secondary fab onClick={() => reset()} toggleClassName="open" >
             <icon data-icon-size="mini">restart_alt</icon>
           </Button>
         </group>
       </Tooltip>
-    </view>
+</group>
+
+      </group>
+
+
+    </>
   );
 };
 export default CheckboxAndSwitchers;

@@ -171,8 +171,8 @@ const TooltipPopover: React.FC = () => {
   };
 
   return (
-    <view data-scroll="" data-space="30" data-gap="15" data-align="start">
-      <group data-gap="15" data-align="start">
+
+      <group data-space="30" data-gap="15" data-align="start">
         <group
           data-max-length="800"
           data-height="auto"
@@ -280,8 +280,8 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </Tooltip> */}
               <Tooltip
-             // delay={0}
-                  placement="auto"
+                // delay={0}
+                placement="auto"
                 data-radius="10"
                 data-space="0"
                 data-elevation="2"
@@ -338,21 +338,24 @@ const TooltipPopover: React.FC = () => {
 
             <group
               data-background="secondary"
-               data-color="secondary-text"
+              data-color="secondary-text"
               data-contain=""
               data-align="center"
-             // data-dark=""
+              // data-dark=""
             >
               <picture
-               // data-height="600"
+                // data-height="600"
                 data-top="0"
                 data-transition=""
                 data-duration=".725"
                 data-position="absolute"
-                
-             
               >
-                <img src={sampleImage}    data-opacity="60" alt="" data-name="color-demo" />
+                <img
+                  src={sampleImage}
+                  data-opacity="60"
+                  alt=""
+                  data-name="color-demo"
+                />
               </picture>
 
               <group
@@ -373,16 +376,13 @@ const TooltipPopover: React.FC = () => {
                     data-color="main-text"
                     onClick={() => addSnackbar(<>{SnackbarContent}</>)}
                   >
-                    <text data-weight="700" data-ellipsis="">Show Snackbar</text>
+                    <text data-weight="700" data-ellipsis="">
+                      Show Snackbar
+                    </text>
                   </group>
                 </group>
                 <group>
-                  <text
-                    data-wrap="wrap"
-                   
-                    data-line="1.5"
-                    data-max-length="300"
-                  >
+                  <text data-wrap="wrap" data-line="1.5" data-max-length="300">
                     Click to view a sample snackbar. The default duration is
                     3000 milliseconds.
                   </text>
@@ -434,8 +434,8 @@ const TooltipPopover: React.FC = () => {
         </group>
       </group>
 
-      <group data-height="200" data-width="auto" data-shrink="no"></group>
-    </view>
+
+
   );
 };
 export default TooltipPopover;
