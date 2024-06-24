@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MaterialIcons from "./materialIcons";
 import Ripple from "../components/Ripple";
 import {
@@ -10,36 +10,9 @@ import {
   IconStar,
   IconSun,
 } from "../components/icon/credIcons";
+import Tooltip from "../components/tooltip";
 
-const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const value = event.target.value.toLowerCase();
-  const parentContainers = document.querySelectorAll(
-    "[data-name='icon-group']"
-  );
 
-  parentContainers.forEach((parentContainer) => {
-    let anyItemsToShow = false;
-    const items = parentContainer.querySelectorAll("[data-name='icon-demo']");
-
-    items.forEach((item) => {
-      const text = item.textContent || "";
-      const shouldShow = text.toLowerCase().includes(value);
-
-      if (item instanceof HTMLElement) {
-        if (shouldShow) {
-          item.style.display = "";
-          anyItemsToShow = true;
-        } else {
-          item.style.display = "none";
-        }
-      }
-    });
-
-    if (parentContainer instanceof HTMLElement) {
-      parentContainer.style.display = anyItemsToShow ? "" : "none";
-    }
-  });
-};
 
 const ColorIcons = [
   { label: "Apparel Icon", name: "apparel", title: "Apparel", color: "" },
@@ -60,9 +33,57 @@ const WeightIcons = [
   { label: "Leaf Icon - 700", name: "nest_eco_leaf", title: "Leaf - 700", color: "", weight: "700" }
 ];
 
+
+
 const Icons: React.FC = () => {
+
+
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const updateDisplay = (value: string) => {
+    const parentContainers = document.querySelectorAll(
+      "[data-name='icon-group']"
+    );
+
+    parentContainers.forEach((parentContainer) => {
+      let anyItemsToShow = false;
+      const items = parentContainer.querySelectorAll("[data-name='icon-demo']");
+
+      items.forEach((item) => {
+        if (item instanceof HTMLElement) {
+          const text = item.textContent || "";
+          const shouldShow = text.toLowerCase().includes(value.toLowerCase());
+          item.style.display = value && !shouldShow ? "none" : "";
+          if (shouldShow) {
+            anyItemsToShow = true;
+          }
+        }
+      });
+
+      if (parentContainer instanceof HTMLElement) {
+        parentContainer.style.display = anyItemsToShow ? "" : "none";
+      }
+    });
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchValue(value);
+    updateDisplay(value);
+  };
+
+  const clearSearch = () => {
+    setSearchValue(''); // Reset search input
+    updateDisplay(''); // Show all items and parent containers
+  };
+
+
+
+
+
+
   return (
-    <group data-align="start">
+    <group data-align="start" data-direction="column">
       <group
         data-max-length="400"
         data-space="30"
@@ -92,9 +113,7 @@ const Icons: React.FC = () => {
               data-light=""
             >
               Material Symbols consolidating over <b>3,275</b> glyphs in a
-              single font file with a wide range of design variants. Symbols are
-              available in three styles and four adjustable variable font styles
-              (fill, weight, grade, and optical size).
+              single font file with a wide range of design variants.
             </text>
           </group>
 
@@ -143,10 +162,36 @@ const Icons: React.FC = () => {
 
                     <separator data-vertical="" data-height="20"></separator>
                     <input
+                    type="search"
                       className="icon_search"
                       placeholder="Search..."
                       onChange={handleSearch}
+                      value={searchValue}
+                      
                     />
+{searchValue && (
+                      <Tooltip content="Clear">
+                      <group
+                        data-contain=""
+                        data-space="5"
+                        data-shrink="no"
+                        data-interactive=""
+                        data-width="auto"
+                        data-cursor="pointer"
+                        data-radius="5"
+                        data-align="center"
+                        data-direction="column"
+                        onClick={clearSearch}
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2"
+                      >
+                        <icon data-height="auto">close</icon>
+                      </group>
+                    </Tooltip>
+      )}
+                   
+
                   </div>
                 </div>
               </label>
