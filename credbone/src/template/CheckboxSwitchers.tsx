@@ -4,13 +4,13 @@ import Checkbox, { CheckboxType } from "../components/inputs/checkbox";
 import Tooltip from "../components/tooltip";
 import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
-import Button from "../components/button";
+
 
 import sampleImage from "../styles/images/samples/res_20.jpg";
 import sampleImage_2 from "../styles/images/samples/res_31.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
-  const { reset, control, watch  } = useForm<FieldValues>({
+  const { reset, control, watch } = useForm<FieldValues>({
     defaultValues: {
       1: true,
       4: true,
@@ -28,7 +28,7 @@ const CheckboxAndSwitchers: React.FC = () => {
     },
   });
 
-  const radioValue = watch('RadioDemo1');
+  const radioValue = watch("RadioDemo1");
 
   const weekdays = [
     { name: "option_1", label: "Mo", tooltip: "Monday" },
@@ -78,14 +78,11 @@ const CheckboxAndSwitchers: React.FC = () => {
 
   return (
     <>
-      <group 
-      data-gap="15"
-      data-space="30"
-      data-align="start">
+      <group data-gap="15" data-space="30" data-align="start">
         <group
           data-max-length="800"
           data-contain=""
-          data-radius="10"
+          data-radius="15"
           data-elevation="1"
         >
           <group>
@@ -131,7 +128,6 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-width="auto"
                 >
                   <Checkbox name="1" noInk={true} control={control} />
-
                 </group>
               </group>
             </group>
@@ -319,7 +315,7 @@ const CheckboxAndSwitchers: React.FC = () => {
         >
           <group
             data-direction="column"
-            data-radius="10"
+             data-radius="15"
             data-elevation="1"
             data-contain=""
           >
@@ -332,8 +328,14 @@ const CheckboxAndSwitchers: React.FC = () => {
               >
                 Switch
               </text>
-              <text data-wrap="wrap" data-line="1.5" data-light="" data-max-length="300">
-              Switches are used to toggle the selection of an item, turning it on or off as needed.
+              <text
+                data-wrap="wrap"
+                data-line="1.5"
+                data-light=""
+                data-max-length="300"
+              >
+                Switches are used to toggle the selection of an item, turning it
+                on or off as needed.
               </text>
             </group>
 
@@ -342,9 +344,16 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-contain=""
               data-align="center"
               data-dark=""
-             
             >
-              <picture data-height="600" data-top="0"  data-translate-vertical={radioValue} data-transition="" data-duration=".725" data-position="absolute" data-name="color-demo">
+              <picture
+                data-height="600"
+                data-top="0"
+                data-translate-vertical={radioValue}
+                data-transition=""
+                data-duration=".725"
+                data-position="absolute"
+                data-name="color-demo"
+              >
                 <img src={sampleImage_2} alt="" />
               </picture>
 
@@ -394,7 +403,6 @@ const CheckboxAndSwitchers: React.FC = () => {
                     radioValue="400"
                     label="Month"
                   />
-                  
                 </OptionBar>
 
                 <group>
@@ -413,7 +421,7 @@ const CheckboxAndSwitchers: React.FC = () => {
           </group>
 
           <group
-            data-radius="10"
+            data-radius="15"
             data-elevation="1"
             data-contain=""
             data-space="20"
@@ -441,14 +449,13 @@ const CheckboxAndSwitchers: React.FC = () => {
               </OptionBar>
             </group>
 
-            <separator data-horizontal="" data-interval='10'></separator>
+            <separator data-horizontal="" data-interval="10"></separator>
             <text
               data-wrap="wrap"
               data-light=""
               data-line="1.5"
               data-max-length="300"
             >
-
               Component configured to use a secondary color pallete and
               tooltips.
             </text>
@@ -459,7 +466,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-space="20"
             data-border=""
             data-background="context"
-            data-radius="10"
+             data-radius="15"
             data-elevation="1"
           >
             <OptionBar
@@ -471,7 +478,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             >
               {radioData.map((radio, index) => (
                 <Radio
-                 // tooltip={ radio.label}
+                  // tooltip={ radio.label}
                   iconProps={{ "data-length": "30" }}
                   icon={radio.icon}
                   key={index}
@@ -484,7 +491,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               ))}
             </OptionBar>
 
-            <separator data-horizontal="" data-interval='10'></separator>
+            <separator data-horizontal="" data-interval="10"></separator>
 
             <OptionBar
               data-length="autofit"
@@ -505,11 +512,11 @@ const CheckboxAndSwitchers: React.FC = () => {
             </OptionBar>
           </group>
 
-          <group data-gap="10" data-radius="5" >
+          <group data-gap="10" data-radius="5">
             <OptionBar data-length="autofit" data-height="40" data-weight="600">
               {weekdays.map((option) => (
                 <Checkbox
-                tooltip={option.tooltip}
+                  tooltip={option.tooltip}
                   key={option.name}
                   control={control}
                   checkboxType={CheckboxType.Button}
@@ -526,15 +533,14 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-align="center"
             data-gap="10"
             data-background="context"
-            data-radius="10"
+             data-radius="15"
             data-elevation="1"
           >
             <OptionBar compact dynamic data-height="40">
               {radioViewData.map((radio, index) => (
                 <Radio
                   iconProps={{ "data-length": "30" }}
-                  
-                 // tooltip={radio.label}
+                  // tooltip={radio.label}
                   label={radio.label}
                   icon={radio.icon}
                   key={index}
@@ -546,7 +552,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               ))}
             </OptionBar>
 
-            <separator data-horizontal="" data-interval='10'></separator>
+            <separator data-horizontal="" data-interval="10"></separator>
             <group data-align="center" data-width="auto" data-wrap="no">
               <OptionBar animate data-length="100" data-height="40">
                 <Radio
@@ -569,21 +575,35 @@ const CheckboxAndSwitchers: React.FC = () => {
               </text>
             </group>
           </group>
-        </group>
 
-<group data-sticky="bottom" data-bottom="110">
-<Tooltip content="Reset">
-        <group   data-width="auto" >
-          <Button secondary fab onClick={() => reset()} toggleClassName="open" >
-            <icon data-icon-size="mini">restart_alt</icon>
-          </Button>
+          <group
+            data-space="20"
+            data-border=""
+            data-align="center"
+            data-gap="10"
+            data-background="context"
+            data-radius="15"
+            data-elevation="1"
+          >
+                <group
+                  data-contain=""
+                  data-space="15"
+                  data-interactive=""
+                  data-cursor="pointer"
+                  data-radius="10"
+                  data-width="auto"
+                  data-align="center"
+                  data-direction="column"
+                  data-background="secondary"
+                  data-color="secondary-text"
+                  data-weight="600"
+                  onClick={() => reset()}
+                >
+                  <text>Reset Form</text>
+                </group>
+          </group>
         </group>
-      </Tooltip>
-</group>
-
       </group>
-
-
     </>
   );
 };

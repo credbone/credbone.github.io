@@ -3,12 +3,12 @@ import Content from "./content";
 
 // import Marquee from "../components/Marquee";
 import ContentSlide from "./contentSlide";
-import { SvgHamburger, SvgHamburgerToRight } from "../components/svg";
+import { SvgHamburger } from "../components/svg";
 import Switchable from "../components/Switchable";
 
 const Layout: React.FC = () => {
   return (
-    <view data-vertical="" data-space="20">
+    <view data-vertical="" data-space="20" data-border="no">
       <view
         data-direction="row"
         //  data-gap="20"

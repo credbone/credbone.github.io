@@ -299,7 +299,7 @@ const Cards: React.FC = () => {
         </text>
       </group>
 
-      <group data-sticky="top" data-top="90" data-index="3">
+      <group data-sticky="top" data-top="30" data-index="3">
         <group data-gap="10" >
           <OptionBar compact dynamic data-height="40"  data-radius="5" data-backdrop="10" data-weight="600">
             {ViewSwitch.map((radio) => (

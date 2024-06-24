@@ -45,21 +45,20 @@ const Typeface: React.FC = () => {
   }));
 
   return (
-    <view
-      data-vertical=""
-      data-adaptive=""
+    <group
+
+     
       data-space="30"
-      data-gap="15"
+      data-column-gap="15"
       data-align="start"
-      data-border="no"
-      data-contain="visible"
+      data-type="column"
+
     >
-      <view
-        data-size="small"
-        data-height="auto"
-        data-max-height="fit"
+      <group
+        data-max-length="400"
+
         data-radius="10"
-        data-border="no"
+
         data-background="main"
         data-color="main-text"
         data-break="break-word"
@@ -81,12 +80,11 @@ const Typeface: React.FC = () => {
             styles and family package options.
           </text>
         </group>
-      </view>
+      </group>
 
-      <view
-        data-size="medium"
-        data-height="auto"
-        data-max-height="fit"
+      <group
+        data-max-length="400"
+       
         data-radius="10"
         data-elevation="1"
         data-contain=""
@@ -169,12 +167,11 @@ const Typeface: React.FC = () => {
             </group>
           ))}
         </group>
-      </view>
+      </group>
 
-      <view
-        data-size="large"
-        data-height="auto"
-        data-max-height="fit"
+      <group
+         data-max-length="400"
+       
         data-radius="10"
         data-elevation="1"
         data-contain=""
@@ -220,8 +217,8 @@ const Typeface: React.FC = () => {
             ))}
           </group>
         </group>
-      </view>
-    </view>
+      </group>
+    </group>
   );
 };
 

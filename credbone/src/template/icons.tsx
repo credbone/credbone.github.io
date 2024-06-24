@@ -112,7 +112,7 @@ const Icons: React.FC = () => {
         
         
       >
-        <group data-space="30" data-sticky="top" data-width="auto" data-top="60">
+        <group data-space="30" data-sticky="top" data-width="auto" >
           <group
             data-length="600"
             data-radius="10"

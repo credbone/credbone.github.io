@@ -119,10 +119,10 @@ data-ellipsis=""
                 </group>
 
                 <group
-                  data-space="10"
+                  data-space="20"
                   data-type="grid"
                   data-weight="600"
-                  data-grid-template="120"
+                  data-grid-template="100"
                   data-gap="5"
                 >
                   {navData.map((item) => (

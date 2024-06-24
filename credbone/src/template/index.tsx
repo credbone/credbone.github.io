@@ -42,6 +42,7 @@ const Template: React.FC = () => {
         viewRef.current.scrollTo({
           top: 0,
           behavior: isDesktop ? "smooth" : "auto",
+          
         });
       }
     });
@@ -51,32 +52,34 @@ const Template: React.FC = () => {
   return (
 
 
+    <view>
     
+    <group
+    data-adaptive-order="2"
+  
+
+    //  data-space="10"
+  >
+    <group
+      // data-radius="10"
+      data-index="3"
+      data-scroll-mask="false"
+      data-elevation="1"
+      data-background="main-background"
+    
+      data-contain=""
+      data-shrink="no"
+    >
+      <Scroll wheelEnabled={true}>
+        <SubNavigation />
+      </Scroll>
+    </group>
+  </group>
 
       <group data-scroll="" data-align="start" ref={viewRef}>
-        <group
-          data-adaptive-order="2"
-          data-sticky="adaptive-top-bottom"
 
-          //  data-space="10"
-        >
-          <group
-            // data-radius="10"
-            data-index="3"
-            data-scroll-mask="false"
-            data-elevation="1"
-            data-background="main-background"
-            data-backdrop="10"
-            data-contain=""
-            data-shrink="no"
-          >
-            <Scroll wheelEnabled={true}>
-              <SubNavigation />
-            </Scroll>
-          </group>
-        </group>
 
-        <group>
+
           <Routes>
             <Route path="/" element={<Navigate replace to="Components" />} />
             <Route path="Components" element={<Components />} />
@@ -92,13 +95,13 @@ const Template: React.FC = () => {
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
           </Routes>
-        </group>
+
 
         <group
           //    data-position="absolute"
           data-index="3"
           data-space-horizontal="30"
-          data-bottom="30/90"
+          data-bottom="30"
           data-width="auto"
           data-direction="column"
           data-sticky="bottom"
@@ -137,6 +140,8 @@ const Template: React.FC = () => {
         </group>
       </group>
 
+      
+    </view>
   );
 };
 
