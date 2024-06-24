@@ -31,15 +31,13 @@ const Template: React.FC = () => {
 
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
-  const isSpecificPath = location.pathname === '/home/Navigation';
+  const isTemplateNav = location.pathname === '/home/Navigation';
   useEffect(() => {
     // Scroll to the top of the view element with smooth behavior on route change
 
     window.requestAnimationFrame(() => {
       if (viewRef.current) {
-      
 
-      
         viewRef.current.scrollTo({
           top: 0,
           behavior: isDesktop ? "smooth" : "auto",
@@ -147,7 +145,7 @@ const Template: React.FC = () => {
 
       
     </view>
- {isSpecificPath && <SideNav />}
+ {isTemplateNav && <SideNav />}
 
     </>
 

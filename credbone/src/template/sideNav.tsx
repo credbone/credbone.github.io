@@ -36,12 +36,12 @@ const SideNav = () => {
         data-placement="right"
         // data-float={isNavOpen ? "" : "30"}
         // data-radius={isNavOpen ? "" : "10"}
-     //   data-length={isNavOpen ? "500" : "80"}
+        //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
         data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
-      //  data-width="auto"
+        //  data-width="auto"
         data-height="fit"
         // data-max-length="300"
         data-elevation="2"
@@ -51,7 +51,7 @@ const SideNav = () => {
         data-direction="column"
         data-scrollbar="none"
         data-scroll=""
-       // data-position="absolute"
+        // data-position="absolute"
       >
         <group
           // data-adaptive="open-state"
@@ -130,7 +130,7 @@ const SideNav = () => {
             data-direction="column"
             data-align="start"
             data-fit="1"
-        //    data-adaptive={isNavOpen ? "" : "600"}
+            data-gap="5"
           >
             <separator data-horizontal="" data-interval="10"></separator>
             <Ripple>
@@ -258,7 +258,7 @@ const SideNav = () => {
           </group>
         </group>
       </group>
-      <group data-name="side_nav-space" data-length="80" ></group>
+      <group data-name="side_nav-space" data-length="80"></group>
     </>
   );
 };
