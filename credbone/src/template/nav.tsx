@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
 import Ripple from "../components/Ripple";
-import SideNav from "./sideNav";
-import Marquee from "../components/Marquee";
+
 import Scroll from "../components/scroll";
 import Button from "../components/button";
 import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
-import { IconMore, IconSearch, IconStar } from "../components/icon/credIcons";
+import { IconSearch, IconStar } from "../components/icon/credIcons";
 import sampleImage from "../styles/images/samples/res_42.jpg";
 
 // Demo Data
@@ -118,8 +117,12 @@ data-ellipsis=""
                   </group>
                 </group>
 
-                <group
-                  data-space="20"
+
+        </group>
+        
+
+        <group
+                
                   data-type="grid"
                   data-weight="600"
                   data-grid-template="100"
@@ -173,7 +176,6 @@ data-ellipsis=""
                     </Ripple>
                   ))}
                 </group>
-              </group>
 
               <separator data-horizontal="" data-interval="10"></separator>
 
@@ -687,10 +689,9 @@ data-ellipsis=""
                 </Tabstrip>
               </group>
 
-              <group data-height="200"></group>
+             
             </group>
 
-      <SideNav></SideNav>
     </group>
   );
 };

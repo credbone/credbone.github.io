@@ -25,12 +25,13 @@ import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
+import SideNav from "./sideNav";
 
 const Template: React.FC = () => {
 
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
-
+  const isSpecificPath = location.pathname === '/home/Navigation';
   useEffect(() => {
     // Scroll to the top of the view element with smooth behavior on route change
 
@@ -52,6 +53,8 @@ const Template: React.FC = () => {
   return (
 
 
+    <>
+    
     <view>
     
     <group
@@ -95,6 +98,8 @@ const Template: React.FC = () => {
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
           </Routes>
+
+
 
 
         <group
@@ -142,6 +147,10 @@ const Template: React.FC = () => {
 
       
     </view>
+ {isSpecificPath && <SideNav />}
+
+    </>
+
   );
 };
 
