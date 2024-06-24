@@ -1,12 +1,21 @@
 import React from "react";
 import MaterialIcons from "./materialIcons";
 import Ripple from "../components/Ripple";
-import { IconDemo, IconHeart, IconHome, IconSearch, IconShare, IconStar, IconSun  } from "../components/icon/credIcons";
-
+import {
+  IconDemo,
+  IconHeart,
+  IconHome,
+  IconSearch,
+  IconShare,
+  IconStar,
+  IconSun,
+} from "../components/icon/credIcons";
 
 const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
   const value = event.target.value.toLowerCase();
-  const parentContainers = document.querySelectorAll("[data-name='icon-group']");
+  const parentContainers = document.querySelectorAll(
+    "[data-name='icon-group']"
+  );
 
   parentContainers.forEach((parentContainer) => {
     let anyItemsToShow = false;
@@ -53,17 +62,11 @@ const WeightIcons = [
 
 const Icons: React.FC = () => {
   return (
-    <group
-    data-direction="column"
-
-    >
+    <group data-align="start">
       <group
         data-max-length="400"
-
         data-space="30"
         data-border="no"
-
-       
         data-maring-right="-30"
         data-maring-bottom="-30"
       >
@@ -108,11 +111,8 @@ const Icons: React.FC = () => {
         </group>
       </group>
 
-      <group
-        
-        
-      >
-        <group data-space="30" data-sticky="top" data-width="auto" >
+      <group data-max-length="1200">
+        <group data-space="30" data-sticky="top" data-width="auto">
           <group
             data-length="600"
             data-radius="10"
@@ -124,8 +124,7 @@ const Icons: React.FC = () => {
           >
             <Ripple>
               <label
-              
-              data-align="center"
+                data-align="center"
                 className="field"
                 data-label="left"
                 data-multi-element=""
@@ -134,11 +133,14 @@ const Icons: React.FC = () => {
               >
                 <div className="form_fields">
                   <div className="field_cont" data-height="50" data-gap="10">
-                   
-                  <group data-length="30" data-align="center" data-justify="center">
-                  <IconSearch size={20} />
-                  </group>
-                    
+                    <group
+                      data-length="30"
+                      data-align="center"
+                      data-justify="center"
+                    >
+                      <IconSearch size={20} />
+                    </group>
+
                     <separator data-vertical="" data-height="20"></separator>
                     <input
                       className="icon_search"
@@ -153,328 +155,310 @@ const Icons: React.FC = () => {
         </group>
 
         <group data-space-horizontal="30" data-gap="30">
-
-<group data-name="icon-group" data-gap="30">
-<group data-align="center" data-gap="15">
-
-              <group  data-width="auto">
-              <text data-weight="700" data-ellipsis="">
-              Material Icons Demo
-            </text>
+          <group data-name="icon-group" data-gap="30">
+            <group data-align="center" data-gap="15">
+              <group data-width="auto">
+                <text data-weight="700" data-ellipsis="">
+                  Material Icons Demo
+                </text>
               </group>
-           
-              <group data-name="autoseparation" data-width="auto" data-align="center">
-              <separator data-vertical=""></separator>
+
+              <group
+                data-name="autoseparation"
+                data-width="auto"
+                data-align="center"
+              >
+                <separator data-vertical=""></separator>
                 <a
                   data-radius="5"
                   data-interactive=""
                   data-space="10"
                   data-space-horizontal="15"
-                data-link=""
-                target="_blank"
-                rel="noreferrer"
-                href="https://fonts.google.com/icons?icon.style=Rounded"
+                  data-link=""
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://fonts.google.com/icons?icon.style=Rounded"
                 >
-                   
-                <text data-weight="700" data-ellipsis="">
-                  More icons ...
-                </text>
-              </a>
-</group>
-          </group>
-
-          <group>
-            <group
-              data-type="grid"
-              data-gap="5"
-              data-grid-template="110"
-              data-contain=""
-            >
-              <MaterialIcons></MaterialIcons>
+                  <text data-weight="700" data-ellipsis="">
+                    More icons ...
+                  </text>
+                </a>
+              </group>
             </group>
-          </group>
-</group>
 
-<group data-name="icon-group" data-gap="30">
-<group data-align="center">
-            <text data-weight="700" data-ellipsis="">
-              Filled & Colored Icons
-            </text>
-          </group>
-
-          <group>
-            <group
-              data-type="grid"
-              data-gap="10"
-              data-grid-template="110"
-              data-contain=""
-            >
-              {ColorIcons.map((coloricon,index) => (
-                <Ripple key={index}  >
-                  <group
-                    key={index}
-                    data-name="icon-demo"
-                    data-contain=""
-                    data-interactive=""
-                    data-space="15"
-                    data-cursor="pointer"
-                    data-ratio="1:1"
-                    data-radius="10"
-                  >
-                    <group
-                      data-index="1"
-                      data-justify="center"
-                      data-align="center"
-                      data-gap="20"
-                      data-direction="column"
-                    >
-                      <icon
-                        data-icon-size="mini"
-                        data-fill="fill"
-                        data-color={coloricon.color}
-                      >
-                        {coloricon.name}
-                      </icon>
-                      <text data-light="" data-ellipsis="">
-                        {coloricon.title}
-                      </text>
-                    </group>
-                  </group>
-                </Ripple>
-              ))}
-            </group>
-          </group>
-</group>
-
-<group data-name="icon-group" data-gap="30">
-<group data-align="center">
-            <text data-weight="700" data-ellipsis="">
-              Icon Weight
-            </text>
-          </group>
-
-          <group>
-            <group
-              data-type="grid"
-              data-gap="10"
-              data-grid-template="110"
-              data-contain=""
-            >
-              {WeightIcons.map((weighticon, index) => (
-                <Ripple key={index} >
-                  <group
-                    key={index} 
-                    data-name="icon-demo"
-                    data-contain=""
-                    data-interactive=""
-                    data-space="15"
-                    data-cursor="pointer"
-                    data-ratio="1:1"
-                    data-radius="10"
-                  >
-                    <group
-                      data-index="1"
-                      data-justify="center"
-                      data-align="center"
-                      data-gap="20"
-                      data-direction="column"
-                    >
-                      <icon
-                        data-icon-size="mini"
-                        data-icon-weight={weighticon.weight}
-                      >
-                        {weighticon.name}
-                      </icon>
-                      <text data-light="" data-ellipsis="">
-                        {weighticon.title}
-                      </text>
-                    </group>
-                  </group>
-                </Ripple>
-              ))}
-            </group>
-          </group>
-</group>
-
-<group data-name="icon-group" data-gap="30">
-<group data-align="center">
-            <text data-weight="700" data-ellipsis="">
-              Icons
-            </text>
-          </group>
-
-          <group>
-            <group
-              data-type="grid"
-              data-gap="10"
-              data-grid-template="110"
-              data-contain=""
-            >
+            <group>
               <group
-                data-radius="10"
-                data-name="icon-demo"
+                data-type="grid"
+                data-gap="5"
+                data-grid-template="110"
                 data-contain=""
-                data-interactive=""
+              >
+                <MaterialIcons></MaterialIcons>
+              </group>
+            </group>
+          </group>
+
+          <group data-name="icon-group" data-gap="30">
+            <group data-align="center">
+              <text data-weight="700" data-ellipsis="">
+                Filled & Colored Icons
+              </text>
+            </group>
+
+            <group>
+              <group
+                data-type="grid"
+                data-gap="10"
+                data-grid-template="110"
+                data-contain=""
+              >
+                {ColorIcons.map((coloricon, index) => (
+                  <Ripple key={index}>
+                    <group
+                      key={index}
+                      data-name="icon-demo"
+                      data-contain=""
+                      data-interactive=""
+                      data-space="15"
+                      data-cursor="pointer"
+                      data-ratio="1:1"
+                      data-radius="10"
+                    >
+                      <group
+                        data-index="1"
+                        data-justify="center"
+                        data-align="center"
+                        data-gap="20"
+                        data-direction="column"
+                      >
+                        <icon
+                          data-icon-size="mini"
+                          data-fill="fill"
+                          data-color={coloricon.color}
+                        >
+                          {coloricon.name}
+                        </icon>
+                        <text data-light="" data-ellipsis="">
+                          {coloricon.title}
+                        </text>
+                      </group>
+                    </group>
+                  </Ripple>
+                ))}
+              </group>
+            </group>
+          </group>
+
+          <group data-name="icon-group" data-gap="30">
+            <group data-align="center">
+              <text data-weight="700" data-ellipsis="">
+                Icon Weight
+              </text>
+            </group>
+
+            <group>
+              <group
+                data-type="grid"
+                data-gap="10"
+                data-grid-template="110"
+                data-contain=""
+              >
+                {WeightIcons.map((weighticon, index) => (
+                  <Ripple key={index}>
+                    <group
+                      key={index}
+                      data-name="icon-demo"
+                      data-contain=""
+                      data-interactive=""
+                      data-space="15"
+                      data-cursor="pointer"
+                      data-ratio="1:1"
+                      data-radius="10"
+                    >
+                      <group
+                        data-index="1"
+                        data-justify="center"
+                        data-align="center"
+                        data-gap="20"
+                        data-direction="column"
+                      >
+                        <icon
+                          data-icon-size="mini"
+                          data-icon-weight={weighticon.weight}
+                        >
+                          {weighticon.name}
+                        </icon>
+                        <text data-light="" data-ellipsis="">
+                          {weighticon.title}
+                        </text>
+                      </group>
+                    </group>
+                  </Ripple>
+                ))}
+              </group>
+            </group>
+          </group>
+
+          <group data-name="icon-group" data-gap="30">
+            <group data-align="center">
+              <text data-weight="700" data-ellipsis="">
+                Icons
+              </text>
+            </group>
+
+            <group>
+              <group
+                data-type="grid"
+                data-gap="10"
+                data-grid-template="110"
+                data-contain=""
+              >
+                <group
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
                   data-background="main-background"
-                 
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
-                <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                    <IconHome/>
-                  </icon>
-                  <text data-ellipsis="">Home</text>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconHome />
+                    </icon>
+                    <text data-ellipsis="">Home</text>
+                  </group>
                 </group>
-              </group>
 
-              <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
                 <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
+                  data-background="main-background"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                  <IconSearch/>
-                  </icon>
-                  <text data-ellipsis="">Search</text>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconSearch />
+                    </icon>
+                    <text data-ellipsis="">Search</text>
+                  </group>
                 </group>
-                </group>
-                
 
-
-                
                 <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
-                <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
+                  data-background="main-background"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                  <IconSun/>
-                  </icon>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconSun />
+                    </icon>
                     <text data-ellipsis="">Sun</text>
-                   
+                  </group>
                 </group>
 
-                
-              </group>
-
-
-              <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
                 <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
+                  data-background="main-background"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                  <IconShare/>
-                  </icon>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconShare />
+                    </icon>
                     <text data-ellipsis="">Share</text>
-                   
+                  </group>
                 </group>
 
-                
-              </group>
-
-              <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
                 <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
+                  data-background="main-background"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                  <IconHeart />
-                  </icon>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconHeart />
+                    </icon>
                     <text data-ellipsis="">Heart</text>
-                   
+                  </group>
                 </group>
 
-                
-              </group>
-
-              <group
-                data-radius="10"
-                data-name="icon-demo"
-                data-contain=""
-                data-interactive=""
-                data-background="main-background"
-                data-space="15"
-                data-cursor="pointer"
-                data-ratio="1:1"
-              >
                 <group
-                  data-index="1"
-                  data-justify="center"
-                  data-align="center"
-                  data-gap="20"
-                  data-direction="column"
+                  data-radius="10"
+                  data-name="icon-demo"
+                  data-contain=""
+                  data-interactive=""
+                  data-background="main-background"
+                  data-space="15"
+                  data-cursor="pointer"
+                  data-ratio="1:1"
                 >
-                  <icon>
-                  <IconStar/>
-                  </icon>
+                  <group
+                    data-index="1"
+                    data-justify="center"
+                    data-align="center"
+                    data-gap="20"
+                    data-direction="column"
+                  >
+                    <icon>
+                      <IconStar />
+                    </icon>
                     <text data-ellipsis="">Star</text>
-                   
+                  </group>
                 </group>
-
-                
               </group>
-
-
             </group>
           </group>
-</group>
 
           <group></group>
         </group>

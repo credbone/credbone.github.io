@@ -5,10 +5,13 @@ import Button from "../components/button";
 
 const InputsAndForms: React.FC = () => {
   return (
-    <group data-gap="15" data-align="start" data-space="30">
+    <group
+      data-column-gap="15"
+      data-type="column"
+      data-align="start"
+      data-space="30"
+    >
       <group
-        data-max-length="350"
-        // data-border=""
         data-radius="15"
         data-contain=""
         data-background="context"
@@ -32,7 +35,7 @@ const InputsAndForms: React.FC = () => {
             data-gap="10"
             data-color="main-text"
           >
-            <text data-weight="700" data-text-size="36" data-wrap="wrap">
+            <text data-weight="700" data-text-size="large" data-wrap="wrap">
               Password Change
             </text>
             <text data-wrap="wrap" data-line="1.5">
@@ -94,15 +97,69 @@ const InputsAndForms: React.FC = () => {
           <separator data-horizontal="" data-interval="10"></separator>
           <space data-height="10"></space>
 
-          <group data-gap="10">
-            <Button large highlight data-shrink="no">
-              <text>Cancel</text>
-            </Button>
+          <group data-gap="10" data-type="grid">
             <Button large secondary fit>
               <text>Update Password</text>
             </Button>
+            <Button large highlight data-shrink="no">
+              <text>Cancel</text>
+            </Button>
           </group>
         </form>
+      </group>
+
+      <group
+        data-radius="15"
+        data-contain=""
+        data-background="context"
+        data-shrink="no"
+        data-elevation="1"
+      >
+        <group data-space="30">
+          <group data-direction="column" data-align="start" data-gap="10">
+            <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              Customer Feedback
+            </text>
+            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+              Your password is Case Sensitive. It should contain a minimum of 8
+              characters and at least one each of Uppercase, Lowercase, and
+              Special characters
+            </text>
+          </group>
+        </group>
+        <group data-space-horizontal="30">
+          <separator data-horizontal=""></separator>
+        </group>
+        <group data-space="30" data-gap="30"  flex-direction="column">
+          <Input
+            size="large"
+            type="text"
+            label="Name"
+            placeholder="Enter Your Full Name"
+            dataLength="fit"
+          ></Input>
+
+          <Input
+            size="large"
+            type="text"
+            label="E-Mail"
+            dataLength="fit"
+            placeholder="Enter Your Email Address"
+          ></Input>
+
+<Input
+            size="large"
+            type="textarea"
+            label="Message"
+            dataLength="fit"
+            placeholder="Write Your Message"
+            data-height="100"
+          ></Input>
+
+<group data-type="group">
+<Button wide large primary text="Submit Feedback"></Button>
+</group>
+        </group>
       </group>
     </group>
   );
