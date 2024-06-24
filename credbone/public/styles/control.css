@@ -750,6 +750,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-drag="none"]{-webkit-user-drag: none;}
+[data-touch-action="manipulation"]{touch-action: manipulation;}
 
 [data-text-transform="capitalize"] { text-transform: capitalize; }
 [data-text-transform="uppercase"] { text-transform: uppercase; }

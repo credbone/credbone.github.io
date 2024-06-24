@@ -67,6 +67,7 @@ const SubNavigation: React.FC = () => {
       <group data-weight="600" data-wrap="no" data-space="10" data-gap="5" data-width="auto" data-max-length='auto'>
         {navItems.map((item, index) => (
           <NavLink
+          data-touch-action="manipulation"
             key={index}
             data-type="group"
             to={item.to}

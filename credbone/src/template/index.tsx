@@ -28,59 +28,39 @@ import { isDesktop } from "react-device-detect";
 import SideNav from "./sideNav";
 
 const Template: React.FC = () => {
-
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
-  const isTemplateNav = location.pathname === '/home/Navigation';
-  useEffect(() => {
-    // Scroll to the top of the view element with smooth behavior on route change
+  const isTemplateNav = location.pathname === "/Home/Navigation";
 
+  useEffect(() => {
     window.requestAnimationFrame(() => {
       if (viewRef.current) {
-
         viewRef.current.scrollTo({
           top: 0,
           behavior: isDesktop ? "smooth" : "auto",
-          
         });
       }
     });
-  
   }, [location]);
 
   return (
-
-
     <>
-    
-    <view>
-    
-    <group
-    data-adaptive-order="2"
-  
-
-    //  data-space="10"
-  >
-    <group
-      // data-radius="10"
-      data-index="3"
-      data-scroll-mask="false"
-      data-elevation="1"
-      data-background="main-background"
-    
-      data-contain=""
-      data-shrink="no"
-    >
-      <Scroll wheelEnabled={true}>
-        <SubNavigation />
-      </Scroll>
-    </group>
-  </group>
-
-      <group data-scroll="" data-align="start" ref={viewRef}>
-
-
-
+      <view>
+        <group data-adaptive-order="2">
+          <group
+            data-index="3"
+            data-scroll-mask="false"
+            data-elevation="1"
+            data-background="main-background"
+            data-contain=""
+            data-shrink="no"
+          >
+            <Scroll wheelEnabled={true}>
+              <SubNavigation />
+            </Scroll>
+          </group>
+        </group>
+        <group data-scroll="" data-align="start" ref={viewRef}>
           <Routes>
             <Route path="/" element={<Navigate replace to="Components" />} />
             <Route path="Components" element={<Components />} />
@@ -96,59 +76,62 @@ const Template: React.FC = () => {
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
           </Routes>
-
-
-
-
-        <group
-          //    data-position="absolute"
-          data-index="3"
-          data-space-horizontal="30"
-          data-bottom="30"
-          data-width="auto"
-          data-direction="column"
-          data-sticky="bottom"
-        >
-          <Popover
-            //hideOnScroll={false}
-            content={<RichThemePicker />}
-            // data-length="600"
-            data-space="5"
-            data-radius="10"
-            data-backdrop="10"
-            // data-elevation="2"
+          <group
+            //    data-position="absolute"
+            data-index="3"
+            data-space-horizontal="30"
+            data-bottom="30"
             data-width="auto"
+            data-direction="column"
+            data-sticky="bottom"
+            
           >
-            <group>
-              <Ripple>
+            <Popover
+              //hideOnScroll={false}
+              content={
+
                 <group
-                  data-contain=""
-                  data-length="60"
-                  data-height="60"
-                  data-radius="30"
-                  data-background="context"
-                  data-cursor="pointer"
-                  data-shrink="no"
-                  data-elevation="6"
-                  data-interactive=""
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                //data-animation-delay="1.25"
+                data-animation-duration="1.25"
                 >
-                  <icon data-position="center">opacity</icon>
+                  <RichThemePicker />
                 </group>
-              </Ripple>
-            </group>
-          </Popover>
+
+              }
+              // data-length="600"
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              // data-elevation="2"
+              data-width="auto"
+            >
+              <group>
+                <Ripple>
+                  <group
+                
+                    data-contain=""
+                    data-length="60"
+                    data-height="60"
+                    data-radius="30"
+                    data-background="context"
+                    data-cursor="pointer"
+                    data-shrink="no"
+                    data-elevation="6"
+                    data-interactive=""
+                  >
+                    <icon data-position="center">opacity</icon>
+                  </group>
+                </Ripple>
+              </group>
+            </Popover>
+          </group>
+          <group data-height="100"></group>
         </group>
-        <group data-height="100">
-
-        </group>
-      </group>
-
-      
-    </view>
- {isTemplateNav && <SideNav />}
-
+      </view>
+      {isTemplateNav && <SideNav />}
     </>
-
   );
 };
 

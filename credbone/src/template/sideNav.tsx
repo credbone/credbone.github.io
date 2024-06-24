@@ -106,6 +106,7 @@ const SideNav = () => {
         >
           <Ripple>
             <group
+            data-touch-action="manipulation"
               className={isNavOpen ? "open" : ""}
               data-name="side_nav_switch"
               onClick={handleNavToggle}

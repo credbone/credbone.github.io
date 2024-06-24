@@ -218,7 +218,7 @@ function Search() {
               data-type="group"
               //  data-border="outline"
               key={index}
-              to={`../home/${result.path}`}
+              to={`../Home/${result.path}`}
               data-space="15"
               data-max-length="600"
               data-direction="column"
