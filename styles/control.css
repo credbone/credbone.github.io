@@ -295,6 +295,8 @@ text[data-width="auto"]{width: initial;}
 
 [data-length='610'] { width: 610px; }
 
+[data-length='fit']{width:100%;}
+
 
 
 [data-max-length='auto']{max-width:initial;}
