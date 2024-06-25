@@ -25,12 +25,12 @@ import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
-import SideNav from "./sideNav";
+
 
 const Template: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
-  const isTemplateNav = location.pathname === "/Home/Navigation";
+
 
   useEffect(() => {
     window.requestAnimationFrame(() => {
@@ -130,7 +130,6 @@ const Template: React.FC = () => {
           <group data-height="100"></group>
         </group>
       </view>
-      {isTemplateNav && <SideNav />}
     </>
   );
 };

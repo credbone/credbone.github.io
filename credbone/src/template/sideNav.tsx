@@ -32,27 +32,31 @@ const SideNav = () => {
   return (
     <>
       <group
+       
         ref={navRef}
         data-placement="right"
-        // data-float={isNavOpen ? "" : "30"}
-        // data-radius={isNavOpen ? "" : "10"}
+         data-float={isNavOpen ? "15" : "20"}
+         data-radius="10"
         //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
         data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
         //  data-width="auto"
-        data-height="fit"
+        data-height={isNavOpen ? "fit" : ""}
         // data-max-length="300"
         data-elevation="2"
-        data-index="2"
+        data-index="999"
         data-align="start"
         data-wrap="no"
         data-direction="column"
         data-scrollbar="none"
         data-scroll=""
-        // data-position="absolute"
+     
+        data-position="absolute"
+
       >
+
         <group
           // data-adaptive="open-state"
           data-background="main"
@@ -66,6 +70,9 @@ const SideNav = () => {
           onClick={handleNavToggle}
           data-adaptive={isNavOpen ? "" : "600"}
         >
+
+
+
           <picture data-position="absolute" data-type="interact">
             <img src={sampleImage} alt="" />
           </picture>
@@ -85,16 +92,7 @@ const SideNav = () => {
                 Jane Rosemary Smith
               </text>
             </Marquee>
-            {/* <text
-              data-adaptive="open-state"
-              data-wrap="wrap"
-              data-length="300"
-              data-line="1.5"
-              data-light=""
-            >
-              Navigation bars allow movement between primary destinations in an
-              app.
-            </text> */}
+
           </group>
         </group>
 
@@ -200,15 +198,17 @@ const SideNav = () => {
                 </group>
               </group>
             </group>
-            <group data-position="bottom" ref={bottomRef}></group>
+            <group data-position="bottom" ref={bottomRef}>
+            <group ></group>
 
-            <separator data-horizontal="" data-interval="10"></separator>
+<separator data-horizontal="" data-interval="10"></separator>
+</group>
             <Ripple>
               <group
                 // data-space="10"
-                data-space="open-state"
+                data-space={isNavOpen ? "10" : ""}
                 data-gap="15"
-                data-radius="open-state"
+                data-radius={isNavOpen ? "10" : "30"}
                 data-align="center"
                 data-interactive=""
                 data-cursor="pointer"
@@ -259,7 +259,7 @@ const SideNav = () => {
           </group>
         </group>
       </group>
-      <group data-name="side_nav-space" data-length="80"></group>
+      
     </>
   );
 };

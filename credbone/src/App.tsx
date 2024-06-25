@@ -51,7 +51,7 @@ function App() {
           <view data-vertical="">
             <VerticalNav data-adaptive="desktop" />
             <Routes>
-              <Route path="/*" element={<Navigate replace to="/home" />} />
+              <Route path="/*" element={<Navigate replace to="/Home" />} />
               <Route path="/Home/*" element={<Template />} />
               <Route path="/About" element={<About />} />
               <Route path="/Settings" element={<Settings />} />

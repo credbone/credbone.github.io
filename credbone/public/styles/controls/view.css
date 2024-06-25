@@ -147,7 +147,11 @@ view[data-background="none"]{background:none}
 [data-adaptive-float="20"]{--float-gap:20px}
 [data-adaptive-float="30"]{--float-gap:30px}
 
-[data-float]{max-height: calc(100% - calc(2 * var(--float-gap)));margin: var(--float-gap);}
+[data-float]
+{
+    max-height: calc(100% - calc(2 * var(--float-gap)));margin: var(--float-gap);
+    max-width: calc(100% - calc(2 * var(--float-gap)));margin: var(--float-gap);
+}
 
 
 

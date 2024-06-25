@@ -65,6 +65,11 @@ const RichThemePicker: React.FC = () => {
                   data-name="theme-item"
                   onClick={() => handleColorSelection(c.code, c.name, true)}
 
+
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration={(2 + index * 0.25)}
+
                 >
                   <group style={{ backgroundColor: c.code }} data-space="15">
                     <group
@@ -130,6 +135,10 @@ const RichThemePicker: React.FC = () => {
                   data-wrap="no"
                   data-contain=""
                   onClick={() => handleColorSelection(c.code, c.name, false)}
+
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration={(2 + index * 0.25)}
                 >
                   <group
                     data-shrink="no"
