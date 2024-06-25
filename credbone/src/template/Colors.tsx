@@ -41,10 +41,10 @@ const Colors: React.FC = () => {
         data-contain=""
      //   data-width="auto"
         data-radius="20"
-        data-gap="5"
+       
       >
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-direction="column"
           data-min-height="240"
@@ -74,7 +74,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -92,7 +92,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -110,7 +110,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-min-height="240"
           data-length="auto"
@@ -129,7 +129,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -149,7 +149,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-width="auto"
           data-min-height="240"
@@ -194,7 +194,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -213,7 +213,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-min-eight="240"
           data-length="auto"
@@ -231,7 +231,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-min-height="240"
           data-length="auto"
@@ -250,7 +250,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -270,7 +270,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-width="auto"
           data-min-height="240"
@@ -305,7 +305,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          data-radius="5"
+          //data-radius="5"
           data-contain=""
           data-min-height="240"
           data-direction="column"
