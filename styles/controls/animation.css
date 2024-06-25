@@ -6,7 +6,7 @@
 @keyframes appear-left {from{opacity: 0;transform: translateX(-50px);}to{}}
 @keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
-
+@keyframes zoom-in {from{opacity: 0;transform: scale(.5);}to{}}
 
 @keyframes bounce
  {
@@ -21,7 +21,11 @@
 [data-animation-name="appear-left"]{animation-name: appear-left;}
 [data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
 [data-animation-name="appear-top"]{animation-name: appear-top;}
+[data-animation-name="zoom-in "]{animation-name: zoom-in ;}
+
+
 [data-animation-name="bounce"]{animation-name: bounce;}
+
 
 
 [data-animation-timing="fancy"]{animation-timing-function: cubic-bezier(0,1.3,.7,1);}
@@ -64,7 +68,17 @@
 [data-animation-duration="3.75"] {animation-duration: 0.375s;} /* Added for 3.75 */
 [data-animation-duration="4"] {animation-duration: 0.4s;} /* Added for 4 */
 [data-animation-duration="4.25"] {animation-duration: 0.425s;} /* Added for 4.25 */
+[data-animation-duration="4.5"] {animation-duration: 0.45s;} /* Added for 4.5 */
 [data-animation-duration="4.75"] {animation-duration: 0.475s;} /* Added for 4.75 */
+[data-animation-duration="5"] {animation-duration: 0.5s;} /* Added for 5 */
+[data-animation-duration="5.25"] {animation-duration: 0.525s;} /* Added for 5.25 */
+[data-animation-duration="5.5"] {animation-duration: 0.55s;} /* Added for 5.5 */
+[data-animation-duration="5.75"] {animation-duration: 0.575s;} /* Added for 5.75 */
+[data-animation-duration="6"] {animation-duration: 0.6s;} /* Added for 6 */
+[data-animation-duration="6.25"] {animation-duration: 0.625s;} /* Added for 6.25 */
+[data-animation-duration="6.5"] {animation-duration: 0.65s;} /* Added for 6.5 */
+[data-animation-duration="6.75"] {animation-duration: 0.675s;} /* Added for 6.75 */
+[data-animation-duration="7"] {animation-duration: 0.7s;} /* Added for 7 */
 
 
 
