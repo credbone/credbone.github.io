@@ -102,7 +102,8 @@
 
 
 .sticky{top: -1px;border-top: 1px solid transparent; transition: .125s; flex-shrink: 0; margin-top: -1px;}
-.sticky.stuck{box-shadow: var(--elevation_5);/* overflow: hidden;*/}
+/* .sticky.stuck {padding: 15px;}
+.sticky.stuck > group{box-shadow: var(--elevation_2); background: var(--context); border-radius: 10px;} */
 
 
 
