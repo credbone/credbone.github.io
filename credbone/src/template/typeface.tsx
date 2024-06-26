@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../components/button";
 import { glyphs } from "./utils/glyphData";
 import Tooltip from "../components/tooltip";
+import StuckReporter from "../components/StuckReporter";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -46,19 +47,13 @@ const Typeface: React.FC = () => {
 
   return (
     <group
-
-     
       data-space="30"
       data-column-gap="15"
       data-align="start"
       data-type="column"
-
     >
       <group
-        data-max-length="400"
-
-        data-radius="10"
-
+        data-radius="15"
         data-background="main"
         data-color="main-text"
         data-break="break-word"
@@ -82,61 +77,72 @@ const Typeface: React.FC = () => {
         </group>
       </group>
 
-      <group
-        data-max-length="400"
-       
-        data-radius="10"
-        data-elevation="1"
-        data-contain=""
-      >
-        <group
-          data-border="overprint"
-          data-space="15"
-          data-align="center"
-          data-index="1"
-        >
-          <text data-space="10" data-weight="600">
-            Preview
-          </text>
-          <group
-            data-border="outline"
-            data-contain=""
-            data-radius="5"
-            data-width="auto"
-            data-wrap="no"
-            data-length="40"
-            data-position="right"
-          >
-            <Tooltip content="Decrease Text Size">
-            <Button
-              data-radius="none"
+      <group data-radius="15" data-elevation="1">
+        <StuckReporter>
+          {(isSticky) => (
+              <group
+              data-space="15"
               data-index="3"
-              large
-              icon="remove"
-              onClick={decreaseTextSize}
-            ></Button>
-</Tooltip>
-            <group
-              data-length="40"
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
+              data-sticky="top"
             >
-              <text data-text-align="center">{currentTextSize.display}</text>
+              <group
+                data-backdrop={isSticky ? "10" : ""}
+                data-space={isSticky ? "10" : ""}
+                data-elevation={isSticky ? "1" : ""}
+                data-radius={isSticky ? "10" : ""}
+                data-duration=".125"
+                data-align="center"
+
+              >
+                <text data-space="10" data-weight="600">
+                  Preview
+                </text>
+                <group
+                  data-background="context"
+                  data-border="overprint"
+                  data-contain=""
+                  data-radius="5"
+                  data-width="auto"
+                  data-wrap="no"
+                  data-length="40"
+                  data-position="right"
+                >
+                  <Tooltip content="Decrease Text Size">
+                    <Button
+                      data-radius="none"
+                      data-index="3"
+                      large
+                      icon="remove"
+                      onClick={decreaseTextSize}
+                    ></Button>
+                  </Tooltip>
+                  <group
+                    data-length="40"
+                    data-align="center"
+                    data-justify="center"
+                    data-ratio="1:1"
+                    data-border=""
+                  >
+                    <text data-text-align="center">
+                      {currentTextSize.display}
+                    </text>
+                  </group>
+                  <Tooltip content="Increase Text Size">
+                    <Button
+                      data-radius="none"
+                      data-index="3"
+                      large
+                      icon="add"
+                      onClick={increaseTextSize}
+                    ></Button>
+                  </Tooltip>
+                </group>
+              </group>
             </group>
-            <Tooltip content="Increase Text Size">
-            <Button
-              data-radius="none"
-              data-index="3"
-              large
-              icon="add"
-              onClick={increaseTextSize}
-            ></Button>
-</Tooltip>
-          </group>
-        </group>
-        <group data-scroll="" data-border="none">
+          )}
+        </StuckReporter>
+        <separator data-horizontal=""></separator>
+        <group data-radius-bottom="15" data-contain="">
           {updatedFontData.map((font, index) => (
             <group
               key={index}
@@ -155,7 +161,7 @@ const Typeface: React.FC = () => {
                 data-text-size={font.textSize}
               >
                 <group
-                //  contentEditable={true}
+                  //  contentEditable={true}
                   contentEditable="plaintext-only"
                   data-break="break-word"
                   data-duration=".225"
@@ -170,29 +176,43 @@ const Typeface: React.FC = () => {
       </group>
 
       <group
-         data-max-length="400"
-       
-        data-radius="10"
+        data-radius="15"
         data-elevation="1"
-        data-contain=""
+        //data-contain=""
       >
-        <group data-border="overprint" data-space="10" data-index="1">
-          <text data-space="10" data-weight="600">
-            Glyphs
-          </text>
-        </group>
-        <group data-scroll="" >
+        <StuckReporter>
+          {(isSticky) => (
+            <group
+              data-space={isSticky ? "15" : "10"}
+              data-index="3"
+              data-sticky="top"
+            >
+              <group
+                data-backdrop={isSticky ? "10" : ""}
+                data-space={isSticky ? "10" : ""}
+                data-elevation={isSticky ? "1" : ""}
+                data-radius={isSticky ? "10" : ""}
+                data-duration=".125"
+              >
+                <text data-space="10" data-weight="600">
+                  Glyphs
+                </text>
+              </group>
+            </group>
+          )}
+        </StuckReporter>
+        <separator data-horizontal=""></separator>
+        <group data-radius-bottom="15" data-contain="">
           <group
             data-type="grid"
             data-grid-template="50"
             data-text-size="larger"
             data-gap="1"
             data-contain=""
-            
           >
             {glyphs.map((glyphs, index) => (
               <group
-              key={index}
+                key={index}
                 data-border=""
                 data-ratio="1:1"
                 data-background={

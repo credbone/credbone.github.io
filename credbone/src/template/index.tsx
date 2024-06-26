@@ -33,14 +33,12 @@ const Template: React.FC = () => {
 
 
   useEffect(() => {
-    window.requestAnimationFrame(() => {
-      if (viewRef.current) {
-        viewRef.current.scrollTo({
-          top: 0,
-          behavior: isDesktop ? "smooth" : "auto",
-        });
-      }
-    });
+    if (viewRef.current) {
+      viewRef.current.scrollTo({
+        top: 0,
+        behavior: isDesktop ? "smooth" : "auto",
+      });
+    }
   }, [location]);
 
   return (

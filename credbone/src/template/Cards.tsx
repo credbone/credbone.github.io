@@ -20,6 +20,7 @@ import { IconHeart, IconMoreHoriz, IconShare } from "../components/icon/credIcon
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
+import StuckReporter from "../components/StuckReporter";
 
 
 
@@ -299,36 +300,60 @@ const Cards: React.FC = () => {
         </text>
       </group>
 
-      <group data-sticky="top" data-top="30" data-index="3">
-        <group data-gap="10" >
-          <OptionBar compact dynamic data-height="40"  data-radius="5" data-backdrop="10" data-weight="600">
-            {ViewSwitch.map((radio) => (
-              <Controller
-                key={radio.key}
-                name={radio.name}
-                control={control}
-                render={({ field }) => (
-                  <Radio
-                  labelProps={{
-                    "data-background": "none",
-                  
-                  }}
-                    {...field}
-                    label={radio.label}
-                    iconProps={{ "data-length": "30" }}
-                    tooltip={field.value === radio.value ? null : radio.label} 
-               //     tooltip={radio.label}
-                    icon={radio.icon}
-                    radioValue={radio.value}
-                    radioType={RadioType.Button}
-                    checked={field.value === radio.value}
-                  />
-                )}
-              />
-            ))}
-          </OptionBar>
+      <StuckReporter>
+        {(isSticky) => (
+          
+
+          <group
+            data-sticky="top"
+            data-index="3"
+            data-width="auto"
+            data-space-vertical={isSticky ? "30" : ""}
+          >
+            <group data-gap="10"
+          
+              
+          data-space={isSticky ? "5" : ""}
+          data-background={isSticky ? "context" : ""}
+          data-elevation={isSticky ? "1" : ""}
+          data-radius={isSticky ? "10" : ""}
+          data-duration=".125"
+            
+            
+            >
+            <OptionBar compact dynamic data-height="40"  data-radius="5"  data-weight="600">
+              {ViewSwitch.map((radio) => (
+                <Controller
+                  key={radio.key}
+                  name={radio.name}
+                  control={control}
+                  render={({ field }) => (
+                    <Radio
+                      {...field}
+                      label={radio.label}
+                      iconProps={{ "data-length": "30" }}
+                      tooltip={field.value === radio.value ? null : radio.label} 
+                      // labelProps={{
+                      //   "data-background": "none",
+                      
+                      // }}
+                 //     tooltip={radio.label}
+                      icon={radio.icon}
+                      radioValue={radio.value}
+                      radioType={RadioType.Button}
+                      checked={field.value === radio.value}
+                    />
+                  )}
+                />
+              ))}
+            </OptionBar>
+          </group>
         </group>
-      </group>
+
+        )}
+        </StuckReporter>
+
+
       <separator data-horizontal=""></separator>
       <group data-type="grid" data-grid-template={gridTemplate} data-gap="10">
         <ViewComponent selectedKey={selectedKey} onSelect={handleSelect}/>
