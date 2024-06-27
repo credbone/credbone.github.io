@@ -97,7 +97,11 @@ group[data-type="column"] {display: block; flex-direction: column; columns: 6 30
 }
 
 
-[data-type="column"][data-column-gap="15"] > group { margin-bottom: 15px;}
+[data-type="column"][data-column-gap="15"] > group,
+[data-type="column"][data-column-gap="15"] > [data-type="group"]
+
+
+{ margin-bottom: 15px;}
 
 group[data-type="column"] > group {/*display: inline-flex;*/  width: 100%; break-inside: avoid; }
 
