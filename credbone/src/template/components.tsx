@@ -20,25 +20,34 @@ const linksArray = [
 const Components: React.FC = () => {
   return (
     <>
-      <group data-direction="column" data-space="30" data-gap="30">
-        <group data-width="auto">
-          <group
+      <group data-direction="column" data-space="30" data-gap="15" data-wrap="no" data-align="start" data-position="center" data-width="auto" >
+      <group
             data-direction="column"
             data-gap="20"
-          
+         
+          data-radius="20"
+          data-space="40"
+          data-background="main"
+          data-color="main-text"
+          data-max-length="1600"
+          data-align="center"
+                    data-justify="center"
+          data-text-align="center"
+
+          data-min-height="300"
           >
             <text
               data-weight="700"
-              data-text-size="64"
+              data-text-size="xxx-large"
               data-wrap="wrap"
-              data-color="main"
+              
               data-ellipsis=""
             >
-              welcome
+              Welcome
             </text>
             <text
               data-wrap="wrap"
-              data-length="400"
+              data-length="500"
               data-line="1.5"
               data-opacity="70"
             >
@@ -47,7 +56,6 @@ const Components: React.FC = () => {
               understanding of UI patterns.
             </text>
           </group>
-        </group>
 
         <group
           data-border="no"
@@ -60,7 +68,7 @@ const Components: React.FC = () => {
             //data-width="auto"
             //  data-wrap="no"
             data-max-length="1600"
-            data-gap="20"
+            data-gap="15"
             data-type="grid"
             data-grid-template="240"
             data-weight="600"
@@ -75,14 +83,15 @@ const Components: React.FC = () => {
                 data-contain=""
                 data-min-height="200"
                 data-border="outline"
-                data-radius="15"
+                data-radius="20"
+                data-space="10"
                 data-background={link.color ? link.color : "context"}
                 data-color={link.color ? link.color + "-text" : ""}
                 data-row-end={link.long ? "2" : ""}
               >
                 {link.picture ? (
-                  <group data-height="300">
-                    <picture data-brightness="adaptive">
+                  <group data-height="300"  >
+                    <picture data-brightness="adaptive" data-radius="10" data-contain="">
                       <img src={link.picture} alt="" />
                     </picture>
                   </group>
@@ -94,7 +103,7 @@ const Components: React.FC = () => {
                   data-index="1"
                   data-direction="column"
                   data-gap="15"
-                  data-space="30"
+                  data-space="20"
                   data-align="start"
                 >
                   <text

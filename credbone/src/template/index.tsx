@@ -26,11 +26,9 @@ import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
 
-
 const Template: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     if (viewRef.current) {
@@ -75,40 +73,29 @@ const Template: React.FC = () => {
             <Route path="Miscellaneous" element={<Miscellaneous />} />
           </Routes>
           <group
-            //    data-position="absolute"
             data-index="3"
             data-space-horizontal="30"
             data-bottom="30"
-            data-width="auto"
-            data-direction="column"
             data-sticky="bottom"
-            
           >
             <Popover
-              //hideOnScroll={false}
               content={
-
                 <group
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                //data-animation-delay="1.25"
-                data-animation-duration="1.25"
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
                 >
                   <RichThemePicker />
                 </group>
-
               }
-              // data-length="600"
               data-space="5"
               data-radius="10"
               data-backdrop="10"
-              // data-elevation="2"
               data-width="auto"
             >
-              <group>
+              <group data-width="auto">
                 <Ripple>
                   <group
-                
                     data-contain=""
                     data-length="60"
                     data-height="60"
