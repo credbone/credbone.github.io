@@ -5,6 +5,7 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 
 import { Icons } from "./utils/materialIcons";
+// import { isDesktop } from "react-device-detect";
 
 const MaterialIcons = () => {
   const { addSnackbar } = useSnackbar();
@@ -17,6 +18,23 @@ const MaterialIcons = () => {
     setSelectedIcon(iconName);
 
     if (navigator.clipboard) {
+
+
+      // if (isDesktop) {
+
+      //   addSnackbar(
+      //     <group data-align="center" data-gap="10">
+      //      <icon data-height="auto" data-length="30">{iconName}</icon> <text data-ellipsis=""> Copied To Clipboard </text>
+      //     </group>,
+      //      2000,
+      //      "icon-source",
+      //      true
+      //    );
+
+      // };
+
+   
+
       navigator.clipboard.writeText(iconName).catch((error) => {
         console.error("Failed to copy icon name to clipboard:", error);
       });

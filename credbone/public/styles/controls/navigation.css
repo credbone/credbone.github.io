@@ -173,4 +173,5 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 @media (max-width: 500px) 
 {
     [data-justify="adaptive-space-around"] {justify-content: space-around;}
+    [data-grow="adaptive-grow"]{flex-grow: 1;}
 }

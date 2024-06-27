@@ -32,6 +32,7 @@ const Navigation: React.FC = () => {
           data-interactive=""
           data-weight="600"
           data-shrink="0"
+          data-grow="adaptive-grow"
        
           //  className={({ isActive }) => (isActive ? 'active' : '')}
         >
@@ -47,7 +48,7 @@ const Navigation: React.FC = () => {
               data-wrap="no"
               // {...(isActive ? { 'data-ink-color': 'main-dark', } : {})}
             >
-              <icon data-length="30" data-height="auto">
+              <icon  data-height="auto">
                 {item.icon }
               </icon>
               <text
