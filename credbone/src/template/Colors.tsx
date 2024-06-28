@@ -4,18 +4,17 @@ import sampleImage2 from "../styles/images/samples/res_16.jpg";
 
 import samplevideo from "../styles/images/samples/res_23.mp4";
 
-
 import { BaseColors } from "./utils/colorData";
+import Popover from "../components/popover";
+import RichThemePicker from "./richThemePicker";
 
 const Colors: React.FC = () => {
   return (
     <group
       data-space="30"
       data-gap="30"
-
       data-direction="column"
       data-align="start"
-
     >
       <group data-direction="column" data-gap="10">
         <text
@@ -39,39 +38,55 @@ const Colors: React.FC = () => {
         data-max-length="1200"
         data-shrink="no"
         data-contain=""
-     //   data-width="auto"
+        //   data-width="auto"
         data-radius="20"
-       
       >
-        <group
-          //data-radius="5"
-          data-contain=""
-          data-direction="column"
-          data-min-height="240"
+        <Popover
+          placement="auto"
+          content={
+            <group
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="1.25"
+            >
+              <RichThemePicker pickerType="primary" />
+            </group>
+          }
+          data-space="5"
+          data-radius="10"
+          data-backdrop="10"
           data-width="auto"
-          data-length="auto"
-          data-color="main-text"
-          data-space="30"
-          data-background="main"
-          data-gap="10"
-          data-justify="end"
-          data-align="start"
-          data-wrap="no"
         >
-          <text
-            data-wrap="wrap"
-            data-light=""
-            data-max-length="300"
-            data-line="20"
+          <group
+            //data-radius="5"
+            data-contain=""
+            data-direction="column"
+            data-min-height="240"
+            data-width="auto"
+            data-length="auto"
+            data-color="main-text"
+            data-space="30"
+            data-background="main"
+            data-gap="10"
+            data-justify="end"
+            data-align="start"
+            data-wrap="no"
           >
-            This primary color you selected will be used extensively in the UI,
-            with other shades being automatically generated from it.
-          </text>
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-max-length="300"
+              data-line="20"
+            >
+              This primary color you selected will be used extensively in the
+              UI, with other shades being automatically generated from it.
+            </text>
 
-          <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-            Primary Color
-          </text>
-        </group>
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              Primary Color
+            </text>
+          </group>
+        </Popover>
 
         <group
           //data-radius="5"
@@ -349,7 +364,7 @@ const Colors: React.FC = () => {
         data-shrink="no"
         data-weight="600"
         data-max-length="1200"
-    //    data-width="auto"
+        //    data-width="auto"
         data-type="grid"
         data-gap="10"
         data-grid-template="120"
@@ -400,9 +415,6 @@ const Colors: React.FC = () => {
           </group>
         ))}
       </group>
-
-
-
     </group>
   );
 };

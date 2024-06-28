@@ -76,7 +76,7 @@ group[data-type="column"] {display: block; flex-direction: column; columns: 6 30
 [data-type="column"][data-column-size="240"]{ column-width: 240px;}
 [data-type="column"][data-column-size="320"]{ column-width: 320px;}
 [data-type="column"][data-column-size="400"]{ column-width: 400px;}
-
+[data-type="column"][data-column-size="500"]{ column-width: 500px;}
 
 
 

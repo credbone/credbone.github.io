@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import sampleImage from "../styles/images/samples/res_34.jpg";
@@ -7,6 +7,7 @@ import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
+import TextReveal from "../components/TextReveal";
 
 const linksArray = [
   { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
@@ -21,7 +22,28 @@ const linksArray = [
 
 ];
 
+
+const phrases = [
+  "hi",
+  "hello",
+  "hey",
+  "howdy",
+  "what's new?",
+  "yo",
+  "sup",
+  "hey there",
+  "how's it going?",
+  "what's up?",
+];
+
 const Components: React.FC = () => {
+  const [message, setMessage] = useState<string>("");
+
+  useEffect(() => {
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    setMessage(randomPhrase);
+  }, []);
+
   return (
     <group data-scroll="" data-index="1">
       <group
@@ -32,7 +54,7 @@ const Components: React.FC = () => {
         data-align="start"
         data-position="center"
         //  data-width="auto"
-                    data-max-length="1600"
+        data-max-length="1600"
       >
         <group data-space-horizontal="30">
           <group
@@ -47,16 +69,15 @@ const Components: React.FC = () => {
             data-text-align="center"
             data-min-height="300"
           >
-
-            
             <text
               data-weight="700"
               data-text-size="64"
               data-wrap="wrap"
-          data-ellipsis=""
+              data-ellipsis=""
             >
-              hello
+              <TextReveal text={message} duration={1200} />
             </text>
+
             <text
               data-wrap="balance"
               data-length="500"
@@ -69,25 +90,34 @@ const Components: React.FC = () => {
             </text>
 
             <Ripple>
-            <group data-interactive="" data-width="auto" data-background="main-text" data-color="main" data-space-horizontal="30" data-space-vertical="15" data-radius="30">
-            <text
-              data-weight="700"
-             
-            //  data-wrap="wrap"
-          data-ellipsis=""
-            >
-            Get Started
-            </text>
-            </group>
-</Ripple>
-
+            <Link
+            data-drag="none"
+            data-type="group"
+                to="/Home/Typeface"
+                data-interactive=""
+                data-width="auto"
+                data-background="main-text"
+                data-color="main"
+                data-space-horizontal="30"
+                data-space-vertical="15"
+                data-radius="30"
+              >
+                <text
+                  data-weight="700"
+                  //  data-wrap="wrap"
+                  data-ellipsis=""
+                >
+                  Get Started
+                </text>
+              </Link>
+            </Ripple>
           </group>
         </group>
 
         <StuckReporter>
           {(isSticky) => (
             <group
-                 data-space-vertical={isSticky ? "15" : "0"}
+              data-space-vertical={isSticky ? "15" : "0"}
               data-space-horizontal={isSticky ? "15" : "30"}
               data-sticky="top"
               data-duration=".125"
@@ -103,7 +133,6 @@ const Components: React.FC = () => {
                 data-shrink="no"
                 data-radius={isSticky ? "10" : "15"}
                 data-snap-button="15"
-                
               >
                 <Scroll>
                   <SubNavigation />
@@ -127,6 +156,7 @@ const Components: React.FC = () => {
           >
             {linksArray.map((link, index) => (
               <Link
+               data-drag="none"
                 to={link.to}
                 key={index}
                 data-interactive=""

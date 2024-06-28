@@ -27,12 +27,14 @@ const Miscellaneous: React.FC = () => {
   return (
     <group
       data-space="30"
-      data-gap="15"
+      data-column-gap="15"
       data-jusitify="start"
       data-align="start"
+      data-type='column'
+      // data-column-size="500"
     >
       <group
-        data-max-length="500"
+  //      data-max-length="500"
         data-height="auto"
         data-max-height="fit"
         data-radius="15"
@@ -126,7 +128,7 @@ const Miscellaneous: React.FC = () => {
       </group>
 
       <group
-        data-max-length="500"
+ //       data-max-length="500"
         data-height="auto"
         data-max-height="fit"
         data-radius="15"

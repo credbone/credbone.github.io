@@ -5,7 +5,13 @@ import Scroll from "../components/scroll";
 import Tooltip from "../components/tooltip";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
-const RichThemePicker: React.FC = () => {
+
+interface RichThemePickerProps {
+  pickerType?: "primary" | "secondary";
+}
+
+
+const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
   const { addSnackbar } = useSnackbar();
   const themeContext = useContext(ThemeContext);
 
@@ -27,10 +33,11 @@ const RichThemePicker: React.FC = () => {
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
 
-  return (
-    <group data-gap="5" data-width="auto" data-direction="column">
+
+  const renderPrimaryPicker = () => {
+    return (
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
-        <Scroll  wheelEnabled={true}>
+        <Scroll wheelEnabled={true}>
           <group
             data-position="left"
             data-wrap="no"
@@ -39,7 +46,7 @@ const RichThemePicker: React.FC = () => {
           >
             {colors.map((c, index) => (
               <Tooltip
-              key={index}
+                key={index}
                 content={
                   theme.colorPrimary === c.code ? (
                     ""
@@ -52,7 +59,7 @@ const RichThemePicker: React.FC = () => {
                 }
               >
                 <group
-                 key={index}
+                  key={index}
                   data-shrink="no"
                   data-interactive=""
                   data-width="auto"
@@ -64,12 +71,9 @@ const RichThemePicker: React.FC = () => {
                   data-contain=""
                   data-name="theme-item"
                   onClick={() => handleColorSelection(c.code, c.name, true)}
-
-
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
-                  data-animation-duration={(2 + index * 0.25)}
-
+                  data-animation-duration={2 + index * 0.25}
                 >
                   <group style={{ backgroundColor: c.code }} data-space="15">
                     <group
@@ -93,35 +97,37 @@ const RichThemePicker: React.FC = () => {
           </group>
         </Scroll>
       </group>
+    );
+  };
 
+  const renderSecondaryPicker = () => {
+    return (
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll wheelEnabled={true}>
           <group
             data-position="left"
             data-wrap="no"
-
             data-radius="5"
             data-width="auto"
-
             data-align="start"
             data-grid-template="50"
           >
             {seccolors.map((c, index) => (
               <Tooltip
-              key={index}
-              content={
-                theme.colorSecondary === c.code ? (
-                  ""
-                ) : (
-                  <group data-direction="column">
-                    <text data-weight="700">{c.name}</text>
-                    <text data-opacity="50">{c.description}</text>
-                  </group>
-                )
-              }
+                key={index}
+                content={
+                  theme.colorSecondary === c.code ? (
+                    ""
+                  ) : (
+                    <group data-direction="column">
+                      <text data-weight="700">{c.name}</text>
+                      <text data-opacity="50">{c.description}</text>
+                    </group>
+                  )
+                }
               >
                 <group
-                 key={index}
+                  key={index}
                   data-name="theme-item"
                   data-shrink="no"
                   data-interactive=""
@@ -135,10 +141,9 @@ const RichThemePicker: React.FC = () => {
                   data-wrap="no"
                   data-contain=""
                   onClick={() => handleColorSelection(c.code, c.name, false)}
-
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
-                  data-animation-duration={(2 + index * 0.25)}
+                  data-animation-duration={2 + index * 0.25}
                 >
                   <group
                     data-shrink="no"
@@ -148,26 +153,14 @@ const RichThemePicker: React.FC = () => {
                     <group
                       data-justify="end"
                       data-duration=".125"
-                      //   data-text-size={theme.colorSecondary === c.code ? "" : "0"}
                       data-contain=""
                       key={c.code}
                       data-direction="column"
                     >
-                      <text
-                        data-ellipsis=""
-                        data-weight="700"
-
-                        // data-height="120"
-                        // data-orientation="vertical-bottom"
-                      >
+                      <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                      <text
-                        data-wrap="wrap"
-                        data-light=""
-                        // data-height="120"
-                        // data-orientation="vertical-bottom"
-                      >
+                      <text data-wrap="wrap" data-light="">
                         {c.description}
                       </text>
                     </group>
@@ -178,8 +171,19 @@ const RichThemePicker: React.FC = () => {
           </group>
         </Scroll>
       </group>
+    );
+  };
+
+  return (
+    <group data-gap="5" data-width="auto" data-direction="column">
+      {(pickerType === "primary" || !pickerType) && renderPrimaryPicker()}
+      {(pickerType === "secondary" || !pickerType) && renderSecondaryPicker()}
     </group>
   );
 };
+
+
+
+
 
 export default RichThemePicker;
