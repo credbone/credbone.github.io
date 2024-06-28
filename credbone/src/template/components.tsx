@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 import sampleImage from "../styles/images/samples/res_34.jpg";
 import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
+import Scroll from "../components/scroll";
+import SubNavigation from "../components/subnav";
+import StuckReporter from "../components/StuckReporter";
 
 const linksArray = [
-  { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "../Colors" },
+  { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
   { picture:sampleImage, long: "true", color: "", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons" },
   { picture:"", long: "",   color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons" },
   { picture: sampleImage_3, long: "true",   color: "", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
@@ -19,28 +22,34 @@ const linksArray = [
 
 const Components: React.FC = () => {
   return (
-    <>
-      <group data-direction="column" data-space="30" data-gap="15" data-wrap="no" data-align="start" data-position="center" data-width="auto" >
+    <group data-scroll="" data-index="1">
       <group
+        data-direction="column"
+        data-space-vertical="30"
+        data-gap="15"
+        data-wrap="no"
+        data-align="start"
+        data-position="center"
+        //  data-width="auto"
+                    data-max-length="1600"
+      >
+        <group data-space-horizontal="30">
+          <group
             data-direction="column"
             data-gap="20"
-         
-          data-radius="20"
-          data-space="40"
-          data-background="main"
-          data-color="main-text"
-          data-max-length="1600"
-          data-align="center"
-                    data-justify="center"
-          data-text-align="center"
-
-          data-min-height="300"
+            data-radius="20"
+            data-space="40"
+            data-background="main"
+            data-color="main-text"
+            data-align="center"
+            data-justify="center"
+            data-text-align="center"
+            data-min-height="300"
           >
             <text
               data-weight="700"
               data-text-size="xxx-large"
               data-wrap="wrap"
-              
               data-ellipsis=""
             >
               Welcome
@@ -56,18 +65,42 @@ const Components: React.FC = () => {
               understanding of UI patterns.
             </text>
           </group>
+        </group>
+
+        <StuckReporter>
+          {(isSticky) => (
+            <group
+                 data-space-vertical={isSticky ? "15" : "0"}
+              data-space-horizontal={isSticky ? "15" : "30"}
+              data-sticky="top"
+            >
+              <group
+                // data-index="3"
+
+                data-scroll-mask="false"
+                data-border={isSticky ? "none" : ""}
+                data-elevation={isSticky ? "1" : ""}
+                data-backdrop={isSticky ? "10" : ""}
+                data-contain=""
+                data-shrink="no"
+                data-radius={isSticky ? "10" : "15"}
+                data-snap-button="15"
+              >
+                <Scroll>
+                  <SubNavigation />
+                </Scroll>
+              </group>
+            </group>
+          )}
+        </StuckReporter>
 
         <group
+          data-space-horizontal="30"
           data-border="no"
           data-background="none"
-          //  data-width="auto"
           data-align="start"
-        
         >
           <group
-            //data-width="auto"
-            //  data-wrap="no"
-            data-max-length="1600"
             data-gap="15"
             data-type="grid"
             data-grid-template="240"
@@ -90,8 +123,12 @@ const Components: React.FC = () => {
                 data-row-end={link.long ? "2" : ""}
               >
                 {link.picture ? (
-                  <group data-height="300"  >
-                    <picture data-brightness="adaptive" data-radius="10" data-contain="">
+                  <group data-height="240">
+                    <picture
+                      data-brightness="adaptive"
+                      data-radius="10"
+                      data-contain=""
+                    >
                       <img src={link.picture} alt="" />
                     </picture>
                   </group>
@@ -129,9 +166,7 @@ const Components: React.FC = () => {
           </group>
         </group>
       </group>
-
-
-    </>
+    </group>
   );
 };
 export default Components;

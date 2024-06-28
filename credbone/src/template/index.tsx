@@ -16,7 +16,7 @@ import SubNavigation from "../components/subnav";
 import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
 
-import Components from "./components";
+
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
@@ -50,6 +50,7 @@ const Template: React.FC = () => {
             data-background="main-background"
             data-contain=""
             data-shrink="no"
+            data-snap-button="15"
           >
             <Scroll wheelEnabled={true}>
               <SubNavigation />
@@ -58,8 +59,8 @@ const Template: React.FC = () => {
         </group>
         <group data-scroll="" data-align="start" ref={viewRef}>
           <Routes>
-            <Route path="/" element={<Navigate replace to="Components" />} />
-            <Route path="Components" element={<Components />} />
+            <Route path="/" element={<Navigate replace to="Typeface" />} />
+
             <Route path="Typeface" element={<Typeface />} />
             <Route path="Icons" element={<Icons />} />
             <Route path="Buttons" element={<Buttons />} />

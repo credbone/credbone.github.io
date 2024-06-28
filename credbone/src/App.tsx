@@ -17,6 +17,7 @@ import SnackbarContainer from "./components/snackbar/SnackbarContainer";
 
 import TitleUpdater from "./components/TitleUpdater";
 import Search from "./pages/search/search";
+import Components from "./template/components";
 
 
 
@@ -53,6 +54,8 @@ function App() {
             <Routes>
               <Route path="/*" element={<Navigate replace to="/Home" />} />
               <Route path="/Home/*" element={<Template />} />
+              <Route path="/Home" element={<Components />} />
+
               <Route path="/About" element={<About />} />
               <Route path="/Settings" element={<Settings />} />
               <Route path="/Search" element={<Search />} />
