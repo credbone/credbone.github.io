@@ -6,6 +6,7 @@ import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
 import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import StuckReporter from "../components/StuckReporter";
+import Ripple from "../components/Ripple";
 
 const linksArray = [
   { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
@@ -46,16 +47,18 @@ const Components: React.FC = () => {
             data-text-align="center"
             data-min-height="300"
           >
+
+            
             <text
               data-weight="700"
-              data-text-size="xxx-large"
+              data-text-size="64"
               data-wrap="wrap"
-              data-ellipsis=""
+          data-ellipsis=""
             >
-              Welcome
+              hello
             </text>
             <text
-              data-wrap="wrap"
+              data-wrap="balance"
               data-length="500"
               data-line="1.5"
               data-opacity="70"
@@ -64,6 +67,20 @@ const Components: React.FC = () => {
               components, each designed with attention to detail and a deep
               understanding of UI patterns.
             </text>
+
+            <Ripple>
+            <group data-interactive="" data-width="auto" data-background="main-text" data-color="main" data-space-horizontal="30" data-space-vertical="15" data-radius="30">
+            <text
+              data-weight="700"
+             
+            //  data-wrap="wrap"
+          data-ellipsis=""
+            >
+            Get Started
+            </text>
+            </group>
+</Ripple>
+
           </group>
         </group>
 
@@ -73,6 +90,7 @@ const Components: React.FC = () => {
                  data-space-vertical={isSticky ? "15" : "0"}
               data-space-horizontal={isSticky ? "15" : "30"}
               data-sticky="top"
+              data-duration=".125"
             >
               <group
                 // data-index="3"
@@ -85,6 +103,7 @@ const Components: React.FC = () => {
                 data-shrink="no"
                 data-radius={isSticky ? "10" : "15"}
                 data-snap-button="15"
+                
               >
                 <Scroll>
                   <SubNavigation />

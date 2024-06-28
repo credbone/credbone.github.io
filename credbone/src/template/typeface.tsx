@@ -81,16 +81,17 @@ const Typeface: React.FC = () => {
         <StuckReporter>
           {(isSticky) => (
               <group
-              data-space="15"
+              data-space={isSticky ? "15" : ""}
               data-index="3"
               data-sticky="top"
+                 data-duration=".125"
             >
               <group
                 data-backdrop={isSticky ? "10" : ""}
-                data-space={isSticky ? "10" : ""}
+               data-space="15"
                 data-elevation={isSticky ? "1" : ""}
                 data-radius={isSticky ? "10" : ""}
-                data-duration=".125"
+             //   data-duration=".125"
                 data-align="center"
 
               >
@@ -186,13 +187,15 @@ const Typeface: React.FC = () => {
               data-space={isSticky ? "15" : "10"}
               data-index="3"
               data-sticky="top"
+                 data-duration=".125"
             >
+              
               <group
                 data-backdrop={isSticky ? "10" : ""}
                 data-space={isSticky ? "10" : ""}
                 data-elevation={isSticky ? "1" : ""}
                 data-radius={isSticky ? "10" : ""}
-                data-duration=".125"
+              //  data-duration=".125"
               >
                 <text data-space="10" data-weight="600">
                   Glyphs
