@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import sampleImage from "../styles/images/samples/res_42.jpg";
+
 import Marquee from "../components/Marquee";
 import Count from "../components/Coutner";
 
@@ -253,6 +253,11 @@ const Miscellaneous: React.FC = () => {
           </group>
         </group>
       </group>
+
+
+
+
+
     </group>
   );
 };

@@ -75,9 +75,10 @@ const Template: React.FC = () => {
           </Routes>
           <group
             data-index="3"
-            data-space-horizontal="30"
+           data-left="30"
             data-bottom="30"
             data-sticky="bottom"
+            data-width="auto"
           >
             <Popover
               content={

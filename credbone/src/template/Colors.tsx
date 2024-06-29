@@ -7,6 +7,7 @@ import samplevideo from "../styles/images/samples/res_23.mp4";
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
+import Ripple from "../components/Ripple";
 
 const Colors: React.FC = () => {
   return (
@@ -42,7 +43,7 @@ const Colors: React.FC = () => {
         data-radius="20"
       >
         <Popover
-          placement="auto"
+          placement="mouse"
           content={
             <group
               data-animation-name="appear-bottom"
@@ -57,34 +58,43 @@ const Colors: React.FC = () => {
           data-backdrop="10"
           data-width="auto"
         >
-          <group
-            //data-radius="5"
-            data-contain=""
-            data-direction="column"
-            data-min-height="240"
-            data-width="auto"
-            data-length="auto"
-            data-color="main-text"
-            data-space="30"
-            data-background="main"
-            data-gap="10"
-            data-justify="end"
-            data-align="start"
-            data-wrap="no"
-          >
-            <text
-              data-wrap="wrap"
-              data-light=""
-              data-max-length="300"
-              data-line="20"
-            >
-              This primary color you selected will be used extensively in the
-              UI, with other shades being automatically generated from it.
-            </text>
+          <group data-min-height="240" data-width="auto" data-length="auto">
 
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-              Primary Color
-            </text>
+              <group
+                data-ink-color="main-dark"
+                data-cursor="pointer"
+                data-interactive=""
+                //data-radius="5"
+                data-contain=""
+                data-direction="column"
+                data-color="main-text"
+                data-space="30"
+                data-background="main"
+                data-gap="10"
+                data-justify="end"
+                data-align="start"
+                data-wrap="no"
+              >
+                <text
+                  data-wrap="wrap"
+                  data-light=""
+                  data-max-length="300"
+                  data-line="20"
+                >
+                  This primary color you selected will be used extensively in
+                  the UI, with other shades being automatically generated from
+                  it.
+                </text>
+
+                <text
+                  data-wrap="wrap"
+                  data-weight="700"
+                  data-text-size="x-large"
+                >
+                  Primary Color
+                </text>
+              </group>
+
           </group>
         </Popover>
 
@@ -208,6 +218,35 @@ const Colors: React.FC = () => {
           </group>
         </group>
 
+
+        <group
+          //data-radius="5"
+          data-contain=""
+          data-min-height="240"
+          data-direction="column"
+          data-width="auto"
+          data-length="auto"
+          data-color="secondary-text"
+          data-space="30"
+          data-background="secondary"
+          data-gap="10"
+          data-justify="end"
+        >
+          <text
+            data-wrap="wrap"
+            data-light=""
+            data-max-length="300"
+            data-line="20"
+          >
+            This Secondary color you selected will be used extensively in the
+            UI, with other shades being automatically generated from it.
+          </text>
+          <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            Secondary Color
+          </text>
+        </group>
+
+
         <group
           //data-radius="5"
           data-contain=""
@@ -293,8 +332,8 @@ const Colors: React.FC = () => {
           data-background="secondary-darker"
         >
           <picture data-position="absolute" data-name="color-demo">
-            {" "}
-            <img src={sampleImage2} alt="" />{" "}
+            
+            <img src={sampleImage2} alt="" />
           </picture>
 
           <group
@@ -319,33 +358,7 @@ const Colors: React.FC = () => {
           </group>
         </group>
 
-        <group
-          //data-radius="5"
-          data-contain=""
-          data-min-height="240"
-          data-direction="column"
-          data-width="auto"
-          data-length="auto"
-          data-color="secondary-text"
-          data-space="30"
-          data-background="secondary"
-          data-gap="10"
-          data-justify="end"
-        >
-          {" "}
-          <text
-            data-wrap="wrap"
-            data-light=""
-            data-max-length="300"
-            data-line="20"
-          >
-            This Secondary color you selected will be used extensively in the
-            UI, with other shades being automatically generated from it.
-          </text>{" "}
-          <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-            Secondary Color
-          </text>{" "}
-        </group>
+
       </group>
 
       <group data-direction="column" data-gap="10">

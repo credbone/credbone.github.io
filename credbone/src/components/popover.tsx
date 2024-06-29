@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   content: ReactNode | ((closePopover: () => void) => ReactNode);
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right" | "auto";
+  placement?: "top" | "bottom" | "left" | "right" | "auto" | "mouse";
   hideOnScroll?: boolean;
   containerId?: string; // Optional custom container ID
 }
@@ -19,6 +19,7 @@ const Popover: React.FC<PopoverProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState<CSSProperties>({});
+  const [clickPosition, setClickPosition] = useState<{ x: number; y: number } | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
 
@@ -121,7 +122,21 @@ const Popover: React.FC<PopoverProps> = ({
             targetRect.right + 10
           );
           break;
-       
+          case "mouse":
+            if (clickPosition) {
+              position.top = Math.max(
+                10,
+                clickPosition.y - popoverRect.height - 10
+              );
+              position.left = Math.max(
+                10,
+                Math.min(
+                  clickPosition.x - popoverRect.width / 2,
+                  window.innerWidth - popoverRect.width - 10
+                )
+              );
+            }
+            break;
         default:
           break;
       }
@@ -182,7 +197,8 @@ const Popover: React.FC<PopoverProps> = ({
     };
   }, [isVisible, hideOnScroll]);
 
-  const handlePopoverTrigger = () => {
+  const handlePopoverTrigger = (event: React.MouseEvent) => {
+    setClickPosition({ x: event.clientX, y: event.clientY });
     setIsVisible(!isVisible);
   };
 
@@ -204,7 +220,7 @@ const Popover: React.FC<PopoverProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
-          data-length="auto"
+            data-length="auto"
             data-position="absolute"
             data-background="context"
             data-elevation="1"
@@ -217,7 +233,7 @@ const Popover: React.FC<PopoverProps> = ({
             style={popoverPosition}
             {...rest}
           >
-             {renderedContent}
+            {renderedContent}
           </group>,
           document.getElementById(containerId)!
         )}
