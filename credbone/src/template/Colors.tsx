@@ -218,9 +218,26 @@ const Colors: React.FC = () => {
           </group>
         </group>
 
-
+<Popover
+ placement="mouse"
+ content={
+   <group
+     data-animation-name="appear-bottom"
+     data-fill-mode="backwards"
+     data-animation-duration="1.25"
+   >
+     <RichThemePicker pickerType="secondary" />
+   </group>
+ }
+ data-space="5"
+ data-radius="10"
+ data-backdrop="10"
+ data-width="auto"
+>
         <group
           //data-radius="5"
+           data-cursor="pointer"
+                data-interactive="" 
           data-contain=""
           data-min-height="240"
           data-direction="column"
@@ -245,7 +262,7 @@ const Colors: React.FC = () => {
             Secondary Color
           </text>
         </group>
-
+        </Popover>
 
         <group
           //data-radius="5"
