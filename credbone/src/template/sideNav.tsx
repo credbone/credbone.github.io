@@ -220,7 +220,7 @@ const SideNav = () => {
                   data-width="auto"
                   data-ratio="1:1"
                   data-background="main"
-                  data-height="50"
+                  data-height={isNavOpen ? "50" : "80"}
                   data-radius="30"
                   data-contain=""
                   onClick={() => {

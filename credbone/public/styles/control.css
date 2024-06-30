@@ -477,6 +477,9 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='320'] { height:320px; }
 [data-height='360'] { height:360px; }
 
+
+[data-height='400'] { height:400px; }
+[data-height='500'] { height:500px; }
 [data-height='600'] { height:600px; }
 
 

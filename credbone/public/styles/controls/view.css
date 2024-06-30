@@ -116,7 +116,7 @@ view[data-background="none"]{background:none}
 
 
 [data-name="switchable"][data-expanded="false"]:not([data-type="overlap"]):not([data-switch-direction="horizontal"]){width: var(--switch-size);flex-shrink: 0; flex-direction: row;}
-[data-name="switchable"][data-expanded="false"]:not([data-type="overlap"]):not([data-switch-direction="horizontal"]) > [data-name="switch"]{width: var(--switch-size); max-width: var(--switch-size);  height: 100%; writing-mode: vertical-rl; text-orientation: mixed; }
+[data-name="switchable"]:not([data-switch-direction="horizontal"]) > [data-name="switch"]{width: var(--switch-size); max-width: var(--switch-size);  height: 100%; writing-mode: vertical-rl; text-orientation: mixed; }
 [data-name="switchable"][data-expanded="false"][data-switch-direction="horizontal"] {height: var(--switch-size); flex-shrink: 0; }
 
 
@@ -160,13 +160,16 @@ view[data-background="none"]{background:none}
 [data-name="switch-gap"]{display: none;width:var(--switch-size);}
 
 
+[data-name="switchable"][data-expanded="false"][data-type="overlap"]:not([data-switch-direction="horizontal"])
+{width: var(--switch-size);flex-shrink: 0; flex-direction: row;}
+
+
+
 @media  (min-width: 801px) 
 {
 
 
 
-[data-name="switchable"][data-expanded="false"][data-type="overlap"]:not([data-switch-direction="horizontal"])
-{width: var(--switch-size);flex-shrink: 0; flex-direction: row;}
 
 
 [data-name="switchable"][data-expanded="false"][data-type="overlap"]:not([data-switch-direction="horizontal"]) > [data-name="switch"]
@@ -191,7 +194,7 @@ view[data-background="none"]{background:none}
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
 
 
-[data-name="switchable"][data-expanded="false"][data-type="overlap"]{height: var(--switch-size); max-height: var(--switch-size); }
+/* [data-name="switchable"][data-expanded="false"][data-type="overlap"]{height: var(--switch-size); max-height: var(--switch-size); } */
 
 [data-name="switchable"][data-type="adaptive"]{position: absolute;}
 [data-name="switch-gap"]{display: flex;}

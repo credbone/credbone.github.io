@@ -26,7 +26,11 @@ const Switchable: React.FC<SwitchableProps> = ({
 
   useEffect(() => {
     const handleResize = () => {
-      if (!userAction && collapseThreshold !== false && window.innerWidth <= collapseThreshold) {
+      if (
+        !userAction &&
+        collapseThreshold !== false &&
+        window.innerWidth <= collapseThreshold
+      ) {
         setIsExpanded(false);
       } else {
         setIsExpanded(true);
@@ -45,15 +49,18 @@ const Switchable: React.FC<SwitchableProps> = ({
     if (!closeOnOutsideClick) return;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (switchableRef.current && !switchableRef.current.contains(event.target as Node)) {
+      if (
+        switchableRef.current &&
+        !switchableRef.current.contains(event.target as Node)
+      ) {
         setIsExpanded(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [closeOnOutsideClick]);
 
@@ -64,14 +71,14 @@ const Switchable: React.FC<SwitchableProps> = ({
 
   return (
     <group
-    data-border=""
-    data-index="1"
-    data-wrap="no"
-    data-height="fit"
-    data-contain=""
+      data-border=""
+      data-index="1"
+      data-wrap="no"
+      data-height="fit"
+      data-contain=""
       ref={switchableRef}
       data-name="switchable"
-      data-direction="column"
+      //  data-direction="column"
       data-align="start"
       data-expanded={isExpanded}
       {...rest}
@@ -90,12 +97,21 @@ const Switchable: React.FC<SwitchableProps> = ({
         onClick={handleToggle}
         {...togglerProps}
       >
-        <icon data-length="30" data-index="1" className={isExpanded ? "open" : ""}>
+        <icon
+          data-length="30"
+          data-index="1"
+          className={isExpanded ? "open" : ""}
+        >
           {icon ?? "apps"}
         </icon>
         {title && (
           <>
-            <text data-ellipsis="" data-index="1" data-weight="700" data-space="5">
+            <text
+              data-ellipsis=""
+              data-index="1"
+              data-weight="700"
+              data-space="5"
+            >
               {title}
             </text>
           </>

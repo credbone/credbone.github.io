@@ -1,42 +1,45 @@
 import React from "react";
-import Content from "./content";
 
-// import Marquee from "../components/Marquee";
-import ContentSlide from "./contentSlide";
 import { SvgHamburger } from "../components/svg";
 import Switchable from "../components/Switchable";
 
 const Layout: React.FC = () => {
   return (
-    <view data-vertical="" data-space="20" data-border="no">
+    <group data-gap="15" data-space="30" data-border="no" data-align="start">
       <view
+        data-height="400"
         data-direction="row"
         //  data-gap="20"
         //   data-border="no"
         data-radius="10"
+        data-max-length="800"
+        data-elevation="1"
       >
         <view data-direction="row">
+          <group data-name="switch-gap" data-shrink="no"></group>
           <Switchable
-
             data-adaptive-float="15"
-            //  data-radius="10"
-
             defaultExpanded={false}
+            data-type="overlap"
             icon={
               <icon data-fill="fill" data-color="amber">
                 folder
               </icon>
             }
-            title={"Adaptive Switchable To The Left"}
-            //    togglerProps={{ "data-order": "2" }}
-            data-type="overlap"
-            data-length="400"
+            title={"Switchable To The Left"}
+            togglerProps={{ "data-order": "2" }}
+            //  data-type="overlap"
+            //     data-length="400"
             closeOnOutsideClick={true}
-            data-elevation="1"
             data-index="3"
           >
             <>
-              <group data-space="30" data-align="center" data-justify="center">
+              <group
+                data-space="30"
+                data-align="center"
+                data-justify="center"
+                data-position="center"
+              >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
                   dock_to_left
@@ -54,23 +57,17 @@ const Layout: React.FC = () => {
                   in action. This is a configurable option...
                 </text>
               </group>
-
-              <group data-type="grid" data-gap="15" data-space="15">
-                <Content></Content>
-              </group>
             </>
           </Switchable>
-          {/* <group data-name="switch-gap" data-shrink="no"></group> */}
-          <view
-            data-name="switchable"
-            data-direction="column"
-            data-align="start"
-            // data-radius="10"
-          >
-            <view data-scroll="" data-align="start">
-              <group data-name="switch-gap" data-shrink="no"></group>
 
-              <group data-space="20" data-align="center" data-justify="center">
+          <group data-direction="column" data-align="start">
+            <group data-scroll="" data-align="start" data-position="center">
+              <group
+                data-space="20"
+                data-align="center"
+                data-justify="center"
+                data-position="center"
+              >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
                   responsive_layout
@@ -89,19 +86,9 @@ const Layout: React.FC = () => {
                 </text>
                 <space></space>
               </group>
-
-              <ContentSlide></ContentSlide>
-
-              <separator data-horizontal=""></separator>
-
-              <group data-type="grid" data-gap="15" data-space="15">
-                <Content></Content>
-              </group>
-              <space data-height="70"></space>
-            </view>
-          </view>
+            </group>
+          </group>
         </view>
-
         <Switchable
           data-adaptive-float="15"
           //   closeOnOutsideClick={true}
@@ -113,19 +100,17 @@ const Layout: React.FC = () => {
               <SvgHamburger />
             </>
           }
-          data-elevation="1"
           defaultExpanded={false}
-          togglerProps={{
-            "data-background": "main",
-            "data-color": "main-text",
-          }}
-          // collapseThreshold={800}
-          // data-length='500'
           title={"Switchable To The Right"}
         >
           <view>
             <view data-scroll="">
-              <group data-direction="column" data-gap="10" data-space="15">
+              <group
+                data-direction="column"
+                data-gap="10"
+                data-space="20"
+                data-position="center"
+              >
                 <group
                   data-space="20"
                   data-align="center"
@@ -148,10 +133,6 @@ const Layout: React.FC = () => {
                   </text>
                   <space></space>
                 </group>
-
-                <group data-type="grid" data-gap="15" data-grid-template="200">
-                  <Content></Content>
-                </group>
               </group>
             </view>
 
@@ -159,9 +140,10 @@ const Layout: React.FC = () => {
               data-adaptive-float="15"
               defaultExpanded={false}
               data-type="overlap"
-              data-elevation="1"
+              // data-elevation="1"
               data-switch-direction="horizontal"
-              icon="shopping_basket"
+              data-direction="column"
+              icon="folder"
               togglerProps={
                 {
                   //    "data-background": "main",
@@ -172,7 +154,7 @@ const Layout: React.FC = () => {
               }
               title={"Switchable To The Bottom"}
             >
-              <group>
+              <group data-position="center">
                 <group
                   data-space="20"
                   data-align="center"
@@ -196,16 +178,153 @@ const Layout: React.FC = () => {
                   </text>
                   <space></space>
                 </group>
-                <group data-type="grid" data-gap="15" data-space="15">
-                  <Content></Content>
-                </group>
               </group>
             </Switchable>
           </view>
         </Switchable>
         <group data-name="switch-gap" data-shrink="no"></group>
       </view>
-    </view>
+
+      <group
+        data-width="auto"
+        data-height="400"
+        data-contain=""
+        //  data-gap="20"
+        //   data-border="no"
+        data-radius="10"
+        data-elevation="1"
+      >
+        <view data-direction="row" data-max-length="600">
+          <Switchable
+            data-border="outline"
+            data-adaptive-float="15"
+            defaultExpanded={false}
+            icon="potted_plant"
+            title={"Switchable To The Left"}
+            //  data-type="overlap"
+            //     data-length="400"
+            closeOnOutsideClick={true}
+            data-index="3"
+            togglerProps={{
+              "data-background": "main",
+              "data-color": "main-text",
+            }}
+          >
+            <>
+              <group
+                data-space="30"
+                data-align="center"
+                data-justify="center"
+                data-position="center"
+              >
+                <space></space>
+                <icon data-opacity="20" data-icon-size="large">
+                  dock_to_left
+                </icon>
+                <space></space>
+                <text
+                  data-text-align="center"
+                  data-light=""
+                  data-wrap="wrap"
+                  data-line="1.5"
+                >
+                  This is an adaptive switchable section that will overlap the
+                  neighboring section if there is not enough room to display
+                  them side by side. You can resize the browser window to see it
+                  in action. This is a configurable option...
+                </text>
+              </group>
+            </>
+          </Switchable>
+
+          <Switchable
+            data-border="outline"
+            data-adaptive-float="15"
+            defaultExpanded={false}
+            icon="ac_unit"
+            title={"Adaptive Switchable To The Left"}
+            // data-type="overlap"
+            //   data-length="400"
+            closeOnOutsideClick={true}
+            data-index="3"
+            togglerProps={{
+              "data-background": "main-dark",
+              "data-color": "white",
+            }}
+          >
+            <>
+              <group
+                data-space="30"
+                data-align="center"
+                data-justify="center"
+                data-position="center"
+                data-max-length="400"
+              >
+                <space></space>
+                <icon data-opacity="20" data-icon-size="large">
+                  dock_to_left
+                </icon>
+                <space></space>
+                <text
+                  data-text-align="center"
+                  data-light=""
+                  data-wrap="wrap"
+                  data-line="1.5"
+                >
+                  This is an adaptive switchable section that will overlap the
+                  neighboring section if there is not enough room to display
+                  them side by side. You can resize the browser window to see it
+                  in action. This is a configurable option...
+                </text>
+              </group>
+            </>
+          </Switchable>
+
+          <Switchable
+            data-border="outline"
+            data-adaptive-float="15"
+            defaultExpanded={false}
+            icon="light"
+            title={"Adaptive Switchable To The Left"}
+            // data-type="overlap"
+            //   data-length="400"
+            closeOnOutsideClick={true}
+            data-index="3"
+            togglerProps={{
+              "data-background": "main-darker",
+              "data-color": "white",
+            }}
+          >
+            <>
+              <group
+                data-space="30"
+                data-align="center"
+                data-justify="center"
+                data-position="center"
+                data-max-length="400"
+              >
+                <space></space>
+                <icon data-opacity="20" data-icon-size="large">
+                  dock_to_left
+                </icon>
+                <space></space>
+                <text
+                  data-text-align="center"
+                  data-light=""
+                  data-wrap="wrap"
+                  data-line="1.5"
+                >
+                  This is an adaptive switchable section that will overlap the
+                  neighboring section if there is not enough room to display
+                  them side by side. You can resize the browser window to see it
+                  in action. This is a configurable option...
+                </text>
+              </group>
+            </>
+          </Switchable>
+        </view>
+      </group>
+    </group>
   );
 };
 export default Layout;
