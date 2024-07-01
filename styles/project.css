@@ -101,7 +101,11 @@
 
 
 
-.sticky{top: -1px;border-top: 1px solid transparent; flex-shrink: 0; margin-top: -1px;}
+[data-sticky="top"].sticky{top: -1px;border-top: 1px solid transparent; flex-shrink: 0; margin-top: -1px;}
+
+[data-sticky="bottom"]{bottom: -1px;border-bottom: 1px solid transparent; flex-shrink: 0; margin-bottom: -1px;}
+
+
 /* .sticky.stuck {padding: 15px;}
 .sticky.stuck > group{box-shadow: var(--elevation_2); background: var(--context); border-radius: 10px;} */
 
