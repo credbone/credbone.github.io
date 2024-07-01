@@ -112,7 +112,7 @@ const Template: React.FC = () => {
                         data-interactive=""
                         data-align="center"
                         data-wrap="no"
-                        data-space={isSticky ? "0" : "20"}
+                        data-space={isSticky ? "0" : "15"}
                         data-gap={isSticky ? "0" : "10"}
                       >
                         <group data-length={isSticky ? "60" : "20"}>
