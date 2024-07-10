@@ -18,6 +18,7 @@ import SnackbarContainer from "./components/snackbar/SnackbarContainer";
 import TitleUpdater from "./components/TitleUpdater";
 import Search from "./pages/search/search";
 import Components from "./template/components";
+import Resume from "./pages/resume";
 
 
 
@@ -59,6 +60,7 @@ function App() {
               <Route path="/About" element={<About />} />
               <Route path="/Settings" element={<Settings />} />
               <Route path="/Search" element={<Search />} />
+              <Route path="/Resume" element={<Resume />} />
             </Routes>
           </view>
           <div id="popover-container" data-max-length="fit"></div>
