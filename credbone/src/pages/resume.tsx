@@ -3,7 +3,6 @@ import { SvgResumeQR } from "../components/svg";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
 
-
 const handlePrint = () => {
   window.print();
 };
@@ -12,7 +11,7 @@ function Resume() {
   return (
     <group data-space="" data-scroll="" data-border="no">
       <group data-space="adaptive-30-50" data-gap="30" data-direction="column">
-        <group data-direction="column">
+        <group data-direction="column" data-gap="20">
           <text
             data-user-select="text"
             data-weight="800"
@@ -94,7 +93,7 @@ function Resume() {
 
         <separator data-horizontal="" data-max-length="700"></separator>
 
-        <group data-gap="30">
+        <group data-gap="30" data-direction="column">
           <text
             data-user-select="text"
             data-weight="700"
@@ -103,15 +102,15 @@ function Resume() {
             Experience
           </text>
 
-          <group data-gap="10">
+          <text data-line="1.5" >
             <text data-user-select="text" data-weight="700">
               Ogma
             </text>
-            <dot></dot>
-            <text data-user-select="text">Design Department Manager</text>
-            <dot></dot>
-            <text data-user-select="text">February 2014 - Present</text>
-          </group>
+            <dot data-margin="10"></dot>
+            <text data-user-select="text" data-wrap="wrap">Design Department Manager</text>
+            <dot data-margin="10"></dot>
+            <text data-user-select="text" data-wrap="wrap">February 2014 - Present</text>
+          </text>
 
           <group data-direction="column">
             <text
@@ -131,15 +130,15 @@ function Resume() {
             </text>
           </group>
 
-          <group data-gap="10">
+          <text data-line="1.5">
             <text data-user-select="text" data-weight="700">
               Altacode
             </text>
-            <dot></dot>
-            <text data-user-select="text">UI Designer</text>
-            <dot></dot>
-            <text data-user-select="text">November 2011 - January 2014</text>
-          </group>
+            <dot data-margin="10"></dot>
+            <text data-user-select="text" data-wrap="wrap">UI Designer</text>
+            <dot data-margin="10"></dot>
+            <text data-user-select="text" data-wrap="wrap">November 2011 - January 2014</text>
+          </text>
 
           <group data-direction="column">
             <text
@@ -168,40 +167,40 @@ function Resume() {
           </text>
         </group>
 
-        <group data-gap="10">
-          <group data-gap="10">
+        <group data-gap="10" data-direction="column">
+          <text data-line="1.5">
             <mark>
               <text data-user-select="text" data-weight="700">
                 Prototyping
               </text>
             </mark>
-            <dot></dot>
+            <dot data-margin="10"></dot>
             <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               From Paper & Rapid to High-fidelity Markups
             </text>
-          </group>
+          </text>
 
-          <group data-gap="10">
+          <text data-line="1.5">
             <text data-user-select="text" data-weight="700">
               Research
             </text>
-            <dot></dot>
+            <dot data-margin="10"></dot>
             <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               From User interviews to Creating and Managing Personas
             </text>
-          </group>
+          </text>
 
-          <group data-gap="10">
+          <text data-line="1.5">
             <mark>
               <text data-user-select="text" data-weight="700">
                 Coding
               </text>
             </mark>
-            <dot></dot>
+            <dot data-margin="10"></dot>
             <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               From Prototype & Reusable Components to Complete UI
             </text>
-          </group>
+          </text>
         </group>
 
         <group data-gap="30">
@@ -254,28 +253,30 @@ function Resume() {
           </text>
         </group>
 
-        <group data-gap="10">
-          <group data-gap="10">
+        <group data-gap="10" data-direction="column">
+          <text data-line="1.5">
+           
+              <text
+                data-user-select="text"
+                data-weight="700"
+                data-wrap="wrap"
+                data-ellipsis=""
+              >
+               WSIiZ - Rzeszowie     
+              </text>
+     
+            <dot data-margin="10"></dot>
             <text
               data-user-select="text"
-              data-weight="700"
-              data-wrap="wrap"
-              data-ellipsis=""
-            >
-              WSIiZ - Rzeszowie
-            </text>
-            <dot></dot>
-            <text
-              data-user-select="text"
-              data-weight="700"
+
               data-wrap="wrap"
               data-ellipsis=""
             >
               Grafika komputerowa i produkcja multimedialna
             </text>
-          </group>
+          </text>
 
-          <group data-gap="10">
+          <text data-line="1.5">
             <text
               data-user-select="text"
               data-weight="700"
@@ -284,16 +285,16 @@ function Resume() {
             >
               Russian - Armenian University
             </text>
-            <dot></dot>
+            <dot data-margin="10"></dot>
             <text
               data-user-select="text"
-              data-weight="700"
+            
               data-wrap="wrap"
               data-ellipsis=""
             >
               Department of Physics and Technology
             </text>
-          </group>
+          </text>
         </group>
 
         <separator data-horizontal="" data-max-length="700"></separator>
@@ -338,7 +339,6 @@ function Resume() {
           <group
             data-print="hide"
             data-index="3"
-         
             data-bottom="30"
             data-sticky="bottom"
             data-width="auto"
@@ -381,7 +381,7 @@ function Resume() {
           </group>
         )}
       </StuckReporter>
-      <group data-height="100"  data-print="hide"></group>
+      <group data-height="100" data-print="hide"></group>
     </group>
   );
 }
