@@ -714,7 +714,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-index="1"] {z-index: 1;}
 
 [data-user-select="text"] {user-select: text; cursor: text;}
-[data-user-select="initial"] {user-select: initial;cursor: initial;}
+[data-user-select="initial"] {user-select: initial;cursor: initial; -webkit-user-select: initial;}
 
 
 [data-order="1"]{order:1}
