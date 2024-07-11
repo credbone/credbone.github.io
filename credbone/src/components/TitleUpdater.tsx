@@ -19,6 +19,7 @@ const routeTitles: { [key: string]: string } = {
   'Search': 'Search',
   '': 'Home',
   'Home': 'Home',
+  'Resume': 'Ruben Sargsyan',
 };
 
 const TitleUpdater: React.FC = () => {

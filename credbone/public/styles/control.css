@@ -314,6 +314,7 @@ text[data-width="auto"]{width: initial;}
 [data-max-length='400']{max-width:400px;}
 [data-max-length='500']{max-width:500px;}
 [data-max-length='600']{max-width:600px;}
+[data-max-length='700']{max-width:700px;}
 [data-max-length='800']{max-width:800px;}
 [data-max-length='900']{max-width:900px;}
 [data-max-length='1200']{max-width:1200px;}
@@ -347,6 +348,7 @@ text[data-width="auto"]{width: initial;}
 
 [data-contain=""]{contain: content; overflow:hidden;}
 [data-contain="visible"]{ overflow:visible;}
+
 
 
 @media (max-width: 600px)
@@ -522,6 +524,17 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-min-height='300']{min-height:300px;}
 [data-min-height='400']{min-height:400px;}
 [data-min-height='fit']{min-height: 100%;}
+
+
+[data-space="adaptive-30-50"] {padding: 50px;}
+
+
+@media (max-width: 600px)
+{
+  [data-space="adaptive-30-50"] {padding: 30px;}
+}
+
+
 
 
 [data-space='0'] { padding:0px;}
@@ -701,6 +714,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-index="1"] {z-index: 1;}
 
 [data-user-select="text"] {user-select: text; cursor: text;}
+[data-user-select="initial"] {user-select: initial;cursor: initial;}
 
 
 [data-order="1"]{order:1}
@@ -793,3 +807,6 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
+
+
+
