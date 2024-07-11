@@ -338,11 +338,11 @@ function Resume() {
           <group
             data-print="hide"
             data-index="3"
-            data-left="30"
+         
             data-bottom="30"
             data-sticky="bottom"
             data-width="auto"
-            data-space-bottom="30"
+            data-space="adaptive-30-50"
           >
             <group data-width="auto">
               <Ripple>

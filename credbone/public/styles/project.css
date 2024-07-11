@@ -203,7 +203,7 @@ input[type="search"]::-webkit-search-results-decoration {
   [data-print="hide"],
   [data-print="hide"][data-adaptive="mobile"]{display: none;}
   
-
+html{zoom: .8;}
   
   
   :root
@@ -221,4 +221,33 @@ input[type="search"]::-webkit-search-results-decoration {
     [data-print="show"]{display: none;}
     }
   
+
+
+    @page {
+      size: A4; /* Set the size to A4, adjust as needed */
+
+    
+      /* Hides all headers and footers */
+      margin-top: 0;
+      margin-bottom: 0;
+    
+      @top-left {
+        content: none;
+      }
+      @top-center {
+        content: none;
+      }
+      @top-right {
+        content: none;
+      }
+      @bottom-left {
+        content: none;
+      }
+      @bottom-center {
+        content: none;
+      }
+      @bottom-right {
+        content: none;
+      }
+    }
 
