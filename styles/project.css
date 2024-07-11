@@ -196,3 +196,58 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+
+
+
+@media print {
+  [data-print="hide"],
+  [data-print="hide"][data-adaptive="mobile"]{display: none;}
+  
+html{zoom: .85;}
+  
+  
+  :root
+  
+  {
+    --background: #fbfbfb;
+    --border-color: #e4e4e4; 
+    --text-color: #191919;
+  }
+  
+  
+  }
+  
+  @media screen {
+    [data-print="show"]{display: none;}
+    }
+  
+
+
+    @page {
+      /* size: A4;  */
+
+    
+
+      margin-top: 0;
+      margin-bottom: 0;
+    
+      @top-left {
+        content: none;
+      }
+      @top-center {
+        content: none;
+      }
+      @top-right {
+        content: none;
+      }
+      @bottom-left {
+        content: none;
+      }
+      @bottom-center {
+        content: none;
+      }
+      @bottom-right {
+        content: none;
+      }
+    }
+
