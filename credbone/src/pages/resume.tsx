@@ -9,8 +9,8 @@ const handlePrint = () => {
 
 function Resume() {
   return (
-    <group data-space="" data-scroll="" data-border="no">
-      <group data-space="adaptive-30-50" data-gap="30" data-direction="column">
+    <group data-space="" data-scroll="" data-border="no" >
+      <group data-space="adaptive-30-50" data-gap="30" data-direction="column"  data-user-select="text">
         <group data-direction="column" data-gap="20">
           <text
             data-user-select="text"
@@ -33,7 +33,7 @@ function Resume() {
           </text>
         </group>
 
-        <group>
+        <group >
           <text
             data-user-select="text"
             data-wrap="wrap"
@@ -69,7 +69,7 @@ function Resume() {
               <text
                 data-wrap="wrap"
                 data-weight="700"
-                date-decoration="underline"
+                data-cursor="pointer"
               >
                 <mark> + 374 93 080 648</mark>
               </text>
@@ -79,9 +79,10 @@ function Resume() {
               href="mailto:sargsyanrubens@gmail.com"
               data-type="group"
               data-width="auto"
+              
             >
-              <text data-user-select="text" data-wrap="wrap" data-weight="600">
-                sargsyanrubens@gmail.com
+              <text  data-user-select="text"data-wrap="wrap" data-weight="600">
+                <text  data-cursor="pointer" >sargsyanrubens@gmail.com</text>
               </text>
             </a>
 
