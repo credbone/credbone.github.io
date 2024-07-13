@@ -301,7 +301,7 @@ function Resume() {
         <separator data-horizontal="" data-max-length="700"></separator>
 
         <group data-gap="10">
-          <group data-gap="10">
+          <group data-gap="10" data-align="center">
             <a
               data-type="link"
               href="https://www.linkedin.com/in/sargsyanruben"

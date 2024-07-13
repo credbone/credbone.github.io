@@ -4,12 +4,11 @@ import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
 
 const links = [
-  { name: 'Resume', url: '/Resume' },
-  { name: 'Linkedin', url: 'https://www.linkedin.com/in/sargsyanruben', target: '_blank' },
-  { name: 'Behance', url: 'https://www.behance.net/sargsyan', target: '_blank' },
-  { name: 'Dribbble', url: 'https://dribbble.com/sargsyan', target: '_blank' },
+  { name: "Resume", url: "/Resume" },
+  { name: "Linkedin", url: "https://www.linkedin.com/in/sargsyanruben", target: "_blank", },
+  { name: "Behance", url: "https://www.behance.net/sargsyan", target: "_blank", },
+  { name: "Dribbble", url: "https://dribbble.com/sargsyan", target: "_blank" },
 ];
-
 
 function About() {
   return (
@@ -62,34 +61,30 @@ function About() {
             <text data-weight="700">{buildInfo.version}</text>
           </group>
         </group>
-
       </group>
 
       <group data-position="bottom" data-gap="30">
         <separator data-horizontal="" data-max-length="400"></separator>
-        <group data-gap="15" >
+        <group data-gap="15" data-align="center">
           {links.map((link, index) => (
             <Link
-            data-type="link"
-            data-width="auto"
-          
-            
-            data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration={(2 + index * 0.25)}
-
-            
-
+              data-type="link"
+              data-width="auto"
+              data-height="20"
+              data-line="20"
+              data-weight="600"
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration={2 + index * 0.25}
               to={link.url}
               target={link.target}
               key={index}
-
             >
               <text data-ellipsis="">{link.name}</text>
             </Link>
           ))}
         </group>
-        </group>
+      </group>
     </view>
   );
 }
