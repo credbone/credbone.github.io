@@ -25,6 +25,7 @@ import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
 import StuckReporter from "../components/StuckReporter";
+import Dashboard from "./Dashboard";
 
 const Template: React.FC = () => {
   const location = useLocation();
@@ -72,6 +73,7 @@ const Template: React.FC = () => {
             <Route path="TooltipAndPopover" element={<TooltipPopover />} />
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
+            <Route path="Dashboard" element={<Dashboard />} />
           </Routes>
           <StuckReporter>
             {(isSticky) => (
