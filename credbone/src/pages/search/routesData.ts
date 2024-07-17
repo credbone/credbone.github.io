@@ -18,4 +18,5 @@ export const routesData: RouteData[] = [
   { path: "TooltipAndPopover", tags: ["tooltip", "popover", "toast", "snackbar", "user interface",  "hover", "hint", "overlay"], description: "Includes tooltip, popover, toast, and snackbar components, enhancing user interactions.", title: "Tooltip & Popover" },
   { path: "CardsAndList", tags: ["cards", "list", "user interface",  "item list", "data display", "containers", "grouping", "collections"], description: "Handles user interface components like cards and lists, commonly used for displaying information.", title: "Cards & List" },
   { path: "Miscellaneous", tags: ["miscellaneous", "marquee", "counter", "text", "digit", "direction"], description: "Encompasses a variety of small, diverse UI components that don't fit into other categories, including elements like marquees and counters.", title: "Miscellaneous" },
+  { path: "Dashboard", tags: ["dashboard", "monitoring", "gauge", "widget", "hardware", "temperature"], description: "Simple dashboard interface designed for monitoring hardware", title: "Dashboard" },
 ];

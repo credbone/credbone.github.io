@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Gauge from "../components/Gauge";
 
 // Utility function to generate random values
-const getRandomValue = (min: number, max: number, decimals: number = 0): string => {
+const getRandomValue = (
+  min: number,
+  max: number,
+  decimals: number = 0
+): string => {
   const factor = Math.pow(10, decimals);
   return (Math.random() * (max - min) + min).toFixed(decimals);
 };
@@ -13,19 +18,47 @@ interface MonitorCardType {
   unit?: string;
   color?: boolean;
   titleunit?: string;
+  chart?: boolean;
+  max?: number;
 }
 
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
-  { title: "CPU", value: getRandomValue(29, 42, 0), unit: "°", color: true },
-  { title: "GPU", value: getRandomValue(25, 35, 0), unit: "°" },
-  { title: "Memory", value: getRandomValue(6, 7, 1), titleunit: "GB" },
-  { title: "Network", value: getRandomValue(120, 140, 0), titleunit: "Kbps" },
-  { title: "FPS", value: getRandomValue(200, 240, 0) },
+  {
+    title: "CPU",
+    value: getRandomValue(29, 42, 0),
+    unit: "°",
+    color: true,
+    chart: true,
+    max: 100,
+  },
+  {
+    title: "GPU",
+    value: getRandomValue(65, 75, 0),
+    unit: "°",
+    chart: true,
+    max: 100,
+  },
+  {
+    title: "Memory",
+    value: getRandomValue(6, 6.7, 1),
+    titleunit: "GB",
+    chart: true,
+    max: 32,
+  },
+  {
+    title: "Network",
+    value: getRandomValue(120, 140, 0),
+    titleunit: "Kbps",
+    max: 240,
+  },
+  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240 },
 ];
 
 const Dashboard: React.FC = () => {
-  const [monitorCard, setMonitorCard] = useState<MonitorCardType[]>(generateMonitorCardData());
+  const [monitorCard, setMonitorCard] = useState<MonitorCardType[]>(
+    generateMonitorCardData()
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,10 +75,10 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-      <group>
-        <group data-direction="column" data-gap="10">
+      <group data-gap="20">
+        <group data-direction="column">
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-            Monitoring
+            Dashboard
           </text>
         </group>
 
@@ -56,45 +89,64 @@ const Dashboard: React.FC = () => {
         >
           <text
             data-wrap="wrap"
-            data-length="610"
-            data-line="20"
+            data-length="400"
+            data-line="1.5"
             data-light=""
-          ></text>
+          >
+            Demo features a simple dashboard interface designed for monitoring
+            hardware. It includes various widgets that display real-time
+            simulated data, offering a clear view of performance metrics and
+            status updates.
+          </text>
         </group>
       </group>
 
-      <group data-type="grid" data-grid-template="200" data-gap="10">
+      <group data-type="grid" data-grid-template="200" data-gap="1"  data-radius="15" data-contain="" data-elevation="1" data-background="context" data-max-length="700" >
         {monitorCard.map((item, index) => (
           <group
-            data-background={item.color ? "main" : ""}
+            data-background={item.color ? "main" : "context"}
             data-color={item.color ? "main-text" : ""}
             key={index}
             data-space="20"
-            data-elevation="1"
-            data-radius="15"
-            data-direction="column"
-            data-gap="5"
+            data-border=""
+           
+            data-wrap="no"
           >
-            <group data-align="center" data-gap="5">
-              <text data-weight="800">{item.title}</text>
+            <group data-gap="5" data-direction="column">
+              <group data-align="center" data-gap="5"  data-wrap="no">
+                <text data-weight="800">{item.title}</text>
 
-              {item.titleunit && (
-                <>
-                  <dot></dot>
-                  <text>{item.titleunit}</text>
-                </>
-              )}
+                {item.titleunit && (
+                  <>
+                    <dot></dot>
+                    <text>{item.titleunit}</text>
+                  </>
+                )}
+              </group>
+              <group data-weight="700" data-text-size="xx-large">
+                <text>{item.value}</text>
+
+                {item.unit && <text>{item.unit}</text>}
+              </group>
             </group>
-            <group data-weight="700" data-text-size="xx-large">
-              <text>{item.value}</text>
 
-              {item.unit && <text>{item.unit}</text>}
+            <group data-length="80" data-ratio="1:1" data-direction="column">
+              {item.chart && item.max && (
+<>
+<group data-position="center" data-width="auto" data-opacity="30"><text data-weight="700">{item.max}</text></group>
+<group data-position="absolute">                <Gauge
+                  value={parseFloat(item.value)}
+                  max={item.max}
+                  size={100}
+                /></group>
+</>
+              )}
             </group>
           </group>
         ))}
       </group>
 
-      <separator data-horizontal=""></separator>
+      <separator data-horizontal="" data-max-length="700"></separator>
     </group>
   );
 };

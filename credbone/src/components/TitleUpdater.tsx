@@ -20,6 +20,7 @@ const routeTitles: { [key: string]: string } = {
   '': 'Home',
   'Home': 'Home',
   'Resume': 'Ruben Sargsyan',
+  'Dashboard': 'Dashboard',
 };
 
 const TitleUpdater: React.FC = () => {
