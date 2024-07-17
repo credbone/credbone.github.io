@@ -20,6 +20,7 @@ interface MonitorCardType {
   titleunit?: string;
   chart?: boolean;
   max?: number;
+  showmax?: boolean;
 }
 
 // Function to generate the MonitorCard data
@@ -45,6 +46,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     titleunit: "GB",
     chart: true,
     max: 32,
+    showmax: true,
   },
   {
     title: "Network",
@@ -101,7 +103,16 @@ const Dashboard: React.FC = () => {
         </group>
       </group>
 
-      <group data-type="grid" data-grid-template="200" data-gap="1"  data-radius="15" data-contain="" data-elevation="1" data-background="context" data-max-length="700" >
+      <group
+        data-type="grid"
+        data-grid-template="200"
+        data-gap="1"
+        data-radius="15"
+        data-contain=""
+        data-elevation="1"
+        data-background="context"
+        data-max-length="700"
+      >
         {monitorCard.map((item, index) => (
           <group
             data-background={item.color ? "main" : "context"}
@@ -109,11 +120,10 @@ const Dashboard: React.FC = () => {
             key={index}
             data-space="20"
             data-border=""
-           
             data-wrap="no"
           >
             <group data-gap="5" data-direction="column">
-              <group data-align="center" data-gap="5"  data-wrap="no">
+              <group data-align="center" data-gap="5" data-wrap="no">
                 <text data-weight="800">{item.title}</text>
 
                 {item.titleunit && (
@@ -132,14 +142,26 @@ const Dashboard: React.FC = () => {
 
             <group data-length="80" data-ratio="1:1" data-direction="column">
               {item.chart && item.max && (
-<>
-<group data-position="center" data-width="auto" data-opacity="30"><text data-weight="700">{item.max}</text></group>
-<group data-position="absolute">                <Gauge
-                  value={parseFloat(item.value)}
-                  max={item.max}
-                  size={100}
-                /></group>
-</>
+                <>
+                  {item.showmax && (
+                    <group
+                      data-position="center"
+                      data-width="auto"
+                      data-opacity="30"
+                    >
+                      <text data-weight="700">{item.max}</text>
+                    </group>
+                  )}
+
+                  <group data-position="absolute">
+                    {" "}
+                    <Gauge
+                      value={parseFloat(item.value)}
+                      max={item.max}
+                      size={100}
+                    />
+                  </group>
+                </>
               )}
             </group>
           </group>
