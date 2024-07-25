@@ -81,7 +81,7 @@ const Components: React.FC = () => {
             <text
               data-wrap="balance"
               data-length="500"
-              data-line="1.5"
+              data-line="20"
               data-opacity="70"
             >
               This platform offers a collection of carefully crafted UI
@@ -117,8 +117,8 @@ const Components: React.FC = () => {
         <StuckReporter>
           {(isSticky) => (
             <group
-              data-space-vertical={isSticky ? "15" : "0"}
-              data-space-horizontal={isSticky ? "15" : "30"}
+            //  data-space-vertical={isSticky ? "15" : "0"}
+              data-space-horizontal={isSticky ? "0" : "30"}
               data-sticky="top"
               data-duration=".125"
             >
@@ -131,7 +131,7 @@ const Components: React.FC = () => {
                 data-backdrop={isSticky ? "10" : ""}
                 data-contain=""
                 data-shrink="no"
-                data-radius={isSticky ? "10" : "15"}
+                data-radius={isSticky ? "0" : "15"}
                 data-snap-button="15"
               >
                 <Scroll>

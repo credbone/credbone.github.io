@@ -143,7 +143,7 @@ const Dashboard: React.FC = () => {
             <group data-length="80" data-ratio="1:1" data-direction="column">
               {item.chart && item.max && (
                 <>
-                  {item.showmax && (
+                  {/* {item.showmax && (
                     <group
                       data-position="center"
                       data-width="auto"
@@ -151,10 +151,9 @@ const Dashboard: React.FC = () => {
                     >
                       <text data-weight="700">{item.max}</text>
                     </group>
-                  )}
+                  )} */}
 
                   <group data-position="absolute">
-                    {" "}
                     <Gauge
                       value={parseFloat(item.value)}
                       max={item.max}
