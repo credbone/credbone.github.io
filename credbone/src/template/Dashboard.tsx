@@ -85,9 +85,9 @@ const Dashboard: React.FC = () => {
         </group>
 
         <group
-          data-animation-name="appear-bottom"
-          data-fill-mode="backwards"
-          data-animation-duration="1.5"
+          // data-animation-name="appear-bottom"
+          // data-fill-mode="backwards"
+          // data-animation-duration="1.5"
         >
           <text
             data-wrap="wrap"
