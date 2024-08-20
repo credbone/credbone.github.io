@@ -32,7 +32,7 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
         stroke="currentcolor"
         strokeWidth="15"
         fill="none"
-        stroke-linecap="round"
+        strokeLinecap="round"
         strokeDasharray={circumference}
         strokeDashoffset={offset}
         transform={`rotate(-90 ${size / 2} ${size / 2})`}

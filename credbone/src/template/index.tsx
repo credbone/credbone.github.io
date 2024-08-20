@@ -91,6 +91,7 @@ const Template: React.FC = () => {
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
                       data-animation-duration="1.25"
+                      data-length="600"
                     >
                       <RichThemePicker />
                     </group>
