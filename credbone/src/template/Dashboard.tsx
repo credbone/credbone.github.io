@@ -42,7 +42,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
   {
     title: "Memory",
-    value: getRandomValue(6, 6.7, 1),
+    value: getRandomValue(12, 13.7, 1),
     titleunit: "GB",
     chart: true,
     max: 32,
