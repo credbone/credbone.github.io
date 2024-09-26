@@ -29,7 +29,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     title: "CPU",
     value: getRandomValue(29, 42, 0),
     unit: "°",
-    color: true,
+    //color: true,
     chart: true,
     max: 100,
   },
@@ -121,6 +121,7 @@ const Dashboard: React.FC = () => {
             data-radius="15"
             data-align="center"
             data-justify="center"
+          //  data-ratio="1:1"
           >
             
               {item.chart && item.max && (
@@ -149,7 +150,7 @@ const Dashboard: React.FC = () => {
 
 
             <group  data-direction="column" data-align="center" >
-              <group data-weight="700" data-text-size="xx-large" data-width="auto">
+              <group data-weight="700" data-text-size="x-large" data-width="auto">
                 <text >{item.value}</text>
 
                 {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}

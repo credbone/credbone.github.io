@@ -811,5 +811,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
 [data-transition-prop="stroke-dashoffset"]{transition-property: stroke-dashoffset;}
+[data-transition-prop="stroke-dasharray"]{transition-property: stroke-dasharray;}
+[data-transition-prop="transform"]{transition-property: transform;}
 
 
