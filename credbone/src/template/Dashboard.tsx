@@ -111,6 +111,7 @@ const Dashboard: React.FC = () => {
       >
         {monitorCard.map((item, index) => (
           <group
+            data-contain=""
             data-background={item.color ? "main" : "context"}
             data-color={item.color ? "main-text" : ""}
             key={index}
@@ -125,7 +126,7 @@ const Dashboard: React.FC = () => {
           >
             
               {item.chart && item.max && (
-              <group data-ratio="1:1" data-direction="column" data-margin-bottom="-20">
+              <group data-direction="column" data-margin-bottom="-30">
 
                   {/* {item.showmax && (
                     <group
@@ -137,7 +138,7 @@ const Dashboard: React.FC = () => {
                     </group>
                   )} */}
 
-                  <group data-position="absolute">
+                  <group >
                     <Gauge
                       value={parseFloat(item.value)}
                       max={item.max}
@@ -156,7 +157,7 @@ const Dashboard: React.FC = () => {
                 {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}
               </group>
               <group data-align="center" data-gap="5" data-wrap="no" data-width="auto">
-                <text data-weight="800">{item.title}</text>
+                <text data-weight="600">{item.title}</text>
 
                 {item.titleunit && (
                   <>
