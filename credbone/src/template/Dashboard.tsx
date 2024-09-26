@@ -85,9 +85,9 @@ const Dashboard: React.FC = () => {
         </group>
 
         <group
-          // data-animation-name="appear-bottom"
-          // data-fill-mode="backwards"
-          // data-animation-duration="1.5"
+        // data-animation-name="appear-bottom"
+        // data-fill-mode="backwards"
+        // data-animation-duration="1.5"
         >
           <text
             data-wrap="wrap"
@@ -105,13 +105,9 @@ const Dashboard: React.FC = () => {
 
       <group
         data-type="grid"
-        data-grid-template="200"
-        data-gap="1"
-        data-radius="15"
-        data-contain=""
-        data-elevation="1"
-        data-background="context"
-        data-max-length="700"
+        data-grid-template="160"
+        data-gap="15"
+        data-max-length="900"
       >
         {monitorCard.map((item, index) => (
           <group
@@ -121,28 +117,15 @@ const Dashboard: React.FC = () => {
             data-space="20"
             data-border=""
             data-wrap="no"
+            data-direction="column"
+            data-radius="15"
+            data-align="center"
+            data-justify="center"
           >
-            <group data-gap="5" data-direction="column">
-              <group data-align="center" data-gap="5" data-wrap="no">
-                <text data-weight="800">{item.title}</text>
-
-                {item.titleunit && (
-                  <>
-                    <dot></dot>
-                    <text>{item.titleunit}</text>
-                  </>
-                )}
-              </group>
-              <group data-weight="700" data-text-size="xx-large">
-                <text>{item.value}</text>
-
-                {item.unit && <text>{item.unit}</text>}
-              </group>
-            </group>
-
-            <group data-length="80" data-ratio="1:1" data-direction="column">
+            
               {item.chart && item.max && (
-                <>
+              <group data-ratio="1:1" data-direction="column" data-margin-bottom="-20">
+
                   {/* {item.showmax && (
                     <group
                       data-position="center"
@@ -160,8 +143,27 @@ const Dashboard: React.FC = () => {
                       size={100}
                     />
                   </group>
-                </>
+
+                            </group>
               )}
+
+
+            <group  data-direction="column" data-align="center" >
+              <group data-weight="700" data-text-size="xx-large" data-width="auto">
+                <text >{item.value}</text>
+
+                {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}
+              </group>
+              <group data-align="center" data-gap="5" data-wrap="no" data-width="auto">
+                <text data-weight="800">{item.title}</text>
+
+                {item.titleunit && (
+                  <>
+                    <dot></dot>
+                    <text>{item.titleunit}</text>
+                  </>
+                )}
+              </group>
             </group>
           </group>
         ))}

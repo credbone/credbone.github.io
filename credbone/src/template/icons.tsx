@@ -88,8 +88,8 @@ const Icons: React.FC = () => {
         data-max-length="400"
         data-space="30"
         data-border="no"
-        data-maring-right="-30"
-        data-maring-bottom="-30"
+        data-margin-right="-30"
+        data-margin-bottom="-30"
       >
         <group
           data-background="context"

@@ -181,6 +181,7 @@ text[data-width="auto"]{width: initial;}
 [data-right="30"] { right: 30px; }
 
 /* Top positions */
+[data-top="-20"] { top: -20px; }
 [data-top="0"] { top: 0px; }
 [data-top="5"] { top: 5px; }
 [data-top="10"] { top: 10px; }
@@ -199,6 +200,7 @@ text[data-width="auto"]{width: initial;}
 [data-left="20"] { left: 20px; }
 [data-left="25"] { left: 25px; }
 [data-left="30"] { left: 30px; }
+[data-left="full"] { left: 100%; }
 
 
 [dir="rtl"] [data-position="right"] {margin-right: auto;margin-left: initial;}
@@ -489,12 +491,12 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='auto'] { height:initial; }
 [data-height='autofit'] { flex:1 }
 
-
+[data-margin-top="-20"] {margin-top:-20px}
 [data-margin-top="-30"] {margin-top:-30px}
 [data-margin-top="-60"] {margin-top:-60px}
-[data-maring-right="-30"]{margin-right:-30px}
-[data-maring-bottom="-30"]{margin-bottom:-30px}
-
+[data-margin-right="-30"]{margin-right:-30px}
+[data-margin-bottom="-30"]{margin-bottom:-30px}
+[data-margin-bottom="-20"]{margin-bottom:-20px}
 
 
 [data-margin-top="-1"] {margin-top:-1px}
