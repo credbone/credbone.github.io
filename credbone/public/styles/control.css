@@ -815,3 +815,4 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-transition-prop="transform"]{transition-property: transform;}
 
 
+[data-rotate="-225"]{transform: rotate(-225deg);}

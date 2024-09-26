@@ -15,9 +15,12 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
 
   return (
     <svg
+      width="100%"
       viewBox="0 0 120 120"
       xmlns="http://www.w3.org/2000/svg"
-      transform="rotate(-225)"
+      //transform="rotate(-225)"
+
+      data-rotate="-225"
     >
 
 <defs>
