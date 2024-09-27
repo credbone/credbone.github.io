@@ -30,6 +30,9 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
         cy="50%"
         r="6" fill="black"></circle>
       </mask>
+{/* 
+      <path id="circlePath" d="M20,60a40,40 0 1,0 80,0a40,40 0 1,0 -80,0"></path> */}
+
     </defs>
 
 
@@ -80,6 +83,14 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
         data-duration=".325"
         data-transition-prop="stroke-dasharray"
       /> */}
+
+
+{/* <g>
+        <use xlinkHref="#circlePath" fill="none"/>
+        <text fill="#000"  data-opacity="10" >
+            <textPath startOffset="120" xlinkHref="#circlePath">Memory Max 32BG</textPath>
+        </text>
+    </g> */}
 
       <g
 mask={`url(#${maskid})`}
