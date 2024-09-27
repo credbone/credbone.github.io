@@ -345,7 +345,10 @@
 
 
 [data-stroke="main"] { stroke: var(--main-color) }
+[data-stroke="secondary"] { stroke: var(--secondary-color) }
 
+[data-fill="main"] { fill: var(--main-color) }
+[data-fill="secondary"] { fill: var(--secondary-color) }
 
 
 
