@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
             data-radius="15"
             data-align="center"
             data-justify="center"
-          //  data-ratio="1:1"
+           data-ratio="1:1"
           >
             
               {item.chart && item.max && (

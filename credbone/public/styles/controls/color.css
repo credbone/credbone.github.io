@@ -345,7 +345,7 @@
 
 
 [data-stroke="main"] { stroke: var(--main-color) }
-
+[data-stroke="secondary"] { stroke: var(--secondary-color) }
 
 
 
