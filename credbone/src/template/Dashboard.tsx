@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Gauge from "../components/Gauge";
+import LineChart from "../components/LineChart";
 
 // Utility function to generate random values
 const getRandomValue = (
@@ -11,6 +12,9 @@ const getRandomValue = (
   return (Math.random() * (max - min) + min).toFixed(decimals);
 };
 
+
+type ChartType = "gauge" | "line" | "none";
+
 // Define the type for MonitorCard items
 interface MonitorCardType {
   title: string;
@@ -18,7 +22,7 @@ interface MonitorCardType {
   unit?: string;
   color?: boolean;
   titleunit?: string;
-  chart?: boolean;
+  chart?: ChartType;
   max?: number;
   showmax?: boolean;
 }
@@ -30,21 +34,21 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     value: getRandomValue(29, 42, 0),
     unit: "°",
     //color: true,
-    chart: true,
+    chart: "gauge",
     max: 100,
   },
   {
     title: "GPU",
     value: getRandomValue(65, 75, 0),
     unit: "°",
-    chart: true,
+    chart: "gauge",
     max: 100,
   },
   {
     title: "Memory",
     value: getRandomValue(12, 13.7, 1),
     titleunit: "GB",
-    chart: true,
+    chart: "gauge",
     max: 32,
     showmax: true,
   },
@@ -53,8 +57,15 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     value: getRandomValue(120, 140, 0),
     titleunit: "Kbps",
     max: 240,
+    chart:"line"
+
   },
-  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240 },
+  {
+    title: "FPS",
+    value: getRandomValue(200, 240, 0),
+    max: 240,
+
+  },
 ];
 
 const Dashboard: React.FC = () => {
@@ -115,17 +126,18 @@ const Dashboard: React.FC = () => {
             data-background={item.color ? "main" : "context"}
             data-color={item.color ? "main-text" : ""}
             key={index}
-            data-space="20"
+            data-space={item.chart === "line" ? "" : "20"}
+            //data-space="20"
             data-border=""
             data-wrap="no"
             data-direction="column"
             data-radius="15"
             data-align="center"
             data-justify="center"
-           data-ratio="1:1"
+           data-ratio="2:3"
           >
             
-              {item.chart && item.max && (
+              {item.chart === "gauge" && item.max &&  (
               <group data-direction="column" data-margin-bottom="-30">
 
                   {/* {item.showmax && (
@@ -147,10 +159,16 @@ const Dashboard: React.FC = () => {
                   </group>
 
                             </group>
-              )}
+            )}
+            
+            {item.chart === "line" && item.max && (
+              <group data-direction="column" >
+                <LineChart value={parseFloat(item.value)} max={item.max} />
+              </group>
+            )}
 
 
-            <group  data-direction="column" data-align="center" >
+            <group data-background={item.chart === "line" ? "main" : ""} data-space={item.chart === "line" ? "20" : ""} data-color={item.chart === "line" ? "main-text" : ""} data-direction="column" data-align="center" >
               <group data-weight="700" data-text-size="x-large" data-width="auto">
                 <text >{item.value}</text>
 
