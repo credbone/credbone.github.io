@@ -12,7 +12,7 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     const interval = setInterval(() => {
       setData((prevData) => {
         const newData = [...prevData, Math.random() * max];
-        return newData.length > 7 ? newData.slice(1) : newData;
+        return newData.length > 5 ? newData.slice(1) : newData;
       });
     }, 1000);
 
@@ -24,7 +24,7 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     const maxDataValue = max;
     return data.map((val, i) => ({
       x: i * stepX,
-      y: height - (val / maxDataValue) * height,
+      y: height - (val / maxDataValue) * height + 50,
     }));
   };
 
@@ -45,7 +45,7 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
   };
 
   const height = 50; // Original height of the SVG
-  const extraSpace = 20; // Extra space to fill at the bottom
+  const extraSpace = 100; // Extra space to fill at the bottom
   const totalHeight = height + extraSpace; // New total height for the SVG
 
   const coordinates = getCoordinates(100, height);

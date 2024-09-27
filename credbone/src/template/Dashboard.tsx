@@ -54,10 +54,10 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
   {
     title: "Network",
-    value: getRandomValue(120, 140, 0),
+    value: getRandomValue(120, 125, 0),
     titleunit: "Kbps",
     max: 240,
-    chart:"line"
+    chart:"none"
 
   },
   {
@@ -168,7 +168,16 @@ const Dashboard: React.FC = () => {
             )}
 
 
-            <group data-background={item.chart === "line" ? "main" : ""} data-space={item.chart === "line" ? "20" : ""} data-color={item.chart === "line" ? "main-text" : ""} data-direction="column" data-align="center" >
+            <group
+              
+             // data-background={item.chart === "line" ? "main" : ""}
+              data-space={item.chart === "line" ? "30" : ""}
+             data-color={item.chart === "line" ? "main-text" : ""}
+              data-direction="column"
+              data-align="center"
+              data-bottom="0"
+              data-position={item.chart === "line" ? "absolute" : ""}
+            >
               <group data-weight="700" data-text-size="x-large" data-width="auto">
                 <text >{item.value}</text>
 
