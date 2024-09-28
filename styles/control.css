@@ -421,6 +421,10 @@ picture {height: 100%;width: 100%;position: relative;display: flex;overflow: hid
 picture img{ pointer-events: none; transform-origin: bottom center; object-fit: cover; width: 100%; height: 100%;transition: .125s; }
 picture[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent); mask-image: linear-gradient(black 50%, transparent); }
 
+
+[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent); mask-image: linear-gradient(black 50%, transparent); }
+
+
 picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:auto;max-height: 100%;max-width: 100%;}
 
 [data-react="scale"] picture {transition: .325s;}
