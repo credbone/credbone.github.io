@@ -54,10 +54,10 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
   {
     title: "Network",
-    value: getRandomValue(120, 125, 0),
+    value: getRandomValue(90, 160, 0),
     titleunit: "Kbps",
     max: 240,
-    chart:"none"
+    chart:"line"
 
   },
   {
@@ -88,6 +88,8 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
+
+        
       <group data-gap="20">
         <group data-direction="column">
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
@@ -123,7 +125,7 @@ const Dashboard: React.FC = () => {
         {monitorCard.map((item, index) => (
           <group
             data-contain=""
-            data-background={item.color ? "main" : "context"}
+         //  data-background={item.chart === "line" ? "secondary-lighter" : "main-background"}
             data-color={item.color ? "main-text" : ""}
             key={index}
             data-space={item.chart === "line" ? "" : "20"}
@@ -169,16 +171,23 @@ const Dashboard: React.FC = () => {
 
 
             <group
-              
-             // data-background={item.chart === "line" ? "main" : ""}
+           
+            //  style={{ mask: 'url(#mask1)' }}
+            //   data-background={item.chart === "line" ? "red" : ""}
               data-space={item.chart === "line" ? "30" : ""}
              data-color={item.chart === "line" ? "main-text" : ""}
               data-direction="column"
               data-align="center"
+              data-justify="center"
               data-bottom="0"
-              data-position={item.chart === "line" ? "absolute" : ""}
+           // data-height={item.chart === "line" ? "fit" : ""}
+               data-position={item.chart === "line" ? "absolute" : ""}
             >
-              <group data-weight="700" data-text-size="x-large" data-width="auto">
+              <group 
+              data-weight="700" 
+              data-text-size={item.chart === "line" ? "xx-large" : "x-large"}
+               data-width="auto"
+               >
                 <text >{item.value}</text>
 
                 {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}
