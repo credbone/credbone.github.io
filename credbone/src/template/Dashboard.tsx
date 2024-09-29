@@ -58,7 +58,6 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     titleunit: "Kbps",
     max: 240,
     chart:"line"
-
   },
   {
     title: "FPS",
@@ -164,7 +163,7 @@ const Dashboard: React.FC = () => {
             )}
             
             {item.chart === "line" && item.max && (
-              <group data-direction="column" >
+              <group data-direction="column" data-height="fit" >
                 <LineChart value={parseFloat(item.value)} max={item.max} />
               </group>
             )}
@@ -180,15 +179,26 @@ const Dashboard: React.FC = () => {
               data-align="center"
               data-justify="center"
               data-bottom="0"
-           // data-height={item.chart === "line" ? "fit" : ""}
+            //data-height={item.chart === "line" ? "fit" : ""}
                data-position={item.chart === "line" ? "absolute" : ""}
             >
               <group 
               data-weight="700" 
-              data-text-size={item.chart === "line" ? "xx-large" : "x-large"}
+              data-text-size={item.chart === "line" ? "" : "x-large"}
                data-width="auto"
                >
-                <text >{item.value}</text>
+
+{item.chart != "line" && item.max && (
+              <group data-direction="column" data-height="fit" >
+                      <text  
+                       >{item.value}</text>
+              </group>
+            )}
+                
+     
+
+
+                
 
                 {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}
               </group>
@@ -207,7 +217,7 @@ const Dashboard: React.FC = () => {
         ))}
       </group>
 
-      <separator data-horizontal="" data-max-length="700"></separator>
+      <separator data-horizontal="" data-max-length="900"></separator>
     </group>
   );
 };

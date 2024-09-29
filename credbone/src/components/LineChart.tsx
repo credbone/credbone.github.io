@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 
 interface LineChartProps {
   value: number;
   max: number;
-  
 }
+
+
 
 const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
   const [data, setData] = useState<number[]>([value]);
+
+  const maskid = useId();
 
   useEffect(() => {
     // Update the data array whenever 'value' changes
     setData((prevData) => {
       const newData = [...prevData, value];
-      return newData.length > 10 ? newData.slice(1) : newData;
+      return newData.length > 7 ? newData.slice(1) : newData;
     });
   }, [value]);
 
@@ -45,9 +48,9 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     })
     .join(" ");
 
-  const fillPath = `${smoothPath} L ${coordinates[coordinates.length - 1].x},${totalHeight} L ${
-    coordinates[0].x
-  },${totalHeight} Z`;
+  const fillPath = `${smoothPath} L ${
+    coordinates[coordinates.length - 1].x
+  },${totalHeight} L ${coordinates[0].x},${totalHeight} Z`;
 
   return (
     <svg
@@ -55,44 +58,45 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
       preserveAspectRatio="none"
       width="100%"
       height="100%"
-            xmlns="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
     >
+      <mask id={maskid}>
+        <path data-duration="1" d={fillPath} fill="#fff" />
+      </mask>
 
+      <foreignObject width="100%" height="100%">
+        <group
+          data-align="center"
+          data-justify="center"
+          data-direction="column"
+          data-height="fit"
+          // data-background="secondary"
+          // data-color="secondary-text"
+        >
+          <text data-weight="800" data-text-size="xx-large">
+            {value}
+          </text>
+        </group>
+      </foreignObject>
 
-      
+      <path d={fillPath} data-fill="main" />
 
-{/* <defs>
-
-<mask id="mask1"   >
-     
-        <rect   width="100%"
-      height="100%"     fill="#000" />
-
-        <path d={fillPath} fill="#fff"></path>
-        </mask>
-</defs> */}
-
-
-    
-
-      {/* Fill area below the line */}
-      <path
-       //data-duration=".325" 
-       d={fillPath} data-fill="main" />
-
-
-      {/* <foreignObject  
-     
-     mask="url(#mask1)"
-      
-      width="100%"
-      height="100%">
-
-
-
-      </foreignObject> */}
-
-
+      <foreignObject width="100%" height="100%" mask={`url(#${maskid})`}>
+        <group
+          data-align="center"
+          data-justify="center"
+          data-direction="column"
+          data-height="fit"
+        >
+          <text
+            data-weight="800"
+            data-text-size="xx-large"
+            data-color="main-text"
+          >
+            {value}
+          </text>
+        </group>
+      </foreignObject>
     </svg>
   );
 };
