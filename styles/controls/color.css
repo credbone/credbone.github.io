@@ -95,7 +95,7 @@
 [data-background="context"]{ background-color: var(--context) }
 
 
-[data-fill="main"] { fill: var(--main-color) }
+
 
 
 [data-background="main-lighter"] { background-color: var(--main-color-lighter) }
