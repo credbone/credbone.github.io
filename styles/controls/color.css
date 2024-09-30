@@ -348,6 +348,7 @@
 [data-stroke="secondary"] { stroke: var(--secondary-color) }
 
 [data-fill="main"] { fill: var(--main-color) }
+[data-fill="main-text"] { fill: var(--main-color-text) }
 [data-fill="secondary"] { fill: var(--secondary-color) }
 
 
