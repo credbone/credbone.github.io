@@ -63,7 +63,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
 
   {
     title: "Sample",
-    value: getRandomValue(90, 270, 0),
+    value: getRandomValue(90, 160, 0),
     titleunit: "Kbps",
     max: 360,
     chart:"gaugezoom"
@@ -175,19 +175,7 @@ const Dashboard: React.FC = () => {
 
 
 
-            {item.chart === "gaugezoom" && item.max &&  (
-              <group data-direction="column" data-height="fit"  data-position="absolute">
 
-
-                    <GaugeZoom
-                      value={parseFloat(item.value)}
-                      max={item.max}
-                      size={100}
-                    />
-                  </group>
-
-
-            )}
             
 
             
@@ -241,6 +229,23 @@ const Dashboard: React.FC = () => {
                 )}
               </group>
             </group>
+
+            {item.chart === "gaugezoom" && item.max &&  (
+              <group data-direction="column" data-height="fit"  data-align="center"  >
+
+
+
+<GaugeZoom
+                      value={parseFloat(item.value)}
+                      max={item.max}
+                      size={100}
+                    />
+
+                  </group>
+
+
+            )}
+
           </group>
         ))}
       </group>
