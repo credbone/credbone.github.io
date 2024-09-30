@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Gauge from "../components/Gauge";
 import LineChart from "../components/LineChart";
+import GaugeZoom from "../components/GaugeZoom";
 
 // Utility function to generate random values
 const getRandomValue = (
@@ -13,7 +14,7 @@ const getRandomValue = (
 };
 
 
-type ChartType = "gauge" | "line" | "none";
+type ChartType = "gauge" | "line" | "none" | "gaugezoom";
 
 // Define the type for MonitorCard items
 interface MonitorCardType {
@@ -59,6 +60,15 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     max: 240,
     chart:"line"
   },
+
+  {
+    title: "Sample",
+    value: getRandomValue(90, 270, 0),
+    titleunit: "Kbps",
+    max: 360,
+    chart:"gaugezoom"
+  },
+
   {
     title: "FPS",
     value: getRandomValue(200, 240, 0),
@@ -161,6 +171,25 @@ const Dashboard: React.FC = () => {
 
                             </group>
             )}
+            
+
+
+
+            {item.chart === "gaugezoom" && item.max &&  (
+              <group data-direction="column" data-height="fit"  data-position="absolute">
+
+
+                    <GaugeZoom
+                      value={parseFloat(item.value)}
+                      max={item.max}
+                      size={100}
+                    />
+                  </group>
+
+
+            )}
+            
+
             
             {item.chart === "line" && item.max && (
               <group data-direction="column" data-height="fit" >
