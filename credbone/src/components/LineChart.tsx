@@ -64,39 +64,18 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
         <path data-duration="1" d={fillPath} fill="#fff" />
       </mask>
 
-      <foreignObject width="100%" height="100%">
-        <group
-          data-align="center"
-          data-justify="center"
-          data-direction="column"
-          data-height="fit"
-          // data-background="secondary"
-          // data-color="secondary-text"
-        >
-          <text data-weight="800" data-text-size="xx-large">
+      <text x="50%" y="50%" data-weight="800" dominant-baseline="middle" text-anchor="middle" data-text-size="xx-large">
             {value}
           </text>
-        </group>
-      </foreignObject>
 
       <path d={fillPath} data-fill="main" />
 
-      <foreignObject width="100%" height="100%" mask={`url(#${maskid})`}>
-        <group
-          data-align="center"
-          data-justify="center"
-          data-direction="column"
-          data-height="fit"
-        >
-          <text
-            data-weight="800"
-            data-text-size="xx-large"
-            data-color="main-text"
-          >
+      
+      <text  x="50%" y="50%" data-weight="800" dominant-baseline="middle" text-anchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="xx-large">
             {value}
           </text>
-        </group>
-      </foreignObject>
+
+
     </svg>
   );
 };

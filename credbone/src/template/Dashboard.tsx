@@ -188,10 +188,9 @@ const Dashboard: React.FC = () => {
                data-width="auto"
                >
 
-{item.chart != "line" && item.max && (
+{item.chart !== "line" && item.max && (
               <group data-direction="column" data-height="fit" >
-                      <text  
-                       >{item.value}</text>
+                      <text>{item.value}</text>
               </group>
             )}
                 
