@@ -185,22 +185,40 @@ const Dashboard: React.FC = () => {
               </group>
             )}
 
+            
+            {item.chart === "gaugezoom" && item.max &&  (
+              <group data-direction="column" data-height="fit"  data-align="center"  >
+
+
+
+<GaugeZoom
+                      value={parseFloat(item.value)}
+                      max={item.max}
+                      size={100}
+                    />
+
+                  </group>
+
+
+            )}
+
 
             <group
            
             //  style={{ mask: 'url(#mask1)' }}
             //   data-background={item.chart === "line" ? "red" : ""}
-              data-space={item.chart === "line" ? "30" : ""}
+              data-space={item.chart === "line" || item.chart === "gaugezoom" ? "30" : ""}
              data-color={item.chart === "line" ? "main-text" : ""}
               data-direction="column"
               data-align="center"
               data-justify="center"
               data-bottom="0"
             //data-height={item.chart === "line" ? "fit" : ""}
-               data-position={item.chart === "line" ? "absolute" : ""}
+            data-position={item.chart === "line" || item.chart === "gaugezoom" ? "absolute" : ""}
+
             >
               <group 
-              data-weight="700" 
+              data-weight="700"
               data-text-size={item.chart === "line" ? "" : "x-large"}
                data-width="auto"
                >
@@ -211,6 +229,8 @@ const Dashboard: React.FC = () => {
               </group>
             )}
                 
+
+
      
 
 
@@ -230,21 +250,7 @@ const Dashboard: React.FC = () => {
               </group>
             </group>
 
-            {item.chart === "gaugezoom" && item.max &&  (
-              <group data-direction="column" data-height="fit"  data-align="center"  >
 
-
-
-<GaugeZoom
-                      value={parseFloat(item.value)}
-                      max={item.max}
-                      size={100}
-                    />
-
-                  </group>
-
-
-            )}
 
           </group>
         ))}
