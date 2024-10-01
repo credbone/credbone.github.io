@@ -14,6 +14,19 @@ const getRandomValue = (
 };
 
 
+const getRandomStepValue = (
+  min: number,
+  max: number,
+  step: number,
+  decimals: number = 0
+): string => {
+  const factor = Math.pow(10, decimals);
+  const steps = Math.floor((max - min) / step);
+  const randomStep = Math.floor(Math.random() * (steps + 1));
+  const value = min + randomStep * step;
+  return value.toFixed(decimals);
+};
+
 type ChartType = "gauge" | "line" | "none" | "gaugezoom";
 
 // Define the type for MonitorCard items
@@ -62,9 +75,9 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
 
   {
-    title: "Sample",
-    value: getRandomValue(90, 160, 0),
-    titleunit: "Kbps",
+    title: "Sample",  
+    value: getRandomStepValue(90, 160, 5),
+    unit: "°",
     max: 360,
     chart:"gaugezoom"
   },
