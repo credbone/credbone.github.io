@@ -83,3 +83,17 @@
 
 
 
+[data-delay="1"] {transition-delay: 0.1s;}
+[data-delay="1.25"] {transition-delay: 0.125s;}
+[data-delay="1.5"] {transition-delay: 0.15s;}
+[data-delay="1.75"] {transition-delay: 0.175s;}
+[data-delay="2"] {transition-delay: 0.2s;}
+[data-delay="2.25"] {transition-delay: 0.225s;}
+[data-delay="2.5"] {transition-delay: 0.25s;}
+[data-delay="3"] {transition-delay: 0.3s;} /* Added for 3 */
+[data-delay="3.25"] {transition-delay: 0.325s;} /* Added for 3.25 */
+[data-delay="3.5"] {transition-delay: 0.35s;} /* Added for 3.5 */
+[data-delay="3.75"] {transition-delay: 0.375s;} /* Added for 3.75 */
+[data-delay="4"] {transition-delay: 0.4s;} /* Added for 4 */
+
+[data-delay="7.25"] {transition-delay: 0.725s;} /* Added for 4 */
