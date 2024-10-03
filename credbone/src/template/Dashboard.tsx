@@ -9,7 +9,7 @@ const getRandomValue = (
   max: number,
   decimals: number = 0
 ): string => {
-  const factor = Math.pow(10, decimals);
+ // const factor = Math.pow(10, decimals);
   return (Math.random() * (max - min) + min).toFixed(decimals);
 };
 
@@ -20,7 +20,7 @@ const getRandomStepValue = (
   step: number,
   decimals: number = 0
 ): string => {
-  const factor = Math.pow(10, decimals);
+  //const factor = Math.pow(10, decimals);
   const steps = Math.floor((max - min) / step);
   const randomStep = Math.floor(Math.random() * (steps + 1));
   const value = min + randomStep * step;
@@ -75,7 +75,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
 
   {
-    title: "Sample",  
+    title: "Angle Gouge",  
     value: getRandomStepValue(90, 160, 5),
     unit: "°",
     max: 360,
@@ -86,6 +86,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     title: "FPS",
     value: getRandomValue(200, 240, 0),
     max: 240,
+    chart:"none"
 
   },
 ];
