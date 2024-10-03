@@ -29,6 +29,18 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     });
   }, [value]);
 
+
+  // useEffect(() => {
+  //   setData((prevData) => {
+  //     const newData = [...prevData, value];
+  //     if (newData.length > 8) {
+  //       return newData.slice(newData.length - 7); 
+  //     }
+  //     return newData;
+  //   });
+  // }, [value]);
+
+
   const height = 50;
   const extraSpace = 100;
   const totalHeight = height + extraSpace;
