@@ -21,6 +21,7 @@ import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
 import StuckReporter from "../components/StuckReporter";
+import { Link } from "react-router-dom";
 
 
 
@@ -293,11 +294,13 @@ const Cards: React.FC = () => {
         >
           Cards & List
         </text>
-        <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
+        <text data-wrap="wrap" data-length="600" data-line="1.5" data-light="">
           A card is an excellent tool for displaying content and actions related
           to a single subject, offering a cohesive presentation of multiple
           elements that vary in type and size.
         </text>
+
+
       </group>
 
       <StuckReporter>
@@ -358,6 +361,10 @@ const Cards: React.FC = () => {
       <group data-type="grid" data-grid-template={gridTemplate} data-gap="10">
         <ViewComponent selectedKey={selectedKey} onSelect={handleSelect}/>
       </group>
+
+<group>
+<text data-wrap="wrap" data-length="600" data-line="1.5">Please note, the women portrayed are entirely digital creations, crafted with precision. For more captivating visuals, an account on <Link data-link="" to="https://www.instagram.com/musesincode/" target="_blank">Instagram</Link> holds them all</text>
+</group>
 
     </group>
   );
