@@ -166,7 +166,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
     {ContentData.map((item) => (
 <Ripple key={item.key}>
 <group
-      
+      data-max-length="700"
       key={item.key}
       data-space="10"
       data-gap="5"

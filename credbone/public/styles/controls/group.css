@@ -147,5 +147,6 @@ group[data-adaptive="mobile"] {display: none;}
 
 
 [data-row-end="2"] {grid-row-end: span 2;}
+[data-row-end="3"] {grid-row-end: span 3;}
 
 /* stylelint-enable */

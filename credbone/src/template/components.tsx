@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import sampleImage from "../styles/images/samples/res_34.jpg";
-import sampleImage_3 from "../styles/images/samples/list_res/res-05.jpg";
+import sampleImage_3 from "../styles/images/samples/list_res/res-06.jpg";
 import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import StuckReporter from "../components/StuckReporter";
@@ -15,10 +15,12 @@ const linksArray = [
   { picture:"", long: "",   color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons" },
   { picture: sampleImage_3, long: "true",   color: "", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
   { picture:"", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers" },
-  { picture:"", long: "true",   color: "secondary", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
-  { picture:"", long: "",   color: "main", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation" },
+  { picture:"", long: "true",   color: "", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
+  { picture:"", long: "",   color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation" },
   { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms" },
   { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
+  { picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
+  { picture: "", long: "", color: "", title: "Miscellaneous", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Miscellaneous" },
 
 ];
 
@@ -62,16 +64,16 @@ const Components: React.FC = () => {
             data-gap="20"
             data-radius="20"
             data-space="40"
-            data-background="main"
-            data-color="main-text"
+            // data-background="main"
+            // data-color="main-text"
             data-align="center"
             data-justify="center"
             data-text-align="center"
-            data-min-height="300"
+           // data-min-height="300"
           >
             <text
               data-weight="700"
-              data-text-size="64"
+              data-text-size="48"
               data-wrap="wrap"
               data-ellipsis=""
             >
@@ -79,25 +81,27 @@ const Components: React.FC = () => {
             </text>
 
             <text
-              data-wrap="balance"
-              data-length="500"
+              data-wrap="wrap"
+              data-length="600"
               data-line="20"
               data-opacity="70"
             >
-              This platform offers a collection of carefully crafted UI
+              This platform demos a collection of carefully crafted UI
               components, each designed with attention to detail and a deep
               understanding of UI patterns.
             </text>
 
             <Ripple>
             <Link
+            data-contain=""
             data-drag="none"
             data-type="group"
                 to="/Home/Typeface"
                 data-interactive=""
                 data-width="auto"
-                data-background="main-text"
-                data-color="main"
+                data-border="outline"
+              //  data-background="main-text"
+              //  data-color="main"
                 data-space-horizontal="30"
                 data-space-vertical="15"
                 data-radius="30"
@@ -114,7 +118,7 @@ const Components: React.FC = () => {
           </group>
         </group>
 
-        <StuckReporter>
+        {/* <StuckReporter>
           {(isSticky) => (
             <group
             //  data-space-vertical={isSticky ? "15" : "0"}
@@ -140,7 +144,7 @@ const Components: React.FC = () => {
               </group>
             </group>
           )}
-        </StuckReporter>
+        </StuckReporter> */}
 
         <group
           data-space-horizontal="30"
@@ -149,9 +153,9 @@ const Components: React.FC = () => {
           data-align="start"
         >
           <group
-            data-gap="15"
+            data-gap="10"
             data-type="grid"
-            data-grid-template="240"
+            data-grid-template="200"
             data-weight="600"
           >
             {linksArray.map((link, index) => (
@@ -166,16 +170,17 @@ const Components: React.FC = () => {
                 data-min-height="200"
                 data-border="outline"
                 data-radius="20"
-                data-space="10"
+                data-space="5"
                 data-background={link.color ? link.color : "context"}
                 data-color={link.color ? link.color + "-text" : ""}
                 data-row-end={link.long ? "2" : ""}
+                data-direction="column"
               >
                 {link.picture ? (
-                  <group data-height="240">
+                  <group data-height="240" data-mask="">
                     <picture
                       data-brightness="adaptive"
-                      data-radius="10"
+                      data-radius-top="15"
                       data-contain=""
                     >
                       <img src={link.picture} alt="" />
@@ -188,12 +193,12 @@ const Components: React.FC = () => {
                 <group
                   data-index="1"
                   data-direction="column"
-                  data-gap="15"
+                  data-gap="10"
                   data-space="20"
                   data-align="start"
                 >
                   <text
-                    data-text-size="x-large"
+                    data-text-size="large"
                     data-weight="700"
                     data-wrap="wrap"
                     data-ellipsis=""
