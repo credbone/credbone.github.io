@@ -422,7 +422,7 @@ picture img{ pointer-events: none; transform-origin: bottom center; object-fit: 
 picture[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent); mask-image: linear-gradient(black 50%, transparent); }
 
 
-[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent); mask-image: linear-gradient(black 50%, transparent); }
+[data-mask] { -webkit-mask-image: linear-gradient(black 0%, transparent); mask-image: linear-gradient(black 0%, transparent); }
 
 
 picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:auto;max-height: 100%;max-width: 100%;}
