@@ -8,7 +8,7 @@ import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
 import { IconSearch, IconStar } from "../components/icon/credIcons";
-import sampleImage from "../styles/images/samples/res_42.jpg";
+import sampleImage from "../styles/images/samples/res_52.jpg";
 import SideNav from "./sideNav";
 
 // Demo Data

@@ -1,6 +1,6 @@
 import React from "react";
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/res_41.jpg";
+import sampleImage from "../styles/images/samples/res_52.jpg";
 import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";

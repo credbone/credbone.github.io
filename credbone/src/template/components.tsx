@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import sampleImage from "../styles/images/samples/res_34.jpg";
-import sampleImage_3 from "../styles/images/samples/list_res/res-06.jpg";
+import sampleImage from "../styles/images/samples/res_50.jpg";
+import sampleImage_2 from "../styles/images/samples/res_53.jpg";
+import sampleImage_3 from "../styles/images/samples/res_51.jpg";
 import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import StuckReporter from "../components/StuckReporter";
@@ -10,12 +11,12 @@ import Ripple from "../components/Ripple";
 import TextReveal from "../components/TextReveal";
 
 const linksArray = [
-  { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
   { picture:sampleImage, long: "true", color: "", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons" },
+  { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
   { picture:"", long: "",   color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons" },
   { picture: sampleImage_3, long: "true",   color: "", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
   { picture:"", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers" },
-  { picture:"", long: "true",   color: "", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
+  { picture:sampleImage_2, long: "true",   color: "", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
   { picture:"", long: "",   color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation" },
   { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms" },
   { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
@@ -177,7 +178,9 @@ const Components: React.FC = () => {
                 data-direction="column"
               >
                 {link.picture ? (
-                  <group data-height="240" data-mask="">
+                  <group data-height="240" data-mask="" 
+                //  data-mix-blend-mode="overlay"
+                  >
                     <picture
                       data-brightness="adaptive"
                       data-radius-top="15"

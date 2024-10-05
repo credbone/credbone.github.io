@@ -6,8 +6,8 @@ import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
 
 
-import sampleImage from "../styles/images/samples/res_20.jpg";
-import sampleImage_2 from "../styles/images/samples/res_31.jpg";
+import sampleImage from "../styles/images/samples/res_50.jpg";
+import sampleImage_2 from "../styles/images/samples/res_53.jpg";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
