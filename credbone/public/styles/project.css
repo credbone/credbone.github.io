@@ -20,7 +20,7 @@
   
     [data-theme="dark"] [data-brightness="adaptive"]{filter: brightness(.5);}
 
-
+.selected [data-brightness="adaptive"]{filter: brightness(1);}
 
 
 

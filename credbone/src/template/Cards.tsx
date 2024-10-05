@@ -3,16 +3,16 @@ import OptionBar from "../components/inputs/optionBar";
 import Radio, { RadioType } from "../components/inputs/radio";
 import { FieldValues, useForm, Controller } from "react-hook-form";
 
-import list_res_1 from "../styles/images/samples/list_res/res-01.jpg";
-import list_res_2 from "../styles/images/samples/list_res/res-02.jpg";
-import list_res_3 from "../styles/images/samples/list_res/res-03.jpg";
-import list_res_4 from "../styles/images/samples/list_res/res-04.jpg";
-import list_res_5 from "../styles/images/samples/list_res/res-05.jpg";
-import list_res_6 from "../styles/images/samples/list_res/res-06.jpg";
-import list_res_7 from "../styles/images/samples/list_res/res-07.jpg";
-import list_res_8 from "../styles/images/samples/list_res/res-08.jpg";
-import list_res_9 from "../styles/images/samples/list_res/res-09.jpg";
-import list_res_10 from "../styles/images/samples/list_res/res-10.jpg";
+import list_res_1 from  "../styles/images/samples/ai_res/res-01.jpg";
+import list_res_2 from  "../styles/images/samples/ai_res/res-02.jpg";
+import list_res_3 from  "../styles/images/samples/ai_res/res-03.jpg";
+import list_res_4 from  "../styles/images/samples/ai_res/res-04.jpg";
+import list_res_5 from  "../styles/images/samples/ai_res/res-05.jpg";
+import list_res_6 from  "../styles/images/samples/ai_res/res-06.jpg";
+import list_res_7 from  "../styles/images/samples/ai_res/res-07.jpg";
+import list_res_8 from  "../styles/images/samples/ai_res/res-08.jpg";
+import list_res_9 from  "../styles/images/samples/ai_res/res-09.jpg";
+import list_res_10 from "../styles/images/samples/ai_res/res-10.jpg";
 
 
 import Ripple from "../components/Ripple";
@@ -125,7 +125,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
     {ContentData.map((item) => (
       <group
         key={item.key}
-        data-space="10"
+        data-space="5"
         data-gap="5"
         data-radius="20"
         data-direction="column"
@@ -138,7 +138,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
         
       >
 
-<group data-ratio="1:1"  data-radius="15" data-contain="" data-background="highlight"  >
+<group data-ratio="4:5"  data-radius="15" data-contain="" data-background="highlight"  >
           <picture  data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
         </group>
         
@@ -168,9 +168,9 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 <group
       data-max-length="700"
       key={item.key}
-      data-space="10"
+      data-space="5"
       data-gap="5"
-      data-radius="20"
+      data-radius="15"
      // data-direction="column"
      // data-border=""
       data-wrap="no"
@@ -186,7 +186,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
 
 
 
-<group data-ratio="1:1"  data-length="60"  data-radius="15" data-contain="" data-index="1">
+<group data-ratio="1:1"  data-length="60"  data-radius="10" data-contain="" data-index="1">
         <picture data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
       </group>
 
@@ -225,7 +225,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
       onClick={() => onSelect(item.key)}
     >
 <group>
-<group data-ratio="1:1"  data-length="60"  data-radius="15" data-contain="">
+<group data-ratio="1:1"  data-length="60"  data-radius="10" data-contain="">
         <picture data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
       </group>
 <Popover  content={<ContentToolbar count={item.count} />} data-space="5" data-radius="15">
