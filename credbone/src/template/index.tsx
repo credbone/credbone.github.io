@@ -26,6 +26,7 @@ import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
 import StuckReporter from "../components/StuckReporter";
 import Dashboard from "./Dashboard";
+import Modal from "./Modal";
 
 const Template: React.FC = () => {
   const location = useLocation();
@@ -74,6 +75,7 @@ const Template: React.FC = () => {
             <Route path="CardsAndList" element={<Cards />} />
             <Route path="Miscellaneous" element={<Miscellaneous />} />
             <Route path="Dashboard" element={<Dashboard />} />
+            <Route path="Modal" element={<Modal />} />
           </Routes>
           <StuckReporter>
             {(isSticky) => (

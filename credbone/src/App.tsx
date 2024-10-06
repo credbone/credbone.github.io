@@ -19,6 +19,7 @@ import TitleUpdater from "./components/TitleUpdater";
 import Search from "./pages/search/search";
 import Components from "./template/components";
 import Resume from "./pages/resume";
+import { ModalProvider } from "./components/Modal";
 
 
 
@@ -27,8 +28,9 @@ function App() {
   return (
     <>
       <Router>
-
       <TitleUpdater />
+      <ModalProvider>
+     
 
         <group
          
@@ -51,7 +53,7 @@ function App() {
 
           </group>
         </group>
-        <SnackbarContainer>
+
           <view data-vertical="">
             <VerticalNav data-adaptive="desktop" data-print="hide" />
             <Routes>
@@ -66,7 +68,7 @@ function App() {
             </Routes>
           </view>
           <div id="popover-container" data-max-length="fit"></div>
-        </SnackbarContainer>
+          </ModalProvider>
       </Router>
     </>
   );

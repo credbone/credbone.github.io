@@ -22,6 +22,7 @@ import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
 import StuckReporter from "../components/StuckReporter";
 import { Link } from "react-router-dom";
+import { useModal } from "../components/Modal";
 
 
 
@@ -121,8 +122,11 @@ const ViewSwitch = [
   { key: "3", name: "ViewSwitch", value: "GridView", label: "Grid Layout", icon: "view_stream" },
 ];
 
-const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
-  <>
+const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
+
+  const { openModal } = useModal(); 
+  return (
+    <>
     {ContentData.map((item) => (
       <group
         key={item.key}
@@ -136,7 +140,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
         onClick={() => onSelect(item.key)}
         data-interactive=""
         data-cursor="pointer"
-        
+    //    onDoubleClick={() => openModal(item.title,  <picture  data-position="center"> <img src={item.image} alt={item.title} /> </picture>)}
       >
 
 <group data-ratio="4:5"  data-radius="15" data-contain="" data-background="highlight"  >
@@ -160,7 +164,9 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
       </group>
     ))}
   </>
-);
+  )
+
+};
 
 const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => (
   <>
@@ -265,6 +271,7 @@ type TemplateProps = {
 };
 
 const Cards: React.FC = () => {
+  
   const { control, watch } = useForm<FieldValues>({
     defaultValues: {
       ViewSwitch: "ListView",
@@ -371,3 +378,4 @@ const Cards: React.FC = () => {
 };
 
 export default Cards;
+

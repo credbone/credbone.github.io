@@ -5,10 +5,22 @@ import { Link } from "react-router-dom";
 
 const links = [
   { name: "Resume", url: "/Resume" },
-  { name: "Linkedin", url: "https://www.linkedin.com/in/sargsyanruben", target: "_blank", },
-  { name: "Behance", url: "https://www.behance.net/sargsyan", target: "_blank", },
+  {
+    name: "Linkedin",
+    url: "https://www.linkedin.com/in/sargsyanruben",
+    target: "_blank",
+  },
+  {
+    name: "Behance",
+    url: "https://www.behance.net/sargsyan",
+    target: "_blank",
+  },
   { name: "Dribbble", url: "https://dribbble.com/sargsyan", target: "_blank" },
 ];
+
+const handleReload = () => {
+  window.location.reload(); // Reloads the entire page
+};
 
 function About() {
   return (
@@ -48,18 +60,47 @@ function About() {
           data-fill-mode="backwards"
           data-animation-duration="1.75"
           data-direction="column"
-          data-gap="10"
+          //data-gap="10"
+          data-align="start"
+           data-width="auto"
         >
-          <group data-align="center" data-gap="10">
-            <text>Build Date & Time</text>
-            <separator data-vertical="" data-height="20"></separator>
-            <text data-weight="700">{buildInfo.buildDateTime}</text>
-          </group>
-          <group data-align="center" data-gap="10">
-            <text>Version</text>
-            <separator data-vertical="" data-height="20"></separator>
+
+<group
+            data-wrap="no"
+            data-align="center"
+            data-gap="10"
+            data-contain=""
+            data-space-vertical="10"
+            //data-border=""
+            data-radius="10"
+            data-width="auto"
+          >
+            <text data-ellipsis="" >Version</text>
+
             <text data-weight="700">{buildInfo.version}</text>
           </group>
+          <group
+            onClick={handleReload}
+            data-align="center"
+            data-gap="10" 
+            data-contain=""
+            data-space-vertical="10"
+           // data-interactive=""
+            data-cursor="pointer"
+            data-radius="10"
+            data-width="auto"
+            data-wrap="no"
+           // data-background="highlight"
+         //  data-type="link"
+
+          >
+            <text data-ellipsis="">Build Date & Time</text>
+
+            <text data-ellipsis="" data-weight="700">
+              {buildInfo.buildDateTime}
+            </text>
+          </group>
+
         </group>
       </group>
 
