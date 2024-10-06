@@ -75,7 +75,7 @@ const generateMonitorCardData = (): MonitorCardType[] => [
   },
 
   {
-    title: "Angle Gouge",  
+    title: "Angle Gauge",  
     value: getRandomStepValue(90, 160, 5),
     unit: "°",
     max: 360,

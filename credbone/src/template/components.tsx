@@ -160,7 +160,9 @@ const Components: React.FC = () => {
             data-weight="600"
           >
             {linksArray.map((link, index) => (
-              <Link
+<Ripple>
+<Link
+//data-react="scale"
                data-drag="none"
                 to={link.to}
                 key={index}
@@ -179,11 +181,13 @@ const Components: React.FC = () => {
               >
                 {link.picture ? (
                   <group data-height="240" data-mask="" 
+                     data-radius-top="15"
+                     data-contain=""
                 //  data-mix-blend-mode="overlay"
                   >
                     <picture
                       data-brightness="adaptive"
-                      data-radius-top="15"
+                   
                       data-contain=""
                     >
                       <img src={link.picture} alt="" />
@@ -219,6 +223,7 @@ const Components: React.FC = () => {
                   </text>
                 </group>
               </Link>
+</Ripple>
             ))}
           </group>
         </group>
