@@ -118,7 +118,7 @@ const Modal: React.FC = () => {
           data-background="context"
         >
           {modalData.map(({ title, content }, index) => (
-            <group data-gap="15" data-name="separation">
+            <group key={index} data-gap="15" data-name="separation">
               <separator data-horizontal=""></separator>
               <group>
                 <group
@@ -128,8 +128,8 @@ const Modal: React.FC = () => {
                   data-space="15"
                   data-radius="10"
                   data-cursor="pointer"
-                  key={index}
-                  onClick={() => openModal(title, <group data-space="30"><text data-wrap="wrap">{content}</text></group>
+                  
+                  onClick={() => openModal(title, <group data-length="400" data-space="15"><text data-wrap="wrap">{content}</text></group>
                   )}
                 >
                   <text> Open {title}</text>

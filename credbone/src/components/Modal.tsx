@@ -23,7 +23,7 @@ const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
       data-height="fit"
       data-position="absolute"
       data-name="modal-backdrop"
-     // onClick={onClose}
+      // onClick={onClose}
     >
       <group
         data-radius="15"
@@ -35,21 +35,59 @@ const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
         data-max-height="fit"
         data-contain=""
         data-elevation="1"
-     //   onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
+        //   onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
       >
-        <group 
-        data-align="center"
-        data-space="10"
-        >
-          <text data-space="5" data-weight="700">{title}</text>
+        <group data-align="center" data-space="10">
+          <text data-space="5" data-weight="700">
+            {title}
+          </text>
           <Button data-position="right" icon="close" onClick={onClose}></Button>
         </group>
 
-        <group 
-         data-max-height="fit"
-        data-contain=""
-        >
+        <group data-max-height="fit" data-contain="">
           {content}
+        </group>
+
+        <group data-name="modal-toolbar" data-space="20"  data-gap="20">
+          <separator data-horizontal=""></separator>
+
+          <group
+            data-gap="10"
+            data-type="grid"
+            data-grid-template="120"
+          //  data-space="10"
+          >
+            <group
+              onClick={onClose}
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+              // data-length="180"
+              data-align="center"
+              data-direction="column"
+              // data-background="main-lighter"
+            >
+              <text data-weight="700">Cancel</text>
+            </group>
+
+            <group
+              onClick={onClose}
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+              // data-length="180"
+              data-align="center"
+              data-direction="column"
+              data-background="main"
+              data-color="main-text"
+            >
+              <text data-weight="700">OK</text>
+            </group>
+          </group>
         </group>
       </group>
     </group>
