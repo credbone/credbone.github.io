@@ -1,4 +1,10 @@
-import React, { useState, createContext, useContext, ReactNode, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 import Button from "./button";
 
 // Modal Component
@@ -23,9 +29,6 @@ const Modal: React.FC<ModalProps> = ({
   dimClose = false,
   isTopmost,
 }) => {
-
-  
-
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (isOpen && isTopmost && event.key === "Escape") {
@@ -39,7 +42,6 @@ const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, onClose, isTopmost]);
 
-
   const handleBackdropClick = () => {
     if (dimClose || (!hasHeader && !hasToolbar)) {
       onClose(); // Close if dimClose is true or both header and toolbar are hidden
@@ -52,17 +54,17 @@ const Modal: React.FC<ModalProps> = ({
     <group
       data-top="0"
       data-index="1"
-      data-space="10"
+      data-space="20"
       data-direction="column"
       data-align="center"
       data-justify="center"
       data-height="fit"
       data-position="absolute"
       data-name="modal-backdrop"
-      onClick={handleBackdropClick} 
+      onClick={handleBackdropClick}
     >
       <group
-        data-radius="20"
+        data-radius="15"
         data-direction="column"
         data-width="auto"
         data-background="main-background"
@@ -71,16 +73,19 @@ const Modal: React.FC<ModalProps> = ({
         data-max-height="fit"
         data-contain=""
         data-elevation="1"
-     //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
+        //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
         onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-
       >
         {hasHeader && ( // Render the header only if hasHeader is true
           <group data-name="modal-header" data-align="center" data-space="15">
             <text data-space="5" data-weight="700">
               {title}
             </text>
-            <Button data-position="right" icon="close" onClick={onClose}></Button>
+            <Button
+              data-position="right"
+              icon="close"
+              onClick={onClose}
+            ></Button>
           </group>
         )}
 
@@ -89,16 +94,8 @@ const Modal: React.FC<ModalProps> = ({
         </group>
 
         {hasToolbar && ( // Render the toolbar only if hasToolbar is true
-          <group
-            data-name="modal-toolbar"
-            data-space="30"
-            data-gap="20"
-          >
-            <group
-              data-gap="10"
-              data-type="grid"
-              data-grid-template="120"
-            >
+          <group data-name="modal-toolbar" data-space="30" data-gap="20">
+            <group data-gap="10" data-type="grid" data-grid-template="120">
               <group
                 onClick={onClose}
                 data-contain=""
@@ -190,7 +187,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     );
   };
 
-   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
+  const topmostIndex = modals.reduce((highestIndex, modal, index) => {
     return modal.isOpen ? index : highestIndex;
   }, -1);
 
