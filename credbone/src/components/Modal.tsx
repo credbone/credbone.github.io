@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, ReactNode } from "react";
+import React, { useState, createContext, useContext, ReactNode, useEffect } from "react";
 import Button from "./button";
 
 // Modal Component
@@ -7,9 +7,45 @@ interface ModalProps {
   content: ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  hasHeader?: boolean; // New prop to control the header
+  hasToolbar?: boolean; // New prop to control the toolbar
+  dimClose?: boolean;
+  isTopmost: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
+const Modal: React.FC<ModalProps> = ({
+  title,
+  content,
+  isOpen,
+  onClose,
+  hasHeader = true, // Default true for the header
+  hasToolbar = false, // Default true for the toolbar
+  dimClose = false,
+  isTopmost,
+}) => {
+
+  
+
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (isOpen && isTopmost && event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [isOpen, onClose, isTopmost]);
+
+
+  const handleBackdropClick = () => {
+    if (dimClose || (!hasHeader && !hasToolbar)) {
+      onClose(); // Close if dimClose is true or both header and toolbar are hidden
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -23,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
       data-height="fit"
       data-position="absolute"
       data-name="modal-backdrop"
-      // onClick={onClose}
+      onClick={handleBackdropClick} 
     >
       <group
         data-radius="15"
@@ -35,60 +71,64 @@ const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
         data-max-height="fit"
         data-contain=""
         data-elevation="1"
-        //   onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
+     //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+
       >
-        <group data-align="center" data-space="10">
-          <text data-space="5" data-weight="700">
-            {title}
-          </text>
-          <Button data-position="right" icon="close" onClick={onClose}></Button>
-        </group>
+        {hasHeader && ( // Render the header only if hasHeader is true
+          <group data-name="modal-header" data-align="center" data-space="10">
+            <text data-space="5" data-weight="700">
+              {title}
+            </text>
+            <Button data-position="right" icon="close" onClick={onClose}></Button>
+          </group>
+        )}
 
         <group data-max-height="fit" data-contain="">
           {content}
         </group>
 
-        <group data-name="modal-toolbar" data-space="20"  data-gap="20">
-          <separator data-horizontal=""></separator>
-
+        {hasToolbar && ( // Render the toolbar only if hasToolbar is true
           <group
-            data-gap="10"
-            data-type="grid"
-            data-grid-template="120"
-          //  data-space="10"
+            data-name="modal-toolbar"
+            data-space="30"
+            data-gap="20"
           >
             <group
-              onClick={onClose}
-              data-contain=""
-              data-space="15"
-              data-interactive=""
-              data-cursor="pointer"
-              data-radius="10"
-              // data-length="180"
-              data-align="center"
-              data-direction="column"
-              // data-background="main-lighter"
+              data-gap="10"
+              data-type="grid"
+              data-grid-template="120"
             >
-              <text data-weight="700">Cancel</text>
-            </group>
-
-            <group
-              onClick={onClose}
-              data-contain=""
-              data-space="15"
-              data-interactive=""
-              data-cursor="pointer"
-              data-radius="10"
-              // data-length="180"
-              data-align="center"
-              data-direction="column"
-              data-background="main"
-              data-color="main-text"
-            >
-              <text data-weight="700">OK</text>
+              <group
+                onClick={onClose}
+                data-contain=""
+                data-space="15"
+                data-interactive=""
+                data-cursor="pointer"
+                data-radius="5"
+                data-align="center"
+                data-direction="column"
+                data-background="main"
+                data-color="main-text"
+              >
+                <text data-weight="700">OK</text>
+              </group>
+              <group
+                onClick={onClose}
+                data-contain=""
+                data-space="15"
+                data-interactive=""
+                data-cursor="pointer"
+                data-radius="5"
+                data-align="center"
+                data-direction="column"
+                data-background="context"
+              >
+                <text data-weight="700">Cancel</text>
+              </group>
             </group>
           </group>
-        </group>
+        )}
       </group>
     </group>
   );
@@ -96,7 +136,12 @@ const Modal: React.FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
 
 // Modal Context and Provider Logic
 interface ModalContextType {
-  openModal: (title: string, content: ReactNode) => void;
+  openModal: (
+    title: string,
+    content: ReactNode,
+    hasHeader?: boolean,
+    hasToolbar?: boolean
+  ) => void;
   closeModal: (index: number) => void;
 }
 
@@ -116,11 +161,25 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [modals, setModals] = useState<
-    { title: string; content: ReactNode; isOpen: boolean }[]
+    {
+      title: string;
+      content: ReactNode;
+      isOpen: boolean;
+      hasHeader?: boolean;
+      hasToolbar?: boolean;
+    }[]
   >([]);
 
-  const openModal = (title: string, content: ReactNode) => {
-    setModals((prev) => [...prev, { title, content, isOpen: true }]);
+  const openModal = (
+    title: string,
+    content: ReactNode,
+    hasHeader = true,
+    hasToolbar = false
+  ) => {
+    setModals((prev) => [
+      ...prev,
+      { title, content, isOpen: true, hasHeader, hasToolbar },
+    ]);
   };
 
   const closeModal = (index: number) => {
@@ -130,6 +189,10 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       )
     );
   };
+
+   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
+    return modal.isOpen ? index : highestIndex;
+  }, -1);
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
@@ -141,7 +204,10 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             title={modal.title}
             content={modal.content}
             isOpen={modal.isOpen}
+            hasHeader={modal.hasHeader} // Pass down header prop
+            hasToolbar={modal.hasToolbar} // Pass down toolbar prop
             onClose={() => closeModal(index)} // Close modal by index
+            isTopmost={index === topmostIndex}
           />
         ))}
       </div>

@@ -140,7 +140,11 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
         onClick={() => onSelect(item.key)}
         data-interactive=""
         data-cursor="pointer"
-    //    onDoubleClick={() => openModal(item.title,  <picture  data-position="center"> <img src={item.image} alt={item.title} /> </picture>)}
+        // onDoubleClick={() => openModal(item.title,
+        //   <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>,
+        //   false,
+        // true
+        // )}
       >
 
 <group data-ratio="4:5"  data-radius="15" data-contain="" data-background="highlight"  >

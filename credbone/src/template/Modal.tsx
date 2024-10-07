@@ -1,37 +1,19 @@
 import React from "react";
 import sampleImage from "../styles/images/samples/res_52.jpg";
 
-import Ripple from "../components/Ripple";
+
 import { useModal } from "../components/Modal";
-import Miscellaneous from "./Miscellaneous";
-import ThemeToggle from "../components/themeToggle";
-import TooltipPopover from "./TooltipPopover";
-import Cards from "./Cards";
+import Search from "../pages/search/search";
 
 const Modal: React.FC = () => {
   const { openModal } = useModal(); // Use the modal hook to control modal behavior
 
   const modalData = [
-    {
-      title: "Welcome Modal",
-      content: "Welcome to our platform! Enjoy your stay.",
-    },
-    {
-      title: "Error Modal",
-      content: "Oops! Something went wrong. Please try again.",
-    },
-    {
-      title: "Info Modal",
-      content: "Don't forget to update your profile for a better experience.",
-    },
-    {
-      title: "Confirmation Modal",
-      content: "Are you sure you want to delete this item?",
-    },
-    {
-      title: "Success Modal",
-      content: "Your changes have been saved successfully.",
-    },
+    { title: "Regular Modal", content: "Welcome to our platform! Enjoy your stay.", toolbar: false, header: true },
+    { title: " Modal with no Header", content: "Oops! Something went wrong. Please try again.", toolbar: true, header: false },
+    { title: "Info Modal", content: "Don't forget to update your profile for a better experience.", toolbar: false, header: true },
+    { title: "Modal With no header and Toolbar", content: <group data-max-length="400"><Search/></group>, toolbar: false, header: false },
+    { title: "Success Modal", content: <group data-length="400"><Modal/></group>, toolbar: true, header: false },
   ];
 
   return (
@@ -79,36 +61,7 @@ const Modal: React.FC = () => {
                 single tap.
               </text>
             </group>
-            <group data-length="fit">
-              <Ripple>
-                <group
-                  data-wrap="no"
-                  data-width="auto"
-                  data-ink-color="main-dark"
-                  data-align="center"
-                  data-cursor="pointer"
-                  data-contain=""
-                  data-background="main"
-                  data-color="main-text"
-                  data-interactive=""
-                  data-space-horizontal="30"
-                  data-radius="15"
-                  data-height="120"
-                  data-gap="20"
-                  //   onClick={handleOpenModal}
-                >
-                  <icon data-icon-size="large">arrow_outward</icon>
-                  {/* <text
-                  data-ellipsis=""
-                  data-weight="700"
-                  data-text-size="36"
-                  data-index="1"
-                >
-                  Button
-                </text> */}
-                </group>
-              </Ripple>
-            </group>
+
           </group>
         </group>
         <group
@@ -117,7 +70,7 @@ const Modal: React.FC = () => {
           data-weight="600"
           data-background="context"
         >
-          {modalData.map(({ title, content }, index) => (
+          {modalData.map(({ title, content, header, toolbar }, index) => (
             <group key={index} data-gap="15" data-name="separation">
               <separator data-horizontal=""></separator>
               <group>
@@ -129,10 +82,14 @@ const Modal: React.FC = () => {
                   data-radius="10"
                   data-cursor="pointer"
                   
-                  onClick={() => openModal(title, <group data-length="400" data-space="15"><text data-wrap="wrap">{content}</text></group>
+                  onClick={() => openModal(
+                    title,
+                    <group data-space="20"><text>{content}</text></group>,
+                    header,
+                    toolbar
                   )}
                 >
-                  <text> Open {title}</text>
+                  <text>{title}</text>
                 </group>
               </group>
             </group>
