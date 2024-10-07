@@ -1,5 +1,5 @@
 import React from "react";
-import sampleImage from "../styles/images/samples/res_52.jpg";
+import sampleImage from "../styles/images/samples/res_50.jpg";
 
 import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
@@ -92,12 +92,12 @@ const Modal: React.FC = () => {
         data-contain=""
       >
         <group
-          data-background="main-dark"
+          data-background="main"
           data-contain=""
           // data-dark=""
           data-align="center"
         >
-          <picture data-position="absolute">
+          <picture data-position="absolute" data-opacity="30">
             <img src={sampleImage} alt="" data-name="color-demo" />
           </picture>
           <group data-space="30" data-gap="30">
