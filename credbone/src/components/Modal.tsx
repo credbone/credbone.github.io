@@ -60,28 +60,30 @@ const Modal: React.FC<ModalProps> = ({
       data-justify="center"
       data-height="fit"
       data-position="absolute"
-      data-name="modal-backdrop"
-      onClick={handleBackdropClick}
+      
+     
     >
+      <group data-position="absolute"  onClick={handleBackdropClick} data-height="fit" data-name="modal-backdrop"></group>
       <group
         data-radius="15"
         data-direction="column"
         data-width="auto"
-        data-background="main-background"
+        data-background="context"
         className="modal-container"
         data-wrap="no"
         data-max-height="fit"
         data-contain=""
-        data-elevation="1"
+        data-elevation="2"
         //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
-        onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+      //  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         {hasHeader && ( // Render the header only if hasHeader is true
-          <group data-name="modal-header" data-align="center" data-space="15">
-            <text data-space="5" data-weight="700">
+          <group data-name="modal-header" data-align="center" data-space="10">
+            <text data-space="10" >
               {title}
             </text>
             <Button
+            large
               data-position="right"
               icon="close"
               onClick={onClose}

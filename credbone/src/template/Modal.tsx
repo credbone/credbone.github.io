@@ -156,8 +156,8 @@ const Modal: React.FC = () => {
                     <group data-max-height="fit" data-scroll="">
                       {demoModals}
                     </group>,
-                    true,
-                    false
+                    false,
+                    true
                   )
                 }
 

@@ -180,7 +180,7 @@ const Components: React.FC = () => {
                 data-direction="column"
               >
                 {link.picture ? (
-                  <group data-height="240" data-mask="" 
+                  <group data-height="240" data-mask="bottom" 
                      data-radius-top="15"
                      data-contain=""
                 //  data-mix-blend-mode="overlay"
