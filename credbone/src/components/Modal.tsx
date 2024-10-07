@@ -62,7 +62,7 @@ const Modal: React.FC<ModalProps> = ({
       onClick={handleBackdropClick} 
     >
       <group
-        data-radius="15"
+        data-radius="20"
         data-direction="column"
         data-width="auto"
         data-background="main-background"
@@ -76,7 +76,7 @@ const Modal: React.FC<ModalProps> = ({
 
       >
         {hasHeader && ( // Render the header only if hasHeader is true
-          <group data-name="modal-header" data-align="center" data-space="10">
+          <group data-name="modal-header" data-align="center" data-space="15">
             <text data-space="5" data-weight="700">
               {title}
             </text>

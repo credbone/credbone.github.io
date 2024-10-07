@@ -4,16 +4,30 @@ import sampleImage from "../styles/images/samples/res_52.jpg";
 
 import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
+import TooltipPopover from "./TooltipPopover";
 
 const Modal: React.FC = () => {
   const { openModal } = useModal(); // Use the modal hook to control modal behavior
 
+
+  
+  const sampleContent = <group data-space="40" data-max-length="400" data-max-height="fit" data-scroll="">
+
+    <text data-wrap="wrap" data-line="20">
+      
+    This is a <b>Modal Component</b> built with <b>React</b> that provides a flexible modal dialog with custom content, headers, and toolbars. It uses context to manage multiple modals and ensures only the topmost modal can be interacted with when multiple are open.
+
+    </text>
+    </group>
+
+
+
   const modalData = [
-    { title: "Regular Modal", content: "Welcome to our platform! Enjoy your stay.", toolbar: false, header: true },
-    { title: " Modal with no Header", content: "Oops! Something went wrong. Please try again.", toolbar: true, header: false },
-    { title: "Info Modal", content: "Don't forget to update your profile for a better experience.", toolbar: false, header: true },
-    { title: "Modal With no header and Toolbar", content: <group data-max-length="400"><Search/></group>, toolbar: false, header: false },
-    { title: "Success Modal", content: <group data-length="400"><Modal/></group>, toolbar: true, header: false },
+    { title: "Basic Modal", content: sampleContent, toolbar: false, header: true },
+    { title: " Modal with no Header", content: sampleContent, toolbar: true, header: false },
+    { title: "Info Modal", content: <group data-max-length="600" data-max-height="fit" data-scroll=""><TooltipPopover/></group>, toolbar: false, header: true },
+    { title: "Modal With no header and Toolbar", content: <group data-max-length="400" data-max-height="fit" data-contain=""><Search/></group>, toolbar: false, header: false },
+    { title: "Success Modal", content: <group data-length="500" ><Modal/></group>, toolbar: true, header: false },
   ];
 
   return (
@@ -77,14 +91,14 @@ const Modal: React.FC = () => {
                 <group
                   data-width="auto"
                   data-interactive=""
-                  data-interact="popover"
+                 // data-interact="popover"
                   data-space="15"
                   data-radius="10"
                   data-cursor="pointer"
                   
                   onClick={() => openModal(
                     title,
-                    <group data-space="20"><text>{content}</text></group>,
+                    <group data-max-height="fit" data-contain="">{content}</group>,
                     header,
                     toolbar
                   )}

@@ -97,8 +97,8 @@ group[data-type="column"] {display: block; flex-direction: column; columns: 6 30
 }
 
 
-[data-type="column"][data-column-gap="15"] > group,
-[data-type="column"][data-column-gap="15"] > [data-type="group"]
+[data-type="column"][data-column-gap="15"] > group:not(:last-of-type),
+[data-type="column"][data-column-gap="15"] > [data-type="group"]:not(:last-of-type)
 
 
 { margin-bottom: 15px;}
