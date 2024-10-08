@@ -68,7 +68,7 @@ const Modal: React.FC<ModalProps> = ({
     >
       <group data-position="absolute"  onClick={handleBackdropClick} data-height="fit" data-name="modal-backdrop"></group>
       <group
-        
+        data-margin="20"
         data-radius="15"
         data-direction="column"
         data-width="auto"

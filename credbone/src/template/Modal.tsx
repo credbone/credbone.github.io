@@ -50,6 +50,7 @@ const Modal: React.FC = () => {
         <group>
           <group
             data-width="auto"
+           
             data-interactive=""
             // data-interact="popover"
             data-space="15"
@@ -156,7 +157,7 @@ const Modal: React.FC = () => {
                   openModal(
                     "modal-1",
                     "Customized Popup",
-                    <group data-max-height="fit" data-scroll="">
+                    <group data-max-height="fit"  data-max-length="600" data-scroll="">
                       {demoModals}
                       <group data-space="20" onClick={() => closeModal("modal-1")}> custom close button</group>
                     </group>,
@@ -232,7 +233,7 @@ data-cursor="pointer"
                     </group>,
                     false,
                     false,
-                    { "data-radius": "none", "data-background": "none", "data-elevation":"none", "data-width":"fit", "data-scroll":"", "data-contain":"scroll" }
+                    { "data-radius": "none", "data-margin":"0", "data-background": "none", "data-elevation":"none", "data-width":"fit", "data-scroll":"", "data-contain":"scroll" }
                   )
                 }
 
