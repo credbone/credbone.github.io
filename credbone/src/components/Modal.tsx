@@ -19,6 +19,7 @@ interface ModalProps {
   dimClose?: boolean;
   isTopmost: boolean;
   customAttributes?: { [key: string]: string };
+  spacing?: number;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -31,6 +32,7 @@ const Modal: React.FC<ModalProps> = ({
   dimClose = false,
   isTopmost,
   customAttributes = {}, // Default empty object for custom attributes
+  spacing = 20, // Default spacing value
 }) => {
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
@@ -57,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({
     <group
       data-top="0"
       data-index="1"
-    //  data-space="20"
+      data-space={spacing}
       data-direction="column"
       data-align="center"
       data-justify="center"
@@ -68,7 +70,7 @@ const Modal: React.FC<ModalProps> = ({
     >
       <group data-position="absolute"  onClick={handleBackdropClick} data-height="fit" data-name="modal-backdrop"></group>
       <group
-        data-margin="20"
+     //   data-margin="20"
         data-radius="15"
         data-direction="column"
         data-width="auto"
@@ -146,7 +148,8 @@ interface ModalContextType {
     content: ReactNode,
     hasHeader?: boolean,
     hasToolbar?: boolean,
-    customAttributes?: { [key: string]: string }
+    customAttributes?: { [key: string]: string },
+    spacing?: number
     
   ) => void;
   closeModal: (id: string) => void;
@@ -176,6 +179,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       hasHeader?: boolean;
       hasToolbar?: boolean;
       customAttributes?: { [key: string]: string };
+      spacing?: number;
     }[]
   >([]);
 
@@ -185,11 +189,12 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     content: ReactNode,
     hasHeader = true,
     hasToolbar = false,
-    customAttributes: { [key: string]: string } = {}
+    customAttributes: { [key: string]: string } = {},
+    spacing = 20 
   ) => {
     setModals((prev) => [
       ...prev,
-      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes  },
+      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes, spacing  },
     ]);
   };
 
@@ -221,6 +226,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             customAttributes={modal.customAttributes}
             onClose={() => closeModal(modal.id)}  // Close modal by id
             isTopmost={modal.id === modals[topmostIndex]?.id}
+            spacing={modal.spacing} // Pass spacing to Modal
           />
         ))}
       </div>
