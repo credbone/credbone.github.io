@@ -100,7 +100,7 @@ const SampleData = (
         data-color="main"
         data-ellipsis=""
       >
-        Rich Contect
+        Rich Content
       </text>
       <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
         Tooltips display informative text when users hover over, focus on, or
@@ -180,7 +180,7 @@ const TooltipPopover: React.FC = () => {
           data-elevation="1"
           data-contain=""
         >
-          <group data-direction="column" data-space="30" data-gap="10">
+          <group data-direction="column" data-space="30" data-gap="10" data-background="main-background">
             <text
               data-weight="700"
               data-text-size="xxx-large"
@@ -315,7 +315,7 @@ const TooltipPopover: React.FC = () => {
             data-elevation="1"
             data-contain=""
           >
-            <group data-space="30" data-direction="column" data-gap="10">
+            <group data-space="30" data-direction="column" data-gap="10" data-background="main-background">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"

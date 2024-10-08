@@ -18,6 +18,7 @@ interface ModalProps {
   hasToolbar?: boolean; // New prop to control the toolbar
   dimClose?: boolean;
   isTopmost: boolean;
+  customAttributes?: { [key: string]: string };
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -29,6 +30,7 @@ const Modal: React.FC<ModalProps> = ({
   hasToolbar = false, // Default true for the toolbar
   dimClose = false,
   isTopmost,
+  customAttributes = {}, // Default empty object for custom attributes
 }) => {
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
@@ -55,7 +57,7 @@ const Modal: React.FC<ModalProps> = ({
     <group
       data-top="0"
       data-index="1"
-      data-space="20"
+    //  data-space="20"
       data-direction="column"
       data-align="center"
       data-justify="center"
@@ -66,6 +68,7 @@ const Modal: React.FC<ModalProps> = ({
     >
       <group data-position="absolute"  onClick={handleBackdropClick} data-height="fit" data-name="modal-backdrop"></group>
       <group
+        
         data-radius="15"
         data-direction="column"
         data-width="auto"
@@ -75,7 +78,8 @@ const Modal: React.FC<ModalProps> = ({
         data-max-height="fit"
         data-contain=""
         data-elevation="2"
-        //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
+        {...customAttributes}
+      //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
       //  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         {hasHeader && ( // Render the header only if hasHeader is true
@@ -92,9 +96,9 @@ const Modal: React.FC<ModalProps> = ({
           </group>
         )}
 
-        <group data-max-height="fit" data-contain="">
+
           {content}
-        </group>
+
 
         {hasToolbar && ( // Render the toolbar only if hasToolbar is true
           <group data-name="modal-toolbar" data-space="30" data-gap="20">
@@ -141,7 +145,9 @@ interface ModalContextType {
     title: string,
     content: ReactNode,
     hasHeader?: boolean,
-    hasToolbar?: boolean
+    hasToolbar?: boolean,
+    customAttributes?: { [key: string]: string }
+    
   ) => void;
   closeModal: (id: string) => void;
 }
@@ -169,6 +175,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       isOpen: boolean;
       hasHeader?: boolean;
       hasToolbar?: boolean;
+      customAttributes?: { [key: string]: string };
     }[]
   >([]);
 
@@ -177,11 +184,12 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     title: string,
     content: ReactNode,
     hasHeader = true,
-    hasToolbar = false
+    hasToolbar = false,
+    customAttributes: { [key: string]: string } = {}
   ) => {
     setModals((prev) => [
       ...prev,
-      { id, title, content, isOpen: true, hasHeader, hasToolbar },
+      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes  },
     ]);
   };
 
@@ -210,6 +218,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             isOpen={modal.isOpen}
             hasHeader={modal.hasHeader}
             hasToolbar={modal.hasToolbar}
+            customAttributes={modal.customAttributes}
             onClose={() => closeModal(modal.id)}  // Close modal by id
             isTopmost={modal.id === modals[topmostIndex]?.id}
           />

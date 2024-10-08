@@ -348,9 +348,6 @@ text[data-width="auto"]{width: initial;}
 [data-length='auto']{ flex: auto; }
 
 
-[data-contain=""]{contain: content; overflow:hidden;}
-[data-contain="visible"]{ overflow:visible;}
-
 
 
 @media (max-width: 600px)
@@ -562,6 +559,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-horizontal='15'] {padding-left: 15px; padding-right: 15px;}
 [data-space-horizontal='20'] {padding-left: 20px; padding-right: 20px;}
 [data-space-horizontal='30'] {padding-left: 30px; padding-right: 30px;}
+[data-space-horizontal='40'] {padding-left: 40px; padding-right: 40px;}
+[data-space-horizontal='50'] {padding-left: 50px; padding-right: 50px;}
 
 
 [data-space-vertical='5'] {padding-top:5px; padding-bottom: 5px;}

@@ -4,6 +4,7 @@ import sampleImage from "../styles/images/samples/res_50.jpg";
 import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
 import TooltipPopover from "./TooltipPopover";
+import StuckReporter from "../components/StuckReporter";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -157,10 +158,81 @@ const Modal: React.FC = () => {
                     "Customized Popup",
                     <group data-max-height="fit" data-scroll="">
                       {demoModals}
-                      <group data-space="20" onClick={() => closeModal("modal-1")}> custom close button</group> {/* Fix here */}
+                      <group data-space="20" onClick={() => closeModal("modal-1")}> custom close button</group>
                     </group>,
                     false,
-                    true
+                    false,
+            //        { "data-radius": "none", "data-background": "none", "data-elevation":"none" }
+                  )
+                }
+
+              >
+                <text>Open Customized Popup</text>
+              </group>
+            </group>
+          </group>
+
+          <group data-gap="15" data-name="separation">
+            <separator data-horizontal=""></separator>
+            <group>
+              <group
+                data-width="auto"
+                data-interactive=""
+                data-space="15"
+                data-radius="10"
+                data-cursor="pointer"
+
+                onClick={() =>
+                  openModal(
+                    "modal-1",
+                    "Customized Popup",
+                    <group data-max-length="500" data-position="center">
+                      <group data-height="120"></group>
+                      <group data-space-horizontal="30">
+                        <text data-weight="700" data-text-size="xx-large" data-wrap="wrap" data-ellipsis="">
+                          This is Custom Modal Window
+                        </text>
+                      </group>
+
+                      <group data-height="20"></group>
+                      
+                      <StuckReporter>
+          {(isSticky) => (
+
+
+
+
+                      
+                      <group   data-duration=".125" data-space-horizontal={isSticky ? "50" : "30"} data-space={isSticky ? "20" : ""}  data-sticky="top"   >
+                      
+                            <group
+                              data-background="main"
+                              data-color="main-text"
+                              data-interactive=""
+                              data-width="auto"
+data-cursor="pointer"
+                              data-space="15"
+                              
+              //  data-elevation={isSticky ? "1" : ""}
+                data-radius="10"
+                              //  data-duration=".125"
+                              onClick={() => closeModal("modal-1")}
+                            >
+                              <text data-weight="700">
+                              Custom Close Button
+                            </text>
+                            </group>
+                           
+                      </group>
+
+          )}
+        </StuckReporter>
+                      <TooltipPopover/>
+                      
+                    </group>,
+                    false,
+                    false,
+                    { "data-radius": "none", "data-background": "none", "data-elevation":"none", "data-width":"fit", "data-scroll":"", "data-contain":"scroll" }
                   )
                 }
 
