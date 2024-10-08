@@ -821,3 +821,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-rotate="-225"]{transform: rotate(-225deg);}
+
+
+[data-filter="blur-90"]{filter: blur(90px);}
+[data-mix-lend-mode="hardlight"] {    mix-blend-mode: hard-light;}
+

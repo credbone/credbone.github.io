@@ -58,7 +58,7 @@ const Modal: React.FC = () => {
             data-cursor="pointer"
             onClick={() =>
               openModal(
-                `modal-${index}`,
+                `modal-map-${index}`,
                 title,
                 <group data-max-height="fit" data-contain="">
                   {content}
@@ -157,23 +157,80 @@ const Modal: React.FC = () => {
                   openModal(
                     "modal-1",
                     "Customized Popup",
-                    <group
-                      data-max-height="fit"
-                      data-max-length="600"
-                      data-scroll=""
-                    >
-                      {demoModals}
+
+                    <group>
                       <group
-                        data-space="20"
+                        data-position="absolute"
+                        data-height="fit"
                         onClick={() => closeModal("modal-1")}
+                      ></group>
+
+                      <group
+                        data-position="center"
+                        data-max-length="500"
+                        data-space="30"
+                        data-gap="30"
                       >
-                        {" "}
-                        custom close button
+                        <group data-height="120"></group>
+
+                        <group
+                          data-contain=""
+                          data-radius="15"
+                          data-elevation="2"
+                        >
+                          {demoModals}
+                        </group>
+
+                        <StuckReporter>
+                          {(isSticky) => (
+                            <group
+                              data-duration=".125"
+                              data-space-horizontal={isSticky ? "30" : ""}
+                              data-space={isSticky ? "40" : ""}
+                              data-sticky="bottom"
+                            >
+                              <group
+                                data-background="main"
+                                data-color="main-text"
+                                data-interactive=""
+                                data-width="auto"
+                                data-cursor="pointer"
+                                data-space="15"
+                                data-radius="10"
+                                data-min-length="140"
+                                data-align="center"
+                                data-direction="column"
+                                onClick={() => closeModal("modal-1")}
+                              >
+                                <text data-weight="700">Done</text>
+                              </group>
+                            </group>
+                          )}
+                        </StuckReporter>
+                        <group>
+                          <text
+                            data-weight="700"
+                            data-text-size="xx-large"
+                            data-wrap="wrap"
+                            data-ellipsis=""
+                          >
+                            This is Custom Modal Window
+                          </text>
+                        </group>
                       </group>
                     </group>,
                     false,
-                    false
-                    //        { "data-radius": "none", "data-background": "none", "data-elevation":"none" }
+                    false,
+                    {
+                      "data-radius": "none",
+                      "data-margin": "0",
+                      "data-background": "none",
+                      "data-elevation": "none",
+                      "data-width": "fit",
+                      "data-scroll": "",
+                      "data-contain": "scroll",
+                    },
+                    0
                   )
                 }
               >
@@ -195,46 +252,54 @@ const Modal: React.FC = () => {
                   openModal(
                     "modal-1",
                     "Customized Popup",
-                    <group data-max-length="500" data-position="center">
-                      <group data-height="120"></group>
-                      <group data-space-horizontal="30">
-                        <text
-                          data-weight="700"
-                          data-text-size="xx-large"
-                          data-wrap="wrap"
-                          data-ellipsis=""
-                        >
-                          This is Custom Modal Window
-                        </text>
-                      </group>
-
-                      <group data-height="20"></group>
-
-                      <StuckReporter>
-                        {(isSticky) => (
-                          <group
-                            data-duration=".125"
-                            data-space-horizontal={isSticky ? "50" : "30"}
-                            data-space={isSticky ? "20" : ""}
-                            data-sticky="top"
+                    <group>
+                      <group
+                        data-position="absolute"
+                        data-height="fit"
+                        onClick={() => closeModal("modal-1")}
+                      ></group>
+                      <group data-max-length="500" data-position="center">
+                        <group data-height="120"></group>
+                        <group data-space-horizontal="30">
+                          <text
+                            data-weight="700"
+                            data-text-size="xx-large"
+                            data-wrap="wrap"
+                            data-ellipsis=""
                           >
+                            This is Custom Modal Window
+                          </text>
+                        </group>
+
+                        <group data-height="20"></group>
+
+                        <StuckReporter>
+                          {(isSticky) => (
                             <group
-                              data-background="main"
-                              data-color="main-text"
-                              data-interactive=""
-                              data-width="auto"
-                              data-cursor="pointer"
-                              data-space="15"
-                              data-radius="10"
-                              onClick={() => closeModal("modal-1")}
+                              data-duration=".125"
+                              data-space-horizontal={isSticky ? "50" : "30"}
+                              data-space={isSticky ? "20" : ""}
+                              data-sticky="top"
                             >
-                              <text data-weight="700">Custom Close Button</text>
+                              <group
+                                data-background="main"
+                                data-color="main-text"
+                                data-interactive=""
+                                data-width="auto"
+                                data-cursor="pointer"
+                                data-space="15"
+                                data-radius="10"
+                                onClick={() => closeModal("modal-1")}
+                              >
+                                <text data-weight="700">
+                                  Custom Close Button
+                                </text>
+                              </group>
                             </group>
-                          </group>
-                        )}
-                      </StuckReporter>
-                      <TooltipPopover />
-                      <group></group>
+                          )}
+                        </StuckReporter>
+                        <TooltipPopover />
+                      </group>
                     </group>,
                     false,
                     false,

@@ -124,7 +124,7 @@ const ViewSwitch = [
 
 const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
 
-  const { openModal } = useModal(); 
+  const { openModal, closeModal } = useModal(); 
   return (
     <>
     {ContentData.map((item) => (
@@ -145,6 +145,80 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
         //   false,
         // true
         // )}
+
+        onDoubleClick={() =>
+                  openModal(
+                    `modal-1`,
+                    "Customized Popup",
+                    <group>
+                      <group data-position="absolute" data-height="fit" onClick={() => closeModal("modal-1")}></group>
+                      <group data-max-length="500" data-space="30" data-gap="30" data-position="center">
+                        
+                        <group >
+                        <group data-gap="10"  data-direction="column">
+          <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">{item.title}</text>
+          <text data-max-length="400" data-text-size="medium" data-wrap="wrap" data-line="1.5">
+            {item.description}
+          </text>
+        </group>
+                        </group>
+                        <StuckReporter>
+                          {(isSticky) => (
+                            <group
+                              data-duration=".125"
+                              data-space-horizontal={isSticky ? "20" : "0"}
+                              data-space={isSticky ? "20" : ""}
+                              data-sticky="top"
+                            >
+                              <group
+                                data-background="main"
+                                data-color="main-text"
+                                data-interactive=""
+                                data-width="auto"
+                                data-cursor="pointer"
+                                data-space="15"
+                                data-radius="10"
+                                onClick={() => closeModal("modal-1")}
+                                data-align="center"
+                                data-min-length="160"
+                                data-direction="column"
+                               
+                              >
+                                <text data-weight="700" >
+                                  Close
+                                </text>
+                              </group>
+                            </group>
+                          )}
+                        </StuckReporter>
+
+
+
+                        <group data-contain="" data-radius="20">
+                        <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>
+                        </group>
+                        
+                        <group data-height="120"></group>
+
+                    </group>
+                    
+                    </group>,
+                    false,
+                    false,
+                    {
+                      "data-radius": "none",
+                      "data-margin": "0",
+                      "data-background": "none",
+                      "data-elevation": "none",
+                      "data-width": "fit",
+                      "data-scroll": "",
+                      "data-contain": "scroll",
+                    },
+                    0
+                  )
+                }
+
+
       >
 
 <group data-ratio="4:5"  data-radius="15" data-contain="" data-background="highlight"  >
