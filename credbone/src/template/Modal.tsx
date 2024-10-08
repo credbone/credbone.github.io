@@ -6,7 +6,7 @@ import Search from "../pages/search/search";
 import TooltipPopover from "./TooltipPopover";
 
 const Modal: React.FC = () => {
-  const { openModal } = useModal(); // Use the modal hook to control modal behavior
+  const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
 
   const sampleContent = (
     <group
@@ -56,6 +56,7 @@ const Modal: React.FC = () => {
             data-cursor="pointer"
             onClick={() =>
               openModal(
+                `modal-${index}`,
                 title,
                 <group data-max-height="fit" data-contain="">
                   {content}
@@ -152,9 +153,11 @@ const Modal: React.FC = () => {
 
                 onClick={() =>
                   openModal(
+                    "modal-1",
                     "Customized Popup",
                     <group data-max-height="fit" data-scroll="">
                       {demoModals}
+                      <group data-space="20" onClick={() => closeModal("modal-1")}> custom close button</group> {/* Fix here */}
                     </group>,
                     false,
                     true

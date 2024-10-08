@@ -9,6 +9,7 @@ import Button from "./button";
 
 // Modal Component
 interface ModalProps {
+  id: string;
   title: string;
   content: ReactNode;
   isOpen: boolean;
@@ -136,12 +137,13 @@ const Modal: React.FC<ModalProps> = ({
 // Modal Context and Provider Logic
 interface ModalContextType {
   openModal: (
+    id: string, 
     title: string,
     content: ReactNode,
     hasHeader?: boolean,
     hasToolbar?: boolean
   ) => void;
-  closeModal: (index: number) => void;
+  closeModal: (id: string) => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -161,6 +163,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [modals, setModals] = useState<
     {
+      id: string;
       title: string;
       content: ReactNode;
       isOpen: boolean;
@@ -170,6 +173,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   >([]);
 
   const openModal = (
+    id: string,  // id parameter
     title: string,
     content: ReactNode,
     hasHeader = true,
@@ -177,14 +181,14 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   ) => {
     setModals((prev) => [
       ...prev,
-      { title, content, isOpen: true, hasHeader, hasToolbar },
+      { id, title, content, isOpen: true, hasHeader, hasToolbar },
     ]);
   };
 
-  const closeModal = (index: number) => {
+  const closeModal = (id: string) => {
     setModals((prev) =>
-      prev.map((modal, i) =>
-        i === index ? { ...modal, isOpen: false } : modal
+      prev.map((modal) =>
+        modal.id === id ? { ...modal, isOpen: false } : modal
       )
     );
   };
@@ -197,16 +201,17 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
       <div data-name="modal-wrapper" data-max-length="fit">
-        {modals.map((modal, index) => (
+        {modals.map((modal) => (
           <Modal
-            key={index}
+            key={modal.id}   // Ensure key is unique
+            id={modal.id}    // Pass id prop to Modal
             title={modal.title}
             content={modal.content}
             isOpen={modal.isOpen}
-            hasHeader={modal.hasHeader} // Pass down header prop
-            hasToolbar={modal.hasToolbar} // Pass down toolbar prop
-            onClose={() => closeModal(index)} // Close modal by index
-            isTopmost={index === topmostIndex}
+            hasHeader={modal.hasHeader}
+            hasToolbar={modal.hasToolbar}
+            onClose={() => closeModal(modal.id)}  // Close modal by id
+            isTopmost={modal.id === modals[topmostIndex]?.id}
           />
         ))}
       </div>
