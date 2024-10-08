@@ -5,6 +5,7 @@ import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
 import TooltipPopover from "./TooltipPopover";
 import StuckReporter from "../components/StuckReporter";
+import ThemeToggle from "../components/themeToggle";
 
 
 const Modal: React.FC = () => {
@@ -271,7 +272,7 @@ data-animation-duration="1.5"
                   )
                 }
               >
-                <text>Open Customized Popup</text>
+                <text>Open Customized Demo</text>
               </group>
             </group>
           </group>
@@ -360,6 +361,68 @@ data-animation-duration="1.5"
               </group>
             </group>
           </group>
+
+
+          <group data-gap="15" data-name="separation">
+            <separator data-horizontal=""></separator>
+            <group>
+              <group
+                data-width="auto"
+                data-interactive=""
+                data-space="15"
+                data-radius="10"
+                data-cursor="pointer"
+                onClick={() =>
+                  openModal(
+                    "modal-2",
+                    "Customized Popup",
+                    <group data-min-height="fit">
+                    <group
+                      data-position="absolute"
+                      data-height="fit"
+                      data-background="main-background-top"
+                        onClick={() => closeModal("modal-2")}
+                      ></group>
+                      <group data-max-length="400" data-space="30" data-gap="30" data-position="center">
+
+                        <group >
+                        <group data-gap="20">
+                          <text
+                            data-weight="700"
+                            data-text-size="x-large"
+                            data-wrap="wrap"
+                            data-ellipsis=""
+                          >
+                            Custom Apperance Settings
+                          </text>
+
+                          <text  data-weight="600" data-wrap="wrap" data-line="20" data-max-length="400">
+                            This demo showcases a highly customizable modal
+                            window, configured through dynamic props and
+                            attributes.
+                          </text>
+                        </group>
+                        </group>
+
+<separator data-horizontal=""></separator>
+
+
+<group>   <ThemeToggle/></group>
+                      </group>
+                    </group>,
+                    false,
+                    false,
+                    modalConfig,
+                    0
+                  )
+                }
+              >
+                <text>Open Custom Apperance Settings</text>
+              </group>
+            </group>
+          </group>
+
+
         </group>
       </group>
     </group>
