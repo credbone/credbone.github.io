@@ -68,7 +68,7 @@ const Modal: React.FC = () => {
               )
             }
           >
-            <text>{title}</text>
+            <text data-ellipsis="">{title}</text>
           </group>
         </group>
       </group>
