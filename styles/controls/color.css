@@ -364,6 +364,10 @@
 [data-background="checkered"] {background-color: #fff; background-image: linear-gradient(45deg, #e9e9e9 25%, transparent 25%, transparent 75%, #e9e9e9 75%), linear-gradient(45deg, #e9e9e9 25%, transparent 25%, transparent 75%, #e9e9e9 75%); background-size: 20px 20px; background-position: 0 0, 10px 10px;}
 
 
+[data-background="main-background-top"] {background-image: linear-gradient(var(--background) 0%, transparent);}
+
+
+
 
 /* [data-backgroud="main-secondary"]{background-image: linear-gradient(45deg, var(--main-color) 0%,var(--secondary-color) 100%);} */
 
