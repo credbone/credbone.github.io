@@ -160,7 +160,7 @@ const Components: React.FC = () => {
             data-weight="600"
           >
             {linksArray.map((link, index) => (
-<Ripple>
+<Ripple  key={index} >
 <Link
 //data-react="scale"
                data-drag="none"

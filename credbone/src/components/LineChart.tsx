@@ -64,14 +64,14 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
         <path data-duration="1" d={fillPath} fill="#fff" />
       </mask>
 
-      <text x="50%" y="50%" data-weight="800" dominant-baseline="middle" text-anchor="middle" data-text-size="xx-large">
+      <text x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" data-text-size="xx-large">
             {value}
           </text>
 
       <path d={fillPath} data-fill="main" />
 
       
-      <text  x="50%" y="50%" data-weight="800" dominant-baseline="middle" text-anchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="xx-large">
+      <text  x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="xx-large">
             {value}
           </text>
 

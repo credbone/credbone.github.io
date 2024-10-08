@@ -44,6 +44,16 @@ interface ContentToolbarProps {
   count: number;
 }
 
+const modalConfig = {
+  "data-radius": "none",
+  "data-margin": "0",
+  "data-background": "none",
+  "data-elevation": "none",
+  "data-width": "fit",
+  "data-scroll": "",
+  "data-min-height":"fit",
+  "data-contain": "scroll",
+};
 
 
 
@@ -127,122 +137,161 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
   const { openModal, closeModal } = useModal(); 
   return (
     <>
-    {ContentData.map((item) => (
-      <group
-        key={item.key}
-        data-space="5"
-        data-gap="5"
-        data-radius="20"
-        data-direction="column"
-        data-border="outline"
-        data-name="card"
-        className={selectedKey === item.key ? 'selected' : ''}
-        onClick={() => onSelect(item.key)}
-        data-interactive=""
-        data-cursor="pointer"
-        // onDoubleClick={() => openModal(item.title,
-        //   <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>,
-        //   false,
-        // true
-        // )}
+      {ContentData.map((item) => (
+        <group
+          key={item.key}
+          data-space="5"
+          data-gap="5"
+          data-radius="20"
+          data-direction="column"
+          data-border="outline"
+          data-name="card"
+          className={selectedKey === item.key ? "selected" : ""}
+          onClick={() => onSelect(item.key)}
+          data-interactive=""
+          data-cursor="pointer"
+          // onDoubleClick={() => openModal(item.title,
+          //   <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>,
+          //   false,
+          // true
+          // )}
 
-        onDoubleClick={() =>
-                  openModal(
-                    `modal-1`,
-                    "Customized Popup",
-                    <group>
-                      <group data-position="absolute" data-height="fit" onClick={() => closeModal("modal-1")}></group>
-                      <group data-max-length="500" data-space="30" data-gap="30" data-position="center">
-                        
-                        <group >
-                        <group data-gap="10"  data-direction="column">
-          <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">{item.title}</text>
-          <text data-max-length="400" data-text-size="medium" data-wrap="wrap" data-line="1.5">
-            {item.description}
-          </text>
-        </group>
-                        </group>
-                        <StuckReporter>
-                          {(isSticky) => (
-                            <group
-                              data-duration=".125"
-                              data-space-horizontal={isSticky ? "20" : "0"}
-                              data-space={isSticky ? "20" : ""}
-                              data-sticky="top"
-                            >
-                              <group
-                                data-background="main"
-                                data-color="main-text"
-                                data-interactive=""
-                                data-width="auto"
-                                data-cursor="pointer"
-                                data-space="15"
-                                data-radius="10"
-                                onClick={() => closeModal("modal-1")}
-                                data-align="center"
-                                data-min-length="160"
-                                data-direction="column"
-                               
-                              >
-                                <text data-weight="700" >
-                                  Close
-                                </text>
-                              </group>
-                            </group>
-                          )}
-                        </StuckReporter>
+          onDoubleClick={() =>
+            openModal(
+              `modal-card-${item.key}`,
+              "Customized Popup",
+              <group data-min-height="fit">
+                <group
+                  data-position="absolute"
+                  data-height="fit"
+                  data-background="main-background-top"
+                  onClick={() => closeModal(`modal-card-${item.key}`)}
+                ></group>
+                <group
+                  data-max-length="500"
+                  data-space="30"
+                  data-gap="30"
+                  data-position="center"
+                >
+                  <group>
+                    <group
+                      data-gap="10"
+                      data-max-length="300"
+                      data-direction="column"
+                    >
+                      <text
 
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="2.25"
 
+                        data-weight="700"
+                        data-text-size="x-large"
+                        data-wrap="wrap"
+                      >
+                        {item.title}
+                      </text>
+                      <text
 
-                        <group data-contain="" data-radius="20">
-                        <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>
-                        </group>
-                        
-                        <group data-height="120"></group>
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="2"
 
+                        data-weight="600"
+                        data-text-size=""
+                        data-wrap="wrap"
+                        data-line="1.5"
+                      >
+                        {item.description}
+                      </text>
                     </group>
-                    
-                    </group>,
-                    false,
-                    false,
-                    {
-                      "data-radius": "none",
-                      "data-margin": "0",
-                      "data-background": "none",
-                      "data-elevation": "none",
-                      "data-width": "fit",
-                      "data-scroll": "",
-                      "data-contain": "scroll",
-                    },
-                    0
-                  )
-                }
+                  </group>
+
+                  {/* <ContentToolbar count={item.count}/> */}
+
+                  <StuckReporter>
+                    {(isSticky) => (
+                      <group
 
 
-      >
 
-<group data-ratio="4:5"  data-radius="15" data-contain="" data-background="highlight"  >
-          <picture  data-brightness="adaptive"> <img src={item.image} alt={item.title} /> </picture>
+                        data-duration=".125"
+                        data-space-horizontal={isSticky ? "20" : "0"}
+                        data-space={isSticky ? "20" : ""}
+                        data-sticky="top"
+                      >
+                        <group
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="1.75"
+
+                          data-background="main"
+                          data-color="main-text"
+                          data-interactive=""
+                          data-width="auto"
+                          data-cursor="pointer"
+                          data-space="15"
+                          data-radius="10"
+                          onClick={() => closeModal(`modal-card-${item.key}`)}
+                          data-align="center"
+                          data-min-length="160"
+                          data-direction="column"
+                        >
+                          <text data-weight="700">Close</text>
+                        </group>
+                      </group>
+                    )}
+                  </StuckReporter>
+
+                  <group
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="1.5"
+                  
+                  data-contain="" data-radius="20">
+                    <picture data-position="center">
+                      <img src={item.image} alt={item.title} />{" "}
+                    </picture>
+                  </group>
+                </group>
+              </group>,
+              false,
+              false,
+              modalConfig,
+              0
+            )
+          }
+        >
+          <group
+            data-ratio="4:5"
+            data-radius="15"
+            data-contain=""
+            data-background="highlight"
+          >
+            <picture data-brightness="adaptive">
+              {" "}
+              <img src={item.image} alt={item.title} />{" "}
+            </picture>
+          </group>
+
+          <group data-gap="10" data-space="10" data-direction="column">
+            <text data-weight="700" data-text-size="medium" data-ellipsis="">
+              {item.title}
+            </text>
+            <text data-opacity="60" data-wrap="wrap" data-line="1.5">
+              {item.description}
+            </text>
+          </group>
+
+          <group data-position="bottom">
+            {selectedKey === item.key && <ContentToolbar count={item.count} />}
+          </group>
         </group>
-        
-
-
-
-        <group data-gap="10" data-space="10" data-direction="column">
-          <text data-weight="700" data-text-size="medium" data-ellipsis="">{item.title}</text>
-          <text data-opacity="60" data-wrap="wrap" data-line="1.5">
-            {item.description}
-          </text>
-        </group>
-
-        <group data-position="bottom">
-        {selectedKey === item.key && <ContentToolbar count={item.count}/>}
-        </group>
-
-      </group>
-    ))}
-  </>
-  )
+      ))}
+    </>
+  );
 
 };
 

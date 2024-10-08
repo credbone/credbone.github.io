@@ -85,7 +85,9 @@ const Modal: React.FC<ModalProps> = ({
       //  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         {hasHeader && ( // Render the header only if hasHeader is true
-          <group data-name="modal-header" data-align="center" data-space="10">
+<>
+
+<group data-name="modal-header" data-align="center" data-space="10">
             <text data-space="10" >
               {title}
             </text>
@@ -96,6 +98,12 @@ const Modal: React.FC<ModalProps> = ({
               onClick={onClose}
             ></Button>
           </group>
+
+<group>
+<separator data-horizontal=""></separator>
+</group>
+
+</>
         )}
 
 
@@ -103,7 +111,12 @@ const Modal: React.FC<ModalProps> = ({
 
 
         {hasToolbar && ( // Render the toolbar only if hasToolbar is true
-          <group data-name="modal-toolbar" data-space="30" data-gap="20">
+<>
+
+<group>
+  <separator data-horizontal=""></separator>
+</group>
+          <group data-name="modal-toolbar" data-space="30" data-gap="20" data-background="light-gray">
             <group data-gap="10" data-type="grid" data-grid-template="120">
               <group
                 onClick={onClose}
@@ -119,7 +132,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 <text data-weight="700">OK</text>
               </group>
-              <group
+              {/* <group
                 onClick={onClose}
                 data-contain=""
                 data-space="15"
@@ -131,9 +144,11 @@ const Modal: React.FC<ModalProps> = ({
                 data-background="context"
               >
                 <text data-weight="700">Cancel</text>
-              </group>
+              </group> */}
             </group>
           </group>
+
+</>
         )}
       </group>
     </group>
@@ -199,10 +214,10 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const closeModal = (id: string) => {
-    setModals((prev) =>
-      prev.map((modal) =>
+    setModals(prev =>
+      prev.map(modal =>
         modal.id === id ? { ...modal, isOpen: false } : modal
-      )
+      ).filter(modal => modal.isOpen) // Optionally filter out closed modals
     );
   };
 
