@@ -48,7 +48,7 @@ const Modal: React.FC = () => {
     { title: "Basic Modal", content: sampleContent, toolbar: false, header: true, },
     { title: " Modal with no Header", content: sampleContent, toolbar: true, header: false, },
     { title: "Info Modal", content: sampleContent, toolbar: true, header: true, },
-    { title: "Modal With no header and Toolbar", content: ( <group data-max-length="400" data-max-height="fit" data-contain=""> <Search /> </group> ), toolbar: false, header: false, },
+ //   { title: "Modal With no header and Toolbar", content: ( <group data-max-length="400" data-max-height="fit" data-contain="">  </group> ), toolbar: false, header: false, },
    // { title: "Success Modal", content: ( <group data-length="500" data-max-height="fit" data-scroll=""> {demoModals} </group> ), toolbar: true, header: false, },
   ];
 
@@ -418,6 +418,47 @@ data-animation-duration="1.5"
                 }
               >
                 <text>Open Custom Apperance Settings</text>
+              </group>
+            </group>
+          </group>
+
+          
+          <group data-gap="15" data-name="separation">
+            <separator data-horizontal=""></separator>
+            <group>
+              <group
+                data-width="auto"
+                data-interactive=""
+                data-space="15"
+                data-radius="10"
+                data-cursor="pointer"
+                onClick={() =>
+                  openModal(
+                    "modal-2",
+                    "Customized Popup",
+                    <group data-min-height="fit">
+                    <group
+                      data-position="absolute"
+                      data-height="fit"
+                      data-background="main-background-top"
+                        onClick={() => closeModal("modal-2")}
+                      ></group>
+                      <group data-max-length="400"  data-position="center">
+
+
+
+
+<Search/>
+                      </group>
+                    </group>,
+                    false,
+                    false,
+                    modalConfig,
+                    0
+                  )
+                }
+              >
+                <text>Open Custom Search</text>
               </group>
             </group>
           </group>

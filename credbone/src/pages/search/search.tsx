@@ -81,7 +81,7 @@ function Search() {
   };
 
   return (
-    <view data-space="30" data-scroll="" data-border="no">
+    <view data-space="30" data-scroll="" data-border="no" data-background="none">
       <group data-gap="30" data-direction="column">
         <group
           data-direction="column"

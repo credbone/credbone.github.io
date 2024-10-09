@@ -4,8 +4,10 @@ import React, {
   useContext,
   ReactNode,
   useEffect,
+  useRef,
 } from "react";
 import Button from "./button";
+import { useLocation } from "react-router-dom";
 
 // Modal Component
 interface ModalProps {
@@ -80,6 +82,11 @@ const Modal: React.FC<ModalProps> = ({
         data-max-height="fit"
         data-contain=""
         data-elevation="2"
+      
+        // data-animation-name="appear-bottom"
+        // data-fill-mode="backwards"
+        // data-animation-duration="2.25"
+      
         {...customAttributes}
       //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
       //  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
@@ -196,7 +203,9 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       customAttributes?: { [key: string]: string };
       spacing?: number;
     }[]
-  >([]);
+    >([]);
+  
+
 
   const openModal = (
     id: string,  // id parameter
@@ -220,6 +229,22 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       ).filter(modal => modal.isOpen) // Optionally filter out closed modals
     );
   };
+
+
+  // Inside your ModalProvider component
+const location = useLocation(); // Get current location
+const prevLocationRef = useRef(location); // Store previous location
+
+useEffect(() => {
+  if (prevLocationRef.current !== location) {
+    // Clear all modals when location changes
+    setModals([]); // Reset modals to an empty array to clear them
+    prevLocationRef.current = location; // Update the previous location
+  }
+}, [location]); // Only depend on location changes
+
+
+
 
   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
     return modal.isOpen ? index : highestIndex;
