@@ -24,7 +24,7 @@ const handleReload = () => {
 
 function About() {
   return (
-    <view data-space="30" data-gap="30" data-scroll="" data-border="no">
+    <>
       <group data-gap="30" data-direction="column">
         <group
           data-direction="column"
@@ -126,7 +126,7 @@ function About() {
           ))}
         </group>
       </group>
-    </view>
+    </>
   );
 }
 

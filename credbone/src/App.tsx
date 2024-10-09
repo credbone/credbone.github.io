@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   Navigate,
+  Outlet,
 } from "react-router-dom";
 import Template from "./template";
 import About from "./pages/about";
@@ -21,7 +22,13 @@ import Components from "./template/components";
 import Resume from "./pages/resume";
 import { ModalProvider } from "./components/Modal";
 
-
+const MainLayout = () => {
+  return (
+    <view data-space="30" data-scroll="" data-border="no" data-background="none">
+     <Outlet />
+    </view>
+  );
+};
 
 function App() {
 
@@ -61,9 +68,11 @@ function App() {
               <Route path="/Home/*" element={<Template />} />
               <Route path="/Home" element={<Components />} />
 
-              <Route path="/About" element={<About />} />
-              <Route path="/Settings" element={<Settings />} />
-              <Route path="/Search" element={<Search />} />
+              <Route path="/*" element={<MainLayout />}>
+        <Route path="About" element={<About />} />
+        <Route path="Settings" element={<Settings />} />
+        <Route path="Search" element={<Search />} />
+        </Route>
               <Route path="/Resume" element={<Resume />} />
             </Routes>
           </view>

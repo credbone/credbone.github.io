@@ -6,6 +6,7 @@ import Search from "../pages/search/search";
 import TooltipPopover from "./TooltipPopover";
 import StuckReporter from "../components/StuckReporter";
 import ThemeToggle from "../components/themeToggle";
+import RichThemePicker from "./richThemePicker";
 
 
 const Modal: React.FC = () => {
@@ -188,7 +189,7 @@ const Modal: React.FC = () => {
                         data-position="center"
                         data-max-length="500"
                         data-space="30"
-                       // data-gap="30"
+                        // data-gap="30"
                       >
                         <group data-gap="20">
                           <text
@@ -197,19 +198,21 @@ const Modal: React.FC = () => {
                             data-wrap="wrap"
                             data-ellipsis=""
                             data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="2.25"
+                            data-fill-mode="backwards"
+                            data-animation-duration="2.25"
                           >
                             Custom Modal Window
                           </text>
 
-                          <text 
-                          
-                          data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="2"
-                          
-                          data-weight="600" data-wrap="wrap" data-line="20" data-max-length="400">
+                          <text
+                            data-animation-name="appear-bottom"
+                            data-fill-mode="backwards"
+                            data-animation-duration="2"
+                            data-weight="600"
+                            data-wrap="wrap"
+                            data-line="20"
+                            data-max-length="400"
+                          >
                             This demo showcases a highly customizable modal
                             window, configured through dynamic props and
                             attributes. It includes a custom close button,
@@ -224,14 +227,11 @@ data-animation-duration="2"
                               data-space-horizontal={isSticky ? "30" : ""}
                               data-space-vertical="30"
                               data-sticky="top"
-
                             >
                               <group
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.75"
-
+                                data-animation-name="appear-bottom"
+                                data-fill-mode="backwards"
+                                data-animation-duration="1.75"
                                 data-background="main"
                                 data-color="main-text"
                                 data-interactive=""
@@ -254,11 +254,9 @@ data-animation-duration="1.75"
                           data-contain=""
                           data-radius="15"
                           data-elevation="2"
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.5"
-
+                          data-animation-name="appear-bottom"
+                          data-fill-mode="backwards"
+                          data-animation-duration="1.5"
                         >
                           {demoModals}
                         </group>
@@ -291,33 +289,38 @@ data-animation-duration="1.5"
                     "modal-2",
                     "Customized Popup",
                     <group data-min-height="fit">
-                    <group
-                      data-position="absolute"
-                      data-height="fit"
-                      data-background="main-background-top"
+                      <group
+                        data-position="absolute"
+                        data-height="fit"
+                        data-background="main-background-top"
                         onClick={() => closeModal("modal-2")}
                       ></group>
                       <group data-max-length="500" data-position="center">
                         <group data-height="120"></group>
                         <group data-space-horizontal="30">
-                        <group data-gap="20">
-                          <text
-                            data-weight="700"
-                            data-text-size="x-large"
-                            data-wrap="wrap"
-                            data-ellipsis=""
-                          >
-                            Custom Modal Window
-                          </text>
+                          <group data-gap="20">
+                            <text
+                              data-weight="700"
+                              data-text-size="x-large"
+                              data-wrap="wrap"
+                              data-ellipsis=""
+                            >
+                              Custom Modal Window
+                            </text>
 
-                          <text  data-weight="600" data-wrap="wrap" data-line="20" data-max-length="400">
-                            This demo showcases a highly customizable modal
-                            window, configured through dynamic props and
-                            attributes. It includes a custom close button,
-                            highlighting the modal's flexibility and
-                            adaptability for various use cases.
-                          </text>
-                        </group>
+                            <text
+                              data-weight="600"
+                              data-wrap="wrap"
+                              data-line="20"
+                              data-max-length="400"
+                            >
+                              This demo showcases a highly customizable modal
+                              window, configured through dynamic props and
+                              attributes. It includes a custom close button,
+                              highlighting the modal's flexibility and
+                              adaptability for various use cases.
+                            </text>
+                          </group>
                         </group>
 
                         <group data-height="20"></group>
@@ -362,7 +365,6 @@ data-animation-duration="1.5"
             </group>
           </group>
 
-
           <group data-gap="15" data-name="separation">
             <separator data-horizontal=""></separator>
             <group>
@@ -377,37 +379,54 @@ data-animation-duration="1.5"
                     "modal-2",
                     "Customized Popup",
                     <group data-min-height="fit">
-                    <group
-                      data-position="absolute"
-                      data-height="fit"
-                      data-background="main-background-top"
+                      <group
+                        data-position="absolute"
+                        data-height="fit"
+                        data-background="main-background-top"
                         onClick={() => closeModal("modal-2")}
                       ></group>
-                      <group data-max-length="400" data-space="30" data-gap="30" data-position="center">
-
-                        <group >
-                        <group data-gap="20">
+                      <group
+                               data-width="auto"
+                               data-position="center"
+                               data-direction="column"
+                               data-align="center"
+                               data-gap="30"
+                               data-space="30"
+                      >
+                        <group
+                          data-gap="20"
+                          data-direction="column"
+                          data-align="center"
+                          data-width="auto"
+                        >
                           <text
                             data-weight="700"
                             data-text-size="x-large"
                             data-wrap="wrap"
                             data-ellipsis=""
+                            data-text-align="center"
                           >
                             Custom Apperance Settings
                           </text>
 
-                          <text  data-weight="600" data-wrap="wrap" data-line="20" data-max-length="400">
+                          <text
+                            data-text-align="center"
+                            data-weight="600"
+                            data-wrap="wrap"
+                            data-line="20"
+                            data-max-length="400"
+                          >
                             This demo showcases a highly customizable modal
                             window, configured through dynamic props and
                             attributes.
                           </text>
                         </group>
+
+                        <separator data-horizontal=""></separator>
+
+                        <group>
+                          <ThemeToggle />
                         </group>
-
-<separator data-horizontal=""></separator>
-
-
-<group>   <ThemeToggle/></group>
                       </group>
                     </group>,
                     false,
@@ -422,7 +441,7 @@ data-animation-duration="1.5"
             </group>
           </group>
 
-          
+
           <group data-gap="15" data-name="separation">
             <separator data-horizontal=""></separator>
             <group>
@@ -437,18 +456,92 @@ data-animation-duration="1.5"
                     "modal-2",
                     "Customized Popup",
                     <group data-min-height="fit">
-                    <group
-                      data-position="absolute"
-                      data-height="fit"
-                      data-background="main-background-top"
+                      <group
+                        data-position="absolute"
+                        data-height="fit"
+                        //    data-background="main-background-top"
                         onClick={() => closeModal("modal-2")}
                       ></group>
-                      <group data-max-length="400"  data-position="center">
+
+                      <group
+                        data-width="auto"
+                        data-position="center"
+                        data-direction="column"
+                        data-align="center"
+                        data-gap="30"
+                          data-space="30"
+                      >
+                        <group
+                          data-gap="20"
+                          data-direction="column"
+                          data-align="center"
+                          data-width="auto"
+                        >
+                          <text
+                            data-weight="700"
+                            data-text-size="x-large"
+                            data-wrap="wrap"
+                            data-ellipsis=""
+                            data-text-align="center"
+                          >
+                            Custom Apperance Settings
+                          </text>
+
+                          <text
+                            data-text-align="center"
+                            data-weight="600"
+                            data-wrap="wrap"
+                            data-line="20"
+                            data-max-length="400"
+                          >
+                            This demo showcases a highly customizable modal
+                            window, configured through dynamic props and
+                            attributes.
+                          </text>
+                        </group>
+
+                        <separator data-horizontal=""></separator>
+                        <group>
+                          <RichThemePicker pickerType="primary" />
+                        </group>
+                      </group>
+                    </group>,
+                    false,
+                    false,
+                    modalConfig,
+                    0
+                  )
+                }
+              >
+                <text>Open Custom Theme Settings</text>
+              </group>
+            </group>
+          </group>
 
 
+          <group data-gap="15" data-name="separation">
+            <separator data-horizontal=""></separator>
+            <group>
+              <group
+                data-width="auto"
+                data-interactive=""
+                data-space="15"
+                data-radius="10"
+                data-cursor="pointer"
+                onClick={() =>
+                  openModal(
+                    "modal-2",
+                    "Customized Popup",
+                    <group data-min-height="fit">
+                      <group
+                        data-position="absolute"
+                        data-height="fit"
+                        data-background="main-background-top"
+                        onClick={() => closeModal("modal-2")}
+                      ></group>
 
-
-<Search/>
+                      <group data-max-length="400" data-position="center" data-space="30">
+                        <Search />
                       </group>
                     </group>,
                     false,
