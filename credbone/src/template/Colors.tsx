@@ -396,28 +396,24 @@ const Colors: React.FC = () => {
         data-max-length="1200"
         //    data-width="auto"
         data-type="grid"
-        data-gap="10"
+        data-gap="5"
         data-grid-template="120"
       >
         {BaseColors.map((colors, index) => (
           <group
             key={index}
             data-contain=""
-            // data-border=""
-            data-radius="10"
+            // data-border="" 
+          //  data-radius="10"
             data-direction="column"
-            data-border=""
+       //     data-border=""
           >
-            <group data-wrap="no" data-direction="column">
-              <group
-                data-height="50"
-                data-background={colors.value + "-dark"}
-              ></group>
-              <group data-height="50" data-background={colors.value}></group>
-              <group
-                data-height="50"
-                data-background={colors.value + "-light"}
-              ></group>
+            <group data-wrap="no" data-direction="column"  data-gap="5">
+
+
+              <group data-height="50" data-radius="5" data-background={colors.value + "-light"}></group>
+              <group data-height="50" data-radius="5" data-background={colors.value}></group>
+              <group data-height="50" data-radius="5" data-background={colors.value + "-dark"}></group>
             </group>
             <group
               data-space="15"
@@ -426,9 +422,10 @@ const Colors: React.FC = () => {
               data-shrink="no"
               data-direction="column"
               data-width="auto"
-              data-background="context"
+             // data-background="context"
+             
             >
-              <group data-direction="column" data-gap="10">
+              <group data-direction="column"  data-gap="5">
                 <text
                   data-ellipsis=""
                   data-wrap="wrap"

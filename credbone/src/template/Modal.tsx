@@ -459,7 +459,7 @@ const Modal: React.FC = () => {
                       <group
                         data-position="absolute"
                         data-height="fit"
-                        //    data-background="main-background-top"
+                            data-background="main-background-top"
                         onClick={() => closeModal("modal-2")}
                       ></group>
 
