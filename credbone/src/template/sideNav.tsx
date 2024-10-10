@@ -35,7 +35,7 @@ const SideNav = () => {
        
         ref={navRef}
         data-placement="right"
-         data-float={isNavOpen ? "15" : "20"}
+       //  data-float={isNavOpen ? "15" : "20"}
          data-radius="10"
         //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
@@ -43,7 +43,7 @@ const SideNav = () => {
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
         //  data-width="auto"
-        data-height={isNavOpen ? "fit" : ""}
+       // data-height="fit"
         // data-max-length="300"
         data-elevation="2"
         data-index="999"

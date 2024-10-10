@@ -9,7 +9,6 @@ import {
 import Template from "./template";
 import About from "./pages/about";
 
-
 import Settings from "./pages/settings";
 import { Navigation } from "./components/navigation";
 
@@ -24,42 +23,41 @@ import { ModalProvider } from "./components/Modal";
 
 const MainLayout = () => {
   return (
-    <view data-space="30" data-scroll="" data-border="no" data-background="none">
-     <Outlet />
+    <view
+      data-space="30"
+      data-scroll=""
+      data-border="no"
+      data-background="none"
+    >
+      <Outlet />
     </view>
   );
 };
 
 function App() {
-
   return (
     <>
       <Router>
-      <TitleUpdater />
-      <ModalProvider>
-     
-
-        <group
-         
-          data-adaptive="mobile"
-          data-adaptive-order="2"
-          data-index="3"
-          data-border="overprint"
-          data-background="main-background"
-           data-print="hide"
-        >
+        <TitleUpdater />
+        <ModalProvider>
           <group
-            data-wrap="no"
-            data-gap="10"
-            data-space="15"
-            data-space-bottom="15-sab"
-            data-justify="adaptive-space-around"
+            data-adaptive="mobile"
+            data-adaptive-order="2"
+            data-index="3"
+            data-border="overprint"
+            data-background="main-background"
+            data-print="hide"
           >
-            <Navigation />
-
-
+            <group
+              data-wrap="no"
+              data-gap="10"
+              data-space="15"
+              data-space-bottom="15-sab"
+              data-justify="adaptive-space-around"
+            >
+              <Navigation />
+            </group>
           </group>
-        </group>
 
           <view data-vertical="">
             <VerticalNav data-adaptive="desktop" data-print="hide" />
@@ -69,15 +67,16 @@ function App() {
               <Route path="/Home" element={<Components />} />
 
               <Route path="/*" element={<MainLayout />}>
-        <Route path="About" element={<About />} />
-        <Route path="Settings" element={<Settings />} />
-        <Route path="Search" element={<Search />} />
-        </Route>
+                <Route path="About" element={<About />} />
+                <Route path="Settings" element={<Settings />} />
+                <Route path="Search" element={<Search />} />
+              </Route>
+              
               <Route path="/Resume" element={<Resume />} />
             </Routes>
           </view>
           <div id="popover-container" data-max-length="fit"></div>
-          </ModalProvider>
+        </ModalProvider>
       </Router>
     </>
   );
