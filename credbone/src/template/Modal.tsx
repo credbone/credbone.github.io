@@ -7,6 +7,7 @@ import TooltipPopover from "./TooltipPopover";
 import StuckReporter from "../components/StuckReporter";
 import ThemeToggle from "../components/themeToggle";
 import RichThemePicker from "./richThemePicker";
+import Ripple from "../components/Ripple";
 
 
 const Modal: React.FC = () => {
@@ -228,24 +229,32 @@ const Modal: React.FC = () => {
                               data-space-vertical="30"
                               data-sticky="top"
                             >
+                               <Ripple>
                               <group
-                                data-animation-name="appear-bottom"
-                                data-fill-mode="backwards"
-                                data-animation-duration="1.75"
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="1.75"
+
+                                data-align="center"
+                                flex-direction="column"
+                                data-justify="center"
+                                data-min-length="140"
+                                data-ink-color="main-dark"
                                 data-background="main"
                                 data-color="main-text"
                                 data-interactive=""
                                 data-width="auto"
                                 data-cursor="pointer"
                                 data-space="15"
-                                data-radius="10"
-                                data-min-length="140"
-                                data-align="center"
-                                data-direction="column"
+                                data-space-horizontal="20"
+                                data-radius="30"
+                                data-contain=""
                                 onClick={() => closeModal("modal-1")}
                               >
                                 <text data-weight="700">Close</text>
                               </group>
+                              </Ripple>
                             </group>
                           )}
                         </StuckReporter>
@@ -333,20 +342,26 @@ const Modal: React.FC = () => {
                               data-space={isSticky ? "20" : ""}
                               data-sticky="top"
                             >
+                              <Ripple>
                               <group
+                              data-ink-color="main-dark"
                                 data-background="main"
                                 data-color="main-text"
                                 data-interactive=""
                                 data-width="auto"
                                 data-cursor="pointer"
                                 data-space="15"
-                                data-radius="10"
+                                data-space-horizontal="20"
+                                data-radius="30"
+                                data-contain=""
                                 onClick={() => closeModal("modal-2")}
                               >
                                 <text data-weight="700">
                                   Custom Close Button
                                 </text>
                               </group>
+                              </Ripple>
+                              
                             </group>
                           )}
                         </StuckReporter>

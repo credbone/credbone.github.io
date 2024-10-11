@@ -255,6 +255,9 @@ data-animation-duration="1.5"
                       <img src={item.image} alt={item.title} />{" "}
                     </picture>
                   </group>
+
+
+
                 </group>
               </group>,
               false,
@@ -401,7 +404,7 @@ const Cards: React.FC = () => {
   
   const { control, watch } = useForm<FieldValues>({
     defaultValues: {
-      ViewSwitch: "ListView",
+      ViewSwitch: "CardView",
     },
   });
 
