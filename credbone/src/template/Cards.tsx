@@ -141,7 +141,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
         <group
           key={item.key}
           data-space="5"
-          data-gap="5"
+          //data-gap="5"
           data-radius="20"
           data-direction="column"
           data-border="outline"
@@ -269,14 +269,28 @@ data-animation-duration="1.5"
         >
           <group
             data-ratio="4:5"
-            data-radius="15"
+          
             data-contain=""
-            data-background="highlight"
+          //  data-background="highlight"
+            data-direction="column"
+            data-wrap="no"
+            data-gap="5"
           >
-            <picture data-brightness="adaptive">
-              {" "}
-              <img src={item.image} alt={item.title} />{" "}
+            <picture
+data-position="absolute"
+             data-brightness="adaptive"
+             data-mask={selectedKey === item.key ? "bottom" : ""}
+               data-radius="15"
+               
+               >
+              <img src={item.image} alt={item.title} />
             </picture>
+            
+
+            
+            {selectedKey === item.key && <group data-position="bottom"><ContentToolbar count={item.count} /> </group>}
+         
+
           </group>
 
           <group data-gap="10" data-space="10" data-direction="column">
@@ -288,9 +302,7 @@ data-animation-duration="1.5"
             </text>
           </group>
 
-          <group data-position="bottom">
-            {selectedKey === item.key && <ContentToolbar count={item.count} />}
-          </group>
+
         </group>
       ))}
     </>

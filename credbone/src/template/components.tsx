@@ -161,7 +161,7 @@ const Components: React.FC = () => {
           <group
             data-gap="10"
             data-type="grid"
-            data-grid-template="200"
+            data-grid-template="200/150"
             data-weight="600"
           >
             {linksArray.map((link, index) => (
