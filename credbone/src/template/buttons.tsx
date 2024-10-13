@@ -110,33 +110,12 @@ const Buttons: React.FC = () => {
         data-elevation="1"
       >
         <group data-scroll="" data-gap="1">
-          <group data-border="" data-space="20">
-            <Button primary text="Primary Button" />
-          </group>
-          <group data-border="" data-space="20">
-            <Button secondary text="Secondary Button" />
-          </group>
-          <group data-border="" data-space="20">
-            <Button accent text="Accent Button" />
-          </group>
-          <group data-border="" data-space="20">
-            <Button
-              outline
-              text="Outline Button"
-              textFirst={false}
-             
-            />
-          </group>
-          <group data-border="" data-space="20">
-            <Button
-              highlight
-              text="Highlighted"
- 
-            ></Button>
-          </group>
-          <group data-border="" data-space="20">
-            <Button text="Simple Button" />
-          </group>
+          <group data-border="" data-space="20"> <Button  large primary text="Primary Button" /> </group>
+          <group data-border="" data-space="20"> <Button  large secondary text="Secondary Button" /> </group>
+          <group data-border="" data-space="20"> <Button  large accent text="Accent Button" /> </group>
+          <group data-border="" data-space="20"> <Button  large outline text="Outline Button" textFirst={false} /> </group>
+          <group data-border="" data-space="20"> <Button  large highlight text="Highlighted" ></Button> </group>
+          <group data-border="" data-space="20"> <Button  large text="Simple Button" /> </group>
         </group>
       </group>
       <group

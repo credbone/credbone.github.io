@@ -416,7 +416,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                     control={control}
                     radioType={RadioType.Button}
                     name="RadioDemo1"
-                    radioValue="400"
+                    radioValue="300"
                     label="Month"
                   />
                 </OptionBar>
