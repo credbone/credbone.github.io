@@ -84,6 +84,49 @@
   --stormy-blue-grey: #546e7a;
   --stormy-blue-grey-light: #819ca9;
   --stormy-blue-grey-dark: #29434e;
+
+
+
+
+  --midnight-navy: #1e2267;
+  --midnight-navy-text: #d9f0ff; /* White text for dark background */
+
+  --peach-blush: #f7dfd6;
+  --peach-blush-text: #783221; /* Dark gray text for light background */
+
+  --sunny-yellow: #fdde75;
+  --sunny-yellow-text: #573e0f; /* Dark gray text for bright background */
+
+  --mint-green: #88ceb6;
+  --mint-green-text: #1e3d36;
+
+
+
+}
+
+
+
+
+/* Special colors */
+
+[data-background="mint-green"] {
+  background-color: var(--mint-green);
+  color: var(--mint-green-text);
+}
+
+[data-background="midnight-navy"] {
+  background-color: var(--midnight-navy);
+  color: var(--midnight-navy-text);
+}
+
+[data-background="peach-blush"] {
+  background-color: var(--peach-blush);
+  color: var(--peach-blush-text);
+}
+
+[data-background="sunny-yellow"] {
+  background-color: var(--sunny-yellow);
+  color: var(--sunny-yellow-text);
 }
 
 
