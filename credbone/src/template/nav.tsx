@@ -8,7 +8,7 @@ import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
 import { IconSearch, IconStar } from "../components/icon/credIcons";
-import sampleImage from "../styles/images/samples/res_52.jpg";
+import sampleImage from "../styles/images/samples/objects/object-3.png";
 import SideNav from "./sideNav";
 
 // Demo Data
@@ -69,15 +69,18 @@ const Landing: React.FC = () => {
             data-max-length="600"
           >
             <group
-              data-background="secondary"
-              data-color="secondary-text"
+data-background="peach-blush"
               data-contain=""
               // data-dark=""
               data-align="center"
             >
-              <picture data-position="absolute">
-                <img src={sampleImage} alt="" data-name="color-demo" />
-              </picture>
+
+
+<group data-contain="" data-position="absolute"  data-max-length="400" data-direction="column" data-justify="end">
+            <picture data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
+              <img src={sampleImage} alt="" />
+            </picture>
+          </group>
 
               <group data-length="fit" data-space="30" data-gap="30">
                 <group data-direction="column" data-gap="10">

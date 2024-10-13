@@ -1,5 +1,5 @@
 import React from "react";
-import sampleImage from "../styles/images/samples/res_50.jpg";
+import sampleImage from "../styles/images/samples/objects/object-1.png";
 
 import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
@@ -8,7 +8,6 @@ import StuckReporter from "../components/StuckReporter";
 import ThemeToggle from "../components/themeToggle";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
-
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -20,19 +19,22 @@ const Modal: React.FC = () => {
       data-max-height="fit"
       data-scroll=""
       data-gap="10"
-      
     >
-      <text data-line="20" data-color="main" data-text-size="medium"  data-wrap="wrap" data-weight="600" >
+      <text
+        data-line="20"
+        data-color="main"
+        data-text-size="medium"
+        data-wrap="wrap"
+        data-weight="600"
+      >
         This is a Modal Component
       </text>
-      <text  data-line="20" data-wrap="wrap" >
-      It
-        uses context to manage multiple modals and ensures only the topmost
+      <text data-line="20" data-wrap="wrap">
+        It uses context to manage multiple modals and ensures only the topmost
         modal can be interacted with when multiple are open.
       </text>
     </group>
   );
-
 
   const modalConfig = {
     "data-radius": "none",
@@ -41,62 +43,70 @@ const Modal: React.FC = () => {
     "data-elevation": "none",
     "data-width": "fit",
     "data-scroll": "",
-    "data-min-height":"fit",
+    "data-min-height": "fit",
     "data-contain": "scroll",
   };
-  
 
-  const  modalData = [
-    { title: "Basic Modal", content: sampleContent, toolbar: false, header: true, },
-    { title: " Modal with no Header", content: sampleContent, toolbar: true, header: false, },
-    { title: "Info Modal", content: sampleContent, toolbar: true, header: true, },
- //   { title: "Modal With no header and Toolbar", content: ( <group data-max-length="400" data-max-height="fit" data-contain="">  </group> ), toolbar: false, header: false, },
-   // { title: "Success Modal", content: ( <group data-length="500" data-max-height="fit" data-scroll=""> {demoModals} </group> ), toolbar: true, header: false, },
+  const modalData = [
+    {
+      title: "Basic Modal",
+      content: sampleContent,
+      toolbar: false,
+      header: true,
+    },
+    {
+      title: " Modal with no Header",
+      content: sampleContent,
+      toolbar: true,
+      header: false,
+    },
+    {
+      title: "Info Modal",
+      content: sampleContent,
+      toolbar: true,
+      header: true,
+    },
+    //   { title: "Modal With no header and Toolbar", content: ( <group data-max-length="400" data-max-height="fit" data-contain="">  </group> ), toolbar: false, header: false, },
+    // { title: "Success Modal", content: ( <group data-length="500" data-max-height="fit" data-scroll=""> {demoModals} </group> ), toolbar: true, header: false, },
   ];
 
   const demoModals = (
-
     <group
-    data-space="20"
-    data-gap="15"
-    data-weight="600"
-    data-background="context"
-  >
-    {modalData.map(({ title, content, header, toolbar }, index) => (
-      <group key={index} data-gap="15" data-name="separation">
-        <separator data-horizontal=""></separator>
-        <group>
-          <group
-            data-width="auto"
-           
-            data-interactive=""
-            // data-interact="popover"
-            data-space="15"
-            data-radius="10"
-            data-cursor="pointer"
-            onClick={() =>
-              openModal(
-                `modal-map-${index}`,
-                title,
-                <group data-max-height="fit" data-contain="">
-                  {content}
-                </group>,
-                header,
-                toolbar
-              )
-            }
-          >
-
-            <text data-ellipsis="">Open {title}</text>
-
+      data-space="20"
+      data-gap="15"
+      data-weight="600"
+      data-background="context"
+    >
+      {modalData.map(({ title, content, header, toolbar }, index) => (
+        <group key={index} data-gap="15" data-name="separation">
+          <separator data-horizontal=""></separator>
+          <group>
+            <group
+              data-width="auto"
+              data-interactive=""
+              // data-interact="popover"
+              data-space="15"
+              data-radius="10"
+              data-cursor="pointer"
+              onClick={() =>
+                openModal(
+                  `modal-map-${index}`,
+                  title,
+                  <group data-max-height="fit" data-contain="">
+                    {content}
+                  </group>,
+                  header,
+                  toolbar
+                )
+              }
+            >
+              <text data-ellipsis="">Open {title}</text>
+            </group>
           </group>
         </group>
-      </group>
-    ))}
-  </group>
-  )
-
-
+      ))}
+    </group>
+  );
 
   return (
     <group
@@ -120,9 +130,6 @@ const Modal: React.FC = () => {
           // data-dark=""
           data-align="center"
         >
-          <picture data-position="absolute" data-opacity="30">
-            <img src={sampleImage} alt="" data-name="color-demo" />
-          </picture>
           <group data-space="30" data-gap="30">
             <group data-color="main-text" data-direction="column" data-gap="10">
               <text
@@ -145,6 +152,12 @@ const Modal: React.FC = () => {
                 tasks.
               </text>
             </group>
+          </group>
+
+          <group data-contain="" data-height="120" data-max-length="400">
+            <picture data-min-length="300" data-contain="" data-ratio="1:1">
+              <img src={sampleImage} alt="" />
+            </picture>
           </group>
         </group>
 
@@ -229,31 +242,29 @@ const Modal: React.FC = () => {
                               data-space-vertical="30"
                               data-sticky="top"
                             >
-                               <Ripple>
-                              <group
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.75"
-
-                                data-align="center"
-                                flex-direction="column"
-                                data-justify="center"
-                                data-min-length="140"
-                                data-ink-color="main-dark"
-                                data-background="main"
-                                data-color="main-text"
-                                data-interactive=""
-                                data-width="auto"
-                                data-cursor="pointer"
-                                data-space="15"
-                                data-space-horizontal="20"
-                                data-radius="30"
-                                data-contain=""
-                                onClick={() => closeModal("modal-1")}
-                              >
-                                <text data-weight="700">Close</text>
-                              </group>
+                              <Ripple>
+                                <group
+                                  data-animation-name="appear-bottom"
+                                  data-fill-mode="backwards"
+                                  data-animation-duration="1.75"
+                                  data-align="center"
+                                  flex-direction="column"
+                                  data-justify="center"
+                                  data-min-length="140"
+                                  data-ink-color="main-dark"
+                                  data-background="main"
+                                  data-color="main-text"
+                                  data-interactive=""
+                                  data-width="auto"
+                                  data-cursor="pointer"
+                                  data-space="15"
+                                  data-space-horizontal="20"
+                                  data-radius="30"
+                                  data-contain=""
+                                  onClick={() => closeModal("modal-1")}
+                                >
+                                  <text data-weight="700">Close</text>
+                                </group>
                               </Ripple>
                             </group>
                           )}
@@ -343,25 +354,24 @@ data-animation-duration="1.75"
                               data-sticky="top"
                             >
                               <Ripple>
-                              <group
-                              data-ink-color="main-dark"
-                                data-background="main"
-                                data-color="main-text"
-                                data-interactive=""
-                                data-width="auto"
-                                data-cursor="pointer"
-                                data-space="15"
-                                data-space-horizontal="20"
-                                data-radius="30"
-                                data-contain=""
-                                onClick={() => closeModal("modal-2")}
-                              >
-                                <text data-weight="700">
-                                  Custom Close Button
-                                </text>
-                              </group>
+                                <group
+                                  data-ink-color="main-dark"
+                                  data-background="main"
+                                  data-color="main-text"
+                                  data-interactive=""
+                                  data-width="auto"
+                                  data-cursor="pointer"
+                                  data-space="15"
+                                  data-space-horizontal="20"
+                                  data-radius="30"
+                                  data-contain=""
+                                  onClick={() => closeModal("modal-2")}
+                                >
+                                  <text data-weight="700">
+                                    Custom Close Button
+                                  </text>
+                                </group>
                               </Ripple>
-                              
                             </group>
                           )}
                         </StuckReporter>
@@ -401,12 +411,12 @@ data-animation-duration="1.75"
                         onClick={() => closeModal("modal-2")}
                       ></group>
                       <group
-                               data-width="auto"
-                               data-position="center"
-                               data-direction="column"
-                               data-align="center"
-                               data-gap="30"
-                               data-space="30"
+                        data-width="auto"
+                        data-position="center"
+                        data-direction="column"
+                        data-align="center"
+                        data-gap="30"
+                        data-space="30"
                       >
                         <group
                           data-gap="20"
@@ -456,7 +466,6 @@ data-animation-duration="1.75"
             </group>
           </group>
 
-
           <group data-gap="15" data-name="separation">
             <separator data-horizontal=""></separator>
             <group>
@@ -474,7 +483,7 @@ data-animation-duration="1.75"
                       <group
                         data-position="absolute"
                         data-height="fit"
-                            data-background="main-background-top"
+                        data-background="main-background-top"
                         onClick={() => closeModal("modal-2")}
                       ></group>
 
@@ -484,7 +493,7 @@ data-animation-duration="1.75"
                         data-direction="column"
                         data-align="center"
                         data-gap="30"
-                          data-space="30"
+                        data-space="30"
                       >
                         <group
                           data-gap="20"
@@ -533,7 +542,6 @@ data-animation-duration="1.75"
             </group>
           </group>
 
-
           <group data-gap="15" data-name="separation">
             <separator data-horizontal=""></separator>
             <group>
@@ -555,7 +563,11 @@ data-animation-duration="1.75"
                         onClick={() => closeModal("modal-2")}
                       ></group>
 
-                      <group data-max-length="400" data-position="center" data-space="30">
+                      <group
+                        data-max-length="400"
+                        data-position="center"
+                        data-space="30"
+                      >
                         <Search />
                       </group>
                     </group>,
@@ -570,8 +582,6 @@ data-animation-duration="1.75"
               </group>
             </group>
           </group>
-
-
         </group>
       </group>
     </group>

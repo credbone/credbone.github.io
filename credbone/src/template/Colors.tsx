@@ -42,61 +42,76 @@ const Colors: React.FC = () => {
         //   data-width="auto"
         data-radius="20"
       >
-        <Popover
-          placement="mouse"
-          content={
-            <group
-              data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="1.25"
+        <group data-min-height="240" data-width="auto" data-length="auto">
+          <group
+            data-ink-color="main-dark"
+          //  data-cursor="pointer"
+            //     data-interactive=""
+            //data-radius="5"
+            data-contain=""
+            data-direction="column"
+            data-color="main-text"
+            data-space="30"
+            data-background="main"
+            data-gap="20"
+            data-justify="end"
+            data-align="start"
+            data-wrap="no"
+          >
+
+<Popover
+              placement="top"
+              content={
+                <group
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="primary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
             >
-              <RichThemePicker pickerType="primary" />
-            </group>
-          }
-          data-space="5"
-          data-radius="10"
-          data-backdrop="10"
-          data-width="auto"
-        >
-          <group data-min-height="240" data-width="auto" data-length="auto">
-
               <group
-                data-ink-color="main-dark"
-                data-cursor="pointer"
-                data-interactive=""
-                //data-radius="5"
                 data-contain=""
+                data-space="15"
+                data-interactive=""
+                data-cursor="pointer"
+                data-radius="10"
+                data-width="auto"
+                data-align="center"
                 data-direction="column"
-                data-color="main-text"
-                data-space="30"
-                data-background="main"
-                data-gap="10"
-                data-justify="end"
-                data-align="start"
-                data-wrap="no"
+                data-background="main-text"
+                data-color="main"
+               
               >
-                <text
-                  data-wrap="wrap"
-                  data-light=""
-                  data-max-length="300"
-                  data-line="20"
-                >
-                  This primary color you selected will be used extensively in
-                  the UI, with other shades being automatically generated from
-                  it.
-                </text>
-
-                <text
-                  data-wrap="wrap"
-                  data-weight="700"
-                  data-text-size="x-large"
-                >
-                  Primary Color
-                </text>
+             <icon data-position="center">opacity</icon>
               </group>
+            </Popover>
+
+            <group data-direction="column" data-gap="10">
+              <text
+                data-wrap="wrap"
+                data-light=""
+                data-max-length="300"
+                data-line="20"
+              >
+                This primary color you selected will be used extensively in the
+                UI, with other shades being automatically generated from it.
+              </text>
+
+              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+                Primary Color
+              </text>
+            </group>
+
+
 
           </group>
-        </Popover>
+        </group>
 
         <group
           //data-radius="5"
@@ -218,51 +233,75 @@ const Colors: React.FC = () => {
           </group>
         </group>
 
-<Popover
- placement="mouse"
- content={
-   <group
-     data-animation-name="appear-bottom"
-     data-fill-mode="backwards"
-     data-animation-duration="1.25"
-   >
-     <RichThemePicker pickerType="secondary" />
-   </group>
- }
- data-space="5"
- data-radius="10"
- data-backdrop="10"
- data-width="auto"
->
-        <group
-          //data-radius="5"
-           data-cursor="pointer"
-                data-interactive="" 
-          data-contain=""
-          data-min-height="240"
-          data-direction="column"
-          data-width="auto"
-          data-length="auto"
-          data-color="secondary-text"
-          data-space="30"
-          data-background="secondary"
-          data-gap="10"
-          data-justify="end"
-        >
-          <text
-            data-wrap="wrap"
-            data-light=""
-            data-max-length="300"
-            data-line="20"
+
+          <group
+            //data-radius="5"
+         //   data-cursor="pointer"
+          // data-interactive=""
+            data-contain=""
+            data-min-height="240"
+            data-direction="column"
+            data-width="auto"
+            data-length="auto"
+            data-color="secondary-text"
+            data-space="30"
+            data-background="secondary"
+            data-gap="20"
+            data-justify="end"
+            data-align="start"
           >
-            This Secondary color you selected will be used extensively in the
-            UI, with other shades being automatically generated from it.
-          </text>
-          <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-            Secondary Color
-          </text>
-        </group>
-        </Popover>
+            <Popover
+              placement="top"
+              content={
+                <group
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="secondary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
+            >
+              <group
+                data-contain=""
+                data-space="15"
+                data-interactive=""
+                data-cursor="pointer"
+                data-radius="10"
+                data-width="auto"
+                data-align="center"
+                data-direction="column"
+                data-background="secondary-text"
+                data-color="secondary"
+
+              >
+               <icon data-position="center">opacity</icon>
+              </group>
+            </Popover>
+            <group data-gap="10" data-direction="column">
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-max-length="300"
+              data-line="20"
+            >
+              This Secondary color you selected will be used extensively in the
+              UI, with other shades being automatically generated from it.
+            </text>
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              Secondary Color
+            </text>
+            </group>
+
+
+
+
+          </group>
+
 
         <group
           //data-radius="5"
@@ -349,7 +388,6 @@ const Colors: React.FC = () => {
           data-background="secondary-darker"
         >
           <picture data-position="absolute" data-name="color-demo">
-            
             <img src={sampleImage2} alt="" />
           </picture>
 
@@ -374,8 +412,6 @@ const Colors: React.FC = () => {
             </text>
           </group>
         </group>
-
-
       </group>
 
       <group data-direction="column" data-gap="10">
@@ -403,17 +439,27 @@ const Colors: React.FC = () => {
           <group
             key={index}
             data-contain=""
-            // data-border="" 
-          //  data-radius="10"
+            // data-border=""
+            //  data-radius="10"
             data-direction="column"
-       //     data-border=""
+            //     data-border=""
           >
-            <group data-wrap="no" data-direction="column"  data-gap="5">
-
-
-              <group data-height="50" data-radius="5" data-background={colors.value + "-light"}></group>
-              <group data-height="50" data-radius="5" data-background={colors.value}></group>
-              <group data-height="50" data-radius="5" data-background={colors.value + "-dark"}></group>
+            <group data-wrap="no" data-direction="column" data-gap="5">
+              <group
+                data-height="50"
+                data-radius="5"
+                data-background={colors.value + "-light"}
+              ></group>
+              <group
+                data-height="50"
+                data-radius="5"
+                data-background={colors.value}
+              ></group>
+              <group
+                data-height="50"
+                data-radius="5"
+                data-background={colors.value + "-dark"}
+              ></group>
             </group>
             <group
               data-space="15"
@@ -422,10 +468,9 @@ const Colors: React.FC = () => {
               data-shrink="no"
               data-direction="column"
               data-width="auto"
-             // data-background="context"
-             
+              // data-background="context"
             >
-              <group data-direction="column"  data-gap="5">
+              <group data-direction="column" data-gap="5">
                 <text
                   data-ellipsis=""
                   data-wrap="wrap"

@@ -1,5 +1,5 @@
 import React from "react";
-
+import sampleImage from "../styles/images/samples/objects/object-1.png";
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
 
@@ -24,9 +24,11 @@ const InputsAndForms: React.FC = () => {
           data-min-length="240"
           data-dark=""
         >
-          {/* <picture data-position="absolute" data-name="color-demo">
-            <img src={sampleImage} alt="" />
-          </picture> */}
+<group data-contain="" data-height="120" data-max-length="400" data-direction="column" data-justify="end">
+            <picture data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
+              <img src={sampleImage} alt="" />
+            </picture>
+          </group>
           <group
             //   data-radius="15"
             data-space="30"
@@ -35,7 +37,7 @@ const InputsAndForms: React.FC = () => {
             data-gap="10"
             data-color="main-text"
           >
-            <text data-weight="700" data-text-size="large" data-wrap="wrap">
+            <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
               Password Change
             </text>
             <text data-wrap="wrap" data-line="1.5">

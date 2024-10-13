@@ -6,8 +6,8 @@ import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
 
 
-import sampleImage from "../styles/images/samples/res_50.jpg";
-import sampleImage_2 from "../styles/images/samples/res_53.jpg";
+import sampleImage from "../styles/images/samples/objects/object-1.png";
+import sampleImage_2 from "../styles/images/samples/objects/object-4.png";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
@@ -111,15 +111,23 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-contain=""
               data-align="center"
             >
-              <picture data-position="absolute" data-name="color-demo">
-                <img src={sampleImage} alt="" />
-              </picture>
 
-              <group
-                data-length="fit"
+
+<group data-align="end">
+
+
+<group data-contain="" data-position="absolute" data-right="0" data-height="fit" data-max-length="400" data-direction="column" >
+            <picture  data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
+              <img src={sampleImage} alt="" />
+            </picture>
+          </group>
+
+<group
+             data-width="auto"
                 data-space="40"
                 data-space-vertical="30"
                 data-height="150"
+                data-position="left"
               >
                 <group
                   data-scale="3"
@@ -130,6 +138,11 @@ const CheckboxAndSwitchers: React.FC = () => {
                   <Checkbox name="1" noInk={true} control={control} />
                 </group>
               </group>
+
+
+
+</group>
+
             </group>
           </group>
 
@@ -319,7 +332,20 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-elevation="1"
             data-contain=""
           >
-            <group data-space="30" data-direction="column" data-gap="10">
+
+
+            <group
+              data-background="main-dark"
+              data-contain=""
+            //  data-align="center"
+              data-dark=""
+              data-justify="center"
+               data-space="30"
+               data-gap="30"
+            >
+
+
+<group  data-direction="column" data-gap="10">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"
@@ -331,34 +357,24 @@ const CheckboxAndSwitchers: React.FC = () => {
               <text
                 data-wrap="wrap"
                 data-line="1.5"
-                data-light=""
+               // data-light=""
                 data-max-length="300"
+                data-index="1"
               >
                 Switches are used to toggle the selection of an item, turning it
                 on or off as needed.
               </text>
             </group>
 
-            <group
-              data-background="main-dark"
-              data-contain=""
-              data-align="center"
-              data-dark=""
-            >
-              <picture
-                data-height="600"
-                data-top="0"
-                data-translate-vertical={radioValue}
-                data-transition=""
-                data-duration=".725"
-                data-position="absolute"
-                data-name="color-demo"
-              >
-                <img src={sampleImage_2} alt="" />
-              </picture>
+
+              <group data-mix-lend-mode="multiply" data-timing="fancy" data-duration=".725" data-translate-vertical={radioValue} data-contain="" data-position="absolute" data-right="0" data-height="600" data-max-length="400" data-direction="column" >
+            <picture   data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
+              <img src={sampleImage_2} alt="" />
+            </picture>
+          </group>
 
               <group
-                data-space="30"
+               
                 data-gap="20"
                 data-direction="column"
                 data-weight="600"
