@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import sampleImage from "../styles/images/samples/res_50.jpg";
-import sampleImage_2 from "../styles/images/samples/res_53.jpg";
-import sampleImage_3 from "../styles/images/samples/res_51.jpg";
+import sampleImage from "../styles/images/samples/objects/object-1.png";
+import sampleImage_2 from "../styles/images/samples/objects/object-7.png";
+import sampleImage_3 from "../styles/images/samples/objects/object-3.png";
 import Scroll from "../components/scroll";
 import SubNavigation from "../components/subnav";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
 import TextReveal from "../components/TextReveal";
-
+  
 const linksArray = [
-  { picture:sampleImage, long: "true", color: "", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons" },
+  { picture:sampleImage, long: "true", color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons" },
   { picture:"", long: "",   color: "", title: "Color System", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors" },
   { picture:"", long: "",   color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons" },
-  { picture: sampleImage_3, long: "true",   color: "", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
+  { picture: sampleImage_3, long: "true",   color: "peach-blush", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
+  { picture:sampleImage_2, long: "true",   color: "mint-green", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
   { picture:"", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers" },
-  { picture:sampleImage_2, long: "true",   color: "", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
+
   { picture:"", long: "",   color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation" },
   { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms" },
   //{ picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
@@ -175,38 +176,24 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-contain=""
                 data-min-height="200"
-                data-border="outline"
+                data-border={link.color ? "none" : "outline"}
                 data-radius="20"
-                data-space="5"
+               // data-space="5"
                 data-background={link.color ? link.color : "context"}
                 data-color={link.color ? link.color + "-text" : ""}
                 data-row-end={link.long ? "2" : ""}
                 data-direction="column"
+                   //                  data-react="scale"
               >
-                {link.picture ? (
-                  <group data-height="240" data-mask="bottom" 
-                     data-radius-top="15"
-                     data-contain=""
-                //  data-mix-blend-mode="overlay"
-                  >
-                    <picture
-                      data-brightness="adaptive"
-                   
-                      data-contain=""
-                    >
-                      <img src={link.picture} alt="" />
-                    </picture>
-                  </group>
-                ) : (
-                  ""
-                )}
+
 
                 <group
                   data-index="1"
                   data-direction="column"
                   data-gap="10"
-                  data-space="20"
+                  data-space="25"
                   data-align="start"
+                 
                 >
                   <text
                     data-text-size="large"
@@ -226,6 +213,31 @@ const Components: React.FC = () => {
                     {link.description}
                   </text>
                 </group>
+
+                {link.picture ? (
+                  <group 
+                  data-type="interact"
+                  data-position="bottom"
+              //    data-min-length="300" 
+                  //   data-contain=""
+                     data-height="240"
+                     data-justify="end"
+
+
+                  >
+                    <picture
+                    //  data-brightness="adaptive"
+                   data-min-length="300"
+                      data-contain=""
+                       data-ratio="1:1"
+                    >
+                      <img src={link.picture} alt="" />
+                    </picture>
+                  </group>
+                ) : (
+                  ""
+                )}
+
               </Link>
 </Ripple>
             ))}

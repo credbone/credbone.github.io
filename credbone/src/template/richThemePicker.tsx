@@ -175,10 +175,10 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
   };
 
   return (
-    <group data-gap="5" data-width="auto" data-direction="column">
+    < >
       {(pickerType === "primary" || !pickerType) && renderPrimaryPicker()}
       {(pickerType === "secondary" || !pickerType) && renderSecondaryPicker()}
-    </group>
+    </>
   );
 };
 

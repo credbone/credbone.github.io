@@ -331,6 +331,7 @@ text[data-width="auto"]{width: initial;}
 [data-min-length='200']{min-width:200px;}
 [data-min-length='240']{min-width:240px;}
 [data-min-length='300']{min-width:300px;}
+[data-min-length='360']{min-width:360px;}
 [data-min-length='400']{min-width:400px;}
 [data-min-length='fit']{min-width: 100%;}
 
@@ -550,6 +551,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space='10'] { padding:10px;}
 [data-space='15'] { padding:15px;}
 [data-space='20'] { padding:20px;}
+[data-space='25'] { padding:25px;}
 [data-space='30'] { padding:30px;}
 [data-space='40'] { padding:40px;}
 [data-space='50'] { padding:50px;}

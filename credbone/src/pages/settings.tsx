@@ -95,7 +95,9 @@ function Settings() {
           data-fill-mode="backwards"
           data-animation-duration="1.25"
         >
-          <RichThemePicker />
+         <group data-gap="5" data-direction="column">
+         <RichThemePicker />
+         </group>
         </group>
 
         <separator data-horizontal="" data-interval="10"></separator>

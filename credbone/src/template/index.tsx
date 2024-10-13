@@ -95,7 +95,9 @@ const Template: React.FC = () => {
                       data-animation-duration="1.25"
                       data-length="600"
                     >
-                      <RichThemePicker />
+                     <group data-gap="5" data-direction="column">
+                     <RichThemePicker />
+                     </group>
                     </group>
                   }
                   data-space="5"
