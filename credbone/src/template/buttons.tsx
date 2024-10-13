@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
-import sampleImage from "../styles/images/samples/res_52.jpg";
+import sampleImage from "../styles/images/samples/objects/object-1.png";
 
 import {
   SvgHamburger,
@@ -62,9 +62,11 @@ const Buttons: React.FC = () => {
           // data-dark=""
           data-align="center"
         >
-          <picture data-position="absolute" >
-            <img src={sampleImage} alt="" data-name="color-demo"/>
-          </picture>
+<group data-mix-lend-mode="multiply" data-contain="" data-height="fit" data-position="absolute" data-max-length="400" data-direction="column" data-justify="end">
+            <picture data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
+              <img src={sampleImage} alt="" />
+            </picture>
+          </group>
 
           <group data-length="fit" data-space="40">
             <Ripple>
