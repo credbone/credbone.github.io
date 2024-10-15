@@ -27,7 +27,7 @@ const Modal: React.FC = () => {
         data-wrap="wrap"
         data-weight="600"
       >
-        This is a Modal Component
+       This is a Modal Component
       </text>
       <text data-line="20" data-wrap="wrap">
         It uses context to manage multiple modals and ensures only the topmost
@@ -48,27 +48,13 @@ const Modal: React.FC = () => {
   };
 
   const modalData = [
-    {
-      title: "Basic Modal",
-      content: sampleContent,
-      toolbar: false,
-      header: true,
-    },
-    {
-      title: " Modal with no Header",
-      content: sampleContent,
-      toolbar: true,
-      header: false,
-    },
-    {
-      title: "Info Modal",
-      content: sampleContent,
-      toolbar: true,
-      header: true,
-    },
+    { title: "Basic Modal", content: sampleContent, toolbar: false, header: true, },
+    { title: " Modal with no Header", content: sampleContent, toolbar: true, header: false, },
+    { title: "Info Modal", content: sampleContent, toolbar: true, header: true, },
     //   { title: "Modal With no header and Toolbar", content: ( <group data-max-length="400" data-max-height="fit" data-contain="">  </group> ), toolbar: false, header: false, },
     // { title: "Success Modal", content: ( <group data-length="500" data-max-height="fit" data-scroll=""> {demoModals} </group> ), toolbar: true, header: false, },
   ];
+  
 
   const demoModals = (
     <group
