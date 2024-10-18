@@ -619,6 +619,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-radius="0"]{border-radius: 0px;}
+[data-radius="1"]{border-radius: 1px;}
+[data-radius="2"]{border-radius: 2px;}
 [data-radius="3"]{border-radius: 3px;}
 [data-radius="5"]{border-radius: 5px;}
 [data-radius="7"]{border-radius: 7px;}
