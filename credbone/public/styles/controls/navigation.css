@@ -184,7 +184,7 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
 /* vertical sub nav */
 
 [data-name="vertical-subnav-dim"] {z-index: 102;background-color: var(--dim); }
-[data-name="vertical-subnav"] { transition: .225s; z-index: 103; }
+[data-name="vertical-subnav"] { transition: .225s; z-index: 103; transition-property: transform;}
 [data-name="vertical-subnav"][data-expanded="open"]{transform: none;}
 
 

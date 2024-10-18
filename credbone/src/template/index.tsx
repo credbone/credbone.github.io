@@ -24,6 +24,8 @@ import Dashboard from "./Dashboard";
 import Modal from "./Modal";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
 import { SvgHamburger } from "../components/svg";
+import StuckReporter from "../components/StuckReporter";
+import Ripple from "../components/Ripple";
 
 const Template: React.FC = () => {
   const location = useLocation();
@@ -93,56 +95,78 @@ const Template: React.FC = () => {
         />
 
         <group data-scroll="" data-align="start" ref={viewRef}>
-<group data-max-length="1200">
-<Routes>
-            <Route path="/" element={<Navigate replace to="Typeface" />} />
-            <Route path="Typeface" element={<Typeface />} />
-            <Route path="Icons" element={<Icons />} />
-            <Route path="Buttons" element={<Buttons />} />
-            <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
-            <Route path="Colors" element={<Colors />} />
-            <Route path="Layout" element={<Layout />} />
-            <Route path="Navigation" element={<Landing />} />
-            <Route path="InputsAndForms" element={<InputsAndForms />} />
-            <Route path="TooltipAndPopover" element={<TooltipPopover />} />
-            <Route path="CardsAndList" element={<Cards />} />
-            <Route path="Miscellaneous" element={<Miscellaneous />} />
-            <Route path="Dashboard" element={<Dashboard />} />
-            <Route path="Modal" element={<Modal />} />
-          </Routes>
-</group>
-
-          <group
-
-data-adaptive="mobile"
-
-            data-index="3"
-            data-left="30"
-            data-bottom="30"
-            data-sticky="bottom"
-            data-width="auto"
-            data-space-bottom="30"
-          >
-            <group
-              data-interactive=""
-              className={isSubNavOpen ? "open" : "close"}
-              onClick={toggleNav}
-              //   ref={toggleBtnRef}
-
-              data-elevation="1"
-              data-radius="10"
-              //  data-space="20"
-              data-length="60"
-              data-height="50"
-              // data-width="auto"
-              data-background="context"
-              data-cursor="pointer"
-              data-align="center"
-              data-justify="center"
-            >
-              <icon>left_panel_open</icon>
-            </group>
+          <group data-max-length="1200">
+            <Routes>
+              <Route path="/" element={<Navigate replace to="Typeface" />} />
+              <Route path="Typeface" element={<Typeface />} />
+              <Route path="Icons" element={<Icons />} />
+              <Route path="Buttons" element={<Buttons />} />
+              <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
+              <Route path="Colors" element={<Colors />} />
+              <Route path="Layout" element={<Layout />} />
+              <Route path="Navigation" element={<Landing />} />
+              <Route path="InputsAndForms" element={<InputsAndForms />} />
+              <Route path="TooltipAndPopover" element={<TooltipPopover />} />
+              <Route path="CardsAndList" element={<Cards />} />
+              <Route path="Miscellaneous" element={<Miscellaneous />} />
+              <Route path="Dashboard" element={<Dashboard />} />
+              <Route path="Modal" element={<Modal />} />
+            </Routes>
           </group>
+
+          <StuckReporter>
+            {(isSticky) => (
+              <group
+                data-print="hide"
+                data-index="3"
+                data-left="30"
+                data-sticky="bottom"
+                data-width="auto"
+                data-space-bottom="30"
+                data-adaptive="mobile"
+              >
+                <group data-width="auto">
+                  <Ripple>
+                    <group
+                      onClick={toggleNav}
+                      data-contain=""
+                      data-width="auto"
+                      data-height={isSticky ? "60" : "50"}
+                      data-radius={isSticky ? "30" : "10"}
+                      data-background="context"
+                      data-cursor="pointer"
+                      data-shrink="no"
+                      data-elevation={isSticky ? "6" : "1"}
+                      data-interactive=""
+                      data-align="center"
+                      data-wrap="no"
+                      data-space={isSticky ? "0" : "15"}
+                      data-gap={isSticky ? "0" : "15"}
+                    >
+                      <group data-length={isSticky ? "60" : "20"}>
+                        <icon data-position="center">left_panel_open</icon>
+                      </group>
+
+                      <separator
+                        data-vertical=""
+                        data-visibility={isSticky ? "hidden" : ""}
+                      ></separator>
+
+                      <text
+                        data-weight="600"
+                        data-duration=".225"
+                        data-opacity={isSticky ? "0" : ""}
+                        data-transition-prop="font-size"
+                        data-text-size={isSticky ? "0" : ""}
+                      >
+                        Open Panel
+                      </text>
+                    </group>
+                  </Ripple>
+                </group>
+              </group>
+            )}
+          </StuckReporter>
 
           <group data-height="120" data-adaptive="mobile"></group>
         </group>

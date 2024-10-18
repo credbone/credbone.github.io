@@ -180,16 +180,17 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
           </group>
 
           <group
-          
-          data-position="bottom" 
-         // data-sticky="bottom"
+            data-position="bottom"
+            // data-sticky="bottom"
           >
             <group data-space-horizontal="15">
               <separator data-horizontal=""></separator>
             </group>
 
             <group data-space="20" data-background="main-background">
-              <Popover
+
+
+            <Popover
                 placement="top"
                 content={
                   <group
@@ -216,14 +217,19 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   data-gap="10"
                   data-space="15"
                 >
-                  <text data-weight="">Change Theme</text>
+                  <text data-weight="700" data-ellipsis="">Change Theme</text>
 
-                  {/* <group data-interact="" data-display="none"   data-contain="" data-width="auto" data-radius="5">
-<group data-length="20" data-height="30" data-justify="center" data-background="main" data-align="center" data-color="main-text"><text data-weight="600"></text></group>
-<group data-length="20" data-height="30" data-justify="center" data-background="secondary" data-align="center" data-color="secondary-text"><text data-weight="600"></text></group>
+                  {/* <group data-interact=""  data-display="none" data-position="right"   data-contain="" data-width="auto"  >
+
+<group data-length="10" data-height="10"  data-justify="center" data-background="main-dark" data-align="center"></group>
+<group data-length="10" data-height="10"  data-justify="center" data-background="main" data-align="center"></group>
+<group data-length="10" data-height="10"  data-justify="center" data-background="secondary" data-align="center"></group>
+<group data-length="10" data-height="10"  data-justify="center" data-background="secondary-dark" data-align="center"></group>
+
 </group> */}
                 </group>
               </Popover>
+
             </group>
           </group>
         </group>
