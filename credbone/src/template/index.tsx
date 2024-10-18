@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -11,26 +11,52 @@ import "./../styles/demo.css";
 import Buttons from "./buttons";
 import Typeface from "./typeface";
 import Landing from "./nav";
-import Scroll from "../components/scroll";
-import SubNavigation from "../components/subnav";
+
 import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
-
-import Popover from "../components/popover";
-import RichThemePicker from "./richThemePicker";
-import Ripple from "../components/Ripple";
 
 import TooltipPopover from "./TooltipPopover";
 import Cards from "./Cards";
 import Miscellaneous from "./Miscellaneous";
 import { isDesktop } from "react-device-detect";
-import StuckReporter from "../components/StuckReporter";
+
 import Dashboard from "./Dashboard";
 import Modal from "./Modal";
+import VerticalSubNav from "../pages/navigation/verticalSubNav";
+import { SvgHamburger } from "../components/svg";
 
 const Template: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
+
+  const [isSubNavOpen, setIsNavOpen] = useState(false); // Lift the state up to the parent
+  const toggleNav = () => setIsNavOpen((prev) => !prev); // Function to toggle
+  const closeNav = () => setIsNavOpen(false);
+  // const navRef = useRef<HTMLDivElement | null>(null);
+  // const toggleBtnRef = useRef<HTMLDivElement | null>(null);
+
+  // useEffect(() => {
+  //   const handleOutsideClick = (event: MouseEvent) => {
+  //     const target = event.target as HTMLElement;
+
+  //     if (
+  //       navRef.current &&
+  //       toggleBtnRef.current &&
+  //       !navRef.current.contains(target) &&
+  //       !toggleBtnRef.current.contains(target)
+  //     ) {
+  //       setIsNavOpen(false);
+  //     }
+  //   };
+
+  //   if (isSubNavOpen) {
+  //     document.addEventListener("click", handleOutsideClick);
+  //   } else {
+  //     document.removeEventListener("click", handleOutsideClick);
+  //   }
+
+  //   return () => document.removeEventListener("click", handleOutsideClick);
+  // }, [isSubNavOpen]);
 
   useEffect(() => {
     if (viewRef.current) {
@@ -43,8 +69,8 @@ const Template: React.FC = () => {
 
   return (
     <>
-      <view>
-        <group data-adaptive-order="2">
+      <view data-vertical="">
+        {/* <group data-adaptive-order="2">
           <group
             data-index="3"
             data-scroll-mask="false"
@@ -58,11 +84,18 @@ const Template: React.FC = () => {
               <SubNavigation />
             </Scroll>
           </group>
-        </group>
-        <group data-scroll="" data-align="start" ref={viewRef}>
-          <Routes>
-            <Route path="/" element={<Navigate replace to="Typeface" />} />
+        </group> */}
 
+        <VerticalSubNav
+          isOpen={isSubNavOpen}
+          onClose={closeNav}
+          // navRef={navRef}
+        />
+
+        <group data-scroll="" data-align="start" ref={viewRef}>
+<group data-max-length="1200">
+<Routes>
+            <Route path="/" element={<Navigate replace to="Typeface" />} />
             <Route path="Typeface" element={<Typeface />} />
             <Route path="Icons" element={<Icons />} />
             <Route path="Buttons" element={<Buttons />} />
@@ -77,72 +110,41 @@ const Template: React.FC = () => {
             <Route path="Dashboard" element={<Dashboard />} />
             <Route path="Modal" element={<Modal />} />
           </Routes>
-          <StuckReporter>
-            {(isSticky) => (
-              <group
-                data-index="3"
-                data-left="30"
-                data-bottom="30"
-                data-sticky="bottom"
-                data-width="auto"
-                data-space-bottom="30"
-              >
-                <Popover
-                  content={
-                    <group
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration="1.25"
-                      data-length="600"
-                    >
-                     <group data-gap="5" data-direction="column">
-                     <RichThemePicker />
-                     </group>
-                    </group>
-                  }
-                  data-space="5"
-                  data-radius="10"
-                  data-backdrop="10"
-                  data-width="auto"
-                >
-                  <group data-width="auto">
-                    <Ripple>
-                      <group
-                        data-contain=""
-                        data-width="auto"
-                        data-height={isSticky ? "60" : "50"}
-                        data-radius={isSticky ? "30" : "10"}
-                        data-background="context"
-                        data-cursor="pointer"
-                        data-shrink="no"
-                        data-elevation={isSticky ? "6" : "1"}
-                        data-interactive=""
-                        data-align="center"
-                        data-wrap="no"
-                        data-space={isSticky ? "0" : "15"}
-                        data-gap={isSticky ? "0" : "10"}
-                      >
-                        <group data-length={isSticky ? "60" : "20"}>
-                          <icon data-position="center">opacity</icon>
-                        </group>
+</group>
 
-                        <text
-                          data-weight="600"
-                          data-duration=".225"
-                          data-opacity={isSticky ? "0" : ""}
-                          data-transition-prop="font-size"
-                          data-text-size={isSticky ? "0" : ""}
-                        >
-                          Change Theme
-                        </text>
-                      </group>
-                    </Ripple>
-                  </group>
-                </Popover>
-              </group>
-            )}
-          </StuckReporter>
-          <group data-height="100"></group>
+          <group
+
+data-adaptive="mobile"
+
+            data-index="3"
+            data-left="30"
+            data-bottom="30"
+            data-sticky="bottom"
+            data-width="auto"
+            data-space-bottom="30"
+          >
+            <group
+              data-interactive=""
+              className={isSubNavOpen ? "open" : "close"}
+              onClick={toggleNav}
+              //   ref={toggleBtnRef}
+
+              data-elevation="1"
+              data-radius="10"
+              //  data-space="20"
+              data-length="60"
+              data-height="50"
+              // data-width="auto"
+              data-background="context"
+              data-cursor="pointer"
+              data-align="center"
+              data-justify="center"
+            >
+              <icon>left_panel_open</icon>
+            </group>
+          </group>
+
+          <group data-height="120" data-adaptive="mobile"></group>
         </group>
       </view>
     </>

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import colorsource from "../styles/images/samples/res_44.jpg";
+import colorsource from "../styles/images/samples/res_15.jpg";
+
 
 interface ImageColorPickerProps {
   // You can add more props here if needed.
@@ -100,17 +101,19 @@ const ImageColorPicker: React.FC<ImageColorPickerProps> = () => {
   return (
     <group data-direction="column" data-gap="10">
 
-        <group data-border="" data-space="10">
-          <p>
+        <group data-direction="column" data-gap="10">
+          {/* <p>
             Selected Color: <span style={{ color: selectedColor }}>{selectedColor}</span>
-          </p>
+          </p> */}
+          <text data-weight="700">Selected Color</text>
+          <group data-radius="5" data-length="30" data-height="30" style={{ background: selectedColor }}></group>
         </group>
 
 
 <group>
 <canvas
         data-radius="10"
-        data-border=""
+
 data-name="color-source"
         ref={canvasRef}
         onMouseDown={handleMouseDown}

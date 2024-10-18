@@ -3,17 +3,15 @@ import { NavLink, useLocation } from "react-router-dom";
 import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
 import { NavContext } from "../template/verticalNav";
-import { IconHome, IconSearch } from "./icon/credIcons";
+import { IconHome, IconSearch, IconSettings } from "./icon/credIcons";
 
 
 const navItems = [
   { to: "/Home", icon: <IconHome size={20} />, label: "Home" },
-  { to: "/About", icon: "lightbulb", label: "About" },
-  { to: "/Settings", icon: "tune", label: "Settings", vertical: "true" },
-  { to: "/Search", icon: <IconSearch size={20}/>, label: "Search"},
+  { to: "/About", icon: <icon data-height="auto">lightbulb</icon>, label: "About", },
+  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings", vertical: "true", },
+  { to: "/Search", icon: <IconSearch size={20} />, label: "Search" },
 ];
-
-
 
 const Navigation: React.FC = () => {
   return (
@@ -33,7 +31,7 @@ const Navigation: React.FC = () => {
           data-weight="600"
           data-shrink="0"
           data-grow="adaptive-grow"
-       
+
           //  className={({ isActive }) => (isActive ? 'active' : '')}
         >
           {({ isActive }) => (
@@ -48,9 +46,8 @@ const Navigation: React.FC = () => {
               data-wrap="no"
               // {...(isActive ? { 'data-ink-color': 'main-dark', } : {})}
             >
-              <icon  data-height="auto">
-                {item.icon }
-              </icon>
+              {item.icon}
+
               <text
                 data-space-horizontal="5"
                 data-ellipsis=""
@@ -67,13 +64,13 @@ const Navigation: React.FC = () => {
           )}
         </NavLink>
       ))}
+
     </>
   );
 };
 
 const LeftNavigation: React.FC = () => {
   const context = useContext(NavContext);
-  
 
   if (!context) {
     throw new Error("LeftNavigation must be used within a NavProvider");
@@ -164,7 +161,7 @@ const LeftNavigation: React.FC = () => {
                   data-wrap="no"
                   data-adaptive-direction={item.vertical ? "column" : ""}
                 >
-                  <icon data-length="30">{item.icon}</icon>
+                  <group data-length="30" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
                   <text
                     data-adaptive={
                       item.vertical ? "vertical-state" : "open-state"

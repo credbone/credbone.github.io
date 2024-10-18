@@ -143,7 +143,7 @@ const Dashboard: React.FC = () => {
         data-type="grid"
         data-grid-template="160"
         data-gap="15"
-        data-max-length="900"
+       // data-max-length="900"
       >
         {monitorCard.map((item, index) => (
           <group
@@ -270,7 +270,7 @@ const Dashboard: React.FC = () => {
         ))}
       </group>
 
-      <separator data-horizontal="" data-max-length="900"></separator>
+
     </group>
   );
 };
