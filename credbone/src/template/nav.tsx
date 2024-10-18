@@ -9,6 +9,7 @@ import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
 import { IconSearch, IconStar } from "../components/icon/credIcons";
 import sampleImage from "../styles/images/samples/objects/object-3.png";
+import sampleImage2 from "../styles/images/samples/objects/object-1.png";
 import SideNav from "./sideNav";
 
 // Demo Data
@@ -51,7 +52,7 @@ const Landing: React.FC = () => {
     <>
       <group data-align="start">
         <group
-          data-max-length="600"
+          //  data-max-length="600"
           data-space="30"
           data-gap="30"
           data-direction="column"
@@ -61,70 +62,64 @@ const Landing: React.FC = () => {
           data-fit="1"
           data-align="start"
         >
+          <group data-direction="column" data-gap="10">
+            <text data-weight="700" data-text-size="xxx-large" data-ellipsis="">
+              Navigation
+            </text>
+
+            <text
+              data-wrap="wrap"
+              data-length="300"
+              data-line="1.5"
+              data-opacity="60"
+            >
+              Navigation bars allow movement between primary destinations in an
+              app.
+            </text>
+          </group>
+
           <group
             data-elevation="1"
             data-contain=""
             data-radius="15"
             data-background="context"
-            data-max-length="600"
+            //    data-max-length="600"
           >
             <group
-data-background="peach-blush"
+              data-background="peach-blush"
               data-contain=""
               // data-dark=""
               data-align="center"
             >
+              <group
+                data-contain=""
+                data-position="absolute"
+                data-max-length="400"
+                data-direction="column"
+                data-justify="end"
+              >
+                <picture
+                  data-min-length="300"
+                  data-contain=""
+                  data-ratio="1:1"
+                  data-shrink="no"
+                >
+                  <img src={sampleImage} alt="" />
+                </picture>
+              </group>
 
+              <group data-direction="column" data-gap="10" data-space="30">
+                <text
+                  data-weight="700"
+                  data-text-size="x-large"
+                  data-ellipsis=""
+                >
+                  Tiles
+                </text>
 
-<group data-contain="" data-position="absolute"  data-max-length="400" data-direction="column" data-justify="end">
-            <picture data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
-              <img src={sampleImage} alt="" />
-            </picture>
-          </group>
-
-              <group data-length="fit" data-space="30" data-gap="30">
-                <group data-direction="column" data-gap="10">
-                  <text
-                    data-weight="700"
-                    data-text-size="xxx-large"
-                    data-ellipsis=""
-                  >
-                    Navigation
-                  </text>
-
-                  <text
-                    data-wrap="wrap"
-                    data-length="300"
-                    data-line="1.5"
-                    data-opacity="60"
-                  >
-                    Navigation bars allow movement between primary destinations
-                    in an app.
-                  </text>
-                </group>
-
-                {/* <group data-width="auto">
-                      <Ripple>
-                        <group
-                          data-wrap="no"
-                          data-ink-color="secondary-dark"
-                          data-align="center"
-                          data-cursor="pointer"
-                          data-contain=""
-                          data-background="secondary"
-                          data-color="secondary-text"
-                          data-interactive=""
-                          data-space-horizontal="30"
-                          data-radius="10"
-                          data-height="80"
-                          data-gap="20"
-                        >
-                          <group data-index="1">
-                            <IconMore size={60} />
-                          </group>
-                        </group>
-                      </Ripple>
-                    </group> */}
+                <text data-wrap="wrap" data-line="20" data-max-length="600" data-weight="600">
+                A sleek, tile-based navigation system that offers quick access and smooth transitions between sections. Simple, intuitive, and responsive for an efficient user experience.
+                </text>
               </group>
             </group>
 
@@ -208,9 +203,10 @@ data-background="peach-blush"
                       data-align="center"
                       data-space="5"
                       data-space-horizontal="10"
-                      data-gap="5"
+                     // data-gap="5"
                     >
                       <icon
+                      data-margin-horizontal="5"
                         data-fill={item2.key === selectedItem2Key ? "fill" : ""}
                       >
                         {item2.icon}
@@ -220,7 +216,7 @@ data-background="peach-blush"
                       {item2.badge ? (
                         <>
                           <group data-space="5">
-                            <dot></dot>
+                       
                           </group>
                           <group
                             data-ratio="1:1"
@@ -253,13 +249,34 @@ data-background="peach-blush"
             data-space="20"
             data-gap="20"
             data-elevation="1"
-            data-radius="20"
+            data-radius="15"
             data-background="main"
             data-wrap="no"
             data-direction="column"
             data-align="start"
-            data-width="auto"
+            //   data-width="auto"
+            data-contain=""
           >
+
+<group
+                data-contain=""
+                data-position="absolute"
+                data-max-length="400"
+                data-direction="column"
+                data-justify="end"
+                data-right="0"
+                data-name="color-demo"
+              >
+                <picture
+                  data-min-length="300"
+                  data-contain=""
+                  data-ratio="1:1"
+                  data-shrink="no"
+                >
+                  <img src={sampleImage2} alt="" />
+                </picture>
+              </group>
+
             <group
               data-direction="column"
               data-width="auto"
@@ -279,8 +296,8 @@ data-background="peach-blush"
               </text>
             </group>
             <group
-              data-width="auto"
-              data-radius="10"
+              //  data-width="auto"
+              data-radius="5"
               data-contain=""
               data-background="main-background"
               data-wrap="no"
@@ -388,57 +405,6 @@ data-background="peach-blush"
                   <group data-width="auto" data-contain="">
                     <Scroll>
                       <group data-wrap="no">
-                        <group data-align="center" data-space="15">
-                          <text data-light="" data-ellipsis="">
-                            Sample Tip Message ...
-                          </text>
-                        </group>
-                        <group
-                          data-background="secondary"
-                          data-color="secondary-text"
-                          data-wrap="no"
-                          data-width="auto"
-                        >
-                          <separator
-                            data-vertical=""
-                            data-height="fit"
-                          ></separator>
-                          <Ripple>
-                            <group
-                              data-cursor="pointer"
-                              data-space="10"
-                              data-space-horizontal="15"
-                              data-gap="5"
-                              data-wrap="no"
-                              data-align="center"
-                              data-interactive=""
-                            >
-                              <text data-adaptive="desktop">New</text>
-                              <icon data-fill="" data-adaptive="mobile">
-                                star
-                              </icon>
-                            </group>
-                          </Ripple>
-                        </group>
-                        <group data-wrap="no" data-width="auto">
-                          <separator
-                            data-vertical=""
-                            data-height="fit"
-                          ></separator>
-                          <Ripple>
-                            <group
-                              data-cursor="pointer"
-                              data-space="10"
-                              data-space-horizontal="15"
-                              data-gap="5"
-                              data-wrap="no"
-                              data-align="center"
-                              data-interactive=""
-                            >
-                              <text>Warranty History</text>
-                            </group>
-                          </Ripple>
-                        </group>
                         <group data-wrap="no" data-width="auto">
                           <separator
                             data-vertical=""
@@ -510,89 +476,6 @@ data-background="peach-blush"
             </group>
           </group>
           <separator data-horizontal="" data-interval="10"></separator>
-
-          <group data-width="auto">
-            <group>
-              <nav className="nav_strip classic invert">
-                <ul data-weight="600">
-                  <li>
-                    <group
-                      data-type="group"
-                      data-align="center"
-                      data-space="10"
-                      data-gap="10"
-                      data-wrap="no"
-                    >
-                      <icon>
-                        <IconStar size={20} />
-                      </icon>
-                    </group>
-                  </li>
-                  <li className="selected">
-                    <separator data-vertical="" data-height="20"></separator>
-                    <group
-                      data-align="center"
-                      data-space="10"
-                      data-gap="10"
-                      data-wrap="no"
-                    >
-                      <icon>
-                        <IconSearch size={20} />
-                      </icon>
-                    </group>
-                  </li>
-                  <li>
-                    <separator data-vertical="" data-height="20"></separator>
-                    <group
-                      data-align="center"
-                      data-space="10"
-                      data-gap="5"
-                      data-wrap="no"
-                    >
-                      <text>Products</text>
-                    </group>
-                  </li>
-                  <li>
-                    <separator data-vertical="" data-height="20"></separator>
-                    <group
-                      data-align="center"
-                      data-space="10"
-                      data-gap="5"
-                      data-wrap="no"
-                    >
-                      <text>Warranty</text>
-                    </group>
-                  </li>
-                </ul>
-              </nav>
-            </group>
-
-            <group
-              data-space="10"
-              data-background=""
-              data-gap="10"
-              data-direction="column"
-              data-radius-bottom="10"
-              data-elevation="1"
-            >
-              <div className="field" data-length="auto">
-                <div className="form_fields">
-                  <div className="field_cont">
-                    <input type="text" placeholder="Search Here ..." />
-                    <group
-                      data-width="auto"
-                      data-radius="5"
-                      data-interactive=""
-                      data-space="5"
-                      data-cursor="pointer"
-                    >
-                      <IconSearch size={20} />
-                    </group>
-                  </div>
-                </div>
-              </div>
-            </group>
-          </group>
 
           <group>
             <Tabstrip

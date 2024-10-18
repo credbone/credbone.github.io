@@ -1,19 +1,39 @@
 import React from "react";
 
-import { SvgHamburger } from "../components/svg";
+import { SvgHamburger, SvgHamburgerToRight } from "../components/svg";
 import Switchable from "../components/Switchable";
 
 const Layout: React.FC = () => {
   return (
-    <group data-gap="15" data-space="30" data-border="no" data-align="start">
+    <group data-gap="30" data-space="30" data-border="no" data-align="start">
+
+<group data-direction="column"   data-gap="10">
+              <text
+                data-weight="700"
+                data-text-size="xxx-large"
+                data-wrap="wrap"
+                data-color="main"
+              >
+                Layout & Switches
+              </text>
+              <text
+                data-wrap="wrap"
+                data-length="300"
+                data-line="1.5"
+                data-light=""
+              >
+              Concerns the arrangement and organization of elements in a design, often utilizing grids.
+              </text>
+            </group>
+
       <view
         data-height="400"
         data-direction="row"
         //  data-gap="20"
         //   data-border="no"
         data-radius="10"
-        data-max-length="800"
-        data-elevation="1"
+       
+        data-elevation="2"
       >
         <view data-direction="row">
           <group data-name="switch-gap" data-shrink="no"></group>
@@ -97,7 +117,7 @@ const Layout: React.FC = () => {
           data-placement="right"
           icon={
             <>
-              <SvgHamburger />
+              <SvgHamburgerToRight />
             </>
           }
           defaultExpanded={false}
@@ -186,15 +206,15 @@ const Layout: React.FC = () => {
       </view>
 
       <group
-        data-width="auto"
+      //  data-width="auto"
         data-height="400"
         data-contain=""
         //  data-gap="20"
         //   data-border="no"
         data-radius="10"
-        data-elevation="1"
+        data-elevation="2"
       >
-        <view data-direction="row" data-max-length="600">
+        <view data-direction="row" >
           <Switchable
             data-border="outline"
             data-adaptive-float="15"
@@ -203,7 +223,7 @@ const Layout: React.FC = () => {
             title={"Switchable To The Left"}
             //  data-type="overlap"
             //     data-length="400"
-            closeOnOutsideClick={true}
+          closeOnOutsideClick={true}
             data-index="3"
             togglerProps={{
               "data-background": "main",
@@ -216,6 +236,7 @@ const Layout: React.FC = () => {
                 data-align="center"
                 data-justify="center"
                 data-position="center"
+                   data-max-length="400"
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">

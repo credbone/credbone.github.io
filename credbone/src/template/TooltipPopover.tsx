@@ -116,17 +116,20 @@ const SampleData = (
       // data-dark=""
       data-align="center"
     >
-      <group data-contain="" data-height="fit" data-position="absolute" data-max-length="400">
-            <picture data-min-length="300" data-contain="" data-ratio="1:1">
-              <img src={sampleImage} alt="" />
-            </picture>
-          </group>
+      <group
+        data-contain=""
+        data-height="fit"
+        data-position="absolute"
+        data-max-length="400"
+      >
+        <picture data-min-length="300" data-contain="" data-ratio="1:1">
+          <img src={sampleImage} alt="" />
+        </picture>
+      </group>
 
       <group data-length="fit" data-space="30">
         {ClosePopover}
       </group>
-
-
     </group>
   </group>
 );
@@ -176,8 +179,29 @@ const TooltipPopover: React.FC = () => {
   };
 
   return (
+    <group data-space="30" data-gap="30" data-align="start">
+      <group
+        data-direction="column"
+        data-gap="10"
+        data-background="main-background"
+      >
+        <text
+          data-weight="700"
+          data-text-size="xxx-large"
+          data-wrap="wrap"
+          data-color="main"
+          data-ellipsis=""
+        >
+          Tooltip & Popover
+        </text>
+        <text data-wrap="wrap" data-length="600" data-line="1.5" data-light="">
+          Tooltips display informative text when users hover over, focus on, or
+          tap an element, while a popover is a floating card that appears when
+          users click or hover over an element.
+        </text>
+      </group>
 
-      <group data-space="30" data-gap="15" data-align="start">
+      <group data-gap="15">
         <group
           data-max-length="800"
           data-height="auto"
@@ -185,50 +209,26 @@ const TooltipPopover: React.FC = () => {
           data-elevation="1"
           data-contain=""
         >
-          <group data-direction="column" data-space="30" data-gap="10" data-background="main-background">
-            <text
-              data-weight="700"
-              data-text-size="xxx-large"
-              data-wrap="wrap"
-              data-color="main"
-              data-ellipsis=""
-            >
-              Tooltip & Popover
-            </text>
-            <text
-              data-wrap="wrap"
-              data-length="600"
-              data-line="1.5"
-              data-light=""
-            >
-              Tooltips display informative text when users hover over, focus on,
-              or tap an element, while a popover is a floating card that appears
-              when users click or hover over an element.
-            </text>
-          </group>
-
           <group
             data-background="main"
             data-contain=""
             // data-dark=""
             data-align="center"
           >
-
-<group data-align="end">
-
-<group data-contain="" data-position="absolute" data-max-length="400">
-            <picture data-min-length="300" data-contain="" data-ratio="1:1">
-              <img src={sampleImage} alt="" />
-            </picture>
-          </group> 
-<group data-width="auto" data-space="30" data-position="left">
-              {ClosePopover}
+            <group data-align="end">
+              <group
+                data-contain=""
+                data-position="absolute"
+                data-max-length="400"
+              >
+                <picture data-min-length="300" data-contain="" data-ratio="1:1">
+                  <img src={sampleImage} alt="" />
+                </picture>
+              </group>
+              <group data-width="auto" data-space="30" data-position="left">
+                {ClosePopover}
+              </group>
             </group>
-
-
-</group>
-
-  
           </group>
 
           <group
@@ -329,7 +329,12 @@ const TooltipPopover: React.FC = () => {
             data-elevation="1"
             data-contain=""
           >
-            <group data-space="30" data-direction="column" data-gap="10" data-background="main-background">
+            <group
+              data-space="30"
+              data-direction="column"
+              data-gap="10"
+              data-background="main-background"
+            >
               <text
                 data-weight="700"
                 data-text-size="xxx-large"
@@ -357,16 +362,13 @@ const TooltipPopover: React.FC = () => {
               data-align="center"
               // data-dark=""
             >
-
-
               <group
                 data-space="30"
                 data-gap="20"
                 data-direction="column"
                 data-weight="600"
               >
-
-<group>
+                <group>
                   <text data-wrap="wrap" data-line="1.5" data-max-length="300">
                     Click to view a sample snackbar. The default duration is
                     3000 milliseconds.
@@ -390,15 +392,13 @@ const TooltipPopover: React.FC = () => {
                     </text>
                   </group>
                 </group>
-
               </group>
 
-              <group  data-contain=""  data-height="120" >
-            <picture data-min-length="300" data-contain="" data-ratio="1:1">
-              <img src={sampleImage_2} alt="" />
-            </picture>
-          </group>
-
+              <group data-contain="" data-height="120">
+                <picture data-min-length="300" data-contain="" data-ratio="1:1">
+                  <img src={sampleImage_2} alt="" />
+                </picture>
+              </group>
             </group>
           </group>
 
@@ -444,9 +444,7 @@ const TooltipPopover: React.FC = () => {
           </group>
         </group>
       </group>
-
-
-
+    </group>
   );
 };
 export default TooltipPopover;

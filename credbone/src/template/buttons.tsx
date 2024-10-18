@@ -13,83 +13,84 @@ import {
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
 
-
 const Buttons: React.FC = () => {
-
- 
-
   return (
-    <group
-
-      data-space="30"
-      data-gap="15"
-      data-align="start"
-      data-type="column"
-      data-column-gap="15"
-    >
-      <group
-        data-size="medium"
-        data-height="auto"
-        data-max-height="fit"
-        data-radius="10"
-        data-elevation="1"
-        data-contain=""
-      >
-        <group data-direction="column" data-space="30" data-gap="10">
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            data-color="main"
-            data-ellipsis=""
-          >
-            Buttons
-          </text>
-          <text
-            data-wrap="wrap"
-            data-length="300"
-            data-line="1.5"
-            data-light=""
-          >
-            Buttons allow users to take actions, and make choices, with a single
-            tap.
-          </text>
-        </group>
-
-        <group
-          data-background="main-dark"
-          data-contain=""
-          // data-dark=""
-          data-align="center"
+    <group data-space="30" data-gap="30" data-align="start">
+      <group data-direction="column"  data-gap="10">
+        <text
+          data-weight="700"
+          data-text-size="xxx-large"
+          data-wrap="wrap"
+          data-color="main"
+          data-ellipsis=""
         >
-<group data-mix-lend-mode="multiply" data-contain="" data-height="fit" data-position="absolute" data-max-length="400" data-direction="column" data-justify="end">
-            <picture data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
-              <img src={sampleImage} alt="" />
-            </picture>
-          </group>
+          Buttons
+        </text>
+        <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
+          Buttons allow users to take actions, and make choices, with a single
+          tap.
+        </text>
+      </group>
 
-          <group data-length="fit" data-space="40">
-            <Ripple>
-              <group
-                data-wrap="no"
-                data-width="auto"
-                data-ink-color="main-dark"
-                data-align="center"
-                data-cursor="pointer"
+      <group
+      
+        data-gap="15"
+        data-align="start"
+        data-type="column"
+        data-column-gap="15"
+      >
+        <group
+          data-size="medium"
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="10"
+          data-elevation="1"
+          data-contain=""
+        >
+          <group
+            data-background="main-dark"
+            data-contain=""
+            // data-dark=""
+            data-align="center"
+          >
+            <group
+              data-mix-lend-mode="multiply"
+              data-contain=""
+              data-height="fit"
+              data-position="absolute"
+              data-max-length="400"
+              data-direction="column"
+              data-justify="end"
+            >
+              <picture
+                data-min-length="300"
                 data-contain=""
-                data-background="main"
-                data-color="main-text"
-                data-interactive=""
-                data-space-horizontal="30"
-                data-radius="15"
-                data-height="120"
-                data-gap="20"
-
+                data-ratio="1:1"
+                data-shrink="no"
               >
-                <icon  data-icon-size="large">
-                  arrow_outward
-                </icon>
-                {/* <text
+                <img src={sampleImage} alt="" />
+              </picture>
+            </group>
+
+            <group data-length="fit" data-space="40">
+              <Ripple>
+                <group
+                  data-wrap="no"
+                  data-width="auto"
+                  data-ink-color="main-dark"
+                  data-align="center"
+                  data-cursor="pointer"
+                  data-contain=""
+                  data-background="main"
+                  data-color="main-text"
+                  data-interactive=""
+                  data-space-horizontal="30"
+                  data-radius="15"
+                  data-height="120"
+                  data-gap="20"
+                >
+                  <icon data-icon-size="large">arrow_outward</icon>
+                  {/* <text
                   data-ellipsis=""
                   data-weight="700"
                   data-text-size="36"
@@ -97,169 +98,192 @@ const Buttons: React.FC = () => {
                 >
                   Button
                 </text> */}
-              </group>
-            </Ripple>
+                </group>
+              </Ripple>
+            </group>
           </group>
         </group>
-      </group>
-      <group
-        data-size="small"
-        data-height="auto"
-        data-max-height="fit"
-        data-radius="10"
-        data-elevation="1"
-      >
-        <group data-scroll="" data-gap="1">
-          <group data-border="" data-space="20"> <Button  large primary text="Primary Button" /> </group>
-          <group data-border="" data-space="20"> <Button  large secondary text="Secondary Button" /> </group>
-          <group data-border="" data-space="20"> <Button  large accent text="Accent Button" /> </group>
-          <group data-border="" data-space="20"> <Button  large outline text="Outline Button" textFirst={false} /> </group>
-          <group data-border="" data-space="20"> <Button  large highlight text="Highlighted" ></Button> </group>
-          <group data-border="" data-space="20"> <Button  large text="Simple Button" /> </group>
+        <group
+          data-size="small"
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="10"
+          data-elevation="1"
+        >
+          <group data-scroll="" data-gap="1">
+            <group data-border="" data-space="20">
+              {" "}
+              <Button large primary text="Primary Button" />{" "}
+            </group>
+            <group data-border="" data-space="20">
+              {" "}
+              <Button large secondary text="Secondary Button" />{" "}
+            </group>
+            <group data-border="" data-space="20">
+              {" "}
+              <Button large accent text="Accent Button" />{" "}
+            </group>
+            <group data-border="" data-space="20">
+              {" "}
+              <Button
+                large
+                outline
+                text="Outline Button"
+                textFirst={false}
+              />{" "}
+            </group>
+            <group data-border="" data-space="20">
+              {" "}
+              <Button large highlight text="Highlighted"></Button>{" "}
+            </group>
+            <group data-border="" data-space="20">
+              {" "}
+              <Button large text="Simple Button" />{" "}
+            </group>
+          </group>
         </group>
-      </group>
-      <group
-        data-size="small"
-        data-height="auto"
-        data-max-height="fit"
-        data-radius="10"
-        data-elevation="1"
-      >
-        <group data-scroll="">
-          <group
-            data-type="grid"
-            data-grid-template="80"
-            data-gap="1"
-            data-contain=""
-            data-border=""
-          >
+        <group
+          data-size="small"
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="10"
+          data-elevation="1"
+        >
+          <group data-scroll="">
             <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
+              data-type="grid"
+              data-grid-template="80"
+              data-gap="1"
+              data-contain=""
               data-border=""
-              data-space="10"
             >
-              <Button primary mini rounded icon="home" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button accent mini rounded icon="navigate_next" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button outline mini rounded icon="search" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button outline mini large icon="arrow_outward" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button primary mini icon="search" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button accent mini icon="arrow_forward" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button highlight mini icon="nest_eco_leaf" />
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button micro icon="laundry" />
-            </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button primary mini rounded icon="home" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button accent mini rounded icon="navigate_next" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button outline mini rounded icon="search" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button outline mini large icon="arrow_outward" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button primary mini icon="search" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button accent mini icon="arrow_forward" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button highlight mini icon="nest_eco_leaf" />
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button micro icon="laundry" />
+              </group>
 
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button mini rounded toggleClassName="open" material>
-                <icon>
-                  <SvgHamburger />
-                </icon>
-              </Button>
-            </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button mini rounded toggleClassName="open" material>
+                  <icon>
+                    <SvgHamburger />
+                  </icon>
+                </Button>
+              </group>
 
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button mini rounded toggleClassName="open" material>
-                <icon>
-                  <SvgPlus />
-                </icon>
-              </Button>
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button mini rounded toggleClassName="open" material>
-                <icon>
-                  <SvgMinus />
-                </icon>
-              </Button>
-            </group>
-            <group
-              data-align="center"
-              data-justify="center"
-              data-ratio="1:1"
-              data-border=""
-              data-space="10"
-            >
-              <Button outline mini large>
-                <icon>
-                  <SvgLoader />
-                </icon>
-              </Button>
-            </group>
-            {/* <group
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button mini rounded toggleClassName="open" material>
+                  <icon>
+                    <SvgPlus />
+                  </icon>
+                </Button>
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button mini rounded toggleClassName="open" material>
+                  <icon>
+                    <SvgMinus />
+                  </icon>
+                </Button>
+              </group>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-ratio="1:1"
+                data-border=""
+                data-space="10"
+              >
+                <Button outline mini large>
+                  <icon>
+                    <SvgLoader />
+                  </icon>
+                </Button>
+              </group>
+              {/* <group
               data-align="center"
               data-justify="center"
               data-ratio="1:1"
@@ -272,102 +296,107 @@ const Buttons: React.FC = () => {
                 </icon>
               </Button>
             </group> */}
-          </group>
+            </group>
 
-          <group data-contain="" data-gap="1">
-            <group data-border="" data-space="15" data-gap="10">
+            <group data-contain="" data-gap="1">
+              <group data-border="" data-space="15" data-gap="10">
+                <Button
+                  fit
+                  outline
+                  large
+                  toggleClassName="open"
+                  material
+                  text="Arrow Left"
+                  textFirst={false}
+                >
+                  <icon>
+                    <SvgHamburgerToLeft />
+                  </icon>
+                  <separator data-vertical="" data-height="40"></separator>
+                </Button>
+                <Button
+                  outline
+                  large
+                  toggleClassName="open"
+                  material
+                  text="Menu"
+                  data-shrink="no"
+                  textFirst={true}
+                >
+                  <separator data-vertical="" data-height="40"></separator>
+                  <icon>
+                    <SvgHamburgerToRight />
+                  </icon>
+                </Button>
+              </group>
+              <group data-border="" data-space="15">
+                <Button
+                  fit
+                  secondary
+                  large
+                  text="Please Wait"
+                  textFirst={false}
+                >
+                  <icon>
+                    <SvgLoaderCircle />
+                  </icon>
+                  <separator data-vertical="" data-height="40"></separator>
+                </Button>
+              </group>
+            </group>
+          </group>
+        </group>
+        <group
+          data-size="small"
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="10"
+          data-elevation="1"
+        >
+          <group data-scroll="" data-gap="1">
+            <group data-border="" data-space="15">
               <Button
-                fit
-                outline
+                secondary
                 large
-                toggleClassName="open"
-                material
-                text="Arrow Left"
+                //  icon="drafts"
+                text="Large Button"
                 textFirst={false}
-              >
-                <icon>
-                  <SvgHamburgerToLeft />
-                </icon>
-                <separator data-vertical="" data-height="40"></separator>
-              </Button>
-              <Button
-                outline
-                large
-                toggleClassName="open"
-                material
-                text="Menu"
-                data-shrink="no"
-                textFirst={true}
-              >
-                <separator data-vertical="" data-height="40"></separator>
-                <icon>
-                  <SvgHamburgerToRight />
-                </icon>
-              </Button>
+              />
             </group>
             <group data-border="" data-space="15">
-              <Button fit secondary large text="Please Wait" textFirst={false}>
-                <icon>
-                  <SvgLoaderCircle />
-                </icon>
+              <Button
+                accent
+                large
+                icon="arrow_outward"
+                text="Sample Large Button"
+                textFirst={true}
+              />
+            </group>
+            <group data-border="" data-space="15">
+              <Button large text="Large Button" />
+            </group>
+            <group data-border="" data-space="15">
+              <Button outline large>
+                <text>Large Button</text>
                 <separator data-vertical="" data-height="40"></separator>
+                <icon>shopping_bag</icon>
               </Button>
+            </group>
+            <group data-gap="10" data-border="" data-space="15">
+              <Button highlight large text="Button" data-shrink="no" />
+              <Button primary large fit text="Fit Button" />
+            </group>
+
+            <group data-border="" data-space="15">
+              <Button outline fit large text="Large Button Wide" />
+            </group>
+
+            <group data-border="" data-space="15">
+              <Button highlight large fit text="Large Button Wide" />
             </group>
           </group>
         </group>
       </group>
-      <group
-        data-size="small"
-        data-height="auto"
-        data-max-height="fit"
-        data-radius="10"
-        data-elevation="1"
-      >
-        <group data-scroll="" data-gap="1">
-          <group data-border="" data-space="15">
-            <Button
-              secondary
-              large
-            //  icon="drafts"
-              text="Large Button"
-              textFirst={false}
-            />
-          </group>
-          <group data-border="" data-space="15">
-            <Button
-              accent
-              large
-              icon="arrow_outward"
-              text="Sample Large Button"
-              textFirst={true}
-            />
-          </group>
-          <group data-border="" data-space="15">
-            <Button large text="Large Button" />
-          </group>
-          <group data-border="" data-space="15">
-            <Button outline large>
-              <text>Large Button</text>
-              <separator data-vertical="" data-height="40"></separator>
-              <icon>shopping_bag</icon>
-            </Button>
-          </group>
-          <group data-gap="10" data-border="" data-space="15">
-            <Button highlight large text="Button" data-shrink="no" />
-            <Button primary large fit text="Fit Button" />
-          </group>
-
-          <group data-border="" data-space="15">
-            <Button outline fit large text="Large Button Wide" />
-          </group>
-
-          <group data-border="" data-space="15">
-            <Button highlight large fit text="Large Button Wide" />
-          </group>
-        </group>
-
-      </group>
-              
     </group>
   );
 };

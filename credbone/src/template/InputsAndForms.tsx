@@ -6,11 +6,34 @@ import Button from "../components/button";
 
 const InputsAndForms: React.FC = () => {
   return (
+
+<group data-space="30" data-gap="30" data-align="start" >
+
+<group  data-direction="column" data-gap="10">
+      <text
+        data-weight="700"
+        data-text-size="xxx-large"
+        data-wrap="wrap"
+        data-ellipsis=""
+        data-color="main"
+      >
+       Input & Forms
+      </text>
+      <text
+        data-wrap="wrap"
+        data-length="500"
+        data-line="1.5"
+         data-light=""
+      >
+      Explore input fields and form-related UI elements in this demo, featuring validation, error handling, and responsive design.
+      </text>
+    </group>
+
     <group
       data-column-gap="15"
       data-type="column"
       data-align="start"
-      data-space="30"
+    
     >
       <group
         data-radius="15"
@@ -38,7 +61,7 @@ const InputsAndForms: React.FC = () => {
             data-gap="10"
             data-color="main-text"
           >
-            <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
+            <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
               Password Change
             </text>
             <text data-wrap="wrap" data-line="1.5">
@@ -120,7 +143,7 @@ const InputsAndForms: React.FC = () => {
       >
         <group data-space="30">
           <group data-direction="column" data-align="start" data-gap="10">
-            <text data-weight="700" data-text-size="large" data-wrap="wrap">
+            <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
               Customer Feedback
             </text>
             <text data-wrap="wrap" data-line="1.5" data-opacity="40">
@@ -170,6 +193,7 @@ const InputsAndForms: React.FC = () => {
 
 
 
+    </group>
     </group>
   );
 };

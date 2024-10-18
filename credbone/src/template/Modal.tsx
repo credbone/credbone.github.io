@@ -95,8 +95,37 @@ const Modal: React.FC = () => {
   );
 
   return (
+
+
+<group data-space="30" data-gap="30" data-align="start" >
+
+<group  data-gap="30">
+    <group  data-direction="column" data-gap="10">
+      <text
+        data-weight="700"
+        data-text-size="xxx-large"
+        data-wrap="wrap"
+        data-ellipsis=""
+        data-color="main"
+      >
+        Modal
+      </text>
+      <text
+        data-wrap="wrap"
+        data-length="600"
+        data-line="1.5"
+         data-light=""
+      >
+        Modals are pop-up windows that capture attention, appearing
+        after a user action. They display important content or options,
+        requiring interaction before closing, ensuring focus on key
+        tasks.
+      </text>
+    </group>
+  </group>
+
     <group
-      data-space="30"
+     
       data-gap="15"
       data-align="start"
       data-type="column"
@@ -116,29 +145,7 @@ const Modal: React.FC = () => {
           // data-dark=""
           data-align="center"
         >
-          <group data-space="30" data-gap="30">
-            <group data-color="main-text" data-direction="column" data-gap="10">
-              <text
-                data-weight="700"
-                data-text-size="xxx-large"
-                data-wrap="wrap"
-                data-ellipsis=""
-              >
-                Modal
-              </text>
-              <text
-                data-wrap="wrap"
-                data-length="300"
-                data-line="1.5"
-                // data-light=""
-              >
-                Modals are pop-up windows that capture attention, appearing
-                after a user action. They display important content or options,
-                requiring interaction before closing, ensuring focus on key
-                tasks.
-              </text>
-            </group>
-          </group>
+
 
           <group data-contain="" data-height="120" data-max-length="400">
             <picture data-min-length="300" data-contain="" data-ratio="1:1">
@@ -571,6 +578,8 @@ const Modal: React.FC = () => {
         </group>
       </group>
     </group>
+
+</group>
   );
 };
 export default Modal;
