@@ -411,7 +411,11 @@
 
 
 
+[data-color="transparent"]{color:transparent}
+[data-background-clip="text"]{background-clip: text;}
 
-/* [data-backgroud="main-secondary"]{background-image: linear-gradient(45deg, var(--main-color) 0%,var(--secondary-color) 100%);} */
 
+/* gradiends */
 
+[data-background="main-secondary"]{background-image: linear-gradient(90deg, var(--main-color), var(--secondary-color));}
+[data-background="main-secondary-45"]{background-image: linear-gradient(45deg, var(--main-color), var(--secondary-color));}

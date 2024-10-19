@@ -179,14 +179,8 @@ view[data-background="none"]{background:none}
 }
 
 
-@media (max-width: 800px) 
-
-{
-
-
-
-    [data-collapse-radius="30"][data-name="switchable"][data-expanded="false"][data-type="overlap"] {border-radius:30px;}
-    [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
+[data-collapse-radius="30"][data-name="switchable"][data-expanded="false"][data-type="overlap"] {border-radius:30px;}
+[data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
 
 
 [data-name="switchable"][data-type="overlap"] {   border-radius: 5px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap); box-shadow: var(--elevation_1); position: absolute; z-index: 10; }
@@ -197,8 +191,6 @@ view[data-background="none"]{background:none}
 
 [data-name="switchable"][data-type="adaptive"]{position: absolute;}
 [data-name="switch-gap"]{display: flex;}
-
-}
 
 
 
