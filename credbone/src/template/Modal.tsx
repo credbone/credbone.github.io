@@ -100,14 +100,16 @@ const Modal: React.FC = () => {
 <group data-space="30" data-gap="30" data-align="start" >
 
 <group  data-gap="30">
-    <group  data-direction="column" data-gap="10">
-      <text
-        data-weight="700"
-        data-text-size="xxx-large"
-        data-wrap="wrap"
-        data-ellipsis=""
-        data-color="main"
-      >
+<group data-direction="column" data-gap="10">
+        <text
+          data-weight="700"
+          data-text-size="xxx-large"
+          data-wrap="wrap"
+          data-ellipsis=""
+          data-color="transparent"
+          data-background-clip="text"
+          data-background="main"
+        >
         Modal
       </text>
       <text
@@ -140,7 +142,7 @@ const Modal: React.FC = () => {
         data-contain=""
       >
         <group
-          data-background="main"
+                   data-background="main"
           data-contain=""
           // data-dark=""
           data-align="center"

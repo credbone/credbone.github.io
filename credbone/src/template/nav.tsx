@@ -63,7 +63,7 @@ const Landing: React.FC = () => {
           data-align="start"
         >
           <group data-direction="column" data-gap="10">
-            <text data-weight="700" data-text-size="xxx-large" data-ellipsis="">
+            <text data-weight="700" data-text-size="xxx-large" data-ellipsis="" data-color="main">
               Navigation
             </text>
 

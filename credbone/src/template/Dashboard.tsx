@@ -115,7 +115,7 @@ const Dashboard: React.FC = () => {
         
       <group data-gap="20">
         <group data-direction="column">
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
+          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-color="main">
             Dashboard
           </text>
         </group>

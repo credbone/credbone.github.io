@@ -17,13 +17,14 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-      <group data-direction="column" data-gap="10">
+      <group data-direction="column" data-gap="10" >
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
-          data-color="main"
           data-ellipsis=""
+          data-color="main"
+
         >
           Color System
         </text>

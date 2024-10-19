@@ -266,7 +266,7 @@ export const Password: React.FC<InputProps> = React.forwardRef<
             
             content={show ? ("Hide Password") : ("Show Password")}
           >
-            <div //NOSONAR
+            <div
               className="button"
               data-height="input"
               data-length="input"
