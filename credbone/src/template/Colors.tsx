@@ -17,14 +17,13 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-      <group data-direction="column" data-gap="10" >
+      <group data-direction="column" data-gap="10">
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-ellipsis=""
           data-color="main"
-
         >
           Color System
         </text>
@@ -43,77 +42,65 @@ const Colors: React.FC = () => {
         //   data-width="auto"
         data-radius="20"
       >
-        <group data-min-height="240" data-width="auto" data-length="auto">
-          <group
-            data-ink-color="main-dark"
-          //  data-cursor="pointer"
-            //     data-interactive=""
-            //data-radius="5"
-            data-contain=""
-            data-direction="column"
-            data-color="main-text"
-            data-space="30"
-            data-background="main"
-            data-gap="20"
-            data-justify="end"
-            data-align="start"
-            data-wrap="no"
-          >
-
-<Popover
-              placement="top"
-              content={
-                <group
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                >
-                  <RichThemePicker pickerType="primary" />
-                </group>
-              }
-              data-space="5"
-              data-radius="10"
-              data-backdrop="10"
-              data-width="auto"
+        <Popover
+          placement="mouse"
+          content={
+            <group
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="1.25"
             >
-              <group
-                data-contain=""
-                data-space="15"
-                data-interactive=""
-                data-cursor="pointer"
-                data-radius="10"
-                data-width="auto"
-                data-align="center"
-                data-direction="column"
-                data-background="main-text"
-                data-color="main"
-               
-              >
-             <icon data-position="center">opacity</icon>
-              </group>
-            </Popover>
-
-            <group data-direction="column" data-gap="10">
-              <text
-                data-wrap="wrap"
-                data-light=""
-                data-max-length="300"
-                data-line="20"
-              >
-                This primary color you selected will be used extensively in the
-                UI, with other shades being automatically generated from it.
-              </text>
-
-              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-                Primary Color
-              </text>
+              <RichThemePicker pickerType="primary" />
             </group>
+          }
+          data-space="5"
+          data-radius="10"
+          data-backdrop="10"
+          data-width="auto"
+        >
+          <group data-min-height="240" data-width="auto" data-length="auto">
+            <group
+              data-ink-color="main-dark"
+              data-cursor="pointer"
+              data-interactive=""
+              //data-radius="5"
+              data-contain=""
+              data-direction="column"
+              data-color="main-text"
+              data-space="30"
+              data-background="main"
+              data-gap="20"
+              data-justify="end"
+              data-align="start"
+              data-wrap="no"
+            >
+<group >
+<text data-opacity="30">Click To Change</text>
+</group>
 
-
-
+              <group data-position="bottom" data-direction="column" data-gap="10">
+                <text
+                  data-wrap="wrap"
+                  data-light=""
+                  data-max-length="300"
+                  data-line="20"
+                >
+                  This primary color you selected will be used extensively in
+                  the UI, with other shades being automatically generated from
+                  it.
+                </text>
+                <text
+                  data-wrap="wrap"
+                  data-weight="700"
+                  data-text-size="x-large"
+                >
+                  Primary Color
+                </text>
+                
+              </group>
+            </group>
           </group>
-        </group>
-
+        </Popover>
         <group
           //data-radius="5"
           data-contain=""
@@ -234,11 +221,26 @@ const Colors: React.FC = () => {
           </group>
         </group>
 
-
+        <Popover
+          placement="top"
+          content={
+            <group
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="1.25"
+            >
+              <RichThemePicker pickerType="secondary" />
+            </group>
+          }
+          data-space="5"
+          data-radius="10"
+          data-backdrop="10"
+          data-width="auto"
+        >
           <group
-            //data-radius="5"
-         //   data-cursor="pointer"
-          // data-interactive=""
+          
+            data-cursor="pointer"
+            data-interactive=""
             data-contain=""
             data-min-height="240"
             data-direction="column"
@@ -251,59 +253,26 @@ const Colors: React.FC = () => {
             data-justify="end"
             data-align="start"
           >
-            <Popover
-              placement="top"
-              content={
-                <group
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                >
-                  <RichThemePicker pickerType="secondary" />
-                </group>
-              }
-              data-space="5"
-              data-radius="10"
-              data-backdrop="10"
-              data-width="auto"
-            >
-              <group
-                data-contain=""
-                data-space="15"
-                data-interactive=""
-                data-cursor="pointer"
-                data-radius="10"
-                data-width="auto"
-                data-align="center"
-                data-direction="column"
-                data-background="secondary-text"
-                data-color="secondary"
+            <group >
+<text data-opacity="30">Click To Change</text>
+</group>
 
+              <group data-position="bottom" data-gap="10" data-direction="column">
+              <text
+                data-wrap="wrap"
+                data-light=""
+                data-max-length="300"
+                data-line="20"
               >
-               <icon data-position="center">opacity</icon>
-              </group>
-            </Popover>
-            <group data-gap="10" data-direction="column">
-            <text
-              data-wrap="wrap"
-              data-light=""
-              data-max-length="300"
-              data-line="20"
-            >
-              This Secondary color you selected will be used extensively in the
-              UI, with other shades being automatically generated from it.
-            </text>
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
-              Secondary Color
-            </text>
+                This Secondary color you selected will be used extensively in
+                the UI, with other shades being automatically generated from it.
+              </text>
+              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+                Secondary Color
+              </text>
             </group>
-
-
-
-
           </group>
-
-
+        </Popover>
         <group
           //data-radius="5"
           data-contain=""

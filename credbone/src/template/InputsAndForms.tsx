@@ -2,6 +2,7 @@ import React from "react";
 import sampleImage from "../styles/images/samples/objects/object-1.png";
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
+import ImageColorPicker from "../components/ImageColorPicker";
 
 const InputsAndForms: React.FC = () => {
   return (
@@ -191,6 +192,14 @@ const InputsAndForms: React.FC = () => {
             </group>
           </group>
         </group>
+
+        {/* <group    data-radius="15"
+          data-contain=""
+          data-background="context"
+          data-shrink="no"
+          data-elevation="1">
+          <ImageColorPicker/>
+        </group> */}
 
         {/* <group
           data-radius="15"

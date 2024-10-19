@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import colorsource from "../styles/images/samples/res_15.jpg";
+import colorsource from "../styles/images/samples/res_54.jpg";
 
 
 interface ImageColorPickerProps {

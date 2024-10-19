@@ -217,14 +217,14 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   data-gap="10"
                   data-space="15"
                 >
-                  <text data-weight="700" data-ellipsis="">Change Theme</text>
+                  <text data-weight="700" data-ellipsis="" >Change Theme</text>
 
-                  {/* <group data-interact=""  data-display="none" data-position="right"   data-contain="" data-width="auto"  >
+                  {/* <group data-interact="" data-length="30"  data-display="none" data-position="right" data-radius="5"  data-contain=""   >
 
-<group data-length="10" data-height="10"  data-justify="center" data-background="main-dark" data-align="center"></group>
-<group data-length="10" data-height="10"  data-justify="center" data-background="main" data-align="center"></group>
-<group data-length="10" data-height="10"  data-justify="center" data-background="secondary" data-align="center"></group>
-<group data-length="10" data-height="10"  data-justify="center" data-background="secondary-dark" data-align="center"></group>
+                  <group data-length="15" data-height="15"  data-justify="center" data-background="main" data-align="center"></group>
+<group data-length="15" data-height="15"  data-justify="center" data-background="main-dark" data-align="center"></group>
+<group data-length="15" data-height="15"  data-justify="center" data-background="secondary" data-align="center"></group>
+<group data-length="15" data-height="15"  data-justify="center" data-background="secondary-dark" data-align="center"></group>
 
 </group> */}
                 </group>
