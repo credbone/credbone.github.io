@@ -34,12 +34,12 @@ const Showcase: React.FC = () => {
       </group>
 
       <group
-        data-column-gap="15"
+        data-gap="15"
         data-jusitify="start"
         data-align="start"
-        data-type="column"
+        data-type="grid"
 
-        data-column-size="240"
+        data-grid-template="260"
       >
         <group data-gap="30">
           <group

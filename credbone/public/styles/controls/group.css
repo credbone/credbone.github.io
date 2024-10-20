@@ -20,6 +20,10 @@ group[data-type="grid"][data-grid-template="120"]{grid-template-columns: repeat(
 group[data-type="grid"][data-grid-template="180"]{grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));} 
 group[data-type="grid"][data-grid-template="200"]{grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));} 
 group[data-type="grid"][data-grid-template="240"]{grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));} 
+
+group[data-type="grid"][data-grid-template="260"]{grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));} 
+
+
 group[data-type="grid"][data-grid-template="300"]{grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));} 
 group[data-type="grid"][data-grid-template="320"]{grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));} 
 group[data-type="grid"][data-grid-template="360"]{grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));} 
