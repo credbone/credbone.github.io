@@ -1,6 +1,7 @@
 import React from "react";
 import UnitConverter from "../tools/UnitConverter";
 import { useModal } from "../components/Modal";
+import Calculator from "../tools/Calculator";
 
 const Showcase: React.FC = () => {
 
@@ -45,7 +46,7 @@ const Showcase: React.FC = () => {
             data-height="auto"
             data-max-height="fit"
             data-radius="15"
-            data-elevation="2"
+            data-elevation="1"
             data-contain=""
             data-space="30"
             data-gap="20"
@@ -100,6 +101,36 @@ onClick={() =>
               <icon>arrow_outward</icon>
             </group>
           </group> */}
+        </group>
+
+
+
+        <group  data-index="2"
+            data-height="auto"
+            data-max-height="fit"
+            data-radius="15"
+            data-elevation="1"
+            data-contain=""
+           data-space="30"
+            data-gap="20">
+
+<group data-gap="10">
+              <text
+                data-weight="700"
+                data-wrap="wrap"
+                data-text-size="xx-large"
+                data-color="main"
+              >
+                Calculator
+              </text>
+
+              <text data-wrap="wrap" data-line="20" data-opacity="40">
+              Designed with minimal functionality and a straightforward user interface to demonstrate the usability and layout of a UI system
+              </text>
+            </group>
+
+<Calculator/>
+
         </group>
       </group>
     </group>

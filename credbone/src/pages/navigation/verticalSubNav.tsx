@@ -29,8 +29,8 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
 
       if (activeItem) {
         const rect = activeItem.getBoundingClientRect();
-        const parentRect = activeItem.parentElement?.getBoundingClientRect();
-        const parentScrollTop = activeItem.parentElement?.scrollTop || 0;
+        const parentRect = activeItem.parentElement?.parentElement?.getBoundingClientRect();
+        const parentScrollTop = activeItem.parentElement?.parentElement?.scrollTop || 0;
 
         const top = rect.top - (parentRect?.top || 0) + parentScrollTop;
         const height = rect.height ?? 0;
@@ -146,7 +146,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-direction="column"
           >
             {navItems.map((item, index) => (
-<>
+<group  key={index}>
 {item.separator === "true" && (
 <separator data-horizontal="" data-interval='15'></separator>
                                 )}
@@ -155,13 +155,13 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                 data-fill-mode="backwards"
                 data-animation-duration={2 + index * 0.25}
                 data-touch-action="manipulation"
-                key={index}
+               
                 data-type="group"
                 to={item.to}
                 ref={(el: HTMLAnchorElement | null) =>
                   (navRefs.current[index] = el)
                 }
-                data-width="auto"
+              //  data-width="auto"
                 data-name="nav-item"
                 data-contain=""
                 data-shrink="no"
@@ -180,7 +180,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   </group>
                 </Ripple>
               </NavLink>
-</>
+</group>
             ))}
           </group>
 

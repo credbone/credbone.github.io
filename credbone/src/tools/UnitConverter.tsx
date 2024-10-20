@@ -398,7 +398,9 @@ const UnitConverter: React.FC = () => {
             </Popover>
           </group>
 
-          <group data-space-horizontal="15" data-opacity="50">
+          <group 
+        //  data-space-horizontal="15"
+           data-opacity="50">
             <separator data-horizontal="dotted"></separator>
           </group>
 
