@@ -146,6 +146,10 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-direction="column"
           >
             {navItems.map((item, index) => (
+<>
+{item.separator === "true" && (
+<separator data-horizontal="" data-interval='15'></separator>
+                                )}
               <NavLink
                 data-animation-name="appear-left"
                 data-fill-mode="backwards"
@@ -176,6 +180,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   </group>
                 </Ripple>
               </NavLink>
+</>
             ))}
           </group>
 
@@ -183,7 +188,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-position="bottom"
             // data-sticky="bottom"
           >
-            <group data-space-horizontal="15">
+            <group data-space-horizontal="20">
               <separator data-horizontal=""></separator>
             </group>
 

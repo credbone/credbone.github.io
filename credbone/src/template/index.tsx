@@ -26,6 +26,7 @@ import VerticalSubNav from "../pages/navigation/verticalSubNav";
 import { SvgHamburger } from "../components/svg";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
+import Showcase from "./showCase";
 
 const Template: React.FC = () => {
   const location = useLocation();
@@ -111,6 +112,7 @@ const Template: React.FC = () => {
               <Route path="Miscellaneous" element={<Miscellaneous />} />
               <Route path="Dashboard" element={<Dashboard />} />
               <Route path="Modal" element={<Modal />} />
+              <Route path="Showcase" element={<Showcase/>} />
             </Routes>
           </group>
 
