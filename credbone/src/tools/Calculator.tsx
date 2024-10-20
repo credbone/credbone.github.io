@@ -35,7 +35,7 @@ const Calculator: React.FC = () => {
   // Button mapping with labels and their corresponding actions
   const buttons: Array<{ label: string; action: () => void; type: string, background: string, color: string}> = [
 
-    { color:"", background:"highlight",  label: "C", action: handleClear, type: "wide" },
+    { color:"main-text", background:"main",  label: "C", action: handleClear, type: "wide" },
     { color:"", background:"",  label: "÷", action: () => handleButtonClick("/"), type: "" },
     { color:"", background:"",  label: "×", action: () => handleButtonClick("*"), type: "" },
     { color:"", background:"",  label: "7", action: () => handleButtonClick("7"), type: "" },
@@ -56,9 +56,9 @@ const Calculator: React.FC = () => {
   ];
 
   return (
-    <group data-direction="column" data-border=""          data-contain=""
-    data-radius="10">
-      <group data-direction="column" data-space-horizontal="20" data-height="100" data-text-align="right"  data-justify="center" data-radius="10">
+    <group data-direction="column"       
+>
+      <group data-direction="column"  data-height="120" data-text-align="right"  data-justify="center">
         <input
           type="text"
           data-length="fit"
@@ -67,17 +67,22 @@ const Calculator: React.FC = () => {
           data-text-align="right"
           placeholder="0"
           data-name="input-reset"
-          data-text-size={result !== null ? "large" : "xx-large"}
+          data-text-size={result !== null ? "large" : "xxx-large"}
+          data-opacity={result !== null ? "50" : ""}
          data-weight="300"
           data-duration=".225"
         />
-        {result !== null && <text data-ellipsis="" data-weight="300" data-text-size="xx-large">{result}</text>}
+         <text data-ellipsis="" data-weight="300" data-duration=".225"
+         data-text-size={result !== null ? "xxx-large" : "0"}
+         >{result}</text>
       </group>
       <group
         data-type="grid"
-        data-gap="1"
+        data-gap="5"
         data-grid-template="4"
 
+data-contain=""
+data-radius="10"
       >
         {buttons.map((button) => (
           <group
@@ -86,16 +91,21 @@ const Calculator: React.FC = () => {
             data-ratio={button.type ? "" : "1:1"}
             data-row-end={button.type === "tall" ? "2" : ""}
             data-column-end={button.type === "wide" ? "2" : ""}
-            data-background={button.background}
+            data-background={button.background ? button.background :"highlight"}
             data-color={button.color}
+
+data-radius="3"
+data-contain=""
+
           >
             <Ripple>
               <group
-                data-border=""
+               
                 data-direction="column"
                 data-weight="600"
 
-              //  data-space="15"
+             
+
                 data-jusitify="center"
                 data-text-size="large"
                 data-align="center"

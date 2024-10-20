@@ -28,8 +28,7 @@ const Showcase: React.FC = () => {
             data-line="1.5"
             data-light=""
           >
-            Experience the UI system through interactive demos that showcase its
-            versatility and performance in real-world applications
+         Explore the UI system with a few simple apps designed purely for demo purposes, showcasing its versatility and performance.
           </text>
         </group>
       </group>
@@ -39,17 +38,20 @@ const Showcase: React.FC = () => {
         data-jusitify="start"
         data-align="start"
         data-type="column"
+
+        data-column-size="240"
       >
         <group data-gap="30">
           <group
             data-index="2"
             data-height="auto"
             data-max-height="fit"
-            data-radius="15"
+            data-radius="20"
             data-elevation="1"
             data-contain=""
             data-space="30"
             data-gap="20"
+
           >
             <group data-gap="10">
               <text
@@ -108,11 +110,13 @@ onClick={() =>
         <group  data-index="2"
             data-height="auto"
             data-max-height="fit"
-            data-radius="15"
+            data-radius="20"
             data-elevation="1"
             data-contain=""
-           data-space="30"
-            data-gap="20">
+           data-space="20"
+        //    data-gap="20"
+            
+            >
 
 <group data-gap="10">
               <text
