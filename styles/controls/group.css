@@ -31,6 +31,8 @@ group[data-type="grid"][data-grid-template="600"]{grid-template-columns: repeat(
 group[data-type="grid"][data-grid-template="200/150"]{grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));} 
 
 
+group[data-type="grid"][data-grid-template="4"]{grid-template-columns:repeat(4, 1fr)}
+
 @media (max-width: 500px) {
 
     group[data-type="grid"][data-grid-template^="3"]{grid-template-columns: repeat(auto-fit, 100%);} 
@@ -152,6 +154,8 @@ group[data-adaptive="mobile"] {display: none;}
 
 [data-row-end="2"] {grid-row-end: span 2;}
 [data-row-end="3"] {grid-row-end: span 3;}
+
+[data-column-end="2"] {grid-column-end: span 2;}
 
 /* stylelint-enable */
 

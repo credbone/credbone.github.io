@@ -205,3 +205,19 @@ errormessage { display: flex;overflow: hidden;width: 100%;}
 .form_fields.validationError textarea:focus {    background: none;    }
 
 /* stylelint-enable */
+
+
+[data-name="input-reset"] {display: flex; appearance: none; -webkit-appearance: none; background: none; text-overflow: ellipsis;}
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input[data-name="input-reset"]::-webkit-outer-spin-button,
+input[data-name="input-reset"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type=number][data-name="input-reset"] {
+  -moz-appearance: textfield;
+}
