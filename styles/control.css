@@ -603,6 +603,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-gap='1'] { gap: 1px; }
+[data-gap='2'] { gap: 2px; }
 [data-gap='5'] { gap: 5px; }
 [data-gap='10'] { gap: 10px; }
 [data-gap='15'] { gap: 15px; }
