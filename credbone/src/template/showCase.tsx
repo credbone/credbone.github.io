@@ -1,8 +1,11 @@
 import React from "react";
 import UnitConverter from "../tools/UnitConverter";
 import { useModal } from "../components/Modal";
+
+
+import SnackbarContainer from "../components/snackbar/SnackbarContainer";
 import Calculator from "../tools/Calculator";
-import MemoryGame from "../tools/MemoryGame";
+
 
 const Showcase: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -58,6 +61,7 @@ const Showcase: React.FC = () => {
                 data-wrap="wrap"
                 data-text-size="xx-large"
                 data-color="main"
+                data-ellipsis=""
               >
                 Unit Converter
               </text>
@@ -120,6 +124,7 @@ onClick={() =>
               data-wrap="wrap"
               data-text-size="xx-large"
               data-color="main"
+              data-ellipsis=""
             >
               Calculator
             </text>
@@ -129,27 +134,17 @@ onClick={() =>
               interface to demonstrate the usability and layout of a UI system
             </text>
           </group>
-
-          <Calculator />
+          <SnackbarContainer>
+    <group>
+      <Calculator />
+    </group>
+  </SnackbarContainer>
         </group>
 
 
 
-        {/* <group
-        
-        data-index="2"
-        data-height="auto"
-        data-max-height="fit"
-        data-radius="20"
-        data-elevation="1"
-        data-contain=""
-        data-space="20"
 
-        >
 
-<MemoryGame/>
-
-        </group> */}
       </group>
     </group>
   );

@@ -10,8 +10,7 @@ const Calculator: React.FC = () => {
 
 
   const [input, setInput] = useState<string>("0");
-  const [result, setResult] = useState<number | null>(null);
-
+  const [result, setResult] = useState<number | null>(null)
   const handleButtonClick = (value: string) => {
     const operators = /[\+\-\*/]/;
     const lastChar = input.slice(-1);
@@ -39,7 +38,7 @@ const Calculator: React.FC = () => {
     } catch (error) {
       setResult(null);
     //  alert("Invalid Expression");
-      addSnackbar("Invalid Expression", 3000, "custom-source", true);
+      addSnackbar(<text data-ellipsis="">Please check your expression.</text>, 2000, "custom-source", true);
 
       
     }
@@ -69,6 +68,7 @@ const Calculator: React.FC = () => {
   ];
 
   return (
+    
     <group data-direction="column"       
 >
       <group data-direction="column"  data-height="120" data-text-align="right"  data-justify="center">
@@ -91,8 +91,8 @@ const Calculator: React.FC = () => {
       </group>
       <group
         data-type="grid"
-        data-gap="5"
-        data-grid-template="4"
+        data-gap="2"
+        data-grid-template-columns="4"
 
 data-contain=""
 data-radius="10"
@@ -107,7 +107,7 @@ data-radius="10"
             data-background={button.background ? button.background :"highlight"}
             data-color={button.color}
 
-data-radius="3"
+//data-radius="3"
 data-contain=""
 
           >
