@@ -86,7 +86,7 @@ const Calculator: React.FC = () => {
           data-duration=".225"
         />
 <text data-ellipsis="" data-weight="300" data-duration=".225" data-text-size={result !== null ? "xxx-large" : "0"}>
-{typeof result === 'number' ? result : '0'}
+{typeof result === 'number' ? result.toLocaleString() : '0'}
 </text>
       </group>
       <group
