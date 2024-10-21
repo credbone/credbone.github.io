@@ -441,6 +441,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-ratio] {height: initial;}
 
 [data-ratio="1:1"]{aspect-ratio:1/1} 
+[data-ratio="1:2"]{aspect-ratio:1/2} 
 [data-ratio="1:4"]{aspect-ratio:1/4} 
 [data-ratio="16:9"]{aspect-ratio:16/9} 
 [data-ratio="4:5"]{aspect-ratio:4/5} 
