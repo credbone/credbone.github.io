@@ -69,7 +69,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
       onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
       onMouseDown={(e: { stopPropagation: () => any }) => e.stopPropagation()}
       data-wrap="no"
-      data-jusitify="start"
+      data-justify="start"
       data-width="auto"
       data-index="1"
       data-align="center"

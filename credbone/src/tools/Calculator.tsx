@@ -4,20 +4,33 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 const Calculator: React.FC = () => {
 
+
+  
   const { addSnackbar } = useSnackbar();
 
 
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>("0");
   const [result, setResult] = useState<number | null>(null);
 
   const handleButtonClick = (value: string) => {
-    setInput((prev) => prev + value);
+    const operators = /[\+\-\*/]/;
+    const lastChar = input.slice(-1);
+  
+    // If input is "0", replace it with the first digit (unless an operator)
+    if (input === "0" && !operators.test(value)) {
+      setInput(value); // Replace "0" with the new digit
+    } else if (!(operators.test(lastChar) && operators.test(value))) {
+      // Add the input if it's not two consecutive operators
+      setInput((prev) => prev + value);
+    }
   };
+  
 
   const handleClear = () => {
-    setInput("");
+    setInput("0");
     setResult(null);
   };
+  
 
   const calculateResult = () => {
     try {
@@ -25,7 +38,7 @@ const Calculator: React.FC = () => {
       setResult(evalResult);
     } catch (error) {
       setResult(null);
-      //alert("Invalid Expression");
+    //  alert("Invalid Expression");
       addSnackbar("Invalid Expression", 3000, "custom-source", true);
 
       
@@ -65,16 +78,16 @@ const Calculator: React.FC = () => {
           value={input}
           readOnly
           data-text-align="right"
-          placeholder="0"
+        //  placeholder="0"
           data-name="input-reset"
           data-text-size={result !== null ? "large" : "xxx-large"}
           data-opacity={result !== null ? "50" : ""}
          data-weight="300"
           data-duration=".225"
         />
-         <text data-ellipsis="" data-weight="300" data-duration=".225"
-         data-text-size={result !== null ? "xxx-large" : "0"}
-         >{result}</text>
+<text data-ellipsis="" data-weight="300" data-duration=".225" data-text-size={result !== null ? "xxx-large" : "0"}>
+{typeof result === 'number' ? result : '0'}
+</text>
       </group>
       <group
         data-type="grid"
@@ -106,7 +119,7 @@ data-contain=""
 
              
 
-                data-jusitify="center"
+                data-justify="center"
                 data-text-size="large"
                 data-align="center"
                 data-interactive=""

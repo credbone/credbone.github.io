@@ -54,7 +54,7 @@ const Miscellaneous: React.FC = () => {
    <group
 
       data-column-gap="15"
-      data-jusitify="start"
+      data-justify="start"
       data-align="start"
       data-type='column'
       // data-column-size="500"

@@ -2,9 +2,9 @@ import React from "react";
 import UnitConverter from "../tools/UnitConverter";
 import { useModal } from "../components/Modal";
 import Calculator from "../tools/Calculator";
+import MemoryGame from "../tools/MemoryGame";
 
 const Showcase: React.FC = () => {
-
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
 
   return (
@@ -28,17 +28,17 @@ const Showcase: React.FC = () => {
             data-line="1.5"
             data-light=""
           >
-         Explore the UI system with a few simple apps designed purely for demo purposes, showcasing its versatility and performance.
+            Explore the UI system with a few simple apps designed purely for
+            demo purposes, showcasing its versatility and performance.
           </text>
         </group>
       </group>
 
       <group
         data-gap="15"
-        data-jusitify="start"
+        data-justify="start"
         data-align="start"
         data-type="grid"
-
         data-grid-template="260"
       >
         <group data-gap="30">
@@ -51,7 +51,6 @@ const Showcase: React.FC = () => {
             data-contain=""
             data-space="30"
             data-gap="20"
-
           >
             <group data-gap="10">
               <text
@@ -72,7 +71,7 @@ const Showcase: React.FC = () => {
 
             <UnitConverter />
           </group>
-{/* 
+          {/* 
           <group>
             <group
 
@@ -105,37 +104,52 @@ onClick={() =>
           </group> */}
         </group>
 
-
-
-        <group  data-index="2"
-            data-height="auto"
-            data-max-height="fit"
-            data-radius="20"
-            data-elevation="1"
-            data-contain=""
-           data-space="20"
-        //    data-gap="20"
-            
+        <group
+          data-index="2"
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="20"
+          data-elevation="1"
+          data-contain=""
+          data-space="20"
+          //    data-gap="20"
+        >
+          <group data-gap="10">
+            <text
+              data-weight="700"
+              data-wrap="wrap"
+              data-text-size="xx-large"
+              data-color="main"
             >
+              Calculator
+            </text>
 
-<group data-gap="10">
-              <text
-                data-weight="700"
-                data-wrap="wrap"
-                data-text-size="xx-large"
-                data-color="main"
-              >
-                Calculator
-              </text>
+            <text data-wrap="wrap" data-line="20" data-opacity="40">
+              Designed with minimal functionality and a straightforward user
+              interface to demonstrate the usability and layout of a UI system
+            </text>
+          </group>
 
-              <text data-wrap="wrap" data-line="20" data-opacity="40">
-              Designed with minimal functionality and a straightforward user interface to demonstrate the usability and layout of a UI system
-              </text>
-            </group>
-
-<Calculator/>
-
+          <Calculator />
         </group>
+
+
+
+        {/* <group
+        
+        data-index="2"
+        data-height="auto"
+        data-max-height="fit"
+        data-radius="20"
+        data-elevation="1"
+        data-contain=""
+        data-space="20"
+
+        >
+
+<MemoryGame/>
+
+        </group> */}
       </group>
     </group>
   );
