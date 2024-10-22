@@ -338,14 +338,14 @@ const Modal: React.FC = () => {
                           </group>
                         </group>
 
-                        <group data-height="20"></group>
+                        {/* <group data-height="20"></group> */}
 
                         <StuckReporter>
                           {(isSticky) => (
                             <group
                               data-duration=".125"
                               data-space-horizontal={isSticky ? "50" : "30"}
-                              data-space={isSticky ? "20" : ""}
+                             data-space-top='20'
                               data-sticky="top"
                             >
                               <Ripple>

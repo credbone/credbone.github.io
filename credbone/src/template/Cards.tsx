@@ -170,7 +170,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                 <group
                   data-max-length="500"
                   data-space="30"
-                  data-gap="30"
+                  data-gap="10"
                   data-position="center"
                 >
                   <group>
@@ -180,11 +180,9 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                       data-direction="column"
                     >
                       <text
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="2.25"
-
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.25"
                         data-weight="700"
                         data-text-size="x-large"
                         data-wrap="wrap"
@@ -192,11 +190,9 @@ data-animation-duration="2.25"
                         {item.title}
                       </text>
                       <text
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="2"
-
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2"
                         data-weight="600"
                         data-text-size=""
                         data-wrap="wrap"
@@ -212,20 +208,15 @@ data-animation-duration="2"
                   <StuckReporter>
                     {(isSticky) => (
                       <group
-
-
-
                         data-duration=".125"
                         data-space-horizontal={isSticky ? "20" : "0"}
-                        data-space={isSticky ? "20" : ""}
+                        data-space-top="20"
                         data-sticky="top"
                       >
                         <group
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.75"
-
+                          data-animation-name="appear-bottom"
+                          data-fill-mode="backwards"
+                          data-animation-duration="1.75"
                           data-background="main"
                           data-color="main-text"
                           data-interactive=""
@@ -243,21 +234,19 @@ data-animation-duration="1.75"
                       </group>
                     )}
                   </StuckReporter>
+<group data-height="20"></group>
 
                   <group
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.5"
-                  
-                  data-contain="" data-radius="20">
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="1.5"
+                    data-contain=""
+                    data-radius="20"
+                  >
                     <picture data-position="center">
                       <img src={item.image} alt={item.title} />{" "}
                     </picture>
                   </group>
-
-
-
                 </group>
               </group>,
               false,
@@ -269,28 +258,26 @@ data-animation-duration="1.5"
         >
           <group
             data-ratio="4:5"
-          
             data-contain=""
-          //  data-background="highlight"
+            //  data-background="highlight"
             data-direction="column"
             data-wrap="no"
             data-gap="5"
           >
             <picture
-data-position="absolute"
-             data-brightness="adaptive"
-             data-mask={selectedKey === item.key ? "bottom" : ""}
-               data-radius="15"
-               
-               >
+              data-position="absolute"
+              data-brightness="adaptive"
+              data-mask={selectedKey === item.key ? "bottom" : ""}
+              data-radius="15"
+            >
               <img src={item.image} alt={item.title} />
             </picture>
-            
 
-            
-            {selectedKey === item.key && <group data-position="bottom"><ContentToolbar count={item.count} /> </group>}
-         
-
+            {selectedKey === item.key && (
+              <group data-position="bottom">
+                <ContentToolbar count={item.count} />{" "}
+              </group>
+            )}
           </group>
 
           <group data-gap="10" data-space="10" data-direction="column">
@@ -301,8 +288,6 @@ data-position="absolute"
               {item.description}
             </text>
           </group>
-
-
         </group>
       ))}
     </>

@@ -183,7 +183,7 @@ const TooltipPopover: React.FC = () => {
       <group
         data-direction="column"
         data-gap="10"
-        data-background="main-background"
+       // data-background="main-background"
       >
         <text
           data-weight="700"

@@ -595,7 +595,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-space-top='5'] {padding-top:5px;}
 [data-space-top='10'] {padding-top:10px;}
-[data-space-top='20'] {padding-top:20px;}top
+[data-space-top='20'] {padding-top:20px;}
 
 [data-space-bottom='150'] {padding-bottom:150px;}
 /**/
