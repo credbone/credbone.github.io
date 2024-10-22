@@ -207,7 +207,7 @@ errormessage { display: flex;overflow: hidden;width: 100%;}
 /* stylelint-enable */
 
 
-[data-name="input-reset"] {display: flex; appearance: none; -webkit-appearance: none; background: none; text-overflow: ellipsis;}
+[data-name="input-reset"] {display: flex; appearance: none; -webkit-appearance: none; background: none; text-overflow: ellipsis;  color: var(--text-color);}
 
 
 
@@ -215,6 +215,7 @@ errormessage { display: flex;overflow: hidden;width: 100%;}
 input[data-name="input-reset"]::-webkit-outer-spin-button,
 input[data-name="input-reset"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+
 }
 
 /* Firefox */
