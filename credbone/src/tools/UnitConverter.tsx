@@ -12,17 +12,17 @@ const UnitConverter: React.FC = () => {
 
   const units = {
     mass: [
-      { unit: "kg", name: "kg", full: "Kilogram" },
-      { unit: "g", name: "g", full: "Gram" },
       { unit: "mg", name: "mg", full: "Milligram" },
+      { unit: "g", name: "g", full: "Gram" },
+      { unit: "kg", name: "kg", full: "Kilogram" },
       { unit: "lb", name: "lb", full: "Pound" },
       { unit: "oz", name: "oz", full: "Ounce" },
       { unit: "t", name: "ton", full: "Ton" },
     ],
     length: [
-      { unit: "m", name: "m", full: "Meter" },
-      { unit: "cm", name: "cm", full: "Centimeter" },
       { unit: "mm", name: "mm", full: "Millimeter" },
+      { unit: "cm", name: "cm", full: "Centimeter" },
+      { unit: "m", name: "m", full: "Meter" },
       { unit: "km", name: "km", full: "Kilometer" },
       // { unit: "in", name: "inch", full: "Inch" },
       // { unit: "ft", name: "foot", full: "Foot" },
@@ -35,13 +35,14 @@ const UnitConverter: React.FC = () => {
       { unit: "atm", name: "atm", full: "Atmosphere" },
     ],
     volume: [
-      { unit: "L", name: "liter", full: "Liter" },
       { unit: "mL", name: "ml", full: "Milliliter" },
+      { unit: "L", name: "liter", full: "Liter" },
       { unit: "gal", name: "gallon", full: "Gallon" },
       { unit: (<text>m<sup>3</sup></text>), name: "cubic_meter", full: "Cubic Meter", },
       { unit: (<text>in<sup>3</sup></text>), name: "cubic_inch", full: "Cubic Inch", },
     ],
     time: [
+
       { unit: "sec", name: "second", full: "Second" },
       { unit: "min", name: "minute", full: "Minute" },
       { unit: "hr", name: "hour", full: "Hour" },
@@ -178,8 +179,8 @@ const UnitConverter: React.FC = () => {
   const handleConversionTypeChange = ( type: "mass" | "length" | "pressure" | "volume" | "time" | "digitalStorage" ) => { setConversionType(type);
 
     // Update from and to units to the first items in the list for the selected type
-    const newFromUnit = units[type][0].name;
-    const newToUnit = units[type][1].name;
+    const newFromUnit = units[type][1].name;
+    const newToUnit = units[type][0].name;
 
     setFromUnit(newFromUnit);
     setToUnit(newToUnit);

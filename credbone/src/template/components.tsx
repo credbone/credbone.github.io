@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import sampleImage from "../styles/images/samples/objects/object-1.png";
 import sampleImage_2 from "../styles/images/samples/objects/object-7.png";
 import sampleImage_3 from "../styles/images/samples/objects/object-3.png";
-import sampleImage_4 from "../styles/images/samples/objects/object-10.png";
-import Scroll from "../components/scroll";
-import SubNavigation from "../components/subnav";
-import StuckReporter from "../components/StuckReporter";
+
+
 import Ripple from "../components/Ripple";
 import TextReveal from "../components/TextReveal";
   
@@ -18,9 +16,7 @@ const linksArray = [
   { picture: sampleImage_3, long: "true",   color: "peach-blush", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList" },
   { picture:sampleImage_2, long: "true",   color: "mint-green", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover" },
   { picture:"", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers" },
-
-
-  { picture: sampleImage_4, long: "true", color: "sunny-yellow", title: "Quick Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos" },
+  { picture: "", long: "true", color: "", title: "Quick Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos" },
 
   { picture:"", long: "",   color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation" },
   { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms" },
