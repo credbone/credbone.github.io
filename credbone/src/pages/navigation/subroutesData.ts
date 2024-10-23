@@ -14,6 +14,6 @@ export const navItems = [
 
   { to: "Modal", icon: "star", label: "Modal" },
   { to: "Dashboard", icon: "star", label: "Dashboard",separator:"true"  },
-  { to: "Showcase", icon: "star", label: "Showcase", },
+  { to: "QuickDemos", icon: "star", label: "Quick Demos", },
 
 ];

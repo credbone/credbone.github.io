@@ -23,10 +23,11 @@ import { isDesktop } from "react-device-detect";
 import Dashboard from "./Dashboard";
 import Modal from "./Modal";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
-import { SvgHamburger } from "../components/svg";
+
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
-import Showcase from "./showCase";
+import QuickDemos from "./quickDemos";
+
 
 const Template: React.FC = () => {
   const location = useLocation();
@@ -112,7 +113,8 @@ const Template: React.FC = () => {
               <Route path="Miscellaneous" element={<Miscellaneous />} />
               <Route path="Dashboard" element={<Dashboard />} />
               <Route path="Modal" element={<Modal />} />
-              <Route path="Showcase" element={<Showcase/>} />
+              <Route path="QuickDemos" element={<QuickDemos/>} />
+
             </Routes>
           </group>
 
