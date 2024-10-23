@@ -109,6 +109,12 @@
 
 /* Special colors */
 
+[data-background="olive-green"] {
+  background-color: #abaf89; /* Your custom background color */
+  color: #292311; /* Your custom text color */
+}
+
+
 [data-background="mint-green"] {
   background-color: var(--mint-green);
   color: var(--mint-green-text);

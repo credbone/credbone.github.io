@@ -123,6 +123,9 @@ const SimplePaint: React.FC = () => {
                   data-background={brushColor === color.value ? "highlight" : ""}
                   data-space="10"
                   onClick={() => setBrushColor(color.value)}
+
+
+                  
                 >
                   <group
                              data-interact=""
@@ -176,9 +179,13 @@ const SimplePaint: React.FC = () => {
                       data-align="center"
                       onClick={() => setBrushSize(size.value)}
                       //  data-wrap="no"
-                      data-gap="10"
+                      data-gap="5"
+
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration={2 + index * 0.25}
                     >
-                      <text>{size.name}</text>
+                      <text data-opacity="30">{size.name}</text>
 
                       <group
                         //    data-opacity={brushSize === size.value ? "100" : "10"}

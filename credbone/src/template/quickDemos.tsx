@@ -42,12 +42,11 @@ const QuickDemos: React.FC = () => {
         data-column-size="260"
       >
         <group
-          data-index="2"
+      
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
-          data-border=""
-          //          data-elevation="1"
+          data-elevation="1"
           data-contain=""
           data-space="20"
           data-gap="20"
@@ -56,9 +55,9 @@ const QuickDemos: React.FC = () => {
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
-              data-opacity="20"
+              data-opacity="70"
             >
               Unit Converter
             </text>
@@ -77,8 +76,7 @@ const QuickDemos: React.FC = () => {
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
-           data-border=""
-          //       data-elevation="1"
+           data-elevation="1"
           data-contain=""
           data-space="20"
           //    data-gap="20"
@@ -87,9 +85,9 @@ const QuickDemos: React.FC = () => {
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
-              data-opacity="20"
+              data-opacity="70"
             >
               Calculator
             </text>
@@ -107,12 +105,11 @@ const QuickDemos: React.FC = () => {
         </group>
 
         <group
-          data-index="2"
+        
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
-           data-border=""
-          //   data-elevation="1"
+          data-elevation="1"
           data-contain=""
           data-gap="10"
           data-length="500"
@@ -122,9 +119,9 @@ const QuickDemos: React.FC = () => {
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
-              data-opacity="20"
+              data-opacity="70"
             >
               Simple Paint
             </text>

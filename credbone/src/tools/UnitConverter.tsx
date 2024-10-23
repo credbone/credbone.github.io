@@ -94,9 +94,9 @@ const UnitConverter: React.FC = () => {
       name: "Pressure",
       description: "Units for measuring force per unit area.",
       units: {
-        pa: 1,
-        bar: 0.00001,
-        atm: 0.00000986923,
+        bar: 1,
+        pa: 100000,
+        atm: 0.986923,
       },
     },
     volume: {
@@ -140,7 +140,19 @@ const UnitConverter: React.FC = () => {
     to: string,
     type: string
   ): number => {
-    return (value * conversions[type].units[to]) / conversions[type].units[from];
+   
+    
+    const converted = (value * conversions[type].units[to]) / conversions[type].units[from];
+    switch (type) {
+
+      case 'time':
+        return converted < 0.00001 ? 0 : Math.round(converted * 100000) / 100000;
+
+  
+      default:
+        return converted; 
+    }
+
 
   };
 
@@ -233,10 +245,28 @@ const UnitConverter: React.FC = () => {
       conversions[conversionType].units[toUnit] /
       conversions[conversionType].units[fromUnit];
 
+
+      let displayConversionFactor = conversionFactor;
+
+      switch (conversionType) {
+
+        case 'time':
+          // Round for mass and length
+         
+          displayConversionFactor = Math.round(conversionFactor * 100000) / 100000;
+          break;
+    
+    
+        default:
+          // Default case, no rounding needed
+          break;
+      }
+      
+  
+
     return (
       <>
-        Multiply the {getFullUnitName(fromUnit)} value by{" "}
-        <b>{conversionFactor}</b> to get the {getFullUnitName(toUnit)} value.
+        Multiply the {getFullUnitName(fromUnit)} value by <b>{displayConversionFactor}</b> to get the {getFullUnitName(toUnit)} value.
       </>
     );
   };
@@ -484,7 +514,7 @@ const UnitConverter: React.FC = () => {
             data-color="brown-dark"
             data-width="auto"
             data-space="10"
-            data-radius="5"
+            data-radius="10"
           >
             <text data-weight="700">Formula</text>
           </group>
