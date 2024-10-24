@@ -3,6 +3,7 @@ import Button from "../components/button";
 import { glyphs } from "./utils/glyphData";
 import Tooltip from "../components/tooltip";
 import StuckReporter from "../components/StuckReporter";
+import TextReveal from "../components/TextReveal";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -68,12 +69,16 @@ const Typeface: React.FC = () => {
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
             Typeface
           </text>
-
+          <text data-weight="700" data-text-size="96">
+          <TextReveal text="Aa" duration={800} />
+          </text>
           <text data-wrap="wrap" data-opacity="60" data-line="1.5">
             <text data-weight="700">Gilroy</text> Font Family was designed by
             Radomir Tinkov and published by Radomir Tinkov. Gilroy contains 20
             styles and family package options.
           </text>
+
+
         </group>
       </group>
 
