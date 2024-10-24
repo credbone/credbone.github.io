@@ -247,7 +247,7 @@ const SimplePaint: React.FC = () => {
         data-direction="column"
         data-align="start"
         data-contain=""
-        data-height="400"
+        data-height="300"
         // data-length="400"
         data-background="context"
       >

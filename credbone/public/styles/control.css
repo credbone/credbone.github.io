@@ -602,6 +602,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-vertical='15'] {padding-top:15px; padding-bottom: 15px;}
 [data-space-vertical='20'] {padding-top:20px; padding-bottom: 20px;}
 [data-space-vertical='30'] {padding-top:30px; padding-bottom: 30px;}
+[data-space-vertical='40'] {padding-top:40px; padding-bottom: 40px;}
 [data-space-vertical='50'] {padding-top:50px; padding-bottom: 50px;}
 
 

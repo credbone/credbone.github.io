@@ -70,7 +70,7 @@ const Components: React.FC = () => {
             data-direction="column"
             data-gap="20"
             data-radius="20"
-            data-space="40"
+            data-space-vertical="40"
             // data-background="main"
             // data-color="main-text"
             data-align="center"
@@ -81,7 +81,7 @@ const Components: React.FC = () => {
             <text
               data-weight="700"
               data-text-size="48"
-              data-wrap="wrap"
+              //data-wrap="wrap"
               data-ellipsis=""
             >
               <TextReveal text={message} duration={1200} />

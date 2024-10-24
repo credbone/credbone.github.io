@@ -394,11 +394,11 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </group>
 
-              <group data-contain="" data-height="120">
+              {/* <group data-contain="" data-height="120">
                 <picture data-min-length="300" data-contain="" data-ratio="1:1">
                   <img src={sampleImage_2} alt="" />
                 </picture>
-              </group>
+              </group> */}
             </group>
           </group>
 
