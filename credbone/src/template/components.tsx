@@ -132,7 +132,7 @@ const Components: React.FC = () => {
       <group
         data-direction="column"
         data-space-vertical="30"
-        data-gap="15"
+      //  data-gap="15"
         data-wrap="no"
         data-align="start"
         data-position="center"
@@ -142,7 +142,7 @@ const Components: React.FC = () => {
         <group data-space-horizontal="30">
           <group
             data-direction="column"
-            data-gap="20"
+            data-gap="30"
             data-radius="20"
             data-space-vertical="40"
             // data-background="main"
@@ -152,7 +152,19 @@ const Components: React.FC = () => {
             data-text-align="center"
             // data-min-height="300"
           >
-            <text
+<group
+
+data-direction="column"
+data-gap="10"
+
+// data-background="main"
+// data-color="main-text"
+data-align="center"
+data-justify="center"
+data-text-align="center"
+
+>
+<text
               data-weight="700"
               data-text-size="48"
               //data-wrap="wrap"
@@ -171,6 +183,7 @@ const Components: React.FC = () => {
               components, each designed with attention to detail and a deep
               understanding of UI patterns.
             </text>
+</group>
 
             <Ripple>
               <Link
@@ -180,12 +193,12 @@ const Components: React.FC = () => {
                 to="/Home/Typeface"
                 data-interactive=""
                 data-width="auto"
-                data-border="outline"
-                //  data-background="main-text"
-                //  data-color="main"
-                data-space-horizontal="30"
-                data-space-vertical="15"
-                data-radius="30"
+               // data-border="outline"
+                 data-background="highlight"
+               //  data-color="main-text"
+                data-space-horizontal="40"
+                data-space-vertical="20"
+                data-radius="20"
               >
                 <text
                   data-weight="700"
