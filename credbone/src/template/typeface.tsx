@@ -100,7 +100,7 @@ const Typeface: React.FC = () => {
                 </text>
                 <group
                   data-background="context"
-                  data-border="overprint"
+                  data-border="outline"
                   data-contain=""
                   data-radius="5"
                   data-width="auto"

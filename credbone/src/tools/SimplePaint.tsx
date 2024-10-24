@@ -81,6 +81,7 @@ const SimplePaint: React.FC = () => {
     context.strokeStyle = brushColor;
     context.lineWidth = brushSize;
     context.lineCap = "round";
+    //context.lineJoin = 'round';
   
     context.lineTo(x, y); // Draw line to new position
     context.stroke(); // Render the stroke
