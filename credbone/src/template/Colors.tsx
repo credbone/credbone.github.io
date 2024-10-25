@@ -2,8 +2,6 @@ import React from "react";
 
 import sampleImage2 from "../styles/images/samples/res_51.jpg";
 
-
-
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
@@ -35,371 +33,362 @@ const Colors: React.FC = () => {
         </text>
       </group>
 
-      <group
-        data-max-length="1200"
-        data-shrink="no"
-        data-contain=""
-        //   data-width="auto"
-        // data-radius="20"
-        data-gap="5"
-      data-space="5"
-      data-elevation="2"
-      data-background="context"
-      >
-        <Popover
-          placement="mouse"
-          content={
-            <group
-              data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="1.25"
-            >
-              <RichThemePicker pickerType="primary" />
-            </group>
-          }
-          data-space="5"
-          data-radius="10"
-          data-backdrop="10"
-          data-width="auto"
-        >
-          <group data-min-height="240" data-width="auto" data-length="auto">
-            <Ripple>
+      <group data-contain="" data-radius="20">
+
+
+      <Popover
+            placement="mouse"
+            content={
               <group
-                data-ink-color="main-dark"
-                data-cursor="pointer"
-                data-interactive=""
-                // data-radius="15"
-                data-contain=""
-                data-direction="column"
-                data-color="main-text"
-                data-space="30"
-                data-background="main"
-                data-gap="20"
-                data-justify="end"
-                data-align="start"
-                data-wrap="no"
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="1.25"
               >
-                <group>
-                  <text data-opacity="30">Click To Change</text>
-                </group>
-
-                <group
-                  data-position="bottom"
-                  data-direction="column"
-                  data-gap="10"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-light=""
-                    data-max-length="300"
-                    data-line="20"
-                  >
-                    This primary color you selected will be used extensively in
-                    the UI, with other shades being automatically generated from
-                    it.
-                  </text>
-                  <text
-                    data-wrap="wrap"
-                    data-weight="700"
-                    data-text-size="large"
-                  >
-                    Primary Color
-                  </text>
-                </group>
+                <RichThemePicker pickerType="primary" />
               </group>
-            </Ripple>
-          </group>
-        </Popover>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="main-lighter"
-        >
-          <text data-weight="700">Lighter</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="main-light"
-        >
-          <text data-weight="700">Light</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-min-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="main-dark"
-          data-color="white"
-        >
-          <text data-weight="700">Dark</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="main-darker"
-          data-color="white"
-        >
-          <text data-weight="700">Darker</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-width="auto"
-          data-min-height="240"
-          data-length="auto"
-          data-background="main-dark"
-        >
-          {/* <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture> */}
-          {/* <video
-            data-name="color-demo"
-            data-position="absolute"
-            src={samplevideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            data-object-fit="cover"
-            data-height="fit"
-            data-min-length="fit"
-            data-max-length="fit"
-          ></video> */}
-
-          <group
-            data-color="main-text-lighter-white"
-            data-direction="column"
-            data-space="30"
-            data-gap="10"
-            data-justify="end"
+            }
+            data-space="5"
+            data-radius="10"
+            data-backdrop="10"
+            data-width="auto"
           >
-            <text
-              data-wrap="wrap"
-              data-light=""
-              data-max-length="240"
-              data-line="20"
-            >
-              The generated color ensures that the text remains readable on the
-              chosen color.
-            </text>
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
-              Text Color
-            </text>
-          </group>
-        </group>
+            <group data-min-height="240" data-width="auto" data-length="auto">
+              <Ripple>
+                <group
+                  data-ink-color="main-dark"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  // data-radius="15"
+                  data-contain=""
+                  data-direction="column"
+                  data-color="main-text"
+                  data-space="30"
+                  data-background="main"
+                  data-gap="20"
+                  data-justify="end"
+                  data-align="start"
+                  data-wrap="no"
+                >
+                  <group>
+                    <text data-opacity="30">Click To Change</text>
+                  </group>
 
-
-
-        <Popover
-          placement="mouse"
-          content={
-            <group
-              data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="1.25"
-            >
-              <RichThemePicker pickerType="secondary" />
+                  <group
+                    data-position="bottom"
+                    data-direction="column"
+                    data-gap="10"
+                  >
+                    <text
+                      data-wrap="wrap"
+                      data-light=""
+                      data-max-length="300"
+                      data-line="20"
+                    >
+                      This primary color you selected will be used extensively
+                      in the UI, with other shades being automatically generated
+                      from it.
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-weight="700"
+                      data-text-size="large"
+                    >
+                      Primary Color
+                    </text>
+                  </group>
+                </group>
+              </Ripple>
             </group>
-          }
-          data-space="5"
-          data-radius="10"
-          data-backdrop="10"
-          data-width="auto"
-        >
+          </Popover>
 
-<group data-min-height="240" data-width="auto" data-length="auto">
-  <Ripple>
+
           <group
-          data-ink-color="secondary-dark"
             // data-radius="15"
-            data-cursor="pointer"
-            data-interactive=""
             data-contain=""
-
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
             data-direction="column"
-
-
-            data-color="secondary-text"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
             data-space="30"
-            data-background="secondary"
-            data-gap="20"
-            data-justify="end"
-            data-align="start"
+            data-background="main-lighter"
           >
-            <group>
-              <text data-opacity="30">Click To Change</text>
-            </group>
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-light"
+          >
+            <text data-weight="700">Light</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
 
-            <group data-position="bottom" data-gap="10" data-direction="column">
+
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-min-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-dark"
+            data-color="white"
+          >
+            <text data-weight="700">Dark</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-darker"
+            data-color="white"
+          >
+            <text data-weight="700">Darker</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-width="auto"
+            data-min-height="240"
+            data-length="auto"
+            data-background="main-dark"
+          >
+
+            <group
+              data-color="main-text-lighter-white"
+              data-direction="column"
+              data-space="30"
+              data-gap="10"
+              data-justify="end"
+            >
               <text
                 data-wrap="wrap"
                 data-light=""
-                data-max-length="300"
+                data-max-length="240"
                 data-line="20"
               >
-                This Secondary color you selected will be used extensively in
-                the UI, with other shades being automatically generated from it.
+                The generated color ensures that the text remains readable on
+                the chosen color.
               </text>
               <text data-wrap="wrap" data-weight="700" data-text-size="large">
-                Secondary Color
+                Text Color
               </text>
             </group>
           </group>
-          </Ripple>
-</group>
-        </Popover>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="secondary-lighter"
-        >
-          <text data-weight="700">Seondary Lighter</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
 
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-min-eight="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="secondary-light"
-        >
-          <text data-weight="700">Seondary Light</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-min-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="secondary-dark"
-          data-color="white"
-        >
-          <text data-weight="700">Secondary Dark</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-height="240"
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-orientation="vertical-bottom"
-          data-justify="start"
-          data-width="auto"
-          data-space="30"
-          data-background="secondary-darker"
-          data-color="white"
-        >
-          <text data-weight="700">Secondary Darker</text>
-          <text data-ellipsis="" data-light="">
-            Auto-generated shade
-          </text>
-        </group>
 
-        <group
-          // data-radius="15"
-          data-contain=""
-          data-width="auto"
-          data-min-height="240"
-          data-length="auto"
-          data-background="secondary-darker"
-        >
-          <picture data-position="absolute" data-name="color-demo">
-            <img src={sampleImage2} alt="" />
-          </picture>
+          <Popover
+            placement="mouse"
+            content={
+              <group
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="1.25"
+              >
+                <RichThemePicker pickerType="secondary" />
+              </group>
+            }
+            data-space="5"
+            data-radius="10"
+            data-backdrop="10"
+            data-width="auto"
+          >
+            <group data-min-height="240" data-width="auto" data-length="auto">
+              <Ripple>
+                <group
+                  data-ink-color="secondary-dark"
+                  // data-radius="15"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-contain=""
+                  data-direction="column"
+                  data-color="secondary-text"
+                  data-space="30"
+                  data-background="secondary"
+                  data-gap="20"
+                  data-justify="end"
+                  data-align="start"
+                >
+                  <group>
+                    <text data-opacity="30">Click To Change</text>
+                  </group>
+
+                  <group
+                    data-position="bottom"
+                    data-gap="10"
+                    data-direction="column"
+                  >
+                    <text
+                      data-wrap="wrap"
+                      data-light=""
+                      data-max-length="300"
+                      data-line="20"
+                    >
+                      This Secondary color you selected will be used extensively
+                      in the UI, with other shades being automatically generated
+                      from it.
+                    </text>
+                    <text
+                      data-wrap="wrap"
+                      data-weight="700"
+                      data-text-size="large"
+                    >
+                      Secondary Color
+                    </text>
+                  </group>
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
 
           <group
-            data-color="secondary-text-lighter-white"
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
             data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
             data-space="30"
-            data-gap="10"
-            data-justify="end"
+            data-background="secondary-lighter"
           >
-            <text
-              data-wrap="wrap"
-              data-light=""
-              data-max-length="240"
-              data-line="20"
-            >
-              The generated color ensures that the text remains readable on the
-              chosen color.
-            </text>
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
-              Text Color
+            <text data-weight="700">Seondary Lighter</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
             </text>
           </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-min-eight="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-light"
+          >
+            <text data-weight="700">Seondary Light</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
+
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-min-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-dark"
+            data-color="white"
+          >
+            <text data-weight="700">Secondary Dark</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-darker"
+            data-color="white"
+          >
+            <text data-weight="700">Secondary Darker</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-width="auto"
+            data-min-height="240"
+            data-length="auto"
+            data-background="secondary-darker"
+          >
+            <picture data-position="absolute" data-name="color-demo">
+              <img src={sampleImage2} alt="" />
+            </picture>
+
+            <group
+              data-color="secondary-text-lighter-white"
+              data-direction="column"
+              data-space="30"
+              data-gap="10"
+              data-justify="end"
+            >
+              <text
+                data-wrap="wrap"
+                data-light=""
+                data-max-length="240"
+                data-line="20"
+              >
+                The generated color ensures that the text remains readable on
+                the chosen color.
+              </text>
+              <text data-wrap="wrap" data-weight="700" data-text-size="large">
+                Text Color
+              </text>
+            </group>
+          </group>
         </group>
-      </group>
 
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
@@ -434,22 +423,21 @@ const Colors: React.FC = () => {
             <group data-wrap="no" data-direction="column" data-gap="5">
               <group
                 data-height="50"
-             //   data-radius="5"
+                //   data-radius="5"
                 data-background={colors.value + "-light"}
               ></group>
               <group
                 data-height="50"
-              //  data-radius="5"
+                //  data-radius="5"
                 data-background={colors.value}
               ></group>
               <group
                 data-height="50"
-              //  data-radius="5"
+                //  data-radius="5"
                 data-background={colors.value + "-dark"}
               ></group>
             </group>
             <group
- 
               data-space="15"
               data-contain=""
               data-length="auto"
@@ -466,7 +454,7 @@ const Colors: React.FC = () => {
                   data-text-size="15"
                 >
                   {colors.name}
-                </text> 
+                </text>
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
