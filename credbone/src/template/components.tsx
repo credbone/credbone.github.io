@@ -8,6 +8,7 @@ import sampleImage_4 from "../styles/images/samples/objects/object-10.png";
 
 import Ripple from "../components/Ripple";
 import TextReveal from "../components/TextReveal";
+import { IconSearch } from "../components/icon/credIcons";
 
 const linksArray = [
   {
@@ -185,30 +186,54 @@ data-text-align="center"
             </text>
 </group>
 
-            <Ripple>
-              <Link
-                data-contain=""
-                data-drag="none"
-                data-type="group"
-                to="/Home/Typeface"
-                data-interactive=""
-                data-width="auto"
-               // data-border="outline"
-                 data-background="highlight"
-               //  data-color="main-text"
-                data-space-horizontal="40"
-                data-space-vertical="20"
-                data-radius="20"
-              >
-                <text
-                  data-weight="700"
-                  //  data-wrap="wrap"
-                  data-ellipsis=""
-                >
-                  Get Started
-                </text>
-              </Link>
-            </Ripple>
+
+<group data-width="auto" data-gap="15" data-align="center">
+
+
+<Ripple>
+  <Link
+    data-contain=""
+    data-drag="none"
+    data-type="group"
+    to="/Home/Typeface"
+    data-interactive=""
+    data-width="auto"
+     data-background="highlight"
+    data-space-horizontal="30"
+    data-space-vertical="20"
+    data-radius="20"
+  >
+    <text
+      data-weight="700"
+      //  data-wrap="wrap"
+      data-ellipsis=""
+    >
+      Get Started
+    </text>
+  </Link>
+</Ripple>
+{/* <separator data-vertical="" data-height="20"></separator>
+
+<group
+
+data-contain=""
+data-drag="none"
+data-type="group"
+
+data-interactive=""
+data-width="auto"
+ data-background="highlight"
+data-space="15"
+data-radius="20"
+>
+<IconSearch></IconSearch>
+</group> */}
+
+
+
+
+</group>
+
           </group>
         </group>
 
@@ -247,7 +272,7 @@ data-text-align="center"
           data-align="start"
         >
           <group
-            data-gap="10"
+            data-gap="15"
             data-type="grid"
             data-grid-template="200"
             data-weight="600"
@@ -269,7 +294,7 @@ data-text-align="center"
                   data-border={link.color ? "none" : "outline"}
                   data-radius="20"
                   // data-space="5"
-                  data-background={link.color ? link.color : "context"}
+                  data-background={link.color ? link.color : ""}
                   data-color={link.color ? link.color + "-text" : ""}
                   data-row-end={link.long ? "2" : ""}
                   data-direction="column"

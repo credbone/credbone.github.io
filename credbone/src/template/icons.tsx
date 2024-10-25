@@ -83,21 +83,11 @@ const Icons: React.FC = () => {
 
 
   return (
-    <group data-align="start" data-direction="column">
-      <group
-        data-max-length="400"
-        data-space="30"
-        data-border="no"
-        data-margin-right="-30"
-        data-margin-bottom="-30"
-      >
-        <group
-          data-background="context"
-          data-radius="10"
-          data-elevation="1"
-          data-contain=""
-        >
-          <group data-direction="column" data-gap="10" data-space="30">
+    <group data-space="30" data-gap="30" data-align="start" data-direction="column">
+
+
+
+      <group data-direction="column" data-gap="10" data-max-length="400">
             <text
               data-weight="700"
               data-text-size="xxx-large"
@@ -117,21 +107,8 @@ const Icons: React.FC = () => {
             </text>
           </group>
 
-          <group
-            data-background="main"
-            data-contain=""
-            // data-dark=""
-            data-align="center"
-          >
-            <group data-length="fit" data-space="40" data-color="main-text">
-              <IconDemo />
-            </group>
-          </group>
-        </group>
-      </group>
 
-      <group data-max-length="1200">
-        <group data-space="30" data-sticky="top" data-width="auto">
+          <group  data-sticky="top" data-top="30" data-width="auto">
           <group
             data-length="600"
             data-radius="10"
@@ -199,7 +176,8 @@ const Icons: React.FC = () => {
           </group>
         </group>
 
-        <group data-space-horizontal="30" data-gap="30">
+
+        <group  data-gap="30">
           <group data-name="icon-group" data-gap="30">
             <group data-align="center" data-gap="15">
               <group data-width="auto">
@@ -507,7 +485,6 @@ const Icons: React.FC = () => {
 
           <group></group>
         </group>
-      </group>
     </group>
   );
 };
