@@ -616,6 +616,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-right='5'] {padding-right:5px;}
 [data-space-right='10'] {padding-right:10px;}
 [data-space-right='20'] {padding-right:20px;}
+[data-space-right='30'] {padding-right:30px;}
 
 [data-space-bottom='5'] {padding-bottom:5px;}
 [data-space-bottom='10'] {padding-bottom:10px;}

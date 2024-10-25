@@ -434,21 +434,22 @@ const Colors: React.FC = () => {
             <group data-wrap="no" data-direction="column" data-gap="5">
               <group
                 data-height="50"
-                data-radius="5"
+             //   data-radius="5"
                 data-background={colors.value + "-light"}
               ></group>
               <group
                 data-height="50"
-                data-radius="5"
+              //  data-radius="5"
                 data-background={colors.value}
               ></group>
               <group
                 data-height="50"
-                data-radius="5"
+              //  data-radius="5"
                 data-background={colors.value + "-dark"}
               ></group>
             </group>
             <group
+ 
               data-space="15"
               data-contain=""
               data-length="auto"
@@ -462,10 +463,10 @@ const Colors: React.FC = () => {
                   data-ellipsis=""
                   data-wrap="wrap"
                   data-weight="700"
-                  data-text-size="medium"
+                  data-text-size="15"
                 >
                   {colors.name}
-                </text>
+                </text> 
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>

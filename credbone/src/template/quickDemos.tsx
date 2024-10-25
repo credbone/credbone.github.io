@@ -42,7 +42,6 @@ const QuickDemos: React.FC = () => {
         data-column-size="260"
       >
         <group
-      
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
@@ -51,18 +50,18 @@ const QuickDemos: React.FC = () => {
           data-space="20"
           data-gap="20"
         >
-          <group data-gap="10">
+          <group data-gap="10" data-space="10">
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="large"
+              data-text-size="x-large"
               data-ellipsis=""
-              data-opacity="70"
+              //    data-opacity="70"
             >
-              Unit Converter
+              Unit<br></br> Converter
             </text>
 
-            <text data-wrap="wrap" data-line="20" data-opacity="40">
+            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
               You can use the unit converter to convert from one measurement to
               another.
             </text>
@@ -76,25 +75,25 @@ const QuickDemos: React.FC = () => {
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
-           data-elevation="1"
+          data-elevation="1"
           data-contain=""
           data-space="20"
           //    data-gap="20"
         >
-          <group data-gap="10">
+          <group data-gap="10" data-space="10">
             <text
               data-weight="700"
-              data-wrap="wrap"
-              data-text-size="large"
+              data-wrap="preline"
+              data-text-size="x-large"
               data-ellipsis=""
-              data-opacity="70"
+              // data-opacity="70"
             >
-              Calculator
+              Basic<br></br> Calculator
             </text>
 
-            <text data-wrap="wrap" data-line="20" data-opacity="40">
-              Designed with minimal functionality and a straightforward user
-              interface to demonstrate the usability and layout of a UI system
+            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+              Designed with minimal functionality to demonstrate the usability a
+              UI system
             </text>
           </group>
           <SnackbarContainer>
@@ -105,28 +104,28 @@ const QuickDemos: React.FC = () => {
         </group>
 
         <group
-        
           data-height="auto"
           data-max-height="fit"
           data-radius="20"
           data-elevation="1"
           data-contain=""
-          data-gap="10"
+          //   data-gap="10"
           data-length="500"
         >
-          <group data-height="10"></group>
-          <group data-gap="10" data-space-horizontal="20">
+
+          <group data-gap="10" data-space="30">
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="large"
+              data-text-size="x-large"
               data-ellipsis=""
-              data-opacity="70"
+              //  data-opacity="70"
             >
-              Simple Paint
+              Simple
+              <br></br> Paint
             </text>
 
-            <text data-wrap="wrap" data-line="20" data-opacity="40">
+            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
               Designed with minimal functionality to demonstrate the usability
               of a UI system
             </text>
