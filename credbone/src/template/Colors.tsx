@@ -1,8 +1,8 @@
 import React from "react";
 
-import sampleImage2 from "../styles/images/samples/res_16.jpg";
+import sampleImage2 from "../styles/images/samples/res_51.jpg";
 
-import samplevideo from "../styles/images/samples/res_23.mp4";
+
 
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
@@ -40,7 +40,11 @@ const Colors: React.FC = () => {
         data-shrink="no"
         data-contain=""
         //   data-width="auto"
-        data-radius="20"
+        // data-radius="20"
+        data-gap="5"
+      data-space="5"
+      data-elevation="2"
+      data-background="context"
       >
         <Popover
           placement="mouse"
@@ -59,50 +63,55 @@ const Colors: React.FC = () => {
           data-width="auto"
         >
           <group data-min-height="240" data-width="auto" data-length="auto">
-            <group
-              data-ink-color="main-dark"
-              data-cursor="pointer"
-              data-interactive=""
-              //data-radius="5"
-              data-contain=""
-              data-direction="column"
-              data-color="main-text"
-              data-space="30"
-              data-background="main"
-              data-gap="20"
-              data-justify="end"
-              data-align="start"
-              data-wrap="no"
-            >
-<group >
-<text data-opacity="30">Click To Change</text>
-</group>
+            <Ripple>
+              <group
+                data-ink-color="main-dark"
+                data-cursor="pointer"
+                data-interactive=""
+                // data-radius="15"
+                data-contain=""
+                data-direction="column"
+                data-color="main-text"
+                data-space="30"
+                data-background="main"
+                data-gap="20"
+                data-justify="end"
+                data-align="start"
+                data-wrap="no"
+              >
+                <group>
+                  <text data-opacity="30">Click To Change</text>
+                </group>
 
-              <group data-position="bottom" data-direction="column" data-gap="10">
-                <text
-                  data-wrap="wrap"
-                  data-light=""
-                  data-max-length="300"
-                  data-line="20"
+                <group
+                  data-position="bottom"
+                  data-direction="column"
+                  data-gap="10"
                 >
-                  This primary color you selected will be used extensively in
-                  the UI, with other shades being automatically generated from
-                  it.
-                </text>
-                <text
-                  data-wrap="wrap"
-                  data-weight="700"
-                  data-text-size="x-large"
-                >
-                  Primary Color
-                </text>
-                
+                  <text
+                    data-wrap="wrap"
+                    data-light=""
+                    data-max-length="300"
+                    data-line="20"
+                  >
+                    This primary color you selected will be used extensively in
+                    the UI, with other shades being automatically generated from
+                    it.
+                  </text>
+                  <text
+                    data-wrap="wrap"
+                    data-weight="700"
+                    data-text-size="large"
+                  >
+                    Primary Color
+                  </text>
+                </group>
               </group>
-            </group>
+            </Ripple>
           </group>
         </Popover>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -120,7 +129,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -138,7 +147,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-min-height="240"
           data-length="auto"
@@ -157,7 +166,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -177,7 +186,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-width="auto"
           data-min-height="240"
@@ -185,7 +194,7 @@ const Colors: React.FC = () => {
           data-background="main-dark"
         >
           {/* <picture data-position="absolute" data-name="color-demo"> <img src={sampleImage} alt="" /> </picture> */}
-          <video
+          {/* <video
             data-name="color-demo"
             data-position="absolute"
             src={samplevideo}
@@ -197,7 +206,7 @@ const Colors: React.FC = () => {
             data-height="fit"
             data-min-length="fit"
             data-max-length="fit"
-          ></video>
+          ></video> */}
 
           <group
             data-color="main-text-lighter-white"
@@ -209,20 +218,22 @@ const Colors: React.FC = () => {
             <text
               data-wrap="wrap"
               data-light=""
-              data-max-length="200"
+              data-max-length="240"
               data-line="20"
             >
               The generated color ensures that the text remains readable on the
               chosen color.
             </text>
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Text Color
             </text>
           </group>
         </group>
 
+
+
         <Popover
-          placement="top"
+          placement="mouse"
           content={
             <group
               data-animation-name="appear-bottom"
@@ -237,15 +248,19 @@ const Colors: React.FC = () => {
           data-backdrop="10"
           data-width="auto"
         >
+
+<group data-min-height="240" data-width="auto" data-length="auto">
+  <Ripple>
           <group
-          
+          data-ink-color="secondary-dark"
+            // data-radius="15"
             data-cursor="pointer"
             data-interactive=""
             data-contain=""
-            data-min-height="240"
+
             data-direction="column"
-            data-width="auto"
-            data-length="auto"
+
+
             data-color="secondary-text"
             data-space="30"
             data-background="secondary"
@@ -253,11 +268,11 @@ const Colors: React.FC = () => {
             data-justify="end"
             data-align="start"
           >
-            <group >
-<text data-opacity="30">Click To Change</text>
-</group>
+            <group>
+              <text data-opacity="30">Click To Change</text>
+            </group>
 
-              <group data-position="bottom" data-gap="10" data-direction="column">
+            <group data-position="bottom" data-gap="10" data-direction="column">
               <text
                 data-wrap="wrap"
                 data-light=""
@@ -267,14 +282,16 @@ const Colors: React.FC = () => {
                 This Secondary color you selected will be used extensively in
                 the UI, with other shades being automatically generated from it.
               </text>
-              <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              <text data-wrap="wrap" data-weight="700" data-text-size="large">
                 Secondary Color
               </text>
             </group>
           </group>
+          </Ripple>
+</group>
         </Popover>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -293,7 +310,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-min-eight="240"
           data-length="auto"
@@ -311,7 +328,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-min-height="240"
           data-length="auto"
@@ -330,7 +347,7 @@ const Colors: React.FC = () => {
           </text>
         </group>
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-height="240"
           data-length="auto"
@@ -350,7 +367,7 @@ const Colors: React.FC = () => {
         </group>
 
         <group
-          //data-radius="5"
+          // data-radius="15"
           data-contain=""
           data-width="auto"
           data-min-height="240"
@@ -371,13 +388,13 @@ const Colors: React.FC = () => {
             <text
               data-wrap="wrap"
               data-light=""
-              data-max-length="200"
+              data-max-length="240"
               data-line="20"
             >
               The generated color ensures that the text remains readable on the
               chosen color.
             </text>
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Text Color
             </text>
           </group>
