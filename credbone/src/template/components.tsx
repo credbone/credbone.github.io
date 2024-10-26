@@ -11,98 +11,18 @@ import TextReveal from "../components/TextReveal";
 import { IconSearch } from "../components/icon/credIcons";
 
 const linksArray = [
-  {
-    picture: sampleImage,
-    long: "true",
-    color: "midnight-navy",
-    title: "Icons",
-    description: "Beautifully crafted and carefully designed icons.",
-    to: "/Home/Icons",
-  },
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Color System",
-    description:
-      "Flexible theme customization, Color system can assist in crafting a color palette...",
-    to: "/Home/Colors",
-  },
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Buttons",
-    description:
-      "Allow users to take actions, and make choices, with a single tap.",
-    to: "/Home/Buttons",
-  },
-  {
-    picture: sampleImage_3,
-    long: "true",
-    color: "peach-blush",
-    title: "Cards",
-    description:
-      "Visual containers that hold all the elements and information about a single subject.",
-    to: "/Home/CardsAndList",
-  },
-  {
-    picture: sampleImage_2,
-    long: "true",
-    color: "mint-green",
-    title: "Tooltip & Popover",
-    description:
-      "Provide additional information and context on hover or focus.",
-    to: "/Home/TooltipAndPopover",
-  },
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Checkbox & Switches",
-    description:
-      "User interface elements that allow for binary selections or toggles.",
-    to: "/Home/CheckboxSwitchers",
-  },
-  {
-    picture: sampleImage_4,
-    long: "true",
-    color: "olive-green",
-    title: "Quick Demos",
-    description:
-      "Demo features a simple dashboard interface designed for monitoring hardware.",
-    to: "/Home/QuickDemos",
-  },
-
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Navigation & Tabs",
-    description:
-      "Elements to navigate between different views or sections within an app.",
-    to: "/Home/Navigation",
-  },
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Input & Forms",
-    description:
-      "Deals with input fields and form-related user interface elements.",
-    to: "/Home/InputsAndForms",
-  },
+  { picture: sampleImage, long: "true", color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
+  { picture: "", long: "", color: "", title: "Colors", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors", },
+ // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
+  { picture: "", long: "true", color: "sunny-yellow", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList", },
+  { picture:"", long: "true", color: "peach-blush", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
+  { picture: "", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers", },
+  { picture: sampleImage_4, long: "true", color: "olive-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
+ // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
+ // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
   //{ picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
 
-  {
-    picture: "",
-    long: "",
-    color: "",
-    title: "Modals",
-    description:
-      "Customizable modal component supporting various sizes, triggers, and animations.",
-    to: "/Home/Modal",
-  },
+  { picture: "", long: "", color: "", title: "Modals", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
 
   // { picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
 ];
@@ -237,33 +157,7 @@ data-radius="20"
           </group>
         </group>
 
-        {/* <StuckReporter>
-          {(isSticky) => (
-            <group
-            //  data-space-vertical={isSticky ? "15" : "0"}
-              data-space-horizontal={isSticky ? "0" : "30"}
-              data-sticky="top"
-              data-duration=".125"
-            >
-              <group
-                // data-index="3"
 
-                data-scroll-mask="false"
-                data-border={isSticky ? "none" : ""}
-                data-elevation={isSticky ? "1" : ""}
-                data-backdrop={isSticky ? "10" : ""}
-                data-contain=""
-                data-shrink="no"
-                data-radius={isSticky ? "0" : "15"}
-                data-snap-button="15"
-              >
-                <Scroll>
-                  <SubNavigation />
-                </Scroll>
-              </group>
-            </group>
-          )}
-        </StuckReporter> */}
 
         <group
           data-space-horizontal="30"
@@ -290,24 +184,55 @@ data-radius="20"
                   data-width="auto"
                   data-type="group"
                   data-contain=""
-                  data-min-height="200"
+                  data-min-height="400"
                   data-border={link.color ? "none" : "outline"}
                   data-radius="20"
                   // data-space="5"
                   data-background={link.color ? link.color : ""}
                   data-color={link.color ? link.color + "-text" : ""}
-                  data-row-end={link.long ? "2" : ""}
+            //      data-row-end={link.long ? "2" : ""}
                   data-direction="column"
+                  data-justify="center"
+                  
                 >
+
+
+{/* {link.picture ? (
+                    <group
+                   
+                 //   data-mix-lend-mode="multiply"
+                      data-index="1"
+                      data-type="interact"
+                      data-position="absolute"
+                      //    data-min-length="300"
+                      //   data-contain=""
+                      data-height="240"
+                      data-justify="end"
+                    >
+                      <picture
+                        //  data-brightness="adaptive"
+                        data-min-length="300"
+                        data-contain=""
+                        data-ratio="1:1"
+                      >
+                        <img src={link.picture} alt="" />
+                      </picture>
+                    </group>
+                  ) : (
+                    ""
+                  )} */}
+
                   <group
+                  
                     data-index="1"
                     data-direction="column"
                     data-gap="10"
                     data-space="25"
-                    data-align="start"
+                    data-align="center"
+                    data-text-align="center"
                   >
                     <text
-                      data-text-size="large"
+                      data-text-size="x-large"
                       data-weight="700"
                       data-wrap="wrap"
                       data-ellipsis=""
@@ -325,28 +250,7 @@ data-radius="20"
                     </text>
                   </group>
 
-                  {link.picture ? (
-                    <group
-                      data-index="1"
-                      data-type="interact"
-                      data-position="bottom"
-                      //    data-min-length="300"
-                      //   data-contain=""
-                      data-height="240"
-                      data-justify="end"
-                    >
-                      <picture
-                        //  data-brightness="adaptive"
-                        data-min-length="300"
-                        data-contain=""
-                        data-ratio="1:1"
-                      >
-                        <img src={link.picture} alt="" />
-                      </picture>
-                    </group>
-                  ) : (
-                    ""
-                  )}
+
                 </Link>
               </Ripple>
             ))}
