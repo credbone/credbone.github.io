@@ -505,6 +505,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-height='80'] { height:80px; }
 [data-height='90'] { height:90px; }
 [data-height='100'] { height:100px; }
+[data-height='110'] { height:110px; }
 [data-height='120'] { height:120px; }
 [data-height='160'] { height:160px; }
 [data-height='150'] { height:150px; }

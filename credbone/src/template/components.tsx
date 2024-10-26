@@ -13,18 +13,17 @@ import { IconSearch } from "../components/icon/credIcons";
 const linksArray = [
   { picture: sampleImage, long: "true", color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
   { picture: "", long: "", color: "", title: "Colors", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors", },
- // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
   { picture: "", long: "true", color: "sunny-yellow", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList", },
   { picture:"", long: "true", color: "peach-blush", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
   { picture: "", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers", },
-  { picture: sampleImage_4, long: "true", color: "olive-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
- // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
- // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
-  //{ picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
-
+  { picture: sampleImage_4, long: "true", color: "mint-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
   { picture: "", long: "", color: "", title: "Modals", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
 
   // { picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
+ // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
+ // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
+  // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
+ // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
 ];
 
 const phrases = [
@@ -118,8 +117,8 @@ data-text-align="center"
     to="/Home/Typeface"
     data-interactive=""
     data-width="auto"
-     data-background="highlight"
-    data-space-horizontal="30"
+     data-background="adaptive-gray"
+    data-space-horizontal="40"
     data-space-vertical="20"
     data-radius="20"
   >
@@ -168,14 +167,14 @@ data-radius="20"
           <group
             data-gap="15"
             data-type="grid"
-            data-grid-template="200"
+            data-grid-template="180"
             data-weight="600"
           >
             {linksArray.map((link, index) => (
               <Ripple key={index}>
                 <Link
 
-
+data-index={link.color ? "" : "2"}
                   data-react="scale"
                   data-drag="none"
                   to={link.to}
@@ -184,15 +183,15 @@ data-radius="20"
                   data-width="auto"
                   data-type="group"
                   data-contain=""
-                  data-min-height="400"
-                  data-border={link.color ? "none" : "outline"}
+                  data-height="400"
+                 // data-border={link.color ? "none" : "outline"}
                   data-radius="20"
                   // data-space="5"
-                  data-background={link.color ? link.color : ""}
+                  data-background={link.color ? link.color : "adaptive-gray"}
                   data-color={link.color ? link.color + "-text" : ""}
             //      data-row-end={link.long ? "2" : ""}
                   data-direction="column"
-                  data-justify="center"
+                 data-justify="center"
                   
                 >
 
@@ -222,6 +221,8 @@ data-radius="20"
                     ""
                   )} */}
 
+
+
                   <group
                   
                     data-index="1"
@@ -231,6 +232,7 @@ data-radius="20"
                     data-align="center"
                     data-text-align="center"
                   >
+
                     <text
                       data-text-size="x-large"
                       data-weight="700"
