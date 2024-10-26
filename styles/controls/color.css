@@ -100,8 +100,14 @@
   --mint-green: #88ceb6;
   --mint-green-text: #1e3d36;
 
+  --lavender-mist: #cbc3e3; /* Soft lavender shade */
+  --lavender-mist-text: #2e2a3d; /* Dark gray for contrast */
+
+  --crimson-red: #d93a3a; /* Vibrant, attention-grabbing red */
+  --crimson-red-text: #ffffff; /* White text for strong contrast */
 
 
+  
 }
 
 
@@ -135,6 +141,22 @@
   color: var(--sunny-yellow-text);
 }
 
+[data-background="lavender-mist"] {
+  background-color: var(--lavender-mist);
+  color: var(--lavender-mist-text);
+}
+
+[data-background="crimson-red"] {
+  background-color: var(--crimson-red);
+  color: var(--crimson-red-text);
+}
+
+[data-background="adaptive-gray"]
+{
+  background-color:rgba(128,128,128,.08);
+}
+
+/* // */
 
 
 
