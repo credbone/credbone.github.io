@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import sampleImage from "../styles/images/samples/objects/object-1.png";
-import sampleImage_2 from "../styles/images/samples/objects/object-7.png";
-import sampleImage_3 from "../styles/images/samples/objects/object-3.png";
-import sampleImage_4 from "../styles/images/samples/objects/object-10.png";
+
 
 import Ripple from "../components/Ripple";
 import TextReveal from "../components/TextReveal";
 import { IconSearch } from "../components/icon/credIcons";
+import { SvgCircle, SvgCross, SvgCube } from "../components/icon/svgRes";
+
 
 const linksArray = [
-  { picture: sampleImage, long: "true", color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
-  { picture: "", long: "", color: "", title: "Colors", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors", },
-  { picture: "", long: "true", color: "sunny-yellow", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList", },
+  { picture: "", long: "true", color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
+  { picture: <SvgCircle/>, long: "", color: "", title: "Colors", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors", },
+  { picture: <SvgCross/>, long: "true", color: "sunny-yellow", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList", },
   { picture:"", long: "true", color: "peach-blush", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
   { picture: "", long: "", color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers", },
-  { picture: sampleImage_4, long: "true", color: "mint-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
+  { picture: <SvgCube/>, long: "true", color: "mint-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
   { picture: "", long: "", color: "", title: "Modals", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
 
   // { picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
@@ -174,6 +173,9 @@ data-radius="20"
               <Ripple key={index}>
                 <Link
 
+
+
+
 data-index={link.color ? "" : "2"}
                   data-react="scale"
                   data-drag="none"
@@ -191,35 +193,17 @@ data-index={link.color ? "" : "2"}
                   data-color={link.color ? link.color + "-text" : ""}
             //      data-row-end={link.long ? "2" : ""}
                   data-direction="column"
-                 data-justify="center"
+          //       data-justify="center"
                   
                 >
 
+<group data-height="50"></group>
+<group data-height="100" data-interact=""  data-direction="column" data-align="center">
 
-{/* {link.picture ? (
-                    <group
-                   
-                 //   data-mix-lend-mode="multiply"
-                      data-index="1"
-                      data-type="interact"
-                      data-position="absolute"
-                      //    data-min-length="300"
-                      //   data-contain=""
-                      data-height="240"
-                      data-justify="end"
-                    >
-                      <picture
-                        //  data-brightness="adaptive"
-                        data-min-length="300"
-                        data-contain=""
-                        data-ratio="1:1"
-                      >
-                        <img src={link.picture} alt="" />
-                      </picture>
-                    </group>
-                  ) : (
-                    ""
-                  )} */}
+{link.picture}
+
+</group>
+
 
 
 
