@@ -39,41 +39,9 @@ const Buttons: React.FC = () => {
         data-type="column"
         data-column-gap="15"
       >
-        <group
-          data-size="medium"
-          data-height="auto"
-          data-max-height="fit"
-          data-radius="10"
-          data-elevation="1"
-          data-contain=""
-        >
-          <group
-            data-background="main-dark"
-            data-contain=""
-            // data-dark=""
-            data-align="center"
-          >
-            <group
-              data-mix-lend-mode="multiply"
-              data-contain=""
-              data-height="fit"
-              data-position="absolute"
-              data-max-length="400"
-              data-direction="column"
-              data-justify="end"
-            >
-              <picture
-                data-min-length="300"
-                data-contain=""
-                data-ratio="1:1"
-                data-shrink="no"
-              >
-                <img src={sampleImage} alt="" />
-              </picture>
-            </group>
 
-            <group data-length="fit" data-space="40">
-              <Ripple>
+
+<Ripple>
                 <group
                   data-wrap="no"
                   data-width="auto"
@@ -84,9 +52,9 @@ const Buttons: React.FC = () => {
                   data-background="main"
                   data-color="main-text"
                   data-interactive=""
-                  data-space-horizontal="30"
+                  data-space-horizontal="50"
                   data-radius="15"
-                  data-height="120"
+                  data-height="160"
                   data-gap="20"
                 >
                   <icon data-icon-size="large">arrow_outward</icon>
@@ -100,9 +68,8 @@ const Buttons: React.FC = () => {
                 </text> */}
                 </group>
               </Ripple>
-            </group>
-          </group>
-        </group>
+
+
         <group
           data-size="small"
           data-height="auto"
@@ -152,7 +119,7 @@ const Buttons: React.FC = () => {
           <group data-scroll="">
             <group
               data-type="grid"
-              data-grid-template="80"
+              data-grid-template="100"
               data-gap="1"
               data-contain=""
               data-border=""
@@ -298,7 +265,21 @@ const Buttons: React.FC = () => {
             </group> */}
             </group>
 
-            <group data-contain="" data-gap="1">
+
+          </group>
+        </group>
+
+<group
+
+data-size="small"
+data-height="auto"
+data-max-height="fit"
+data-radius="10"
+data-elevation="1"
+
+>
+
+<group data-contain="" data-gap="1">
               <group data-border="" data-space="15" data-gap="10">
                 <Button
                   fit
@@ -344,8 +325,10 @@ const Buttons: React.FC = () => {
                 </Button>
               </group>
             </group>
-          </group>
-        </group>
+
+</group>
+
+
         <group
           data-size="small"
           data-height="auto"
@@ -354,7 +337,7 @@ const Buttons: React.FC = () => {
           data-elevation="1"
         >
           <group data-scroll="" data-gap="1">
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button
                 secondary
                 large
@@ -363,7 +346,7 @@ const Buttons: React.FC = () => {
                 textFirst={false}
               />
             </group>
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button
                 accent
                 large
@@ -372,26 +355,26 @@ const Buttons: React.FC = () => {
                 textFirst={true}
               />
             </group>
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button large text="Large Button" />
             </group>
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button outline large>
                 <text>Large Button</text>
                 <separator data-vertical="" data-height="40"></separator>
                 <icon>shopping_bag</icon>
               </Button>
             </group>
-            <group data-gap="10" data-border="" data-space="15">
+            <group data-gap="10" data-border="" data-space="20">
               <Button highlight large text="Button" data-shrink="no" />
               <Button primary large fit text="Fit Button" />
             </group>
 
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button outline fit large text="Large Button Wide" />
             </group>
 
-            <group data-border="" data-space="15">
+            <group data-border="" data-space="20">
               <Button highlight large fit text="Large Button Wide" />
             </group>
           </group>

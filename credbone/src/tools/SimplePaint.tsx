@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Tooltip from "../components/tooltip";
 import Popover from "../components/popover";
 
@@ -25,12 +25,101 @@ const brushSizes = [
   // { name: "Thick Stroke", value: 16 },
 ];
 
-
 const SimplePaint: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const appRef = useRef<HTMLDivElement | null>(null);
+
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState("#F5745E");
   const [brushSize, setBrushSize] = useState(4);
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // Safari
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange); // Firefox
+    document.addEventListener("msfullscreenchange", handleFullscreenChange); // IE/Edge
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "msfullscreenchange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
+
+  const toggleFullscreen = () => {
+    const paintapp = appRef.current;
+    if (!paintapp) return;
+
+    if (!isFullscreen) {
+      if (paintapp.requestFullscreen) {
+        paintapp.requestFullscreen();
+      } else if ((paintapp as any).webkitRequestFullscreen) {
+        (paintapp as any).webkitRequestFullscreen(); // Safari
+      } else if ((paintapp as any).mozRequestFullScreen) {
+        (paintapp as any).mozRequestFullScreen(); // Firefox
+      } else if ((paintapp as any).msRequestFullscreen) {
+        (paintapp as any).msRequestFullscreen(); // IE/Edge
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      } else if ((document as any).mozCancelFullScreen) {
+        (document as any).mozCancelFullScreen();
+      } else if ((document as any).msExitFullscreen) {
+        (document as any).msExitFullscreen();
+      }
+    }
+    setIsFullscreen(!isFullscreen);
+  };
+
+  const resizeCanvas = useCallback(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (canvas && container) {
+      const { width, height } = container.getBoundingClientRect();
+
+      const tempCanvas = document.createElement("canvas");
+      const tempContext = tempCanvas.getContext("2d");
+      if (!tempContext) return;
+
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      tempContext.drawImage(canvas, 0, 0);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const context = canvas.getContext("2d");
+      if (context) {
+        context.drawImage(tempCanvas, 0, 0);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, [resizeCanvas]);
 
   const getCoordinates = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current;
@@ -62,27 +151,27 @@ const SimplePaint: React.FC = () => {
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-  
+
     context.beginPath(); // Start a new path
     context.moveTo(x, y); // Move to the initial dot position
     setIsDrawing(true);
   };
-  
+
   const draw = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isDrawing) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-  
+
     const { x, y } = getCoordinates(e);
-    
+
     // Ensure brush size and color are applied
     context.strokeStyle = brushColor;
     context.lineWidth = brushSize;
     context.lineCap = "round";
     //context.lineJoin = 'round';
-  
+
     context.lineTo(x, y); // Draw line to new position
     context.stroke(); // Render the stroke
   };
@@ -99,14 +188,16 @@ const SimplePaint: React.FC = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-
-
-
   return (
-    <group data-direction="column">
-      <group data-contain="">
+    <group
+      data-direction="column"
+      data-wrap="no"
+      ref={appRef}
+      data-background="main-background"
+    >
+      <group data-contain="" data-shrink="no">
         <group
-         // data-gap="5"
+          // data-gap="5"
           data-space="10"
           data-type="grid"
           data-grid-template="40"
@@ -121,15 +212,14 @@ const SimplePaint: React.FC = () => {
                   data-direction="column"
                   data-cursor="pointer"
                   data-interactive=""
-                  data-background={brushColor === color.value ? "highlight" : ""}
+                  data-background={
+                    brushColor === color.value ? "highlight" : ""
+                  }
                   data-space="10"
                   onClick={() => setBrushColor(color.value)}
-
-
-                  
                 >
                   <group
-                             data-interact=""
+                    data-interact=""
                     data-radius="30"
                     data-height="fit"
                     style={{
@@ -144,24 +234,23 @@ const SimplePaint: React.FC = () => {
         <separator data-horizontal=""></separator>
         <group data-gap="5" data-space="10">
           <group data-gap="5" data-width="auto" data-align="center">
-
-          <group
-            onClick={clearCanvas}
-            data-cursor="pointer"
-            data-radius="10"
-            data-width="auto"
-            data-background="highlight"
-            data-contain=""
-            data-interactive=""
-            data-space="15"
-            data-wrap="no"
-            data-align="center"
-            data-gap="15"
-          >
-            <text data-weight="700" data-length="autofit">
-              New
-            </text>
-          </group>
+            <group
+              onClick={clearCanvas}
+              data-cursor="pointer"
+              data-radius="10"
+              data-width="auto"
+              data-background="highlight"
+              data-contain=""
+              data-interactive=""
+              data-space="15"
+              data-wrap="no"
+              data-align="center"
+              data-gap="15"
+            >
+              <text data-weight="700" data-length="autofit">
+                New
+              </text>
+            </group>
 
             <Popover
               data-space="5"
@@ -181,7 +270,6 @@ const SimplePaint: React.FC = () => {
                       onClick={() => setBrushSize(size.value)}
                       //  data-wrap="no"
                       data-gap="5"
-
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
                       data-animation-duration={2 + index * 0.25}
@@ -237,25 +325,42 @@ const SimplePaint: React.FC = () => {
                 </group>
               </group>
             </Popover>
+
+            {/* <group
+              onClick={toggleFullscreen}
+              data-cursor="pointer"
+              data-radius="10"
+              data-width="auto"
+              data-background="highlight"
+              data-contain=""
+              data-interactive=""
+              data-space="15"
+              data-wrap="no"
+              data-align="center"
+              data-gap="15"
+            >
+              <text data-weight="700" data-length="autofit">
+                {isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+              </text>
+            </group> */}
           </group>
-
-
         </group>
       </group>
       <separator data-horizontal=""></separator>
       <group
-      data-type="group"
+        data-type="group"
         data-direction="column"
         data-align="start"
         data-contain=""
-        data-height="300"
+        data-height={isFullscreen ? "fit" : "300"}
         // data-length="400"
         data-background="context"
+        ref={containerRef}
       >
         <canvas
           ref={canvasRef}
-          width={1200}
-          height={500}
+          // width={1200}
+          // height={500}
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={stopDrawing}

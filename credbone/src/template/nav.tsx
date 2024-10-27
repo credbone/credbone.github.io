@@ -86,12 +86,13 @@ const Landing: React.FC = () => {
             //    data-max-length="600"
           >
             <group
-              data-background="peach-blush"
+              data-background="main"
+              data-color="main-text"
               data-contain=""
               // data-dark=""
               data-align="center"
             >
-              <group
+              {/* <group
                 data-contain=""
                 data-position="absolute"
                 data-max-length="400"
@@ -106,7 +107,7 @@ const Landing: React.FC = () => {
                 >
                   <img src={sampleImage} alt="" />
                 </picture>
-              </group>
+              </group> */}
 
               <group data-direction="column" data-gap="10" data-space="30">
                 <text
@@ -258,7 +259,7 @@ const Landing: React.FC = () => {
             data-contain=""
           >
 
-<group
+{/* <group
                 data-contain=""
                 data-position="absolute"
                 data-max-length="400"
@@ -275,7 +276,7 @@ const Landing: React.FC = () => {
                 >
                   <img src={sampleImage2} alt="" />
                 </picture>
-              </group>
+              </group> */}
 
             <group
               data-direction="column"

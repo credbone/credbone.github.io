@@ -216,7 +216,7 @@ const TooltipPopover: React.FC = () => {
             data-align="center"
           >
             <group data-align="end">
-              <group
+              {/* <group
                 data-contain=""
                 data-position="absolute"
                 data-max-length="400"
@@ -224,7 +224,7 @@ const TooltipPopover: React.FC = () => {
                 <picture data-min-length="300" data-contain="" data-ratio="1:1">
                   <img src={sampleImage} alt="" />
                 </picture>
-              </group>
+              </group> */}
               <group data-width="auto" data-space="30" data-position="left">
                 {ClosePopover}
               </group>
