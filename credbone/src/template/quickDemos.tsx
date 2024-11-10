@@ -4,6 +4,7 @@ import UnitConverter from "../tools/UnitConverter";
 import SnackbarContainer from "../components/snackbar/SnackbarContainer";
 import Calculator from "../tools/Calculator";
 import SimplePaint from "../tools/SimplePaint";
+import WeatherWidget from "../tools/WeatherWidget";
 
 const QuickDemos: React.FC = () => {
   return (
@@ -34,13 +35,30 @@ const QuickDemos: React.FC = () => {
       </group>
 
       <group
-        data-max-length="900"
+       // data-max-length="900"
         data-column-gap="15"
         data-justify="start"
         data-align="start"
         data-type="column"
         data-column-size="260"
       >
+
+<group
+
+data-height="auto"
+data-max-height="fit"
+data-radius="20"
+
+data-contain=""
+
+data-gap="20"
+>
+
+<WeatherWidget  />
+
+</group>
+
+
         <group
           data-height="auto"
           data-max-height="fit"
@@ -133,6 +151,10 @@ const QuickDemos: React.FC = () => {
 
           <SimplePaint />
         </group>
+
+
+
+
       </group>
 
       <group data-height="200"></group>

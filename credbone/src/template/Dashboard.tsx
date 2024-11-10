@@ -9,10 +9,9 @@ const getRandomValue = (
   max: number,
   decimals: number = 0
 ): string => {
- // const factor = Math.pow(10, decimals);
+  // const factor = Math.pow(10, decimals);
   return (Math.random() * (max - min) + min).toFixed(decimals);
 };
-
 
 const getRandomStepValue = (
   min: number,
@@ -71,23 +70,22 @@ const generateMonitorCardData = (): MonitorCardType[] => [
     value: getRandomValue(90, 160, 0),
     titleunit: "Kbps",
     max: 240,
-    chart:"line"
+    chart: "line",
   },
 
   {
-    title: "Angle Gauge",  
+    title: "Angle Gauge",
     value: getRandomStepValue(90, 160, 5),
     unit: "°",
     max: 360,
-    chart:"gaugezoom"
+    chart: "gaugezoom",
   },
 
   {
     title: "FPS",
     value: getRandomValue(200, 240, 0),
     max: 240,
-    chart:"none"
-
+    chart: "none",
   },
 ];
 
@@ -111,11 +109,14 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-
-        
       <group data-gap="20">
         <group data-direction="column">
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-color="main">
+          <text
+            data-weight="700"
+            data-text-size="xxx-large"
+            data-wrap="wrap"
+            data-color="main"
+          >
             Dashboard
           </text>
         </group>
@@ -143,12 +144,12 @@ const Dashboard: React.FC = () => {
         data-type="grid"
         data-grid-template="160"
         data-gap="15"
-       // data-max-length="900"
+        // data-max-length="900"
       >
         {monitorCard.map((item, index) => (
           <group
             data-contain=""
-         //  data-background={item.chart === "line" ? "secondary-lighter" : "main-background"}
+            //  data-background={item.chart === "line" ? "secondary-lighter" : "main-background"}
             data-color={item.color ? "main-text" : ""}
             key={index}
             data-space={item.chart === "line" ? "" : "20"}
@@ -159,13 +160,11 @@ const Dashboard: React.FC = () => {
             data-radius="15"
             data-align="center"
             data-justify="center"
-           data-ratio="2:3"
+            data-ratio="2:3"
           >
-            
-              {item.chart === "gauge" && item.max &&  (
+            {item.chart === "gauge" && item.max && (
               <group data-direction="column" data-margin-bottom="-30">
-
-                  {/* {item.showmax && (
+                {/* {item.showmax && (
                     <group
                       data-position="center"
                       data-width="auto"
@@ -175,84 +174,77 @@ const Dashboard: React.FC = () => {
                     </group>
                   )} */}
 
-                  <group >
-                    <Gauge
-                      value={parseFloat(item.value)}
-                      max={item.max}
-                      size={100}
-                    />
-                  </group>
-
-                            </group>
+                <group>
+                  <Gauge
+                    value={parseFloat(item.value)}
+                    max={item.max}
+                    size={100}
+                  />
+                </group>
+              </group>
             )}
-            
 
-
-
-
-            
-
-            
             {item.chart === "line" && item.max && (
-              <group data-direction="column" data-height="fit" >
+              <group data-direction="column" data-height="fit">
                 <LineChart value={parseFloat(item.value)} max={item.max} />
               </group>
             )}
 
-            
-            {item.chart === "gaugezoom" && item.max &&  (
-              <group data-direction="column" data-height="fit"  data-align="center"  >
-
-
-
-<GaugeZoom
-                      value={parseFloat(item.value)}
-                      max={item.max}
-                      size={100}
-                    />
-
-                  </group>
-
-
+            {item.chart === "gaugezoom" && item.max && (
+              <group
+                data-direction="column"
+                data-height="fit"
+                data-align="center"
+              >
+                <GaugeZoom
+                  value={parseFloat(item.value)}
+                  max={item.max}
+                  size={100}
+                />
+              </group>
             )}
 
-
             <group
-           
-            //  style={{ mask: 'url(#mask1)' }}
-            //   data-background={item.chart === "line" ? "red" : ""}
-              data-space={item.chart === "line" || item.chart === "gaugezoom" ? "30" : ""}
-             data-color={item.chart === "line" ? "main-text" : ""}
+              //  style={{ mask: 'url(#mask1)' }}
+              //   data-background={item.chart === "line" ? "red" : ""}
+              data-space={
+                item.chart === "line" || item.chart === "gaugezoom" ? "30" : ""
+              }
+              data-color={item.chart === "line" ? "main-text" : ""}
               data-direction="column"
               data-align="center"
               data-justify="center"
               data-bottom="0"
-            //data-height={item.chart === "line" ? "fit" : ""}
-            data-position={item.chart === "line" || item.chart === "gaugezoom" ? "absolute" : ""}
-
+              //data-height={item.chart === "line" ? "fit" : ""}
+              data-position={
+                item.chart === "line" || item.chart === "gaugezoom"
+                  ? "absolute"
+                  : ""
+              }
             >
-              <group 
-              data-weight="700"
-              data-text-size={item.chart === "line" ? "" : "x-large"}
-               data-width="auto"
-               >
+              <group
+                data-weight="700"
+                data-text-size={item.chart === "line" ? "" : "x-large"}
+                data-width="auto"
+              >
+                {item.chart !== "line" && item.max && (
+                  <group data-direction="column" data-height="fit">
+                    <text>{item.value}</text>
+                  </group>
+                )}
 
-{item.chart !== "line" && item.max && (
-              <group data-direction="column" data-height="fit" >
-                      <text>{item.value}</text>
+                {item.unit && (
+                  <text data-position="absolute" data-left="full">
+                    {item.unit}
+                  </text>
+                )}
               </group>
-            )}
-                
-
-
-     
-
-
-                
-
-                {item.unit && <text data-position="absolute" data-left="full">{item.unit}</text>}
-              </group>
-              <group data-align="center" data-gap="5" data-wrap="no" data-width="auto">
+              <group
+                data-align="center"
+                data-gap="5"
+                data-wrap="no"
+                data-width="auto"
+              >
                 <text data-weight="600">{item.title}</text>
 
                 {item.titleunit && (
@@ -263,14 +255,9 @@ const Dashboard: React.FC = () => {
                 )}
               </group>
             </group>
-
-
-
           </group>
         ))}
       </group>
-
-
     </group>
   );
 };

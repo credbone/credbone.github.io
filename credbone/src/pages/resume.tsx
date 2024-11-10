@@ -9,8 +9,13 @@ const handlePrint = () => {
 
 function Resume() {
   return (
-    <group data-space="" data-scroll="" data-border="no" >
-      <group data-space="adaptive-30-50" data-gap="30" data-direction="column"  data-user-select="text">
+    <group data-space="" data-scroll="" data-border="no">
+      <group
+        data-space="adaptive-30-50"
+        data-gap="30"
+        data-direction="column"
+        data-user-select="text"
+      >
         <group data-direction="column" data-gap="20">
           <text
             data-user-select="text"
@@ -33,18 +38,19 @@ function Resume() {
           </text>
         </group>
 
-        <group >
+        <group>
           <text
             data-user-select="text"
             data-wrap="wrap"
             data-max-length="700"
             data-line="1.5"
           >
-            As a Product Designer, I've spent the last decade leading and
-            growing a dedicated design team in the IT and services industry.
-            With a strong background in digital design, I focus on crafting
-            innovative, user-centered solutions. I make sure our designs are not
-            just creative but also technically solid and effective.
+            As a Product Designer with over a decade of experience in UI and UX
+            design, I've had leading talented design team. My focus on
+            user-centered solutions ensures that our work is both visually
+            compelling and technically sound. I'm passionate about crafting
+            designs that don't just look great—they're built to perform and
+            truly meet users needs.
           </text>
         </group>
 
@@ -66,12 +72,8 @@ function Resume() {
             data-align="start"
           >
             <a href="tel:+37493080648" data-type="group" data-width="auto">
-              <text
-                data-wrap="wrap"
-                data-weight="700"
-                data-cursor="pointer"
-              >
-                <mark> + 374 93 080 648</mark>
+              <text data-wrap="wrap" data-weight="700" data-cursor="pointer">
+                + 374 93 080 648
               </text>
             </a>
 
@@ -79,10 +81,9 @@ function Resume() {
               href="mailto:sargsyanrubens@gmail.com"
               data-type="group"
               data-width="auto"
-              
             >
-              <text  data-user-select="text"data-wrap="wrap" data-weight="600">
-                <text  data-cursor="pointer" >sargsyanrubens@gmail.com</text>
+              <text data-user-select="text" data-wrap="wrap" data-weight="600">
+                <text data-cursor="pointer">sargsyanrubens@gmail.com</text>
               </text>
             </a>
 
@@ -94,7 +95,7 @@ function Resume() {
 
         <separator data-horizontal="" data-max-length="700"></separator>
 
-        <group data-gap="30" data-direction="column">
+        <group data-gap="20" data-direction="column">
           <text
             data-user-select="text"
             data-weight="700"
@@ -103,42 +104,51 @@ function Resume() {
             Experience
           </text>
 
-          <text data-line="1.5" >
-            <text data-user-select="text" data-weight="700">
-              Ogma
+          <group data-gap="10" data-direction="column">
+            <text data-line="1.5">
+              <text data-user-select="text" data-weight="700">
+                Ogma
+              </text>
+              <dot data-margin="10"></dot>
+              <text data-user-select="text" data-wrap="wrap">
+                Design Department Manager
+              </text>
+              <dot data-margin="10"></dot>
+              <text data-user-select="text" data-wrap="wrap">
+                February 2014 - Present
+              </text>
             </text>
-            <dot data-margin="10"></dot>
-            <text data-user-select="text" data-wrap="wrap">Design Department Manager</text>
-            <dot data-margin="10"></dot>
-            <text data-user-select="text" data-wrap="wrap">February 2014 - Present</text>
-          </text>
 
-          <group data-direction="column">
-            <text
-              data-user-select="text"
-              data-wrap="wrap"
-              data-max-length="700"
-              data-line="1.5"
-            >
-              I left my previous position at Altacode to join Ogma, where I
-              started on a challenging project involving content creation,
-              management software, and customized hardware solutions tailored to
-              specific customer needs. After a successful launch, I had the
-              chance to build a{" "}
-              <mark>UI framework and a collection of components</mark>, working
-              closely with design and development team members. This powerful
-              internal tool really helped us speed up our development processes.
-            </text>
+            <group data-direction="column">
+              <text
+                data-user-select="text"
+                data-wrap="wrap"
+                data-max-length="700"
+                data-line="1.5"
+              >
+                I left my previous position to join Ogma, where I started on a
+                project involving content creation, management software, and
+                customized hardware solutions tailored to specific customer
+                needs. I led the design of various web-based systems and mobile
+                apps, ensuring that each solution was user-centered, impactful,
+                and aligned with our technical goals.
+              </text>
+            </group>
           </group>
 
-          <text data-line="1.5">
+<group data-gap="10" data-direction="column">
+<text data-line="1.5">
             <text data-user-select="text" data-weight="700">
-              Altacode
+              Wovenmedia
             </text>
             <dot data-margin="10"></dot>
-            <text data-user-select="text" data-wrap="wrap">UI Designer</text>
+            <text data-user-select="text" data-wrap="wrap">
+              User Interface Design Manager
+            </text>
             <dot data-margin="10"></dot>
-            <text data-user-select="text" data-wrap="wrap">November 2011 - January 2014</text>
+            <text data-user-select="text" data-wrap="wrap">
+              2014 - 2024
+            </text>
           </text>
 
           <group data-direction="column">
@@ -148,11 +158,41 @@ function Resume() {
               data-max-length="700"
               data-line="1.5"
             >
-              This was my first job at a big company, and I learned a lot about
-              business processes like project management, team collaboration,
-              and client communication. I also got the chance to work on a
-              variety of web and mobile products.
+In parallel, I held a UI design leadership role at Wovenmedia, where
+              I directed the design for a complex system dedicated to digital
+              video signage management
             </text>
+          </group>
+</group>
+
+          <group data-gap="10" data-direction="column">
+            <text data-line="1.5">
+              <text data-user-select="text" data-weight="700">
+                Altacode
+              </text>
+              <dot data-margin="10"></dot>
+              <text data-user-select="text" data-wrap="wrap">
+                UI Designer
+              </text>
+              <dot data-margin="10"></dot>
+              <text data-user-select="text" data-wrap="wrap">
+                November 2011 - January 2014
+              </text>
+            </text>
+
+            <group data-direction="column">
+              <text
+                data-user-select="text"
+                data-wrap="wrap"
+                data-max-length="700"
+                data-line="1.5"
+              >
+                This was my first job at a big company, and I learned a lot
+                about business processes like project management, team
+                collaboration, and client communication. I also got the chance
+                to work on a variety of web and mobile products.
+              </text>
+            </group>
           </group>
         </group>
 
@@ -170,11 +210,10 @@ function Resume() {
 
         <group data-gap="10" data-direction="column">
           <text data-line="1.5">
-            <mark>
-              <text data-user-select="text" data-weight="700">
-                Prototyping
-              </text>
-            </mark>
+            <text data-user-select="text" data-weight="700">
+              Prototyping
+            </text>
+
             <dot data-margin="10"></dot>
             <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               From Paper & Rapid to High-fidelity Markups
@@ -192,11 +231,10 @@ function Resume() {
           </text>
 
           <text data-line="1.5">
-            <mark>
-              <text data-user-select="text" data-weight="700">
-                Coding
-              </text>
-            </mark>
+            <text data-user-select="text" data-weight="700">
+              Coding
+            </text>
+
             <dot data-margin="10"></dot>
             <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               From Prototype & Reusable Components to Complete UI
@@ -256,23 +294,17 @@ function Resume() {
 
         <group data-gap="10" data-direction="column">
           <text data-line="1.5">
-           
-              <text
-                data-user-select="text"
-                data-weight="700"
-                data-wrap="wrap"
-                data-ellipsis=""
-              >
-               WSIiZ - Rzeszowie     
-              </text>
-     
-            <dot data-margin="10"></dot>
             <text
               data-user-select="text"
-
+              data-weight="700"
               data-wrap="wrap"
               data-ellipsis=""
             >
+              WSIiZ - Rzeszowie
+            </text>
+
+            <dot data-margin="10"></dot>
+            <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               Grafika komputerowa i produkcja multimedialna
             </text>
           </text>
@@ -287,12 +319,7 @@ function Resume() {
               Russian - Armenian University
             </text>
             <dot data-margin="10"></dot>
-            <text
-              data-user-select="text"
-            
-              data-wrap="wrap"
-              data-ellipsis=""
-            >
+            <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
               Department of Physics and Technology
             </text>
           </text>

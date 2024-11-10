@@ -452,3 +452,81 @@
 
 [data-background="main-secondary"]{background-image: linear-gradient(90deg, var(--main-color), var(--secondary-color));}
 [data-background="main-secondary-45"]{background-image: linear-gradient(45deg, var(--main-color), var(--secondary-color));}
+
+
+
+
+:root {
+  /* Clear Day */
+  --weather-01d-bg: linear-gradient(45deg, #f7c965, #eaad26, #f29e50, #ff7f4d);
+  --weather-01d-color: #331414;
+
+  /* Clear Night */
+  --weather-01n-bg: linear-gradient(to top, #09203f 0%, #537895 100%);
+  --weather-01n-color: #ffffff;
+
+  /* Partly Cloudy Day */
+  --weather-02d-bg: linear-gradient(45deg, #f6d365, #fda085);
+  --weather-02d-color: #3e2723;
+
+  /* Partly Cloudy Night */
+  --weather-02n-bg: linear-gradient(45deg, #1e3c72, #2a5298);
+  --weather-02n-color: #ffffff;
+
+  /* Cloudy Day */
+  --weather-03d-bg: linear-gradient(45deg, #d7dde8, #f2f2f2);
+  --weather-03d-color: #444444;
+  
+  /* Cloudy Night */
+  --weather-03n-bg: linear-gradient(45deg, #373b44, #4286f4);
+  --weather-03n-color: #e0e0e0;
+
+  /* Overcast Day */
+  --weather-04d-bg: linear-gradient(45deg, #bdc3c7, #2c3e50);
+  --weather-04d-color: #ffffff;
+  
+  /* Overcast Night */
+  --weather-04n-bg: linear-gradient(45deg, #454b5f, #202943);
+  --weather-04n-color: #e0e0e0;
+
+  /* Drizzle/Rain Showers Day */
+  --weather-09d-bg: linear-gradient(45deg, #4facfe, #00f2fe);
+  --weather-09d-color: #333333;
+  
+  /* Drizzle/Rain Showers Night */
+  --weather-09n-bg: linear-gradient(45deg, #1f4037, #99f2c8);
+  --weather-09n-color: #ffffff;
+
+  /* Rainy Day */
+  --weather-10d-bg: linear-gradient(45deg, #3a7bd5, #00d2ff);
+  --weather-10d-color: #2b2b2b;
+  
+  /* Rainy Night */
+  --weather-10n-bg: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+  --weather-10n-color: #e0e0e0;
+
+  /* Thunderstorm Day */
+  --weather-11d-bg: linear-gradient(45deg, #2c3e50, #3a7bd5);
+  --weather-11d-color: #ffffff;
+  
+  /* Thunderstorm Night */
+  --weather-11n-bg: linear-gradient(45deg, #1c1c1c, #2a2a72);
+  --weather-11n-color: #ffffff;
+
+  /* Snowy Day */
+  --weather-13d-bg: linear-gradient(45deg, #e6e9f0, #eef1f5);
+  --weather-13d-color: #333333;
+  
+  /* Snowy Night */
+  --weather-13n-bg: linear-gradient(45deg, #b1bfd8, #6f7e8c);
+  --weather-13n-color: #ffffff;
+
+  /* Mist/Fog Day */
+  --weather-50d-bg: linear-gradient(45deg, #b7c3d0, #f5f5f5);
+  --weather-50d-color: #555555;
+  
+  /* Mist/Fog Night */
+  --weather-50n-bg: linear-gradient(45deg, #4e4376, #2b5876);
+  --weather-50n-color: #eeeeee;
+}
+

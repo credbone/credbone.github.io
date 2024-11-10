@@ -257,3 +257,5 @@ html{zoom: .85;}
 
     [data-name="color-indicator"] { transform: translateX(-50%) translateY(-50%);}
     [data-name="color-source"]:active {cursor: none;}
+
+    [data-cast-shadow="1"]{filter: drop-shadow(0px 30px 5px rgba(0, 0, 0, .5));}

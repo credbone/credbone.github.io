@@ -69,7 +69,7 @@ const Typeface: React.FC = () => {
           <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
             Typeface
           </text>
-          <text data-weight="700" data-text-size="96">
+          <text data-weight="700" data-text-size="96" data-cast-shadow="1">
           <TextReveal text="Aa" duration={800} />
           </text>
           <text data-wrap="wrap" data-opacity="60" data-line="1.5">
