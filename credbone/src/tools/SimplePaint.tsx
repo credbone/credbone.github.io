@@ -14,7 +14,7 @@ const colors = [
   { name: "Dusty Blue", value: "#7F959F" }, // Soft dusty blue
   { name: "Aqua Teal", value: "#8DAFB2" }, // Gentle aqua teal
   { name: "Seafoam Green", value: "#9DC3BE" }, // Light seafoam
-  { name: "Cool Breeze", value: "#84CEC0" }, // Refreshing cool teal
+  { name: "Cool Breeze", value: "#84CEC0" },  // Refreshing cool teal
 ];
 
 const brushSizes = [
