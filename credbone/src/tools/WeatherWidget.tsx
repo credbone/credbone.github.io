@@ -21,10 +21,9 @@ type ForecastData = {
   icon: string;
 };
 
-const API_KEY = "3f1c776f7d607878569ccd84e7945c56";
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const cities = [
   "Yerevan",
-  "London",
   "Tokyo",
   "Paris",
   "Sydney",

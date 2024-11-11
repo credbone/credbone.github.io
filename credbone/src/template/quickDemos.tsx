@@ -50,7 +50,7 @@ data-max-height="fit"
 data-radius="20"
 
 data-contain=""
-
+data-border="outline"
 data-gap="20"
 >
 
@@ -72,7 +72,7 @@ data-gap="20"
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
               //    data-opacity="70"
             >
@@ -102,7 +102,7 @@ data-gap="20"
             <text
               data-weight="700"
               data-wrap="preline"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
               // data-opacity="70"
             >
@@ -135,7 +135,7 @@ data-gap="20"
             <text
               data-weight="700"
               data-wrap="wrap"
-              data-text-size="x-large"
+              data-text-size="large"
               data-ellipsis=""
               //  data-opacity="70"
             >

@@ -20,5 +20,5 @@ export const routesData: RouteData[] = [
   { path: "Miscellaneous", tags: ["miscellaneous", "marquee", "counter", "text", "digit", "direction"], description: "Encompasses a variety of small, diverse UI components that don't fit into other categories, including elements like marquees and counters.", title: "Miscellaneous" },
   { path: "Dashboard", tags: ["dashboard", "monitoring", "gauge", "widget", "hardware", "temperature"], description: "Simple dashboard interface designed for monitoring hardware", title: "Dashboard" },
   { path: "Modal", tags: ["modal", "popup", "window", "overlay", "dialog"], description: "Flexible component designed for displaying modal windows for various purposes.", title: "Modals" },
-  { path: "QuickDemos", tags: ["demo", "showcase", "converter", "interactive", "app", "calculator"], description: "Experience the UI system through interactive demos", title: "Quick Demos" }
+  { path: "QuickDemos", tags: ["demo", "showcase", "converter", "interactive","weather", "paint", "app", "calculator"], description: "Experience the UI system through interactive demos", title: "Quick Demos" }
 ];
