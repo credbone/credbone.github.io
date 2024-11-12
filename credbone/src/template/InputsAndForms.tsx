@@ -1,5 +1,5 @@
 import React from "react";
-import sampleImage from "../styles/images/samples/objects/object-1.png";
+
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
 import ImageColorPicker from "../components/ImageColorPicker";
@@ -33,27 +33,12 @@ const InputsAndForms: React.FC = () => {
           data-elevation="1"
         >
           <group
-                        data-background="main-secondary-45"
+                        data-background="main"
             data-contain=""
             data-min-length="240"
             data-dark=""
           >
-            <group
-              data-contain=""
-              data-height="120"
-              data-max-length="400"
-              data-direction="column"
-              data-justify="end"
-            >
-              <picture
-                data-min-length="300"
-                data-contain=""
-                data-ratio="1:1"
-                data-shrink="no"
-              >
-                <img src={sampleImage} alt="" />
-              </picture>
-            </group>
+
             <group
               //   data-radius="15"
               data-space="30"
@@ -62,6 +47,7 @@ const InputsAndForms: React.FC = () => {
               data-gap="10"
               data-color="main-text"
             >
+              <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon>
               <text
                 data-weight="700"
                 data-text-size="xxx-large"

@@ -7,10 +7,7 @@ import Button from "../components/button";
 import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
-import { IconSearch, IconStar } from "../components/icon/credIcons";
-import sampleImage from "../styles/images/samples/objects/object-3.png";
-import sampleImage2 from "../styles/images/samples/objects/object-1.png";
-import SideNav from "./sideNav";
+
 
 // Demo Data
 
@@ -79,15 +76,15 @@ const Landing: React.FC = () => {
           </group>
 
           <group
-            data-elevation="1"
+            data-elevation="2"
             data-contain=""
             data-radius="15"
             data-background="context"
-            //    data-max-length="600"
+                data-max-length="600"
           >
             <group
-              data-background="main"
-              data-color="main-text"
+              // data-background="main"
+              // data-color="main-text"
               data-contain=""
               // data-dark=""
               data-align="center"
@@ -123,7 +120,7 @@ const Landing: React.FC = () => {
                 </text>
               </group>
             </group>
-
+<separator data-horizontal=""></separator>
             <group
               data-type="grid"
               data-weight="600"
@@ -247,16 +244,15 @@ const Landing: React.FC = () => {
           <separator data-horizontal="" data-interval="10"></separator>
 
           <group
-            data-space="20"
+
             data-gap="20"
-            data-elevation="1"
-            data-radius="15"
-            data-background="main"
+
+  //          data-background="main"
             data-wrap="no"
             data-direction="column"
             data-align="start"
             //   data-width="auto"
-            data-contain=""
+          //  data-contain=""
           >
 
 {/* <group
@@ -281,7 +277,7 @@ const Landing: React.FC = () => {
             <group
               data-direction="column"
               data-width="auto"
-              data-color="main-text"
+         //     data-color="main-text"
               data-gap="10"
             >
               <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
@@ -297,7 +293,9 @@ const Landing: React.FC = () => {
               </text>
             </group>
             <group
-              //  data-width="auto"
+                        data-elevation="1"
+
+                data-width="auto"
               data-radius="5"
               data-contain=""
               data-background="main-background"
@@ -372,7 +370,7 @@ const Landing: React.FC = () => {
               </Scroll>
             </group>
           </group>
-
+          <separator data-horizontal=""></separator>
           <group
             //    data-space="20"
             //  data-elevation="1"

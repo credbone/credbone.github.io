@@ -1,7 +1,7 @@
 import React from "react";
 import Ripple from "../components/Ripple";
-import sampleImage from "../styles/images/samples/objects/object-1.png";
-import sampleImage_2 from "../styles/images/samples/objects/object-7.png";
+
+
 import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";
@@ -64,20 +64,20 @@ const ClosePopover = (
       <Ripple>
         <group
           data-wrap="no"
-          data-ink-color="secondary"
+          data-ink-color="main-dark"
           data-align="center"
           data-cursor="pointer"
           data-contain=""
-          data-background="secondary"
-          data-color="secondary-text"
+          data-background="main"
+          data-color="main-text"
           data-interactive=""
-          data-space-horizontal="30"
+          data-space="15"
           data-radius="10"
-          data-height="80"
+         // data-height="80"
           data-gap="20"
         >
           <group data-index="1">
-            <IconMore size={60} />
+            <text data-weight="700" >Show Popover</text>
           </group>
         </group>
       </Ripple>
@@ -111,22 +111,13 @@ const SampleData = (
     </group>
 
     <group
-      data-background="main"
+    //  data-background="main"
       data-contain=""
       // data-dark=""
       data-align="center"
     >
-      <group
-        data-contain=""
-        data-height="fit"
-        data-position="absolute"
-        data-max-length="400"
-      >
-        <picture data-min-length="300" data-contain="" data-ratio="1:1">
-          <img src={sampleImage} alt="" />
-        </picture>
-      </group>
-
+      
+<separator data-horizontal=""></separator>
       <group data-length="fit" data-space="30">
         {ClosePopover}
       </group>
@@ -208,34 +199,34 @@ const TooltipPopover: React.FC = () => {
           data-radius="15"
           data-elevation="1"
           data-contain=""
+            data-background="context"
         >
           <group
-            data-background="main"
+          //  data-background="main"
             data-contain=""
             // data-dark=""
             data-align="center"
+            data-space="30"
+            data-gap="20"
           >
-            <group data-align="end">
-              {/* <group
-                data-contain=""
-                data-position="absolute"
-                data-max-length="400"
-              >
-                <picture data-min-length="300" data-contain="" data-ratio="1:1">
-                  <img src={sampleImage} alt="" />
-                </picture>
-              </group> */}
-              <group data-width="auto" data-space="30" data-position="left">
+              <group data-width="auto"  data-position="left">
                 {ClosePopover}
               </group>
-            </group>
-          </group>
 
+              <group>
+                  <text data-wrap="wrap" data-line="1.5" data-max-length="400">
+                  Click to view a sample popover. The default placement is on top, but if there's not enough space, it will find a way to display itself.
+                  </text>
+                </group>
+
+
+          </group>
+          <separator data-horizontal=""></separator>
           <group
             data-space="20"
             data-gap="15"
             data-weight="600"
-            data-background="context"
+          
           >
             <group>
               <Popover content={SimplePopover} data-width="auto">
@@ -257,7 +248,7 @@ const TooltipPopover: React.FC = () => {
             <group>
               <Popover
                 placement="auto"
-                data-radius="10"
+                data-radius="20"
                 data-space="0"
                 data-elevation="2"
                 content={SampleData}
@@ -355,9 +346,10 @@ const TooltipPopover: React.FC = () => {
               </text>
             </group>
 
+<separator data-horizontal=""></separator>
+
             <group
-              data-background="secondary"
-              data-color="secondary-text"
+
               data-contain=""
               data-align="center"
               // data-dark=""
@@ -368,14 +360,8 @@ const TooltipPopover: React.FC = () => {
                 data-direction="column"
                 data-weight="600"
               >
-                <group>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-                    Click to view a sample snackbar. The default duration is
-                    3000 milliseconds.
-                  </text>
-                </group>
 
-                <group>
+<group>
                   <group
                     data-width="auto"
                     data-interactive=""
@@ -392,6 +378,15 @@ const TooltipPopover: React.FC = () => {
                     </text>
                   </group>
                 </group>
+
+                <group>
+                  <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+                    Click to view a sample snackbar. The default duration is
+                    3000 milliseconds.
+                  </text>
+                </group>
+
+
               </group>
 
               {/* <group data-contain="" data-height="120">

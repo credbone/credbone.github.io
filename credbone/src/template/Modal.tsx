@@ -1,5 +1,5 @@
 import React from "react";
-import sampleImage from "../styles/images/samples/objects/object-1.png";
+
 
 import { useModal } from "../components/Modal";
 import Search from "../pages/search/search";
@@ -143,17 +143,15 @@ const Modal: React.FC = () => {
       >
         <group
                    data-background="main"
+                   data-color="main-text"
           data-contain=""
           // data-dark=""
           data-align="center"
+          data-space="30"
         >
 
 
-          <group data-contain="" data-height="120" data-max-length="400">
-            <picture data-min-length="300" data-contain="" data-ratio="1:1">
-              <img src={sampleImage} alt="" />
-            </picture>
-          </group>
+<icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">arrow_outward</icon>
         </group>
 
         {demoModals}

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./../components/button";
-import sampleImage from "../styles/images/samples/objects/object-1.png";
+
 
 import {
   SvgHamburger,
@@ -52,12 +52,13 @@ const Buttons: React.FC = () => {
                   data-background="main"
                   data-color="main-text"
                   data-interactive=""
-                  data-space-horizontal="50"
+          data-space="30"
                   data-radius="15"
-                  data-height="160"
+
                   data-gap="20"
                 >
-                  <icon data-icon-size="large">arrow_outward</icon>
+
+                  <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">arrow_outward</icon>
                   {/* <text
                   data-ellipsis=""
                   data-weight="700"

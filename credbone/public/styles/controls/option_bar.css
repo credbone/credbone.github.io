@@ -164,14 +164,23 @@
 
 
 
-.option_bar label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);}
-.option_bar label input:checked ~ [data-name="option-decor"]{  color:var(--main-color-text);}
+.option_bar label input:checked ~ wrap{ background-color: var(--checked-color); color:var(--checked-text-color);}
+.option_bar label input:checked ~ [data-name="option-decor"]{  color:var(--checked-text-color);}
 
 
 
 .option_bar[data-palette="secondary"]{--over-color: linear-gradient(to top, var(--secondary-color-lighter) 0%, var(--secondary-color-lighter) 100%);}
 .option_bar[data-palette="secondary"] label input:checked ~ wrap{ background-color: var(--secondary-color); color:var(--secondary-color-text);  }
 .option_bar[data-palette="secondary"] label input:checked ~ [data-name="option-decor"]{  color:var(--secondary-color-text);}
+
+
+[data-switch-color="invert"]
+
+{
+
+    --checked-color:var(--main-color-text);
+    --checked-text-color:var(--main-color)
+}
 
 
 .option_bar.dynamic label input:checked ~ wrap text:not(:only-child),
