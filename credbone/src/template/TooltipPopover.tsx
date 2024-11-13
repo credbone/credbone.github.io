@@ -6,7 +6,6 @@ import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
-import { IconMore } from "../components/icon/credIcons";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 const SimplePopover = (
