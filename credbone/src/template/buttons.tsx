@@ -76,7 +76,7 @@ const Buttons: React.FC = () => {
           data-height="auto"
           data-max-height="fit"
           data-radius="10"
-          data-elevation="1"
+          data-border=""
         >
           <group data-scroll="" data-gap="1">
             <group data-border="" data-space="20">
@@ -115,7 +115,7 @@ const Buttons: React.FC = () => {
           data-height="auto"
           data-max-height="fit"
           data-radius="10"
-          data-elevation="1"
+          data-border=""
         >
           <group data-scroll="">
             <group
@@ -276,7 +276,7 @@ data-size="small"
 data-height="auto"
 data-max-height="fit"
 data-radius="10"
-data-elevation="1"
+data-border=""
 
 >
 
@@ -335,7 +335,7 @@ data-elevation="1"
           data-height="auto"
           data-max-height="fit"
           data-radius="10"
-          data-elevation="1"
+          data-border=""
         >
           <group data-scroll="" data-gap="1">
             <group data-border="" data-space="20">

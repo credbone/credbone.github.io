@@ -100,7 +100,9 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-max-length="800"
             data-contain=""
             data-radius="15"
-            data-elevation="1"
+             data-border=""
+        //    data-elevation="2-main-color"
+             data-index="2"
           >
             <group
               data-background="main"
@@ -139,7 +141,13 @@ const CheckboxAndSwitchers: React.FC = () => {
 
             </group>
 
-            <group data-type="grid" data-grid-template="180" data-gap="1">
+
+          </group>
+
+          <group             data-max-length="800"
+            data-contain=""
+            data-radius="15"
+             data-border="" data-type="grid" data-grid-template="180" data-gap="1">
               <group data-direction="column" data-wrap="no" data-border="">
                 <group
                   data-border=""
@@ -312,7 +320,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
             </group>
-          </group>
+
           <group
             data-column-gap="15"
             data-align="start"
@@ -322,10 +330,12 @@ const CheckboxAndSwitchers: React.FC = () => {
             <group
               data-direction="column"
               data-radius="15"
-              data-elevation="1"
+             data-border=""
               data-contain=""
+              
             >
               <group
+              
                 data-background="main"
                  data-color="main-text"
                 data-contain=""
@@ -423,7 +433,7 @@ const CheckboxAndSwitchers: React.FC = () => {
 
             <group
               data-radius="15"
-              data-elevation="1"
+               data-border=""
               data-contain=""
               data-space="20"
               data-gap="10"
@@ -468,7 +478,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-border=""
               data-background="context"
               data-radius="15"
-              data-elevation="1"
+           
             >
               <OptionBar
                 compact
@@ -539,7 +549,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-gap="10"
               data-background="context"
               data-radius="15"
-              data-elevation="1"
+             
             >
               <OptionBar compact dynamic data-height="40">
                 {radioViewData.map((radio, index) => (
@@ -588,7 +598,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-gap="10"
               data-background="context"
               data-radius="15"
-              data-elevation="1"
+             
             >
               <group
                 data-contain=""

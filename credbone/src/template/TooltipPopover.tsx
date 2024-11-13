@@ -89,7 +89,7 @@ const SampleData = (
     data-length="600"
     data-height="auto"
     data-radius="10"
-    data-elevation="1"
+   data-border=""
     data-contain=""
   >
     <group data-direction="column" data-space="30" data-gap="15">
@@ -196,7 +196,8 @@ const TooltipPopover: React.FC = () => {
           data-max-length="800"
           data-height="auto"
           data-radius="15"
-          data-elevation="1"
+         data-elevation="2"
+         data-index="2"
           data-contain=""
             data-background="context"
         >
@@ -316,7 +317,7 @@ const TooltipPopover: React.FC = () => {
           <group
             data-direction="column"
             data-radius="15"
-            data-elevation="1"
+           data-border=""
             data-contain=""
           >
             <group
@@ -358,6 +359,7 @@ const TooltipPopover: React.FC = () => {
                 data-gap="20"
                 data-direction="column"
                 data-weight="600"
+                data-background="main-background"
               >
 
 <group>
@@ -401,7 +403,7 @@ const TooltipPopover: React.FC = () => {
             data-width="auto"
             data-height="auto"
             data-radius="15"
-            data-elevation="1"
+           data-border=""
             data-contain=""
             data-direction="column"
             data-space="20"

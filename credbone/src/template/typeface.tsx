@@ -82,7 +82,7 @@ const Typeface: React.FC = () => {
         </group>
       </group>
 
-      <group data-radius="15" data-elevation="1">
+      <group data-radius="15"  data-border="">
         <StuckReporter>
           {(isSticky) => (
               <group
@@ -183,7 +183,7 @@ const Typeface: React.FC = () => {
 
       <group
         data-radius="15"
-        data-elevation="1"
+       data-border=""
         //data-contain=""
       >
         <StuckReporter>

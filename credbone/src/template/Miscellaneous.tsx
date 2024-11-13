@@ -67,7 +67,7 @@ const Miscellaneous: React.FC = () => {
         data-height="auto"
         data-max-height="fit"
         data-radius="15"
-        data-elevation="1"
+       data-border=""
         data-contain=""
       >
         <group
@@ -161,7 +161,7 @@ const Miscellaneous: React.FC = () => {
         data-height="auto"
         data-max-height="fit"
         data-radius="15"
-        data-elevation="1"
+       data-border=""
         data-contain=""
       >
         <group data-gap="30" data-space="30">

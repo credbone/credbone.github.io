@@ -30,7 +30,8 @@ const InputsAndForms: React.FC = () => {
           data-contain=""
           data-background="context"
           data-shrink="no"
-          data-elevation="1"
+          data-elevation="2"
+          data-index="2"
         >
           <group
                         data-background="main"
@@ -128,9 +129,9 @@ const InputsAndForms: React.FC = () => {
         <group
           data-radius="15"
           data-contain=""
-          data-background="context"
+
           data-shrink="no"
-          data-elevation="1"
+
         >
           <group data-space="30">
             <group data-direction="column" data-align="start" data-gap="10">
