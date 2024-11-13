@@ -739,6 +739,9 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-elevation="6"]{box-shadow: var(--elevation_6);}
 
 
+[data-elevation="2-main-color"]{box-shadow:0 80px 70px -50px var(--main-color-light), 0 0 0 1px rgba(0,0,0,.05)}
+
+
 
 
 [data-interactive=""][data-elevation="1"]:active,
