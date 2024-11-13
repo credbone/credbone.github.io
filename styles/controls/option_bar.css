@@ -162,7 +162,8 @@
 .option_bar[data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-lighter); color:var(--text-color) }
 .option_bar[data-palette="lighter"] label input:checked ~  [data-name="option-decor"]{ color:var(--text-color)}
 
-
+[data-switch-color="invert"] label [data-name="option-decor"] {opacity: .4;}
+[data-switch-color="invert"] label input:checked ~  [data-name="option-decor"]{ opacity: .1;}
 
 .option_bar label input:checked ~ wrap{ background-color: var(--checked-color); color:var(--checked-text-color);}
 .option_bar label input:checked ~ [data-name="option-decor"]{  color:var(--checked-text-color);}
