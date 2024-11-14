@@ -33,10 +33,19 @@ const Colors: React.FC = () => {
         </text>
       </group>
 
-      <group data-contain="" data-radius="20">
+      <group
+        data-border=""
+        data-radius="20"
+        data-elevation="2"
+        data-index="2"
+        data-contain=""
+        data-space="5"
+
+      >
 
 
-      <Popover
+        <group data-contain="" data-radius="15" data-gap="5">
+          <Popover
             placement="mouse"
             content={
               <group
@@ -73,10 +82,11 @@ const Colors: React.FC = () => {
                     <text data-opacity="30">Click To Change</text>
                   </group>
 
+
                   <group
                     data-position="bottom"
-                    data-direction="column"
                     data-gap="10"
+                    data-direction="column"
                   >
                     <text
                       data-wrap="wrap"
@@ -84,7 +94,7 @@ const Colors: React.FC = () => {
                       data-max-length="300"
                       data-line="20"
                     >
-                      This primary color you selected will be used extensively
+                      This Primary color you selected will be used extensively
                       in the UI, with other shades being automatically generated
                       from it.
                     </text>
@@ -96,11 +106,11 @@ const Colors: React.FC = () => {
                       Primary Color
                     </text>
                   </group>
+
                 </group>
               </Ripple>
             </group>
           </Popover>
-
 
           <group
             // data-radius="15"
@@ -138,8 +148,6 @@ const Colors: React.FC = () => {
               Auto-generated shade
             </text>
           </group>
-
-
 
           <group
             // data-radius="15"
@@ -188,7 +196,6 @@ const Colors: React.FC = () => {
             data-length="auto"
             data-background="main-dark"
           >
-
             <group
               data-color="main-text-lighter-white"
               data-direction="column"
@@ -210,8 +217,19 @@ const Colors: React.FC = () => {
               </text>
             </group>
           </group>
+        </group>
+      </group>
 
+      <group
+        data-border=""
+        data-radius="20"
+        data-elevation="2"
+        data-index="1"
+        data-contain=""
+        data-space="5"
 
+      >
+        <group data-contain="" data-radius="15" data-gap="5">
           <Popover
             placement="mouse"
             content={
@@ -314,8 +332,6 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-
-
           <group
             // data-radius="15"
             data-contain=""
@@ -389,7 +405,7 @@ const Colors: React.FC = () => {
             </group>
           </group>
         </group>
-
+      </group>
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
           Base Colors

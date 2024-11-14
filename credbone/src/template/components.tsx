@@ -8,13 +8,19 @@
 
 
   const linksArray = [
-    { long:true, color: "midnight-navy", title: "Icons", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
-    { long: "", color: "", title: "Colors", description: "Flexible theme customization, Color system can assist in crafting a color palette...", to: "/Home/Colors", },
-    { long:true,color: "sunny-yellow", title: "Cards", description: "Visual containers that hold all the elements and information about a single subject.", to: "/Home/CardsAndList", },
-    { color: "peach-blush", title: "Tooltip & Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
-    { color: "", title: "Checkbox & Switches", description: "User interface elements that allow for binary selections or toggles.", to: "/Home/CheckboxSwitchers", },
-    { color: "mint-green", title: "Demos", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/QuickDemos", },
-    { color: "", title: "Modals", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
+
+
+
+
+
+
+    { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
+    { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Home/Colors", },
+    { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Home/CardsAndList", },
+    { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
+    { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Home/CheckboxSwitchers", },
+    { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Home/QuickDemos", },
+    { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
 
     //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
     // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
@@ -169,7 +175,7 @@
                     data-type="group"
                   
                     data-contain=""
-                    data-min-height="240"
+                    data-min-height="300"
                     // data-border={link.color ? "none" : "outline"}
                     data-radius="20"
                     // data-space="5"
@@ -192,11 +198,14 @@
                       //   data-text-align="center"
                       data-height="fit"
                       data-wrap="no"
+                   //   data-position="bottom"
                     >
+                      <text data-text-size="36" data-weight="300" data-opacity="10"> 0{index + 1}</text>
                       <text
                         data-text-size="medium"
                         data-weight="700"
-                        data-wrap="wrap"
+                       // data-wrap="wrap"
+                        data-wrap="preline"
                         data-ellipsis=""
                       >
                         {link.title}
