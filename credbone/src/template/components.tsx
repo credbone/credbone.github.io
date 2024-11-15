@@ -119,7 +119,7 @@
                     data-ink-color="main-dark"
                     data-space-horizontal="40"
                     data-space-vertical="20"
-                    data-radius="20"
+                    data-radius="15"
                   >
                     <text
                       data-weight="700"
@@ -142,7 +142,7 @@
   data-width="auto"
   data-background="highlight"
   data-space="15"
-  data-radius="20"
+  data-radius="15"
   >
   <IconSearch></IconSearch>
   </group> */}
@@ -166,7 +166,7 @@
                 <Ripple key={index}>
                   <Link
                     //data-index={link.color ? "" : "2"}
-                    data-react="scale"
+                //    data-react="scale"
                     data-drag="none"
                     to={link.to}
                     key={index}
@@ -200,7 +200,10 @@
                       data-wrap="no"
                    //   data-position="bottom"
                     >
-                      <text data-text-size="36" data-weight="300" data-opacity="10"> 0{index + 1}</text>
+                      <text data-text-size="72" data-height="50" data-contain="" data-weight="100" data-opacity="10"> 0{index + 1}</text>
+
+
+
                       <text
                         data-text-size="medium"
                         data-weight="700"
