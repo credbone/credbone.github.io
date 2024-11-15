@@ -3,16 +3,16 @@ import OptionBar from "../components/inputs/optionBar";
 import Radio, { RadioType } from "../components/inputs/radio";
 import { FieldValues, useForm, Controller } from "react-hook-form";
 
-import list_res_1 from  "../styles/images/samples/ai_res/res-01.jpg";
-import list_res_2 from  "../styles/images/samples/ai_res/res-02.jpg";
-import list_res_3 from  "../styles/images/samples/ai_res/res-03.jpg";
-import list_res_4 from  "../styles/images/samples/ai_res/res-04.jpg";
-import list_res_5 from  "../styles/images/samples/ai_res/res-05.jpg";
-import list_res_6 from  "../styles/images/samples/ai_res/res-06.jpg";
-import list_res_7 from  "../styles/images/samples/ai_res/res-07.jpg";
-import list_res_8 from  "../styles/images/samples/ai_res/res-08.jpg";
-import list_res_9 from  "../styles/images/samples/ai_res/res-09.jpg";
-import list_res_10 from "../styles/images/samples/ai_res/res-10.jpg";
+import list_res_1 from  "../styles/images/samples/ai_res/res-21.jpg";
+import list_res_2 from  "../styles/images/samples/ai_res/res-22.jpg";
+import list_res_3 from  "../styles/images/samples/ai_res/res-23.jpg";
+import list_res_4 from  "../styles/images/samples/ai_res/res-24.jpg";
+import list_res_5 from  "../styles/images/samples/ai_res/res-25.jpg";
+import list_res_6 from  "../styles/images/samples/ai_res/res-26.jpg";
+import list_res_7 from  "../styles/images/samples/ai_res/res-27.jpg";
+import list_res_8 from  "../styles/images/samples/ai_res/res-28.jpg";
+import list_res_9 from  "../styles/images/samples/ai_res/res-29.jpg";
+import list_res_10 from "../styles/images/samples/ai_res/res-30.jpg";
 
 
 import Ripple from "../components/Ripple";
@@ -23,6 +23,7 @@ import Count from "../components/Coutner";
 import StuckReporter from "../components/StuckReporter";
 import { Link } from "react-router-dom";
 import { useModal } from "../components/Modal";
+import Marquee from "../components/Marquee";
 
 
 
@@ -91,12 +92,12 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           <IconShare />
         </group>
       </Tooltip>
-      <dot
+      {/* <dot
          data-animation-name="appear-bottom"
          data-fill-mode="backwards"
          data-animation-duration="1.5"
       
-      ></dot>
+      ></dot> */}
       <Tooltip content="Like">
         <group
           data-width="auto"
@@ -146,9 +147,12 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
           data-direction="column"
           data-border="outline"
           data-name="card"
-          className={selectedKey === item.key ? "selected" : ""}
+            className={selectedKey === item.key ? "selected" : ""}
+            // data-elevation={selectedKey === item.key ? "2" : ""}
+            // data-index={selectedKey === item.key ? "2" : ""}
           onClick={() => onSelect(item.key)}
           data-interactive=""
+          data-react="scale"
           data-cursor="pointer"
           // onDoubleClick={() => openModal(item.title,
           //   <picture data-position="center"> <img src={item.image} alt={item.title} /> </picture>,
@@ -234,7 +238,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                       </group>
                     )}
                   </StuckReporter>
-<group data-height="20"></group>
+                  <group data-height="20"></group>
 
                   <group
                     data-animation-name="appear-bottom"
@@ -242,6 +246,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                     data-animation-duration="1.5"
                     data-contain=""
                     data-radius="20"
+                    
                   >
                     <picture data-position="center">
                       <img src={item.image} alt={item.title} />{" "}
@@ -257,36 +262,68 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
           }
         >
           <group
-            data-ratio="4:5"
+            data-ratio="1:2"
             data-contain=""
-            //  data-background="highlight"
+
             data-direction="column"
             data-wrap="no"
             data-gap="5"
+            data-radius="15"
           >
             <picture
-              data-position="absolute"
+            data-interact=""
+              //  data-position="absolute"
               data-brightness="adaptive"
-              data-mask={selectedKey === item.key ? "bottom" : ""}
-              data-radius="15"
+              //    data-mask={selectedKey === item.key ? "bottom" : ""}
+              
             >
               <img src={item.image} alt={item.title} />
             </picture>
-
-            {selectedKey === item.key && (
-              <group data-position="bottom">
-                <ContentToolbar count={item.count} />{" "}
-              </group>
-            )}
           </group>
 
-          <group data-gap="10" data-space="10" data-direction="column">
-            <text data-weight="700" data-text-size="medium" data-ellipsis="">
-              {item.title}
-            </text>
-            <text data-opacity="60" data-wrap="wrap" data-line="1.5">
-              {item.description}
-            </text>
+          <group
+            data-space="15"
+            data-direction="column"
+            data-position="absolute"
+            data-bottom="0"
+            data-left="0"
+          >
+            <group data-backdrop="20" data-contain=""  data-radius="10" data-color="white">
+              {selectedKey === item.key && (
+                <>
+                  <group
+                //    data-background="context"
+                 //   data-radius="15"
+                    data-space="5"
+                 //   data-index="2"
+                  //  data-width="auto"
+                  >
+                    <ContentToolbar count={item.count} />
+                  </group>
+                 <group data-opacity="30"> <separator data-horizontal=""></separator></group>
+                </>
+              )}
+
+              <group data-space-vertical="15" data-gap="2" data-direction="column">
+                <text data-space-horizontal="15" data-weight="700" data-ellipsis="">
+                  {item.title}
+                </text>
+                <Marquee
+                data-space-horizontal="15"
+                auto={selectedKey === item.key ? true : false}
+
+                >
+                  <text
+                    data-opacity="60"
+                    //  data-wrap="wrap"
+                    data-ellipsis=""
+                   
+                  >
+                    {item.description}
+                  </text>
+                </Marquee>
+              </group>
+            </group>
           </group>
         </group>
       ))}

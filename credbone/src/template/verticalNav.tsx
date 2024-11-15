@@ -94,11 +94,16 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-placement="left"
         data-shrink="no"
         data-name="side_nav"
+        data-radius="15"
+        data-float="30"
+        data-margin-right="0"
         data-background="main-background"
         data-expanded={isNavOpen ? "open" : "close"}
-        data-width="auto"
+        //data-width="auto"
+        data-length={isNavOpen ? "300" : "70"}
         data-height="fit"
-        data-elevation="1"
+      //  data-elevation={isNavOpen ? "2" : ""}
+        data-border=""
         data-index="2"
         data-align="start"
         data-wrap="no"
@@ -110,7 +115,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         <group
           data-height="autofit"
           data-weight="600"
-          data-space="15"
+          data-space="10"
           data-direction="column"
           data-gap="5"
         >
@@ -244,7 +249,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
       </group>
       <group
         data-name="side_nav-space"
-        data-length="80"
+        data-length="100"
         data-adaptive="desktop"
       ></group>
     </NavContext.Provider>

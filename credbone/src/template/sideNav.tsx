@@ -42,6 +42,7 @@ const SideNav = () => {
         data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
+       // data-length={isNavOpen ? "300" : "70"}
         //  data-width="auto"
        // data-height="fit"
         // data-max-length="300"

@@ -40,7 +40,7 @@ const Colors: React.FC = () => {
         data-index="2"
         data-contain=""
         data-space="5"
-
+data-background="context"
       >
 
 
@@ -227,6 +227,7 @@ const Colors: React.FC = () => {
         data-index="1"
         data-contain=""
         data-space="5"
+        data-background="context"
 
       >
         <group data-contain="" data-radius="15" data-gap="5">

@@ -319,12 +319,13 @@ const TooltipPopover: React.FC = () => {
             data-radius="15"
            data-border=""
             data-contain=""
+             data-background="context"
           >
             <group
               data-space="30"
               data-direction="column"
               data-gap="10"
-              data-background="main-background"
+             
             >
               <text
                 data-weight="700"
@@ -359,7 +360,7 @@ const TooltipPopover: React.FC = () => {
                 data-gap="20"
                 data-direction="column"
                 data-weight="600"
-                data-background="main-background"
+              
               >
 
 <group>

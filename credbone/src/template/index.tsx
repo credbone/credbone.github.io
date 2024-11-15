@@ -73,7 +73,7 @@ const Template: React.FC = () => {
 
   return (
     <>
-      <view data-vertical="">
+      <view data-vertical="" data-border="none">
         {/* <group data-adaptive-order="2">
           <group
             data-index="3"

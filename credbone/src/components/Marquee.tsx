@@ -10,19 +10,30 @@ function Marquee({ auto = false, ...props }: MarqueeEffectProps) {
   const [marqueeClone, setMarqueeClone] = useState<HTMLElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
+
+
+
+
   const startMarquee = (parent: HTMLElement, child: HTMLElement) => {
     const parentWidth = Math.round(parent.offsetWidth);
     const childWidth = Math.floor(child.offsetWidth);
 
-    if (parentWidth < childWidth) {
-      const width = childWidth;
-      child.style.setProperty("--duration-value", Math.max(width / 90, 1) + "s");
 
-      const clonedChild = child.cloneNode(true) as HTMLElement;
-      parent.appendChild(clonedChild);
-      setMarqueeClone(clonedChild);
-      parent.classList.add("start");
-    }
+            window.requestAnimationFrame(() => {
+
+              if (parentWidth < childWidth) {
+                const width = childWidth;
+                child.style.setProperty("--duration-value", Math.max(width / 90, 1) + "s");
+          
+                const clonedChild = child.cloneNode(true) as HTMLElement;
+                parent.appendChild(clonedChild);
+                setMarqueeClone(clonedChild);
+                parent.classList.add("start");
+              }
+
+        });
+
+
   };
 
   const stopMarquee = () => {

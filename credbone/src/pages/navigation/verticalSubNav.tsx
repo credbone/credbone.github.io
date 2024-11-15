@@ -142,13 +142,13 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-weight="600"
             data-wrap="no"
             data-gap="5"
-            data-space="20"
+            data-space="30"
             data-direction="column"
           >
             {navItems.map((item, index) => (
 <group  key={index}>
 {item.separator === "true" && (
-<separator data-horizontal="" data-interval='15'></separator>
+<separator data-horizontal="" data-interval='30'></separator>
                                 )}
               <NavLink
                 data-animation-name="appear-left"
@@ -177,6 +177,11 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                     data-gap="5"
                   >
                     <text data-ellipsis="">{item.label}</text>
+
+                    {item.new === "true" && (
+                      <group data-background="red" data-space="3" data-width="auto" data-radius="5" data-position="right"></group>
+                                )}
+
                   </group>
                 </Ripple>
               </NavLink>
@@ -188,11 +193,11 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-position="bottom"
             // data-sticky="bottom"
           >
-            <group data-space-horizontal="20">
+            <group data-space-horizontal="30">
               <separator data-horizontal=""></separator>
             </group>
 
-            <group data-space="20" data-background="main-background">
+            <group data-space="30" data-background="main-background">
 
 
             <Popover
