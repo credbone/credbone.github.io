@@ -36,14 +36,12 @@ const Colors: React.FC = () => {
       <group
         data-border=""
         data-radius="20"
-        data-elevation="2"
+    //    data-elevation="2"
         data-index="2"
         data-contain=""
         data-space="5"
-data-background="context"
+        data-background="context"
       >
-
-
         <group data-contain="" data-radius="15" data-gap="5">
           <Popover
             placement="mouse"
@@ -82,7 +80,6 @@ data-background="context"
                     <text data-opacity="30">Click To Change</text>
                   </group>
 
-
                   <group
                     data-position="bottom"
                     data-gap="10"
@@ -106,7 +103,6 @@ data-background="context"
                       Primary Color
                     </text>
                   </group>
-
                 </group>
               </Ripple>
             </group>
@@ -223,12 +219,11 @@ data-background="context"
       <group
         data-border=""
         data-radius="20"
-        data-elevation="2"
+       // data-elevation="2"
         data-index="1"
         data-contain=""
         data-space="5"
         data-background="context"
-
       >
         <group data-contain="" data-radius="15" data-gap="5">
           <Popover
@@ -423,59 +418,56 @@ data-background="context"
         data-shrink="no"
         data-weight="600"
         data-max-length="1200"
-        //    data-width="auto"
         data-type="grid"
-        data-gap="5"
-        data-grid-template="120"
+        data-gap="10"
+        data-grid-template="180"
       >
         {BaseColors.map((colors, index) => (
           <group
             key={index}
             data-contain=""
-            // data-border=""
-            //  data-radius="10"
             data-direction="column"
-            //     data-border=""
+            daat-wrap="no"
+            data-wrap="no"
+            data-border=""
+            data-space="5"
+            data-radius="15"
+            data-gap="15"
           >
-            <group data-wrap="no" data-direction="column" data-gap="5">
-              <group
-                data-height="50"
-                //   data-radius="5"
-                data-background={colors.value + "-light"}
-              ></group>
-              <group
-                data-height="50"
-                //  data-radius="5"
-                data-background={colors.value}
-              ></group>
-              <group
-                data-height="50"
-                //  data-radius="5"
-                data-background={colors.value + "-dark"}
-              ></group>
-            </group>
             <group
-              data-space="15"
-              data-contain=""
-              data-length="auto"
-              data-shrink="no"
               data-direction="column"
-              data-width="auto"
-              // data-background="context"
+              data-space-horizontal="15"
+              data-gap="5"
+              data-position="bottom"
             >
-              <group data-direction="column" data-gap="5">
-                <text
-                  data-ellipsis=""
-                  data-wrap="wrap"
-                  data-weight="700"
-                  data-text-size="15"
-                >
-                  {colors.name}
-                </text>
+              <text
+                data-text-size="64"
+                data-height="40"
+                data-contain=""
+                data-weight="100"
+                data-opacity="10"
+              >
+                {index + 1 < 10 ? `0${index + 1}` : index + 1}
+              </text>
+              <group data-direction="column">
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
+                <text data-ellipsis="" data-wrap="wrap" data-weight="700">
+                  {colors.name}
+                </text>
               </group>
+            </group>
+
+            <group
+              data-wrap="no"
+              data-height="60"
+              data-contain=""
+              data-radius="10"
+            >
+              <group data-background={colors.value + "-light"}></group>
+              <group data-background={colors.value}></group>
+              <group data-background={colors.value + "-dark"}></group>
             </group>
           </group>
         ))}
