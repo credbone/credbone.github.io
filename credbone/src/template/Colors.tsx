@@ -1,6 +1,6 @@
 import React from "react";
 
-import sampleImage2 from "../styles/images/samples/res_51.jpg";
+
 
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
@@ -8,15 +8,15 @@ import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
 import TextReveal from "../components/TextReveal";
+import StuckReporter from "../components/StuckReporter";
 
 const Colors: React.FC = () => {
-
   const { openModal, closeModal } = useModal();
 
   const modalConfig = {
     "data-radius": "none",
     "data-margin": "0",
-    "data-background": "none",
+    "data-background": "main-background-top",
     "data-elevation": "none",
     "data-width": "fit",
     "data-scroll": "",
@@ -28,25 +28,67 @@ const Colors: React.FC = () => {
     colorsName: string,
     colorsValue: string,
     colorsDescription: string,
-    colorsHex:string,
-    colorsHexLight:string,
-    colorsHexDark:string,
+    colorsHex: string,
+    colorsHexLight: string,
+    colorsHexDark: string
   ) => (
-    <group
-      data-max-height="fit"
-      data-contain=""
-      data-direction="column"
-      data-align="center"
-      data-max-length="300"
-      data-position="center"
-    >
+    <group data-min-height="fit">
+      <group
+        data-position="absolute"
+        data-height="fit"
+        data-background=""
+        onClick={() => closeModal(`modal-${colorsName}`)}
+      ></group>
+
       <group
         data-space="30"
         data-direction="column"
         //  data-background="context"
         // data-align="center"
-        data-gap="20"
+        // data-gap="10"
+        data-align="start"
+        data-position="center"
+        data-max-length="300"
       >
+        <StuckReporter>
+          {(isSticky) => (
+            <group
+              data-duration=".125"
+              data-space-horizontal={isSticky ? "30" : ""}
+              data-space-vertical="10"
+              data-space-top="30"
+              data-sticky="top"
+            >
+              <Ripple>
+                <group
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3.25"
+                  data-ink-color="neutral"
+                  data-direction="column"
+                  data-over-color="neutral"
+                  data-min-length="140"
+                  data-backdrop="20"
+                  data-interactive=""
+                  //  data-width="auto"
+                  data-cursor="pointer"
+                  data-space="30"
+                  //  data-color={isSticky ? "white" : ""}
+
+                  data-radius="15"
+                  data-contain=""
+                  onClick={() => closeModal(`modal-${colorsName}`)}
+                >
+                  <text data-weight="600">Close</text>
+                  <text data-opacity="30" data-ellipsis="">
+                    Back to color selection
+                  </text>
+                </group>
+              </Ripple>
+            </group>
+          )}
+        </StuckReporter>
+
         <group
           data-position="bottom"
           data-wrap="no"
@@ -55,15 +97,10 @@ const Colors: React.FC = () => {
           data-direction="column"
           data-gap="10"
         >
-
-
-
           <group
-
-data-animation-name="appear-bottom"
-data-fill-mode="backwards"
-data-animation-duration="1.25"
-
+            data-animation-name="appear-bottom"
+            data-fill-mode="backwards"
+            data-animation-duration="1.25"
             data-radius="15"
             data-space="30"
             data-background={colorsValue + "-light"}
@@ -71,17 +108,16 @@ data-animation-duration="1.25"
             data-direction="column"
           >
             <text data-opacity="30">Light</text>
-             <text data-text-transform="uppercase"   data-weight="600"> <TextReveal text={colorsHexLight} duration={500}></TextReveal></text>
+            <text data-text-transform="uppercase" data-weight="600">
+              <TextReveal text={colorsHexLight} duration={500}></TextReveal>
+            </text>
           </group>
 
-
           <group
-
-data-animation-name="appear-top"
-data-fill-mode="backwards"
-data-animation-duration="2.25"
-
-          data-index="2"
+            data-animation-name="appear-top"
+            data-fill-mode="backwards"
+            data-animation-duration="2.25"
+            data-index="2"
             data-radius="15"
             data-min-height="240"
             data-space="30"
@@ -89,79 +125,68 @@ data-animation-duration="2.25"
             data-background={colorsValue}
             data-color="white"
           >
-          <group data-direction="column"  >
-              <text   data-wrap="wrap" data-text-size="36" data-weight="700">
+            <group data-direction="column">
+              <text data-wrap="wrap" data-text-size="36" data-weight="700">
                 {colorsName}
               </text>
-              <text data-wrap="wrap" data-weight="600"  data-line="20">
+              <text data-wrap="wrap" data-weight="600" data-line="20">
                 {colorsDescription}
-              </text></group>
-
-
-            <group data-direction="column"  data-position="bottom">
-<text data-opacity="30">Base</text>
-              <text data-text-transform="uppercase" data-weight="600"><TextReveal text={colorsHex} duration={500}></TextReveal></text>
+              </text>
             </group>
-            
+
+            <group data-direction="column" data-position="bottom">
+              <text data-opacity="30">Base</text>
+              <text data-text-transform="uppercase" data-weight="600">
+                <TextReveal text={colorsHex} duration={500}></TextReveal>
+              </text>
+            </group>
           </group>
 
-
-
           <group
-          data-animation-name="appear-top"
-          data-fill-mode="backwards"
-          data-animation-duration="3.25"
+            data-animation-name="appear-top"
+            data-fill-mode="backwards"
+            data-animation-duration="3.25"
             data-radius="15"
             data-space="30"
             data-background={colorsValue + "-dark"}
-          data-color="white"
-          data-direction="column"
+            data-color="white"
+            data-direction="column"
           >
-             <text data-opacity="30">Dark</text>
-            <text data-text-transform="uppercase"   data-weight="600"> <TextReveal text={colorsHexDark} duration={500}></TextReveal></text>
+            <text data-opacity="30">Dark</text>
+            <text data-text-transform="uppercase" data-weight="600">
+              <TextReveal text={colorsHexDark} duration={500}></TextReveal>
+            </text>
           </group>
-        </group>
-      </group>
-
-      <separator data-horizontal=""></separator>
-      <group data-space="20" data-type="grid" data-gap="10">
-        <group
-          data-contain=""
-          data-space="15"
-          data-interactive=""
-          data-cursor="pointer"
-          data-radius="10"
-          data-width="auto"
-          data-align="center"
-          data-direction="column"
-          data-background="highlight"
-          onClick={() => closeModal(`modal-${colorsName}`)}
-        >
-          <text data-weight="600">Done</text>
         </group>
       </group>
     </group>
   );
-  
+
   const handleColorClick = (
     colorsName: string,
     colorsValue: string,
     colorsDescription: string,
-    colorsHex:string,
-    colorsHexLight:string,
-    colorsHexDark:string,
+    colorsHex: string,
+    colorsHexLight: string,
+    colorsHexDark: string
   ) => {
     openModal(
       `modal-${colorsName}`,
       colorsName,
-      getModalContent(colorsName, colorsValue, colorsDescription,colorsHex,colorsHexLight,colorsHexDark),
+      getModalContent(
+        colorsName,
+        colorsValue,
+        colorsDescription,
+        colorsHex,
+        colorsHexLight,
+        colorsHexDark
+      ),
       false,
       false,
       modalConfig,
       0
     );
   };
-
 
   return (
     <group
@@ -176,7 +201,7 @@ data-animation-duration="2.25"
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-ellipsis=""
-          data-color="main"
+          // data-color="main"
         >
           Color System
         </text>
@@ -196,8 +221,46 @@ data-animation-duration="2.25"
         data-contain=""
         data-space="5"
         data-background="context"
+        data-max-length="800"
       >
-        <group data-contain="" data-radius="15" data-gap="5">
+        <group data-contain="" data-radius="15">
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-lighter"
+          >
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-light"
+          >
+            <text data-weight="700">Light</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
           <Popover
             placement="mouse"
             content={
@@ -220,6 +283,7 @@ data-animation-duration="2.25"
                   data-ink-color="main-dark"
                   data-cursor="pointer"
                   data-interactive=""
+                  data-over-color="neutral-10"
                   // data-radius="15"
                   data-contain=""
                   data-direction="column"
@@ -266,43 +330,6 @@ data-animation-duration="2.25"
           <group
             // data-radius="15"
             data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-lighter"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-light"
-          >
-            <text data-weight="700">Light</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
             data-min-height="240"
             data-length="auto"
             data-shrink="no"
@@ -338,36 +365,6 @@ data-animation-duration="2.25"
               Auto-generated shade
             </text>
           </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-width="auto"
-            data-min-height="240"
-            data-length="auto"
-            data-background="main-dark"
-          >
-            <group
-              data-color="main-text-lighter-white"
-              data-direction="column"
-              data-space="30"
-              data-gap="10"
-              data-justify="end"
-            >
-              <text
-                data-wrap="wrap"
-                data-light=""
-                data-max-length="240"
-                data-line="20"
-              >
-                The generated color ensures that the text remains readable on
-                the chosen color.
-              </text>
-              <text data-wrap="wrap" data-weight="700" data-text-size="large">
-                Text Color
-              </text>
-            </group>
-          </group>
         </group>
       </group>
 
@@ -379,8 +376,47 @@ data-animation-duration="2.25"
         data-contain=""
         data-space="5"
         data-background="context"
+        data-max-length="800"
       >
-        <group data-contain="" data-radius="15" data-gap="5">
+        <group data-contain="" data-radius="15">
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-height="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-lighter"
+          >
+            <text data-weight="700">Secondary Lighter</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+            data-min-eight="240"
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-light"
+          >
+            <text data-weight="700">Secondary Light</text>
+            <text data-ellipsis="" data-light="">
+              Auto-generated shade
+            </text>
+          </group>
+
           <Popover
             placement="mouse"
             content={
@@ -404,6 +440,7 @@ data-animation-duration="2.25"
                   // data-radius="15"
                   data-cursor="pointer"
                   data-interactive=""
+                  data-over-color="neutral-10"
                   data-contain=""
                   data-direction="column"
                   data-color="secondary-text"
@@ -448,44 +485,6 @@ data-animation-duration="2.25"
           <group
             // data-radius="15"
             data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-lighter"
-          >
-            <text data-weight="700">Seondary Lighter</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-min-eight="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-light"
-          >
-            <text data-weight="700">Seondary Light</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
             data-min-height="240"
             data-length="auto"
             data-shrink="no"
@@ -521,40 +520,6 @@ data-animation-duration="2.25"
               Auto-generated shade
             </text>
           </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-width="auto"
-            data-min-height="240"
-            data-length="auto"
-            data-background="secondary-darker"
-          >
-            <picture data-position="absolute" data-name="color-demo">
-              <img src={sampleImage2} alt="" />
-            </picture>
-
-            <group
-              data-color="secondary-text-lighter-white"
-              data-direction="column"
-              data-space="30"
-              data-gap="10"
-              data-justify="end"
-            >
-              <text
-                data-wrap="wrap"
-                data-light=""
-                data-max-length="240"
-                data-line="20"
-              >
-                The generated color ensures that the text remains readable on
-                the chosen color.
-              </text>
-              <text data-wrap="wrap" data-weight="700" data-text-size="large">
-                Text Color
-              </text>
-            </group>
-          </group>
         </group>
       </group>
       <group data-direction="column" data-gap="10">
@@ -579,9 +544,19 @@ data-animation-duration="2.25"
       >
         {BaseColors.map((colors, index) => (
           <group
-
-          onClick={() => handleColorClick(colors.name, colors.value, colors.description,colors.hex,colors.hexlight,colors.hexdark,)}
-
+            onClick={() =>
+              handleColorClick(
+                colors.name,
+                colors.value,
+                colors.description,
+                colors.hex,
+                colors.hexlight,
+                colors.hexdark
+              )
+            }
+            data-interactive=""
+            data-over-color="neutral"
+            data-cursor="pointer"
             key={index}
             data-contain=""
             data-direction="column"
@@ -592,15 +567,15 @@ data-animation-duration="2.25"
             data-radius="15"
             data-gap="15"
 
-//data-interactive=""
+            //data-interactive=""
 
-          //  data-height="240"
+            //  data-height="240"
           >
             <group
               data-direction="column"
               data-space-horizontal="15"
               data-gap="5"
-             
+              data-interact=""
             >
               <text
                 data-text-size="64"
@@ -612,7 +587,7 @@ data-animation-duration="2.25"
               >
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
-              <group data-direction="column">
+              <group data-direction="column" data-interact="">
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
@@ -624,15 +599,22 @@ data-animation-duration="2.25"
             </group>
 
             <group
-             data-position="bottom"
+              data-interact=""
+              data-position="bottom"
               data-wrap="no"
-            //  data-height="60"
+              //  data-height="60"
               data-contain=""
               data-radius="10"
             >
-              <group data-ratio="1:1" data-background={colors.value + "-light"}></group>
+              <group
+                data-ratio="1:1"
+                data-background={colors.value + "-light"}
+              ></group>
               <group data-ratio="1:1" data-background={colors.value}></group>
-              <group data-ratio="1:1" data-background={colors.value + "-dark"}></group>
+              <group
+                data-ratio="1:1"
+                data-background={colors.value + "-dark"}
+              ></group>
             </group>
           </group>
         ))}

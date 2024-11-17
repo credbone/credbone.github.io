@@ -544,6 +544,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-margin-bottom="-30"]{margin-bottom:-30px}
 [data-margin-bottom="-20"]{margin-bottom:-20px}
 
+[data-margin-top="30"] {margin-top:30px}
+[data-margin-top="20"] {margin-top:20px}
 
 [data-margin-top="-1"] {margin-top:-1px}
 [data-margin="5"] {margin:5px}
@@ -637,6 +639,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-top='5'] {padding-top:5px;}
 [data-space-top='10'] {padding-top:10px;}
 [data-space-top='20'] {padding-top:20px;}
+[data-space-top='30'] {padding-top:30px;}
 
 [data-space-bottom='150'] {padding-bottom:150px;}
 /**/
@@ -716,6 +719,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-interact="popover"][data-popover-expand="true"]
 
 { background-image: var(--over-color);}
+
+
+
+
 
 
 [data-interactive="elevation-2"]:hover {box-shadow: var(--elevation_2);}
