@@ -194,6 +194,12 @@ text[data-width="auto"]{width: initial;}
 [data-top="90"] { top: 90px; }
 
 /* Left positions */
+
+[data-left="-10"] { left:-10px; }
+[data-left="-20"] { left:-20px; }
+[data-left="-30"] { left:-30px; }
+[data-left="-40"] { left:-40px; }
+
 [data-left="0"] { left: 0px; }
 [data-left="5"] { left: 5px; }
 [data-left="10"] { left: 10px; }
@@ -449,8 +455,8 @@ picture img{ pointer-events: none; transform-origin: bottom center; object-fit: 
 
 picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:auto;max-height: 100%;max-width: 100%;}
 
-[data-react="scale"] picture {transition: .325s;}
-[data-react="scale"]:hover  picture {transform: scale(1.035);}
+[data-react="scale"] picture {transition: .425s;}
+[data-react="scale"]:hover picture {transform: scale(1.025);transition: .125s;}
 [data-react="scale"]:active  picture {transform:none; transition: none;}
 
 [data-object-fit='contain']{object-fit: contain;}
@@ -538,6 +544,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-margin-bottom="-30"]{margin-bottom:-30px}
 [data-margin-bottom="-20"]{margin-bottom:-20px}
 
+[data-margin-top="30"] {margin-top:30px}
+[data-margin-top="20"] {margin-top:20px}
 
 [data-margin-top="-1"] {margin-top:-1px}
 [data-margin="5"] {margin:5px}
@@ -631,6 +639,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-top='5'] {padding-top:5px;}
 [data-space-top='10'] {padding-top:10px;}
 [data-space-top='20'] {padding-top:20px;}
+[data-space-top='30'] {padding-top:30px;}
 
 [data-space-bottom='150'] {padding-bottom:150px;}
 /**/
@@ -710,6 +719,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-interact="popover"][data-popover-expand="true"]
 
 { background-image: var(--over-color);}
+
+
+
+
 
 
 [data-interactive="elevation-2"]:hover {box-shadow: var(--elevation_2);}
