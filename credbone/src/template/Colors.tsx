@@ -6,8 +6,163 @@ import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
+import { useModal } from "../components/Modal";
+import TextReveal from "../components/TextReveal";
 
 const Colors: React.FC = () => {
+
+  const { openModal, closeModal } = useModal();
+
+  const modalConfig = {
+    "data-radius": "none",
+    "data-margin": "0",
+    "data-background": "none",
+    "data-elevation": "none",
+    "data-width": "fit",
+    "data-scroll": "",
+    "data-min-height": "fit",
+    "data-contain": "scroll",
+  };
+
+  const getModalContent = (
+    colorsName: string,
+    colorsValue: string,
+    colorsDescription: string,
+    colorsHex:string,
+    colorsHexLight:string,
+    colorsHexDark:string,
+  ) => (
+    <group
+      data-max-height="fit"
+      data-contain=""
+      data-direction="column"
+      data-align="center"
+      data-max-length="300"
+      data-position="center"
+    >
+      <group
+        data-space="30"
+        data-direction="column"
+        //  data-background="context"
+        // data-align="center"
+        data-gap="20"
+      >
+        <group
+          data-position="bottom"
+          data-wrap="no"
+          //  data-height="60"
+          data-contain=""
+          data-direction="column"
+          data-gap="10"
+        >
+
+
+
+          <group
+
+data-animation-name="appear-bottom"
+data-fill-mode="backwards"
+data-animation-duration="1.25"
+
+            data-radius="15"
+            data-space="30"
+            data-background={colorsValue + "-light"}
+            data-color={colorsValue + "-dark"}
+            data-direction="column"
+          >
+            <text data-opacity="30">Light</text>
+             <text data-text-transform="uppercase"   data-weight="600"> <TextReveal text={colorsHexLight} duration={500}></TextReveal></text>
+          </group>
+
+
+          <group
+
+data-animation-name="appear-top"
+data-fill-mode="backwards"
+data-animation-duration="2.25"
+
+          data-index="2"
+            data-radius="15"
+            data-min-height="240"
+            data-space="30"
+            data-gap="30"
+            data-background={colorsValue}
+            data-color="white"
+          >
+          <group data-direction="column"  >
+              <text   data-wrap="wrap" data-text-size="36" data-weight="700">
+                {colorsName}
+              </text>
+              <text data-wrap="wrap" data-weight="600"  data-line="20">
+                {colorsDescription}
+              </text></group>
+
+
+            <group data-direction="column"  data-position="bottom">
+<text data-opacity="30">Base</text>
+              <text data-text-transform="uppercase" data-weight="600"><TextReveal text={colorsHex} duration={500}></TextReveal></text>
+            </group>
+            
+          </group>
+
+
+
+          <group
+          data-animation-name="appear-top"
+          data-fill-mode="backwards"
+          data-animation-duration="3.25"
+            data-radius="15"
+            data-space="30"
+            data-background={colorsValue + "-dark"}
+          data-color="white"
+          data-direction="column"
+          >
+             <text data-opacity="30">Dark</text>
+            <text data-text-transform="uppercase"   data-weight="600"> <TextReveal text={colorsHexDark} duration={500}></TextReveal></text>
+          </group>
+        </group>
+      </group>
+
+      <separator data-horizontal=""></separator>
+      <group data-space="20" data-type="grid" data-gap="10">
+        <group
+          data-contain=""
+          data-space="15"
+          data-interactive=""
+          data-cursor="pointer"
+          data-radius="10"
+          data-width="auto"
+          data-align="center"
+          data-direction="column"
+          data-background="highlight"
+          onClick={() => closeModal(`modal-${colorsName}`)}
+        >
+          <text data-weight="600">Done</text>
+        </group>
+      </group>
+    </group>
+  );
+  
+  const handleColorClick = (
+    colorsName: string,
+    colorsValue: string,
+    colorsDescription: string,
+    colorsHex:string,
+    colorsHexLight:string,
+    colorsHexDark:string,
+  ) => {
+    openModal(
+      `modal-${colorsName}`,
+      colorsName,
+      getModalContent(colorsName, colorsValue, colorsDescription,colorsHex,colorsHexLight,colorsHexDark),
+      false,
+      false,
+      modalConfig,
+      0
+    );
+  };
+
+
   return (
     <group
       data-space="30"
@@ -36,7 +191,7 @@ const Colors: React.FC = () => {
       <group
         data-border=""
         data-radius="20"
-    //    data-elevation="2"
+        //    data-elevation="2"
         data-index="2"
         data-contain=""
         data-space="5"
@@ -219,7 +374,7 @@ const Colors: React.FC = () => {
       <group
         data-border=""
         data-radius="20"
-       // data-elevation="2"
+        // data-elevation="2"
         data-index="1"
         data-contain=""
         data-space="5"
@@ -420,10 +575,13 @@ const Colors: React.FC = () => {
         data-max-length="1200"
         data-type="grid"
         data-gap="10"
-        data-grid-template="180"
+        data-grid-template="180/140"
       >
         {BaseColors.map((colors, index) => (
           <group
+
+          onClick={() => handleColorClick(colors.name, colors.value, colors.description,colors.hex,colors.hexlight,colors.hexdark,)}
+
             key={index}
             data-contain=""
             data-direction="column"
@@ -433,12 +591,16 @@ const Colors: React.FC = () => {
             data-space="5"
             data-radius="15"
             data-gap="15"
+
+//data-interactive=""
+
+          //  data-height="240"
           >
             <group
               data-direction="column"
               data-space-horizontal="15"
               data-gap="5"
-              data-position="bottom"
+             
             >
               <text
                 data-text-size="64"
@@ -446,6 +608,7 @@ const Colors: React.FC = () => {
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
+                //data-color={colors.value}
               >
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
@@ -453,6 +616,7 @@ const Colors: React.FC = () => {
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
+                <separator data-horizontal="" data-interval="20"></separator>
                 <text data-ellipsis="" data-wrap="wrap" data-weight="700">
                   {colors.name}
                 </text>
@@ -460,14 +624,15 @@ const Colors: React.FC = () => {
             </group>
 
             <group
+             data-position="bottom"
               data-wrap="no"
-              data-height="60"
+            //  data-height="60"
               data-contain=""
               data-radius="10"
             >
-              <group data-background={colors.value + "-light"}></group>
-              <group data-background={colors.value}></group>
-              <group data-background={colors.value + "-dark"}></group>
+              <group data-ratio="1:1" data-background={colors.value + "-light"}></group>
+              <group data-ratio="1:1" data-background={colors.value}></group>
+              <group data-ratio="1:1" data-background={colors.value + "-dark"}></group>
             </group>
           </group>
         ))}
