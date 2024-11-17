@@ -439,7 +439,7 @@
 
 [data-background="main-background-top"] {background-image: linear-gradient(var(--background) 0%, transparent);}
 
-
+[data-background="main-background-bottom"] {background-image: linear-gradient(transparent 0%, var(--background));}
 
 
 
