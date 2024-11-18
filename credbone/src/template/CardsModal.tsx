@@ -6,6 +6,7 @@ interface CardModalProps {
     key: string;
     title: string;
     description: string;
+    long_description:string;
     image: string;
   };
   onClose: () => void;
@@ -41,7 +42,7 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
             <text
               data-animation-name="appear-bottom"
               data-fill-mode="backwards"
-              data-animation-duration="2"
+              data-animation-duration="2.5"
               data-weight="600"
               data-text-size=""
               data-wrap="wrap"
@@ -63,7 +64,7 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
                         <group
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
-                          data-animation-duration="1.75"
+                          data-animation-duration="2.5"
                           data-background="main"
                           data-color="main-text"
                           data-interactive=""
@@ -87,13 +88,33 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
         <group
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="1.5"
+          data-animation-duration="2.75"
           data-contain=""
           data-radius="20"
+          data-direction="column"
+          data-wrap="no"
+        //  data-elevation="1"
         >
           <picture data-position="center">
             <img src={item.image} alt={item.title} />
           </picture>
+
+        </group>
+        <group
+        
+        data-animation-name="appear-bottom"
+        data-fill-mode="backwards"
+        data-animation-duration="3"
+        data-space="30"  data-radius="20" data-backdrop="10">
+        <text
+
+              data-weight="600"
+              data-text-size=""
+              data-wrap="wrap"
+              data-line="1.5"
+            >
+              {item.long_description}
+            </text>
         </group>
       </group>
     </group>

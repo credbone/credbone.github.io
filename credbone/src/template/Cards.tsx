@@ -41,6 +41,7 @@ const useOpenCustomModal = () => {
     key: string;
     title: string;
     description: string;
+    long_description:string;
     image: string;
   }) => {
     openModal(
@@ -211,7 +212,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
 
         >
           <group
-            data-ratio="1:2"
+            data-ratio="1:2/4:5"
             data-contain=""
             data-direction="column"
             data-wrap="no"
@@ -406,6 +407,8 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                 content={<ContentToolbar count={item.count} />}
                 data-space="5"
                 data-radius="15"
+              //  trigger="contextmenu"
+
               >
                 <group
                   data-space="10"

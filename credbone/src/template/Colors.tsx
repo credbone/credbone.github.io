@@ -9,9 +9,11 @@ import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
 import TextReveal from "../components/TextReveal";
 import StuckReporter from "../components/StuckReporter";
+import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 const Colors: React.FC = () => {
   const { openModal, closeModal } = useModal();
+  const { addSnackbar } = useSnackbar();
 
   const modalConfig = {
     "data-radius": "none",
@@ -50,18 +52,102 @@ const Colors: React.FC = () => {
         data-position="center"
         data-max-length="300"
       >
+
+
+        <group
+          data-position="bottom"
+          data-wrap="no"
+          //  data-height="60"
+          data-contain=""
+          data-direction="column"
+          data-gap="10"
+        >
+          <group
+          data-interactive=""
+          data-cursor="pointer"
+          data-over-color="neutral"
+            data-animation-name="appear-bottom"
+            data-fill-mode="backwards"
+            data-animation-duration="1.25"
+            data-radius="15"
+            data-space="30"
+            data-background={colorsValue + "-light"}
+            data-color={colorsValue + "-dark"}
+            data-direction="column"
+            onClick={() => handleColorCopy(colorsHexLight,`Light ${colorsName}`)}
+          >
+            <text data-opacity="30">Light</text>
+            <text data-text-transform="uppercase" data-weight="600">
+              <TextReveal text={colorsHexLight} duration={500}></TextReveal>
+            </text>
+          </group>
+
+          <group
+                    data-interactive=""
+                    data-cursor="pointer"
+                    data-over-color="neutral"
+            data-animation-name="appear-top"
+            data-fill-mode="backwards"
+            data-animation-duration="2.25"
+            data-index="2"
+            data-radius="15"
+            data-min-height="240"
+            data-space="30"
+            data-gap="30"
+            data-background={colorsValue}
+            data-color="white"
+            onClick={() => handleColorCopy(colorsHex,colorsName)}
+          >
+            <group data-direction="column">
+              <text data-wrap="wrap" data-text-size="36" data-weight="700">
+                {colorsName}
+              </text>
+              <text data-wrap="wrap" data-weight="600" data-line="20">
+                {colorsDescription}
+              </text>
+            </group>
+
+            <group data-direction="column" data-position="bottom">
+              <text data-opacity="30">Base</text>
+              <text data-text-transform="uppercase" data-weight="600">
+                <TextReveal text={colorsHex} duration={500}></TextReveal>
+              </text>
+            </group>
+          </group>
+
+          <group
+                    data-interactive=""
+                    data-cursor="pointer"
+                    data-over-color="neutral"
+            data-animation-name="appear-top"
+            data-fill-mode="backwards"
+            data-animation-duration="2.75"
+            data-radius="15"
+            data-space="30"
+            data-background={colorsValue + "-dark"}
+            data-color="white"
+            data-direction="column"
+            onClick={() => handleColorCopy(colorsHexDark,`Dark ${colorsName}`)}
+          >
+            <text data-opacity="30">Dark</text>
+            <text data-text-transform="uppercase" data-weight="600">
+              <TextReveal text={colorsHexDark} duration={500}></TextReveal>
+            </text>
+          </group>
+        </group>
+
         <StuckReporter>
           {(isSticky) => (
             <group
               data-duration=".125"
               data-space-horizontal={isSticky ? "30" : ""}
               data-space-vertical="10"
-              data-space-top="30"
-              data-sticky="top"
+              data-space-bottom="30"
+              data-sticky="bottom"
             >
               <Ripple>
                 <group
-                  data-animation-name="appear-bottom"
+                  data-animation-name="appear-top"
                   data-fill-mode="backwards"
                   data-animation-duration="3.25"
                   data-ink-color="neutral"
@@ -89,78 +175,38 @@ const Colors: React.FC = () => {
           )}
         </StuckReporter>
 
-        <group
-          data-position="bottom"
-          data-wrap="no"
-          //  data-height="60"
-          data-contain=""
-          data-direction="column"
-          data-gap="10"
-        >
-          <group
-            data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration="1.25"
-            data-radius="15"
-            data-space="30"
-            data-background={colorsValue + "-light"}
-            data-color={colorsValue + "-dark"}
-            data-direction="column"
-          >
-            <text data-opacity="30">Light</text>
-            <text data-text-transform="uppercase" data-weight="600">
-              <TextReveal text={colorsHexLight} duration={500}></TextReveal>
-            </text>
-          </group>
-
-          <group
-            data-animation-name="appear-top"
-            data-fill-mode="backwards"
-            data-animation-duration="2.25"
-            data-index="2"
-            data-radius="15"
-            data-min-height="240"
-            data-space="30"
-            data-gap="30"
-            data-background={colorsValue}
-            data-color="white"
-          >
-            <group data-direction="column">
-              <text data-wrap="wrap" data-text-size="36" data-weight="700">
-                {colorsName}
-              </text>
-              <text data-wrap="wrap" data-weight="600" data-line="20">
-                {colorsDescription}
-              </text>
-            </group>
-
-            <group data-direction="column" data-position="bottom">
-              <text data-opacity="30">Base</text>
-              <text data-text-transform="uppercase" data-weight="600">
-                <TextReveal text={colorsHex} duration={500}></TextReveal>
-              </text>
-            </group>
-          </group>
-
-          <group
-            data-animation-name="appear-top"
-            data-fill-mode="backwards"
-            data-animation-duration="3.25"
-            data-radius="15"
-            data-space="30"
-            data-background={colorsValue + "-dark"}
-            data-color="white"
-            data-direction="column"
-          >
-            <text data-opacity="30">Dark</text>
-            <text data-text-transform="uppercase" data-weight="600">
-              <TextReveal text={colorsHexDark} duration={500}></TextReveal>
-            </text>
-          </group>
-        </group>
       </group>
     </group>
   );
+
+  const showCopySnackbar = (colorName: string, colorTitle: string) => {
+    addSnackbar(
+      <group data-align="center" data-gap="10">
+<group data-height="15" data-length="15" data-radius="3" style={{ backgroundColor: `#${colorName}` }}></group>
+        <text data-ellipsis="">{colorTitle} Copied To Clipboard</text>
+      </group>,
+      2000,
+      "",
+      true
+    );
+  };
+
+  const handleColorCopy = (colorName: string,colorTitle: string) => {
+
+    showCopySnackbar(colorName,colorTitle);
+    
+    // Clipboard write with API fallback
+    navigator.clipboard?.writeText(`#${colorName}`).catch((error) => {
+      console.error("Failed to copy Color to clipboard:", error);
+      addSnackbar(
+        <text data-ellipsis="">Clipboard API not supported here</text>,
+        2000,
+        "color-source",
+        true
+      );
+    });
+  };
+
 
   const handleColorClick = (
     colorsName: string,
@@ -623,3 +669,5 @@ const Colors: React.FC = () => {
   );
 };
 export default Colors;
+
+

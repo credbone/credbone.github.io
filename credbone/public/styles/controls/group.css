@@ -36,7 +36,7 @@ group[data-type="grid"][data-grid-template="600"]{grid-template-columns: repeat(
 
 
 
-group[data-type="grid"][data-grid-template="200/150"]{grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));} 
+group[data-type="grid"][data-grid-template="200/140"]{grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));} 
 group[data-type="grid"][data-grid-template="180/140"]{grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));} 
 
 group[data-type="grid"][data-grid-template-columns="4"]{grid-template-columns:repeat(4, 1fr)}
@@ -55,7 +55,7 @@ group[data-type="grid"][data-grid-template="360"]
     {grid-template-columns: repeat(auto-fit, 100%);} 
 
 
-
+    group[data-type="grid"][data-grid-template="200/140"]{grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));} 
     group[data-type="grid"][data-grid-template="180/140"]{grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));} 
 
 }

@@ -54,7 +54,7 @@ export const BaseColors = [
   },
   { 
     value: "light-blue", 
-    name: "Light Blue", 
+    name: "Ocean Blue", 
     description: "Ocean blue, fresh and invigorating.", 
     hex: "039be5", 
     hexlight: "63ccff", 

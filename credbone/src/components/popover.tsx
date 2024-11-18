@@ -7,6 +7,7 @@ interface PopoverProps {
   placement?: "top" | "bottom" | "left" | "right" | "auto" | "mouse";
   hideOnScroll?: boolean;
   containerId?: string; // Optional custom container ID
+  trigger?: "click" | "contextmenu";
 }
 
 const Popover: React.FC<PopoverProps> = ({
@@ -15,6 +16,7 @@ const Popover: React.FC<PopoverProps> = ({
   placement = "top",
   hideOnScroll = true,
   containerId = "popover-container", // Default to "popover-container" if not specified
+  trigger = "click", // Default to "click"
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,6 +45,30 @@ const Popover: React.FC<PopoverProps> = ({
       setIsVisible(false);
     }
   };
+
+
+  const handleDocumentContextMenu = (event: MouseEvent) => {
+    if (
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target as Node) &&
+      childRef.current &&
+      !childRef.current.contains(event.target as Node)
+    ) {
+      setIsVisible(false);
+    }
+  };
+  
+  useEffect(() => {
+    if (isVisible) {
+      document.addEventListener("contextmenu", handleDocumentContextMenu); // Close on right-click outside
+    } else {
+      document.removeEventListener("contextmenu", handleDocumentContextMenu);
+    }
+  
+    return () => {
+      document.removeEventListener("contextmenu", handleDocumentContextMenu);
+    };
+  }, [isVisible]);
 
   const handleResize = () => {
     setIsVisible(false);
@@ -198,6 +224,7 @@ const Popover: React.FC<PopoverProps> = ({
   }, [isVisible, hideOnScroll]);
 
   const handlePopoverTrigger = (event: React.MouseEvent) => {
+    if (trigger === "contextmenu") event.preventDefault(); // Prevent default for right-click
     setClickPosition({ x: event.clientX, y: event.clientY });
     setIsVisible(!isVisible);
   };
@@ -213,7 +240,8 @@ const Popover: React.FC<PopoverProps> = ({
     <>
       {React.cloneElement(children as React.ReactElement, {
         ref: childRef,
-        onClick: handlePopoverTrigger,
+        onClick: trigger === "click" ? handlePopoverTrigger : undefined,
+        onContextMenu: trigger === "contextmenu" ? handlePopoverTrigger : undefined, // Add right-click support
       })}
 
       {isVisible &&
