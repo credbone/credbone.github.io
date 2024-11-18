@@ -101,17 +101,31 @@ const getModalContent = (iconName: string, iconLabel: string) => (
 const handleIconCopy = (iconName: string) => {
   setSelectedIcon(iconName);
   showCopySnackbar(iconName);
-  
-  // Clipboard write with API fallback
-  navigator.clipboard?.writeText(iconName).catch((error) => {
-    console.error("Failed to copy icon title to clipboard:", error);
+
+
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard
+      .writeText(iconName)
+      .then(() => {
+        showCopySnackbar(iconName); 
+      })
+      .catch(() => {
+        addSnackbar(
+          <text data-ellipsis="">Unable to copy icon to clipboard.</text>,
+          2000,
+          "icon-source",
+          true
+        );
+      });
+  } else {
+    // Fallback for unsupported Clipboard API on desktop
     addSnackbar(
-      <text data-ellipsis="">Clipboard API not supported here</text>,
+      <text data-ellipsis="">Clipboard not supported in this browser.</text>,
       2000,
       "icon-source",
       true
     );
-  });
+  }
 };
 
 const handleIconClick = (iconName: string, iconLabel: string) => {

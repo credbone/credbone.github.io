@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
@@ -10,6 +8,7 @@ import { useModal } from "../components/Modal";
 import TextReveal from "../components/TextReveal";
 import StuckReporter from "../components/StuckReporter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import { isDesktop } from "react-device-detect";
 
 const Colors: React.FC = () => {
   const { openModal, closeModal } = useModal();
@@ -45,27 +44,21 @@ const Colors: React.FC = () => {
       <group
         data-space="30"
         data-direction="column"
-        //  data-background="context"
-        // data-align="center"
-        // data-gap="10"
         data-align="start"
         data-position="center"
         data-max-length="300"
       >
-
-
         <group
           data-position="bottom"
           data-wrap="no"
-          //  data-height="60"
           data-contain=""
           data-direction="column"
           data-gap="10"
         >
           <group
-          data-interactive=""
-          data-cursor="pointer"
-          data-over-color="neutral"
+            data-interactive=""
+            data-cursor="pointer"
+            data-over-color="neutral"
             data-animation-name="appear-bottom"
             data-fill-mode="backwards"
             data-animation-duration="1.25"
@@ -74,7 +67,9 @@ const Colors: React.FC = () => {
             data-background={colorsValue + "-light"}
             data-color={colorsValue + "-dark"}
             data-direction="column"
-            onClick={() => handleColorCopy(colorsHexLight,`Light ${colorsName}`)}
+            onClick={() =>
+              handleColorCopy(colorsHexLight, `Light ${colorsName}`)
+            }
           >
             <text data-opacity="30">Light</text>
             <text data-text-transform="uppercase" data-weight="600">
@@ -83,9 +78,9 @@ const Colors: React.FC = () => {
           </group>
 
           <group
-                    data-interactive=""
-                    data-cursor="pointer"
-                    data-over-color="neutral"
+            data-interactive=""
+            data-cursor="pointer"
+            data-over-color="neutral"
             data-animation-name="appear-top"
             data-fill-mode="backwards"
             data-animation-duration="2.25"
@@ -96,7 +91,7 @@ const Colors: React.FC = () => {
             data-gap="30"
             data-background={colorsValue}
             data-color="white"
-            onClick={() => handleColorCopy(colorsHex,colorsName)}
+            onClick={() => handleColorCopy(colorsHex, colorsName)}
           >
             <group data-direction="column">
               <text data-wrap="wrap" data-text-size="36" data-weight="700">
@@ -116,9 +111,9 @@ const Colors: React.FC = () => {
           </group>
 
           <group
-                    data-interactive=""
-                    data-cursor="pointer"
-                    data-over-color="neutral"
+            data-interactive=""
+            data-cursor="pointer"
+            data-over-color="neutral"
             data-animation-name="appear-top"
             data-fill-mode="backwards"
             data-animation-duration="2.75"
@@ -127,7 +122,7 @@ const Colors: React.FC = () => {
             data-background={colorsValue + "-dark"}
             data-color="white"
             data-direction="column"
-            onClick={() => handleColorCopy(colorsHexDark,`Dark ${colorsName}`)}
+            onClick={() => handleColorCopy(colorsHexDark, `Dark ${colorsName}`)}
           >
             <text data-opacity="30">Dark</text>
             <text data-text-transform="uppercase" data-weight="600">
@@ -174,7 +169,6 @@ const Colors: React.FC = () => {
             </group>
           )}
         </StuckReporter>
-
       </group>
     </group>
   );
@@ -182,7 +176,12 @@ const Colors: React.FC = () => {
   const showCopySnackbar = (colorName: string, colorTitle: string) => {
     addSnackbar(
       <group data-align="center" data-gap="10">
-<group data-height="15" data-length="15" data-radius="3" style={{ backgroundColor: `#${colorName}` }}></group>
+        <group
+          data-height="15"
+          data-length="15"
+          data-radius="3"
+          style={{ backgroundColor: `#${colorName}` }}
+        ></group>
         <text data-ellipsis="">{colorTitle} Copied To Clipboard</text>
       </group>,
       2000,
@@ -191,22 +190,35 @@ const Colors: React.FC = () => {
     );
   };
 
-  const handleColorCopy = (colorName: string,colorTitle: string) => {
-
-    showCopySnackbar(colorName,colorTitle);
-    
-    // Clipboard write with API fallback
-    navigator.clipboard?.writeText(`#${colorName}`).catch((error) => {
-      console.error("Failed to copy Color to clipboard:", error);
-      addSnackbar(
-        <text data-ellipsis="">Clipboard API not supported here</text>,
-        2000,
-        "color-source",
-        true
-      );
-    });
+  const handleColorCopy = (colorName: string, colorTitle: string) => {
+    if (isDesktop) {
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard
+          .writeText(`#${colorName}`)
+          .then(() => {
+            showCopySnackbar(colorName, colorTitle); // Show success only on successful copy
+          })
+          .catch(() => {
+            addSnackbar(
+              <text data-ellipsis="">Unable to copy to clipboard.</text>,
+              2000,
+              "color-source",
+              true
+            );
+          });
+      } else {
+        // Explicit "else" for unsupported Clipboard API
+        addSnackbar(
+          <text data-ellipsis="">
+            Clipboard not supported in this browser.
+          </text>,
+          2000,
+          "color-source",
+          true
+        );
+      }
+    }
   };
-
 
   const handleColorClick = (
     colorsName: string,
@@ -612,10 +624,6 @@ const Colors: React.FC = () => {
             data-space="5"
             data-radius="15"
             data-gap="15"
-
-            //data-interactive=""
-
-            //  data-height="240"
           >
             <group
               data-direction="column"
@@ -629,7 +637,6 @@ const Colors: React.FC = () => {
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
-                //data-color={colors.value}
               >
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
@@ -648,7 +655,6 @@ const Colors: React.FC = () => {
               data-interact=""
               data-position="bottom"
               data-wrap="no"
-              //  data-height="60"
               data-contain=""
               data-radius="10"
             >
@@ -669,5 +675,3 @@ const Colors: React.FC = () => {
   );
 };
 export default Colors;
-
-
