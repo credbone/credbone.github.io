@@ -474,8 +474,12 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-ratio="2:1"]{aspect-ratio: 2/1;}
 [data-ratio="2:3"]{aspect-ratio: 2/3;}
 
+[ data-ratio="1:2/4:5"]{aspect-ratio:1/2} 
 
-
+@media (max-width: 600px)
+{
+  [ data-ratio="1:2/4:5"]{aspect-ratio:4/5} 
+}
 
 
 
