@@ -140,12 +140,17 @@
 
 
   .button.large {
-        --button-radius: 5px;
+        --button-radius: 10px;
           --button-gap: 10px;
           --button-padding: 10px;
           --button-size: 40px;
 
    }
+
+
+
+
+   [data-radius="0"].button { --button-radius: 0px;}
   
   .button[disabled], 
     .button[data-disabled] 
