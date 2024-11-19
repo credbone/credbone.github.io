@@ -45,6 +45,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLElement> {
   wide?: boolean;
   position?: string;
   type?: string;
+  toggleState?: boolean,
 }
 
 const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
@@ -66,6 +67,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
       iconMicro = false,
       large = false,
       //   material = false,
+      toggleState = false,
       mini = false,
       micro = false,
       onClick,
@@ -94,7 +96,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
   ) => {
     const refObj = useRef(null);
     const [iconCode, fill] = icon.split(".");
-    const [addToggleClassNames, setAddToggleClassNames] = useState(false);
+    const [addToggleClassNames, setAddToggleClassNames] = useState(toggleState);
     let iconProps = null;
     if (fill === "fill") {
       iconProps = { fill: "" };

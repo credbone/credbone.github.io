@@ -260,6 +260,7 @@ const Colors: React.FC = () => {
           data-wrap="wrap"
           data-ellipsis=""
           // data-color="main"
+          data-opacity="10"
         >
           Color System
         </text>

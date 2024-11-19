@@ -603,6 +603,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               <group
                 data-contain=""
                 data-space="15"
+                data-space-horizontal="30"
                 data-interactive=""
                 data-cursor="pointer"
                 data-radius="10"
@@ -611,7 +612,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-direction="column"
                 data-background="secondary"
                 data-color="secondary-text"
-                data-weight="600"
+                data-weight="700"
                 onClick={() => reset()}
               >
                 <text>Reset Form</text>

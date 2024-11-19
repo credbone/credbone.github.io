@@ -115,7 +115,7 @@ function Resume() {
               </text>
               <dot data-margin="10"></dot>
               <text data-user-select="text" data-wrap="wrap">
-                February 2014 - Present
+                February 2014 - November 2024
               </text>
             </text>
 
