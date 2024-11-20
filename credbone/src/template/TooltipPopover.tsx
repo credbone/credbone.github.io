@@ -308,6 +308,52 @@ const TooltipPopover: React.FC = () => {
           </group>
         </group>
 
+
+
+{/* <group
+
+
+data-max-length="800"
+data-radius="15"
+
+data-border=""
+data-contain=""
+
+>
+
+<group
+
+   data-background="context"
+   data-dark=""
+
+   data-text-size="14"
+   data-user-select="text"
+
+
+>
+
+
+<pre data-scroll=""    data-space="30" >
+  <code>
+{`<Tooltip content="I am a tooltip" placement="right">
+  <button>Hover over me</button>
+</Tooltip>`}
+  </code>
+</pre>
+
+
+</group>
+
+<group     data-border=""  data-background="context"
+
+   data-space="30">
+<Tooltip content="I am a tooltip" placement="right">
+  <button data-space="15" data-radius="10">Hover over me</button>
+</Tooltip>
+</group>
+
+</group> */}
+
         <group
           data-column-gap="15"
           data-align="start"

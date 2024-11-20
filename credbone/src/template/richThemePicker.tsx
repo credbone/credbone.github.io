@@ -59,6 +59,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                 }
               >
                 <group
+                 data-group-end={c.separator ? "true":""}
                   key={index}
                   data-shrink="no"
                   data-interactive=""
@@ -129,6 +130,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                 <group
                   key={index}
                   data-name="theme-item"
+                  data-group-end={c.separator ? "true":""}
                   data-shrink="no"
                   data-interactive=""
                   data-width="auto"

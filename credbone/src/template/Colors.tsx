@@ -294,7 +294,9 @@ const Colors: React.FC = () => {
             data-justify="start"
             data-width="auto"
             data-space="30"
-            data-background="main-lighter"
+            data-background="white"
+            data-gradient="main-lighter"
+            data-color="main-darker"
           >
             <text data-weight="700">Lighter</text>
             <text data-ellipsis="" data-light="">
@@ -312,7 +314,9 @@ const Colors: React.FC = () => {
             data-justify="start"
             data-width="auto"
             data-space="30"
-            data-background="main-light"
+            data-background="white"
+            data-gradient="main-light"
+                        data-color="main-darker"
           >
             <text data-weight="700">Light</text>
             <text data-ellipsis="" data-light="">
@@ -399,6 +403,7 @@ const Colors: React.FC = () => {
             data-space="30"
             data-background="main-dark"
             data-color="white"
+            
           >
             <text data-weight="700">Dark</text>
             <text data-ellipsis="" data-light="">
@@ -449,7 +454,9 @@ const Colors: React.FC = () => {
             data-justify="start"
             data-width="auto"
             data-space="30"
-            data-background="secondary-lighter"
+            data-background="white"
+            data-gradient="secondary-lighter"
+            data-color="secondary-darker"
           >
             <text data-weight="700">Secondary Lighter</text>
             <text data-ellipsis="" data-light="">
@@ -468,7 +475,9 @@ const Colors: React.FC = () => {
             data-justify="start"
             data-width="auto"
             data-space="30"
-            data-background="secondary-light"
+            data-background="white"
+            data-gradient="secondary-light"
+            data-color="secondary-darker"
           >
             <text data-weight="700">Secondary Light</text>
             <text data-ellipsis="" data-light="">

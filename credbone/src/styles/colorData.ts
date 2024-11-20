@@ -10,7 +10,7 @@ export const colors = [
   { code: "#db6b5d", name: "Red", description: "A bold red color." },
   { code: "#ff705e", name: "Pink", description: "A soft pink shade." },
 
-  { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade." },
+  { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade.",separator:"true"  },
   { code: "#03dac5", name: "Mint", description: "A refreshing greenish-blue color." },
   { code: "#e0e721", name: "Yellow", description: "A bright, neon yellow hue." },
 
@@ -18,22 +18,35 @@ export const colors = [
 ];
 
 export const seccolors = [
-  { code: "#f9dd6c", name: "Yellow", description: "A light yellow shade." },
-  { code: "#023047", name: "Dark Teal", description: "A dark greenish-blue color." },
-  { code: "#388174", name: "Sea Green", description: "A greenish-blue color." },
-  { code: "#49c5b6", name: "Turquoise", description: "A vibrant turquoise shade." },
-  { code: "#a9d1d5", name: "Sky Blue", description: "A light blue color." },
-  { code: "#8ecae6", name: "Light Blue", description: "A pale blue shade." },
-  { code: "#219ebc", name: "Cyan", description: "A cyan color." },
-  { code: "#3983dd", name: "Cerulean", description: "A bright blue color." },
-  { code: "#495de6", name: "Royal Blue", description: "A rich blue hue." },
-  { code: "#7a55e7", name: "Violet", description: "A purple shade with blue tones." },
-  { code: "#a59cc7", name: "Lavender", description: "A soft purple shade." },
-  { code: "#e1ddeb", name: "Pale Lavender", description: "A light lavender hue." },
-  { code: "#f5dde1", name: "Light Pink", description: "A light pink shade." },
-  { code: "#df8c97", name: "Salmon", description: "A salmon pink color." },
 
-  { code: "#ffb703", name: "Gold", description: "A golden color." },
-  { code: "#ff7330", name: "Orange", description: "A bright orange hue." },
-  { code: "#f9473f", name: "Crimson", description: "A deep red color." },
+  { "code": "#49c5b6", "name": "Turquoise", "description": "A vibrant turquoise shade." },
+  { "code": "#354F52", "name": "Forest Slate", "description": "A deep, earthy green." },
+  { "code": "#2F3E46", "name": "Deep Onyx", "description": "A rich, dark charcoal." },
+  { "code": "#FEFFBE", "name": "Sunny Pearl", "description": "A soft, pale yellow." },
+  { "code": "#EBD494", "name": "Golden Sand", "description": "A warm, creamy beige.", "separator": "true" },
+
+  { "code": "#C97B84", "name": "Blush Rose", "description": "A muted rose pink." },
+  { "code": "#A85751", "name": "Rustic Red", "description": "A bold red with earthy tones." },
+  { "code": "#7D2E68", "name": "Royal Plum", "description": "A deep, regal purple." },
+  { "code": "#251351", "name": "Midnight Violet", "description": "A dark, mysterious violet." },
+  { "code": "#040926", "name": "Deep Space", "description": "An intense, dark blue.", "separator": "true" },
+
+  { "code": "#AA562C", "name": "Copper", "description": "A warm reddish-brown." },
+  { "code": "#312D3B", "name": "Charcoal", "description": "A deep gray with purple." },
+  { "code": "#2D3E75", "name": "Midnight Blue", "description": "A very dark, muted blue." },
+  { "code": "#4568B3", "name": "Steel Blue", "description": "A soft grayish blue." },
+  { "code": "#709CD0", "name": "Sky Blue", "description": "A light, muted blue.", "separator": "true" },
+
+  { "code": "#D1FAFF", "name": "Crystal Sky", "description": "A soft, icy blue." },
+  { "code": "#9BD1E5", "name": "Aqua Breeze", "description": "A fresh blue-green tone." },
+  { "code": "#6A8EAE", "name": "Steel Blue", "description": "A muted blue with gray." },
+  { "code": "#57A773", "name": "Emerald Leaf", "description": "A vibrant, lush green." },
+  { "code": "#157145", "name": "Pine Forest", "description": "A rich, deep green.", "separator": "true" },
+
+  { "code": "#ffb703", "name": "Gold", "description": "A warm golden tone." },
+  { "code": "#ff7330", "name": "Orange", "description": "A bold orange hue." },
+  { "code": "#f9473f", "name": "Crimson", "description": "A deep, rich red." }
 ];
+
+
+

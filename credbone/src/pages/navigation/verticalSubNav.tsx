@@ -207,9 +207,12 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                     data-animation-name="appear-bottom"
                     data-fill-mode="backwards"
                     data-animation-duration="1.25"
-                    data-length="600"
+                    data-length="700"
                   >
-                    <group data-gap="5" data-direction="column">
+                    <group data-gap="5" 
+                    data-wrap="wrap"
+                    data-direction="column"
+                    >
                       <RichThemePicker />
                     </group>
                   </group>
@@ -228,13 +231,14 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   data-space="15"
                 >
                   <text data-weight="700" data-ellipsis="" >Change Theme</text>
+{/* 
+                  <group data-interact="" data-length="50"  data-display="none" data-position="right" data-radius="3"  data-contain="">
 
-                  {/* <group data-interact="" data-length="30"  data-display="none" data-position="right" data-radius="5"  data-contain=""   >
-
-                  <group data-length="15" data-height="15"  data-justify="center" data-background="main" data-align="center"></group>
-<group data-length="15" data-height="15"  data-justify="center" data-background="main-dark" data-align="center"></group>
-<group data-length="15" data-height="15"  data-justify="center" data-background="secondary" data-align="center"></group>
-<group data-length="15" data-height="15"  data-justify="center" data-background="secondary-dark" data-align="center"></group>
+<group data-background="white" data-length="10" data-height="20"><group data-length="10" data-height="20"  data-justify="center" data-background="main-light" data-align="center"></group></group>
+<group data-length="10" data-height="20"  data-justify="center" data-background="main" data-align="center"></group>
+<group data-length="10" data-height="20"  data-justify="center" data-background="main-dark" data-align="center"></group>
+<group data-length="10" data-height="20"  data-justify="center" data-background="secondary-dark" data-align="center"></group>
+<group data-length="10" data-height="20"  data-justify="center" data-background="secondary" data-align="center"></group>
 
 </group> */}
                 </group>
