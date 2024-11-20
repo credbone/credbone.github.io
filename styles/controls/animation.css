@@ -79,7 +79,10 @@
 [data-animation-duration="6.5"] {animation-duration: 0.65s;} /* Added for 6.5 */
 [data-animation-duration="6.75"] {animation-duration: 0.675s;} /* Added for 6.75 */
 [data-animation-duration="7"] {animation-duration: 0.7s;} /* Added for 7 */
-
+[data-animation-duration="7.25"] {animation-duration: 0.725s;} /* Added for 7.25 */
+[data-animation-duration="7.5"] {animation-duration: 0.75s;} /* Added for 7.5 */
+[data-animation-duration="7.75"] {animation-duration: 0.775s;} /* Added for 7.75 */
+[data-animation-duration="8"] {animation-duration: 0.8s;} /* Added for 8 */
 
 
 
