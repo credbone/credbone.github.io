@@ -67,12 +67,12 @@ data-width="auto"
         >
 
           <group data-contain="" data-gap="1"  data-width="auto" data-direction="column">
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large primary text="Primary" /> </group>
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large secondary text="Secondary" /> </group>
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large accent text="Accent" /> </group>
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large outline text="Outline" textFirst={false} /> </group>
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large highlight text="Highlighted"></Button> </group>
-            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="160" large text="Simple Button" /> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large primary text="Primary" /> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large secondary text="Secondary" /> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large accent text="Accent" /> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large outline text="Outline" textFirst={false} /> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large highlight text="Highlighted"></Button> </group>
+            <group data-width="auto" data-border="" data-space-vertical="30"> <Button data-space-horizontal="30" data-min-length="150" large text="Simple Button" /> </group>
           </group>
 
 
@@ -118,7 +118,7 @@ data-width="auto"
             >
 
 
-              <group data-align="center" data-gap="30" data-border="" data-space="30" data-wrap="no"> <Tooltip content="Hamburger to Close"><group data-width="auto"><Button mini primary large toggleClassName="open" > <icon> <SvgHamburger /> </icon> </Button></group></Tooltip><separator data-vertical="" data-height="fit"></separator> <group data-contain=""><text data-wrap="wrap" data-length="240" data-line="1.5" data-opacity="50">Feature allows you to pass and toggle custom class names via props</text></group> </group>
+              <group data-align="center" data-gap="30" data-border="" data-space="30" data-wrap="no"> <Tooltip content="Hamburger to Close"><group data-width="auto"><Button mini primary large toggleClassName="open" > <icon> <SvgHamburger /> </icon> </Button></group></Tooltip><separator data-vertical="" data-height="fit"></separator> <group data-contain=""><text data-wrap="wrap" data-length="240" data-line="1.5" data-opacity="50">Feature allows to pass and toggle custom class names via props</text></group> </group>
               <group data-align="center" data-gap="30" data-border="" data-space="30" data-wrap="no"> <Tooltip content="Hamburger to Left Arrow"><group data-width="auto"><Button mini large toggleClassName="open" toggleState={true}> <icon> <SvgHamburgerToLeft/> </icon> </Button> </group></Tooltip></group>
               <group data-align="center" data-gap="30" data-border="" data-space="30" data-wrap="no"> <Tooltip content="Hamburger to Right Arrow"><group data-width="auto"><Button mini large toggleClassName="open" toggleState={true}> <icon> <SvgHamburgerToRight/> </icon> </Button> </group></Tooltip></group>
               <group data-align="center" data-gap="30" data-border="" data-space="30" data-wrap="no"> <Tooltip content="Plus to Minus"><group data-width="auto"><Button mini large toggleClassName="open"> <icon> <SvgPlus /> </icon> </Button> </group></Tooltip></group>
@@ -165,20 +165,23 @@ data-width="auto"
             <group data-width="auto" data-border="" data-space-vertical="30"> 
               
               <group data-wrap="no" data-contain="" data-radius="10" data-width="auto" data-background="main" data-color="main-text">
-              <Button data-radius="0" data-space-horizontal="30" large primary text="Primary" /> 
+              <Button data-radius="0" data-space-horizontal="30" large primary text="Menu" /> 
               <separator data-vertical="" data-height="fit"></separator>
               <Button data-radius="0" mini large primary icon="apps" />
               </group>
                </group>
 
 
-               <group data-width="auto" data-border="" data-space-vertical="30"> 
+               <group data-width="auto" data-border="" data-space-vertical="30" data-wrap="no" data-gap="30" data-align="start"> 
               
-              <group data-wrap="no" data-contain="" data-radius="10" data-width="auto" data-background="main" data-color="main-text">
-              <Button data-radius="0"  data-space-horizontal="30" primary large highlight text="Print" /> 
-              <separator data-vertical="" data-height="fit"></separator>
+              <group data-wrap="no" data-contain="" data-radius="10" data-width="auto" data-background="main" data-color="main-text" data-shrink="no">
+              <Button data-radius="0"  data-space-horizontal="30" primary large text="Print" /> 
+              <separator data-vertical="" data-height="40"></separator>
               <Button data-radius="0" mini large primary icon="scan" />
               </group>
+
+              <separator data-vertical="" data-height="fit"></separator> <group data-contain=""><text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Can be Combined together in a single container</text></group>
+
                </group>
 
 

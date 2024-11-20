@@ -355,6 +355,7 @@ text[data-width="auto"]{width: initial;}
 [data-min-length='80']{min-width:80px;}
 [data-min-length='120']{min-width:120px;}
 [data-min-length='140']{min-width:140px;}
+[data-min-length='150']{min-width:150px;}
 [data-min-length='160']{min-width:160px;}
 [data-min-length='180']{min-width:180px;}
 [data-min-length='200']{min-width:200px;}

@@ -95,24 +95,25 @@ const CheckboxAndSwitchers: React.FC = () => {
           </text>
         </group>
 
-        <group data-gap="15">
+        <group data-gap="30">
           <group
-            data-max-length="800"
+           data-width="auto"
             data-contain=""
             data-radius="15"
-             data-border=""
+
         //    data-elevation="2-main-color"
              data-index="2"
           >
             <group
               data-background="main"
               data-space="30"
-              data-gap="20"
+              data-gap="30"
               data-color="main-text"
               data-wrap="no"
               data-contain=""
              
-              data-direction="column"
+             // data-direction="column"
+           
             >
               <group data-height="60" data-length="60" data-contain="">
                 <group
@@ -126,16 +127,18 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
 
+<separator data-vertical="" data-height="fit"></separator>
 
-              <group data-direction="column" >
+              <group data-direction="column" data-contain="" >
 
           <text
             data-wrap="wrap"
-            data-length="400"
+            data-length="300"
             data-line="1.5"
             data-light=""
+            data-weight="600"
           >
-        This checkbox is adaptable to various backgrounds, and each element can also be configured individually.
+        This checkbox is adaptable to various backgrounds, each element can be configured individually.
           </text>
         </group>
 
@@ -146,30 +149,17 @@ const CheckboxAndSwitchers: React.FC = () => {
 
           <group             data-max-length="800"
             data-contain=""
-            data-radius="15"
-             data-border="" data-type="grid" data-grid-template="180" data-gap="1">
-              <group data-direction="column" data-wrap="no" data-border="">
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                  data-background="context"
-                  data-color="default"
-                >
-                  <Checkbox
-                    name="1"
-                    label="Classic Checkbox"
-                    checkbox
-                    control={control}
-                  />
-                </group>
+           
+              data-type="grid" data-grid-template="180" data-gap="1">
+              <group data-direction="column" data-wrap="no" data-gap="1">
+                <group data-border=""  data-space="20" data-space-vertical="15"  data-color="default" > <Checkbox name="1" label="Classic Checkbox" checkbox control={control} /> </group>
 
                 <group
                   data-width="auto"
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Tooltip content="No Label Here" placement="right">
                     <group data-width="auto">
@@ -183,7 +173,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox
                     name="2"
@@ -195,12 +185,12 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
 
-              <group data-wrap="no" data-direction="column">
+              <group data-wrap="no" data-direction="column" data-gap="1">
                 <group
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox
                     name="3"
@@ -214,7 +204,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox name="11" simple control={control} />
                 </group>
@@ -223,7 +213,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox
                     name="5"
@@ -235,12 +225,12 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
 
-              <group data-wrap="no" data-direction="column">
+              <group data-wrap="no" data-direction="column" data-gap="1">
                 <group
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                  
                 >
                   <Checkbox
                     name="6"
@@ -253,7 +243,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox name="9" minimal control={control} />
                 </group>
@@ -262,7 +252,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Checkbox
                     name="7"
@@ -274,12 +264,12 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
 
-              <group data-wrap="no" data-direction="column">
+              <group data-wrap="no" data-direction="column" data-gap="1">
                 <group
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Radio
                     name="8"
@@ -293,7 +283,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                
                 >
                   <Radio
                     name="8"
@@ -307,7 +297,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                   data-border=""
                   data-space="20"
                   data-space-vertical="15"
-                  data-background="context"
+                 
                 >
                   <Radio
                     name="8"
@@ -330,7 +320,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             <group
               data-direction="column"
               data-radius="15"
-             data-border=""
+           
               data-contain=""
               
             >
