@@ -4,6 +4,8 @@
   import Ripple from "../components/Ripple";
   import TextReveal from "../components/TextReveal";
   import { IconSearch } from "../components/icon/credIcons";
+import { useModal } from "../components/Modal";
+import SearchComponent from "../pages/search/searchComponent";
 
 
 
@@ -43,7 +45,20 @@
   ];
 
   const Components: React.FC = () => {
+    const { openModal, closeModal } = useModal(); 
     const [message, setMessage] = useState<string>("");
+
+    const modalConfig = {
+      "data-radius": "none",
+      "data-margin": "0",
+      "data-background": "none",
+      "data-elevation": "none",
+      "data-width": "fit",
+      "data-scroll": "",
+      "data-min-height": "fit",
+      "data-contain": "scroll",
+    };
+
 
     useEffect(() => {
       const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
@@ -130,22 +145,62 @@
                     </text>
                   </Link>
                 </Ripple>
-                {/* <separator data-vertical="" data-height="20"></separator>
+                <separator data-vertical="" data-height="20"></separator>
 
-  <group
+                <Ripple>
+                  <group
+                    data-contain=""
+                    data-drag="none"
+                    data-type="group"
+                    data-cursor="pointer"
+                    data-interactive=""
+                    data-width="auto"
+                    data-background="highlight"
+                    data-space="15"
+                    data-radius="15"
+                    onClick={() =>
+                      openModal(
+                        "modal-2",
+                        "Customized Popup",
+                        <group
+                          data-min-height="fit"
+                          data-justify="center"
+                          data-align="start"
+                          data-space="30"
+                          data-contain="scroll"
+                        >
+                          <group
+                            data-top="0"
+                            data-position="absolute"
+                            data-height="fit"
+                            //   data-background="main-background-top"
+                            onClick={() => closeModal("modal-2")}
+                          ></group>
 
-  data-contain=""
-  data-drag="none"
-  data-type="group"
-
-  data-interactive=""
-  data-width="auto"
-  data-background="highlight"
-  data-space="15"
-  data-radius="15"
-  >
-  <IconSearch></IconSearch>
-  </group> */}
+                          <group
+                            data-max-length="600"
+                            data-space="20"
+                            data-border=""
+                            data-background="context"
+                            data-radius="20"
+                            data-elevation="2"
+                            data-animation-name="appear-top"
+                            data-fill-mode="backwards"
+                            data-animation-duration="2"
+                          >
+                            <SearchComponent />
+                          </group>
+                        </group>,
+                        false,
+                        false,
+                        modalConfig,
+                        0
+                      )
+                    }
+                  >
+                    <IconSearch></IconSearch>
+                  </group>
+                </Ripple>
               </group>
             </group>
           </group>
@@ -155,6 +210,7 @@
             data-border="no"
             data-background="none"
             data-align="start"
+            data-gap="15"
           >
             <group
               data-gap="15"
@@ -165,49 +221,42 @@
               {linksArray.map((link, index) => (
                 <Ripple key={index}>
                   <Link
-                    //data-index={link.color ? "" : "2"}
-                //    data-react="scale"
                     data-drag="none"
                     to={link.to}
                     key={index}
                     data-interactive=""
                     data-width="auto"
                     data-type="group"
-                  
                     data-contain=""
                     data-min-height="300"
-                    // data-border={link.color ? "none" : "outline"}
                     data-radius="20"
-                    // data-space="5"
-                  data-border="outline"
-                //   data-color={link.color ? link.color + "-text" : ""}
-                      //    data-row-end={link.long ? "2" : ""}
+                    data-border="outline"
                     data-direction="column"
                     data-wrap="no"
-                    //       data-justify="center"
                   >
-
-
-
                     <group
                       data-index="1"
                       data-direction="column"
                       data-gap="15"
                       data-space="30"
-                      //   data-align="center"
-                      //   data-text-align="center"
                       data-height="fit"
                       data-wrap="no"
-                   //   data-position="bottom"
                     >
-                      <text data-text-size="72" data-height="50" data-contain="" data-weight="100" data-opacity="10"> 0{index + 1}</text>
-
-
+                      <text
+                        data-text-size="72"
+                        data-height="50"
+                        data-contain=""
+                        data-weight="100"
+                        data-opacity="10"
+                      >
+                        {" "}
+                        0{index + 1}
+                      </text>
 
                       <text
                         data-text-size="medium"
                         data-weight="700"
-                       // data-wrap="wrap"
+                        // data-wrap="wrap"
                         data-wrap="preline"
                         data-ellipsis=""
                       >
@@ -219,19 +268,80 @@
                         data-line="1.5"
                         data-max-length="300"
                         data-opacity="60"
-                      
                       >
                         {link.description}
                       </text>
                       {/* <group  data-position="bottom" data-height="5" data-radius="10"   data-background={link.color ? link.color : "adaptive-gray"}></group> */}
                     </group>
-
-
-
                   </Link>
                 </Ripple>
               ))}
             </group>
+
+
+{/* <group data-gap="15">
+
+
+<group data-radius="20" data-border="outline" data-space="30" data-fit='3'>
+              <group
+                data-index="1"
+                data-direction="column"
+                data-gap="15"
+                data-height="fit"
+                data-wrap="no"
+              >
+
+                <text
+                  data-text-size="48"
+                  data-weight="700"
+                  data-wrap="preline"
+                  data-ellipsis=""
+                >
+                 Buttons
+                </text>
+                <text
+                  data-ellipsis=""
+                  data-wrap="wrap"
+                  data-line="1.5"
+                  data-max-length="300"
+                  data-opacity="60"
+                >
+                  Allow users to take actions, and make choices, with a single tap.
+                </text>
+              </group>
+            </group>
+
+            <group data-radius="20" data-border="outline" data-space="30" data-fit='1.5'>
+              <group
+                data-index="1"
+                data-direction="column"
+                data-gap="15"
+                data-height="fit"
+                data-wrap="no"
+              >
+
+                <text
+                  data-text-size="48"
+                  data-weight="700"
+                  data-wrap="preline"
+                  data-ellipsis=""
+                >
+                 Navigation & Tabs
+                </text>
+                <text
+                  data-ellipsis=""
+                  data-wrap="wrap"
+                  data-line="1.5"
+                  data-max-length="300"
+                  data-opacity="60"
+                >
+                  Beautifully crafted and carefully designed icons.
+                </text>
+              </group>
+            </group>
+
+</group> */}
+
           </group>
         </group>
       </group>
