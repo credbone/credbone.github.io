@@ -35,12 +35,8 @@ import SearchComponent from "../pages/search/searchComponent";
     "hi",
     "hello",
     "hey",
-    "howdy",
     "what's new?",
-    "yo",
-    "sup",
     "hey there",
-    "how's it going?",
     "what's up?",
   ];
 
@@ -179,16 +175,17 @@ import SearchComponent from "../pages/search/searchComponent";
 
                           <group
                             data-max-length="600"
-                            data-space="20"
+                            data-space="10"
                             data-border=""
                             data-background="context"
-                            data-radius="20"
+                            data-radius="15"
+                            data-gap="10"
                             data-elevation="2"
                             data-animation-name="appear-top"
                             data-fill-mode="backwards"
                             data-animation-duration="2"
                           >
-                            <SearchComponent />
+                            <SearchComponent showRandomTagsByDefault={false}/>
                           </group>
                         </group>,
                         false,
