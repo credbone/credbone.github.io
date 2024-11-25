@@ -424,10 +424,16 @@
 [data-stroke="secondary"] { stroke: var(--secondary-color) }
 
 [data-fill="main"] { fill: var(--main-color) }
-[data-fill="main-lighter"] { fill: var(-main-lighter) }
-[data-fill="main-text"] { fill: var(--main-color-text) }
-[data-fill="secondary"] { fill: var(--secondary-color) }
+[data-fill="main-lighter"] { fill: var(--main-color-lighter) }
+[data-fill="main-dark"] { fill: var(--main-color-dark) }
+[data-fill="main-darker"] { fill: var(--main-color-darker) }
 
+[data-fill="main-text"] { fill: var(--main-color-text) }
+
+[data-fill="secondary"] { fill: var(--secondary-color) }
+[data-fill="secondary-lighter"] { fill: var(--secondary-color-lighter) }
+[data-fill="secondary-dark"] { fill: var(--secondary-color-dark) }
+[data-fill="secondary-darker"] { fill: var(--secondary-color-darker) }
 
 
 [data-background="none"]{background-color:none}

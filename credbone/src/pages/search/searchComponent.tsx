@@ -126,6 +126,8 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={handleSearch}
+                    autoFocus={!showRandomTagsByDefault}
+                   
                   />
 
                   {searchQuery && (

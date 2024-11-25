@@ -46,6 +46,8 @@ export const IconHome: React.FC<IconProps> = ({ fill = false, ...restProps }) =>
   );
 };
 
+
+
 export const IconShare: React.FC<IconProps> = (props) => {
   return (
     <Icon {...props}>
@@ -116,6 +118,18 @@ export const IconSettings: React.FC<IconProps> = ({ fill = false, ...restProps }
     </Icon>
   );
 };
+
+
+
+export const IconFold: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      
+  <path fill="currentColor" d="m6,17.59l6,2.4V6.39l-6-2.4v13.6Zm-.75,1.85c-.38-.15-.69-.39-.91-.73s-.34-.71-.34-1.13V3.99c0-.55.2-1.02.59-1.41s.86-.59,1.41-.59l6.7,2.53c.38.15.7.4.94.74s.36.72.36,1.14v13.6c0,.72-.29,1.27-.88,1.66-.58.39-1.21.45-1.88.19l-6-2.4Zm6.75-.45v-2h6V3.99H6V1.99h12c.55,0,1.02.2,1.41.59s.59.86.59,1.41v13c0,.55-.2,1.02-.59,1.41s-.86.59-1.41.59h-6Zm-6-1.4V3.99v13.6Z" />
+          </Icon>
+  );
+};
+
 
 
 

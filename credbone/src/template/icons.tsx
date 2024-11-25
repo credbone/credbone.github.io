@@ -479,6 +479,9 @@ const Icons: React.FC = () => {
                     <text data-ellipsis="">Star</text>
                   </group>
                 </group>
+
+
+
               </group>
             </group>
           </group>
