@@ -151,6 +151,9 @@
 
 
    [data-radius="0"].button { --button-radius: 0px;}
+   [data-radius="5"].button { --button-radius: 5px;}
+   [data-radius="10"].button { --button-radius: 10px;}
+   [data-radius="15"].button { --button-radius: 15px;}
   
   .button[disabled], 
     .button[data-disabled] 
