@@ -357,6 +357,10 @@ text[data-width="auto"]{width: initial;}
 [data-max-length='1600']{max-width:1600px;}
 
 
+[data-max-length='1120'] {
+  max-width: 1120px;
+}
+
 [data-min-length='80']{min-width:80px;}
 [data-min-length='120']{min-width:120px;}
 [data-min-length='140']{min-width:140px;}
