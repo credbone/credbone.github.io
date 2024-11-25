@@ -58,7 +58,7 @@ const InputsAndForms: React.FC = () => {
               >
                 Password<br />Change
               </text>
-              <text data-wrap="wrap" data-line="1.5">
+              <text data-wrap="wrap" data-line="1.5" data-opacity="40">
                 Your password is Case Sensitive. It should contain a minimum of
                 8 characters and at least one each of Uppercase, Lowercase, and
                 Special characters
@@ -118,10 +118,10 @@ const InputsAndForms: React.FC = () => {
             <space data-height="10"></space>
 
             <group data-gap="10" data-type="grid">
-              <Button large highlight data-shrink="no">
+              <Button data-radius="5" large highlight data-shrink="no">
                 <text>Cancel</text>
               </Button>
-              <Button large secondary fit>
+              <Button data-radius="5" large secondary fit>
                 <text>Update Password</text>
               </Button>
             </group>
@@ -175,7 +175,7 @@ const InputsAndForms: React.FC = () => {
             ></Input>
 
             <group data-type="group">
-              <Button wide large primary text="Submit Feedback"></Button>
+              <Button data-radius="5" wide large primary text="Submit Feedback"></Button>
             </group>
           </group>
         </group>
