@@ -600,18 +600,25 @@ const Colors: React.FC = () => {
           mode compatibility for a seamless user experience across different
           interfaces.
         </text>
-      </group>
+    </group>
 
       <group
         data-shrink="no"
         data-weight="600"
-        data-max-length="1200"
+        data-max-length="1120"
         data-type="grid"
-        data-gap="10"
+        data-gap="1"
+
         data-grid-template="180/140"
+        // data-border=""
+        // data-radius="20"
+                data-contain=""
       >
         {BaseColors.map((colors, index) => (
           <group
+data-background="main-background"
+// data-row-end={colors.type === "tall" ? "2" : ""}
+// data-column-end={colors.type === "wide" ? "2" : ""}
             onClick={() =>
               handleColorClick(
                 colors.name,
@@ -630,34 +637,35 @@ const Colors: React.FC = () => {
             data-direction="column"
             daat-wrap="no"
             data-wrap="no"
-            data-border=""
-            data-space="5"
-            data-radius="15"
-            data-gap="15"
+           data-border=""
+           data-space="15"
+          //  data-radius="15"
+         
           >
             <group
               data-direction="column"
-              data-space-horizontal="15"
+              data-space="15"
               data-gap="5"
               data-interact=""
             >
               <text
-                data-text-size="64"
-                data-height="40"
+                
                 data-contain=""
-                data-weight="100"
-                data-opacity="10"
+               data-opacity="20"
+                
               >
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
+              <group data-height="40"></group>
+              <text data-ellipsis="" data-wrap="wrap" data-weight="700">
+                  {colors.name}
+                </text>
               <group data-direction="column" data-interact="">
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
-                <separator data-horizontal="" data-interval="20"></separator>
-                <text data-ellipsis="" data-wrap="wrap" data-weight="700">
-                  {colors.name}
-                </text>
+            
+
               </group>
             </group>
 
@@ -666,18 +674,15 @@ const Colors: React.FC = () => {
               data-position="bottom"
               data-wrap="no"
               data-contain=""
+
               data-radius="10"
+              
             >
-              <group
-                data-ratio="1:1"
-                data-background={colors.value + "-light"}
-              ></group>
-              <group data-ratio="1:1" data-background={colors.value}></group>
-              <group
-                data-ratio="1:1"
-                data-background={colors.value + "-dark"}
-              ></group>
+              <group  data-ratio="1:1" data-background={colors.value + "-light"} ></group>
+              <group  data-ratio="1:1"  data-background={colors.value}></group>
+              <group  data-ratio="1:1" data-background={colors.value + "-dark"} ></group>
             </group>
+           
           </group>
         ))}
       </group>
