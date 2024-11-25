@@ -26,35 +26,37 @@ const InputsAndForms: React.FC = () => {
 
       <group data-column-gap="15" data-type="column" data-align="start">
         <group
-          data-radius="15"
+          data-radius="20"
           data-contain=""
           data-background="context"
           data-shrink="no"
           data-elevation="2"
           data-index="2"
+          data-space="30"
+          data-gap="30"
         >
           <group
-                        data-background="main"
+            //            data-background="main"
             data-contain=""
             data-min-length="240"
-            data-dark=""
+          // data-dark=""
           >
 
             <group
               //   data-radius="15"
-              data-space="30"
+             // data-space="30"
               data-direction="column"
               data-align="start"
               data-gap="10"
-              data-color="main-text"
+            //  data-color="main-text"
             >
-              <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon>
+              {/* <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon> */}
               <text
                 data-weight="700"
-                data-text-size="xxx-large"
+                data-text-size="large"
                 data-wrap="wrap"
               >
-                Password Change
+                Password<br />Change
               </text>
               <text data-wrap="wrap" data-line="1.5">
                 Your password is Case Sensitive. It should contain a minimum of
@@ -64,7 +66,7 @@ const InputsAndForms: React.FC = () => {
             </group>
           </group>
 
-          <form data-type="group" data-space="30">
+          <form data-type="group" >
             <group data-hidden="">
               <Input
                 type="text"
@@ -139,9 +141,7 @@ const InputsAndForms: React.FC = () => {
                 Customer Feedback
               </text>
               <text data-wrap="wrap" data-line="1.5" data-opacity="40">
-                Your password is Case Sensitive. It should contain a minimum of
-                8 characters and at least one each of Uppercase, Lowercase, and
-                Special characters
+                Share your thoughts to help us improve. Be as specific as possible to ensure we address your concerns effectively.
               </text>
             </group>
           </group>
