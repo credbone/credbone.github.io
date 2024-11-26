@@ -110,6 +110,7 @@
 
 
   
+  
 }
 
 
@@ -424,6 +425,7 @@
 [data-stroke="secondary"] { stroke: var(--secondary-color) }
 
 [data-fill="main"] { fill: var(--main-color) }
+[data-fill="main-light"] { fill: var(--main-color-light) }
 [data-fill="main-lighter"] { fill: var(--main-color-lighter) }
 [data-fill="main-dark"] { fill: var(--main-color-dark) }
 [data-fill="main-darker"] { fill: var(--main-color-darker) }
@@ -434,6 +436,10 @@
 [data-fill="secondary-lighter"] { fill: var(--secondary-color-lighter) }
 [data-fill="secondary-dark"] { fill: var(--secondary-color-dark) }
 [data-fill="secondary-darker"] { fill: var(--secondary-color-darker) }
+
+
+[data-fill="main-background"] { fill: var(--background) }
+[data-fill="highlight"]{ fill: var(--highlight) }
 
 
 [data-background="none"]{background-color:none}
