@@ -25,21 +25,15 @@ const InputsAndForms: React.FC = () => {
       </group>
 
       <group data-column-gap="15" data-type="column" data-align="start">
-        <group
-          data-radius="20"
-          data-contain=""
-          data-background="context"
-          data-shrink="no"
-          data-elevation="2"
-          data-index="2"
-          data-space="30"
-          data-gap="30"
-        >
-          <group
+
+
+<group>
+<group
             //            data-background="main"
             data-contain=""
             data-min-length="240"
           // data-dark=""
+          data-space="30"
           >
 
             <group
@@ -65,6 +59,17 @@ const InputsAndForms: React.FC = () => {
               </text>
             </group>
           </group>
+        <group
+          data-radius="20"
+          data-contain=""
+          data-background="context"
+          data-shrink="no"
+          data-elevation="2"
+          data-index="2"
+          data-space="30"
+          data-gap="30"
+        >
+
 
           <form data-type="group" >
             <group data-hidden="">
@@ -127,6 +132,7 @@ const InputsAndForms: React.FC = () => {
             </group>
           </form>
         </group>
+</group>
 
         <group
           data-radius="15"

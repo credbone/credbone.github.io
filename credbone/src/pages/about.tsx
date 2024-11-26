@@ -43,7 +43,7 @@ function About() {
         data-direction="column"
         // data-background="highlight"
 
-        data-height="300"
+        data-height="200"
        
         data-radius="20"
         data-align="start"

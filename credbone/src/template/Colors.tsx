@@ -10,6 +10,7 @@ import StuckReporter from "../components/StuckReporter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
 
+
 const Colors: React.FC = () => {
   const { openModal, closeModal } = useModal();
   const { addSnackbar } = useSnackbar();
@@ -271,6 +272,9 @@ const Colors: React.FC = () => {
           interfaces.
         </text>
       </group>
+
+
+
 
       <group
         data-border=""
