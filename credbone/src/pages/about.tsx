@@ -129,7 +129,7 @@ function About() {
             data-gap="15"
             data-justify="end"
             data-wrap="wrap"
-          
+          data-height="200"
             data-elevation="2"
           >
 
@@ -147,21 +147,21 @@ function About() {
               Purpose & Vision
             </text>
 
-            <text data-wrap="wrap" data-line="1.5" data-text-size="15">
-              To provide a robust UI foundation that transforms ideas into
-              complete, functional applications—combining design elegance with
-              practical efficiency.
-            </text>
+
           </group>
 
           <group
             data-direction="column"
             data-space-horizontal="30"
-
+data-gap="30"
             data-align="start"
           >
 
-
+<text data-wrap="wrap" data-line="1.5" data-text-size="15">
+              To provide a robust UI foundation that transforms ideas into
+              complete, functional applications—combining design elegance with
+              practical efficiency.
+            </text>
             <Ripple>
               <Link
                 data-contain=""
