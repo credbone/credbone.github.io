@@ -6,9 +6,11 @@ import { IconSearch } from "../components/icon/credIcons";
 import Ripple from "../components/Ripple";
 import Marquee from "../components/Marquee";
 import {
+  SvgBrandIllustration,
   SvgCubes,
   SvgLogoIllustration,
   SvgPlant,
+  SvgPlantTwo,
 } from "../components/icon/svgRes";
 
 const links = [
@@ -32,30 +34,40 @@ const handleReload = () => {
 
 function About() {
   return (
+
+<group       data-direction="column"
+      data-align="start"
+      data-max-length="1200">
+<group
+    data-gap="30"
+    data-direction="column"
+    // data-background="highlight"
+
+    data-height="400"
+
+
+
+
+    data-align="center"
+    data-contain=""
+  >
+
+<group data-position="absolute" data-contain="" data-space="30" data-min-length="900" data-bottom="0" >
+<SvgBrandIllustration/>
+</group>
+
+  </group>
+
     <group
       data-gap="50"
       data-direction="column"
       data-align="start"
       data-max-length="1200"
+      data-space="30"
     >
-      <group
-        data-gap="30"
-        data-direction="column"
-        // data-background="highlight"
 
-        data-height="200"
-       
-        data-radius="20"
-        data-align="start"
-      >
 
-<group data-position="absolute" data-bottom="0">
-
-</group>
-
-      </group>
-
-      <group data-gap="40">
+      <group data-gap="40" data-index="2">
         <group data-width="auto">
           <text
             data-weight="700"
@@ -106,6 +118,7 @@ function About() {
           data-width="auto"
           data-align="start"
           data-index="2"
+                      data-gap="30"
         >
           <group
             data-background="context"
@@ -116,7 +129,7 @@ function About() {
             data-gap="15"
             data-justify="end"
             data-wrap="wrap"
-            data-height="200"
+          
             data-elevation="2"
           >
 
@@ -133,19 +146,21 @@ function About() {
             <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
               Purpose & Vision
             </text>
-          </group>
 
-          <group
-            data-direction="column"
-            data-space="30"
-            data-gap="30"
-            data-align="start"
-          >
             <text data-wrap="wrap" data-line="1.5" data-text-size="15">
               To provide a robust UI foundation that transforms ideas into
               complete, functional applications—combining design elegance with
               practical efficiency.
             </text>
+          </group>
+
+          <group
+            data-direction="column"
+            data-space-horizontal="30"
+
+            data-align="start"
+          >
+
 
             <Ripple>
               <Link
@@ -179,6 +194,7 @@ function About() {
           data-direction="column"
           data-width="auto"
           data-align="start"
+          data-gap="30"
         >
           <group
             data-background="highlight"
@@ -193,15 +209,15 @@ function About() {
             data-height="200"
            
           >
-            <group
+            {/* <group
               data-position="absolute"
               data-left="0"
               data-bottom="0"
               data-radius="20"
               data-contain=""
             >
-              <SvgPlant />
-            </group>
+              <SvgPlantTwo />
+            </group> */}
 
             <group   data-direction="column" data-gap="15">
             <text
@@ -223,9 +239,10 @@ function About() {
 
           <group
             data-direction="column"
-            data-space="30"
+            data-space-horizontal="30"
             data-gap="30"
             data-align="start"
+            
           >
             <text data-wrap="wrap" data-line="1.5" data-text-size="15">
               System built to handle projects of any size. From small prototypes
@@ -263,6 +280,7 @@ function About() {
           data-direction="column"
           data-width="auto"
           data-align="start"
+          data-gap="30"
         >
           <group
               data-background="highlight"
@@ -308,7 +326,7 @@ function About() {
 
           </group>
 
-          <group data-direction="column" data-space="30" data-gap="30">
+          <group data-direction="column" data-space-horizontal="30" data-gap="30">
             <text data-wrap="wrap" data-line="1.5" data-text-size="15">
             Updated frequently to ensure every component not only keeps up with modern design trends but also stays reliable and ready to meet evolving applications.
             </text>
@@ -410,6 +428,7 @@ function About() {
         </group>
       </group>
     </group>
+</group>
   );
 }
 

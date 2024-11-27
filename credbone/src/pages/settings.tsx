@@ -17,7 +17,7 @@ function Settings() {
 
   return (
 
-      <group data-gap="30" data-direction="column">
+      <group data-space="30" data-gap="30" data-direction="column">
         <group
           data-direction="column"
           data-gap="10"

@@ -24,7 +24,7 @@ import { ModalProvider } from "./components/Modal";
 const MainLayout = () => {
   return (
     <view
-      data-space="30"
+   //   data-space="30"
       data-scroll=""
       data-border="no"
       data-background="none"
