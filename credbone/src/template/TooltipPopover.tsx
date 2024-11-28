@@ -310,7 +310,7 @@ const TooltipPopover: React.FC = () => {
 
 
 
-{/* <group
+<group
 
 
 data-max-length="800"
@@ -352,7 +352,7 @@ data-contain=""
 </Tooltip>
 </group>
 
-</group> */}
+</group>
 
         <group
           data-column-gap="15"

@@ -8,7 +8,7 @@ import Marquee from "../components/Marquee";
 import { SvgLogoIllustration, SvgPlantTwo } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_60.jpg";
-import sampleImage_2 from "../styles/images/samples/res_61.jpg";
+import sampleImage_2 from "../styles/images/samples/res_64.jpg";
 
 const links = [
   { name: "Resume", url: "/Resume" },
@@ -31,21 +31,42 @@ const handleReload = () => {
 
 function About() {
   return (
-    <group data-space="30" data-gap="30">
+    <group data-space="30" data-gap="30" data-wrap="no">
       <group data-length="300" data-adaptive="desktop">
-        <group data-radius="20" data-contain="">
-          <picture data-brightness="adaptive" data-position="absolute">
+        <group data-direction="column" data-justify="end">
+          <picture
+            data-radius="20"
+            data-contain=""
+            data-brightness="adaptive"
+            data-position="absolute"
+          >
             <img src={sampleImage} alt="" />
           </picture>
+
+          <group data-space="30" data-dark="" data-sticky="bottom">
+          <group data-gap="20" data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
+
+
+
+
+          <group data-width="auto">
+            <text
+              data-wrap="wrap"
+
+           //  data-opacity="80"
+              data-line="20"
+              data-text-size="15"
+            >
+             System designed for flexibility and growth
+            </text>
+          </group>
+
+
+
+
+
         </group>
-      </group>
-
-
-      <group data-height="300" data-adaptive="mobile">
-        <group data-radius="20" data-contain="">
-          <picture data-brightness="adaptive" data-position="absolute">
-            <img src={sampleImage_2} alt="" />
-          </picture>
+          </group>
         </group>
       </group>
 
@@ -56,15 +77,23 @@ function About() {
         data-max-length="1200"
       >
         <group
-        data-adaptive="desktop"
+          data-adaptive="desktop"
           data-gap="30"
           data-direction="column"
           // data-background="highlight"
 
-          data-height="200"
+          data-height="150"
           data-align="center"
           data-contain=""
         ></group>
+
+        <group data-height="300" data-adaptive="mobile">
+          <group data-radius="20" data-contain="">
+            <picture data-brightness="adaptive" data-position="absolute">
+              <img src={sampleImage_2} alt="" />
+            </picture>
+          </group>
+        </group>
 
         <group data-gap="40" data-index="2">
           <group data-width="auto">
@@ -79,12 +108,12 @@ function About() {
             </text>
           </group>
 
-          {/* <separator data-vertical="" data-height="fit"></separator> */}
+
 
           <group data-width="auto">
             <text
               data-wrap="wrap"
-              data-length="400"
+              data-max-length="400"
               data-opacity="40"
               data-line="1.5"
               data-text-size="15"
@@ -391,7 +420,7 @@ function About() {
             </text>
             <text
               data-wrap="wrap"
-              data-length="400"
+              data-max-length="400"
               data-opacity="40"
               data-line="20"
               data-text-size="15"
