@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import { IconSearch } from "../components/icon/credIcons";
 import Ripple from "../components/Ripple";
 import Marquee from "../components/Marquee";
-import { SvgLogoIllustration, SvgPlantTwo } from "../components/icon/svgRes";
+import { SvgCross, SvgCube, SvgLogoIllustration, SvgPlantTwo, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_60.jpg";
 import sampleImage_2 from "../styles/images/samples/res_64.jpg";
+import Tooltip from "../components/tooltip";
 
 const links = [
-  { name: "Resume", url: "/Resume" },
+  { name: "View Resume", url: "/Resume" },
   {
     name: "Linkedin Profile",
     url: "https://www.linkedin.com/in/sargsyanruben",
@@ -43,22 +44,24 @@ function About() {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-space="30" data-dark="" data-sticky="bottom">
-          <group data-gap="20" data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
+          <group data-space="50"  data-dark="" data-sticky="bottom">
+          <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
 
 
 
 
-          <group data-width="auto">
-            <text
+          <group data-width="auto" data-gap="20">
+          <text
               data-wrap="wrap"
 
            //  data-opacity="80"
               data-line="20"
               data-text-size="15"
             >
-             System designed for flexibility and growth
+            Designed for flexibility and growth, modern by default.
             </text>
+            <SvgWood/>
+
           </group>
 
 
@@ -431,7 +434,8 @@ function About() {
             </text>
           </group>
 
-          <group data-direction="column" data-width="auto" data-align="start">
+<group data-gap="30" data-type="grid" data-grid-template="200">
+<group data-direction="column" data-width="auto" data-align="start">
             {links.map((link, index) => (
               <Link
                 data-drag="none"
@@ -450,6 +454,39 @@ function About() {
               </Link>
             ))}
           </group>
+
+            <group data-direction="column" data-width="auto" data-align="start">
+<Tooltip content="Select a time for a quick call via Google Meet.">
+              <Link 
+              data-drag="none"
+                data-width="auto"
+                data-type="group"
+                data-interactive=""
+                data-over-color="neutral"
+                data-space="15"
+                data-radius="10"
+                data-weight="600"
+                 to="https://calendly.com/sargsyanrubens/15-minute-chat" target="_blank">
+              <text>Reserve 15-Minute Call</text>
+              </Link>
+              </Tooltip>
+<Tooltip  content="Reach out to me via Telegram.">
+<Link 
+              data-drag="none"
+                data-width="auto"
+                data-type="group"
+                data-interactive=""
+                data-over-color="neutral"
+                data-space="15"
+                data-radius="10"
+                data-weight="600"
+                 to="https://t.me/sargsyanruben" target="_blank">
+              <text>Message Me</text>
+              </Link>
+</Tooltip>
+            </group>
+
+</group>
         </group>
       </group>
     </group>
