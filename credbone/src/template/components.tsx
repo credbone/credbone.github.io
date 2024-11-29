@@ -7,7 +7,8 @@
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-
+import sampleImage from "../styles/images/samples/res_62.jpg";
+import { SvgLogoIllustration } from "../components/icon/svgRes";
 
   const linksArray = [
 
@@ -63,17 +64,70 @@ import SearchComponent from "../pages/search/searchComponent";
 
     return (
       <group data-scroll="" data-index="1">
+
+<group data-space="30" data-gap="30" data-wrap="no">
+
+<group data-length="300" data-adaptive="desktop">
+
+
+<group data-direction="column" data-justify="end">
+          <picture
+            data-radius="20"
+            data-contain=""
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage} alt="" />
+          </picture>
+
+          <group data-space="50"  data-dark="" data-sticky="bottom">
+          <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
+
+
+
+
+          <group data-width="auto" data-gap="20">
+          <text
+              data-wrap="wrap"
+
+           //  data-opacity="80"
+              data-line="20"
+              data-text-size="15"
+            >
+            Designed for flexibility and growth, modern by default.
+            </text>
+
+
+          </group>
+
+
+
+
+
+        </group>
+          </group>
+
+        </group>
+
+
+</group>
+
+
         <group
           data-direction="column"
-          data-space-vertical="30"
+       //   data-space-vertical="30"
           //  data-gap="15"
           data-wrap="no"
-          data-align="start"
+       //   data-align="start"
           data-position="center"
           //  data-width="auto"
-          data-max-length="1600"
+          data-max-length="1200"
         >
-          <group data-space-horizontal="30">
+          <group
+          
+          //data-space-horizontal="30"
+          >
             <group
               data-direction="column"
               data-gap="30"
@@ -81,9 +135,9 @@ import SearchComponent from "../pages/search/searchComponent";
               data-space-vertical="40"
               // data-background="main"
               // data-color="main-text"
-              data-align="center"
-              data-justify="center"
-              data-text-align="center"
+            //  data-align="center"
+            //  data-justify="center"
+            //  data-text-align="center"
               // data-min-height="300"
             >
               <group
@@ -91,9 +145,9 @@ import SearchComponent from "../pages/search/searchComponent";
                 data-gap="10"
                 // data-background="main"
                 // data-color="main-text"
-                data-align="center"
-                data-justify="center"
-                data-text-align="center"
+             //   data-align="center"
+              //  data-justify="center"
+            //    data-text-align="center"
               >
                 <text
                   data-weight="700"
@@ -106,9 +160,10 @@ import SearchComponent from "../pages/search/searchComponent";
 
                 <text
                   data-wrap="wrap"
-                  data-length="600"
+                  data-max-length="500"
                   data-line="20"
                   data-opacity="70"
+                  data-text-size="15"
                 >
                   This platform demos a collection of carefully crafted UI
                   components, each designed with attention to detail and a deep
@@ -203,17 +258,18 @@ import SearchComponent from "../pages/search/searchComponent";
           </group>
 
           <group
-            data-space-horizontal="30"
+      //      data-space-horizontal="30"
             data-border="no"
             data-background="none"
             data-align="start"
             data-gap="15"
           >
             <group
-              data-gap="15"
+              data-gap="1"
               data-type="grid"
               data-grid-template="180"
               data-weight="600"
+              data-contain=""
             >
               {linksArray.map((link, index) => (
                 <Ripple key={index}>
@@ -226,8 +282,8 @@ import SearchComponent from "../pages/search/searchComponent";
                     data-type="group"
                     data-contain=""
                     data-min-height="300"
-                    data-radius="20"
-                    data-border="outline"
+                  //  data-radius="20"
+                    data-border=""
                     data-direction="column"
                     data-wrap="no"
                   >
@@ -240,16 +296,15 @@ import SearchComponent from "../pages/search/searchComponent";
                       data-wrap="no"
                     >
                       <text
-                        data-text-size="72"
-                        data-height="50"
+                       // data-text-size=""
+                     //   data-height="50"
                         data-contain=""
-                        data-weight="100"
-                        data-opacity="10"
+                        //data-weight="100"
+                        data-opacity="20"
                       >
-                        {" "}
                         0{index + 1}
                       </text>
-
+                      <group data-height="40"></group>
                       <text
                         data-text-size="medium"
                         data-weight="700"
@@ -340,6 +395,8 @@ import SearchComponent from "../pages/search/searchComponent";
 </group> */}
 
           </group>
+        </group>
+
         </group>
       </group>
     );
