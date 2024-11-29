@@ -1,145 +1,112 @@
-  import React, { useEffect, useState } from "react";
-  import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-  import Ripple from "../components/Ripple";
-  import TextReveal from "../components/TextReveal";
-  import { IconSearch } from "../components/icon/credIcons";
+import Ripple from "../components/Ripple";
+import TextReveal from "../components/TextReveal";
+import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
 import sampleImage from "../styles/images/samples/res_62.jpg";
 import sampleImage_2 from "../styles/images/samples/res_65.jpg";
 
-import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
+const linksArray = [
 
-  const linksArray = [
+  { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
+  { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Home/Colors", },
+  { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Home/CardsAndList", },
+  { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
+  { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Home/CheckboxSwitchers", },
+  { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Home/QuickDemos", },
+  { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
 
-
-
-
-
-
-    { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
-    { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Home/Colors", },
-    { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Home/CardsAndList", },
-    { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
-    { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Home/CheckboxSwitchers", },
-    { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Home/QuickDemos", },
-    { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
-
-    //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
-    // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
-    // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
-    // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
-    // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
-  ];
-
-  const phrases = [
-    "hi",
-    "hello",
-    "hey",
-    "what's new?",
-    "hey there",
-    "what's up?",
-  ];
-
-  const Components: React.FC = () => {
-    const { openModal, closeModal } = useModal(); 
-    const [message, setMessage] = useState<string>("");
-
-    const modalConfig = {
-      "data-radius": "none",
-      "data-margin": "0",
-      "data-background": "none",
-      "data-elevation": "none",
-      "data-width": "fit",
-      "data-scroll": "",
-      "data-min-height": "fit",
-      "data-contain": "scroll",
-    };
+  //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
+  // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
+  // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
+  // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
+  // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
+];
 
 
-    useEffect(() => {
-      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-      setMessage(randomPhrase);
-    }, []);
+const phrases = [
+  "hi",
+  "hello",
+  "hey",
+  "what's new?",
+  "hey there",
+  "what's up?",
+];
 
-    return (
-      <group data-scroll="" data-index="1">
+const Components: React.FC = () => {
+  const { openModal, closeModal } = useModal();
+  const [message, setMessage] = useState<string>("");
 
-<group data-space="30" data-gap="30" data-wrap="no">
+  const modalConfig = {
+    "data-radius": "none",
+    "data-margin": "0",
+    "data-background": "none",
+    "data-elevation": "none",
+    "data-width": "fit",
+    "data-scroll": "",
+    "data-min-height": "fit",
+    "data-contain": "scroll",
+  };
 
-<group data-length="300" data-adaptive="desktop">
+  useEffect(() => {
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    setMessage(randomPhrase);
+  }, []);
 
-
-<group data-direction="column" data-justify="end">
-          <picture
-            data-radius="20"
-            data-contain=""
-            data-brightness="adaptive"
-            data-position="absolute"
-            data-background="grey-light"
-          >
-            <img src={sampleImage} alt="" />
-          </picture>
-
-          <group data-space="50"  data-dark="" data-sticky="bottom">
-          <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
-
-
-
-
-          <group   data-gap="20">
-
-          <text
-              data-wrap="wrap"
-              data-line="20"
-              data-text-size="15"
+  return (
+    <group data-scroll="" data-index="1">
+      <group data-space="30" data-gap="30" data-wrap="no">
+        <group data-length="300" data-adaptive="desktop">
+          <group data-direction="column" data-justify="end">
+            <picture
+              data-radius="20"
+              data-contain=""
+              data-brightness="adaptive"
+              data-position="absolute"
+              data-background="grey-light"
             >
-            Built to adapt and ready to grow. 
-            </text>
-
-
-
-          </group>
-
-
-
-
-
-        </group>
-          </group>
-
-        </group>
-
-
-</group>
-
-
-        <group
-          data-direction="column"
-          data-wrap="no"
-          data-max-length="1200"
-        >
-
-
-<group
-          data-adaptive="desktop"
-          data-gap="30"
-          data-direction="column"
-          data-height="150"
-          data-align="center"
-          data-contain=""
-        ></group>
-
-        <group data-height="300" data-adaptive="mobile">
-          <group data-radius="20" data-contain="">
-            <picture data-brightness="adaptive" data-position="absolute">
-              <img src={sampleImage_2} alt="" />
+              <img src={sampleImage} alt="" />
             </picture>
+
+            <group data-space="50" data-dark="" data-sticky="bottom">
+              <group
+                data-space="20"
+                data-index="2"
+                data-radius="10"
+                data-contain=""
+                data-backdrop="20"
+              >
+                <group data-gap="20">
+                  <text data-wrap="wrap" data-line="20" data-text-size="15">
+                    Built to adapt and ready to grow.
+                  </text>
+                </group>
+              </group>
+            </group>
           </group>
         </group>
 
+        <group data-direction="column" data-wrap="no" data-max-length="1200">
+          <group
+            data-adaptive="desktop"
+            data-gap="30"
+            data-direction="column"
+            data-height="150"
+            data-align="center"
+            data-contain=""
+          ></group>
+
+          <group data-height="300" data-adaptive="mobile">
+            <group data-radius="20" data-contain="">
+              <picture data-brightness="adaptive" data-position="absolute" data-background="grey-light">
+                <img src={sampleImage_2} alt="" />
+              </picture>
+            </group>
+          </group>
 
           <group>
             <group
@@ -147,18 +114,9 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
               data-gap="30"
               data-radius="20"
               data-space-vertical="40"
-
             >
-              <group
-                data-direction="column"
-                data-gap="10"
-
-              >
-                <text
-                  data-weight="700"
-                  data-text-size="48"
-                  data-ellipsis=""
-                >
+              <group data-direction="column" data-gap="10">
+                <text data-weight="700" data-text-size="48" data-ellipsis="">
                   <TextReveal text={message} duration={1200} />
                 </text>
 
@@ -244,7 +202,7 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
                             data-fill-mode="backwards"
                             data-animation-duration="2"
                           >
-                            <SearchComponent showRandomTagsByDefault={false}/>
+                            <SearchComponent showRandomTagsByDefault={false} />
                           </group>
                         </group>,
                         false,
@@ -262,10 +220,9 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
           </group>
 
           <group
-      //      data-space-horizontal="30"
+            //      data-space-horizontal="30"
             data-border="no"
             data-background="none"
-
             data-max-length="800"
           >
             <group
@@ -274,7 +231,6 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
               data-grid-template="200"
               data-weight="600"
               data-contain=""
-              
             >
               {linksArray.map((link, index) => (
                 <Ripple key={index}>
@@ -287,7 +243,7 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
                     data-type="group"
                     data-contain=""
                     data-min-height="300"
-                  //  data-radius="20"
+                    //  data-radius="20"
                     data-border=""
                     data-direction="column"
                     data-wrap="no"
@@ -302,8 +258,8 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
                       data-wrap="no"
                     >
                       <text
-                       // data-text-size=""
-                     //   data-height="50"
+                        // data-text-size=""
+                        //   data-height="50"
                         data-contain=""
                         //data-weight="100"
                         data-opacity="20"
@@ -314,7 +270,6 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
                       <text
                         data-text-size="medium"
                         data-weight="700"
-
                         data-wrap="preline"
                         data-ellipsis=""
                       >
@@ -329,21 +284,15 @@ import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
                       >
                         {link.description}
                       </text>
-
                     </group>
                   </Link>
                 </Ripple>
               ))}
             </group>
-
-
-
-
           </group>
         </group>
-
-        </group>
       </group>
-    );
-  };
-  export default Components;
+    </group>
+  );
+};
+export default Components;

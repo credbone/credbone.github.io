@@ -2,10 +2,8 @@ import React from "react";
 
 import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
-import { IconSearch } from "../components/icon/credIcons";
 import Ripple from "../components/Ripple";
-import Marquee from "../components/Marquee";
-import { SvgCross, SvgCube, SvgLogoIllustration, SvgPlantTwo, SvgWood } from "../components/icon/svgRes";
+import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_60.jpg";
 import sampleImage_2 from "../styles/images/samples/res_64.jpg";
@@ -40,6 +38,7 @@ function About() {
             data-contain=""
             data-brightness="adaptive"
             data-position="absolute"
+            data-background="grey-light"
           >
             <img src={sampleImage} alt="" />
           </picture>
@@ -92,7 +91,7 @@ function About() {
 
         <group data-height="300" data-adaptive="mobile">
           <group data-radius="20" data-contain="">
-            <picture data-brightness="adaptive" data-position="absolute">
+            <picture data-brightness="adaptive" data-position="absolute" data-background="grey-light">
               <img src={sampleImage_2} alt="" />
             </picture>
           </group>

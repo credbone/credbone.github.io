@@ -38,7 +38,7 @@ const Calculator: React.FC = () => {
     } catch (error) {
       setResult(null);
     //  alert("Invalid Expression");
-      addSnackbar(<text data-ellipsis="">Please check your expression.</text>, 2000, "custom-source", true);
+      addSnackbar(<text data-ellipsis="">Check your expression.</text>, 2000, "custom-source", true);
 
       
     }
