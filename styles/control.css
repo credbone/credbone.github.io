@@ -84,6 +84,7 @@
 
 [data-backdrop="10"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background:var(--backdrop) }
 [data-backdrop="20"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(136, 136, 136, 0.1) }
+[data-backdrop="20-dark"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(20,20,20,.5) }
 [data-backdrop="3"]{-webkit-backdrop-filter: blur(3px);backdrop-filter: blur(3px); }
 [data-backdrop="gradient-top"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background-color:var(--backdrop); background-image: linear-gradient(var(--background), transparent); }
 
