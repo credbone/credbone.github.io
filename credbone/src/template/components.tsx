@@ -8,7 +8,9 @@ import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
 import sampleImage from "../styles/images/samples/res_62.jpg";
-import { SvgLogoIllustration } from "../components/icon/svgRes";
+import sampleImage_2 from "../styles/images/samples/res_65.jpg";
+
+import { SvgLeafLogo, SvgLogoIllustration } from "../components/icon/svgRes";
 
   const linksArray = [
 
@@ -87,16 +89,16 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
 
 
 
-          <group data-width="auto" data-gap="20">
+          <group   data-gap="20">
+
           <text
               data-wrap="wrap"
-
-           //  data-opacity="80"
               data-line="20"
               data-text-size="15"
             >
-            Designed for flexibility and growth, modern by default.
+            Built to adapt and ready to grow. 
             </text>
+
 
 
           </group>
@@ -116,43 +118,45 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
 
         <group
           data-direction="column"
-       //   data-space-vertical="30"
-          //  data-gap="15"
           data-wrap="no"
-       //   data-align="start"
-          data-position="center"
-          //  data-width="auto"
           data-max-length="1200"
         >
-          <group
-          
-          //data-space-horizontal="30"
-          >
+
+
+<group
+          data-adaptive="desktop"
+          data-gap="30"
+          data-direction="column"
+          data-height="150"
+          data-align="center"
+          data-contain=""
+        ></group>
+
+        <group data-height="300" data-adaptive="mobile">
+          <group data-radius="20" data-contain="">
+            <picture data-brightness="adaptive" data-position="absolute">
+              <img src={sampleImage_2} alt="" />
+            </picture>
+          </group>
+        </group>
+
+
+          <group>
             <group
               data-direction="column"
               data-gap="30"
               data-radius="20"
               data-space-vertical="40"
-              // data-background="main"
-              // data-color="main-text"
-            //  data-align="center"
-            //  data-justify="center"
-            //  data-text-align="center"
-              // data-min-height="300"
+
             >
               <group
                 data-direction="column"
                 data-gap="10"
-                // data-background="main"
-                // data-color="main-text"
-             //   data-align="center"
-              //  data-justify="center"
-            //    data-text-align="center"
+
               >
                 <text
                   data-weight="700"
                   data-text-size="48"
-                  //data-wrap="wrap"
                   data-ellipsis=""
                 >
                   <TextReveal text={message} duration={1200} />
@@ -261,15 +265,16 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
       //      data-space-horizontal="30"
             data-border="no"
             data-background="none"
-            data-align="start"
-            data-gap="15"
+
+            data-max-length="800"
           >
             <group
               data-gap="1"
               data-type="grid"
-              data-grid-template="180"
+              data-grid-template="200"
               data-weight="600"
               data-contain=""
+              
             >
               {linksArray.map((link, index) => (
                 <Ripple key={index}>
@@ -286,6 +291,7 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
                     data-border=""
                     data-direction="column"
                     data-wrap="no"
+                    data-background="main-background"
                   >
                     <group
                       data-index="1"
@@ -304,11 +310,11 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
                       >
                         0{index + 1}
                       </text>
-                      <group data-height="40"></group>
+                      <group data-height="20"></group>
                       <text
                         data-text-size="medium"
                         data-weight="700"
-                        // data-wrap="wrap"
+
                         data-wrap="preline"
                         data-ellipsis=""
                       >
@@ -323,7 +329,7 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
                       >
                         {link.description}
                       </text>
-                      {/* <group  data-position="bottom" data-height="5" data-radius="10"   data-background={link.color ? link.color : "adaptive-gray"}></group> */}
+
                     </group>
                   </Link>
                 </Ripple>
@@ -331,68 +337,7 @@ import { SvgLogoIllustration } from "../components/icon/svgRes";
             </group>
 
 
-{/* <group data-gap="15">
 
-
-<group data-radius="20" data-border="outline" data-space="30" data-fit='3'>
-              <group
-                data-index="1"
-                data-direction="column"
-                data-gap="15"
-                data-height="fit"
-                data-wrap="no"
-              >
-
-                <text
-                  data-text-size="48"
-                  data-weight="700"
-                  data-wrap="preline"
-                  data-ellipsis=""
-                >
-                 Buttons
-                </text>
-                <text
-                  data-ellipsis=""
-                  data-wrap="wrap"
-                  data-line="1.5"
-                  data-max-length="300"
-                  data-opacity="60"
-                >
-                  Allow users to take actions, and make choices, with a single tap.
-                </text>
-              </group>
-            </group>
-
-            <group data-radius="20" data-border="outline" data-space="30" data-fit='1.5'>
-              <group
-                data-index="1"
-                data-direction="column"
-                data-gap="15"
-                data-height="fit"
-                data-wrap="no"
-              >
-
-                <text
-                  data-text-size="48"
-                  data-weight="700"
-                  data-wrap="preline"
-                  data-ellipsis=""
-                >
-                 Navigation & Tabs
-                </text>
-                <text
-                  data-ellipsis=""
-                  data-wrap="wrap"
-                  data-line="1.5"
-                  data-max-length="300"
-                  data-opacity="60"
-                >
-                  Beautifully crafted and carefully designed icons.
-                </text>
-              </group>
-            </group>
-
-</group> */}
 
           </group>
         </group>

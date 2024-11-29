@@ -131,6 +131,16 @@ export const IconFold: React.FC<IconProps> = ({ fill = false, ...restProps }) =>
 };
 
 
+export const IconBook: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+ <path d="m18,2H8c-2.21,0-4,1.79-4,4v12c0,2.21,1.79,4,4,4h10c1.1,0,2-.9,2-2V4c0-1.1-.9-2-2-2ZM6,6c0-1.1.9-2,2-2h10v10H8c-.7,0-1.4.2-2,.56V6Zm2,14c-1.1,0-2-.9-2-2s.9-2,2-2h10v4H8Z" fill="currentColor"/>
+    </Icon>
+  );
+};
+
+
+
 
 
 // export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {

@@ -3,12 +3,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
 import { NavContext } from "../template/verticalNav";
-import { IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
+import { IconBook, IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
 
 
 const navItems = [
   { to: "/Home", icon: <IconHome size={20} />, label: "Home" },
-  { to: "/About", icon: <IconFold size={20}/>, label: "About", },
+  { to: "/About", icon: <IconBook size={20}/>, label: "About", },
   { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings", vertical: "true", },
   { to: "/Search", icon: <IconSearch size={20} />, label: "Search" },
 ];
