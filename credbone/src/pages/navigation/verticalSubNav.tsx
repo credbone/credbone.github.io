@@ -131,7 +131,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
         data-expanded={isOpen ? "open" : "close"}
         data-name="vertical-subnav"
         //    data-adaptive="desktop"
-        data-length={isOpen ? "280" : "70"}
+      //  data-length={isOpen ? "300" : "0"}
         data-height="fit"
         data-contain=""
         data-direction="column"

@@ -11,22 +11,13 @@ import Popover from "../components/popover";
 import ThemeIcon from "../components/ThemeIcon";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
-
 import { useNavContext } from "../components/NavProvider";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
 
-
-
-
-
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
-
-
-
   const [isSubNavOpen, setSubNavOpen] = useState(false); // Lift the state up to the parent
   const toggleNav = () => setSubNavOpen((prev) => !prev); // Function to toggle
   const closeNav = () => setSubNavOpen(false);
-
 
   const { isNavOpen, setIsNavOpen } = useNavContext();
   const navRef = useRef<HTMLDivElement>(null);
@@ -94,7 +85,14 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
   return (
     <>
-    <group data-position="absolute" data-background="dim" data-height="fit" data-index="2" data-visibility={isNavOpen ? "visible" : "hidden"} data-adaptive="mobile"></group>
+      <group
+        data-position="absolute"
+        data-background="dim"
+        data-height="fit"
+        data-index="2"
+        data-visibility={isNavOpen ? "visible" : "hidden"}
+        data-adaptive="mobile"
+      ></group>
       <group
         ref={navRef}
         data-placement="left"
@@ -105,187 +103,194 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-margin-right="0"
         data-background="main-background"
         data-expanded={isNavOpen ? "open" : "close"}
+        data-sub-expanded={isSubNavOpen ? "open" : "close"}
         //data-width="auto"
-        data-length={isNavOpen ? "370" : "70"}
+        //  data-length={isNavOpen ? "300" : "70"}
         data-height="fit"
         //  data-elevation={isNavOpen ? "2" : ""}
         data-border=""
         data-index="2"
         data-align="start"
         data-wrap="no"
-      //  data-direction="column"
-        data-scroll=""
-        data-scrollbar="none"
+        //  data-direction="column"
+data-contain=""
         {...props}
       >
-
-
-
         <group
-        data-length={isSubNavOpen ? "70" : "fit"}
-          data-height="autofit"
-          data-weight="600"
-          data-space="10"
+          // data-length={isSubNavOpen ? "70" : "fit"}
+data-name="side_nav-"
+          data-height="fit"
+          data-scroll=""
+          data-scrollbar="none"
           data-direction="column"
-          data-gap="5"
+          data-border=""
+          data-index="2"
         >
+          <group
+            data-height="autofit"
+            data-weight="600"
+            data-space="10"
+            data-direction="column"
+            data-gap="5"
+          >
+            <group data-space="15" onClick={toggleNav} data-adaptive="mobile">
+              subs
+            </group>
 
-<group data-space="15"
-                      onClick={toggleNav} data-adaptive="mobile">subs</group>
+            <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
+              <group data-adaptive="desktop">
+                <Ripple>
+                  <group
+                    className={isNavOpen ? "open" : ""}
+                    data-name="side_nav_switch"
+                    onClick={handleNavToggle}
+                    data-contain=""
+                    data-cursor="pointer"
+                    data-interactive=""
+                    data-space="10"
+                    data-gap="10"
+                    data-radius="10"
+                    data-align="center"
+                    data-wrap="no"
+                  >
+                    <icon data-length="30">
+                      <SvgHamburgerToLeft />
+                    </icon>
+                    <text data-ellipsis="" data-adaptive="open-state">
+                      Close
+                    </text>
+                  </group>
+                </Ripple>
+              </group>
+            </Tooltip>
+            <separator
+              data-horizontal=""
+              data-interval="10"
+              data-adaptive="desktop"
+            ></separator>
+            <LeftNavigation />
 
-          <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
-            <group data-adaptive="desktop">
-              <Ripple>
+            <Popover
+              data-width="auto"
+              data-space="5"
+              content={isNavOpen ? "" : <ThemeToggle />}
+            >
+              <group
+                data-cursor="pointer"
+                data-interactive="color"
+                data-position="bottom"
+                data-contain=""
+                data-space="10"
+                data-gap="10"
+                data-radius="10"
+                data-align="center"
+                data-wrap="no"
+              >
+                {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
+              </group>
+            </Popover>
+
+            <separator
+              data-horizontal=""
+              data-interval="10"
+              data-adaptive="desktop"
+            ></separator>
+            <Tooltip
+              placement="right"
+              content={
+                isNavOpen ? null : (
+                  <>
+                    {showCounter ? (
+                      <group
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2"
+                        data-align="center"
+                        data-gap="10"
+                        data-wrap="no"
+                      >
+                        <text data-space-horizontal="5" data-weight="700">
+                          {targetTapCount - tapCount}
+                        </text>
+                        <separator
+                          data-vertical=""
+                          data-height="20"
+                        ></separator>{" "}
+                        <text data-ellipsis="">Counting down...</text>
+                      </group>
+                    ) : (
+                      <group data-align="center" data-gap="10" data-wrap="no">
+                        <text data-ellipsis="">Version</text>
+                        <separator
+                          data-vertical=""
+                          data-height="20"
+                        ></separator>
+
+                        <text data-weight="700">{buildInfo.version}</text>
+                      </group>
+                    )}
+                  </>
+                )
+              }
+            >
+              <group
+                data-adaptive="desktop"
+                data-cursor="pointer"
+                data-interactive=""
+                data-contain=""
+                data-space="10"
+                data-gap="10"
+                data-radius="10"
+                data-align="center"
+                data-wrap="no"
+                onClick={handleTap}
+              >
+                <icon data-length="30">info</icon>
+
                 <group
-                  className={isNavOpen ? "open" : ""}
-                  data-name="side_nav_switch"
-                  onClick={handleNavToggle}
-                  data-contain=""
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-space="10"
-                  data-gap="10"
-                  data-radius="10"
                   data-align="center"
+                  data-adaptive="open-state"
+                  data-gap="10"
                   data-wrap="no"
                 >
-                  <icon data-length="30">
-                    <SvgHamburgerToLeft />
-                  </icon>
-                  <text data-ellipsis="" data-adaptive="open-state">
-                    Close
-                  </text>
-                </group>
-              </Ripple>
-            </group>
-          </Tooltip>
-          <separator data-horizontal="" data-interval="10" data-adaptive="desktop"></separator>
-          <LeftNavigation />
+                  <text data-ellipsis="">Version</text>
+                  <separator data-vertical="" data-height="20"></separator>
 
-          <Popover
-            data-width="auto"
-            data-space="5"
-            content={isNavOpen ? "" : <ThemeToggle />}
-          >
-            <group
-              data-cursor="pointer"
-              data-interactive="color"
-              data-position="bottom"
-              data-contain=""
-              data-space="10"
-              data-gap="10"
-              data-radius="10"
-              data-align="center"
-              data-wrap="no"
-            >
-              {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
-            </group>
-          </Popover>
+                  <text data-weight="700">{buildInfo.version}</text>
 
-          <separator data-horizontal="" data-interval="10" data-adaptive="desktop"></separator>
-          <Tooltip
-            placement="right"
-            content={
-              isNavOpen ? null : (
-                <>
-                  {showCounter ? (
-                    <group
+                  {showCounter && (
+                    <text
+                      data-space-horizontal="10"
+                      data-position="right"
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
                       data-animation-duration="2"
-                      data-align="center"
-                      data-gap="10"
-                      data-wrap="no"
                     >
-                      <text data-space-horizontal="5" data-weight="700">
-                        {targetTapCount - tapCount}
-                      </text>
-                      <separator data-vertical="" data-height="20"></separator>{" "}
-                      <text data-ellipsis="">Counting down...</text>
-                    </group>
-                  ) : (
-                    <group data-align="center" data-gap="10" data-wrap="no">
-                      <text data-ellipsis="">Version</text>
-                      <separator data-vertical="" data-height="20"></separator>
-
-                      <text data-weight="700">{buildInfo.version}</text>
-                    </group>
+                      {targetTapCount - tapCount}
+                    </text>
                   )}
-                </>
-              )
-            }
-          >
-            <group
-            data-adaptive="desktop"
-              data-cursor="pointer"
-              data-interactive=""
-              data-contain=""
-              data-space="10"
-              data-gap="10"
-              data-radius="10"
-              data-align="center"
-              data-wrap="no"
-              onClick={handleTap}
-            >
-              <icon data-length="30">info</icon>
-
-              <group
-                data-align="center"
-                data-adaptive="open-state"
-                data-gap="10"
-                data-wrap="no"
-              >
-                <text data-ellipsis="">Version</text>
-                <separator data-vertical="" data-height="20"></separator>
-
-                <text data-weight="700">{buildInfo.version}</text>
-
-                {showCounter && (
-                  <text
-                    data-space-horizontal="10"
-                    data-position="right"
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="2"
-                  >
-                    {targetTapCount - tapCount}
-                  </text>
-                )}
+                </group>
               </group>
-            </group>
-          </Tooltip>
+            </Tooltip>
+          </group>
         </group>
 
-
-<group data-width="auto" data-adaptive="mobile">
-<VerticalSubNav
-
-isOpen={isSubNavOpen}
-onClose={closeNav}
-// navRef={navRef}
-/>
-</group>
-
-
-
-
+        <group data-width="auto" data-adaptive="mobile" data-height="fit" data-index="1" data-wrap="no">
+          <VerticalSubNav
+            isOpen={isSubNavOpen}
+            onClose={closeNav}
+            // navRef={navRef}
+          />
+        </group>
       </group>
-      
-
-
 
       <group
         data-name="side_nav-space"
         data-length="100"
         data-adaptive="desktop"
       ></group>
-      
-
-
-
     </>
   );
 };
-
 
 export default VerticalNav;

@@ -279,7 +279,7 @@ text[data-width="auto"]{width: initial;}
 
 
 
-
+[data-length='0'] { width: 0px; }
 [data-length='1'] { width: 1px; }
 [data-length='2'] { width: 2px; }
 [data-length='3'] { width: 3px; }
