@@ -2,75 +2,73 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Ripple from "./Ripple";
 import Tooltip from "./tooltip";
-import { NavContext } from "../template/verticalNav";
+
+import { useNavContext } from "../components/NavProvider";
+
 import { IconBook, IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
+import { SvgHamburger } from "./svg";
+
 
 
 const navItems = [
   { to: "/Home", icon: <IconHome size={20} />, label: "Home" },
+  { to: "/Components", icon: <IconFold size={20}/>, label: "Components",vertical: "true", },
   { to: "/About", icon: <IconBook size={20}/>, label: "About", },
-  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings", vertical: "true", },
+
+  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings" },
   { to: "/Search", icon: <IconSearch size={20} />, label: "Search" },
 ];
 
 const Navigation: React.FC = () => {
+
+
+  const { isNavOpen, setIsNavOpen } = useNavContext();
+
+
+  const handleNavToggle = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevents event from bubbling up
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <>
-      {navItems.map((item, index) => (
-        <NavLink
-          key={index}
-          data-type="group"
-          to={item.to}
-          data-width="auto"
-          //  data-max-length="120"
-          data-name="nav-item"
-          data-select-theme="main"
-          data-radius="30"
-          data-contain=""
-          data-interactive=""
-          data-weight="600"
-          data-shrink="0"
-          data-grow="adaptive-grow"
 
-          //  className={({ isActive }) => (isActive ? 'active' : '')}
-        >
-          {({ isActive }) => (
-            <group
-              data-justify="center"
-              // data-direction="column"
-              //  data-gap="5"
-              data-align="center"
-              data-space="10"
-              data-height="45"
-              data-space-horizontal="15"
-              data-wrap="no"
-              // {...(isActive ? { 'data-ink-color': 'main-dark', } : {})}
-            >
-              {item.icon}
+<group data-gap="10" data-align="center">
 
-              <text
-                data-space-horizontal="5"
-                data-ellipsis=""
-                data-name="dinamic-text"
-              >
-                {item.label}
-              </text>
-              {/* {isActive ? (
-                  ""
-              ) : (
-                ""
-              )} */}
-            </group>
-          )}
-        </NavLink>
-      ))}
+<group   className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="10" data-contain="" data-name="nav-item">
+<group>
+<icon data-length="30" >
+<SvgHamburger />
+</icon>
+</group>
+</group>
+
+<separator data-vertical=""></separator>
+
+  <NavLink data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="10" data-contain="" data-name="nav-item" to="/Home">
+<group  data-length="30" data-height="30" data-align="center" data-justify="center">
+<IconHome size={20} />
+</group>
+  </NavLink>
+
+
+  <NavLink data-position="right" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="10" data-contain="" data-name="nav-item" to="/Search">
+<group  data-length="30" data-height="30" data-align="center" data-justify="center">
+<IconSearch size={20} />
+</group>
+  </NavLink>
+
+
+</group>
+    
+
 
     </>
   );
 };
 
 const LeftNavigation: React.FC = () => {
-  const context = useContext(NavContext);
+  const context = useNavContext();
 
   if (!context) {
     throw new Error("LeftNavigation must be used within a NavProvider");

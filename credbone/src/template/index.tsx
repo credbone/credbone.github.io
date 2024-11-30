@@ -33,7 +33,7 @@ const Template: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
 
-  const [isSubNavOpen, setIsNavOpen] = useState(false); // Lift the state up to the parent
+  const [isSubNavOpen, setIsNavOpen] = useState(true); // Lift the state up to the parent
   const toggleNav = () => setIsNavOpen((prev) => !prev); // Function to toggle
   const closeNav = () => setIsNavOpen(false);
   // const navRef = useRef<HTMLDivElement | null>(null);
@@ -90,11 +90,14 @@ const Template: React.FC = () => {
           </group>
         </group> */}
 
-        <VerticalSubNav
+<group data-width="auto" data-adaptive="desktop" data-wrap="no">
+<VerticalSubNav
           isOpen={isSubNavOpen}
           onClose={closeNav}
           // navRef={navRef}
         />
+        <group data-space-vertical="30" data-width="auto" ><separator data-vertical="" data-height="fit"></separator></group>
+</group>
 
         <group data-scroll="" data-align="start" ref={viewRef}>
           <group data-max-length="1200">
@@ -118,7 +121,7 @@ const Template: React.FC = () => {
             </Routes>
           </group>
 
-          <StuckReporter>
+          {/* <StuckReporter>
             {(isSticky) => (
               <group
                 data-print="hide"
@@ -170,7 +173,7 @@ const Template: React.FC = () => {
                 </group>
               </group>
             )}
-          </StuckReporter>
+          </StuckReporter> */}
 
           <group data-height="120" data-adaptive="mobile"></group>
         </group>

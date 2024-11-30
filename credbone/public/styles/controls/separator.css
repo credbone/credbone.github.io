@@ -58,7 +58,7 @@ dot::after { content: '\00b7'; }
 
 separator[data-adaptive="mobile"] {display: none;}
 
-@media (max-width: 600px)
+@media (max-width: 800px)
 
 {
     separator[data-adaptive="mobile"] {display: flex;}

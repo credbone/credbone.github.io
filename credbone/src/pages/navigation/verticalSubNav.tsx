@@ -5,6 +5,7 @@ import Ripple from "../../components/Ripple";
 import { navItems } from "./subroutesData";
 import Popover from "../../components/popover";
 import RichThemePicker from "../../template/richThemePicker";
+import { useNavContext } from "../../components/NavProvider";
 
 interface VerticalSubNavProps {
   isOpen: boolean; // Prop to accept the open/close state
@@ -13,6 +14,15 @@ interface VerticalSubNavProps {
 }
 
 const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
+
+  const context = useNavContext();
+  const { isNavOpen, setIsNavOpen } = context;
+
+
+  const handleItemClick = () => {
+    setIsNavOpen(false);
+  };
+  
   const location = useLocation();
 
   const navRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -29,8 +39,10 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
 
       if (activeItem) {
         const rect = activeItem.getBoundingClientRect();
-        const parentRect = activeItem.parentElement?.parentElement?.getBoundingClientRect();
-        const parentScrollTop = activeItem.parentElement?.parentElement?.scrollTop || 0;
+        const parentRect =
+          activeItem.parentElement?.parentElement?.getBoundingClientRect();
+        const parentScrollTop =
+          activeItem.parentElement?.parentElement?.scrollTop || 0;
 
         const top = rect.top - (parentRect?.top || 0) + parentScrollTop;
         const height = rect.height ?? 0;
@@ -104,7 +116,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <group
+      {/* <group
         onClick={onClose}
         data-position="absolute"
         data-height="fit"
@@ -113,18 +125,17 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
         data-visibility={isOpen ? "visible" : "hidden"}
         data-opacity={isOpen ? "100" : "0"}
         data-duration=".225"
-      ></group>
+      ></group> */}
       <group
         // ref={navRef}
         data-expanded={isOpen ? "open" : "close"}
         data-name="vertical-subnav"
         //    data-adaptive="desktop"
-        data-length="280"
+        data-length={isOpen ? "280" : "70"}
         data-height="fit"
         data-contain=""
         data-direction="column"
         data-wrap="no"
-        data-background="main-background"
       >
         <group data-height="fit" data-scroll="" data-scrollbar="none">
           <group
@@ -138,6 +149,8 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             }}
           ></group>
 
+
+
           <group
             data-weight="600"
             data-wrap="no"
@@ -145,47 +158,59 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-space="30"
             data-direction="column"
           >
+
+<group data-background="red" data-adaptive="mobile" onClick={onClose} data-space="15">
+            back
+          </group>
+
             {navItems.map((item, index) => (
-<group  key={index}>
-{item.separator === "true" && (
-<separator data-horizontal="" data-interval='30'></separator>
-                                )}
-              <NavLink
-                data-animation-name="appear-left"
-                data-fill-mode="backwards"
-                data-animation-duration={2 + index * 0.25}
-                data-touch-action="manipulation"
-               
-                data-type="group"
-                to={item.to}
-                ref={(el: HTMLAnchorElement | null) =>
-                  (navRefs.current[index] = el)
-                }
-              //  data-width="auto"
-                data-name="nav-item"
-                data-contain=""
-                data-shrink="no"
-                data-interactive=""
-                data-radius="10"
-                onClick={onClose}
-              >
-                <Ripple>
-                  <group
-                    data-space="15"
-                    data-wrap="no"
-                    data-align="center"
-                    data-gap="5"
-                  >
-                    <text data-ellipsis="">{item.label}</text>
+              <group key={index}>
+                {item.separator === "true" && (
+                  <separator data-horizontal="" data-interval="30"></separator>
+                )}
+                <NavLink
+                  data-animation-name="appear-left"
+                  data-fill-mode="backwards"
+                  data-animation-duration={2 + index * 0.25}
+                  data-touch-action="manipulation"
+                  data-type="group"
+                  to={`./${item.to}`}
+                  ref={(el: HTMLAnchorElement | null) =>
+                    (navRefs.current[index] = el)
+                  }
+                  //  data-width="auto"
+                  data-name="nav-item"
+                  data-contain=""
+                  data-shrink="no"
+                  data-interactive=""
+                  data-radius="10"
+                  onClick={() => {
+                 //   onClose();
+                    handleItemClick();
+                  }}
+                >
+                  <Ripple>
+                    <group
+                      data-space="15"
+                      data-wrap="no"
+                      data-align="center"
+                      data-gap="5"
+                    >
+                      <text data-ellipsis="">{item.label}</text>
 
-                    {item.new === "true" && (
-                      <group data-background="red" data-space="3" data-width="auto" data-radius="5" data-position="right"></group>
-                                )}
-
-                  </group>
-                </Ripple>
-              </NavLink>
-</group>
+                      {item.new === "true" && (
+                        <group
+                          data-background="red"
+                          data-space="3"
+                          data-width="auto"
+                          data-radius="5"
+                          data-position="right"
+                        ></group>
+                      )}
+                    </group>
+                  </Ripple>
+                </NavLink>
+              </group>
             ))}
           </group>
 
@@ -198,9 +223,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             </group>
 
             <group data-space="30" data-background="main-background">
-
-
-            <Popover
+              <Popover
                 placement="top"
                 content={
                   <group
@@ -209,9 +232,10 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                     data-animation-duration="1.25"
                     data-length="700"
                   >
-                    <group data-gap="5" 
-                    data-wrap="wrap"
-                    data-direction="column"
+                    <group
+                      data-gap="5"
+                      data-wrap="wrap"
+                      data-direction="column"
                     >
                       <RichThemePicker />
                     </group>
@@ -230,8 +254,10 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
                   data-gap="10"
                   data-space="15"
                 >
-                  <text data-weight="700" data-ellipsis="" >Change Theme</text>
-{/* 
+                  <text data-weight="700" data-ellipsis="">
+                    Change Theme
+                  </text>
+                  {/* 
                   <group data-interact="" data-length="50"  data-display="none" data-position="right" data-radius="3"  data-contain="">
 
 <group data-background="white" data-length="10" data-height="20"><group data-length="10" data-height="20"  data-justify="center" data-background="main-light" data-align="center"></group></group>
@@ -243,14 +269,14 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
 </group> */}
                 </group>
               </Popover>
-
             </group>
           </group>
         </group>
+
+        
+        
       </group>
-      <group data-space-vertical="30" data-width="auto" data-adaptive="desktop">
-        <separator data-vertical="" data-height="fit"></separator>
-      </group>
+      
     </>
   );
 };

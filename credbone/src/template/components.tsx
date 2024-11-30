@@ -14,19 +14,19 @@ const currentYear: number = new Date().getFullYear();
 
 const linksArray = [
 
-  { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Home/Icons", },
-  { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Home/Colors", },
-  { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Home/CardsAndList", },
-  { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Home/TooltipAndPopover", },
-  { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Home/CheckboxSwitchers", },
-  { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Home/QuickDemos", },
-  { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Home/Modal", },
+  { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
+  { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
+  { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
+  { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
+  { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
+  { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Components/QuickDemos", },
+  { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },
 
-  //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Home/Dashboard" },
-  // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Home/Navigation", },
-  // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Home/InputsAndForms", },
-  // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Home/Layout" },
-  // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Home/Buttons", },
+  //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard" },
+  // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
+  // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
+  // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Components/Layout" },
+  // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
 ];
 
 
@@ -151,7 +151,7 @@ const Components: React.FC = () => {
                     data-contain=""
                     data-drag="none"
                     data-type="group"
-                    to="/Home/Typeface"
+                    to="/Components"
                     data-interactive=""
                     data-width="auto"
                     data-background="main"

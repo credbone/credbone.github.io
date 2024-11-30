@@ -11,17 +11,24 @@ import Popover from "../components/popover";
 import ThemeIcon from "../components/ThemeIcon";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
-// Define an interface for the context
-interface NavContextType {
-  isNavOpen: boolean;
-  setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-// Create the context with the specified type and provide a default value
-const NavContext = createContext<NavContextType | undefined>(undefined);
+import { useNavContext } from "../components/NavProvider";
+import VerticalSubNav from "../pages/navigation/verticalSubNav";
+
+
+
+
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+
+
+
+  const [isSubNavOpen, setSubNavOpen] = useState(false); // Lift the state up to the parent
+  const toggleNav = () => setSubNavOpen((prev) => !prev); // Function to toggle
+  const closeNav = () => setSubNavOpen(false);
+
+
+  const { isNavOpen, setIsNavOpen } = useNavContext();
   const navRef = useRef<HTMLDivElement>(null);
 
   const handleNavToggle = () => {
@@ -66,15 +73,13 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         handleNavToggle();
       }
       addSnackbar(
-       <group data-align="center" data-gap="5">
-                   <text data-ellipsis="">Build Date & Time</text>
+        <group data-align="center" data-gap="5">
+          <text data-ellipsis="">Build Date & Time</text>
 
-<text data-ellipsis="" data-weight="700">
-  {buildInfo.buildDateTime}
-</text>
-
-
-       </group>,
+          <text data-ellipsis="" data-weight="700">
+            {buildInfo.buildDateTime}
+          </text>
+        </group>,
         3000,
         "theme-picker",
         true
@@ -88,39 +93,48 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   };
 
   return (
-    <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+    <>
+    <group data-position="absolute" data-background="dim" data-height="fit" data-index="2" data-visibility={isNavOpen ? "visible" : "hidden"} data-adaptive="mobile"></group>
       <group
         ref={navRef}
         data-placement="left"
         data-shrink="no"
         data-name="side_nav"
-        data-radius="15"
-        data-float="30"
+        data-radius="15-desktop"
+        data-float="30-desktop"
         data-margin-right="0"
         data-background="main-background"
         data-expanded={isNavOpen ? "open" : "close"}
         //data-width="auto"
-        data-length={isNavOpen ? "300" : "70"}
+        data-length={isNavOpen ? "370" : "70"}
         data-height="fit"
-      //  data-elevation={isNavOpen ? "2" : ""}
+        //  data-elevation={isNavOpen ? "2" : ""}
         data-border=""
         data-index="2"
         data-align="start"
         data-wrap="no"
-        data-direction="column"
+      //  data-direction="column"
         data-scroll=""
         data-scrollbar="none"
         {...props}
       >
+
+
+
         <group
+        data-length={isSubNavOpen ? "70" : "fit"}
           data-height="autofit"
           data-weight="600"
           data-space="10"
           data-direction="column"
           data-gap="5"
         >
+
+<group data-space="15"
+                      onClick={toggleNav} data-adaptive="mobile">subs</group>
+
           <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
-            <group>
+            <group data-adaptive="desktop">
               <Ripple>
                 <group
                   className={isNavOpen ? "open" : ""}
@@ -145,7 +159,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
               </Ripple>
             </group>
           </Tooltip>
-          <separator data-horizontal="" data-interval="10"></separator>
+          <separator data-horizontal="" data-interval="10" data-adaptive="desktop"></separator>
           <LeftNavigation />
 
           <Popover
@@ -167,8 +181,8 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
               {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
             </group>
           </Popover>
-          <group></group>
-          <separator data-horizontal="" data-interval="10"></separator>
+
+          <separator data-horizontal="" data-interval="10" data-adaptive="desktop"></separator>
           <Tooltip
             placement="right"
             content={
@@ -187,15 +201,10 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
                         {targetTapCount - tapCount}
                       </text>
                       <separator data-vertical="" data-height="20"></separator>{" "}
-                      <text data-ellipsis="">
-                        Counting down...
-                      </text>
+                      <text data-ellipsis="">Counting down...</text>
                     </group>
                   ) : (
-                    <group data-align="center" data-gap="10" data-wrap="no"
-                    
-                    
-                    >
+                    <group data-align="center" data-gap="10" data-wrap="no">
                       <text data-ellipsis="">Version</text>
                       <separator data-vertical="" data-height="20"></separator>
 
@@ -207,6 +216,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             }
           >
             <group
+            data-adaptive="desktop"
               data-cursor="pointer"
               data-interactive=""
               data-contain=""
@@ -224,7 +234,6 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
                 data-adaptive="open-state"
                 data-gap="10"
                 data-wrap="no"
-                
               >
                 <text data-ellipsis="">Version</text>
                 <separator data-vertical="" data-height="20"></separator>
@@ -246,15 +255,37 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             </group>
           </Tooltip>
         </group>
+
+
+<group data-width="auto" data-adaptive="mobile">
+<VerticalSubNav
+
+isOpen={isSubNavOpen}
+onClose={closeNav}
+// navRef={navRef}
+/>
+</group>
+
+
+
+
       </group>
+      
+
+
+
       <group
         data-name="side_nav-space"
         data-length="100"
         data-adaptive="desktop"
       ></group>
-    </NavContext.Provider>
+      
+
+
+
+    </>
   );
 };
 
-export { NavContext };
+
 export default VerticalNav;

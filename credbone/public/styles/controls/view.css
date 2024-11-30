@@ -153,6 +153,13 @@ view[data-background="none"]{background:none}
 }
 
 
+@media (min-width: 801px) {
+
+    [data-float="30-desktop"]{--float-gap:30px}
+
+}
+
+
 
 
 

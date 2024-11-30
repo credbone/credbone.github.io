@@ -715,6 +715,14 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-radius="full"]{border-radius: 100%;}
 
 
+@media (min-width: 801px) 
+
+{
+  [data-radius="15-desktop"]{border-radius: 15px;}
+}
+
+
+
 
 [data-radius="bubble-left"] {
   border-top-left-radius: 60px;

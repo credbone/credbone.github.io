@@ -20,6 +20,7 @@ import Search from "./pages/search/search";
 import Components from "./template/components";
 import Resume from "./pages/resume";
 import { ModalProvider } from "./components/Modal";
+import { NavProvider } from "./components/NavProvider";
 
 const MainLayout = () => {
   return (
@@ -39,6 +40,7 @@ function App() {
     <>
       <Router>
         <TitleUpdater />
+        <NavProvider> 
         <ModalProvider>
           <group
             data-adaptive="mobile"
@@ -55,21 +57,24 @@ function App() {
               data-space-bottom="15-sab"
               data-justify="adaptive-space-around"
             >
+              
               <Navigation />
             </group>
           </group>
 
           <view data-vertical="">
-            <VerticalNav data-adaptive="desktop" data-print="hide" />
+          <VerticalNav  data-print="hide" /> 
             <Routes>
               <Route path="/*" element={<Navigate replace to="/Home" />} />
-              <Route path="/Home/*" element={<Template />} />
+              <Route path="/Components/*" element={<Template />} />
               <Route path="/Home" element={<Components />} />
+              <Route path="/Components" element={<Template />} />
 
               <Route path="/*" element={<MainLayout />}>
                 <Route path="About" element={<About />} />
                 <Route path="Settings" element={<Settings />} />
                 <Route path="Search" element={<Search />} />
+                <Route path="Components" element={<Template />} />
               </Route>
               
               <Route path="/Resume" element={<Resume />} />
@@ -77,6 +82,7 @@ function App() {
           </view>
           <div id="popover-container" data-max-length="fit"></div>
         </ModalProvider>
+        </NavProvider>
       </Router>
     </>
   );
