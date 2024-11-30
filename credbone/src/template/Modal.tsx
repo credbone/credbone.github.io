@@ -8,7 +8,7 @@ import ThemeToggle from "../components/themeToggle";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 
-import sampleImage from "../styles/images/samples/res_66.jpg";
+import sampleImage from "../styles/images/samples/res_73.jpg";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior

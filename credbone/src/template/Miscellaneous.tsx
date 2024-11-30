@@ -4,6 +4,8 @@ import Marquee from "../components/Marquee";
 import Count from "../components/Coutner";
 
 
+import sampleImage from "../styles/images/samples/res_72.jpg";
+
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
 
@@ -70,7 +72,9 @@ const Miscellaneous: React.FC = () => {
        data-border=""
         data-contain=""
       >
-        <group
+
+<group
+          //    data-radius="10"
           data-direction="column"
           data-space="30"
           data-gap="10"
@@ -99,13 +103,30 @@ const Miscellaneous: React.FC = () => {
         </group>
 
         <group
+              data-direction="column"
+              data-min-height="400"
+              data-justify="end"
+            >
+              <picture
+                data-contain=""
+                data-brightness="adaptive"
+                data-position="absolute"
+                data-background="grey-light"
+              >
+                <img src={sampleImage} alt="" />
+              </picture>
+
+
+              <group data-space="30" >
+
+              <group
           data-contain=""
           // data-dark=""
           data-align="center"
           //  data-direction="column"
           //  data-wrap="no"
         >
-          <group data-contain="" dir={dir} data-background="context">
+          <group data-contain="" data-radius="10" dir={dir} data-background="context">
             <Marquee auto={isAutoMode}>
               <group data-space="30">
                 <text data-weight="600">
@@ -117,6 +138,13 @@ const Miscellaneous: React.FC = () => {
             </Marquee>
           </group>
         </group>
+
+
+              </group>
+            </group>
+
+
+
 
         <group data-space="20" data-gap="10" data-border="">
           <group

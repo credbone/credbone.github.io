@@ -7,8 +7,10 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-import sampleImage from "../styles/images/samples/res_62.jpg";
-import sampleImage_2 from "../styles/images/samples/res_65.jpg";
+import sampleImage from "../styles/images/samples/res_71.jpg";
+import sampleImage_2 from "../styles/images/samples/res_73.jpg";
+
+const currentYear: number = new Date().getFullYear();
 
 const linksArray = [
 
@@ -72,19 +74,29 @@ const Components: React.FC = () => {
               <img src={sampleImage} alt="" />
             </picture>
 
-            <group data-space="50" data-dark="" data-sticky="bottom">
+            <group data-space="30"
+            // data-dark="" 
+           // data-sticky="bottom" 
+            >
               <group
-                data-space="20"
+                data-space="30"
                 data-index="2"
-                data-radius="10"
+                data-radius="10"  
                 data-contain=""
-                data-backdrop="20"
+                data-backdrop="20-light"
+                data-gap="30"
               >
-                <group data-gap="20">
-                  <text data-wrap="wrap" data-line="20" data-text-size="15">
-                    Built to adapt and ready to grow.
+                <group  data-gap="20">
+                  <text data-wrap="wrap" data-line="20" data-text-size="15" >
+                  Designed to evolve and adapt, always ready to grow.
                   </text>
+
+
                 </group>
+                <separator data-horizontal=""></separator>
+              <group >
+              <text data-opacity="60">Copyright {currentYear}</text>
+              </group>
               </group>
             </group>
           </group>
@@ -223,7 +235,7 @@ const Components: React.FC = () => {
             //      data-space-horizontal="30"
             data-border="no"
             data-background="none"
-            data-max-length="800"
+            data-max-length="810"
           >
             <group
               data-gap="1"
