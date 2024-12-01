@@ -53,8 +53,8 @@ function App() {
             <group
               data-wrap="no"
               data-gap="10"
-              data-space="15"
-              data-space-bottom="15-sab"
+              data-space="10"
+              data-space-bottom="10-sab"
               data-justify="adaptive-space-around"
             >
               

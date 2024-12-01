@@ -17,6 +17,7 @@ const Overview: React.FC = () => {
             data-ellipsis=""
             // data-color="main"
             data-opacity="10"
+            data-line="50"
           >
             Components <br />
             Overview
