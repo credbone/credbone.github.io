@@ -23,6 +23,7 @@ const routeTitles: { [key: string]: string } = {
   'Dashboard': 'Dashboard',
   'QuickDemos': 'Quick Demos',
   'Modal': 'Modal',
+  'Overview': 'Overview',
 };
 
 const TitleUpdater: React.FC = () => {

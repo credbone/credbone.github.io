@@ -118,7 +118,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
       >
         <group
           // data-length={isSubNavOpen ? "70" : "fit"}
-data-name="side_nav-inner"
+          data-name="side_nav-inner"
           data-height="fit"
           data-scroll=""
           data-scrollbar="none"
@@ -133,8 +133,6 @@ data-name="side_nav-inner"
             data-direction="column"
             data-gap="5"
           >
-
-
             <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
               <group data-adaptive="desktop">
                 <Ripple>
@@ -166,7 +164,7 @@ data-name="side_nav-inner"
               data-interval="10"
               data-adaptive="desktop"
             ></separator>
-            <LeftNavigation  isSubNavOpen={isSubNavOpen}  onToggle={toggleNav} />
+            <LeftNavigation isSubNavOpen={isSubNavOpen} onToggle={toggleNav} />
 
             <Popover
               data-width="auto"
@@ -187,15 +185,44 @@ data-name="side_nav-inner"
               >
                 {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
                 {/* {isSubNavOpen && isNavOpen ? <ThemeIcon /> : isNavOpen ? <ThemeToggle /> : <ThemeIcon />} */}
-
-
-                
               </group>
             </Popover>
+            <group data-position="bottom" data-hide={isSubNavOpen ? "" : "true"}>
+              <group
+                data-cursor="pointer"
+                data-interactive="color"
+                
+                data-contain=""
+                data-space="10"
+                data-gap="10"
+                data-radius="10"
+                data-align="center"
+                data-wrap="no"
+                data-adaptive="mobile"
+                onClick={toggleNav}
+              >
+                <ThemeIcon />
+              </group>
+            </group>
 
-
-
-
+            {isSubNavOpen ? (
+              ""
+            ) : (
+              <group
+                data-cursor="pointer"
+                data-interactive="color"
+                data-position="bottom"
+                data-contain=""
+                data-space="10"
+                data-gap="10"
+                data-radius="10"
+                data-align="center"
+                data-wrap="no"
+                data-adaptive="mobile"
+              >
+                <ThemeToggle />
+              </group>
+            )}
 
             <separator
               data-horizontal=""
@@ -282,7 +309,14 @@ data-name="side_nav-inner"
           </group>
         </group>
 
-        <group data-width="auto" data-adaptive="mobile" data-height="fit" data-index="1" data-wrap="no" data-contain="">
+        <group
+          data-width="auto"
+          data-adaptive="mobile"
+          data-height="fit"
+          data-index="1"
+          data-wrap="no"
+          data-contain=""
+        >
           <VerticalSubNav
             isOpen={isSubNavOpen}
             onClose={closeNav}

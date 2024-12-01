@@ -428,6 +428,7 @@ text[data-width="auto"]{width: initial;}
 
 [data-hidden=""] {display: none;}
 
+[data-hide="true"] {display: none;}
 
 a[data-link]{text-decoration:underline; font-weight:700; color:var(--text-color)}
 a[data-link]:hover { color:var(--main-color)}
