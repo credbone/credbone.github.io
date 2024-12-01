@@ -68,7 +68,7 @@ function App() {
               <Route path="/*" element={<Navigate replace to="/Home" />} />
               <Route path="/Components/*" element={<Template />} />
               <Route path="/Home" element={<Components />} />
-              <Route path="/Components" element={<Template />} />
+
 
               <Route path="/*" element={<MainLayout />}>
                 <Route path="About" element={<About />} />

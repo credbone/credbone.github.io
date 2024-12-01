@@ -27,6 +27,7 @@ import VerticalSubNav from "../pages/navigation/verticalSubNav";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
 import QuickDemos from "./quickDemos";
+import Overview from "./Overview";
 
 
 const Template: React.FC = () => {
@@ -102,7 +103,9 @@ const Template: React.FC = () => {
         <group data-scroll="" data-align="start" ref={viewRef}>
           <group data-max-length="1200">
             <Routes>
-              <Route path="/" element={<Navigate replace to="Typeface" />} />
+            
+              <Route path="/" element={<Navigate replace to="Overview" />} />
+              <Route path="Overview" element={<Overview />} />
               <Route path="Typeface" element={<Typeface />} />
               <Route path="Icons" element={<Icons />} />
               <Route path="Buttons" element={<Buttons />} />

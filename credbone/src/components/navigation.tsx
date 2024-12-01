@@ -6,17 +6,18 @@ import Tooltip from "./tooltip";
 import { useNavContext } from "../components/NavProvider";
 
 import { IconBook, IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
-import { SvgHamburger } from "./svg";
-
+import { SvgHamburger, SvgPlus } from "./svg";
 
 
 const navItems = [
-  { to: "/Home", icon: <IconHome size={20} />, label: "Home" },
-  { to: "/Components", icon: <IconFold size={20}/>, label: "Components",vertical: "true", },
-  { to: "/About", icon: <IconBook size={20}/>, label: "About", },
+  { to: "/Home", icon: <IconHome size={20} />, label: "Home",type:"link"  },
+  { to: "/Components", icon: <IconFold size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
+  { to: "/Components/Typeface", icon: <IconFold size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
+  { to:"/Components", type:"separator"},
+  { to: "/About", icon: <IconBook size={20}/>, label: "About",type:"link" },
 
-  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings" },
-  { to: "/Search", icon: <IconSearch size={20} />, label: "Search" },
+  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings",type:"link" },
+  { to: "/Search", icon: <IconSearch size={20} />, label: "Search",type:"link" },
 ];
 
 const Navigation: React.FC = () => {
@@ -67,7 +68,10 @@ const Navigation: React.FC = () => {
   );
 };
 
-const LeftNavigation: React.FC = () => {
+const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> = ({ isSubNavOpen, onToggle }) => {
+ 
+
+
   const context = useNavContext();
 
   if (!context) {
@@ -80,6 +84,8 @@ const LeftNavigation: React.FC = () => {
   const [indicatorTop, setIndicatorTop] = useState(0);
   const [indicatorHeight, setIndicatorHeight] = useState(0);
   const navRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+
+  
 
   useEffect(() => {
     const updateIndicator = () => {
@@ -132,10 +138,79 @@ const LeftNavigation: React.FC = () => {
 
   return (
     <>
-      {navItems.map((item, index) => (
+
+      {navItems.map((item, index) =>
+      
+      item.type === "toggle" ? (
+        // Custom markup for "adaptive: mobile"
+        <group
+        
+         key={index}
+       
+         data-background={isSubNavOpen ? "main":""}
+         data-color={isSubNavOpen ? "main-text":""}
+          data-width="auto"
+          data-name="nav-item"
+          data-radius="10"
+          data-contain=""
+          data-interactive=""
+          data-adaptive={item.adaptive}
+          onClick={onToggle}
+          data-cursor="pointer"
+         
+          
+          
+          >
+            <group>
+              <Ripple>
+                <group
+                  data-align="center"
+                  data-space="10"
+                  data-gap="10"
+                  data-wrap="no"
+                  data-adaptive-direction={item.vertical ? "column" : ""}
+                >
+                  <group data-length="30" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
+                  <text
+                    data-adaptive={
+                      item.vertical ? "vertical-state" : "open-state"
+                    }
+                    data-ellipsis=""
+                  >
+                    {item.label}
+                  </text>
+                  <group data-width="auto" data-position="right" >
+                  <icon data-length="30"><SvgPlus/></icon>
+                  </group>
+                  {item.vertical === "true" && (
+                    <group data-width="auto"></group>
+                  )}
+                </group>
+              </Ripple>
+            </group>
+        </group>
+      )
+
+      :
+
+      item.type === "separator" ? (
+
+        <group
+        
+         key={index}
+
+          >
+<separator data-interval="10" data-horizontal=""></separator>
+        </group>
+      )
+      
+      :
+
+      (
         <NavLink
           key={index}
           to={item.to}
+          data-adaptive={item.adaptive}
           ref={(el: HTMLAnchorElement | null) => (navRefs.current[index] = el)}
           data-type="group"
           data-width="auto"
@@ -146,10 +221,7 @@ const LeftNavigation: React.FC = () => {
           // className={({ isActive }) => isActive ? 'active' : ''}
           onClick={handleItemClick} // Close the nav on item click
         >
-          <Tooltip
-            content={isNavOpen ? "" : item.vertical ? "" : item.label}
-            placement="right"
-          >
+          <Tooltip content={isNavOpen ? "" : item.vertical ? "" : item.label} placement="right" >
             <group>
               <Ripple>
                 <group

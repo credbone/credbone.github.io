@@ -426,7 +426,7 @@ text[data-width="auto"]{width: initial;}
 [width="auto"] {width:auto;}
 
 
-[data-hidden] {display: none;}
+[data-hidden=""] {display: none;}
 
 
 a[data-link]{text-decoration:underline; font-weight:700; color:var(--text-color)}

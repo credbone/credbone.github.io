@@ -19,10 +19,15 @@ const Tooltip: React.FC<TooltipProps> = ({
   const childRef = useRef<HTMLElement>(null);
   let timer: NodeJS.Timeout;
 
+
+
+
   const handleTouchStart = () => {
     setIsVisible(false);
   };
 
+
+  
   const calculatePosition = () => {
     if (!childRef.current || !tooltipRef.current) return {};
 
@@ -130,6 +135,12 @@ const Tooltip: React.FC<TooltipProps> = ({
       setTooltipPosition(position);
     }
   }, [isVisible]);
+
+
+
+
+  
+
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
     setIsVisible(showTooltip);
