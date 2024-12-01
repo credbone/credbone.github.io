@@ -279,7 +279,7 @@ text[data-width="auto"]{width: initial;}
 
 
 
-
+[data-length='0'] { width: 0px; }
 [data-length='1'] { width: 1px; }
 [data-length='2'] { width: 2px; }
 [data-length='3'] { width: 3px; }
@@ -426,8 +426,9 @@ text[data-width="auto"]{width: initial;}
 [width="auto"] {width:auto;}
 
 
-[data-hidden] {display: none;}
+[data-hidden=""] {display: none;}
 
+[data-hide="true"] {display: none;}
 
 a[data-link]{text-decoration:underline; font-weight:700; color:var(--text-color)}
 a[data-link]:hover { color:var(--main-color)}
@@ -715,6 +716,14 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-radius="full"]{border-radius: 100%;}
 
 
+@media (min-width: 801px) 
+
+{
+  [data-radius="15-desktop"]{border-radius: 15px;}
+}
+
+
+
 
 [data-radius="bubble-left"] {
   border-top-left-radius: 60px;
@@ -914,7 +923,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-space-bottom="15-sab"]{padding-bottom:max(var(--sab), 15px);}
-
+[data-space-bottom="10-sab"]{padding-bottom:max(var(--sab), 10px);}
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
 [data-transition-prop="stroke-dashoffset"]{transition-property: stroke-dashoffset;}
