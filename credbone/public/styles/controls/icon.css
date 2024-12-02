@@ -62,7 +62,7 @@ icon[data-fill="fill"]
 [data-opacity="light"] { opacity: .15 }
 
 
-
+[data-svg-icon-size="55"] svg {width: 55px; height: 55px;}
 
 
 
@@ -104,15 +104,15 @@ icon[micro] { width: 15px; height: 15px; font-size: 15px; }
 [data-icon="hamburgertoright"] { transition: transform 0.35s;  }
 [data-icon="hamburgertoright"] rect { transition-duration: 0.25s; transition-property: transform, width; transform-origin: center; }
 
-.open [data-icon="hamburgertoright"] {transform: rotate(180deg);}
+.open [data-icon="hamburgertoright"] {transform: rotate(180deg); }
 .open [data-icon="hamburgertoright"] rect:nth-child(1) {transform: translate(1px,-1px) rotate(-45deg);width: 10px;/* x: 4; */}
 .open [data-icon="hamburgertoright"] rect:nth-child(3) {transform: translate(1px,1px) rotate(45deg);width: 10px;/* x: 4; */}
 
 
+@keyframes smooth-hamburger-right {from{transform: rotate(180deg)}to{transform: rotate(360deg);}}
 
-
-
-
+[data-loop="smooth"] [data-icon="hamburgertoright"] { transition-duration:0s; animation: smooth-hamburger-right 0.35s;}
+.open [data-loop="smooth"] [data-icon="hamburgertoright"] { transition-duration:0.35s; animation: none;}
 
 
 [data-icon="plus"]{transition:transform 0.25s;}

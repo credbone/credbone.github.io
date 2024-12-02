@@ -3,10 +3,10 @@ import React, { useState } from "react";
 
 
 
-import sectoinImage_1 from "../styles/images/samples/wide_res_61.jpg";
-import sectoinImage_2 from "../styles/images/samples/wide_res_62.jpg";
-import sectoinImage_3 from "../styles/images/samples/wide_res_62.jpg";
-import sectoinImage_4 from "../styles/images/samples/wide_res_63.jpg";
+import sectionImage_1 from "../styles/images/samples/wide_res_61.jpg";
+import sectionImage_2 from "../styles/images/samples/wide_res_62.jpg";
+import sectionImage_3 from "../styles/images/samples/wide_res_62.jpg";
+import sectionImage_4 from "../styles/images/samples/wide_res_63.jpg";
 
 import Ripple from "../components/Ripple";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const groupedLinksArray = [
   {
     title: "Visual Components",
-    image:sectoinImage_1,
+    image:sectionImage_1,
     description:
       "Focuses on elements that enhance the visual appeal and provide context.",
     items: [
@@ -39,7 +39,7 @@ const groupedLinksArray = [
   },
   {
     title: "Structure & Navigation",
-    image:sectoinImage_3,
+    image:sectionImage_3,
     description:
       "Components for organizing and navigating the interface effectively.",
     items: [
@@ -107,7 +107,7 @@ const Overview: React.FC = () => {
             data-brightness="adaptive"
             data-background="grey-light"
           >
-            <img src={group.image} alt="" />
+            <img src={group.image} alt={group.description} />
           </picture>
 
 

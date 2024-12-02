@@ -6,18 +6,27 @@ import {
   SvgHamburgerToLeft,
   SvgHamburgerToRight,
   SvgLoader,
-  SvgLoaderCircle,
   SvgMinus,
   SvgPlus,
 } from "./../components/svg";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
-import { IconHeart } from "../components/icon/credIcons";
+import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
+
+import sectionImage from "../styles/images/samples/wide_res_61.jpg";
+
 
 
 
 const Buttons: React.FC = () => {
   const [customState, setcustomState] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleClass = () => {
+    setIsOpen(prevState => !prevState);
+  };
+  
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
@@ -41,12 +50,48 @@ const Buttons: React.FC = () => {
 
 
 
-<Ripple>
-<group data-wrap="no"  data-width="auto" data-ink-color="main-dark" data-align="center" data-cursor="pointer" data-contain="" data-background="main" data-color="main-text" data-interactive="" data-space="30" data-radius="15" data-gap="20">
+<group>
+<picture
+            data-radius="20"
+            data-contain=""
+            data-brightness="adaptive"
+            data-background="grey-light"
+            data-position="absolute"
+          >
+            <img src={sectionImage} alt="" />
+          </picture>
 
-<icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">arrow_outward</icon>
+<group data-type="grid" data-grid-template="100" data-space="30" data-gap="20" >
+
+<group data-wrap="no" data-ratio="1:1" data-justify="center" data-dark=""  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<IconHome size={60}/>
+</group>
+
+<Ripple>
+<group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer" data-over-color="neutral" data-contain="" data-background="main" data-color="main-text" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<group data-width="auto">
+<IconSearch size={60}/>
+</group>
 </group>
 </Ripple>
+
+<group className={isOpen ? 'open' : ''} onClick={toggleClass} data-wrap="no" data-ratio="1:1" data-justify="center" data-mix-lend-mode="screen"  data-color="black"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-background="white" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+
+
+<group data-width="auto" data-loop="smooth" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">
+<SvgHamburgerToRight />
+</group>
+
+</group>
+
+
+
+
+</group>
+
+</group>
+
+
 
 
 

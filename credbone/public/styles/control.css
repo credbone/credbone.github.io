@@ -938,7 +938,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-filter="blur-90"]{filter: blur(90px);}
 [data-mix-lend-mode="hardlight"] { mix-blend-mode: hard-light;}
 [data-mix-lend-mode="multiply"] { mix-blend-mode: multiply;}
-
+[data-mix-lend-mode="screen"] { mix-blend-mode: screen;}
 
 
 [data-contain=""]{contain: content; overflow:hidden;}
