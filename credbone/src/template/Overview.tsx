@@ -5,30 +5,57 @@ import sampleImage_2 from "../styles/images/samples/res_73.jpg";
 import Ripple from "../components/Ripple";
 import { Link } from "react-router-dom";
 
+const groupedLinksArray = [
+  {
+    title: "Visual Components",
+    description:
+      "Focuses on elements that enhance the visual appeal and provide context.",
+    items: [
+      { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
+      { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
+      { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
+      
+    ],
+  },
+  {
+    title: "Interactive Elements",
+    description:
+      "Interactive components that facilitate user actions and engagement.",
+    items: [
+      { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
+      { title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
+      { title: "Input\n& Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
+      { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
+      { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },
+    ],
+  },
+  {
+    title: "Structure & Navigation",
+    description:
+      "Components for organizing and navigating the interface effectively.",
+    items: [
+      { title: "Navigation\n& Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
+      { title: "Layout\n& Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Components/Layout", },
 
+    ],
+  },
 
-const linksArray = [
+  {
+    title: "Miscellaneous & Demos",
+    description:
+      "Components for organizing and navigating the interface effectively.",
+    items: [
 
-  { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
-  { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
-  { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
-  { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
-  { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
-  { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Components/QuickDemos", },
-  { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },
+      { title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard", },
+      { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Components/QuickDemos", },
+      { title: "Miscellaneous", description: "Encompasses a variety of small, diverse UI components.", to: "/Components/Miscellaneous", },
+    ],
+  },
 
-  { title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard" },
-  { title: "Navigation\n& Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
-  { title: "Input\n& Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
-  { title: "Layout\n& Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Components/Layout" },
-  { title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
 ];
-
 
 const Overview: React.FC = () => {
   return (
-
-    
     <group data-space="30" data-gap="30" data-wrap="no" data-direction="column">
       <group data-direction="column" data-wrap="no">
         <group data-direction="column" data-gap="10">
@@ -39,9 +66,8 @@ const Overview: React.FC = () => {
             data-ellipsis=""
             // data-color="main"
             data-opacity="10"
-            
           >
-             Overview
+            Overview
           </text>
           <text
             data-wrap="wrap"
@@ -57,83 +83,67 @@ const Overview: React.FC = () => {
         </group>
       </group>
 
-
-
-
-<group  >
-        <group data-direction="column" data-justify="end">
+      <group>
+        <group data-direction="column" data-justify="end" data-min-height="240">
           <picture
             data-radius="20"
             data-contain=""
             data-brightness="adaptive"
-          //  data-position="absolute"
+            //  data-position="absolute"
             data-background="grey-light"
           >
             <img src={sampleImage} alt="" />
           </picture>
 
-          {/* <group data-space="30" data-gap="30" data-dark="" data-direction="column"  data-align="start">
 
-
-          <group data-width="auto" data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
-
-
-
-
-          <group data-width="auto" data-gap="20">
-          <text
-            data-wrap="wrap"
-            data-max-length="400"
-            data-line="1.5"
-          
-          >
-            Components are interactive elements used to build a user interface.
-            They can be grouped into categories according to their function:
-            Action, Containment, Communication, Navigation, Selection, and Text
-            Input.
-          </text>
-
-
-          </group>
-
-
-
-
-
-        </group>
-          </group> */}
         </group>
       </group>
 
       <group
-            //      data-space-horizontal="30"
-            data-border="no"
-            data-background="none"
-            
-           
-          >
+        //      data-space-horizontal="30"
+        data-border="no"
+        data-background="none"
+      >
+        {groupedLinksArray.map((group, index) => (
+          <group key={index}>
+            <group data-direction="column" data-space="30" data-gap="10">
+              <text
+                data-text-size="x-large"
+                data-weight="700"
+                data-wrap="preline"
+                data-ellipsis=""
+                data-color="main"
+              >
+                {group.title}
+              </text>
+              <text   data-wrap="wrap"
+            data-max-length="300"
+            data-line="1.5"
+            data-light="">
+                {group.description}
+              </text>
+            </group>
+
             <group
               data-gap="5"
               data-type="grid"
               data-grid-template="240"
               data-weight="600"
-             
-
             >
-              {linksArray.map((link, index) => (
+              {group.items.map((item, index) => (
                 <Ripple key={index}>
                   <Link
-                  data-radius="20"
+                    data-radius="20"
                     data-drag="none"
-                    to={link.to}
+                    to={item.to}
                     key={index}
                     data-interactive=""
                     data-width="auto"
                     data-type="group"
                     data-contain=""
-                    data-min-height="300"
+                    data-min-height="240"
                     //  data-radius="20"
-                   
+
                     data-direction="column"
                     data-wrap="no"
                     data-background="highlight"
@@ -153,16 +163,16 @@ const Overview: React.FC = () => {
                         //data-weight="100"
                         data-opacity="20"
                       >
-                      {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                        {index + 1 < 10 ? `0${index + 1}` : index + 1}
                       </text>
-                      <group ></group>
+                      <group></group>
                       <text
                         data-text-size="medium"
                         data-weight="700"
                         data-wrap="preline"
                         data-ellipsis=""
                       >
-                        {link.title}
+                        {item.title}
                       </text>
                       <text
                         data-ellipsis=""
@@ -171,7 +181,7 @@ const Overview: React.FC = () => {
                         data-max-length="300"
                         data-opacity="60"
                       >
-                        {link.description}
+                        {item.description}
                       </text>
                     </group>
                   </Link>
@@ -179,9 +189,8 @@ const Overview: React.FC = () => {
               ))}
             </group>
           </group>
-
-
-
+        ))}
+      </group>
     </group>
   );
 };

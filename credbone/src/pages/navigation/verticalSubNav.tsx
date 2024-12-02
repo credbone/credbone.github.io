@@ -113,7 +113,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
             data-space="30"
             data-direction="column"
           >
-            <group
+            {/* <group
 
               data-adaptive="mobile"
               onClick={onClose}
@@ -127,13 +127,13 @@ data-cursor="pointer"
               data-gap="10"
             >
              
-              <text data-ellipsis="" >Show Main Navigation</text>
-            </group>
-
+              <text data-ellipsis="" data-opacity="60" >Show Main Navigation</text>
+            </group> */}
+            
             {navItems.map((item, index) => (
-              <group key={index}  data-weight="600">
+              <group key={index}  data-weight="600" data-gap="5">
                 {item.separator === "true" && (
-                  <separator data-horizontal="" data-interval="30"></separator>
+                  <separator data-horizontal="" data-interval="20"></separator>
                 )}
                 <NavLink
                   data-animation-name="appear-left"

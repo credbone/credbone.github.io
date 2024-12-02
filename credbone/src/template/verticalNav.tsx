@@ -166,27 +166,9 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             ></separator>
             <LeftNavigation isSubNavOpen={isSubNavOpen} onToggle={toggleNav} />
 
-            <Popover
-              data-width="auto"
-              data-space="5"
-              content={isNavOpen ? "" : <ThemeToggle />}
-            >
-              <group
-                data-cursor="pointer"
-                data-interactive="color"
-                data-position="bottom"
-                data-contain=""
-                data-space="10"
-                data-gap="10"
-                data-radius="10"
-                data-align="center"
-                data-wrap="no"
-                data-adaptive="desktop"
-              >
-                {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
-                {/* {isSubNavOpen && isNavOpen ? <ThemeIcon /> : isNavOpen ? <ThemeToggle /> : <ThemeIcon />} */}
-              </group>
-            </Popover>
+
+
+
             <group data-position="bottom" data-hide={isSubNavOpen ? "" : "true"}>
               <group
                 data-cursor="pointer"
@@ -223,6 +205,30 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
                 <ThemeToggle />
               </group>
             )}
+
+
+            <Popover
+              data-width="auto"
+              data-space="5"
+              content={isNavOpen ? "" : <ThemeToggle />}
+            >
+              <group
+                data-cursor="pointer"
+                data-interactive="color"
+                data-position="bottom"
+                data-contain=""
+                data-space="10"
+                data-gap="10"
+                data-radius="10"
+                data-align="center"
+                data-wrap="no"
+                data-adaptive="desktop"
+              >
+                {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
+                {/* {isSubNavOpen && isNavOpen ? <ThemeIcon /> : isNavOpen ? <ThemeToggle /> : <ThemeIcon />} */}
+              </group>
+            </Popover>
+
 
             <separator
               data-horizontal=""
