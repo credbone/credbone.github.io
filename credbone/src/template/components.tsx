@@ -146,33 +146,8 @@ const Components: React.FC = () => {
               </group>
 
               <group data-width="auto" data-gap="15" data-align="center">
-                <Ripple>
-                  <Link
-                    data-contain=""
-                    data-drag="none"
-                    data-type="group"
-                    to="/Components"
-                    data-interactive=""
-                    data-width="auto"
-                    data-background="main"
-                    data-color="main-text"
-                    data-ink-color="main-dark"
-                    data-space-horizontal="40"
-                    data-space-vertical="20"
-                    data-radius="15"
-                  >
-                    <text
-                      data-weight="700"
-                      //  data-wrap="wrap"
-                      data-ellipsis=""
-                    >
-                      Get Started
-                    </text>
-                  </Link>
-                </Ripple>
-                <separator data-vertical="" data-height="20"></separator>
 
-                <Ripple>
+              <Ripple>
                   <group
                     data-contain=""
                     data-drag="none"
@@ -227,6 +202,34 @@ const Components: React.FC = () => {
                     <IconSearch></IconSearch>
                   </group>
                 </Ripple>
+                <separator data-vertical="" data-height="20"></separator>
+                <Ripple>
+                  <Link
+                    data-contain=""
+                    data-drag="none"
+                    data-type="group"
+                    to="/Components"
+                    data-interactive=""
+                    data-width="auto"
+                    data-background="main"
+                    data-color="main-text"
+                    data-ink-color="main-dark"
+                    data-space-horizontal="40"
+                    data-space-vertical="20"
+                    data-radius="15"
+                  >
+                    <text
+                      data-weight="700"
+                      //  data-wrap="wrap"
+                      data-ellipsis=""
+                    >
+                      Get Started
+                    </text>
+                  </Link>
+                </Ripple>
+               
+
+
               </group>
             </group>
           </group>

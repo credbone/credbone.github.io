@@ -595,6 +595,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-max-height='fit']{max-height:100%;}
+[data-max-height='200']{max-height:200px;}
 [data-max-height='300']{max-height:300px;}
 [data-max-height='400']{max-height:400px;}
 

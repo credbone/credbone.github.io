@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 
-import sampleImage from "../styles/images/samples/wide_res_61.jpg";
-import sampleImage_2 from "../styles/images/samples/res_73.jpg";
+
+
+
+import sectoinImage_1 from "../styles/images/samples/wide_res_61.jpg";
+import sectoinImage_2 from "../styles/images/samples/wide_res_62.jpg";
+import sectoinImage_3 from "../styles/images/samples/wide_res_62.jpg";
+import sectoinImage_4 from "../styles/images/samples/wide_res_63.jpg";
+
 import Ripple from "../components/Ripple";
 import { Link } from "react-router-dom";
 
 const groupedLinksArray = [
   {
     title: "Visual Components",
+    image:sectoinImage_1,
     description:
       "Focuses on elements that enhance the visual appeal and provide context.",
     items: [
@@ -19,6 +26,7 @@ const groupedLinksArray = [
   },
   {
     title: "Interactive Elements",
+    image:"",
     description:
       "Interactive components that facilitate user actions and engagement.",
     items: [
@@ -31,6 +39,7 @@ const groupedLinksArray = [
   },
   {
     title: "Structure & Navigation",
+    image:sectoinImage_3,
     description:
       "Components for organizing and navigating the interface effectively.",
     items: [
@@ -42,6 +51,7 @@ const groupedLinksArray = [
 
   {
     title: "Miscellaneous & Demos",
+    image:"",
     description:
       "Components for organizing and navigating the interface effectively.",
     items: [
@@ -64,7 +74,6 @@ const Overview: React.FC = () => {
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
-            // data-color="main"
             data-opacity="10"
           >
             Overview
@@ -83,30 +92,29 @@ const Overview: React.FC = () => {
         </group>
       </group>
 
-      <group>
-        <group data-direction="column" data-justify="end" data-min-height="240">
+
+      <group
+        data-border="no"
+        data-background="none"
+         data-gap="30"
+      >
+        {groupedLinksArray.map((group, index) => (
+          <group key={index} data-direction="column" data-gap="30">
+{group.image ? <group data-direction="column" data-justify="end" data-min-height="240">
           <picture
             data-radius="20"
             data-contain=""
             data-brightness="adaptive"
-            //  data-position="absolute"
             data-background="grey-light"
           >
-            <img src={sampleImage} alt="" />
+            <img src={group.image} alt="" />
           </picture>
 
 
-        </group>
-      </group>
+        </group> : "" }
 
-      <group
-        //      data-space-horizontal="30"
-        data-border="no"
-        data-background="none"
-      >
-        {groupedLinksArray.map((group, index) => (
-          <group key={index}>
-            <group data-direction="column" data-space="30" data-gap="10">
+
+            <group data-direction="column" data-space-horizontal="30" data-gap="10">
               <text
                 data-text-size="x-large"
                 data-weight="700"
