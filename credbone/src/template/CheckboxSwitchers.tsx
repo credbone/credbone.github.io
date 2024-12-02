@@ -312,20 +312,42 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
 
           <group
-            data-column-gap="15"
+            data-gap="30"
             data-align="start"
             data-max-length="800"
-            data-type="column"
+ 
           >
+
+<group data-direction="column" data-gap="10">
+                  <text
+                    data-weight="700"
+                    data-text-size="xxx-large"
+                    data-wrap="wrap"
+                   data-color="main"
+                  >
+                    Switch
+                  </text>
+                  <text
+                    data-wrap="wrap"
+                    data-line="1.5"
+                     data-light=""
+                    data-max-length="300"
+                    data-index="1"
+                  >
+                    Switches are used to toggle the selection of an item,
+                    turning it on or off as needed.
+                  </text>
+                </group>
+
             <group
               data-direction="column"
               data-radius="15"
            
               data-contain=""
-              
+               data-width="auto"
             >
               <group
-              
+             
                 data-background="main"
                  data-color="main-text"
                 data-contain=""
@@ -335,26 +357,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space="30"
                 data-gap="30"
               >
-                <group data-direction="column" data-gap="10">
-                  <text
-                    data-weight="700"
-                    data-text-size="xxx-large"
-                    data-wrap="wrap"
-                   
-                  >
-                    Switch
-                  </text>
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    // data-light=""
-                    data-max-length="300"
-                    data-index="1"
-                  >
-                    Switches are used to toggle the selection of an item,
-                    turning it on or off as needed.
-                  </text>
-                </group>
+
 
                 {/* <group data-mix-lend-mode="multiply" data-timing="fancy" data-duration=".725" data-translate-vertical={radioValue} data-contain="" data-position="absolute" data-right="0" data-height="600" data-max-length="400" data-direction="column" >
                     <picture   data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
@@ -513,7 +516,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               </OptionBar>
             </group>
 
-            <group data-gap="10" data-radius="5">
+            <group data-length="400" data-gap="10" data-radius="5">
               <OptionBar
                 data-length="autofit"
                 data-height="40"
