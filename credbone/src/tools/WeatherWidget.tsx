@@ -59,7 +59,7 @@ const WeatherWidget: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState<string>(cities[0]);
   const [error, setError] = useState<string | null>(null);
   const [unit, setUnit] = useState<"metric" | "imperial">("metric");
-  const [showForecast, setShowForecast] = useState<boolean>(true);
+  const [showForecast, setShowForecast] = useState<boolean>(false);
 
   const currentIcon = weather?.rawIcon || "default";
   const weatherStyle = {

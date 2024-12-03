@@ -112,7 +112,7 @@ const Components: React.FC = () => {
             data-contain=""
           ></group>
 
-          <group data-height="300" data-adaptive="mobile">
+          <group data-height="200" data-adaptive="mobile">
             <group data-radius="20" data-contain="">
               <picture data-brightness="adaptive" data-position="absolute" data-background="grey-light">
                 <img src={sampleImage_2} alt="" />

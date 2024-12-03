@@ -65,10 +65,10 @@ data-gap="20"
           data-radius="20"
          data-border=""
           data-contain=""
-          data-space="20"
+          data-space="10"
           data-gap="20"
         >
-          <group data-gap="10" data-space="10">
+          <group data-gap="10" data-space="20">
             <text
               data-weight="700"
               data-wrap="wrap"
@@ -95,10 +95,10 @@ data-gap="20"
           data-radius="20"
          data-border=""
           data-contain=""
-          data-space="20"
+          data-space="10"
           //    data-gap="20"
         >
-          <group data-gap="10" data-space="10">
+          <group data-gap="10" data-space="20">
             <text
               data-weight="700"
               data-wrap="preline"

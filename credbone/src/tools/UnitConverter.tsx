@@ -272,7 +272,7 @@ const UnitConverter: React.FC = () => {
   };
 
   return (
-    <group data-direction="column" data-gap="15">
+    <group data-direction="column" data-gap="10">
       {/* Select conversion type */}
 
 
@@ -508,7 +508,7 @@ const UnitConverter: React.FC = () => {
       </group>
 
       {getFormula() && (
-        <group data-gap="10" data-direction="column" data-align="start" data-max-length="260">
+        <group data-gap="10" data-space="15" data-direction="column" data-align="start" data-max-length="260">
           <group
             data-background="amber-light"
             data-color="brown-dark"
