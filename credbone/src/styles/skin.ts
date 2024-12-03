@@ -5,61 +5,101 @@ export const defaultPrimaryColor = "#0066ff";
 export const defaultSecondaryColor = "#49c5b6";
 
 export type ColorPalette = {
+
+
+    colorPrimaryLightest?: string;
+    colorPrimaryLighter?: string;
+    colorPrimaryLight?: string;
+    colorPrimarySoft?: string;
     colorPrimary: string;
-    colorLighter?: string;
-    colorLight?: string;
-    colorDark?: string;
-    colorDarker?: string;
-    colorSecondary: string;
+    colorPrimaryDeep?: string;
+    colorPrimaryDark?: string;
+    colorPrimaryDarker?: string;
+    colorPrimaryDarkest?: string;
+
+    colorSecondaryLightest?: string;
     colorSecondaryLighter?: string;
     colorSecondaryLight?: string;
+    colorSecondarySoft?: string;
+    colorSecondary: string;
+    colorSecondaryDeep?: string;
     colorSecondaryDark?: string;
     colorSecondaryDarker?: string;
+    colorSecondaryDarkest?: string;
 };
 
 export const getCSSByPalette = (palette: ColorPalette) => {
     const {
+        colorPrimaryLightest,
+        colorPrimaryLighter,
+        colorPrimaryLight,
+        colorPrimarySoft,
         colorPrimary,
-        colorLighter,
-        colorLight,
-        colorDark,
-        colorDarker,
-        colorSecondary,
+        colorPrimaryDeep,
+        colorPrimaryDark,
+        colorPrimaryDarker,
+        colorPrimaryDarkest,
+
+
+
+        colorSecondaryLightest,
         colorSecondaryLighter,
         colorSecondaryLight,
+        colorSecondarySoft,
+        colorSecondary,
+        colorSecondaryDeep,
         colorSecondaryDark,
         colorSecondaryDarker,
+        colorSecondaryDarkest,
+
     } = palette;
 
     const isMainColorLight = isColorLight(colorPrimary);
     const isSecondaryColorLight = isColorLight(colorSecondary);
 
-    const mainColorText = isMainColorLight ? "--main-color-text: var(--main-color-darker);" : "--main-color-text: var(--main-color-lighter-white);";
-    const secondaryColorText = isSecondaryColorLight ? "--secondary-color-text: var(--secondary-color-darker);" : "--secondary-color-text: var(--secondary-color-lighter-white);";
+    const mainColorText = isMainColorLight ? "--main-color-text: var(--main-color-darker);" : "--main-color-text: var(--main-color-lightest);";
+    const secondaryColorText = isSecondaryColorLight ? "--secondary-color-text: var(--secondary-color-darker);" : "--secondary-color-text: var(--secondary-color-lightest);";
+
 
     
     return `
         :root {
            
+            --main-color-alpha-15: ${colorPrimary}26;
+            --main-color-alpha-50: ${colorPrimary}80;
 
-            --main-color-lighter-white: ${colorLighter || getColorShade(colorPrimary, "20")};
-            --main-color-light-white: ${colorLight || getColorShade(colorPrimary, "70")};
 
-            --main-color-lighter: ${colorPrimary}2b;
-            --main-color-light: ${colorPrimary}75;
+            --main-color-lightest: ${colorPrimaryLightest || getColorShade(colorPrimary, "20")};
+            --main-color-lighter: ${colorPrimaryLighter || getColorShade(colorPrimary, "40")};
+            --main-color-light: ${colorPrimaryLight || getColorShade(colorPrimary, "60")};
+            --main-color-soft: ${colorPrimarySoft || getColorShade(colorPrimary, "80")};
             --main-color: ${colorPrimary};
-            --main-color-dark: ${colorDark || getColorShade(colorPrimary, "500")};
-            --main-color-darker: ${colorDarker || getColorShade(colorPrimary, "800")};
+            --main-color-deep: ${colorPrimaryDeep || getColorShade(colorPrimary, "300")};
+            --main-color-dark: ${colorPrimaryDark || getColorShade(colorPrimary, "500")};
+            --main-color-darker: ${colorPrimaryDarker || getColorShade(colorPrimary, "700")};
+            --main-color-darkest: ${colorPrimaryDarkest || getColorShade(colorPrimary, "900")};
 
-            --secondary-color-light-white: ${colorSecondaryLight || getColorShade(colorSecondary, "70")};
-            --secondary-color-lighter-white: ${colorSecondaryLighter || getColorShade(colorSecondary, "20")};
+            
+
+
+
   
 
-            --secondary-color-lighter: ${colorSecondary}2b;
-            --secondary-color-light: ${colorSecondary}75;
+            --secondary-color-alpha-15: ${colorSecondary}26;
+            --secondary-color-alpha-50: ${colorSecondary}80;
+
+
+
+
+            --secondary-color-lightest: ${colorSecondaryLightest || getColorShade(colorSecondary, "20")};
+            --secondary-color-lighter: ${colorSecondaryLighter || getColorShade(colorSecondary, "40")};
+            --secondary-color-light: ${colorSecondaryLight || getColorShade(colorSecondary, "60")};
+            --secondary-color-soft: ${colorSecondarySoft || getColorShade(colorSecondary, "80")};
             --secondary-color: ${colorSecondary};
+            --secondary-color-deep: ${colorSecondaryDeep || getColorShade(colorSecondary, "300")};
             --secondary-color-dark: ${colorSecondaryDark || getColorShade(colorSecondary, "500")};
-            --secondary-color-darker: ${colorSecondaryDarker || getColorShade(colorSecondary, "800")};
+            --secondary-color-darker: ${colorSecondaryDarker || getColorShade(colorSecondary, "700")};
+            --secondary-color-darkest: ${colorSecondaryDarkest || getColorShade(colorSecondary, "900")};
 
             ${mainColorText}
             ${secondaryColorText}
@@ -69,16 +109,27 @@ export const getCSSByPalette = (palette: ColorPalette) => {
 
 export const getPalette = (colorPrimary: string, colorSecondary: string): ColorPalette => {
     return {
+
+        colorPrimaryLightest: getColorShade(colorPrimary, "20"),
+        colorPrimaryLighter: getColorShade(colorPrimary, "40"),
+        colorPrimaryLight: getColorShade(colorPrimary, "60"),
+        colorPrimarySoft: getColorShade(colorPrimary, "80"),
         colorPrimary,
+        colorPrimaryDeep: getColorShade(colorPrimary, "300"),
+        colorPrimaryDark: getColorShade(colorPrimary, "500"),
+        colorPrimaryDarker: getColorShade(colorPrimary, "700"),
+        colorPrimaryDarkest: getColorShade(colorPrimary, "900"),
+
+
+        colorSecondaryLightest: getColorShade(colorSecondary, "20"),
+        colorSecondaryLighter: getColorShade(colorSecondary, "40"),
+        colorSecondaryLight: getColorShade(colorSecondary, "60"),
+        colorSecondarySoft: getColorShade(colorSecondary, "80"),
         colorSecondary,
-        colorLighter: getColorShade(colorPrimary, "20"),
-        colorLight: getColorShade(colorPrimary, "70"),
-        colorDark: getColorShade(colorPrimary, "500"),
-        colorDarker: getColorShade(colorPrimary, "800"),
-        colorSecondaryLighter: getColorShade(colorSecondary, "20"),
-        colorSecondaryLight: getColorShade(colorSecondary, "70"),
+        colorSecondaryDeep: getColorShade(colorSecondary, "300"),
         colorSecondaryDark: getColorShade(colorSecondary, "500"),
-        colorSecondaryDarker: getColorShade(colorSecondary, "800"),
+        colorSecondaryDarker: getColorShade(colorSecondary, "700"),
+        colorSecondaryDarkest: getColorShade(colorSecondary, "900"),
     };
 };
 

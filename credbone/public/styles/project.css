@@ -9,8 +9,8 @@
 
         
 
-        --over-color: linear-gradient(to top, var(--main-color-lighter) 0%, var(--main-color-lighter) 100%);
-        --press-color: linear-gradient(to top, var(--main-color-light) 0%, var(--main-color-light) 100%);
+        --over-color: linear-gradient(to top, var(--main-color-alpha-15) 0%, var(--main-color-alpha-15) 100%);
+        --press-color: linear-gradient(to top, var(--main-color-alpha-50) 0%, var(--main-color-alpha-50) 100%);
 
        
         

@@ -44,7 +44,7 @@ const GaugeZoom: React.FC<GaugeZoomProps> = ({ value, max, size }) => {
           cy="50%"
           r="45"
           stroke="currentcolor"
-          data-stroke="main-light"
+          data-stroke="main-alpha-50"
           strokeWidth="10"
           fill="none"
           pathLength="100"

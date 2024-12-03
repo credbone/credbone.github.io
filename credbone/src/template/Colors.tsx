@@ -87,7 +87,7 @@ const Colors: React.FC = () => {
             data-animation-duration="2.25"
             data-index="2"
             data-radius="15"
-            data-min-height="240"
+           
             data-space="30"
             data-gap="30"
             data-background={colorsValue}
@@ -277,58 +277,13 @@ const Colors: React.FC = () => {
 
 
       <group
-        data-border=""
-        data-radius="20"
-        //    data-elevation="2"
-        data-index="2"
-        data-contain=""
-        data-space="5"
-        data-background="context"
-        data-max-length="800"
-      >
-        <group data-contain="" data-radius="15">
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="main-lighter"
-            data-color="main-darker"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="main-light"
-                        data-color="main-darker"
-          >
-            <text data-weight="700">Light</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
 
-          <Popover
+data-gap="5"
+
+      >
+
+
+<Popover
             placement="mouse"
             content={
               <group
@@ -344,7 +299,7 @@ const Colors: React.FC = () => {
             data-backdrop="10"
             data-width="auto"
           >
-            <group data-min-height="240" data-width="auto" data-length="auto">
+            <group data-width="auto" data-length="auto">
               <Ripple>
                 <group
                   data-ink-color="main-dark"
@@ -394,10 +349,137 @@ const Colors: React.FC = () => {
             </group>
           </Popover>
 
+
+        <group  data-type="grid" data-grid-template="120" data-gap="5">
+        <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-lightest"
+            data-color="main-darker"
+          >
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              100
+            </text>
+          </group>
           <group
             // data-radius="15"
             data-contain=""
-            data-min-height="240"
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-lighter"
+
+            data-color="main-darker"
+          >
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              200
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="white"
+            data-gradient="main-light"
+                        data-color="main-darker"
+          >
+            <text data-weight="700">Light</text>
+            <text data-ellipsis="" data-light="">
+             300
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-soft"
+            data-color="main-darkest"
+            
+          >
+            <text data-weight="700">Soft</text>
+            <text data-ellipsis="" data-light="">
+             400
+            </text>
+          </group>
+
+{/* base */}
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main"
+            data-color="main-text"
+            
+          >
+            <text data-weight="700">Base</text>
+            <text data-ellipsis="" data-light="">
+              Base shade
+            </text>
+          </group>
+
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-deep"
+            data-color="white"
+            
+          >
+            <text data-weight="700">Deep</text>
+            <text data-ellipsis="" data-light="">
+              600
+            </text>
+          </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
             data-length="auto"
             data-shrink="no"
             data-direction="column"
@@ -411,13 +493,13 @@ const Colors: React.FC = () => {
           >
             <text data-weight="700">Dark</text>
             <text data-ellipsis="" data-light="">
-              Auto-generated shade
+             700
             </text>
           </group>
           <group
             // data-radius="15"
             data-contain=""
-            data-height="240"
+           
             data-length="auto"
             data-shrink="no"
             data-direction="column"
@@ -430,66 +512,37 @@ const Colors: React.FC = () => {
           >
             <text data-weight="700">Darker</text>
             <text data-ellipsis="" data-light="">
-              Auto-generated shade
+              800
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="main-darkest"
+            data-color="white"
+          >
+            <text data-weight="700">Darkest</text>
+            <text data-ellipsis="" data-light="">
+              900
             </text>
           </group>
         </group>
       </group>
 
       <group
-        data-border=""
-        data-radius="20"
-        // data-elevation="2"
-        data-index="1"
-        data-contain=""
-        data-space="5"
-        data-background="context"
-        data-max-length="800"
+
+      data-gap="5"
       >
-        <group data-contain="" data-radius="15">
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-height="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="secondary-lighter"
-            data-color="secondary-darker"
-          >
-            <text data-weight="700">Secondary Lighter</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
 
-          <group
-            // data-radius="15"
-            data-contain=""
-            data-min-eight="240"
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="secondary-light"
-            data-color="secondary-darker"
-          >
-            <text data-weight="700">Secondary Light</text>
-            <text data-ellipsis="" data-light="">
-              Auto-generated shade
-            </text>
-          </group>
-
-          <Popover
+<Popover
             placement="mouse"
             content={
               <group
@@ -505,7 +558,7 @@ const Colors: React.FC = () => {
             data-backdrop="10"
             data-width="auto"
           >
-            <group data-min-height="240" data-width="auto" data-length="auto">
+            <group data-width="auto" data-length="auto">
               <Ripple>
                 <group
                   data-ink-color="secondary-dark"
@@ -554,10 +607,136 @@ const Colors: React.FC = () => {
             </group>
           </Popover>
 
+          <group  data-type="grid" data-grid-template="120" data-gap="5">
+        <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-lightest"
+            data-color="secondary-darker"
+          >
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              100
+            </text>
+          </group>
           <group
             // data-radius="15"
             data-contain=""
-            data-min-height="240"
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-lighter"
+
+            data-color="secondary-darker"
+          >
+            <text data-weight="700">Lighter</text>
+            <text data-ellipsis="" data-light="">
+              200
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="white"
+            data-gradient="secondary-light"
+                        data-color="secondary-darker"
+          >
+            <text data-weight="700">Light</text>
+            <text data-ellipsis="" data-light="">
+             300
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-soft"
+            data-color="secondary-darkest"
+            
+          >
+            <text data-weight="700">Soft</text>
+            <text data-ellipsis="" data-light="">
+             400
+            </text>
+          </group>
+
+{/* base */}
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary"
+            data-color="secondary-text"
+            
+          >
+            <text data-weight="700">Base</text>
+            <text data-ellipsis="" data-light="">
+              Base shade
+            </text>
+          </group>
+
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-deep"
+            data-color="white"
+            
+          >
+            <text data-weight="700">Deep</text>
+            <text data-ellipsis="" data-light="">
+              600
+            </text>
+          </group>
+
+          <group
+            // data-radius="15"
+            data-contain=""
+           
             data-length="auto"
             data-shrink="no"
             data-direction="column"
@@ -567,16 +746,17 @@ const Colors: React.FC = () => {
             data-space="30"
             data-background="secondary-dark"
             data-color="white"
+            
           >
-            <text data-weight="700">Secondary Dark</text>
+            <text data-weight="700">Dark</text>
             <text data-ellipsis="" data-light="">
-              Auto-generated shade
+             700
             </text>
           </group>
           <group
             // data-radius="15"
             data-contain=""
-            data-height="240"
+           
             data-length="auto"
             data-shrink="no"
             data-direction="column"
@@ -587,9 +767,28 @@ const Colors: React.FC = () => {
             data-background="secondary-darker"
             data-color="white"
           >
-            <text data-weight="700">Secondary Darker</text>
+            <text data-weight="700">Darker</text>
             <text data-ellipsis="" data-light="">
-              Auto-generated shade
+              800
+            </text>
+          </group>
+          <group
+            // data-radius="15"
+            data-contain=""
+           
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-orientation="vertical-bottom"
+            data-justify="start"
+            data-width="auto"
+            data-space="30"
+            data-background="secondary-darkest"
+            data-color="white"
+          >
+            <text data-weight="700">Darkest</text>
+            <text data-ellipsis="" data-light="">
+              900
             </text>
           </group>
         </group>
