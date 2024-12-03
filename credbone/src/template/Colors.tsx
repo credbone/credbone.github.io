@@ -11,6 +11,19 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
 
 
+export const ColorPalette = [
+  {textcolor:"-dark",code: "-lightest", name: "Lightest", description: "100" },
+  {textcolor:"-dark",code: "-lighter", name: "Lighter", description: "200" },
+  {textcolor:"-darker",code: "-light", name: "Light", description: "300" },
+  {textcolor:"-text",code: "-soft", name: "Soft", description: "400" },
+  {textcolor:"-text",code: "", name: "Base", description: "500" },
+  {textcolor:"-lighter",code: "-deep", name: "Deep", description: "600" },
+  {textcolor:"-lighter",code: "-dark", name: "Dark", description: "700" },
+  {textcolor:"-lightest",code: "-darker", name: "Darker", description: "800" },
+  {textcolor:"-lightest",code: "-darkest", name: "Darkest", description: "900" },
+];
+
+
 const Colors: React.FC = () => {
   const { openModal, closeModal } = useModal();
   const { addSnackbar } = useSnackbar();
@@ -274,9 +287,9 @@ const Colors: React.FC = () => {
       </group>
 
 
+<group data-gap="5">
 
-
-      <group
+<group
 
 data-gap="5"
 
@@ -351,189 +364,35 @@ data-gap="5"
 
 
         <group  data-type="grid" data-grid-template="120" data-gap="5">
-        <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-lightest"
-            data-color="main-darker"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              100
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-lighter"
 
-            data-color="main-darker"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              200
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="main-light"
-                        data-color="main-darker"
-          >
-            <text data-weight="700">Light</text>
-            <text data-ellipsis="" data-light="">
-             300
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-soft"
-            data-color="main-darkest"
-            
-          >
-            <text data-weight="700">Soft</text>
-            <text data-ellipsis="" data-light="">
-             400
-            </text>
-          </group>
+        {ColorPalette.map((color, index) => (
 
-{/* base */}
+<group
+key={index}
+data-contain=""
 
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main"
-            data-color="main-text"
-            
-          >
-            <text data-weight="700">Base</text>
-            <text data-ellipsis="" data-light="">
-              Base shade
-            </text>
-          </group>
+data-length="auto"
+data-shrink="no"
+data-direction="column"
+data-ratio="1:1"
+data-justify="end"
+data-width="auto"
+data-space="30"
+data-background={"main" + color.code} 
+data-color={"main" + color.textcolor}
+>
+<text data-ellipsis="" data-light="">
+{color.description}
+</text>
+<text data-weight="700">{color.name}</text>
+
+</group>
+
+        ))}
 
 
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-deep"
-            data-color="white"
-            
-          >
-            <text data-weight="700">Deep</text>
-            <text data-ellipsis="" data-light="">
-              600
-            </text>
-          </group>
 
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-dark"
-            data-color="white"
-            
-          >
-            <text data-weight="700">Dark</text>
-            <text data-ellipsis="" data-light="">
-             700
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-darker"
-            data-color="white"
-          >
-            <text data-weight="700">Darker</text>
-            <text data-ellipsis="" data-light="">
-              800
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="main-darkest"
-            data-color="white"
-          >
-            <text data-weight="700">Darkest</text>
-            <text data-ellipsis="" data-light="">
-              900
-            </text>
-          </group>
+
         </group>
       </group>
 
@@ -571,228 +430,71 @@ data-gap="5"
                   data-color="secondary-text"
                   data-space="30"
                   data-background="secondary"
-                  data-gap="20"
+                  data-gap="30"
                   data-justify="end"
                   data-align="start"
                 >
-                  <group>
-                    <text data-opacity="30">Click To Change</text>
-                  </group>
 
-                  <group
-                    data-position="bottom"
-                    data-gap="10"
-                    data-direction="column"
-                  >
-                    <text
-                      data-wrap="wrap"
-                      data-light=""
-                      data-max-length="300"
-                      data-line="20"
-                    >
-                      This Secondary color you selected will be used extensively
-                      in the UI, with other shades being automatically generated
-                      from it.
-                    </text>
-                    <text
+                    
+
+<text
                       data-wrap="wrap"
                       data-weight="700"
                       data-text-size="large"
                     >
                       Secondary Color
                     </text>
-                  </group>
+                  <text
+                      data-wrap="wrap"
+                      data-light=""
+                      data-max-length="400"
+                      data-line="20"
+                    >
+                      Secondary color will be used in the UI, with other shades being automatically generated
+                      from it.
+                    </text>
+
+                    <text data-opacity="30">Click To Change</text>
                 </group>
               </Ripple>
             </group>
           </Popover>
 
           <group  data-type="grid" data-grid-template="120" data-gap="5">
-        <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-lightest"
-            data-color="secondary-darker"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              100
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-lighter"
+          {ColorPalette.map((color, index) => (
 
-            data-color="secondary-darker"
-          >
-            <text data-weight="700">Lighter</text>
-            <text data-ellipsis="" data-light="">
-              200
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="white"
-            data-gradient="secondary-light"
-                        data-color="secondary-darker"
-          >
-            <text data-weight="700">Light</text>
-            <text data-ellipsis="" data-light="">
-             300
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-soft"
-            data-color="secondary-darkest"
-            
-          >
-            <text data-weight="700">Soft</text>
-            <text data-ellipsis="" data-light="">
-             400
-            </text>
-          </group>
+<group
+key={index}
+data-contain=""
 
-{/* base */}
+data-length="auto"
+data-shrink="no"
+data-direction="column"
+data-ratio="1:1"
+data-justify="end"
+data-width="auto"
+data-space="30"
+data-background={"secondary" + color.code} 
+data-color={"secondary" + color.textcolor}
+>
+<text data-ellipsis="" data-light="">
+{color.description}
+</text>
+<text data-weight="700">{color.name}</text>
 
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary"
-            data-color="secondary-text"
-            
-          >
-            <text data-weight="700">Base</text>
-            <text data-ellipsis="" data-light="">
-              Base shade
-            </text>
-          </group>
+</group>
 
-
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-deep"
-            data-color="white"
-            
-          >
-            <text data-weight="700">Deep</text>
-            <text data-ellipsis="" data-light="">
-              600
-            </text>
-          </group>
-
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-dark"
-            data-color="white"
-            
-          >
-            <text data-weight="700">Dark</text>
-            <text data-ellipsis="" data-light="">
-             700
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-darker"
-            data-color="white"
-          >
-            <text data-weight="700">Darker</text>
-            <text data-ellipsis="" data-light="">
-              800
-            </text>
-          </group>
-          <group
-            // data-radius="15"
-            data-contain=""
-           
-            data-length="auto"
-            data-shrink="no"
-            data-direction="column"
-            data-orientation="vertical-bottom"
-            data-justify="start"
-            data-width="auto"
-            data-space="30"
-            data-background="secondary-darkest"
-            data-color="white"
-          >
-            <text data-weight="700">Darkest</text>
-            <text data-ellipsis="" data-light="">
-              900
-            </text>
-          </group>
+        ))}
         </group>
+
+
+
+
       </group>
+
+</group>
+
+
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
           Base Colors
