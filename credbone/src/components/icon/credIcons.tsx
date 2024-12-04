@@ -156,6 +156,19 @@ export const IconThumbUp: React.FC<IconProps> = ({ fill = false, ...restProps })
 };
 
 
+export const IconPicker: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+      <path d="M11 7l6 6"/>
+      <path d="M4 16l11.7 -11.7a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4l-11.7 11.7h-4v-4z"/>
+  </g>
+    </Icon>
+  );
+};
+
+
 
 
 

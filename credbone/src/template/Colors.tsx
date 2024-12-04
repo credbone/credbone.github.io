@@ -9,7 +9,8 @@ import TextReveal from "../components/TextReveal";
 import StuckReporter from "../components/StuckReporter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
-import { SvgPlus } from "../components/svg";
+
+import { IconPicker } from "../components/icon/credIcons";
 
 export const ColorPalette = [
   {
@@ -336,11 +337,11 @@ const Colors: React.FC = () => {
                   data-contain=""
                   data-direction="column"
                   data-space="15"
-                  data-radius="10"
+                  data-radius="15"
 
                   data-background="highlight"
                 >
- <text data-weight="600">Change Color</text>
+<group data-interact=""> <IconPicker/> </group>
                 </group>
               </group>
             </Popover>
@@ -350,7 +351,7 @@ const Colors: React.FC = () => {
               data-wrap="wrap"
               data-light=""
               data-line="20"
-              data-max-length="300"
+              data-max-length="240"
             >
               Primary color will be used in the UI, with other shades being
               automatically generated from it.
@@ -421,11 +422,11 @@ const Colors: React.FC = () => {
                   data-contain=""
                   data-direction="column"
                   data-space="15"
-                  data-radius="10"
+                  data-radius="15"
 
                   data-background="highlight"
                 >
-<text data-weight="600">Change Color</text>
+<group data-interact=""> <IconPicker/> </group>
                 </group>
               </group>
             </Popover>
@@ -435,7 +436,7 @@ const Colors: React.FC = () => {
               data-wrap="wrap"
               data-light=""
               data-line="20"
-              data-max-length="300"
+              data-max-length="240"
             >
               Secondary color will be used in the UI, with other shades being
               automatically generated from it.
