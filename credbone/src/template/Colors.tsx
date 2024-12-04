@@ -312,8 +312,9 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group data-align="center" data-gap="30">
-            <Popover
+          <group  data-gap="30"  data-wrap="no">
+<group data-width="auto" data-align="start">
+<Popover
               content={
                 <group
                   data-animation-name="appear-bottom"
@@ -334,18 +335,17 @@ const Colors: React.FC = () => {
                   data-interactive=""
                   data-contain=""
                   data-direction="column"
-                  data-space="10"
+                  data-space="15"
                   data-radius="10"
-                  data-color="main-text"
-                  data-background="main"
+
+                  data-background="highlight"
                 >
-                  <group data-interact="">
-                    <SvgPlus />
-                  </group>
+ <text data-weight="600">Change Color</text>
                 </group>
               </group>
             </Popover>
-            <separator data-vertical=""></separator>
+</group>
+            <separator data-vertical="" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
@@ -394,7 +394,9 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group data-align="center" data-gap="30">
+
+          <group  data-gap="30"  data-wrap="no">
+          <group data-width="auto" data-align="start">
             <Popover
               content={
                 <group
@@ -409,25 +411,26 @@ const Colors: React.FC = () => {
               data-radius="10"
               data-backdrop="10"
               data-width="auto"
+             
             >
               <group data-width="auto">
                 <group
                   data-cursor="pointer"
                   data-interactive=""
+                  data-over-color="secondary"
                   data-contain=""
                   data-direction="column"
-                  data-space="10"
+                  data-space="15"
                   data-radius="10"
-                  data-color="secondary-text"
-                  data-background="secondary"
+
+                  data-background="highlight"
                 >
-                  <group data-interact="">
-                    <SvgPlus />
-                  </group>
+<text data-weight="600">Change Color</text>
                 </group>
               </group>
             </Popover>
-            <separator data-vertical=""></separator>
+            </group>
+            <separator data-vertical="" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
@@ -470,10 +473,7 @@ const Colors: React.FC = () => {
           Base Colors
         </text>
         <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
-          A color system can assist in crafting a color palette that mirrors
-          brand or personal style, while also considering features like dark
-          mode compatibility for a seamless user experience across different
-          interfaces.
+        Collection of predefined shades to complement design and maintain consistency across system.
         </text>
       </group>
 
