@@ -9,20 +9,34 @@ import TextReveal from "../components/TextReveal";
 import StuckReporter from "../components/StuckReporter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
-
+import { SvgPlus } from "../components/svg";
 
 export const ColorPalette = [
-  {textcolor:"-dark",code: "-lightest", name: "Lightest", description: "100" },
-  {textcolor:"-dark",code: "-lighter", name: "Lighter", description: "200" },
-  {textcolor:"-darker",code: "-light", name: "Light", description: "300" },
-  {textcolor:"-text",code: "-soft", name: "Soft", description: "400" },
-  {textcolor:"-text",code: "", name: "Base", description: "500" },
-  {textcolor:"-lighter",code: "-deep", name: "Deep", description: "600" },
-  {textcolor:"-lighter",code: "-dark", name: "Dark", description: "700" },
-  {textcolor:"-lightest",code: "-darker", name: "Darker", description: "800" },
-  {textcolor:"-lightest",code: "-darkest", name: "Darkest", description: "900" },
+  {
+    textcolor: "-dark",
+    code: "-lightest",
+    name: "Lightest",
+    description: "100",
+  },
+  { textcolor: "-dark", code: "-lighter", name: "Lighter", description: "200" },
+  { textcolor: "-darker", code: "-light", name: "Light", description: "300" },
+  { textcolor: "-text", code: "-soft", name: "Soft", description: "400" },
+  { textcolor: "-text", code: "", name: "Base", description: "500" },
+  { textcolor: "-lighter", code: "-deep", name: "Deep", description: "600" },
+  { textcolor: "-lighter", code: "-dark", name: "Dark", description: "700" },
+  {
+    textcolor: "-lightest",
+    code: "-darker",
+    name: "Darker",
+    description: "800",
+  },
+  {
+    textcolor: "-lightest",
+    code: "-darkest",
+    name: "Darkest",
+    description: "900",
+  },
 ];
-
 
 const Colors: React.FC = () => {
   const { openModal, closeModal } = useModal();
@@ -100,7 +114,6 @@ const Colors: React.FC = () => {
             data-animation-duration="2.25"
             data-index="2"
             data-radius="15"
-           
             data-space="30"
             data-gap="30"
             data-background={colorsValue}
@@ -278,7 +291,12 @@ const Colors: React.FC = () => {
         >
           Color System
         </text>
-        <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
+        <text
+          data-wrap="wrap"
+          data-max-length="600"
+          data-line="1.5"
+          data-light=""
+        >
           A color system can assist in crafting a color palette that mirrors
           brand or personal style, while also considering features like dark
           mode compatibility for a seamless user experience across different
@@ -286,217 +304,169 @@ const Colors: React.FC = () => {
         </text>
       </group>
 
+      <group data-gap="30">
+        <group data-gap="30" data-align="center">
+          <group data-direction="column" data-gap="10">
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              Primary Color
+            </text>
+          </group>
 
-<group data-gap="5">
-
-<group
-
-data-gap="5"
-
-      >
-
-
-<Popover
-            placement="mouse"
-            content={
-              <group
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                data-animation-duration="1.25"
-              >
-                <RichThemePicker pickerType="primary" />
-              </group>
-            }
-            data-space="5"
-            data-radius="10"
-            data-backdrop="10"
-            data-width="auto"
-          >
-            <group data-width="auto" data-length="auto">
-              <Ripple>
+          <group data-align="center" data-gap="30">
+            <Popover
+              content={
                 <group
-                  data-ink-color="main-dark"
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="primary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
+            >
+              <group data-width="auto">
+                <group
                   data-cursor="pointer"
                   data-interactive=""
-                  data-over-color="neutral-10"
-                  // data-radius="15"
                   data-contain=""
                   data-direction="column"
+                  data-space="10"
+                  data-radius="10"
                   data-color="main-text"
-                  data-space="30"
                   data-background="main"
-                  data-gap="20"
-                  data-justify="end"
-                  data-align="start"
-                  data-wrap="no"
                 >
-                  <group>
-                    <text data-opacity="30">Click To Change</text>
-                  </group>
-
-                  <group
-                    data-position="bottom"
-                    data-gap="10"
-                    data-direction="column"
-                  >
-                    <text
-                      data-wrap="wrap"
-                      data-light=""
-                      data-max-length="300"
-                      data-line="20"
-                    >
-                      This Primary color you selected will be used extensively
-                      in the UI, with other shades being automatically generated
-                      from it.
-                    </text>
-                    <text
-                      data-wrap="wrap"
-                      data-weight="700"
-                      data-text-size="large"
-                    >
-                      Primary Color
-                    </text>
+                  <group data-interact="">
+                    <SvgPlus />
                   </group>
                 </group>
-              </Ripple>
+              </group>
+            </Popover>
+            <separator data-vertical=""></separator>
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-line="20"
+              data-max-length="300"
+            >
+              Primary color will be used in the UI, with other shades being
+              automatically generated from it.
+            </text>
+          </group>
+        </group>
+
+        <group data-type="grid" data-grid-template="110" data-gap="5">
+          {ColorPalette.map((color, index) => (
+            <group
+              key={index}
+              data-contain=""
+              data-length="auto"
+              data-shrink="no"
+              data-direction="column"
+              data-ratio="1:1"
+              data-justify="end"
+              data-width="auto"
+              data-space="20"
+              data-background={"main" + color.code}
+              data-color={"main" + color.textcolor}
+            >
+              <text data-ellipsis="" data-light="">
+                {color.description}
+              </text>
+              <text data-weight="700">{color.name}</text>
             </group>
-          </Popover>
-
-
-        <group  data-type="grid" data-grid-template="120" data-gap="5">
-
-        {ColorPalette.map((color, index) => (
-
-<group
-key={index}
-data-contain=""
-
-data-length="auto"
-data-shrink="no"
-data-direction="column"
-data-ratio="1:1"
-data-justify="end"
-data-width="auto"
-data-space="30"
-data-background={"main" + color.code} 
-data-color={"main" + color.textcolor}
->
-<text data-ellipsis="" data-light="">
-{color.description}
-</text>
-<text data-weight="700">{color.name}</text>
-
-</group>
-
-        ))}
-
-
-
-
+          ))}
         </group>
       </group>
 
-      <group
+      <separator data-horizontal=""></separator>
 
-      data-gap="5"
-      >
+      <group data-gap="30">
 
-<Popover
-            placement="mouse"
-            content={
-              <group
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                data-animation-duration="1.25"
-              >
-                <RichThemePicker pickerType="secondary" />
-              </group>
-            }
-            data-space="5"
-            data-radius="10"
-            data-backdrop="10"
-            data-width="auto"
-          >
-            <group data-width="auto" data-length="auto">
-              <Ripple>
+
+      <group data-gap="30" data-align="center">
+          <group data-direction="column" data-gap="10">
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              Secondary Color
+            </text>
+          </group>
+
+          <group data-align="center" data-gap="30">
+            <Popover
+              content={
                 <group
-                  data-ink-color="secondary-dark"
-                  // data-radius="15"
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="secondary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
+            >
+              <group data-width="auto">
+                <group
                   data-cursor="pointer"
                   data-interactive=""
-                  data-over-color="neutral-10"
                   data-contain=""
                   data-direction="column"
+                  data-space="10"
+                  data-radius="10"
                   data-color="secondary-text"
-                  data-space="30"
                   data-background="secondary"
-                  data-gap="30"
-                  data-justify="end"
-                  data-align="start"
                 >
-
-                    
-
-<text
-                      data-wrap="wrap"
-                      data-weight="700"
-                      data-text-size="large"
-                    >
-                      Secondary Color
-                    </text>
-                  <text
-                      data-wrap="wrap"
-                      data-light=""
-                      data-max-length="400"
-                      data-line="20"
-                    >
-                      Secondary color will be used in the UI, with other shades being automatically generated
-                      from it.
-                    </text>
-
-                    <text data-opacity="30">Click To Change</text>
+                  <group data-interact="">
+                    <SvgPlus />
+                  </group>
                 </group>
-              </Ripple>
-            </group>
-          </Popover>
-
-          <group  data-type="grid" data-grid-template="120" data-gap="5">
-          {ColorPalette.map((color, index) => (
-
-<group
-key={index}
-data-contain=""
-
-data-length="auto"
-data-shrink="no"
-data-direction="column"
-data-ratio="1:1"
-data-justify="end"
-data-width="auto"
-data-space="30"
-data-background={"secondary" + color.code} 
-data-color={"secondary" + color.textcolor}
->
-<text data-ellipsis="" data-light="">
-{color.description}
-</text>
-<text data-weight="700">{color.name}</text>
-
-</group>
-
-        ))}
+              </group>
+            </Popover>
+            <separator data-vertical=""></separator>
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-line="20"
+              data-max-length="300"
+            >
+              Secondary color will be used in the UI, with other shades being
+              automatically generated from it.
+            </text>
+          </group>
         </group>
 
 
-
-
+        <group data-type="grid" data-grid-template="110" data-gap="5">
+          {ColorPalette.map((color, index) => (
+            <group
+              key={index}
+              data-contain=""
+              data-length="auto"
+              data-shrink="no"
+              data-direction="column"
+              data-ratio="1:1"
+              data-justify="end"
+              data-width="auto"
+              data-space="20"
+              data-background={"secondary" + color.code}
+              data-color={"secondary" + color.textcolor}
+            >
+              <text data-ellipsis="" data-light="">
+                {color.description}
+              </text>
+              <text data-weight="700">{color.name}</text>
+            </group>
+          ))}
+        </group>
       </group>
-
-</group>
-
-
+      <separator data-horizontal=""></separator>
       <group data-direction="column" data-gap="10">
-        <text data-weight="700" data-text-size="xx-large" data-wrap="wrap">
+        <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
           Base Colors
         </text>
         <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
@@ -505,7 +475,7 @@ data-color={"secondary" + color.textcolor}
           mode compatibility for a seamless user experience across different
           interfaces.
         </text>
-    </group>
+      </group>
 
       <group
         data-shrink="no"
@@ -513,17 +483,16 @@ data-color={"secondary" + color.textcolor}
         data-max-length="1120"
         data-type="grid"
         data-gap="1"
-
         data-grid-template="180/140"
         // data-border=""
         // data-radius="20"
-                data-contain=""
+        data-contain=""
       >
         {BaseColors.map((colors, index) => (
           <group
-data-background="main-background"
-// data-row-end={colors.type === "tall" ? "2" : ""}
-// data-column-end={colors.type === "wide" ? "2" : ""}
+            data-background="main-background"
+            // data-row-end={colors.type === "tall" ? "2" : ""}
+            // data-column-end={colors.type === "wide" ? "2" : ""}
             onClick={() =>
               handleColorClick(
                 colors.name,
@@ -542,10 +511,9 @@ data-background="main-background"
             data-direction="column"
             daat-wrap="no"
             data-wrap="no"
-           data-border=""
-           data-space="15"
-          //  data-radius="15"
-         
+            data-border=""
+            data-space="15"
+            //  data-radius="15"
           >
             <group
               data-direction="column"
@@ -553,24 +521,17 @@ data-background="main-background"
               data-gap="5"
               data-interact=""
             >
-              <text
-                
-                data-contain=""
-               data-opacity="20"
-                
-              >
+              <text data-contain="" data-opacity="20">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
               <group data-height="40"></group>
               <text data-ellipsis="" data-wrap="wrap" data-weight="700">
-                  {colors.name}
-                </text>
+                {colors.name}
+              </text>
               <group data-direction="column" data-interact="">
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
-            
-
               </group>
             </group>
 
@@ -579,15 +540,18 @@ data-background="main-background"
               data-position="bottom"
               data-wrap="no"
               data-contain=""
-
               data-radius="10"
-              
             >
-              <group  data-ratio="1:1" data-background={colors.value + "-light"} ></group>
-              <group  data-ratio="1:1"  data-background={colors.value}></group>
-              <group  data-ratio="1:1" data-background={colors.value + "-dark"} ></group>
+              <group
+                data-ratio="1:1"
+                data-background={colors.value + "-light"}
+              ></group>
+              <group data-ratio="1:1" data-background={colors.value}></group>
+              <group
+                data-ratio="1:1"
+                data-background={colors.value + "-dark"}
+              ></group>
             </group>
-           
           </group>
         ))}
       </group>

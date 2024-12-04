@@ -68,7 +68,6 @@ export const getCSSByPalette = (palette: ColorPalette) => {
             --main-color-alpha-15: ${colorPrimary}26;
             --main-color-alpha-50: ${colorPrimary}80;
 
-
             --main-color-lightest: ${colorPrimaryLightest || getColorShade(colorPrimary, "20")};
             --main-color-lighter: ${colorPrimaryLighter || getColorShade(colorPrimary, "40")};
             --main-color-light: ${colorPrimaryLight || getColorShade(colorPrimary, "60")};
@@ -79,17 +78,8 @@ export const getCSSByPalette = (palette: ColorPalette) => {
             --main-color-darker: ${colorPrimaryDarker || getColorShade(colorPrimary, "700")};
             --main-color-darkest: ${colorPrimaryDarkest || getColorShade(colorPrimary, "900")};
 
-            
-
-
-
-  
-
             --secondary-color-alpha-15: ${colorSecondary}26;
             --secondary-color-alpha-50: ${colorSecondary}80;
-
-
-
 
             --secondary-color-lightest: ${colorSecondaryLightest || getColorShade(colorSecondary, "20")};
             --secondary-color-lighter: ${colorSecondaryLighter || getColorShade(colorSecondary, "40")};
