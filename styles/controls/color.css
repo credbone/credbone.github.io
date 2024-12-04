@@ -171,24 +171,31 @@
 
 
 
+[data-background="main-lightest"] { background-color: var(--main-color-lightest)}
+[data-background="main-lighter"] { background-color: var(--main-color-lighter)}
+[data-background="main-light"] { background-color: var(--main-color-light)}
+[data-background="main-soft"] { background-color: var(--main-color-soft)}
+[data-background="main"] { background-color: var(--main-color)}
+[data-background="main-deep"] { background-color: var(--main-color-deep)}
+[data-background="main-dark"] { background-color: var(--main-color-dark)}
+[data-background="main-darker"] { background-color: var(--main-color-darker)}
+[data-background="main-darkest"] { background-color: var(--main-color-darkest)}
 
-[data-background="main-lighter"] { background-color: var(--main-color-lighter) }
-[data-background="main-light"] { background-color: var(--main-color-light) }
-[data-background="main"] { background-color: var(--main-color) }
-[data-background="main-dark"] { background-color: var(--main-color-dark) }
-[data-background="main-darker"] { background-color: var(--main-color-darker) }
 
 
 
-[data-background="secondary-lighter"] { background-color: var(--secondary-color-lighter) }
-[data-background="secondary-light"] { background-color: var(--secondary-color-light) }
-[data-background="secondary"] { background-color: var(--secondary-color) }
-[data-background="secondary-dark"] { background-color: var(--secondary-color-dark) }
-[data-background="secondary-darker"] { background-color: var(--secondary-color-darker) }
+[data-background="secondary-lightest"] { background-color: var(--secondary-color-lightest)}
+[data-background="secondary-lighter"] { background-color: var(--secondary-color-lighter)}
+[data-background="secondary-light"] { background-color: var(--secondary-color-light)}
+[data-background="secondary-soft"] { background-color: var(--secondary-color-soft)}
+[data-background="secondary"] { background-color: var(--secondary-color)}
+[data-background="secondary-deep"] { background-color: var(--secondary-color-deep)}
+[data-background="secondary-dark"] { background-color: var(--secondary-color-dark)}
+[data-background="secondary-darker"] { background-color: var(--secondary-color-darker)}
+[data-background="secondary-darkest"] { background-color: var(--secondary-color-darkest)}
 
 
 [data-background="white"] { background-color: #fff }
-
 [data-background="black"] { background-color: #000 }
 
 
@@ -397,31 +404,44 @@
 [data-color="highlight"]{ color: var(--highlight) }
 
 
-[data-color="main-lighter"] { color: var(--main-color-lighter) }
-[data-color="main-light"] { color: var(--main-color-light) }
-[data-color="main"] { color: var(--main-color) }
-[data-color="main-dark"] { color: var(--main-color-dark) }
-[data-color="main-darker"] { color: var(--main-color-darker) }
+[data-color="main-lightest"] { color: var(--main-color-lightest)}
+[data-color="main-lighter"] { color: var(--main-color-lighter)}
+[data-color="main-light"] { color: var(--main-color-light)}
+[data-color="main-soft"] { color: var(--main-color-soft)}
+[data-color="main"] { color: var(--main-color)}
+[data-color="main-deep"] { color: var(--main-color-deep)}
+[data-color="main-dark"] { color: var(--main-color-dark)}
+[data-color="main-darker"] { color: var(--main-color-darker)}
+[data-color="main-darkest"] { color: var(--main-color-darkest)}
+
+
+[data-color="main-alpha-15"] { color: var(--main-color-alpha-15)}
+[data-color="main-alpha-50"] { color: var(--main-color-alpha-50)}
+
 
 [data-color="main-text"] { color: var(--main-color-text) }
 [data-color="secondary-text"] { color: var(--secondary-color-text) }
 
 
-[data-color="main-text-lighter-white"] { color: var(--main-color-lighter-white) }
-[data-color="secondary-text-lighter-white"] { color: var(--secondary-color-lighter-white) }
 
 
-[data-color="secondary-lighter"] { color: var(--secondary-color-lighter) }
-[data-color="secondary-light"] { color: var(--secondary-color-light) }
-[data-color="secondary"] { color: var(--secondary-color) }
-[data-color="secondary-dark"] { color: var(--secondary-color-dark) }
-[data-color="secondary-darker"] { color: var(--secondary-color-darker) }
+
+[data-color="secondary-lightest"] { color: var(--secondary-color-lightest)}
+[data-color="secondary-lighter"] { color: var(--secondary-color-lighter)}
+[data-color="secondary-light"] { color: var(--secondary-color-light)}
+[data-color="secondary-soft"] { color: var(--secondary-color-soft)}
+[data-color="secondary"] { color: var(--secondary-color)}
+[data-color="secondary-deep"] { color: var(--secondary-color-deep)}
+[data-color="secondary-dark"] { color: var(--secondary-color-dark)}
+[data-color="secondary-darker"] { color: var(--secondary-color-darker)}
+[data-color="secondary-darkest"] { color: var(--secondary-color-darkest)}
 
 
 
 
 [data-stroke="main"] { stroke: var(--main-color) }
 [data-stroke="main-light"] { stroke: var(--main-color-light) }
+[data-stroke="main-alpha-50"] { stroke: var(--main-color-alpha-50) }
 [data-stroke="secondary"] { stroke: var(--secondary-color) }
 
 [data-fill="main"] { fill: var(--main-color) }

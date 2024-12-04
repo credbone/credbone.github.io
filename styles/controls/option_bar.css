@@ -159,7 +159,7 @@
 .option_complex label input { display: none }
 
 
-.option_bar[data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-lighter); color:var(--text-color) }
+.option_bar[data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-alpha-15); color:var(--text-color) }
 .option_bar[data-palette="lighter"] label input:checked ~  [data-name="option-decor"]{ color:var(--text-color)}
 
 [data-switch-color="invert"] label [data-name="option-decor"] {opacity: .4;}
@@ -170,7 +170,7 @@
 
 
 
-.option_bar[data-palette="secondary"]{--over-color: linear-gradient(to top, var(--secondary-color-lighter) 0%, var(--secondary-color-lighter) 100%);}
+.option_bar[data-palette="secondary"]{--over-color: linear-gradient(to top, var(--secondary-color-alpha-15) 0%, var(--secondary-color-alpha-15) 100%);}
 .option_bar[data-palette="secondary"] label input:checked ~ wrap{ background-color: var(--secondary-color); color:var(--secondary-color-text);  }
 .option_bar[data-palette="secondary"] label input:checked ~ [data-name="option-decor"]{  color:var(--secondary-color-text);}
 

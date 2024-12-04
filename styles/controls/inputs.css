@@ -89,7 +89,7 @@
 
 .form_fields:hover i
 
-{ box-shadow:0 0 0 1px var(--main-color-light);z-index: -1;}
+{ box-shadow:0 0 0 1px var(--main-color-alpha-50);z-index: -1;}
 
 
 
@@ -98,7 +98,7 @@
 
 .form_fields .field_cont [class*="focused"] ~ i
 
-{ box-shadow:0 0 0 1px var(--main-color), 0 0 0 3px var(--main-color-light);z-index: -1;}
+{ box-shadow:0 0 0 1px var(--main-color), 0 0 0 3px var(--main-color-alpha-50);z-index: -1;}
 
 
 
