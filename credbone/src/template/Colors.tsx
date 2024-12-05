@@ -10,7 +10,8 @@ import StuckReporter from "../components/StuckReporter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
 
-import { IconPicker } from "../components/icon/credIcons";
+
+import { SvgPlus } from "../components/svg";
 
 export const ColorPalette = [
   {
@@ -337,11 +338,11 @@ const Colors: React.FC = () => {
                   data-contain=""
                   data-direction="column"
                   data-space="15"
-                  data-radius="15"
+                  data-radius="10"
 
                   data-background="highlight"
                 >
-<group data-interact=""> <IconPicker/> </group>
+<group data-interact=""> <SvgPlus/> </group>
                 </group>
               </group>
             </Popover>
@@ -422,11 +423,11 @@ const Colors: React.FC = () => {
                   data-contain=""
                   data-direction="column"
                   data-space="15"
-                  data-radius="15"
+                  data-radius="10"
 
                   data-background="highlight"
                 >
-<group data-interact=""> <IconPicker/> </group>
+<group data-interact=""> <SvgPlus/>  </group>
                 </group>
               </group>
             </Popover>
