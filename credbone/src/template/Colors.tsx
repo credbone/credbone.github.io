@@ -469,6 +469,62 @@ const Colors: React.FC = () => {
           ))}
         </group>
       </group>
+
+
+
+
+      <separator data-horizontal=""></separator>
+
+      <group data-gap="30">
+
+
+      <group data-gap="30" data-align="center">
+          <group data-direction="column" data-gap="10">
+            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+              Neutral Scale
+            </text>
+          </group>
+
+
+          <group  data-gap="30"  data-wrap="no">
+
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-line="20"
+              data-max-length="300"
+            >
+              Neutral colors provide a versatile base for the UI, with shades generated for balance and flexibility.
+            </text>
+          </group>
+        </group>
+
+
+        <group data-type="grid" data-grid-template="110" data-gap="5">
+          {ColorPalette.map((color, index) => (
+            <group
+              key={index}
+              data-contain=""
+              data-length="auto"
+              data-shrink="no"
+              data-direction="column"
+              data-ratio="1:1"
+              data-justify="end"
+              data-width="auto"
+              data-space="20"
+              data-background={"neutral" + color.code}
+              data-color={"neutral" + color.textcolor}
+            >
+              <text data-ellipsis="" data-light="">
+                {color.description}
+              </text>
+              <text data-weight="700">{color.name}</text>
+            </group>
+          ))}
+        </group>
+      </group>
+
+
       <separator data-horizontal=""></separator>
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
@@ -479,13 +535,19 @@ const Colors: React.FC = () => {
         </text>
       </group>
 
+
+
+
+
+
+
       <group
         data-shrink="no"
         data-weight="600"
-        data-max-length="1120"
+     //   data-max-length="1120"
         data-type="grid"
-        data-gap="1"
-        data-grid-template="180/140"
+        data-gap="5"
+        data-grid-template="120"
         // data-border=""
         // data-radius="20"
         data-contain=""
@@ -505,7 +567,7 @@ const Colors: React.FC = () => {
                 colors.hexdark
               )
             }
-            data-interactive=""
+         
             data-over-color="neutral"
             data-cursor="pointer"
             key={index}
@@ -513,37 +575,48 @@ const Colors: React.FC = () => {
             data-direction="column"
             daat-wrap="no"
             data-wrap="no"
-            data-border=""
-            data-space="15"
+       //     data-border=""
+          //  data-space="5"
             //  data-radius="15"
           >
+
+
             <group
-              data-direction="column"
-              data-space="15"
-              data-gap="5"
               data-interact=""
+              data-position="bottom"
+              data-wrap="no"
+             // data-contain=""
+             // data-radius="10"
+             data-gap="5"
+             data-direction="column"
+            >
+              
+              <group
+              data-direction="column"
+              data-space="20"
+                data-interactive=""
+              data-interact=""
+               data-ratio="1:2"
+               data-gap="5"
+               
             >
               <text data-contain="" data-opacity="20">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
-              <group data-height="40"></group>
-              <text data-ellipsis="" data-wrap="wrap" data-weight="700">
+
+              <group data-height="50"></group>
+
+              <text  data-ellipsis="" data-wrap="wrap" data-weight="700">
                 {colors.name}
               </text>
-              <group data-direction="column" data-interact="">
+              <group data-direction="column">
                 <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
                   {colors.description}
                 </text>
               </group>
             </group>
 
-            <group
-              data-interact=""
-              data-position="bottom"
-              data-wrap="no"
-              data-contain=""
-              data-radius="10"
-            >
+
               <group
                 data-ratio="1:1"
                 data-background={colors.value + "-light"}

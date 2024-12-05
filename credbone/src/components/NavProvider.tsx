@@ -1,9 +1,11 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, useRef  } from "react";
 
 // Define the context type
 interface NavContextType {
   isNavOpen: boolean;
   setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  navRef: React.RefObject<HTMLElement>; // Ref to detect outside clicks
+  buttonRef: React.RefObject<HTMLElement>;
 }
 
 // Create the context
@@ -12,6 +14,36 @@ const NavContext = createContext<NavContextType | undefined>(undefined);
 // Provider component
 export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+   const buttonRef = useRef<HTMLElement>(null);
+
+
+
+  // Handle outside click to close the nav
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // If the click is inside the nav or button, don't close the nav
+      if (
+        (navRef.current && navRef.current.contains(event.target as Node)) ||
+        (buttonRef.current && buttonRef.current.contains(event.target as Node))
+      ) {
+        return;
+      }
+
+      // Otherwise, close the nav if it's open
+      setIsNavOpen(false);
+    };
+
+    if (isNavOpen) {
+      window.addEventListener("click", handleClickOutside); // Listen for outside clicks when nav is open
+    }
+
+    // Clean up event listener when the nav is closed or component unmounts
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [isNavOpen]);
+
 
 
 
@@ -44,8 +76,11 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
   }, [isNavOpen]);
   
+
+
+
   return (
-    <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+    <NavContext.Provider value={{ isNavOpen, setIsNavOpen, navRef, buttonRef  }}>
       {children}
     </NavContext.Provider>
   );

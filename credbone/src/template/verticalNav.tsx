@@ -19,26 +19,26 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const toggleNav = () => setSubNavOpen((prev) => !prev); // Function to toggle
   const closeNav = () => setSubNavOpen(false);
 
-  const { isNavOpen, setIsNavOpen } = useNavContext();
-  const navRef = useRef<HTMLDivElement>(null);
+  const { isNavOpen, setIsNavOpen, navRef  } = useNavContext();
+  //const navRef = useRef<HTMLDivElement>(null);
 
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
+  // const handleClickOutside = (event: MouseEvent) => {
     
-    if (navRef.current && !navRef.current.contains(event.target as Node)) {
-      setIsNavOpen(false);
-    }
-  };
+  //   if (navRef.current && !navRef.current.contains(event.target as Node)) {
+  //     setIsNavOpen(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("click", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, []);
 
   const { addSnackbar } = useSnackbar();
 

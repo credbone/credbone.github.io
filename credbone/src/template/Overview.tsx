@@ -149,7 +149,7 @@ const Overview: React.FC = () => {
                     data-width="auto"
                     data-type="group"
                     data-contain=""
-                    data-min-height="240"
+                  //  data-min-height="240"
                     //  data-radius="20"
 
                     data-direction="column"
@@ -173,7 +173,7 @@ const Overview: React.FC = () => {
                       >
                         {index + 1 < 10 ? `0${index + 1}` : index + 1}
                       </text>
-                      <group></group>
+  
                       <text
                         data-text-size="medium"
                         data-weight="700"

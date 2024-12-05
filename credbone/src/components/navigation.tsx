@@ -23,11 +23,11 @@ const navItems = [
 const Navigation: React.FC = () => {
 
 
-  const { isNavOpen, setIsNavOpen } = useNavContext();
+  const { isNavOpen, setIsNavOpen, buttonRef } = useNavContext();
 
 
-  const handleNavToggle = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Prevents event from bubbling up
+  const handleNavToggle = () => {
+   // event.stopPropagation(); // Prevents event from bubbling up
     setIsNavOpen(!isNavOpen);
   };
 
@@ -36,7 +36,7 @@ const Navigation: React.FC = () => {
 
 <group data-gap="10" data-align="center">
 
-<group   className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="10" data-contain="" data-name="nav-item">
+<group  ref={buttonRef}  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="10" data-contain="" data-name="nav-item">
 <group>
 <icon data-length="30" >
 <SvgHamburger />

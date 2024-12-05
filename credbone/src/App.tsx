@@ -43,7 +43,7 @@ function App() {
         <TitleUpdater />
         <NavProvider> 
         <ModalProvider>
-<HorizontalNav/>
+<HorizontalNav data-print="hide"/>
           <view data-vertical="">
           <VerticalNav  data-print="hide" /> 
             <Routes>

@@ -109,7 +109,17 @@
   --crimson-red-text: #ffffff; /* White text for strong contrast */
 
 
+
   
+            --neutral-color-lightest: #E7E7E7;
+            --neutral-color-lighter: #CFCFCF;
+            --neutral-color-light: #B8B8B8;
+            --neutral-color-soft: #A0A0A0;
+            --neutral-color: #888888;
+            --neutral-color-deep: #6D6D6D;
+            --neutral-color-dark: #525252;
+            --neutral-color-darker: #363636;
+            --neutral-color-darkest: #1B1B1B;
   
 }
 
@@ -194,6 +204,31 @@
 [data-background="secondary-darker"] { background-color: var(--secondary-color-darker)}
 [data-background="secondary-darkest"] { background-color: var(--secondary-color-darkest)}
 
+
+
+[data-background="neutral-lightest"] { background-color: var(--neutral-color-lightest)}
+[data-background="neutral-lighter"] { background-color: var(--neutral-color-lighter)}
+[data-background="neutral-light"] { background-color: var(--neutral-color-light)}
+[data-background="neutral-soft"] { background-color: var(--neutral-color-soft)}
+[data-background="neutral"] { background-color: var(--neutral-color)}
+[data-background="neutral-deep"] { background-color: var(--neutral-color-deep)}
+[data-background="neutral-dark"] { background-color: var(--neutral-color-dark)}
+[data-background="neutral-darker"] { background-color: var(--neutral-color-darker)}
+[data-background="neutral-darkest"] { background-color: var(--neutral-color-darkest)}
+
+
+
+[data-color="neutral-lightest"] { color: var(--neutral-color-lightest)}
+[data-color="neutral-lighter"] { color: var(--neutral-color-lighter)}
+[data-color="neutral-light"] { color: var(--neutral-color-light)}
+[data-color="neutral-soft"] { color: var(--neutral-color-soft)}
+[data-color="neutral"] { color: var(--neutral-color)}
+[data-color="neutral-deep"] { color: var(--neutral-color-deep)}
+[data-color="neutral-dark"] { color: var(--neutral-color-dark)}
+[data-color="neutral-darker"] { color: var(--neutral-color-darker)}
+[data-color="neutral-darkest"] { color: var(--neutral-color-darkest)}
+
+[data-color="neutral-text"] { color: var(--neutral-color-lighter)}
 
 [data-background="white"] { background-color: #fff }
 [data-background="black"] { background-color: #000 }
@@ -572,4 +607,6 @@
   --weather-50n-bg: linear-gradient(45deg, #4e4376, #2b5876);
   --weather-50n-color: #eeeeee;
 }
+
+
 
