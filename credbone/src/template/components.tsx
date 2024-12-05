@@ -128,7 +128,7 @@ const Components: React.FC = () => {
               data-space-vertical="40"
             >
               <group data-direction="column" data-gap="10">
-                <text data-weight="700" data-text-size="48" data-ellipsis="">
+                <text data-weight="700" data-text-size="48" data-height="60" data-ellipsis="">
                   <TextReveal text={message} duration={1200} />
                 </text>
 

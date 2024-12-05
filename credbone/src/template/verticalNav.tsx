@@ -27,6 +27,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   };
 
   const handleClickOutside = (event: MouseEvent) => {
+    
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setIsNavOpen(false);
     }

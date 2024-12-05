@@ -10,10 +10,10 @@ import Template from "./template";
 import About from "./pages/about";
 
 import Settings from "./pages/settings";
-import { Navigation } from "./components/navigation";
+
 
 import VerticalNav from "./template/verticalNav";
-import SnackbarContainer from "./components/snackbar/SnackbarContainer";
+
 
 import TitleUpdater from "./components/TitleUpdater";
 import Search from "./pages/search/search";
@@ -21,6 +21,7 @@ import Components from "./template/components";
 import Resume from "./pages/resume";
 import { ModalProvider } from "./components/Modal";
 import { NavProvider } from "./components/NavProvider";
+import HorizontalNav from "./template/horizontalNav";
 
 const MainLayout = () => {
   return (
@@ -42,26 +43,7 @@ function App() {
         <TitleUpdater />
         <NavProvider> 
         <ModalProvider>
-          <group
-            data-adaptive="mobile"
-            data-adaptive-order="2"
-            data-index="3"
-            data-border="overprint"
-            data-background="main-background"
-            data-print="hide"
-          >
-            <group
-              data-wrap="no"
-              data-gap="10"
-              data-space="10"
-              data-space-bottom="10-sab"
-              data-justify="adaptive-space-around"
-            >
-              
-              <Navigation />
-            </group>
-          </group>
-
+<HorizontalNav/>
           <view data-vertical="">
           <VerticalNav  data-print="hide" /> 
             <Routes>

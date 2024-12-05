@@ -114,7 +114,7 @@ const Overview: React.FC = () => {
         </group> : "" }
 
 
-            <group data-direction="column" data-space-horizontal="30" data-gap="10">
+            <group data-direction="column" data-space="30" data-gap="10">
               <text
                 data-text-size="x-large"
                 data-weight="700"
