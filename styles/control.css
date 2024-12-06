@@ -672,6 +672,8 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-top='10'] {padding-top:10px;}
 [data-space-top='20'] {padding-top:20px;}
 [data-space-top='30'] {padding-top:30px;}
+[data-space-top='40'] {padding-top:40px;}
+[data-space-top='50'] {padding-top:50px;}
 
 [data-space-bottom='150'] {padding-bottom:150px;}
 /**/
@@ -911,6 +913,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-text-transform="lowercase"] { text-transform: lowercase; }
 [data-text-transform="none"] { text-transform: none; }
 
+[data-hypens="auto"]{hyphens: auto;}
 
 :root {
 
