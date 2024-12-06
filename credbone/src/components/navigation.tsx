@@ -50,7 +50,7 @@ const Navigation: React.FC = () => {
 <group  data-length="30" data-height="30" data-align="center" data-justify="center">
 <IconHome size={20} />
 </group>
-<text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text>
+{/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text> */}
   </NavLink>
 
 

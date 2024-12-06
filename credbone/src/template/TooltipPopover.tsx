@@ -41,7 +41,7 @@ const ClosePopover = (
   <Popover
     data-elevation="2"
     placement="auto"
-    data-width="auto"
+    data-length="200"
     data-space="30"
     data-radius="20"
     content={(closePopover) => (
