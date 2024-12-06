@@ -593,35 +593,54 @@ const Colors: React.FC = () => {
               
               <group
               data-direction="column"
-              data-space="20"
+              data-space="15"
                 data-interactive=""
               data-interact=""
                data-ratio="1:2"
-               data-gap="5"
+               data-gap="20"
                
             >
+             
+
+              
+
+
+
+
+
+              <text data-wrap="wrap" data-opacity="30" data-ellipsis=""  data-position="bottom">
+                  {colors.description}
+                </text>
+
+<group    data-direction="column" data-gap="5">
+
+<text  data-ellipsis="" data-wrap="wrap" data-weight="700">
+                {colors.name}
+              </text>
               <text data-contain="" data-opacity="20">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </text>
 
-              <group data-height="50"></group>
-
-              <text  data-ellipsis="" data-wrap="wrap" data-weight="700">
-                {colors.name}
-              </text>
-              <group data-direction="column">
-                <text data-wrap="wrap" data-opacity="30" data-ellipsis="">
-                  {colors.description}
-                </text>
-              </group>
+</group>
             </group>
 
 
               <group
                 data-ratio="1:1"
                 data-background={colors.value + "-light"}
-              ></group>
-              <group data-ratio="1:1" data-background={colors.value}></group>
+                data-space="15"
+              >
+
+
+              </group>
+              <group data-ratio="1:1" data-background={colors.value}>
+
+              <group data-direction="column" data-color="white" >
+
+
+              </group>
+
+              </group>
               <group
                 data-ratio="1:1"
                 data-background={colors.value + "-dark"}

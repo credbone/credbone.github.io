@@ -166,13 +166,13 @@ const Modal: React.FC = () => {
                 <img src={sampleImage} alt="" />
               </picture>
 
-              <group data-space="30" data-dark="">
+              <group data-space="30">
                 <group
                   data-space="30"
                   data-index="2"
                   data-radius="10"
                   data-contain=""
-                  data-backdrop="20-dark"
+               //   data-backdrop="20-dark"
                   data-background="main-background"
                 >
                   <group data-width="auto" data-gap="20">

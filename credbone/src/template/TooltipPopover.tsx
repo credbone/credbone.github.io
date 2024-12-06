@@ -7,6 +7,8 @@ import Button from "../components/button";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import sampleImage from "../styles/images/samples/res_74.jpg";
+import Calculator from "../tools/Calculator";
 
 const SimplePopover = (
   <group
@@ -40,10 +42,12 @@ const ClosePopover = (
     data-elevation="2"
     placement="auto"
     data-width="auto"
-    data-space="20"
+    data-space="30"
+    data-radius="20"
     content={(closePopover) => (
-      <group data-direction="column" data-gap="15">
-        <text data-weight="700" data-text-size="large">
+      <group data-direction="column" data-gap="30">
+<group data-direction="column" data-gap="15">
+<text data-weight="700" data-text-size="large">
           Popover
         </text>
         <text data-line="1.5" data-wrap="wrap" data-max-length="300">
@@ -54,6 +58,7 @@ const ClosePopover = (
           , besides information Popover card can also provide action elements
           like links and buttons.
         </text>
+</group>
         <separator data-horizontal=""></separator>
         <Button onClick={closePopover} primary large text="Got It"></Button>
       </group>
@@ -92,6 +97,21 @@ const SampleData = (
    data-border=""
     data-contain=""
   >
+
+
+<group>
+<picture
+                data-contain=""
+                data-brightness="adaptive"
+              //  data-position="absolute"
+                data-background="grey-light"
+                data-height="160"
+              >
+                <img src={sampleImage} alt="" />
+              </picture>
+</group>
+
+
     <group data-direction="column" data-space="30" data-gap="15">
       <text
         data-weight="700"
@@ -243,7 +263,11 @@ const TooltipPopover: React.FC = () => {
               </Popover>
             </group>
 
+
+
             <separator data-horizontal=""></separator>
+
+
 
             <group>
               <Popover
@@ -266,6 +290,35 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </Popover>
             </group>
+            <separator data-horizontal=""></separator>
+
+
+
+
+
+            <group  data-gap="5" data-align="start" data-wrap="no" data-direction="column">
+              <Popover 
+              placement="right"
+              
+              content={<Calculator/>} data-length="260" data-radius="20" data-elevation="2">
+                <group
+                  data-interactive=""
+                  data-interact="popover"
+                  data-space="15"
+                  data-radius="10"
+                  data-cursor="pointer"
+                  data-width="auto"
+                >
+                  <text decoration="">Show Mini App</text>
+                </group>
+              </Popover>
+
+
+
+<text data-space="15" data-max-Length="300" data-wrap="wrap" data-opacity="40" data-line="1.5">The popover content can be a separate fully functional component.</text>
+
+            </group>
+
             <separator data-horizontal=""></separator>
             <group>
               {/* <Tooltip
