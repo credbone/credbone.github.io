@@ -6,6 +6,7 @@ interface NavContextType {
   setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
   navRef: React.RefObject<HTMLElement>; // Ref to detect outside clicks
   buttonRef: React.RefObject<HTMLElement>;
+  toggleRef: React.RefObject<HTMLElement>;
 }
 
 // Create the context
@@ -16,7 +17,7 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
    const buttonRef = useRef<HTMLElement>(null);
-
+   const toggleRef = useRef<HTMLElement>(null);
 
 
   // Handle outside click to close the nav
@@ -25,7 +26,8 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // If the click is inside the nav or button, don't close the nav
       if (
         (navRef.current && navRef.current.contains(event.target as Node)) ||
-        (buttonRef.current && buttonRef.current.contains(event.target as Node))
+        (buttonRef.current && buttonRef.current.contains(event.target as Node)) ||
+        (toggleRef.current && toggleRef.current.contains(event.target as Node))
       ) {
         return;
       }
@@ -80,7 +82,7 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
 
   return (
-    <NavContext.Provider value={{ isNavOpen, setIsNavOpen, navRef, buttonRef  }}>
+    <NavContext.Provider value={{ isNavOpen, setIsNavOpen, navRef, buttonRef, toggleRef  }}>
       {children}
     </NavContext.Provider>
   );

@@ -19,7 +19,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const toggleNav = () => setSubNavOpen((prev) => !prev); // Function to toggle
   const closeNav = () => setSubNavOpen(false);
 
-  const { isNavOpen, setIsNavOpen, navRef  } = useNavContext();
+  const { isNavOpen, setIsNavOpen, navRef, toggleRef  } = useNavContext();
   //const navRef = useRef<HTMLDivElement>(null);
 
   const handleNavToggle = () => {
@@ -128,6 +128,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-index="2"
         >
           <group
+             data-name="side_nav-wrapper"
             data-height="autofit"
             data-weight="600"
             data-space="10"
@@ -170,42 +171,37 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
 
 
-            <group data-position="bottom" data-hide={isSubNavOpen ? "" : "true"}>
-              <group
-                data-cursor="pointer"
-                data-interactive="color"
-                
-                data-contain=""
-                data-space="10"
-                data-gap="10"
-                data-radius="10"
-                data-align="center"
-                data-wrap="no"
-                data-adaptive="mobile"
-                onClick={toggleNav}
-              >
-                <ThemeIcon />
-              </group>
-            </group>
 
-            {isSubNavOpen ? (
-              ""
-            ) : (
-              <group
+
+            <Popover
+            
+              data-width="auto"
+              data-space="5"
+              content={isSubNavOpen && isNavOpen ? <group ref={toggleRef}> <ThemeToggle /></group> : ""}
+            >
+
+<group            data-position="bottom"       data-adaptive="mobile">
+{isSubNavOpen ? 
+                
+               
+                <group
+             
                 data-cursor="pointer"
                 data-interactive="color"
-                data-position="bottom"
+              
                 data-contain=""
                 data-space="10"
                 data-gap="10"
                 data-radius="10"
                 data-align="center"
                 data-wrap="no"
-                data-adaptive="mobile"
+
               >
-                <ThemeToggle />
-              </group>
-            )}
+                <ThemeIcon /> </group> : <ThemeToggle /> }
+</group>
+
+
+            </Popover>
 
 
             <Popover
