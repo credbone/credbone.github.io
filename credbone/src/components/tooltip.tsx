@@ -17,14 +17,14 @@ const Tooltip: React.FC<TooltipProps> = ({
   const [tooltipPosition, setTooltipPosition] = useState<CSSProperties>({});
   const tooltipRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
-  let timer: NodeJS.Timeout;
+  const touchTimeout = useRef<NodeJS.Timeout | null>(null);
 
 
 
 
-  const handleTouchStart = () => {
-    setIsVisible(false);
-  };
+  // const handleTouchStart = () => {
+  //   setIsVisible(false);
+  // };
 
 
   
@@ -114,20 +114,20 @@ const Tooltip: React.FC<TooltipProps> = ({
     return position;
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsVisible(false);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsVisible(false);
+  //   };
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('touchstart', handleTouchStart);
+  //   window.addEventListener('resize', handleResize);
+  //   window.addEventListener('touchstart', handleTouchStart);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('touchstart', handleTouchStart);
-      clearTimeout(timer);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     window.removeEventListener('touchstart', handleTouchStart);
+  //     clearTimeout(timer);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -146,14 +146,50 @@ const Tooltip: React.FC<TooltipProps> = ({
     setIsVisible(showTooltip);
   };
 
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === "touch") {
+      // Start a timer for long-press detection
+      touchTimeout.current = setTimeout(() => {
+        handleTooltipTrigger(true); // Show tooltip for long press
+      }, 500); // Adjust duration as needed
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType === "touch" && touchTimeout.current) {
+      clearTimeout(touchTimeout.current); // Cancel long-press detection
+    }
+    handleTooltipTrigger(false); // Hide tooltip on touch/mouse release
+  };
+
+  const handlePointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      handleTooltipTrigger(false); // Hide tooltip when mouse leaves
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === "touch") {
+      handleTooltipTrigger(false); // Close tooltip immediately if touch moves
+    }
+  };
+
   return (
     <>
-      {React.cloneElement(children as React.ReactElement, {
-        ref: childRef,
-        onMouseEnter: () => handleTooltipTrigger(true),
-        onMouseLeave: () => handleTooltipTrigger(false),
-        onTouchStart: () => handleTooltipTrigger(false), // Close tooltip on touch
-      })}
+{React.cloneElement(children as React.ReactElement, {
+  ref: childRef,
+ // onPointerDown: handlePointerDown,
+//  onPointerUp: handlePointerUp,
+ // onPointerMove: handlePointerMove, // Detect swipe
+  onPointerEnter: (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      handleTooltipTrigger(true); // Show tooltip on mouse hover
+    }
+  },
+  onPointerLeave: handlePointerLeave,
+  
+})}
 
       {isVisible &&
         content &&

@@ -12,6 +12,7 @@
 
 
 [data-ink-color="main"] { --ink-color: var(--main-color);}
+[data-ink-color="main-deep"] { --ink-color: var(--main-color-deep);}
 [data-ink-color="main-dark"] { --ink-color: var(--main-color-dark);}
 [data-ink-color="secondary"] { --ink-color: var(--secondary-color);}
 [data-ink-color="secondary-light"] { --ink-color: var(--secondary-color-light);}

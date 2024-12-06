@@ -314,39 +314,41 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group  data-gap="30"  data-wrap="no">
-<group data-width="auto" data-align="start">
-<Popover
-              content={
-                <group
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                >
-                  <RichThemePicker pickerType="primary" />
+          <group data-gap="30" data-wrap="no">
+            <group data-width="auto" data-align="start">
+              <Popover
+                content={
+                  <group
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="1.25"
+                  >
+                    <RichThemePicker pickerType="primary" />
+                  </group>
+                }
+                data-space="5"
+                data-radius="10"
+                data-backdrop="10"
+                data-width="auto"
+              >
+                <group data-width="auto">
+                  <group
+                    data-cursor="pointer"
+                    data-interactive=""
+                    data-contain=""
+                    data-direction="column"
+                    data-space="15"
+                    data-radius="10"
+                    data-background="highlight"
+                  >
+                    <group data-interact="">
+                      {" "}
+                      <SvgPlus />{" "}
+                    </group>
+                  </group>
                 </group>
-              }
-              data-space="5"
-              data-radius="10"
-              data-backdrop="10"
-              data-width="auto"
-            >
-              <group data-width="auto">
-                <group
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-contain=""
-                  data-direction="column"
-                  data-space="15"
-                  data-radius="10"
-
-                  data-background="highlight"
-                >
-<group data-interact=""> <SvgPlus/> </group>
-                </group>
-              </group>
-            </Popover>
-</group>
+              </Popover>
+            </group>
             <separator data-vertical="" data-height=""></separator>
             <text
               data-wrap="wrap"
@@ -363,6 +365,10 @@ const Colors: React.FC = () => {
         <group data-type="grid" data-grid-template="110" data-gap="5">
           {ColorPalette.map((color, index) => (
             <group
+
+
+
+
               key={index}
               data-contain=""
               data-length="auto"
@@ -387,50 +393,48 @@ const Colors: React.FC = () => {
       <separator data-horizontal=""></separator>
 
       <group data-gap="30">
-
-
-      <group data-gap="30" data-align="center">
+        <group data-gap="30" data-align="center">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
               Secondary Color
             </text>
           </group>
 
-
-          <group  data-gap="30"  data-wrap="no">
-          <group data-width="auto" data-align="start">
-            <Popover
-              content={
-                <group
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                >
-                  <RichThemePicker pickerType="secondary" />
+          <group data-gap="30" data-wrap="no">
+            <group data-width="auto" data-align="start">
+              <Popover
+                content={
+                  <group
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="1.25"
+                  >
+                    <RichThemePicker pickerType="secondary" />
+                  </group>
+                }
+                data-space="5"
+                data-radius="10"
+                data-backdrop="10"
+                data-width="auto"
+              >
+                <group data-width="auto">
+                  <group
+                    data-cursor="pointer"
+                    data-interactive=""
+                    data-over-color="secondary"
+                    data-contain=""
+                    data-direction="column"
+                    data-space="15"
+                    data-radius="10"
+                    data-background="highlight"
+                  >
+                    <group data-interact="">
+                      {" "}
+                      <SvgPlus />{" "}
+                    </group>
+                  </group>
                 </group>
-              }
-              data-space="5"
-              data-radius="10"
-              data-backdrop="10"
-              data-width="auto"
-             
-            >
-              <group data-width="auto">
-                <group
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-over-color="secondary"
-                  data-contain=""
-                  data-direction="column"
-                  data-space="15"
-                  data-radius="10"
-
-                  data-background="highlight"
-                >
-<group data-interact=""> <SvgPlus/>  </group>
-                </group>
-              </group>
-            </Popover>
+              </Popover>
             </group>
             <separator data-vertical="" data-height=""></separator>
             <text
@@ -444,7 +448,6 @@ const Colors: React.FC = () => {
             </text>
           </group>
         </group>
-
 
         <group data-type="grid" data-grid-template="110" data-gap="5">
           {ColorPalette.map((color, index) => (
@@ -470,35 +473,28 @@ const Colors: React.FC = () => {
         </group>
       </group>
 
-
-
-
       <separator data-horizontal=""></separator>
 
       <group data-gap="30">
-
-
-      <group data-gap="30" data-align="center">
+        <group data-gap="30" data-align="center">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
               Neutral Scale
             </text>
           </group>
 
-
-          <group  data-gap="30"  data-wrap="no">
-
+          <group data-gap="30" data-wrap="no">
             <text
               data-wrap="wrap"
               data-light=""
               data-line="20"
               data-max-length="300"
             >
-              Neutral colors provide a versatile base for the UI, with shades generated for balance and flexibility.
+              Neutral colors provide a versatile base for the UI, with shades
+              generated for balance and flexibility.
             </text>
           </group>
         </group>
-
 
         <group data-type="grid" data-grid-template="110" data-gap="5">
           {ColorPalette.map((color, index) => (
@@ -524,27 +520,21 @@ const Colors: React.FC = () => {
         </group>
       </group>
 
-
       <separator data-horizontal=""></separator>
       <group data-direction="column" data-gap="10">
         <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
           Base Colors
         </text>
         <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
-        Collection of predefined shades to complement design and maintain consistency across system.
+          Collection of predefined shades to complement design and maintain
+          consistency across system.
         </text>
       </group>
-
-
-
-
-
-
 
       <group
         data-shrink="no"
         data-weight="600"
-     //   data-max-length="1120"
+        //   data-max-length="1120"
         data-type="grid"
         data-gap="5"
         data-grid-template="120"
@@ -567,7 +557,6 @@ const Colors: React.FC = () => {
                 colors.hexdark
               )
             }
-         
             data-over-color="neutral"
             data-cursor="pointer"
             key={index}
@@ -575,71 +564,57 @@ const Colors: React.FC = () => {
             data-direction="column"
             daat-wrap="no"
             data-wrap="no"
-       //     data-border=""
-          //  data-space="5"
+            //     data-border=""
+            //  data-space="5"
             //  data-radius="15"
           >
-
-
             <group
               data-interact=""
               data-position="bottom"
               data-wrap="no"
-             // data-contain=""
-             // data-radius="10"
-             data-gap="5"
-             data-direction="column"
-            >
-              
-              <group
+              // data-contain=""
+              // data-radius="10"
+              data-gap="5"
               data-direction="column"
-              data-space="15"
-                data-interactive=""
-              data-interact=""
-               data-ratio="1:2"
-               data-gap="20"
-               
             >
-             
-
-              
-
-
-
-
-
-              <text data-wrap="wrap" data-opacity="30" data-ellipsis=""  data-position="bottom">
+              <group
+                data-direction="column"
+                data-space="15"
+                data-interactive=""
+                data-interact=""
+               // data-ratio="1:2"
+                data-gap="20"
+                data-space-top="40"
+              >
+               
+                <text
+                  data-wrap="wrap"
+                  data-opacity="30"
+                  data-ellipsis=""
+                  data-hypens="auto"
+                  data-position="bottom"
+                >
                   {colors.description}
                 </text>
-
-<group    data-direction="column" data-gap="5">
-
-<text  data-ellipsis="" data-wrap="wrap" data-weight="700">
-                {colors.name}
-              </text>
-              <text data-contain="" data-opacity="20">
-                {index + 1 < 10 ? `0${index + 1}` : index + 1}
-              </text>
-
-</group>
-            </group>
-
+<separator data-horizontal=""></separator>
+                <group data-direction="column" data-gap="5">
+                  <text data-ellipsis="" data-wrap="wrap" data-weight="700">
+                    {colors.name}
+                  </text>
+                  <text data-contain="" data-opacity="20">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </text>
+                </group>
+              </group>
 
               <group
+
                 data-ratio="1:1"
                 data-background={colors.value + "-light"}
                 data-space="15"
-              >
-
-
-              </group>
+              ></group>
               <group data-ratio="1:1" data-background={colors.value}>
-
-              <group data-direction="column" data-color="white" >
-
-
-              </group>
-
+                <group data-direction="column" data-color="white"></group>
               </group>
               <group
                 data-ratio="1:1"

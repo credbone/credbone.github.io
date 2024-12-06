@@ -1,7 +1,6 @@
 import React from "react";
 import Ripple from "../components/Ripple";
 
-
 import Popover from "../components/popover";
 import Button from "../components/button";
 import Tooltip from "../components/tooltip";
@@ -18,7 +17,7 @@ const SimplePopover = (
     data-space="10"
   >
     <text data-weight="700" data-text-size="large">
-      Simple Popover
+       Popover
     </text>
     <text data-wrap="wrap" data-line="1.5">
       The floating card pops up when clicking an element.
@@ -46,29 +45,25 @@ const ClosePopover = (
     data-radius="20"
     content={(closePopover) => (
       <group data-direction="column" data-gap="30">
-<group data-direction="column" data-gap="15">
-<text data-weight="700" data-text-size="large">
-          Popover
-        </text>
-        <text data-line="1.5" data-wrap="wrap" data-max-length="300">
-          Comparing with
-          <Tooltip content="Sample Tooltip">
-            <text data-weight="700"> Tooltip</text>
-          </Tooltip>
-          , besides information Popover card can also provide action elements
-          like links and buttons.
-        </text>
-</group>
+        <group data-direction="column" data-gap="15">
+          <text data-weight="700" data-text-size="large">
+            Popover
+          </text>
+          <text data-line="1.5" data-wrap="wrap" data-max-length="300">
+            Comparing with
+            <Tooltip content="Sample Tooltip">
+              <text data-weight="700"> Tooltip</text>
+            </Tooltip>
+            , besides information Popover card can also provide action elements
+            like links and buttons.
+          </text>
+        </group>
         <separator data-horizontal=""></separator>
-        <Button onClick={closePopover} primary large text="Got It"></Button>
-      </group>
-    )}
-  >
-    <group data-width="auto">
-      <Ripple>
+
+        <Ripple>
         <group
           data-wrap="no"
-          data-ink-color="main-dark"
+          data-ink-color="main-deep"
           data-align="center"
           data-cursor="pointer"
           data-contain=""
@@ -77,11 +72,37 @@ const ClosePopover = (
           data-interactive=""
           data-space="15"
           data-radius="10"
-         // data-height="80"
+          // data-height="80"
+          data-gap="20"
+          onClick={closePopover}
+          data-direction="column"
+        >
+          <text data-weight="700">Got It</text>
+          </group>
+          </Ripple>
+
+
+      </group>
+    )}
+  >
+    <group data-width="auto">
+      <Ripple>
+        <group
+          data-wrap="no"
+          data-ink-color="main-deep"
+          data-align="center"
+          data-cursor="pointer"
+          data-contain=""
+          data-background="main"
+          data-color="main-text"
+          data-interactive=""
+          data-space="15"
+          data-radius="10"
+          // data-height="80"
           data-gap="20"
         >
           <group data-index="1">
-            <text data-weight="700" >Show Popover</text>
+            <text data-weight="700">Show Popover</text>
           </group>
         </group>
       </Ripple>
@@ -94,23 +115,20 @@ const SampleData = (
     data-length="600"
     data-height="auto"
     data-radius="10"
-   data-border=""
+    data-border=""
     data-contain=""
   >
-
-
-<group>
-<picture
-                data-contain=""
-                data-brightness="adaptive"
-              //  data-position="absolute"
-                data-background="grey-light"
-                data-height="160"
-              >
-                <img src={sampleImage} alt="" />
-              </picture>
-</group>
-
+    <group>
+      <picture
+        data-contain=""
+        data-brightness="adaptive"
+        //  data-position="absolute"
+        data-background="grey-light"
+        data-height="160"
+      >
+        <img src={sampleImage} alt="" />
+      </picture>
+    </group>
 
     <group data-direction="column" data-space="30" data-gap="15">
       <text
@@ -130,13 +148,12 @@ const SampleData = (
     </group>
 
     <group
-    //  data-background="main"
+      //  data-background="main"
       data-contain=""
       // data-dark=""
       data-align="center"
     >
-      
-<separator data-horizontal=""></separator>
+      <separator data-horizontal=""></separator>
       <group data-length="fit" data-space="30">
         {ClosePopover}
       </group>
@@ -193,7 +210,7 @@ const TooltipPopover: React.FC = () => {
       <group
         data-direction="column"
         data-gap="10"
-       // data-background="main-background"
+        // data-background="main-background"
       >
         <text
           data-weight="700"
@@ -216,38 +233,33 @@ const TooltipPopover: React.FC = () => {
           data-max-length="800"
           data-height="auto"
           data-radius="15"
-         data-elevation="2"
-         data-index="2"
+          data-elevation="2"
+          data-index="2"
           data-contain=""
-            data-background="context"
+          data-background="context"
         >
           <group
-          //  data-background="main"
+            //  data-background="main"
             data-contain=""
             // data-dark=""
             data-align="center"
             data-space="30"
             data-gap="20"
           >
-              <group data-width="auto"  data-position="left">
-                {ClosePopover}
-              </group>
+            <group data-width="auto" data-position="left">
+              {ClosePopover}
+            </group>
 
-              <group>
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="400">
-                  Click to view a sample popover. The default placement is on top, but if there's not enough space, it will find a way to display itself.
-                  </text>
-                </group>
-
-
+            <group>
+              <text data-wrap="wrap" data-line="1.5" data-max-length="400">
+                Click to view a sample popover. The default placement is on top,
+                but if there's not enough space, it will find a way to display
+                itself.
+              </text>
+            </group>
           </group>
           <separator data-horizontal=""></separator>
-          <group
-            data-space="20"
-            data-gap="15"
-            data-weight="600"
-          
-          >
+          <group data-space="20" data-gap="15" data-weight="600">
             <group>
               <Popover content={SimplePopover} data-width="auto">
                 <group
@@ -263,15 +275,11 @@ const TooltipPopover: React.FC = () => {
               </Popover>
             </group>
 
-
-
             <separator data-horizontal=""></separator>
-
-
 
             <group>
               <Popover
-                placement="auto"
+                placement="right"
                 data-radius="20"
                 data-space="0"
                 data-elevation="2"
@@ -292,15 +300,19 @@ const TooltipPopover: React.FC = () => {
             </group>
             <separator data-horizontal=""></separator>
 
-
-
-
-
-            <group  data-gap="5" data-align="start" data-wrap="no" data-direction="column">
-              <Popover 
-              placement="right"
-              
-              content={<Calculator/>} data-length="260" data-radius="20" data-elevation="2">
+            <group
+              data-gap="5"
+              data-align="start"
+              data-wrap="no"
+              data-direction="column"
+            >
+              <Popover
+                placement="right"
+                content={<Calculator />}
+                data-length="260"
+                data-radius="20"
+                data-elevation="2"
+              >
                 <group
                   data-interactive=""
                   data-interact="popover"
@@ -313,10 +325,16 @@ const TooltipPopover: React.FC = () => {
                 </group>
               </Popover>
 
-
-
-<text data-space="15" data-max-Length="300" data-wrap="wrap" data-opacity="40" data-line="1.5">The popover content can be a separate fully functional component.</text>
-
+              <text
+                data-space="15"
+                data-max-length="300"
+                data-wrap="wrap"
+                data-opacity="40"
+                data-line="1.5"
+              >
+                The popover content can be a separate fully functional
+                component.
+              </text>
             </group>
 
             <separator data-horizontal=""></separator>
@@ -361,51 +379,42 @@ const TooltipPopover: React.FC = () => {
           </group>
         </group>
 
-
-
-<group
-
-
-data-max-length="800"
-data-radius="15"
-
-data-border=""
-data-contain=""
-
->
-
-<group
-
-   data-background="context"
-   data-dark=""
-
-   data-text-size="14"
-   data-user-select="text"
-
-
->
-
-
-<pre data-scroll=""    data-space="30" >
-  <code>
-{`<Tooltip content="I am a tooltip" placement="right">
+        <group
+          data-max-length="800"
+          data-radius="15"
+          data-border=""
+          data-contain=""
+       
+          data-background="context"
+        >
+          <group data-space="30">
+            <text >Simple Usage Example</text>
+          </group>
+          <group
+              
+              data-background="context"
+              data-border=""
+              data-dark=""
+              data-text-size="14"
+              data-user-select="text"
+            >
+              <pre data-scroll="" data-space="30">
+                <code>
+                  {`<Tooltip content="I am a tooltip" placement="right">
   <button>Hover over me</button>
 </Tooltip>`}
-  </code>
-</pre>
+                </code>
+              </pre>
+            </group>
 
-
-</group>
-
-<group     data-border=""  data-background="context"
-
-   data-space="30">
-<Tooltip content="I am a tooltip" placement="right">
-  <button data-space="15" data-radius="10">Hover over me</button>
-</Tooltip>
-</group>
-
-</group>
+            <group data-space="20"  >
+              <Tooltip content="I am a tooltip" placement="right">
+                <button data-space="15" data-radius="5">
+                  Hover over me
+                </button>
+              </Tooltip>
+            </group>
+        </group>
 
         <group
           data-column-gap="15"
@@ -416,16 +425,11 @@ data-contain=""
           <group
             data-direction="column"
             data-radius="15"
-           data-border=""
+            data-border=""
             data-contain=""
-             data-background="context"
+            data-background="context"
           >
-            <group
-              data-space="30"
-              data-direction="column"
-              data-gap="10"
-             
-            >
+            <group data-space="30" data-direction="column" data-gap="10">
               <text
                 data-weight="700"
                 data-text-size="xxx-large"
@@ -446,10 +450,9 @@ data-contain=""
               </text>
             </group>
 
-<separator data-horizontal=""></separator>
+            <separator data-horizontal=""></separator>
 
             <group
-
               data-contain=""
               data-align="center"
               // data-dark=""
@@ -459,10 +462,8 @@ data-contain=""
                 data-gap="20"
                 data-direction="column"
                 data-weight="600"
-              
               >
-
-<group>
+                <group>
                   <group
                     data-width="auto"
                     data-interactive=""
@@ -486,8 +487,6 @@ data-contain=""
                     3000 milliseconds.
                   </text>
                 </group>
-
-
               </group>
 
               {/* <group data-contain="" data-height="120">
@@ -503,7 +502,7 @@ data-contain=""
             data-width="auto"
             data-height="auto"
             data-radius="15"
-           data-border=""
+            data-border=""
             data-contain=""
             data-direction="column"
             data-space="20"

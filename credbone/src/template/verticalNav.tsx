@@ -230,7 +230,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             <separator
               data-horizontal=""
               data-interval="10"
-              data-adaptive="desktop"
+        //      data-adaptive="desktop"
             ></separator>
             <Tooltip
               placement="right"
@@ -271,7 +271,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
               }
             >
               <group
-                data-adaptive="desktop"
+           //     data-adaptive="desktop"
                 data-cursor="pointer"
                 data-interactive=""
                 data-contain=""
