@@ -402,7 +402,7 @@ const TooltipPopover: React.FC = () => {
               data-text-size="14"
               data-user-select="text"
             >
-              <pre contentEditable={"plaintext-only"} tabIndex={1} suppressContentEditableWarning={true} data-scroll="" data-space="30">
+              <pre data-scroll="" data-space="30">
                 <code >
                   {`<Tooltip content="I am a tooltip" placement="right">
   <button>Hover over me</button>

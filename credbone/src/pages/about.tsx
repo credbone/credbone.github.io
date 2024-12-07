@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
-import sampleImage from "../styles/images/samples/res_60.jpg";
-import sampleImage_2 from "../styles/images/samples/res_64.jpg";
+import sampleImage from "../styles/images/samples/res_69.jpg";
+import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 import Tooltip from "../components/tooltip";
 
 const links = [
