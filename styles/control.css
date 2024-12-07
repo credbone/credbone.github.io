@@ -759,10 +759,12 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 [data-interactive]:hover,
-[data-interact="popover"][data-popover-expand="true"]
+[data-interact="popover"][data-popover-expand="true"],
+[data-interactive]:hover [data-react="background"] 
 
 { background-image: var(--over-color);}
 
+[data-over-color="none"][data-interactive]:hover {background-image: none;}
 
 
 

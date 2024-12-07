@@ -37,6 +37,8 @@
       --over-color: linear-gradient(to top, rgb(125 125 125 / 10%) 0%, rgb(125 125 125 / 10%) 100%);
       --press-color: linear-gradient(to top, rgb(125 125 125 / 10%) 0%, rgb(125 125 125 / 10%) 100%);
     }
+
+
   
     [data-theme="dark"] [data-brightness="adaptive"]{filter: brightness(.5);}
     [data-theme="dark"] [data-mix-blend-mode="overlay"]{mix-blend-mode: overlay;}
