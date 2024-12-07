@@ -137,9 +137,49 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [isVisible]);
 
 
+useEffect(() => {
+  const handleOutsideClickOrMouseDown = (event: MouseEvent) => {
+    if (
+      tooltipRef.current &&
+      !tooltipRef.current.contains(event.target as Node) &&
+      childRef.current &&
+      !childRef.current.contains(event.target as Node)
+    ) {
+      setIsVisible(false); // Close tooltip if the click or mousedown is outside
+    }
+  };
 
+ 
+  document.addEventListener('click', handleOutsideClickOrMouseDown);
 
+  return () => {
+
+    document.removeEventListener('click', handleOutsideClickOrMouseDown);
+  };
+}, []);
+
+  useEffect(() => {
+    const handleScroll = (event: Event) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(event.target as Node) &&
+        childRef.current &&
+        !childRef.current.contains(event.target as Node)
+      ) {
+        setIsVisible(false);
+      }
+    };
   
+    if (isVisible) {
+      window.addEventListener("scroll", handleScroll, true); // Capture scroll events
+    } else {
+      window.removeEventListener("scroll", handleScroll, true);
+    }
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [isVisible]);
 
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
@@ -179,9 +219,9 @@ const Tooltip: React.FC<TooltipProps> = ({
     <>
 {React.cloneElement(children as React.ReactElement, {
   ref: childRef,
- // onPointerDown: handlePointerDown,
-//  onPointerUp: handlePointerUp,
- // onPointerMove: handlePointerMove, // Detect swipe
+ onPointerDown: handlePointerDown,
+ onPointerUp: handlePointerUp,
+ //onPointerMove: handlePointerMove, // Detect swipe
   onPointerEnter: (e: React.PointerEvent) => {
     if (e.pointerType === "mouse") {
       handleTooltipTrigger(true); // Show tooltip on mouse hover
