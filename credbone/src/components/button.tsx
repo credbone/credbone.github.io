@@ -101,7 +101,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
     if (fill === "fill") {
       iconProps = { fill: "" };
     }
-    const { svg, onMouseDown, onMouseLeave, onMouseUp } = useMaterialEffect({
+    const { svg, onPointerDown, onPointerLeave, onPointerUp } = useMaterialEffect({
       ref: (ref || refObj) as RefObject<HTMLDivElement>,
       isMaterial: material,
     });
@@ -195,9 +195,10 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
           toggleClassName && setAddToggleClassNames((prev) => !prev);
           onClick?.(e);
         }}
-        onMouseDown={onMouseDown}
-        onMouseLeave={onMouseLeave}
-        onMouseUp={onMouseUp}
+       // onMouseDown={onMouseDown}
+       onPointerDown={onPointerDown}
+        onPointerLeave={onPointerLeave}
+        onPointerUp={onPointerUp}
         {...rest}
         {...(position ? { "data-position": position } : null)}  //NOSONAR
         {...(disabled ? { disabled: true } : null)}             //NOSONAR

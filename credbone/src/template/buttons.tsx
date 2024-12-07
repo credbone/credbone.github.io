@@ -68,7 +68,7 @@ const Buttons: React.FC = () => {
 </group>
 
 <Ripple>
-<group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer" data-over-color="neutral" data-contain="" data-background="main" data-color="main-text" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer"  data-contain="" data-background="main" data-color="main-text" data-interactive=""  data-space="20" data-radius="15" data-gap="20">
 <group data-width="auto">
 <IconSearch size={60}/>
 </group>
@@ -78,7 +78,7 @@ const Buttons: React.FC = () => {
 <group className={isOpen ? 'open' : ''} onClick={toggleClass} data-wrap="no" data-ratio="1:1" data-justify="center" data-mix-lend-mode="screen"  data-color="black"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-background="white" data-interactive="" data-space="20" data-radius="15" data-gap="20">
 
 
-<group data-width="auto" data-loop="smooth" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">
+<group data-width="auto" data-loop="smooth" data-over-color="none" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">
 <SvgHamburgerToRight />
 </group>
 

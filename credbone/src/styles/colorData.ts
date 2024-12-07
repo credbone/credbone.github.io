@@ -7,7 +7,7 @@ export const colors = [
   { code: "#adbb88", name: "Green", description: "A classic green color." },
   { code: "#ebd187", name: "Yellow", description: "A bright yellow hue." },
   { code: "#ff8f6b", name: "Orange", description: "A warm orange shade." },
-  { code: "#db6b5d", name: "Red", description: "A bold red color." },
+  // { code: "#db6b5d", name: "Red", description: "A bold red color." },
   { code: "#ff705e", name: "Pink", description: "A soft pink shade." },
 
   { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade.",separator:"true"  },

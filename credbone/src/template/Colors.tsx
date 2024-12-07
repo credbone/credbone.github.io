@@ -14,30 +14,15 @@ import { isDesktop } from "react-device-detect";
 import { SvgPlus } from "../components/svg";
 
 export const ColorPalette = [
-  {
-    textcolor: "-dark",
-    code: "-lightest",
-    name: "Lightest",
-    description: "100",
-  },
-  { textcolor: "-dark", code: "-lighter", name: "Lighter", description: "200" },
+  { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
+  { textcolor: "-darker", code: "-lighter", name: "Lighter", description: "200" },
   { textcolor: "-darker", code: "-light", name: "Light", description: "300" },
   { textcolor: "-text", code: "-soft", name: "Soft", description: "400" },
   { textcolor: "-text", code: "", name: "Base", description: "500" },
   { textcolor: "-lighter", code: "-deep", name: "Deep", description: "600" },
   { textcolor: "-lighter", code: "-dark", name: "Dark", description: "700" },
-  {
-    textcolor: "-lightest",
-    code: "-darker",
-    name: "Darker",
-    description: "800",
-  },
-  {
-    textcolor: "-lightest",
-    code: "-darkest",
-    name: "Darkest",
-    description: "900",
-  },
+  { textcolor: "-lightest", code: "-darker", name: "Darker", description: "800", },
+  { textcolor: "-lightest", code: "-darkest", name: "Darkest", description: "900", },
 ];
 
 const Colors: React.FC = () => {

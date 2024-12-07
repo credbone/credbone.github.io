@@ -15,7 +15,7 @@ interface Circle {
 export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
   const [circles, setCircles] = useState<Circle[]>([]);
 
-  const onMouseDown: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
+  const effectStart: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
     ? (e) => {
         const current = ref?.current;
         if (current) {
@@ -81,9 +81,10 @@ export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
     : undefined;
 
   return {
-    onMouseDown,
-    onMouseUp: onEffectEnd,
-    onMouseLeave: onEffectEnd,
+    onPointerDown: effectStart,
+  //  onMouseDown: effectStart,
+    onPointerUp: onEffectEnd,
+    onPointerLeave: onEffectEnd,
     svg: circles.length > 0 && (
       <>
         {circles.map((circle) => (
