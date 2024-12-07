@@ -143,6 +143,18 @@ export const IconBook: React.FC<IconProps> = ({ fill = false, ...restProps }) =>
   );
 };
 
+export const IconInfo: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+
+<g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+<path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+<circle cx="12" cy="12" r="9"/><line x1="12" x2="12.01" y1="8" y2="8"/>
+<polyline points="11 12 12 12 12 16 13 16"/>
+</g>
+    </Icon>
+  );
+};
 
 
 export const IconThumbUp: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
