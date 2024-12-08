@@ -41,18 +41,23 @@ const useOpenCustomModal = () => {
     key: string;
     title: string;
     description: string;
-    long_description:string;
+    long_description: string;
     image: string;
   }) => {
-    openModal(
-      `modal-${item.key}`,
-      item.title,
-      <CardModal item={item} onClose={() => closeModal(`modal-${item.key}`)} />,
-      false,
-      false,
-      modalConfig,
-      0
-    );
+    openModal({
+      id: `modal-${item.key}`,
+      title: item.title,
+      content: (
+        <CardModal
+          item={item}
+          onClose={() => closeModal(`modal-${item.key}`)}
+        />
+      ),
+      hasHeader: false,
+      hasToolbar: false,
+      customAttributes: modalConfig,
+      spacing: 0,
+    });
   };
 
   return handleOpenModal;

@@ -242,10 +242,10 @@ const Colors: React.FC = () => {
     colorsHexLight: string,
     colorsHexDark: string
   ) => {
-    openModal(
-      `modal-${colorsName}`,
-      colorsName,
-      getModalContent(
+    openModal({
+      id: `modal-${colorsName}`,
+      title: colorsName,
+      content: getModalContent(
         colorsName,
         colorsValue,
         colorsDescription,
@@ -253,11 +253,11 @@ const Colors: React.FC = () => {
         colorsHexLight,
         colorsHexDark
       ),
-      false,
-      false,
-      modalConfig,
-      0
-    );
+      hasHeader: false,
+      hasToolbar: false,
+      customAttributes: modalConfig,
+      spacing: 0,
+    });
   };
 
   return (

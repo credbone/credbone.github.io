@@ -132,11 +132,15 @@ const handleIconClick = (iconName: string, iconLabel: string) => {
   setSelectedIcon(iconName);
   
   openModal(
-    `modal-${iconName}`,
-    iconLabel,
-    getModalContent(iconName, iconLabel),
-    false,
-    false
+    {
+      
+   id: `modal-${iconName}`,
+   title: iconLabel,
+   content: getModalContent(iconName, iconLabel),
+   hasHeader: false,
+   hasToolbar: false
+  
+    }
   );
 };
 

@@ -16,11 +16,12 @@ interface ModalProps {
   content: ReactNode;
   isOpen: boolean;
   onClose: () => void;
-  hasHeader?: boolean; // New prop to control the header
-  hasToolbar?: boolean; // New prop to control the toolbar
+  hasHeader?: boolean;
+  hasToolbar?: boolean;
   dimClose?: boolean;
   isTopmost: boolean;
   customAttributes?: { [key: string]: string };
+  dimAttributes?: { [key: string]: string };
   spacing?: number;
 }
 
@@ -29,12 +30,13 @@ const Modal: React.FC<ModalProps> = ({
   content,
   isOpen,
   onClose,
-  hasHeader = true, // Default true for the header
-  hasToolbar = false, // Default true for the toolbar
+  hasHeader = true,
+  hasToolbar = false,
   dimClose = false,
   isTopmost,
-  customAttributes = {}, // Default empty object for custom attributes
-  spacing = 20, // Default spacing value
+  customAttributes = {},
+  dimAttributes = {},
+  spacing = 20,
 }) => {
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
@@ -67,12 +69,9 @@ const Modal: React.FC<ModalProps> = ({
       data-justify="center"
       data-height="fit"
       data-position="absolute"
-      
-     
     >
-      <group data-position="absolute"  onClick={handleBackdropClick} data-height="fit" data-name="modal-backdrop"></group>
+      <group data-position="absolute" onClick={handleBackdropClick} data-height="fit" data-background="modal-backdrop" {...dimAttributes}></group>
       <group
-     //   data-margin="20"
         data-radius="15"
         data-direction="column"
         data-width="auto"
@@ -82,80 +81,44 @@ const Modal: React.FC<ModalProps> = ({
         data-max-height="fit"
         data-contain=""
         data-elevation="2"
-      
-        // data-animation-name="appear-bottom"
-        // data-fill-mode="backwards"
-        // data-animation-duration="2.25"
-      
         {...customAttributes}
-      //   onClick={dimClose || (!hasHeader && !hasToolbar) ? (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation() : onClose}
-      //  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
-        {hasHeader && ( // Render the header only if hasHeader is true
-<>
-
-<group data-name="modal-header" data-align="center" data-space="10">
-            <text data-space="10" >
-              {title}
-            </text>
-            <Button
-            large
-              data-position="right"
-              icon="close"
-              onClick={onClose}
-            ></Button>
-          </group>
-
-<group>
-<separator data-horizontal=""></separator>
-</group>
-
-</>
-        )}
-
-
-          {content}
-
-
-        {hasToolbar && ( // Render the toolbar only if hasToolbar is true
-<>
-
-<group>
-  <separator data-horizontal=""></separator>
-</group>
-          <group data-name="modal-toolbar" data-space="30" data-gap="20" data-background="light-gray">
-            <group data-gap="10" data-type="grid" data-grid-template="120">
-              <group
-                onClick={onClose}
-                data-contain=""
-                data-space="15"
-                data-interactive=""
-                data-cursor="pointer"
-                data-radius="5"
-                data-align="center"
-                data-direction="column"
-                data-background="main"
-                data-color="main-text"
-              >
-                <text data-weight="700">OK</text>
-              </group>
-              {/* <group
-                onClick={onClose}
-                data-contain=""
-                data-space="15"
-                data-interactive=""
-                data-cursor="pointer"
-                data-radius="5"
-                data-align="center"
-                data-direction="column"
-                data-background="context"
-              >
-                <text data-weight="700">Cancel</text>
-              </group> */}
+        {hasHeader && (
+          <>
+            <group data-name="modal-header" data-align="center" data-space="10">
+              <text data-space="10">{title}</text>
+              <Button large data-position="right" icon="close" onClick={onClose}></Button>
             </group>
-          </group>
-
-</>
+            <group>
+              <separator data-horizontal=""></separator>
+            </group>
+          </>
+        )}
+        {content}
+        {hasToolbar && (
+          <>
+            <group>
+              <separator data-horizontal=""></separator>
+            </group>
+            <group data-name="modal-toolbar" data-space="30" data-gap="20" data-background="light-gray">
+              <group data-gap="10" data-type="grid" data-grid-template="120">
+                <group
+                  onClick={onClose}
+                  data-contain=""
+                  data-space="15"
+                  data-interactive=""
+                  data-cursor="pointer"
+                  data-radius="5"
+                  data-align="center"
+                  data-direction="column"
+                  data-background="main"
+                  data-color="main-text"
+                >
+                  <text data-weight="700">OK</text>
+                </group>
+              </group>
+            </group>
+          </>
         )}
       </group>
     </group>
@@ -164,16 +127,16 @@ const Modal: React.FC<ModalProps> = ({
 
 // Modal Context and Provider Logic
 interface ModalContextType {
-  openModal: (
-    id: string, 
-    title: string,
-    content: ReactNode,
-    hasHeader?: boolean,
-    hasToolbar?: boolean,
-    customAttributes?: { [key: string]: string },
-    spacing?: number
-    
-  ) => void;
+  openModal: (options: {
+    id: string;
+    title: string;
+    content: ReactNode;
+    hasHeader?: boolean;
+    hasToolbar?: boolean;
+    customAttributes?: { [key: string]: string };
+    dimAttributes?: { [key: string]: string };
+    spacing?: number;
+  }) => void;
   closeModal: (id: string) => void;
 }
 
@@ -189,9 +152,7 @@ export const useModal = () => {
 };
 
 // ModalProvider that provides context
-export const ModalProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [modals, setModals] = useState<
     {
       id: string;
@@ -201,50 +162,54 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       hasHeader?: boolean;
       hasToolbar?: boolean;
       customAttributes?: { [key: string]: string };
+      dimAttributes?: { [key: string]: string };
       spacing?: number;
     }[]
-    >([]);
-  
+  >([]);
 
-
-  const openModal = (
-    id: string,  // id parameter
-    title: string,
-    content: ReactNode,
+  const openModal = ({
+    id,
+    title,
+    content,
     hasHeader = true,
     hasToolbar = false,
-    customAttributes: { [key: string]: string } = {},
-    spacing = 20 
-  ) => {
+    customAttributes = {},
+    dimAttributes = {},
+    spacing = 20,
+  }: {
+    id: string;
+    title: string;
+    content: ReactNode;
+    hasHeader?: boolean;
+    hasToolbar?: boolean;
+    customAttributes?: { [key: string]: string };
+    dimAttributes?: { [key: string]: string };
+    spacing?: number;
+  }) => {
     setModals((prev) => [
       ...prev,
-      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes, spacing  },
+      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes, dimAttributes, spacing },
     ]);
   };
 
   const closeModal = (id: string) => {
-    setModals(prev =>
-      prev.map(modal =>
+    setModals((prev) =>
+      prev.map((modal) =>
         modal.id === id ? { ...modal, isOpen: false } : modal
-      ).filter(modal => modal.isOpen) // Optionally filter out closed modals
+      ).filter((modal) => modal.isOpen) // Optionally filter out closed modals
     );
   };
 
+  const location = useLocation(); // Get current location
+  const prevLocationRef = useRef(location); // Store previous location
 
-  // Inside your ModalProvider component
-const location = useLocation(); // Get current location
-const prevLocationRef = useRef(location); // Store previous location
-
-useEffect(() => {
-  if (prevLocationRef.current !== location) {
-    // Clear all modals when location changes
-    setModals([]); // Reset modals to an empty array to clear them
-    prevLocationRef.current = location; // Update the previous location
-  }
-}, [location]); // Only depend on location changes
-
-
-
+  useEffect(() => {
+    if (prevLocationRef.current !== location) {
+      // Clear all modals when location changes
+      setModals([]); // Reset modals to an empty array to clear them
+      prevLocationRef.current = location; // Update the previous location
+    }
+  }, [location]); // Only depend on location changes
 
   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
     return modal.isOpen ? index : highestIndex;
@@ -256,17 +221,18 @@ useEffect(() => {
       <div data-name="modal-wrapper" data-max-length="fit">
         {modals.map((modal) => (
           <Modal
-            key={modal.id}   // Ensure key is unique
-            id={modal.id}    // Pass id prop to Modal
+            key={modal.id}
+            id={modal.id}
             title={modal.title}
             content={modal.content}
             isOpen={modal.isOpen}
             hasHeader={modal.hasHeader}
             hasToolbar={modal.hasToolbar}
             customAttributes={modal.customAttributes}
-            onClose={() => closeModal(modal.id)}  // Close modal by id
+            dimAttributes={modal.dimAttributes}
+            onClose={() => closeModal(modal.id)}
             isTopmost={modal.id === modals[topmostIndex]?.id}
-            spacing={modal.spacing} // Pass spacing to Modal
+            spacing={modal.spacing}
           />
         ))}
       </div>

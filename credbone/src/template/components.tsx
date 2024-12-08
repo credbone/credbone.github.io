@@ -75,29 +75,28 @@ const Components: React.FC = () => {
               <img src={sampleImage} alt="" />
             </picture>
 
-            <group data-space="30"
-            // data-dark="" 
-           // data-sticky="bottom" 
+            <group
+              data-space="30"
+              // data-dark=""
+              // data-sticky="bottom"
             >
               <group
                 data-space="30"
                 data-index="2"
-                data-radius="10"  
+                data-radius="10"
                 data-contain=""
                 data-backdrop="20-light"
                 data-gap="30"
               >
-                <group  data-gap="20">
-                  <text data-wrap="wrap" data-line="20" data-text-size="15" >
-                  Designed to evolve and adapt, always ready to grow.
+                <group data-gap="20">
+                  <text data-wrap="wrap" data-line="20" data-text-size="15">
+                    Designed to evolve and adapt, always ready to grow.
                   </text>
-
-
                 </group>
                 <separator data-horizontal=""></separator>
-              <group >
-              <text data-opacity="60">Copyright {currentYear}</text>
-              </group>
+                <group>
+                  <text data-opacity="60">Copyright {currentYear}</text>
+                </group>
               </group>
             </group>
           </group>
@@ -115,7 +114,11 @@ const Components: React.FC = () => {
 
           <group data-height="200" data-adaptive="mobile">
             <group data-radius="20" data-contain="">
-              <picture data-brightness="adaptive" data-position="absolute" data-background="grey-light">
+              <picture
+                data-brightness="adaptive"
+                data-position="absolute"
+                data-background="grey-light"
+              >
                 <img src={sampleImage_2} alt="" />
               </picture>
             </group>
@@ -129,7 +132,12 @@ const Components: React.FC = () => {
               data-space-vertical="40"
             >
               <group data-direction="column" data-gap="10">
-                <text data-weight="700" data-text-size="48" data-height="60" data-ellipsis="">
+                <text
+                  data-weight="700"
+                  data-text-size="48"
+                  data-height="60"
+                  data-ellipsis=""
+                >
                   <TextReveal text={message} duration={1200} />
                 </text>
 
@@ -147,8 +155,7 @@ const Components: React.FC = () => {
               </group>
 
               <group data-width="auto" data-gap="15" data-align="center">
-
-              <Ripple>
+                <Ripple>
                   <group
                     data-contain=""
                     data-drag="none"
@@ -160,46 +167,49 @@ const Components: React.FC = () => {
                     data-space="15"
                     data-radius="15"
                     onClick={() =>
-                      openModal(
-                        "modal-2",
-                        "Customized Popup",
-                        <group
-                          data-min-height="fit"
-                          data-justify="center"
-                          data-align="start"
-                          data-space="30"
-                          data-contain="scroll"
-                        >
+                      openModal({
+                        id: "modal-2",
+                        title: "Customized Popup",
+                        content: (
                           <group
-                            data-top="0"
-                            data-position="absolute"
-                            data-height="fit"
-                            //   data-background="main-background-top"
-                            onClick={() => closeModal("modal-2")}
-                          ></group>
-
-                          <group
-                            data-max-length="600"
-                           // data-space="10"
-                            data-border=""
-                            data-background="context"
-                            data-radius="15"
-                         //   data-contain=""
-                            data-space="5"
-                            data-gap="5"
-                            data-elevation="2"
-                            data-animation-name="appear-top"
-                            data-fill-mode="backwards"
-                            data-animation-duration="2"
+                            data-min-height="fit"
+                            data-justify="center"
+                            data-align="start"
+                            data-space="30"
+                            data-contain="scroll"
                           >
-                            <SearchComponent showRandomTagsByDefault={false} />
+                            <group
+                              data-top="0"
+                              data-position="absolute"
+                              data-height="fit"
+                              onClick={() => closeModal("modal-2")}
+                            ></group>
+
+                            <group
+                              data-max-length="600"
+
+                              data-border=""
+                              data-background="context"
+                              data-radius="15"
+                              data-space="5"
+                              data-gap="5"
+                              data-elevation="2"
+                              data-animation-name="appear-top"
+                              data-fill-mode="backwards"
+                              data-animation-duration="2"
+                            >
+                              <SearchComponent
+                                showRandomTagsByDefault={false}
+                              />
+                            </group>
                           </group>
-                        </group>,
-                        false,
-                        false,
-                        modalConfig,
-                        0
-                      )
+                        ),
+                        hasHeader: false,
+                        hasToolbar: false,
+                        customAttributes: modalConfig,
+                        dimAttributes: {"data-background" : "dark-shade-70"},
+                        spacing: 0,
+                      })
                     }
                   >
                     <IconSearch></IconSearch>
@@ -230,9 +240,6 @@ const Components: React.FC = () => {
                     </text>
                   </Link>
                 </Ripple>
-               
-
-
               </group>
             </group>
           </group>
