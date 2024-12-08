@@ -169,14 +169,29 @@ useEffect(() => {
         setIsVisible(false);
       }
     };
+
+
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(event.target as Node) &&
+        childRef.current &&
+        !childRef.current.contains(event.target as Node)
+      ) {
+        setIsVisible(false);
+      }
+    };
   
     if (isVisible) {
+      document.addEventListener("click", handleDocumentClick);
       window.addEventListener("scroll", handleScroll, true); // Capture scroll events
     } else {
+      document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     }
   
     return () => {
+      document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [isVisible]);
@@ -203,17 +218,16 @@ useEffect(() => {
     handleTooltipTrigger(false); // Hide tooltip on touch/mouse release
   };
 
-  const handlePointerLeave = (e: React.PointerEvent) => {
-    if (e.pointerType === "mouse") {
-      handleTooltipTrigger(false); // Hide tooltip when mouse leaves
-    }
+  const handlePointerLeave = () => {
+
+    handleTooltipTrigger(false);
   };
 
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (e.pointerType === "touch") {
-      handleTooltipTrigger(false); // Close tooltip immediately if touch moves
-    }
-  };
+  // const handlePointerMove = (e: React.PointerEvent) => {
+  //   if (e.pointerType === "touch") {
+  //     handleTooltipTrigger(false); // Close tooltip immediately if touch moves
+  //   }
+  // };
 
   return (
     <>

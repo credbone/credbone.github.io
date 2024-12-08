@@ -52,6 +52,7 @@ const Components: React.FC = () => {
     "data-scroll": "",
     "data-min-height": "fit",
     "data-contain": "scroll",
+    "data-modal-backdrop":"dark"
   };
 
   useEffect(() => {
@@ -179,11 +180,13 @@ const Components: React.FC = () => {
 
                           <group
                             data-max-length="600"
-                            data-space="10"
+                           // data-space="10"
                             data-border=""
                             data-background="context"
                             data-radius="15"
-                            data-gap="10"
+                         //   data-contain=""
+                            data-space="5"
+                            data-gap="5"
                             data-elevation="2"
                             data-animation-name="appear-top"
                             data-fill-mode="backwards"

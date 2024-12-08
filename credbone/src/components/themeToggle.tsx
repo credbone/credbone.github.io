@@ -41,7 +41,7 @@ const ThemeToggle: React.FC = () => {
 
   return (
     <group>
-      <OptionBar data-length="autofit" dynamic compact data-height="40">
+      <OptionBar data-length="autofit" dynamic compact data-height="40" >
     
       {radioOptions.map((option, index) => (
         <Radio
