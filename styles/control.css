@@ -758,11 +758,23 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 
 
+
 [data-interactive]:hover,
 [data-interact="popover"][data-popover-expand="true"],
 [data-interactive]:hover [data-react="background"] 
 
 { background-image: var(--over-color);}
+
+
+/* @media(hover: hover) and (pointer: fine) {
+
+  
+
+
+} */
+
+/* [data-interactive] {-webkit-tap-highlight-color:var(--main-color-alpha-15)} */
+
 
 [data-over-color="none"][data-interactive]:hover {background-image: none;}
 
