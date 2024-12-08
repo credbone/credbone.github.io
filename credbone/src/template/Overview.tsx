@@ -186,17 +186,22 @@ const Overview: React.FC = () => {
                   key={index}
                   data-interactive=""
                   data-over-color="none"
+                  data-align="start"
+                  data-direction="column"
+                 data-justify="start"
+                 data-wrap="no"
                 >
                   <Ripple>
                     <group
                       data-radius="20"
                      data-react="background"
                       //data-width="auto"
-
+data-interact=""
                       data-contain=""
-                      //  data-min-height="200"
+                        data-height="160"
                       //  data-radius="20"
 
+                     
                       data-direction="column"
                       data-wrap="no"
                       data-background="highlight"
@@ -231,7 +236,7 @@ const Overview: React.FC = () => {
                     </group>
                   </Ripple>
 
-                  <group data-space="20" data-react="color">
+                  <group data-space="20" data-react="color"  data-align="start" data-justify="start" data-direction="column" >
 
                     <text
                       data-ellipsis=""

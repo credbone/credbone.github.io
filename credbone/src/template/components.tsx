@@ -191,8 +191,8 @@ const Components: React.FC = () => {
                               data-border=""
                               data-background="context"
                               data-radius="15"
-                              data-space="5"
-                              data-gap="5"
+                              data-space="10"
+                              data-gap="10"
                               data-elevation="2"
                               data-animation-name="appear-top"
                               data-fill-mode="backwards"
@@ -207,7 +207,7 @@ const Components: React.FC = () => {
                         hasHeader: false,
                         hasToolbar: false,
                         customAttributes: modalConfig,
-                        dimAttributes: {"data-background" : "dark-shade-70"},
+                      //  dimAttributes: {"data-background" : "dark-shade-70"},
                         spacing: 0,
                       })
                     }

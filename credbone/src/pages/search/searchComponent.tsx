@@ -201,7 +201,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       </group>
 
       {results.length > 0 && (
-        <group data-direction="column" data-gap="1" data-contain="" data-radius="10" data-max-length="600" data-align="start">
+        <group data-direction="column"  data-max-length="600" data-align="start">
           {results.map((result, index) => (
             <Link
               autoFocus={true}
@@ -213,13 +213,13 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
               
               data-direction="column"
               data-gap="5"
-              //data-radius="10"
+              data-radius="10"
               data-interactive=""
               data-animation-name="appear-top"
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
-              data-border=""
+             // data-border=""
             >
               <text data-weight="700" data-color="main" data-text-size="15">
                 {result.title}
