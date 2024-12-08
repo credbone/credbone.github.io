@@ -120,12 +120,17 @@
             --neutral-color-dark: #616161;
             --neutral-color-darker: #424242;
             --neutral-color-darkest: #212121;
+
+            --dark-shade-10:rgba(6,6,6,.1);
+            --dark-shade-70:rgba(6,6,6,.7);
+            --dark-shade-80:rgba(6,6,6,.8);
+
 }
 
 
 
-
-
+[data-background="dark-shade-10"]{background-color: var(--dark-shade-10);}
+[data-background="dark-shade-70"]{background-color: var(--dark-shade-70);}
 
 /* Special colors */
 

@@ -9,4 +9,4 @@
 
     
 [data-name="modal-wrapper"]{z-index: 9997; width: 100%;}
-[data-name="modal-backdrop"] {background-color: var(--dim); }
+[data-background="modal-backdrop"] {background-color: var(--dim); }
