@@ -5,8 +5,13 @@ import SnackbarContainer from "../components/snackbar/SnackbarContainer";
 import Calculator from "../tools/Calculator";
 import SimplePaint from "../tools/SimplePaint";
 import WeatherWidget from "../tools/WeatherWidget";
+import Ripple from "../components/Ripple";
+import { useModal } from "../components/Modal";
 
 const QuickDemos: React.FC = () => {
+
+  const { openModal, closeModal } = useModal();
+
   return (
     <group data-space="30" data-gap="30" data-align="start">
       <group data-gap="30">
@@ -127,11 +132,12 @@ data-gap="20"
           data-radius="20"
          data-border=""
           data-contain=""
-          //   data-gap="10"
+          data-space="30"
+             data-gap="20"
           data-length="500"
         >
 
-          <group data-gap="10" data-space="30">
+          <group data-gap="10" >
             <text
               data-weight="700"
               data-wrap="wrap"
@@ -149,7 +155,42 @@ data-gap="20"
             </text>
           </group>
 
-          <SimplePaint />
+<separator data-horizontal=""></separator>
+
+<Ripple>
+<group
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+             // data-width="auto"
+              data-align="center"
+              data-direction="column"
+              data-background="highlight"
+              
+              onClick={() =>
+                openModal({
+                  id: "paint-modal",
+                  title: "Simple Paint",
+                  content: (<group data-length="500"><SimplePaint /></group>),
+                  hasHeader: true,
+                  hasToolbar: false,
+                //  customAttributes: modalConfig,
+                //  dimAttributes: {"data-background" : "dark-shade-70"},
+                 // spacing: 0,
+                })
+              }
+
+
+            >
+              <text data-ellipsis="" data-weight="600">
+               Launch
+              </text>
+            </group>
+</Ripple>
+
+          
         </group>
 
 

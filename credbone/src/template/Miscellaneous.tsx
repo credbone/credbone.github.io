@@ -5,6 +5,7 @@ import Count from "../components/Coutner";
 
 
 import sampleImage from "../styles/images/samples/res_72.jpg";
+import Ripple from "../components/Ripple";
 
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
@@ -313,6 +314,58 @@ const Miscellaneous: React.FC = () => {
 
 
 
+
+      <group
+ //       data-max-length="500"
+        data-height="auto"
+        data-max-height="fit"
+        data-radius="15"
+       data-border=""
+        data-contain=""
+      >
+        <group data-gap="30" data-space="30">
+          <group data-gap="10">
+            <text
+              data-weight="700"
+              data-text-size="xxx-large"
+              data-wrap="wrap"
+              data-color="main"
+              data-ellipsis=""
+            >
+              Ripple
+            </text>
+            <text data-wrap="wrap" data-line="1.5">
+            Ripple is a visual feedback effect for touch interactions, giving users a clear indication that an element has been touched.
+            </text>
+          </group>
+        </group>
+
+
+        <group data-space="30" data-background="main-background"  data-direction="column" data-align="center" data-justify="center" >
+
+
+        <Ripple>
+        <group data-direction="column" data-ink-color="neutral" data-cursor="pointer" data-border="" data-radius="10" data-contain="" data-space="30"><text data-weight="600">Interact</text> <text data-opacity="30">Neutral Color</text></group>
+        </Ripple>
+
+        </group>
+
+        <group data-space="30" data-gap="15"  data-background="main-background" data-direction="column" data-align="center" data-justify="center" data-border="">
+        
+
+        <Ripple>
+        <group data-direction="column" data-cursor="pointer" data-background="highlight" data-radius="10" data-contain="" data-space="30"><text data-weight="600">Interact</text> <text data-opacity="30">Default Shade</text></group>
+        </Ripple>
+
+        <Ripple>
+        <group data-direction="column" data-ink-color="main" data-cursor="pointer" data-background="highlight" data-radius="10" data-contain="" data-space="30"><text data-weight="600">Interact</text> <text data-opacity="30">Primary Color</text></group>
+        </Ripple>
+        </group>
+
+
+
+
+        </group>
 
 
 

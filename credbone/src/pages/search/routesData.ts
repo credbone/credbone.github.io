@@ -69,7 +69,7 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "Miscellaneous", 
-    tags: ["miscellaneous", "marquee", "counter", "text", "digit", "direction"], 
+    tags: ["miscellaneous", "marquee", "counter", "text", "digit", "ripple", "ink", "material"], 
     description: "Various unique UI components and handy design tools.", 
     title: "Miscellaneous" 
   },

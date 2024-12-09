@@ -204,6 +204,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
         <group data-direction="column"  data-max-length="600" data-align="start">
           {results.map((result, index) => (
             <Link
+          //  data-drag="none"
               autoFocus={true}
               data-contain=""
               data-type="group"

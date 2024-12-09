@@ -190,7 +190,7 @@ const Components: React.FC = () => {
 
                               data-border=""
                               data-background="context"
-                              data-radius="15"
+                              data-radius="20"
                               data-space="10"
                               data-gap="10"
                               data-elevation="2"
