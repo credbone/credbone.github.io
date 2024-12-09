@@ -38,55 +38,19 @@ interface MonitorCardType {
   chart?: ChartType;
   max?: number;
   showmax?: boolean;
+  wide?:boolean;
 }
 
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
-  {
-    title: "CPU",
-    value: getRandomValue(29, 42, 0),
-    unit: "°",
-    //color: true,
-    chart: "gauge",
-    max: 100,
-  },
-  {
-    title: "GPU",
-    value: getRandomValue(65, 75, 0),
-    unit: "°",
-    chart: "gauge",
-    max: 100,
-  },
-  {
-    title: "Memory",
-    value: getRandomValue(12, 13.7, 1),
-    titleunit: "GB",
-    chart: "gauge",
-    max: 32,
-    showmax: true,
-  },
-  {
-    title: "Network",
-    value: getRandomValue(90, 160, 0),
-    titleunit: "Kbps",
-    max: 240,
-    chart: "line",
-  },
+  { title: "CPU", value: getRandomValue(29, 42, 0), unit: "°", chart: "gauge", max: 100, },
+  { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°", chart: "gauge", max: 100, },
+  { title: "Memory", value: getRandomValue(12, 13.7, 1), titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
+  { title: "Network", value: getRandomValue(90, 160, 0), titleunit: "Kbps", max: 240, chart: "line", },
+  { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
+  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none", },
+  // { title: "Panel Tilt", value: getRandomStepValue(10, 25, 5), unit: "°", max: 360, chart: "gaugezoom"},
 
-  {
-    title: "Angle Gauge",
-    value: getRandomStepValue(90, 160, 5),
-    unit: "°",
-    max: 360,
-    chart: "gaugezoom",
-  },
-
-  {
-    title: "FPS",
-    value: getRandomValue(200, 240, 0),
-    max: 240,
-    chart: "none",
-  },
 ];
 
 const Dashboard: React.FC = () => {
@@ -142,25 +106,26 @@ const Dashboard: React.FC = () => {
 
       <group
         data-type="grid"
-        data-grid-template="160"
-        data-gap="15"
+        data-grid-template="140/120"
+        data-gap="10"
         // data-max-length="900"
       >
         {monitorCard.map((item, index) => (
           <group
+          data-height="fit"
             data-contain=""
             //  data-background={item.chart === "line" ? "secondary-lighter" : "main-background"}
             data-color={item.color ? "main-text" : ""}
             key={index}
             data-space={item.chart === "line" ? "" : "20"}
-            //data-space="20"
+           data-column-end={item.wide === true ? "2" : ""}
             data-border=""
             data-wrap="no"
             data-direction="column"
             data-radius="15"
             data-align="center"
             data-justify="center"
-            data-ratio="2:3"
+            data-ratio={item.wide === true ? "4:3" : "2:3"}
           >
             {item.chart === "gauge" && item.max && (
               <group data-direction="column" data-margin-bottom="-30">

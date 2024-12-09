@@ -56,12 +56,12 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     <svg
       viewBox={`0 0 100 ${totalHeight}`}
       preserveAspectRatio="none"
-      width="100%"
+    //  width="100%"
       height="100%"
       xmlns="http://www.w3.org/2000/svg"
     >
       <mask id={maskid}>
-        <path data-duration="1" d={fillPath} fill="#fff" />
+        <path  d={fillPath} fill="#fff" />
       </mask>
 
       <text x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" data-text-size="xx-large">

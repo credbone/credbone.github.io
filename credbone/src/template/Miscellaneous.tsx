@@ -105,7 +105,7 @@ const Miscellaneous: React.FC = () => {
 
         <group
               data-direction="column"
-              data-min-height="400"
+              data-min-height="300"
               data-justify="end"
             >
               <picture
