@@ -105,9 +105,13 @@ mask={`url(#${maskid})`}
         transform-origin="center"
         transform={"rotate(" + (value / max || 0) * 270 + ")"}
       >
-        <path d="M57,57l39,2v2L57,63V57Z" />
+        {/* <path d="M57,57l39,2v2L57,63V57Z" /> */}
+        <rect x="60" y="58" width="30" height="4" rx="2" ry="2"/>
         {/* <rect width="30" height="2" x="75" y="59"></rect> */}
       </g>
+
+
+
 
       <circle
         cx="50%"
