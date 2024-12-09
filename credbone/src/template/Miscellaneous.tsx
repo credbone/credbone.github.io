@@ -338,10 +338,8 @@ const Miscellaneous: React.FC = () => {
             Ripple is a visual feedback effect for touch interactions, giving users a clear indication that an element has been touched.
             </text>
           </group>
-        </group>
 
 
-        <group data-space="30" data-background="main-background"  data-direction="column" data-align="center" data-justify="center" >
 
 
         <Ripple>
@@ -350,7 +348,7 @@ const Miscellaneous: React.FC = () => {
 
         </group>
 
-        <group data-space="30" data-gap="15"  data-background="main-background" data-direction="column" data-align="center" data-justify="center" data-border="">
+        <group data-space="30" data-gap="10"  data-background="main-background" data-direction="column" data-align="center" data-justify="center" data-border="">
         
 
         <Ripple>
@@ -358,7 +356,7 @@ const Miscellaneous: React.FC = () => {
         </Ripple>
 
         <Ripple>
-        <group data-direction="column" data-ink-color="main" data-cursor="pointer" data-background="highlight" data-radius="10" data-contain="" data-space="30"><text data-weight="600">Interact</text> <text data-opacity="30">Primary Color</text></group>
+        <group data-direction="column" data-ink-color="main-dark" data-cursor="pointer" data-background="main" data-color="main-text" data-radius="10" data-contain="" data-space="30"><text data-weight="600">Interact</text> <text data-opacity="30">Primary Color</text></group>
         </Ripple>
         </group>
 
