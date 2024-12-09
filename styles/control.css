@@ -31,7 +31,9 @@
 
   --elevation_0: 0 0 0 1px rgba(0, 0, 0, 0.05);
   --elevation_1: 0 0 50px 0px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0,0,0,.05);
+  --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0,0,0,.05);
+
+
   --elevation_3: 0 50px 110px -20px rgba(0, 0, 0, 0.3), 0 -50px 110px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border-color);
   --elevation_4: 0 50px 110px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--outline);
   --elevation_5: 0 0 15px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);

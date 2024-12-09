@@ -41,7 +41,7 @@ group[data-type="grid"][data-grid-template="180/140"]{grid-template-columns: rep
 group[data-type="grid"][data-grid-template="240/140"]{grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));} 
 
 group[data-type="grid"][data-grid-template-columns="4"]{grid-template-columns:repeat(4, 1fr)}
-
+group[data-type="grid"][data-grid-template-columns="2"]{grid-template-columns:repeat(2, 1fr)}
 
 
 @media (max-width: 500px) {
