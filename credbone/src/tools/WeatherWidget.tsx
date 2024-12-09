@@ -173,12 +173,12 @@ const WeatherWidget: React.FC = () => {
     <group
       data-direction="column"
       data-gap="20"
-      data-space="20"
+      data-space="15"
       data-align="start"
       // data-color="main-text"
       // data-background="main"
       style={weatherStyle}
-      //   data-duration=".725"
+       //  data-duration=".325"
     >
       {error ? (
         <group
@@ -200,7 +200,9 @@ const WeatherWidget: React.FC = () => {
             data-gap="30"
             data-space="15"
           >
-            <group data-direction="column" data-gap="5">
+            <group data-direction="column"
+           //  data-gap="5"
+             >
               <text data-weight="300" data-text-size="large">
                 {weather.city}
               </text>
@@ -347,7 +349,7 @@ const WeatherWidget: React.FC = () => {
                       data-radius="5"
                       data-space="15"
                       data-cursor="pointer"
-                      data-background={unit === unitType ? "main-lighter" : ""}
+                      data-background={unit === unitType ? "main-alpha-15" : ""}
                       // data-color={unit === unitType ? "main-text" : ""}
                     >
                       <text data-weight="600">

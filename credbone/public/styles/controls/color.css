@@ -456,6 +456,11 @@
 [data-color="main-darkest"] { color: var(--main-color-darkest)}
 
 
+
+[data-background="main-alpha-15"] { background-color: var(--main-color-alpha-15)}
+[data-background="main-alpha-50"] { background-color: var(--main-color-alpha-50)}
+
+
 [data-color="main-alpha-15"] { color: var(--main-color-alpha-15)}
 [data-color="main-alpha-50"] { color: var(--main-color-alpha-50)}
 
