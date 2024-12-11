@@ -16,7 +16,7 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
     // Update the data array whenever 'value' changes
     setData((prevData) => {
       const newData = [...prevData, value];
-      return newData.length > 7 ? newData.slice(1) : newData;
+      return newData.length > 4 ? newData.slice(1) : newData;
     });
   }, [value]);
 
@@ -34,23 +34,21 @@ const LineChart: React.FC<LineChartProps> = ({ value, max }) => {
 
   const coordinates = getCoordinates(100, height);
 
-  // Function to generate a smooth curve using Bezier curves
   const smoothPath = coordinates
-    .map((coord, i, arr) => {
-      if (i === 0) return `M ${coord.x},${coord.y}`; // Start point
-      if (i === 1) {
-        // Handle the case for the second point to avoid NaN
-        return `L ${coord.x},${coord.y}`; // Straight line to the second point
-      }
-      const prev = arr[i - 1];
-      const controlX = (prev.x + coord.x) / 2; // Control point between the two points for smoothness
-      return `C ${controlX},${prev.y} ${controlX},${coord.y} ${coord.x},${coord.y}`;
-    })
-    .join(" ");
+  .map((coord, i, arr) => {
+    if (i === 0) {
+      return `M ${coord.x},${coord.y}`; // Start point
+    }
+    const prev = arr[i - 1];
+    const controlX = (prev.x + coord.x) / 2; // Midpoint for smooth control point
+    return `C ${controlX},${prev.y} ${controlX},${coord.y} ${coord.x},${coord.y}`;
+  })
+  .join(" ");
 
-  const fillPath = `${smoothPath} L ${
-    coordinates[coordinates.length - 1].x
-  },${totalHeight} L ${coordinates[0].x},${totalHeight} Z`;
+
+const fillPath = `${smoothPath} 
+  L ${coordinates[coordinates.length - 1].x},${totalHeight} 
+  L ${coordinates[0].x},${totalHeight} Z`;
 
   return (
     <svg
