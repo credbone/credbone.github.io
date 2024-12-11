@@ -4,9 +4,11 @@ interface GaugeProps {
   value: number;
   max: number;
   size: number;
+  unit?: string;
+
 }
 
-const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
+const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
   // const radius = size / 2 - 15;
   // const circumference = 2 * Math.PI * radius;
   // const offset = circumference - (value / max) * circumference;
@@ -18,9 +20,7 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
       width="100%"
       viewBox="0 0 120 120"
       xmlns="http://www.w3.org/2000/svg"
-      //transform="rotate(-225)"
 
-      data-rotate="-225"
     >
 
 <defs>
@@ -92,7 +92,33 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size }) => {
         </text>
     </g> */}
 
-      <g
+
+  
+<g>
+  <text x="50%" y="115" fill="currentColor" data-fill="currentColor" data-weight="700" dominantBaseline="auto" textAnchor="middle"  fontSize={25}>
+
+
+  {unit && <tspan opacity={0}>{unit}</tspan>}{value}{unit && <tspan>{unit}</tspan>}
+
+
+
+          </text>
+
+</g>
+
+
+<g
+
+x="0"
+width="120"
+height="120"
+y="0"
+data-rotate="-225"
+transform-origin="center center"
+
+>
+
+<g
 mask={`url(#${maskid})`}
         x="0"
         width="120"
@@ -110,19 +136,7 @@ mask={`url(#${maskid})`}
         {/* <rect width="30" height="2" x="75" y="59"></rect> */}
       </g>
 
-
-
-
-      <circle
-        cx="50%"
-        cy="50%"
-        r="6"
-        strokeWidth="4"
-        fill="none"
-        stroke="currentColor"
-      ></circle>
-
-      <circle
+<circle
         cx="50%"
         cy="50%"
         r="55"
@@ -130,11 +144,9 @@ mask={`url(#${maskid})`}
         strokeWidth="10"
         fill="none"
         data-opacity="10"
-        //strokeDasharray={`${value} 10 30 133.333` }
         strokeDasharray={` ${(value / max) * 100 - 3.5} 7 ${Math.max(0, 100 - (value / max) * 100 - 3.5)} 133.333`}
         pathLength="133.333"
         strokeLinecap="round"
-        // strokeDashoffset="0"
         data-duration=".725"
         data-transition-prop="stroke-dasharray"
       />
@@ -143,7 +155,7 @@ mask={`url(#${maskid})`}
       
 
       <circle
-        //      data-opacity="0"
+
         cx="50%"
         cy="50%"
         r="55"
@@ -155,11 +167,23 @@ mask={`url(#${maskid})`}
         strokeLinecap="round"
         pathLength="133.333"
         strokeDasharray={`${(value / max) * 100 - 3.5} 133.333`}
-        // strokeDashoffset={offset}
-        // transform={`rotate(-90 ${size / 2} ${size / 2})`}
         data-duration=".725"
         data-transition-prop="stroke-dasharray"
       />
+
+
+</g>
+
+      <circle
+        cx="50%"
+        cy="50%"
+        r="6"
+        strokeWidth="4"
+        fill="none"
+        stroke="currentColor"
+      ></circle>
+
+
     </svg>
   );
 };

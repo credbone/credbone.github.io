@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
+import GaugeSimple from "../components/dashboard/GaugeSimple";
 
 
 // Utility function to generate random values
@@ -27,7 +28,7 @@ const getRandomStepValue = (
   return value.toFixed(decimals);
 };
 
-type ChartType = "gauge" | "line" | "none" | "gaugezoom";
+type ChartType = "gauge" | "gaugesimple" | "line" | "none" | "gaugezoom";
 
 // Define the type for MonitorCard items
 interface MonitorCardType {
@@ -40,17 +41,21 @@ interface MonitorCardType {
   max?: number;
   showmax?: boolean;
   wide?:boolean;
+  shortname?: string;
 }
 
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
-  { title: "CPU", value: getRandomValue(29, 42, 0), unit: "°", chart: "gauge", max: 100, },
-  { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°", chart: "gauge", max: 100, },
-  { title: "Memory", value: getRandomValue(12, 13.7, 1), titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
-  { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
+  { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom"},
+  { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,  },
+  // { title: "CPU Load", value: getRandomValue(60, 80, 0), unit: "%", chart: "gaugesimple", titleunit: "Percent", max: 100, showmax: true, },
+  { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
+  { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
   { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
+  { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
+
   { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",  },
-  // { title: "Panel Tilt", value: getRandomStepValue(10, 25, 5), unit: "°", max: 360, chart: "gaugezoom"},
+
 
 ];
 
@@ -121,7 +126,6 @@ const Dashboard: React.FC = () => {
               key={index}
               data-height="fit"
               data-contain=""
-              
               data-space="20"
               data-column-end={item.wide === true ? "2" : ""}
               data-border=""
@@ -131,24 +135,18 @@ const Dashboard: React.FC = () => {
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "2:3"}
+
+              data-gap="20"
             >
               <group>
-                <group data-direction="column" data-margin-bottom="-30">
-                  {/* {item.showmax && (
-                      <group
-                        data-position="center"
-                        data-width="auto"
-                        data-opacity="30"
-                      >
-                        <text data-weight="700">{item.max}</text>
-                      </group>
-                    )} */}
-
+                <group data-direction="column">
                   <group>
                     <Gauge
                       value={parseFloat(item.value)}
                       max={item.max}
                       size={100}
+                      {...(item.unit ? { unit: item.unit } : {})}
+                      
                     />
                   </group>
                 </group>
@@ -158,35 +156,82 @@ const Dashboard: React.FC = () => {
                 data-direction="column"
                 data-align="center"
                 data-justify="center"
+              >
+
+                <group
+                  data-align="center"
+                  data-wrap="no"
+                  data-width="auto"
+                  data-direction="column"
+                  data-gap="5"
+                >
+                  <group data-gap="5" data-wrap="no" data-width="auto">
+                    <text data-weight="600">{item.title}</text>
+
+                    {item.titleunit && (
+                      <>
+                        <dot></dot>
+                        <text>{item.titleunit}</text>
+                      </>
+                    )}
+                  </group>
+
+                  {item.showmax && (
+<>
+<separator data-horizontal=""></separator>
+<text data-opacity="30">Available {item.max} </text>
+</>
+                  )}
+                </group>
+              </group>
+            </group>
+          ) : item.chart === "gaugesimple" && item.max ? (
+            <group
+              data-background="main"
+              data-color="main-text"
+              key={index}
+              data-height="fit"
+              data-contain=""
+              data-space="20"
+              data-column-end={item.wide === true ? "2" : ""}
+              //  data-border=""
+              data-wrap="no"
+              data-direction="column"
+              data-radius="15"
+              data-align="center"
+              data-justify="center"
+              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-gap="20"
+            >
+              <group>
+                <GaugeSimple
+                  value={parseFloat(item.value)}
+                  max={item.max}
+                  size={100}
+                  {...(item.unit ? { unit: item.unit } : {})}
+                  {...(item.shortname ? { shortname: item.shortname } : {})}
+                />
+              </group>
+
+              <group
+                data-direction="column"
+                data-align="center"
+                data-justify="center"
                 data-bottom="0"
               >
                 <group
-                  data-weight="700"
-                  data-width="auto"
-                  data-text-size="x-large"
-                >
-                  <group data-direction="column" data-height="fit">
-                    <text>{item.value}</text>
-                  </group>
-
-                  {item.unit && (
-                    <text data-position="absolute" data-left="full">
-                      {item.unit}
-                    </text>
-                  )}
-                </group>
-                <group
                   data-align="center"
-                  data-gap="5"
                   data-wrap="no"
                   data-width="auto"
+                  data-direction="column"
+                  data-gap="5"
                 >
                   <text data-weight="600">{item.title}</text>
 
                   {item.titleunit && (
                     <>
-                      <dot></dot>
-                      <text>{item.titleunit}</text>
+                    <separator data-horizontal=""></separator>
+                      <text data-opacity="40">{item.titleunit}</text>
                     </>
                   )}
                 </group>
@@ -196,7 +241,6 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              
               key={index}
               data-column-end={item.wide === true ? "2" : ""}
               data-border=""
@@ -242,9 +286,7 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              
               key={index}
-             
               data-column-end={item.wide === true ? "2" : ""}
               data-border=""
               data-wrap="no"
@@ -312,7 +354,6 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              
               key={index}
               data-space={item.chart === "line" ? "" : "20"}
               data-column-end={item.wide === true ? "2" : ""}
