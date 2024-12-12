@@ -53,12 +53,12 @@ const generateMonitorCardData = (): MonitorCardType[] => [
    { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
   { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
   { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
-  { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
+
   { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
 
   { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",  },
   
-
+  { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
 ];
 
 const Dashboard: React.FC = () => {
@@ -92,6 +92,7 @@ const Dashboard: React.FC = () => {
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-color="main"
+            data-ellipsis=""
           >
             Dashboard
           </text>
@@ -107,6 +108,7 @@ const Dashboard: React.FC = () => {
             data-length="400"
             data-line="1.5"
             data-light=""
+              data-ellipsis=""
           >
             Demo features a simple dashboard interface designed for monitoring
             hardware. It includes various widgets that display real-time
@@ -117,14 +119,14 @@ const Dashboard: React.FC = () => {
       </group>
 
       <group
-      data-max-length="900"
+      
         data-type="grid"
-        data-grid-template="140/120"
+        data-grid-template="180/120"
         data-gap="10"
         // data-max-length="900"
       >
 
-{/* <group   data-row-end="2" data-height="fit" data-radius="15" data-direction="column">
+<group   data-row-end="2" data-height="fit" data-radius="15" data-direction="column">
 
 <picture
              data-radius="15"
@@ -139,7 +141,7 @@ const Dashboard: React.FC = () => {
 
 
 
-</group> */}
+</group>
 
         {monitorCard.map((item, index) =>
           item.chart === "gauge" && item.max ? (
@@ -192,7 +194,7 @@ const Dashboard: React.FC = () => {
                     {item.titleunit && (
                       <>
                         <dot></dot>
-                        <text>{item.titleunit}</text>
+                        <text   data-ellipsis="">{item.titleunit}</text>
                       </>
                     )}
                   </group>
@@ -248,12 +250,12 @@ const Dashboard: React.FC = () => {
                   data-direction="column"
                   data-gap="5"
                 >
-                  <text data-weight="600">{item.title}</text>
+                  <text   data-ellipsis="" data-weight="600">{item.title}</text>
 
                   {item.titleunit && (
                     <>
                     <separator data-horizontal=""></separator>
-                      <text data-opacity="40">{item.titleunit}</text>
+                      <text data-opacity="40"   data-ellipsis="">{item.titleunit}</text>
                     </>
                   )}
                 </group>
@@ -292,13 +294,16 @@ const Dashboard: React.FC = () => {
                   data-gap="5"
                   data-wrap="no"
                   data-width="auto"
+                   data-direction="column"
+                  
+                  
                 >
-                  <text data-weight="600">{item.title}</text>
+                  <text data-weight="600" data-ellipsis=""   >{item.title}</text>
 
                   {item.titleunit && (
                     <>
-                      <dot></dot>
-                      <text>{item.titleunit}</text>
+                     <separator data-horizontal=""></separator>
+                      <text data-opacity="40"  >{item.titleunit}</text>
                     </>
                   )}
                 </group>
@@ -351,7 +356,7 @@ const Dashboard: React.FC = () => {
                   </group>
 
                   {item.unit && (
-                    <text data-position="absolute" data-left="full">
+                    <text data-position="absolute"  data-left="full">
                       {item.unit}
                     </text>
                   )}
@@ -362,12 +367,12 @@ const Dashboard: React.FC = () => {
                   data-wrap="no"
                   data-width="auto"
                 >
-                  <text data-weight="600">{item.title}</text>
+                  <text   data-ellipsis="" data-weight="600">{item.title}</text>
 
                   {item.titleunit && (
                     <>
                       <dot></dot>
-                      <text>{item.titleunit}</text>
+                      <text   data-ellipsis="">{item.titleunit}</text>
                     </>
                   )}
                 </group>
