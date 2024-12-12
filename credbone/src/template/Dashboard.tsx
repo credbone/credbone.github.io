@@ -3,7 +3,7 @@ import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
-
+import sampleImage from "../styles/images/samples/res_73.jpg";
 
 // Utility function to generate random values
 const getRandomValue = (
@@ -41,21 +41,23 @@ interface MonitorCardType {
   max?: number;
   showmax?: boolean;
   wide?:boolean;
+  long?:boolean;
   shortname?: string;
 }
 
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
-  { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom"},
-  { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,  },
-  // { title: "CPU Load", value: getRandomValue(60, 80, 0), unit: "%", chart: "gaugesimple", titleunit: "Percent", max: 100, showmax: true, },
+  { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,long:true  },
+  { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom",},
+
+   { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
   { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
   { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
   { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
   { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
 
   { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",  },
-
+  
 
 ];
 
@@ -115,11 +117,30 @@ const Dashboard: React.FC = () => {
       </group>
 
       <group
+      data-max-length="900"
         data-type="grid"
         data-grid-template="140/120"
         data-gap="10"
         // data-max-length="900"
       >
+
+{/* <group   data-row-end="2" data-height="fit" data-radius="15" data-direction="column">
+
+<picture
+             data-radius="15"
+              data-contain=""
+              data-brightness="adaptive"
+              data-position="absolute"
+              data-background="grey-light"
+            >
+              <img src={sampleImage} alt="" />
+            </picture>
+
+
+
+
+</group> */}
+
         {monitorCard.map((item, index) =>
           item.chart === "gauge" && item.max ? (
             <group
@@ -194,6 +215,7 @@ const Dashboard: React.FC = () => {
               data-contain=""
               data-space="20"
               data-column-end={item.wide === true ? "2" : ""}
+              data-row-end={item.long === true ? "2" : ""}
               //  data-border=""
               data-wrap="no"
               data-direction="column"
@@ -288,6 +310,7 @@ const Dashboard: React.FC = () => {
               data-contain=""
               key={index}
               data-column-end={item.wide === true ? "2" : ""}
+              data-row-end={item.long === true ? "2" : ""}
               data-border=""
               data-wrap="no"
               data-direction="column"
