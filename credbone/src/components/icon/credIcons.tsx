@@ -157,6 +157,23 @@ export const IconInfo: React.FC<IconProps> = ({ fill = false, ...restProps }) =>
 };
 
 
+export const IconBulb: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+
+<g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+<path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+<path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"/>
+<line x1="9.7" x2="14.3" y1="17" y2="17"/>
+</g>
+
+    </Icon>
+  );
+};
+
+
+
+
 export const IconThumbUp: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>

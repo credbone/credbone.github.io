@@ -366,6 +366,7 @@ text[data-width="auto"]{width: initial;}
 [data-max-length='800']{max-width:800px;}
 [data-max-length='810']{max-width:810px;}
 [data-max-length='900']{max-width:900px;}
+[data-max-length='1000']{max-width:1000px;}
 [data-max-length='1200']{max-width:1200px;}
 [data-max-length='1600']{max-width:1600px;}
 

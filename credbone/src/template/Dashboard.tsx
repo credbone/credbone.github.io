@@ -4,6 +4,9 @@ import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
 import sampleImage from "../styles/images/samples/res_73.jpg";
+import TextReveal from "../components/TextReveal";
+import Ripple from "../components/Ripple";
+import { IconBook, IconBulb, IconInfo } from "../components/icon/credIcons";
 
 // Utility function to generate random values
 const getRandomValue = (
@@ -48,17 +51,19 @@ interface MonitorCardType {
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
   { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,long:true  },
-  { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom",},
 
-   { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
+
+  //  { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
   { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
   { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
 
-  { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
 
-  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",  },
-  
+
+  { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
+  { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom",},
+  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",   },
   { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
+
 ];
 
 const Dashboard: React.FC = () => {
@@ -111,9 +116,7 @@ const Dashboard: React.FC = () => {
               data-ellipsis=""
           >
             Demo features a simple dashboard interface designed for monitoring
-            hardware. It includes various widgets that display real-time
-            simulated data, offering a clear view of performance metrics and
-            status updates.
+            hardware. 
           </text>
         </group>
       </group>
@@ -123,10 +126,10 @@ const Dashboard: React.FC = () => {
         data-type="grid"
         data-grid-template="180/120"
         data-gap="10"
-        // data-max-length="900"
+         data-max-length="1000"
       >
-
-<group   data-row-end="2" data-height="fit" data-radius="15" data-direction="column">
+{/* 
+<group   data-row-end="2" data-height="fit"    data-ratio="2:3" data-radius="15" data-direction="column">
 
 <picture
              data-radius="15"
@@ -141,7 +144,27 @@ const Dashboard: React.FC = () => {
 
 
 
+</group> */}
+
+
+
+<group data-contain=""  data-space="20" data-gap="15"  data-height="fit"  data-border="" data-align="center" data-justify="center"  data-ratio="2:3" data-radius="15" data-wrap="no" data-direction="column">
+
+
+<group data-width="auto"  data-align="center"  data-direction="column"    >
+<group data-space="15">
+<text data-weight="700">Info</text>
 </group>
+<separator data-horizontal=""></separator>
+</group>
+<group >
+<text data-text-align="center" data-opacity="60" data-wrap="wrap" data-line="1.5">Widgets show real-time simulated data.</text>
+</group>
+
+
+
+</group>
+
 
         {monitorCard.map((item, index) =>
           item.chart === "gauge" && item.max ? (
@@ -432,6 +455,9 @@ const Dashboard: React.FC = () => {
             </group>
           )
         )}
+
+
+
       </group>
     </group>
   );

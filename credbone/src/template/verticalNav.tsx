@@ -237,27 +237,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
               placement="right"
               content={
                 isNavOpen ? null : (
-                  <>
-                    {showCounter ? (
-                      <group
-                        data-animation-name="appear-bottom"
-                        data-fill-mode="backwards"
-                        data-animation-duration="2"
-                        data-align="center"
-                        data-gap="10"
-                        data-wrap="no"
-                      >
-                        <text data-space-horizontal="5" data-weight="700">
-                          {targetTapCount - tapCount}
-                        </text>
-                        <separator
-                          data-vertical=""
-                          data-height="20"
-                        ></separator>{" "}
-                        <text data-ellipsis="">Counting down...</text>
-                      </group>
-                    ) : (
-                      <group data-align="center" data-gap="10" data-wrap="no">
+<group data-align="center" data-gap="10" data-wrap="no">
                         <text data-ellipsis="">Version</text>
                         <separator
                           data-vertical=""
@@ -266,8 +246,6 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
                         <text data-weight="700">{buildInfo.version}</text>
                       </group>
-                    )}
-                  </>
                 )
               }
             >
