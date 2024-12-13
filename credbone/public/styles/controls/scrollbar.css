@@ -12,6 +12,7 @@
     --scrollbar-size: 10px;
 }
 
+
 :root{
 
     --mask-size: 50px;
@@ -20,6 +21,8 @@
     --scroll-padding:0;
 }
 
+
+[data-scrollbar-gutter="stable"]{scrollbar-gutter: stable;}
 
 
 .mobile list[horizontal]::-webkit-scrollbar,

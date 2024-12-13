@@ -100,7 +100,7 @@ const Template: React.FC = () => {
         <group data-space-vertical="30" data-width="auto" ><separator data-vertical="" data-height="fit"></separator></group>
 </group>
 
-        <group data-scroll="" data-align="start" ref={viewRef}>
+        <group data-scroll="" data-scrollbar-gutter="stable" data-align="start" ref={viewRef}>
           <group data-max-length="1200">
             <Routes>
             

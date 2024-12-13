@@ -148,9 +148,9 @@ const Components: React.FC = () => {
                   data-opacity="70"
                   data-text-size="15"
                 >
-                  This platform demos a collection of carefully crafted UI
+                  This space is about personal experiments and demos, featuring a collection of carefully crafted UI
                   components, each designed with attention to detail and a deep
-                  understanding of UI patterns.
+                  understanding of UI principles
                 </text>
               </group>
 

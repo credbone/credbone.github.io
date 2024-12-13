@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
       <group
       
         data-type="grid"
-        data-grid-template="180/120"
+        data-grid-template="140/120"
         data-gap="10"
          data-max-length="1000"
       >
@@ -148,7 +148,7 @@ const Dashboard: React.FC = () => {
 
 
 
-<group data-contain=""  data-space="20" data-gap="15"  data-height="fit"  data-border="" data-align="center" data-justify="center"  data-ratio="2:3" data-radius="15" data-wrap="no" data-direction="column">
+<group data-contain="" data-elevation="2" data-index="2" data-space="20" data-gap="15"  data-height="fit"  data-border="" data-align="center" data-justify="center"  data-ratio="2:3" data-radius="15" data-wrap="no" data-direction="column">
 
 
 <group data-width="auto"  data-align="center"  data-direction="column"    >

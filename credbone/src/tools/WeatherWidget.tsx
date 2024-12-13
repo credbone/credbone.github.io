@@ -337,9 +337,10 @@ const WeatherWidget: React.FC = () => {
                     Temperature Unit
                   </text>
 
-                  {["metric", "imperial"].map((unitType) => (
+<group data-width="auto" data-border="" data-space="5" data-radius="10">
+{["metric", "imperial"].map((unitType) => (
                     <group
-                      data-width="auto"
+                     // data-width="auto"
                       key={unitType}
                       onClick={() => {
                         handleUnitChange(unitType as "metric" | "imperial");
@@ -347,16 +348,22 @@ const WeatherWidget: React.FC = () => {
                       }}
                       data-interactive=""
                       data-radius="5"
-                      data-space="15"
+                      data-space="10"
+                     // data-ratio="1:1"
+                      data-length="50"
                       data-cursor="pointer"
-                      data-background={unit === unitType ? "main-alpha-15" : ""}
+                      data-background={unit === unitType ? "main" : ""}
+                      data-color={unit === unitType ? "main-text" : ""}
                       // data-color={unit === unitType ? "main-text" : ""}
+                      data-align="center"
+                      data-direction="column"
                     >
                       <text data-weight="600">
                         {unitType === "metric" ? "°C" : "°F"}
                       </text>
                     </group>
                   ))}
+</group>
                 </group>
                 <separator data-horizontal=""></separator>
 
