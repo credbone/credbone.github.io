@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface CountProps {
-  from: number;
+  from?: number;
   to: number;
   duration: number;
-  direction?: 'up' | 'down'; // Optional prop for direction
 }
 
 const easeOutQuad = (t: number) => t * (2 - t);
 
-const Count: React.FC<CountProps> = ({ from, to, duration, direction = 'up' }) => {
-  const [count, setCount] = useState(from);
+const Count: React.FC<CountProps> = ({ from, to, duration }) => {
+  const [count, setCount] = useState(from ?? 0);
+  const lastValue = useRef(from ?? 0);
 
   useEffect(() => {
-    const start = from;
+    const start = from !== undefined ? from : lastValue.current;
     const end = to;
     const range = Math.abs(end - start);
     const startTime = Date.now();
-    const isCountingUp = direction === 'up';
+    const isCountingUp = start < end;
     let animationFrameId: number;
 
     const updateCount = () => {
@@ -32,13 +32,15 @@ const Count: React.FC<CountProps> = ({ from, to, duration, direction = 'up' }) =
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(updateCount);
+      } else {
+        lastValue.current = end; // Update the lastValue when animation finishes
       }
     };
 
     animationFrameId = requestAnimationFrame(updateCount);
 
     return () => cancelAnimationFrame(animationFrameId); // Cleanup on unmount
-  }, [from, to, duration, direction]);
+  }, [from, to, duration]);
 
   return <>{count}</>;
 };

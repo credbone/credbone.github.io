@@ -61,6 +61,19 @@ const generateMonitorCardData = (): MonitorCardType[] => [
 
 ];
 
+
+const getGreeting = (): string => {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return 'Good morning';
+  } else if (hour >= 12 && hour < 17) {
+    return 'Good afternoon';
+  } else {
+    return 'Good evening';
+  }
+};
+
 const Dashboard: React.FC = () => {
   const [monitorCard, setMonitorCard] = useState<MonitorCardType[]>(
     generateMonitorCardData()
@@ -139,7 +152,7 @@ const Dashboard: React.FC = () => {
            
             data-direction="column"
           >
-            <group    data-text-size="48" data-weight="300">
+            <group    data-text-size="36" data-weight="300">
             <text data-contain=""  data-line="1">
                <Count
                 
@@ -156,7 +169,7 @@ const Dashboard: React.FC = () => {
               data-wrap="preline"
               data-ellipsis=""
             >
-             Good Morning
+           {getGreeting()}
             </text>
           </group>
 

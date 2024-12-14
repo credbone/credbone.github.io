@@ -250,7 +250,7 @@ const Miscellaneous: React.FC = () => {
                 key={restartKey}
                 from={128}
                 to={64}
-                direction="down"
+              //  direction="down"
                 duration={2000}
               ></Count>
             </text>
@@ -267,7 +267,7 @@ const Miscellaneous: React.FC = () => {
                 key={restartKey}
                 from={512}
                 to={128}
-                direction="down"
+             //   direction="down"
                 duration={5000}
               ></Count>
             </text>

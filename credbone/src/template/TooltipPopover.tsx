@@ -30,7 +30,9 @@ const SnackbarContent = (
     <text>
       <text data-opacity="60">Snackbar will dismiss in ... </text>
       <text data-weight="700">
-        <Count from={30} to={0} duration={3000} direction="down" />
+        <Count from={30} to={0} duration={3000}
+       //  direction="down"
+          />
       </text>
     </text>
   </group>

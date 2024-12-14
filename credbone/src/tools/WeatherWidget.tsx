@@ -231,10 +231,11 @@ const WeatherWidget: React.FC = () => {
               >
                 <text>
                   <Count
-                    from={0}
+                    // from={0}
                     to={weather.temperature}
                     duration={900}
                   ></Count>
+                  
                 </text>
                 <text data-position="absolute" data-left="full">
                   °
