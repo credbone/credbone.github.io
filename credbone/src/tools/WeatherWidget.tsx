@@ -67,46 +67,55 @@ const WeatherWidget: React.FC = () => {
     color: `var(--weather-${currentIcon}-color)`,
   };
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const weatherResponse = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&units=${unit}&appid=${API_KEY}`
-        );
-        const forecastResponse = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&units=${unit}&appid=${API_KEY}`
-        );
+// Function to fetch weather
+const fetchWeather = async () => {
+  try {
+    const weatherResponse = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&units=${unit}&appid=${API_KEY}`
+    );
+    const forecastResponse = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&units=${unit}&appid=${API_KEY}`
+    );
 
-        const weatherData = weatherResponse.data;
-        const forecastData = forecastResponse.data.list
-          .filter((_: any, index: number) => index % 8 === 0)
-          .map((entry: any) => ({
-            day: new Date(entry.dt * 1000).toLocaleDateString("en-US", {
-              weekday: "short",
-            }),
-            tempMin: Math.round(entry.main.temp_min),
-            tempMax: Math.round(entry.main.temp_max),
-            icon: iconMap[entry.weather[0].icon] || "cloud",
-          }))
-          .slice(0, 3); // Only take the first three days;
+    const weatherData = weatherResponse.data;
+    const forecastData = forecastResponse.data.list
+      .filter((_: any, index: number) => index % 8 === 0)
+      .map((entry: any) => ({
+        day: new Date(entry.dt * 1000).toLocaleDateString("en-US", {
+          weekday: "short",
+        }),
+        tempMin: Math.round(entry.main.temp_min),
+        tempMax: Math.round(entry.main.temp_max),
+        icon: iconMap[entry.weather[0].icon] || "cloud",
+      }))
+      .slice(0, 3); // Only take the first three days;
 
-        setWeather({
-          temperature: Math.round(weatherData.main.temp),
-          feelsLike: Math.round(weatherData.main.feels_like),
-          description: weatherData.weather[0].description,
-          icon: iconMap[weatherData.weather[0].icon] || "cloud",
-          rawIcon: weatherData.weather[0].icon,
-          city: weatherData.name,
-        });
-        setForecast(forecastData);
-        setError(null);
-      } catch (error) {
-        setError("Unable to fetch weather data.");
-      }
-    };
+    setWeather({
+      temperature: Math.round(weatherData.main.temp),
+      feelsLike: Math.round(weatherData.main.feels_like),
+      description: weatherData.weather[0].description,
+      icon: iconMap[weatherData.weather[0].icon] || "cloud",
+      rawIcon: weatherData.weather[0].icon,
+      city: weatherData.name,
+    });
+    setForecast(forecastData);
+    setError(null);
+  } catch (err) {
+    setError("Unable to fetch weather data.\nPlease try again.");
+  }
+};
 
-    fetchWeather();
-  }, [selectedCity, unit]);
+// Retry function
+const handleRetry = () => {
+  setError(null); // Clear the error message before retrying
+  fetchWeather(); // Retry fetching weather
+};
+
+// Trigger fetch on city or unit change
+useEffect(() => {
+  fetchWeather();
+}, [selectedCity, unit]);
+
 
   const handleCityClick = (city: string) => {
     setSelectedCity(city);
@@ -169,30 +178,58 @@ const WeatherWidget: React.FC = () => {
     </Popover>
   );
 
+
+
+
   return (
     <group
       data-direction="column"
-      data-gap="20"
-      data-space="15"
+
       data-align="start"
       // data-color="main-text"
       // data-background="main"
-      style={weatherStyle}
+      
        //  data-duration=".325"
     >
       {error ? (
         <group
           data-space="30"
           data-align="center"
-          data-line="20"
+          
+          data-gap="20"
           data-direction="column"
         >
-          <text data-text-align="center" data-wrap="wrap">
+          <text data-line="20" data-text-align="center" data-wrap="preline" >
             {error}
           </text>
+
+          <group
+
+            onClick={handleRetry}
+            data-interactive=""
+            data-cursor="pointer"
+            data-radius="10"
+            data-width="auto"
+            data-contain=""
+            data-space="15"
+            data-wrap="no"
+            data-align="center"
+            data-gap="15"
+            data-background="highlight"
+          >
+            <text data-weight="600">Retry</text>
+          </group>
+
         </group>
       ) : weather ? (
-        <>
+        <group
+        
+      data-gap="20"
+      data-direction="column"
+      data-align="start"
+      data-space="15"
+      style={weatherStyle}
+        >
           <group
             data-direction="column"
             data-align="start"
@@ -338,7 +375,7 @@ const WeatherWidget: React.FC = () => {
                     Temperature Unit
                   </text>
 
-<group data-width="auto" data-border="" data-space="5" data-radius="10">
+<group data-width="auto" data-border="" data-space="5" data-gap="5" data-radius="10">
 {["metric", "imperial"].map((unitType) => (
                     <group
                      // data-width="auto"
@@ -360,7 +397,7 @@ const WeatherWidget: React.FC = () => {
                       data-direction="column"
                     >
                       <text data-weight="600">
-                        {unitType === "metric" ? "°C" : "°F"}
+                        {unitType === "metric" ? "°C\u00A0" : "°F\u00A0"}
                       </text>
                     </group>
                   ))}
@@ -386,7 +423,7 @@ const WeatherWidget: React.FC = () => {
               <text>Configure</text>
             </group>
           </Popover>
-        </>
+        </group>
       ) : (
         <group
           data-space="30"

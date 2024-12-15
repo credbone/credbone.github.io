@@ -279,7 +279,7 @@ const UnitConverter: React.FC = () => {
       <group data-direction="column" data-gap="10">
         <group data-background="highlight" data-contain="" data-radius="10">
           <Popover
-            placement="mouse"
+        //    placement="mouse"
             data-space="5"
             content={(closePopover) => (
               <group
