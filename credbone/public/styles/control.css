@@ -256,7 +256,7 @@ text[data-width="auto"]{width: initial;}
 [data-text-size="96"] {font-size:96px;}
 [data-text-size="128"] {font-size:128px;}
 
-
+[data-text-clamp="128"] {font-size: clamp(var(--text), 12vw, 128px);}
 [data-text-clamp="96"] {font-size: clamp(var(--text), 12vw, 96px);}
 [data-text-clamp="64"] {font-size: clamp(var(--text), 10vw, 64px);}
 

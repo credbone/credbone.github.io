@@ -83,15 +83,15 @@ const Components: React.FC = () => {
         data-direction="column"
         data-max-length="1200"
       >
-        <group data-height="100"></group>
+
         <group>
           <text
             data-wrap="wrap"
             data-ellipsis=""
             data-weight="700"
             data-line="1"
-            data-text-size="96"
-            data-text-clamp="96"
+            data-text-size="128"
+            data-text-clamp="128"
             data-max-length="800"
           >
             Designed to<br></br> evolve and<br></br> adapt.
@@ -198,8 +198,7 @@ const Components: React.FC = () => {
           </Ripple>
         </group>
 
-        <group data-height="100"></group>
-
+       <separator data-horizontal=""></separator>
         <group>
           <text
             data-wrap="wrap"
@@ -234,6 +233,8 @@ const Components: React.FC = () => {
                   to={link.to}
                   key={index}
                   data-interactive=""
+                  data-over-color="neutral"
+                  data-ink-color="neutral"
                   data-width="auto"
                   data-type="group"
                   data-contain=""
