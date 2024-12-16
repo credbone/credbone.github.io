@@ -2,7 +2,16 @@ import React from "react";
 
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
-import ImageColorPicker from "../components/ImageColorPicker";
+import {
+  IconBulb,
+  IconFold,
+  IconHome,
+  IconInfo,
+  IconMore,
+  IconSearch,
+} from "../components/icon/credIcons";
+import Ripple from "../components/Ripple";
+import Tooltip from "../components/tooltip";
 
 const InputsAndForms: React.FC = () => {
   return (
@@ -14,7 +23,6 @@ const InputsAndForms: React.FC = () => {
           data-wrap="wrap"
           data-ellipsis=""
           data-color="main"
-
         >
           Input & Forms
         </text>
@@ -24,33 +32,147 @@ const InputsAndForms: React.FC = () => {
         </text>
       </group>
 
+      <group
+        data-space="adaptive-30-50"
+        data-background="adaptive-gray"
+        data-radius="20"
+        data-width="auto"
+        data-border=""
+        data-gap="30"
+        data-wrap="no"
+        data-direction="column"
+      >
+        <text data-wrap="wrap" data-max-length="300" data-weight="600" data-line="1.5">
+        The demo is configured to display a label with a prefix icon, a sample action, and supportive text.
+        </text>
+
+        <separator data-horizontal=""></separator>
+
+        <group data-direction="column" data-gap="10">
+          <Input
+            icon={<IconSearch size={20} />}
+            size="large"
+            type="text"
+            label="Field Label"
+            placeholder="Placeholder"
+            dataLength="400"
+            button={
+              <>
+                <group
+                  data-radius-bottom-right="input"
+                  data-radius-top-right="input"
+                  data-shrink="no"
+                  data-contain=""
+                  data-height="fit"
+                  data-width="auto"
+                >
+                  <separator data-vertical="" data-height="fit"></separator>
+                  <Ripple>
+                    <group
+                      data-width="auto"
+                      data-space="10"
+                      data-align="center"
+                      data-height="fit"
+                      data-cursor="pointer"
+                      data-interactive=""
+                    >
+                      <text data-weight="600" data-line="1">
+                        Action
+                      </text>
+                    </group>
+                  </Ripple>
+                </group>
+              </>
+            }
+          ></Input>
+          <text data-opacity="50">Optional assistive text</text>
+        </group>
+      </group>
+
+      <group
+         data-border=""
+        data-space="adaptive-30-50"
+        data-background="adaptive-gray"
+        data-radius="20"
+        data-gap="30"
+        data-width="auto"
+      >
+        <group data-direction="column" data-gap="10">
+          <Input
+            icon={<IconHome size={20} />}
+            size="large"
+            type="text"
+            label="Field Label"
+            placeholder="Placeholder"
+            dataLength="400"
+            button={
+              <>
+                <group
+                  data-radius-bottom-right="input"
+                  data-radius-top-right="input"
+                  data-shrink="no"
+                  data-contain=""
+                  data-height="fit"
+                  data-width="auto"
+                >
+                  <group data-width="auto" data-space="10" data-align="center">
+                    <text data-line="1" data-opacity="30" data-ellipsis="">
+                      Suffix
+                    </text>
+                  </group>
+                  <separator data-vertical="" data-height="fit"></separator>
+
+                  <Tooltip content="Action">
+                    <group data-width="auto" data-height="fit">
+                      <Ripple>
+                        <group
+                          data-width="auto"
+                          data-space="10"
+                          data-align="center"
+                          data-height="fit"
+                          data-cursor="pointer"
+                          data-interactive=""
+                          //  data-ink-color="main-deep"
+                          // data-background="main"
+                          // data-color="main-text"
+                        >
+                          <group>
+                            <IconMore size={20} />
+                          </group>
+                        </group>
+                      </Ripple>
+                    </group>
+                  </Tooltip>
+                </group>
+              </>
+            }
+          ></Input>
+          <text data-opacity="50">Optional assistive text</text>
+        </group>
+      </group>
+
       <group data-column-gap="15" data-type="column" data-align="start">
-
-
-<group>
-<group
+        <group>
+          <group
             //            data-background="main"
             data-contain=""
             data-min-length="240"
-          // data-dark=""
-          data-space="30"
+            // data-dark=""
+            data-space="30"
           >
-
             <group
               //   data-radius="15"
-             // data-space="30"
+              // data-space="30"
               data-direction="column"
               data-align="start"
               data-gap="10"
-            //  data-color="main-text"
+              //  data-color="main-text"
             >
               {/* <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon> */}
-              <text
-                data-weight="700"
-                data-text-size="large"
-                data-wrap="wrap"
-              >
-                Password<br />Change
+              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+                Password
+                <br />
+                Change
               </text>
               <text data-wrap="wrap" data-line="1.5" data-opacity="40">
                 Your password is Case Sensitive. It should contain a minimum of
@@ -59,95 +181,88 @@ const InputsAndForms: React.FC = () => {
               </text>
             </group>
           </group>
-        <group
-          data-radius="20"
-          data-contain=""
-          data-background="context"
-          data-shrink="no"
-          data-elevation="2"
-          data-index="2"
-          data-space="30"
-          data-gap="30"
-        >
+          <group
+            data-radius="20"
+            data-contain=""
+            data-background="context"
+            data-shrink="no"
+            data-border=""
+            data-index="2"
+            data-space="30"
+            data-gap="30"
+          >
+            <form data-type="group">
+              <group data-hidden="">
+                <Input
+                  type="text"
+                  size="large"
+                  // icon="key"
+                  placeholder="Usename"
+                  hidden={true}
+                  dataLength="autofit"
+                  name="username"
+                  autoComplete=""
+                />
+              </group>
 
+              <group data-direction="column" data-gap="10">
+                <Password
+                  size="large"
+                  icon="key"
+                  placeholder="Current Password"
+                  dataLength="autofit"
+                  name="password_1"
+                  //  autocomplete="current-password"
+                  autoComplete="off"
+                />
 
-          <form data-type="group" >
-            <group data-hidden="">
-              <Input
-                type="text"
-                size="large"
-                // icon="key"
-                placeholder="Usename"
-                hidden={true}
-                dataLength="autofit"
-                name="username"
-                autoComplete=""
-              />
-            </group>
+                <separator data-horizontal="" data-interval="10"></separator>
 
-            <group data-direction="column" data-gap="10">
-              <Password
-                size="large"
-                icon="key"
-                placeholder="Current Password"
-                dataLength="autofit"
-                name="password_1"
-                //  autocomplete="current-password"
-                autoComplete="off"
-              />
+                <Input
+                  type="password"
+                  size="large"
+                  // icon="key"
+                  placeholder="Create Password"
+                  dataLength="autofit"
+                  name="password_1"
+                  autoComplete="new-password"
+                />
+                <Input
+                  type="password"
+                  size="large"
+                  //    icon="key"
+                  placeholder="Repeat Password"
+                  dataLength="autofit"
+                  name="password_1"
+                  autoComplete="new-password"
+                />
+              </group>
 
+              <space data-height="10"></space>
               <separator data-horizontal="" data-interval="10"></separator>
+              <space data-height="10"></space>
 
-              <Input
-                type="password"
-                size="large"
-                // icon="key"
-                placeholder="Create Password"
-                dataLength="autofit"
-                name="password_1"
-                autoComplete="new-password"
-              />
-              <Input
-                type="password"
-                size="large"
-                //    icon="key"
-                placeholder="Repeat Password"
-                dataLength="autofit"
-                name="password_1"
-                autoComplete="new-password"
-              />
-            </group>
-
-            <space data-height="10"></space>
-            <separator data-horizontal="" data-interval="10"></separator>
-            <space data-height="10"></space>
-
-            <group data-gap="10" data-type="grid">
-              <Button data-radius="5" large highlight data-shrink="no">
-                <text>Cancel</text>
-              </Button>
-              <Button data-radius="5" large secondary fit>
-                <text>Update Password</text>
-              </Button>
-            </group>
-          </form>
+              <group data-gap="10" data-type="grid">
+                <Button data-radius="5" large highlight data-shrink="no">
+                  <text>Cancel</text>
+                </Button>
+                <Button data-radius="5" large secondary fit>
+                  <text>Update Password</text>
+                </Button>
+              </group>
+            </form>
+          </group>
         </group>
-</group>
 
-        <group
-          data-radius="15"
-          data-contain=""
-
-          data-shrink="no"
-
-        >
+        <group data-radius="15" data-contain="" data-shrink="no">
           <group data-space="30">
             <group data-direction="column" data-align="start" data-gap="10">
               <text data-weight="700" data-text-size="large" data-wrap="wrap">
                 Customer Feedback
               </text>
               <text data-wrap="wrap" data-line="1.5" data-opacity="40">
-                Share your thoughts to help us improve. Be as specific as possible to ensure we address your concerns effectively.
+                Share your thoughts to help us improve. Be as specific as
+                possible to ensure we address your concerns effectively.
               </text>
             </group>
           </group>
@@ -181,70 +296,16 @@ const InputsAndForms: React.FC = () => {
             ></Input>
 
             <group data-type="group">
-              <Button data-radius="5" wide large primary text="Submit Feedback"></Button>
+              <Button
+                data-radius="5"
+                wide
+                large
+                primary
+                text="Submit Feedback"
+              ></Button>
             </group>
           </group>
         </group>
-
-        {/* <group    data-radius="15"
-          data-contain=""
-          data-background="context"
-          data-shrink="no"
-          data-elevation="1">
-          <ImageColorPicker/>
-        </group> */}
-
-        {/* <group
-          data-radius="15"
-          data-contain=""
-          data-background="context"
-          data-shrink="no"
-          data-elevation="1"
-        >
-          <group data-space="30">
-            <group data-direction="column" data-align="start" data-gap="10">
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
-                Sample Form Layout
-              </text>
-            </group>
-          </group>
-          <group data-space-horizontal="30">
-            <separator data-horizontal=""></separator>
-          </group>
-          <group data-space="30" data-gap="10" flex-direction="column">
-            <Input
-              icon="folder"
-              labelPosition="left"
-              size="large"
-              type="text"
-              placeholder="Upload"
-              dataLength="fit"
-              button={
-                <>
-                  <separator data-vertical="" data-height="input"></separator>
-                  <Button large text="Browse"></Button>
-                </>
-              }
-            />
-
-
-
-            <Input
-              icon="phone"
-              labelPosition="left"
-              size="large"
-              type="text"
-              placeholder="Phone"
-              dataLength="fit"
-              button={
-                <>
-                  <separator data-vertical="" data-height="input"></separator>
-                  <Button large mini icon="dialpad"></Button>
-                </>
-              }
-            />
-          </group>
-        </group> */}
       </group>
     </group>
   );

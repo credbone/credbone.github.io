@@ -63,7 +63,7 @@ export const FormField: React.FC<
             <>
               <icon data-space-horizontal="input" data-length="input">{icon}</icon>
               {!borderLess && (
-                <separator data-vertical="" data-height="input"></separator>
+                <separator data-vertical="" data-height="20"></separator>
               )}
             </>
           )}
@@ -72,7 +72,7 @@ export const FormField: React.FC<
               <text data-margin="input" data-ellipsis="">
                 {labelText}
               </text>
-              <separator data-vertical="" data-height="input"></separator>
+              <separator data-vertical="" data-height="20"></separator>
             </div>
           )}
 
