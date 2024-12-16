@@ -111,7 +111,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-height="fit"
         //data-elevation={isNavOpen ? "2" : ""}
         data-border=""
-        data-index="2"
+        data-index="4"
         data-align="start"
         data-wrap="no"
         //data-direction="column"

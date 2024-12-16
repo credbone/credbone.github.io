@@ -27,15 +27,11 @@ const linksArray = [
   { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
   //{ title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
   { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
-  { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
+  { title: "Tooltip\n& Popover", description: "Provide helpful details on hover, focus, or click.", to: "/Components/TooltipAndPopover", },
   { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
-  { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Components/QuickDemos", },
-  { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },
-  {
-    title: "And\nmore...",
-    description: "Explore a variety of other components and features.",
-    to: "/Components/Overview",
-  }
+  { title: "Demos\n& Samples", description: "Various quick-designed apps, built for demo purposes.", to: "/Components/QuickDemos", },
+  { title: "Modals\n& Alerts", description: "Dynamic modals for messages, forms, and notifications.", to: "/Components/Modal", },
+  { title: "And\nmore...", description: "Explore a variety of other components and features.", to: "/Components/Overview", }
 
   //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard" },
   // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
@@ -86,12 +82,12 @@ const Components: React.FC = () => {
 
         <group>
           <text
-            data-wrap="wrap"
-            data-ellipsis=""
+            // data-wrap="wrap"
+            // data-ellipsis=""
             data-weight="700"
             data-line="1"
-            data-text-size="128"
-            data-text-clamp="128"
+            data-text-size="96"
+            data-text-clamp="96"
             data-max-length="800"
           >
             Designed to<br></br> evolve and<br></br> adapt.
@@ -178,6 +174,7 @@ const Components: React.FC = () => {
               data-type="group"
               to="/Components"
               data-interactive=""
+              data-over-color="neutral-10"
               data-width="auto"
               data-background="main"
               data-color="main-text"
@@ -187,6 +184,7 @@ const Components: React.FC = () => {
               data-radius="15"
               data-direction="column"
             >
+                                {/* <TextReveal text={message} duration={1200} /> */}
               <text
                 data-weight="700"
                 //  data-wrap="wrap"
@@ -196,6 +194,9 @@ const Components: React.FC = () => {
               </text>
             </Link>
           </Ripple>
+
+
+
         </group>
 
        <separator data-horizontal=""></separator>
@@ -240,36 +241,38 @@ const Components: React.FC = () => {
                   data-contain=""
                   data-min-height="300"
                   data-radius="20"
-                  data-border=""
+                  
                   data-direction="column"
                   data-wrap="no"
-                  data-background="main-background"
+                  data-background="adaptive-gray"
                 >
                   <group
                     data-index="1"
                     data-direction="column"
-                    data-gap="15"
-                    data-space="30"
+                    data-gap="10"
+                    data-space="40"
                     data-height="fit"
                     data-wrap="no"
                   >
+
+                  
                     <text
-                      // data-text-size=""
-                      //   data-height="50"
-                      data-contain=""
-                      //data-weight="100"
-                      data-opacity="20"
-                    >
-                      0{index + 1}
-                    </text>
-                    <group data-height="20"></group>
-                    <text
-                      data-text-size="medium"
+                      data-text-size="large"
                       data-weight="700"
                       data-wrap="preline"
                       data-ellipsis=""
                     >
                       {link.title}
+                    </text>
+                    <text
+                    data-position="bottom"
+                   // data-text-size="72"
+                   //  data-height="50"
+                      data-contain="" 
+                      data-weight="700"
+                       data-opacity="20"
+                    >
+                      0{index + 1}
                     </text>
                     <text
                       data-ellipsis=""
@@ -280,6 +283,11 @@ const Components: React.FC = () => {
                     >
                       {link.description}
                     </text>
+
+                   
+
+
+
                   </group>
                 </Link>
               </Ripple>
@@ -293,10 +301,11 @@ const Components: React.FC = () => {
               data-brightness="adaptive"
               // data-position="absolute"
               data-background="grey-light"
+              data-min-height="300"
             >
               <img src={sampleImage_2} alt="" />
             </picture>
-            <group data-height="200"></group>
+
             <group
               data-position="absolute"
               data-direction="column"
@@ -310,10 +319,7 @@ const Components: React.FC = () => {
                 data-dark=""
                 data-width="auto"
               >
-                {/* <text>
-                  <TextReveal text={message} duration={1200} />
 
-                  </text> */}
                   <text
                 data-wrap="wrap"
                 data-weight="700"
