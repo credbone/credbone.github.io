@@ -19,6 +19,11 @@
 }
 
 
+
+[data-radius-bottom-right="input"]{border-bottom-right-radius: var(--input-radius);}
+[data-radius-top-right="input"]{border-top-right-radius: var(--input-radius);}
+
+
 [data-height="input"] {height:var(--input-size)}
 [data-margin="input"]{margin:0 var(--input-padding)}
 [data-length="input"]{width:var(--input-size)}
@@ -98,7 +103,7 @@
 
 .form_fields .field_cont [class*="focused"] ~ i
 
-{ box-shadow:0 0 0 1px var(--main-color), 0 0 0 3px var(--main-color-alpha-50);z-index: -1;}
+{ box-shadow:0 0 0 1px var(--main-color), 0 0 0 4px var(--main-color-alpha-50);z-index: -1;}
 
 
 
@@ -112,7 +117,7 @@
 
 
 
-.form_fields .data_label {cursor: default;display: flex;align-items: center;flex: 1 100%;font-weight: 700;overflow: hidden;text-overflow: ellipsis;}
+.form_fields .data_label {cursor: default;display: flex;align-items: center;flex: 1 100%;font-weight: 600;overflow: hidden;text-overflow: ellipsis;}
 
 
 [data-label=left] .form_fields{align-items: center;
