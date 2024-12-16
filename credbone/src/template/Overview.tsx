@@ -68,16 +68,18 @@ const Overview: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-wrap="no" data-direction="column">
       <group data-direction="column" data-wrap="no">
-        <group data-direction="column" data-gap="10">
+        <group data-direction="column" data-gap="30">
           <text
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
             data-opacity="10"
+            data-line='1'
           >
             Overview
           </text>
+          <separator data-horizontal=""></separator>
           <text
             data-wrap="wrap"
             data-max-length="400"
