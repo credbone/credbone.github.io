@@ -9,7 +9,7 @@ import SearchComponent from "../pages/search/searchComponent";
 
 import sampleImage from "../styles/images/samples/res_71.jpg";
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-import Tooltip from "../components/tooltip";
+
 
 
 const links = [
@@ -401,7 +401,6 @@ const Components: React.FC = () => {
                 data-width="auto"
                 data-align="start"
               >
-                <Tooltip content="Select a time for a quick call via Google Meet.">
                   <Link
                     data-drag="none"
                     data-width="auto"
@@ -416,8 +415,6 @@ const Components: React.FC = () => {
                   >
                     <text>Reserve 15-Minute Call</text>
                   </Link>
-                </Tooltip>
-                <Tooltip content="Reach out to me via Telegram.">
                   <Link
                     data-drag="none"
                     data-width="auto"
@@ -432,7 +429,6 @@ const Components: React.FC = () => {
                   >
                     <text>Message Me</text>
                   </Link>
-                </Tooltip>
               </group>
             </group>
             <separator data-horizontal=""></separator>

@@ -7,7 +7,7 @@ import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_71.jpg";
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-import Tooltip from "../components/tooltip";
+
 
 const links = [
   { name: "View Resume", url: "/Resume" },
@@ -481,8 +481,7 @@ function About() {
           </group>
 
             <group data-direction="column" data-width="auto" data-align="start">
-<Tooltip content="Select a time for a quick call via Google Meet.">
-              <Link 
+            <Link 
               data-drag="none"
                 data-width="auto"
                 data-type="group"
@@ -494,9 +493,7 @@ function About() {
                  to="https://calendly.com/sargsyanrubens/15-minute-chat" target="_blank">
               <text>Reserve 15-Minute Call</text>
               </Link>
-              </Tooltip>
-<Tooltip  content="Reach out to me via Telegram.">
-<Link 
+              <Link 
               data-drag="none"
                 data-width="auto"
                 data-type="group"
@@ -508,7 +505,6 @@ function About() {
                  to="https://t.me/sargsyanruben" target="_blank">
               <text>Message Me</text>
               </Link>
-</Tooltip>
             </group>
 
 </group>

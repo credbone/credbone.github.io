@@ -150,11 +150,11 @@ useEffect(() => {
   };
 
  
-  document.addEventListener('click', handleOutsideClickOrMouseDown);
+  document.addEventListener('pointerdown', handleOutsideClickOrMouseDown);
 
   return () => {
 
-    document.removeEventListener('click', handleOutsideClickOrMouseDown);
+    document.removeEventListener('pointerdown', handleOutsideClickOrMouseDown);
   };
 }, []);
 
@@ -186,12 +186,12 @@ useEffect(() => {
       document.addEventListener("click", handleDocumentClick);
       window.addEventListener("scroll", handleScroll, true); // Capture scroll events
     } else {
-      document.removeEventListener("click", handleDocumentClick);
+   //   document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     }
   
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
+ //     document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [isVisible]);
@@ -203,23 +203,26 @@ useEffect(() => {
 
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    if (e.pointerType === "touch") {
-      // Start a timer for long-press detection
-      touchTimeout.current = setTimeout(() => {
-        handleTooltipTrigger(true); // Show tooltip for long press
-      }, 500); // Adjust duration as needed
-    }
+    // Start a timer for long-press detection
+    touchTimeout.current = setTimeout(() => {
+      handleTooltipTrigger(true); // Show tooltip for long press
+    }, 300); // Adjust duration as needed
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
     if (e.pointerType === "touch" && touchTimeout.current) {
       clearTimeout(touchTimeout.current); // Cancel long-press detection
+   //   console.log("cleared")
     }
     handleTooltipTrigger(false); // Hide tooltip on touch/mouse release
   };
 
-  const handlePointerLeave = () => {
-
+  const handlePointerLeave = (e: React.PointerEvent) => {
+  //  console.log("leave");
+    if (e.pointerType === "touch" && touchTimeout.current) {
+      clearTimeout(touchTimeout.current); // Cancel long-press detection
+     // console.log("cleared on leave")
+    }
     handleTooltipTrigger(false);
   };
 
@@ -233,8 +236,12 @@ useEffect(() => {
     <>
 {React.cloneElement(children as React.ReactElement, {
   ref: childRef,
- onPointerDown: handlePointerDown,
- onPointerUp: handlePointerUp,
+  onPointerDown: (e: React.PointerEvent) => {
+    if (e.pointerType === "touch") {
+      handlePointerDown(e);
+    }
+  },
+ //onPointerUp: handlePointerUp,
  //onPointerMove: handlePointerMove, // Detect swipe
   onPointerEnter: (e: React.PointerEvent) => {
     if (e.pointerType === "mouse") {
