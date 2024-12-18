@@ -9,7 +9,9 @@ import SearchComponent from "../pages/search/searchComponent";
 
 import sampleImage from "../styles/images/samples/res_71.jpg";
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-
+import sampleImage_3 from "../styles/images/samples/res_001.png";
+import Popover from "../components/popover";
+import RichThemePicker from "./richThemePicker";
 
 
 const links = [
@@ -79,128 +81,178 @@ const Components: React.FC = () => {
         data-direction="column"
         data-max-length="1200"
       >
+        <group data-gap="50" data-align="center">
+          <group data-width="auto" data-direction="column" data-gap="50">
+            <text
+              // data-wrap="wrap"
+              // data-ellipsis=""
 
-        <group>
-          <text
-            // data-wrap="wrap"
-            // data-ellipsis=""
-           
-            data-line="1"
-            data-text-size="96"
-            data-text-clamp="96"
-            data-max-length="800"
-            data-font-type="hero"
-          >
-            Designed to<br></br> evolve and<br></br> adapt.
-          </text>
-        </group>
-
-        <group>
-          <text
-            data-wrap="wrap"
-            data-max-length="400"
-            data-line="1.5"
-            data-opacity="70"
-            data-text-size="15"
-          >
-            This space is about personal experiments and demos, featuring a
-            collection of carefully crafted UI components, each designed with
-            attention to detail and a deep understanding of UI principles
-          </text>
-        </group>
-
-        <group data-width="auto" data-gap="15" data-align="center">
-          <Ripple>
-            <group
-              data-contain=""
-              data-drag="none"
-              data-type="group"
-              data-cursor="pointer"
-              data-interactive=""
-              data-width="auto"
-              data-background="highlight"
-              data-space="15"
-              data-radius="15"
-              onClick={() =>
-                openModal({
-                  id: "modal-2",
-                  title: "Customized Popup",
-                  content: (
-                    <group
-                      data-min-height="fit"
-                      data-justify="center"
-                      data-align="start"
-                      data-space="30"
-                      data-contain="scroll"
-                    >
-                      <group
-                        data-top="0"
-                        data-position="absolute"
-                        data-height="fit"
-                        onClick={() => closeModal("modal-2")}
-                      ></group>
-
-                      <group
-                        data-max-length="600"
-                        data-border=""
-                        data-background="context"
-                        data-radius="20"
-                        data-space="10"
-                        data-gap="10"
-                        data-elevation="2"
-                        data-animation-name="appear-top"
-                        data-fill-mode="backwards"
-                        data-animation-duration="2"
-                      >
-                        <SearchComponent showRandomTagsByDefault={false} />
-                      </group>
-                    </group>
-                  ),
-                  hasHeader: false,
-                  hasToolbar: false,
-                  customAttributes: modalConfig,
-                  //  dimAttributes: {"data-background" : "dark-shade-70"},
-                  spacing: 0,
-                })
-              }
+              data-line="1"
+              data-text-size="96"
+              data-text-clamp="96"
+              data-max-length="800"
+              data-font-type="hero"
             >
-              <IconSearch></IconSearch>
-            </group>
-          </Ripple>
-          <separator data-vertical="" data-height="20"></separator>
-          <Ripple>
-            <Link
-              data-contain=""
-              data-drag="none"
-              data-type="group"
-              to="/Components"
-              data-interactive=""
-              data-over-color="neutral-10"
-              data-width="auto"
-              data-background="main"
-              data-color="main-text"
-              data-ink-color="main-dark"
-              data-space-horizontal="40"
-              data-space-vertical="20"
-              data-radius="15"
-              data-direction="column"
-            >
-                                {/* <TextReveal text={message} duration={1200} /> */}
+              Designed to<br></br> evolve and<br></br> adapt.
+            </text>
+
+            <group>
               <text
-                data-weight="700"
-                //  data-wrap="wrap"
-                data-ellipsis=""
+                data-wrap="wrap"
+                data-max-length="400"
+                data-line="1.5"
+                data-opacity="70"
+                data-text-size="15"
               >
-                Get Started
+                This space is about personal experiments and demos, featuring a
+                collection of carefully crafted UI components, each designed
+                with attention to detail and a deep understanding of UI
+                principles
               </text>
-            </Link>
-          </Ripple>
+            </group>
+
+            <group data-width="auto" data-gap="15" data-align="center">
+              <Ripple>
+                <group
+                  data-contain=""
+                  data-drag="none"
+                  data-type="group"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-width="auto"
+                  data-background="highlight"
+                  data-space="15"
+                  data-radius="15"
+                  onClick={() =>
+                    openModal({
+                      id: "modal-2",
+                      title: "Customized Popup",
+                      content: (
+                        <group
+                          data-min-height="fit"
+                          data-justify="center"
+                          data-align="start"
+                          data-space="30"
+                          data-contain="scroll"
+                        >
+                          <group
+                            data-top="0"
+                            data-position="absolute"
+                            data-height="fit"
+                            onClick={() => closeModal("modal-2")}
+                          ></group>
+
+                          <group
+                            data-max-length="600"
+                            data-border=""
+                            data-background="context"
+                            data-radius="20"
+                            data-space="10"
+                            data-gap="10"
+                            data-elevation="2"
+                            data-animation-name="appear-top"
+                            data-fill-mode="backwards"
+                            data-animation-duration="2"
+                          >
+                            <SearchComponent showRandomTagsByDefault={false} />
+                          </group>
+                        </group>
+                      ),
+                      hasHeader: false,
+                      hasToolbar: false,
+                      customAttributes: modalConfig,
+                      //  dimAttributes: {"data-background" : "dark-shade-70"},
+                      spacing: 0,
+                    })
+                  }
+                >
+                  <IconSearch></IconSearch>
+                </group>
+              </Ripple>
+              <separator data-vertical="" data-height="20"></separator>
+              <Ripple>
+                <Link
+                  data-contain=""
+                  data-drag="none"
+                  data-type="group"
+                  to="/Components"
+                  data-interactive=""
+                  data-over-color="neutral-10"
+                  data-width="auto"
+                  data-background="main"
+                  data-color="main-text"
+                  data-ink-color="main-dark"
+                  data-space-horizontal="40"
+                  data-space-vertical="20"
+                  data-radius="15"
+                  data-direction="column"
+                  data-length='autofit-600'
+                  data-align="center"
+                >
+                  {/* <TextReveal text={message} duration={1200} /> */}
+                  <text
+                    data-weight="700"
+                    //  data-wrap="wrap"
+                    data-ellipsis=""
+                  >
+                    Get Started
+                  </text>
+                </Link>
+              </Ripple>
+            </group>
+          </group>
+
+
+
+          <Popover
+          placement="mouse"
+                content={
+                  <group
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="1.25"
+                  >
+                    <RichThemePicker pickerType="primary" />
+                  </group>
+                }
+                data-space="5"
+                data-radius="10"
+                data-backdrop="10"
+                data-width="auto"
+              >
+
+
+<group data-max-length="500" data-cursor="pointer">
+            <group data-space="10%">
+<Ripple>
+<group
+                data-contain=""
+                data-ink-color="main-dark"
+                data-ratio="1:1"
+                data-background="main"
+                data-radius="full"
+              ></group> 
+</Ripple>
+            </group>
+            <group data-position="absolute" data-disabled="" data-height="fit">
+              <picture
+                //    data-brightness="adaptive"
+
+                // data-background="grey-light"
+                data-min-height="300"
+              >
+                <img src={sampleImage_3} alt="" />
+              </picture>
+            </group>
+          </group>
+
+                </Popover>
 
 
 
         </group>
 
-       <separator data-horizontal=""></separator>
+        <separator data-horizontal=""></separator>
         <group>
           <text
             data-wrap="wrap"
@@ -242,7 +294,6 @@ const Components: React.FC = () => {
                   data-contain=""
                   data-min-height="300"
                   data-radius="20"
-                  
                   data-direction="column"
                   data-wrap="no"
                   data-background="adaptive-gray"
@@ -255,8 +306,6 @@ const Components: React.FC = () => {
                     data-height="fit"
                     data-wrap="no"
                   >
-
-                  
                     <text
                       data-text-size="large"
                       data-weight="700"
@@ -266,12 +315,12 @@ const Components: React.FC = () => {
                       {link.title}
                     </text>
                     <text
-                    data-position="bottom"
-                   // data-text-size="72"
-                   //  data-height="50"
-                      data-contain="" 
+                      data-position="bottom"
+                      // data-text-size="72"
+                      //  data-height="50"
+                      data-contain=""
                       data-weight="700"
-                       data-opacity="20"
+                      data-opacity="20"
                     >
                       0{index + 1}
                     </text>
@@ -284,11 +333,6 @@ const Components: React.FC = () => {
                     >
                       {link.description}
                     </text>
-
-                   
-
-
-
                   </group>
                 </Link>
               </Ripple>
@@ -313,25 +357,22 @@ const Components: React.FC = () => {
               data-height="fit"
               data-wrap="no"
             >
-
               <group
                 data-space="50"
                 data-position="bottom"
                 data-dark=""
                 data-width="auto"
               >
-
-                  <text
-                data-wrap="wrap"
-               data-font-type="hero"
-                data-line="1"
-                data-text-size="64"
-                data-text-clamp="64"
-                data-max-length="800"
-              >
-                 Crafted <br></br>for growth.
-              </text>
-
+                <text
+                  data-wrap="wrap"
+                  data-font-type="hero"
+                  data-line="1"
+                  data-text-size="64"
+                  data-text-clamp="64"
+                  data-max-length="800"
+                >
+                  Crafted <br></br>for growth.
+                </text>
               </group>
             </group>
           </group>
@@ -402,34 +443,34 @@ const Components: React.FC = () => {
                 data-width="auto"
                 data-align="start"
               >
-                  <Link
-                    data-drag="none"
-                    data-width="auto"
-                    data-type="group"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-space="15"
-                    data-radius="10"
-                    data-weight="600"
-                    to="https://calendly.com/sargsyanrubens/15-minute-chat"
-                    target="_blank"
-                  >
-                    <text>Reserve 15-Minute Call</text>
-                  </Link>
-                  <Link
-                    data-drag="none"
-                    data-width="auto"
-                    data-type="group"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-space="15"
-                    data-radius="10"
-                    data-weight="600"
-                    to="https://t.me/sargsyanruben"
-                    target="_blank"
-                  >
-                    <text>Message Me</text>
-                  </Link>
+                <Link
+                  data-drag="none"
+                  data-width="auto"
+                  data-type="group"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-radius="10"
+                  data-weight="600"
+                  to="https://calendly.com/sargsyanrubens/15-minute-chat"
+                  target="_blank"
+                >
+                  <text>Reserve 15-Minute Call</text>
+                </Link>
+                <Link
+                  data-drag="none"
+                  data-width="auto"
+                  data-type="group"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-radius="10"
+                  data-weight="600"
+                  to="https://t.me/sargsyanruben"
+                  target="_blank"
+                >
+                  <text>Message Me</text>
+                </Link>
               </group>
             </group>
             <separator data-horizontal=""></separator>

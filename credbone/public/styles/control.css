@@ -416,6 +416,7 @@ text[data-width="auto"]{width: initial;}
 @media (max-width: 600px)
 {
   [data-length='forcefit'] { flex: 1 1 100%; }
+  [data-length='autofit-600'] { flex: 1; }
 }
 
 
@@ -682,6 +683,10 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-space-top='50'] {padding-top:50px;}
 
 [data-space-bottom='150'] {padding-bottom:150px;}
+
+
+[data-space='10%'] { padding:10%;}
+
 /**/
 
 

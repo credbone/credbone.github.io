@@ -139,13 +139,15 @@ const Overview: React.FC = () => {
                       data-align="center"
                       data-justify="center"
                       data-radius="15"
-                      data-backdrop="20"
-                      data-color="white"
+                    //  data-backdrop="20"
+                     // data-color="white"
+
+                     data-background="context"
                       data-gap="30"
                     >
                      
                       <text
-                        data-text-size="x-large"
+                        data-text-size="large"
                         data-weight="700"
                         data-wrap="preline"
                         data-ellipsis=""
