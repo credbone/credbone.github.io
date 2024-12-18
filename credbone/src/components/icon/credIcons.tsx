@@ -120,7 +120,6 @@ export const IconSettings: React.FC<IconProps> = ({ fill = false, ...restProps }
 };
 
 
-
 export const IconFold: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
@@ -172,8 +171,6 @@ export const IconBulb: React.FC<IconProps> = ({ fill = false, ...restProps }) =>
 };
 
 
-
-
 export const IconThumbUp: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
@@ -198,9 +195,36 @@ export const IconPicker: React.FC<IconProps> = ({ fill = false, ...restProps }) 
 };
 
 
+export const IconViewStream: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+  <path fill="currentColor" d="m19,17v-4H5v4h14Zm0-6v-4H5v4h14Zm-14,8c-.55,0-1.02-.2-1.41-.59-.39-.39-.59-.86-.59-1.41V7c0-.55.2-1.02.59-1.41.39-.39.86-.59,1.41-.59h14c.55,0,1.02.2,1.41.59s.59.86.59,1.41v10c0,.55-.2,1.02-.59,1.41s-.86.59-1.41.59H5Z"/>
+    </Icon>
+  );
+};
 
+export const IconTableRows: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+   <path fill="currentColor" d="m19,19v-3H5v3h14Zm0-5v-4H5v4h14Zm0-6v-3H5v3h14Zm-14,13c-.55,0-1.02-.2-1.41-.59-.39-.39-.59-.86-.59-1.41V5c0-.55.2-1.02.59-1.41.39-.39.86-.59,1.41-.59h14c.55,0,1.02.2,1.41.59s.59.86.59,1.41v14c0,.55-.2,1.02-.59,1.41-.39.39-.86.59-1.41.59H5Z"/>   </Icon>
+  );
+};
 
+export const IconViewWindow: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+    <path fill="currentColor" d="m5,21c-.55,0-1.02-.2-1.41-.59-.39-.39-.59-.86-.59-1.41V5c0-.55.2-1.02.59-1.41.39-.39.86-.59,1.41-.59h14c.55,0,1.02.2,1.41.59s.59.86.59,1.41v14c0,.55-.2,1.02-.59,1.41-.39.39-.86.59-1.41.59H5Zm8-8v6h6v-6h-6Zm0-2h6v-6h-6v6Zm-2,0v-6h-6v6h6Zm0,2h-6v6h6v-6Z"/>
+   </Icon>
+  );
+};
 
+export const IconViewColumn: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+<path fill="currentColor" d="m3.03,17V7c0-.55.2-1.02.59-1.41s.86-.59,1.41-.59h13.98c.55,0,1.02.2,1.41.59s.59.86.59,1.41v10c0,.55-.2,1.02-.59,1.41s-.86.59-1.41.59H5.03c-.55,0-1.02-.2-1.41-.59s-.59-.86-.59-1.41Zm1.98,0h3.33V7h-3.33v10Zm5.33,0h3.33V7h-3.33v10Zm5.33,0h3.33V7h-3.33v10Z"/>
+    </Icon>
+  );
+};
 
 
 

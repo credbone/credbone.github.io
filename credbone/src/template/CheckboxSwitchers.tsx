@@ -4,7 +4,7 @@ import Checkbox, { CheckboxType } from "../components/inputs/checkbox";
 import Tooltip from "../components/tooltip";
 import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
-import { IconHome, IconSearch } from "../components/icon/credIcons";
+import { IconHome, IconSearch, IconTableRows, IconViewColumn, IconViewStream, IconViewWindow } from "../components/icon/credIcons";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
@@ -52,27 +52,12 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   const radioViewData = [
-    {
-      key: "1",
-      name: "RadioViewDemo",
-      label: "Stream Layout",
-      icon: "view_stream",
-    },
-    {
-      key: "2",
-      name: "RadioViewDemo",
-      label: "Table Layout",
-      icon: "table_rows",
-    },
-    { key: "3", name: "RadioViewDemo", label: "Grid Layout", icon: "window" },
-    {
-      key: "4",
-      name: "RadioViewDemo",
-      label: "Column Layout",
-      icon: "view_column",
-    },
+    { key: "1", name: "RadioViewDemo", label: "Stream Layout", icon: <IconViewStream size={20}/> },
+    { key: "2", name: "RadioViewDemo", label: "Table Layout", icon: <IconTableRows size={20}/> },
+    { key: "3", name: "RadioViewDemo", label: "Grid Layout", icon: <IconViewWindow size={20}/> },
+    { key: "4", name: "RadioViewDemo", label: "Column Layout", icon: <IconViewColumn size={20}/> },
   ];
-
+  
   return (
     <>
       <group data-gap="30" data-space="30" data-align="start">
@@ -497,7 +482,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               </OptionBar>
 
 
-              <separator data-horizontal="" data-interval="10"></separator>
+              {/* <separator data-horizontal="" data-interval="10"></separator>
 
 
               <group
@@ -523,7 +508,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                     label={radio.label}
                   />
                 ))}
-              </group>
+              </group> */}
 
 
               <separator data-horizontal="" data-interval="10"></separator>

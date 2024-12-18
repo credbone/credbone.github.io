@@ -9,6 +9,9 @@ import {
   IconHeart,
   IconMoreHoriz,
   IconShare,
+  IconTableRows,
+  IconViewStream,
+  IconViewWindow,
 } from "../components/icon/credIcons";
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
@@ -18,7 +21,7 @@ import { Link } from "react-router-dom";
 import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
-import { BookImage, Grid2x2, Rows3 } from "lucide-react";
+
 
 interface ContentToolbarProps {
   count: number;
@@ -139,21 +142,21 @@ const ViewSwitch = [
     name: "ViewSwitch",
     value: "CardView",
     label: "Card Layout",
-    icon:<BookImage size={20}/> ,
+    icon:<IconViewWindow size={20}/> ,
   },
   {
     key: "2",
     name: "ViewSwitch",
     value: "ListView",
     label: "List Layout",
-    icon: <Rows3 size={20}/>,
+    icon: <IconTableRows size={20}/>,
   },
   {
     key: "3",
     name: "ViewSwitch",
     value: "GridView",
     label: "Grid Layout",
-    icon: <Grid2x2 size={20}/>,
+    icon: <IconViewStream size={20}/>,
   },
 ];
 
