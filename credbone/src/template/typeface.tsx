@@ -4,6 +4,7 @@ import { glyphs } from "./utils/glyphData";
 import Tooltip from "../components/tooltip";
 import StuckReporter from "../components/StuckReporter";
 import TextReveal from "../components/TextReveal";
+import { Minus, Plus } from "lucide-react";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -82,6 +83,11 @@ const Typeface: React.FC = () => {
         </group>
       </group>
 
+
+
+
+
+
       <group data-radius="15"  data-border="">
         <StuckReporter>
           {(isSticky) => (
@@ -118,7 +124,7 @@ const Typeface: React.FC = () => {
                       data-radius="none"
                       data-index="3"
                       large
-                      icon="remove"
+                      icon={<Minus size={20}/>}
                       onClick={decreaseTextSize}
                     ></Button>
                   </Tooltip>
@@ -138,7 +144,7 @@ const Typeface: React.FC = () => {
                       data-radius="none"
                       data-index="3"
                       large
-                      icon="add"
+                      icon={<Plus size={20}/>}
                       onClick={increaseTextSize}
                     ></Button>
                   </Tooltip>

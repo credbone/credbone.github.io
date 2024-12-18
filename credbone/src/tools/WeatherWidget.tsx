@@ -1,15 +1,29 @@
 // WeatherWidget.tsx
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import axios from "axios";
 import Popover from "../components/popover";
 import Count from "../components/Coutner";
 import { SvgLoaderCircle } from "../components/svg";
 
+import {
+  Sun,
+  Moon,
+  CloudSun,
+  CloudMoon,
+  Cloud,
+  CloudDrizzle,
+  CloudRain,
+  CloudLightning,
+  Snowflake,
+  CloudFog,
+  Cloudy,
+} from "lucide-react";
+
 type WeatherData = {
   temperature: number;
   feelsLike: number;
   description: string;
-  icon: string;
+  icon: ReactElement;
   rawIcon: string;
   city: string;
 };
@@ -18,7 +32,7 @@ type ForecastData = {
   day: string;
   tempMin: number;
   tempMax: number;
-  icon: string;
+  icon: ReactElement;
 };
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -32,25 +46,25 @@ const cities = [
   "San Francisco",
 ];
 
-const iconMap: Record<string, string> = {
-  "01d": "sunny",
-  "01n": "bedtime",
-  "02d": "partly_cloudy_day",
-  "02n": "partly_cloudy_night",
-  "03d": "cloud",
-  "03n": "cloud",
-  "04d": "cloud",
-  "04n": "cloud",
-  "09d": "weather_mix",
-  "09n": "weather_mix",
-  "10d": "rainy",
-  "10n": "rainy",
-  "11d": "thunderstorm",
-  "11n": "thunderstorm",
-  "13d": "weather_snowy",
-  "13n": "weather_snowy",
-  "50d": "mist",
-  "50n": "mist",
+const iconMap: Record<string, JSX.Element> = {
+  "01d": <Sun size={20} />,
+  "01n": <Moon size={20} />,
+  "02d": <CloudSun size={20} />,
+  "02n": <CloudMoon size={20} />,
+  "03d": <Cloud size={20} />,
+  "03n": <Cloud size={20} />,
+  "04d": <Cloudy size={20} />,
+  "04n": <Cloudy size={20} />,
+  "09d": <CloudDrizzle size={20} />,
+  "09n": <CloudDrizzle size={20} />,
+  "10d": <CloudRain size={20} />,
+  "10n": <CloudRain size={20} />,
+  "11d": <CloudLightning size={20} />,
+  "11n": <CloudLightning size={20} />,
+  "13d": <Snowflake size={20} />,
+  "13n": <Snowflake size={20} />,
+  "50d": <CloudFog size={20} />,
+  "50n": <CloudFog size={20} />,
 };
 
 const WeatherWidget: React.FC = () => {
@@ -86,7 +100,7 @@ const fetchWeather = async () => {
         }),
         tempMin: Math.round(entry.main.temp_min),
         tempMax: Math.round(entry.main.temp_max),
-        icon: iconMap[entry.weather[0].icon] || "cloud",
+        icon: iconMap[entry.weather[0].icon] || <Cloud size={20} />,
       }))
       .slice(0, 3); // Only take the first three days;
 
@@ -94,7 +108,7 @@ const fetchWeather = async () => {
       temperature: Math.round(weatherData.main.temp),
       feelsLike: Math.round(weatherData.main.feels_like),
       description: weatherData.weather[0].description,
-      icon: iconMap[weatherData.weather[0].icon] || "cloud",
+      icon: iconMap[weatherData.weather[0].icon] || <Cloud size={20} />,
       rawIcon: weatherData.weather[0].icon,
       city: weatherData.name,
     });

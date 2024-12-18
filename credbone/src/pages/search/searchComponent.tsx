@@ -4,6 +4,7 @@ import Ripple from "../../components/Ripple";
 import { IconSearch } from "../../components/icon/credIcons";
 import { Link } from "react-router-dom";
 import Tooltip from "../../components/tooltip";
+import { X } from "lucide-react";
 
 interface SearchComponentProps {
   showRandomTagsByDefault?: boolean; // Add a prop to control random tags
@@ -147,7 +148,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                         data-fill-mode="backwards"
                         data-animation-duration="2"
                       >
-                        <icon data-height="auto">close</icon>
+                        <icon data-height="auto">{<X size={20}/>}</icon>
                       </group>
                     </Tooltip>
                   )}

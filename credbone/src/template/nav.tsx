@@ -7,6 +7,7 @@ import Button from "../components/button";
 import { SvgHamburger } from "../components/svg";
 import Tabstrip from "../components/tabstrip";
 import Tab from "../components/tabstrip/tab";
+import { Armchair, BookMarked, CircleUser, Cloud, Coffee, Pizza, Shirt, ShoppingBag, Tickets } from "lucide-react";
 
 
 // Demo Data
@@ -20,14 +21,14 @@ const tabsData = [
 // Demo Data
 
 const navData = [
-  { key: 1, badge: true, icon: "shopping_basket", title: "Cart" },
-  { key: 2, badge: "", icon: "local_cafe", title: "Beverage" },
-  { key: 3, badge: "", icon: "laundry", title: "Laundry Service" },
-  { key: 4, badge: "", icon: "local_pizza", title: "Pizza Orders" },
-  { key: 6, badge: "", icon: "cloud", title: "Cloud Storage" },
-  { key: 12, badge: "", icon: "spa", title: "Spa Services" },
-  { key: 14, badge: "", icon: "local_mall", title: "Mall Directory" },
-  { key: 16, badge: "", icon: "school", title: "Courses" },
+  { key: 1, badge: true, icon: <ShoppingBag size={20}/>, title: "Cart" },
+  { key: 2, badge: "", icon: <Coffee size={20}/>, title: "Beverage" },
+  { key: 3, badge: "", icon: <Shirt size={20}/>, title: "Laundry Service" },
+  { key: 4, badge: "", icon: <Pizza size={20}/>, title: "Pizza Orders" },
+  { key: 6, badge: "", icon: <Cloud size={20}/>, title: "Cloud Storage" },
+  { key: 12, badge: "", icon: <Armchair size={20}/>, title: "Spa Services" },
+  { key: 14, badge: "", icon: <Tickets size={20}/>, title: "Cinema" },
+  { key: 16, badge: "", icon: <BookMarked size={20}/>, title: "Courses" },
 ];
 
 const Landing: React.FC = () => {
@@ -419,7 +420,7 @@ const Landing: React.FC = () => {
                               data-align="center"
                               data-interactive=""
                             >
-                              <icon data-fill="">shopping_basket</icon>
+                              <icon data-fill=""><ShoppingBag size={20}/></icon>
                               <text data-adaptive="desktop">Cart</text>
                               <dot></dot>
                               <group
@@ -451,7 +452,7 @@ const Landing: React.FC = () => {
                               data-align="center"
                               data-interactive=""
                             >
-                              <icon data-fill="fill">person</icon>
+                              <icon data-fill="fill"><CircleUser size={20}/></icon>
                               <text data-adaptive="desktop">
                                 Welcome Username
                               </text>

@@ -3,15 +3,13 @@ import React from "react";
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
 import {
-  IconBulb,
-  IconFold,
   IconHome,
-  IconInfo,
   IconMore,
   IconSearch,
 } from "../components/icon/credIcons";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
+import { Key } from "lucide-react";
 
 const InputsAndForms: React.FC = () => {
   return (
@@ -208,7 +206,7 @@ const InputsAndForms: React.FC = () => {
               <group data-direction="column" data-gap="10">
                 <Password
                   size="large"
-                  icon="key"
+                  icon={<Key size={20} />}
                   placeholder="Current Password"
                   dataLength="autofit"
                   name="password_1"

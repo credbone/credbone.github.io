@@ -71,10 +71,11 @@ const Overview: React.FC = () => {
         <group data-direction="column" data-gap="30">
           <text
             data-weight="700"
+          //  data-font-type="hero"
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
-            data-opacity="10"
+           // data-opacity="10"
             data-line='1'
           >
             Overview

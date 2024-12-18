@@ -7,17 +7,18 @@ import { useNavContext } from "../components/NavProvider";
 
 import { IconBook, IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
 import { SvgHamburger, SvgPlus } from "./svg";
+import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
 
 
 const navItems = [
-  { to: "/Home", icon: <IconHome size={20} />, label: "Home",type:"link"  },
-  { to: "/Components", icon: <IconFold size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
-  { to: "/Components/Typeface", icon: <IconFold size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
+  { to: "/Home", icon: <House size={20}/> , label: "Home",type:"link"  },
+  { to: "/Components", icon: <Box size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
+  { to: "/Components/Typeface", icon: <Box size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
   { to:"/Components", type:"separator"},
-  { to: "/About", icon: <IconBook size={20}/>, label: "About",type:"link" },
+  { to: "/About", icon: <BookOpen size={20}/>, label: "About",type:"link" },
 
-  { to: "/Settings", icon: <IconSettings size={20} />, label: "Settings",type:"link" },
-  { to: "/Search", icon: <IconSearch size={20} />, label: "Search",type:"link" },
+  { to: "/Settings", icon: <Bolt size={20} />, label: "Settings",type:"link" },
+  { to: "/Search", icon: <Search size={20} />, label: "Search",type:"link" },
 ];
 
 const Navigation: React.FC = () => {
@@ -38,7 +39,7 @@ const Navigation: React.FC = () => {
 
 <group  ref={buttonRef}  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
 <group>
-<icon data-length="30" >
+<icon data-length="30"  >
 <SvgHamburger />
 </icon>
 </group>
@@ -47,8 +48,8 @@ const Navigation: React.FC = () => {
 <separator data-vertical=""></separator>
 
   <NavLink data-type="group" data-select-theme="main" data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Home">
-<group  data-length="30" data-height="30" data-align="center" data-justify="center">
-<IconHome size={20} />
+<group  data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
+<House size={20} />
 </group>
 {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text> */}
   </NavLink>
@@ -56,8 +57,8 @@ const Navigation: React.FC = () => {
 
   <NavLink data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
   {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Search</text> */}
-<group  data-length="30" data-height="30" data-align="center" data-justify="center">
-<IconSearch size={20} />
+<group data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
+<Search size={20} />
 </group>
   </NavLink>
 
@@ -172,7 +173,7 @@ const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> 
                   data-wrap="no"
                   data-adaptive-direction={item.vertical ? "column" : ""}
                 >
-                  <group data-length="30" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
+                  <group data-length="30" data-interact="" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
                   <text
                     data-adaptive={
                       item.vertical ? "vertical-state" : "open-state"
@@ -233,7 +234,7 @@ const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> 
                   data-wrap="no"
                   data-adaptive-direction={item.vertical ? "column" : ""}
                 >
-                  <group data-length="30" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
+                  <group data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">{item.icon}</group>
                   <text
                     data-adaptive={
                       item.vertical ? "vertical-state" : "open-state"

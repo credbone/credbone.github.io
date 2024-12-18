@@ -12,6 +12,7 @@ import { isDesktop } from "react-device-detect";
 
 
 import { SvgPlus } from "../components/svg";
+import { Paintbrush, PaintBucket } from "lucide-react";
 
 export const ColorPalette = [
   { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
@@ -327,8 +328,8 @@ const Colors: React.FC = () => {
                     data-background="highlight"
                   >
                     <group data-interact="">
-                      {" "}
-                      <SvgPlus />{" "}
+                    
+                    <PaintBucket size={20}/>
                     </group>
                   </group>
                 </group>
@@ -414,8 +415,7 @@ const Colors: React.FC = () => {
                     data-background="highlight"
                   >
                     <group data-interact="">
-                      {" "}
-                      <SvgPlus />{" "}
+                <Paintbrush size={20}/>
                     </group>
                   </group>
                 </group>

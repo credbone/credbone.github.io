@@ -4,6 +4,7 @@ import Checkbox, { CheckboxType } from "../components/inputs/checkbox";
 import Tooltip from "../components/tooltip";
 import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
+import { IconHome, IconSearch } from "../components/icon/credIcons";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
@@ -44,10 +45,10 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   const radioData = [
-    { key: "1", name: "RadioDemo", icon: "nest_eco_leaf" },
-    { key: "2", name: "RadioDemo", label: "Nature", icon: "photo_camera" },
+    { key: "1", name: "RadioDemo", icon: <IconSearch size={20}/> },
+    { key: "2", name: "RadioDemo", label: "Home", icon: <IconHome size={20}/> },
     { key: "3", name: "RadioDemo", label: "Explore" },
-    { key: "4", name: "RadioDemo", label: "Nutrition" },
+    // { key: "4", name: "RadioDemo", label: "Nutrition" },
   ];
 
   const radioViewData = [
@@ -495,7 +496,39 @@ const CheckboxAndSwitchers: React.FC = () => {
                 ))}
               </OptionBar>
 
+
               <separator data-horizontal="" data-interval="10"></separator>
+
+
+              <group
+ 
+
+ data-name="option-group"
+              data-width="auto"
+              data-space="5"
+              data-border=""
+              data-radius="10"
+
+              >
+                {radioData.map((radio, index) => (
+                  <Radio
+                    // tooltip={ radio.label}
+                    iconProps={{ "data-length": "30" }}
+                    icon={radio.icon}
+                    key={index}
+                    radioValue={radio.name + radio.key}
+                    control={control}
+                    radioType={RadioType.Button}
+                    name={radio.name}
+                    label={radio.label}
+                  />
+                ))}
+              </group>
+
+
+              <separator data-horizontal="" data-interval="10"></separator>
+
+
 
               <OptionBar
                 data-length="autofit"
@@ -599,7 +632,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 data-space-horizontal="30"
                 data-interactive=""
                 data-cursor="pointer"
-                data-radius="10"
+                data-radius="5"
                 data-width="auto"
                 data-align="center"
                 data-direction="column"

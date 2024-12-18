@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
+import { Moon, MoonStar, Sun, SunMoon } from "lucide-react";
 
 const ThemeIcon = () => {
   const { themeMode } = useTheme();
@@ -22,16 +23,16 @@ const ThemeIcon = () => {
   let icon;
   switch (themeMode) {
     case "light":
-      icon = "light_mode";
+      icon = <Sun size={20}/>;
       break;
     case "dark":
-      icon = "dark_mode";
+      icon = <Moon size={20}/>;
       break;
     case "auto":
-      icon = prefersDarkMode ? "dark_mode" : "light_mode";
+      icon = prefersDarkMode ? <MoonStar size={20}/> : <Sun size={20}/>;
       break;
     default:
-      icon = "auto_mode";
+      icon = <SunMoon size={20}/>;
       break;
   }
 

@@ -84,11 +84,12 @@ const Components: React.FC = () => {
           <text
             // data-wrap="wrap"
             // data-ellipsis=""
-            data-weight="700"
+           
             data-line="1"
             data-text-size="96"
             data-text-clamp="96"
             data-max-length="800"
+            data-font-type="hero"
           >
             Designed to<br></br> evolve and<br></br> adapt.
           </text>
@@ -203,7 +204,7 @@ const Components: React.FC = () => {
         <group>
           <text
             data-wrap="wrap"
-            data-weight="700"
+            data-font-type="hero"
             data-ellipsis=""
             data-line="1"
             data-text-size="64"
@@ -322,7 +323,7 @@ const Components: React.FC = () => {
 
                   <text
                 data-wrap="wrap"
-                data-weight="700"
+               data-font-type="hero"
                 data-line="1"
                 data-text-size="64"
                 data-text-clamp="64"
@@ -351,7 +352,7 @@ const Components: React.FC = () => {
             >
               <text
                 data-wrap="wrap"
-                data-weight="700"
+                data-font-type="hero"
                 data-line="1"
                 data-text-size="64"
                 data-text-clamp="64"

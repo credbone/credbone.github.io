@@ -13,7 +13,7 @@ export type RadioProps = InputProps & {
   allowUncheck?: boolean;
   fitLabel?: boolean;
   radioType?: RadioType;
-  icon?: string;
+  icon?: ReactElement | string;
   iconProps?: any;
   tooltip?: any;
   labelProps?: Record<string, any>;

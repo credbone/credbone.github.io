@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import Button from "./button";
 import { useLocation } from "react-router-dom";
+import { X } from "lucide-react";
 
 // Modal Component
 interface ModalProps {
@@ -87,7 +88,7 @@ const Modal: React.FC<ModalProps> = ({
           <>
             <group data-name="modal-header" data-align="center" data-space="10">
               <text data-space="10">{title}</text>
-              <Button large data-position="right" icon="close" onClick={onClose}></Button>
+              <Button large data-position="right" icon={<X size={20}/>} onClick={onClose}></Button>
             </group>
             <group>
               <separator data-horizontal=""></separator>

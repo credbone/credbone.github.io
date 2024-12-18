@@ -4,6 +4,7 @@ import OptionBar from "./inputs/optionBar";
 import Radio, { RadioType } from "./inputs/radio";
 import { FieldValues, useForm } from "react-hook-form";
 import { useSnackbar } from "./snackbar/SnackbarContainer";
+import { Moon, Sun } from "lucide-react";
 
 const ThemeToggle: React.FC = () => {
   const { themeMode, setThemeMode } = useTheme();
@@ -33,8 +34,8 @@ const ThemeToggle: React.FC = () => {
   
 
   const radioOptions = [
-    { icon: "light_mode", radioValue: "light", label: "Light Mode", tooltip: null, },
-    { icon: "dark_mode", radioValue: "dark", label: "Dark Mode", tooltip: null, },
+    { icon: <Sun size={20}/>, radioValue: "light", label: "Light Mode", tooltip: null, },
+    { icon: <Moon size={20}/>, radioValue: "dark", label: "Dark Mode", tooltip: null, },
     { icon: null, radioValue: "auto", label: "Auto Mode", tooltip: DarkModeTip, },
   ];
 

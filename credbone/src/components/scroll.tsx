@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import classNames from "classnames";
 import Button from "./button";
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 
 // ButtonTemplate component
 const ButtonTemplate: React.FC<{
@@ -11,11 +12,11 @@ const ButtonTemplate: React.FC<{
 }> = ({ vertical, direction, show, onClick }) => {
   const icon = vertical
     ? direction === "prev"
-      ? "expand_less"
-      : "expand_more"
+      ? <ChevronUp size={20}/>
+      : <ChevronDown size={20}/>
     : direction === "prev"
-    ? "chevron_left"
-    : "chevron_right";
+    ? <ChevronLeft size={20}/>
+    : <ChevronRight size={20}/>;
 
   return (
     <Button

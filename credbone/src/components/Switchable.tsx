@@ -1,5 +1,6 @@
 import { PropsWithChildren, useState, useEffect, useRef } from "react";
 import Ripple from "./Ripple";
+import { Grip } from "lucide-react";
 
 type SwitchableProps = PropsWithChildren<{
   defaultExpanded?: boolean;
@@ -102,7 +103,7 @@ const Switchable: React.FC<SwitchableProps> = ({
           data-index="1"
           className={isExpanded ? "open" : ""}
         >
-          {icon ?? "apps"}
+          {icon ?? <Grip size={20}/>}
         </icon>
         {title && (
           <>

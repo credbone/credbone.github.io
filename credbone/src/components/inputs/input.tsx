@@ -13,6 +13,7 @@ import { FormField, FormFieldProps, LabelPosition } from "./formField";
 import { RadioInner } from "./radio";
 import Tooltip from "../tooltip";
 import { Control, Controller } from "react-hook-form";
+import { EyeClosed, Eye } from "lucide-react";
 
 
 
@@ -275,7 +276,7 @@ export const Password: React.FC<InputProps> = React.forwardRef<
                 clearTimeout(blurTimeout);
               }}
             >
-              <icon>{show ? "lock_open" : "lock"}</icon>
+              <icon>{show ? <Eye size={20}/> : <EyeClosed size={20}/>}</icon>
             </div>
           </Tooltip>
         </>

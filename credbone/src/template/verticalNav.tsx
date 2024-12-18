@@ -14,6 +14,7 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { useNavContext } from "../components/NavProvider";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
 import { IconInfo } from "../components/icon/credIcons";
+import { Info } from "lucide-react";
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const [isSubNavOpen, setSubNavOpen] = useState(false); // Lift the state up to the parent
@@ -261,8 +262,8 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
                 data-wrap="no"
                 onClick={handleTap}
               >
-                <group data-length="30" data-height="30" data-align="center" data-justify="center">
-               <IconInfo size={20}/>
+                <group data-length="30" data-interact="" data-height="30" data-align="center" data-justify="center">
+               <Info size={20}/>
                 </group>
                 <group
                   data-align="center"

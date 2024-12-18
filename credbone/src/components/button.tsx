@@ -6,6 +6,7 @@ import React, {
   MouseEventHandler,
   RefObject,
   useRef,
+  ReactElement,
 } from "react";
 import { useMaterialEffect } from "../utils/hooks/useMaterialEffectHook";
 //import { Text } from "./text";
@@ -21,8 +22,8 @@ export interface ButtonProps extends HTMLAttributes<HTMLElement> {
   fab?: boolean;
   fit?: boolean;
   highlight?: boolean;
-  icon?: string;
-  iconMicro?: boolean;
+ icon?: ReactElement | string;
+
   large?: boolean;
   xlarge?: boolean;
   material?: boolean;
@@ -64,7 +65,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
       fit = false,
       highlight = false,
       icon = "",
-      iconMicro = false,
+
       large = false,
       //   material = false,
       toggleState = false,
@@ -95,12 +96,10 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
     ref
   ) => {
     const refObj = useRef(null);
-    const [iconCode, fill] = icon.split(".");
+
     const [addToggleClassNames, setAddToggleClassNames] = useState(toggleState);
-    let iconProps = null;
-    if (fill === "fill") {
-      iconProps = { fill: "" };
-    }
+
+
     const { svg, onPointerDown, onPointerLeave, onPointerUp } = useMaterialEffect({
       ref: (ref || refObj) as RefObject<HTMLDivElement>,
       isMaterial: material,
@@ -150,9 +149,9 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
         {...(material ? { effect: "material" } : null)}   //NOSONAR
       >
         {text && textFirst && <text>{text}</text>}
-        {iconCode && (
-          <icon {...iconProps} {...(iconMicro ? { micro: "" } : null)}>
-            {iconCode}
+        {icon && (
+          <icon>
+            {icon}
           </icon>
         )}
         {children}
@@ -205,10 +204,10 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = React.forwardRef<
         {...(material ? { effect: "material" } : null)}         //NOSONAR
       >
         {text && textFirst && <text>{text}</text>}
-        {iconCode && (
-          <icon {...iconProps} {...(iconMicro ? { micro: "" } : null)}>
-            {iconCode}
-          </icon>
+        {icon && (
+          <icon>
+          {icon}
+        </icon>
         )}
         {children}
         {text && !textFirst && <text>{text}</text>}

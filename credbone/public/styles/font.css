@@ -60,4 +60,13 @@
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'calsans';
+    src: url('../font/CalSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
 /* stylelint-enable */

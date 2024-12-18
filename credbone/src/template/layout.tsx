@@ -1,7 +1,8 @@
 import React from "react";
 
-import { SvgHamburger, SvgHamburgerToRight } from "../components/svg";
+import { SvgHamburger, SvgHamburgerToRight, SvgPlus } from "../components/svg";
 import Switchable from "../components/Switchable";
+import { Box, Columns2, FolderOpen, PanelsTopLeft, Proportions, RectangleHorizontal, Rows3, ShoppingBag } from "lucide-react";
 
 const Layout: React.FC = () => {
   return (
@@ -36,9 +37,9 @@ const Layout: React.FC = () => {
             defaultExpanded={false}
             data-type="overlap"
             icon={
-              <icon data-fill="fill" data-color="amber">
-                folder
-              </icon>
+              <>
+              <SvgPlus />
+            </>
             }
             title={"Switchable To The Left"}
           //  togglerProps={{ "data-order": "2" }}
@@ -56,7 +57,7 @@ const Layout: React.FC = () => {
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                  dock_to_left
+                 <PanelsTopLeft size={60}/>
                 </icon>
                 <space></space>
                 <text
@@ -84,7 +85,7 @@ const Layout: React.FC = () => {
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                  responsive_layout
+                <Proportions size={60}/>
                 </icon>
 
                 <space></space>
@@ -132,7 +133,7 @@ const Layout: React.FC = () => {
                 >
                   <space></space>
                   <icon data-opacity="20" data-icon-size="large">
-                    view_week
+                  <RectangleHorizontal size={60}/>
                   </icon>
                   <space></space>
                   <text
@@ -157,7 +158,7 @@ const Layout: React.FC = () => {
               // data-elevation="1"
               data-switch-direction="horizontal"
               data-direction="column"
-              icon="folder"
+              icon={  <Columns2 size={20}/>} 
               togglerProps={
                 {
                   //    "data-background": "main",
@@ -176,7 +177,7 @@ const Layout: React.FC = () => {
                 >
                   <space></space>
                   <icon data-opacity="20" data-icon-size="large">
-                    view_stream
+                  <Rows3 size={60}/>
                   </icon>
                   <space></space>
 
@@ -213,7 +214,7 @@ const Layout: React.FC = () => {
             data-border="outline"
             data-adaptive-float="15"
             defaultExpanded={false}
-            icon="potted_plant"
+            icon={ <ShoppingBag size={20}/>}
             title={"Switchable To The Left"}
             //  data-type="overlap"
             //     data-length="400"
@@ -234,7 +235,7 @@ const Layout: React.FC = () => {
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                  dock_to_left
+                <Columns2 size={60}/>
                 </icon>
                 <space></space>
                 <text
@@ -256,7 +257,7 @@ const Layout: React.FC = () => {
             data-border="outline"
             data-adaptive-float="15"
             defaultExpanded={false}
-            icon="ac_unit"
+            icon={ <Box size={20}/>}
             title={"Adaptive Switchable To The Left"}
             // data-type="overlap"
             //   data-length="400"
@@ -277,7 +278,7 @@ const Layout: React.FC = () => {
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                  dock_to_left
+                <Columns2 size={60}/>
                 </icon>
                 <space></space>
                 <text
@@ -299,7 +300,7 @@ const Layout: React.FC = () => {
             data-border="outline"
             data-adaptive-float="15"
             defaultExpanded={false}
-            icon="light"
+            icon={ <FolderOpen size={20}/>}
             title={"Adaptive Switchable To The Left"}
             // data-type="overlap"
             //   data-length="400"
@@ -320,7 +321,7 @@ const Layout: React.FC = () => {
               >
                 <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                  dock_to_left
+                <Columns2 size={60}/> 
                 </icon>
                 <space></space>
                 <text

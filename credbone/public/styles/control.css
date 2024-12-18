@@ -274,7 +274,7 @@ text[data-width="auto"]{width: initial;}
 [data-weight="900"] {font-weight:900}
 
 [data-font-type="mono"]{ font-family: reddit mono;}
-
+[data-font-type="hero"]{ font-family: var(--hero-font);}
 
 
 [data-length]{flex-shrink: 0; max-width: 100%;}

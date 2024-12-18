@@ -14,6 +14,7 @@ import Tooltip from "../components/tooltip";
 import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
 
 import sectionImage from "../styles/images/samples/wide_res_61.jpg";
+import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Grip, Printer, X } from "lucide-react";
 
 
 
@@ -136,12 +137,12 @@ data-width="auto"
               data-contain=""
               data-border=""
             >
-              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button primary mini rounded icon="close" /> </group>
-              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button outline mini rounded icon="arrow_outward" /> </group>
+              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button primary mini rounded icon={<X size={20}/>} /> </group>
+              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button outline mini rounded icon={<ArrowUpRight size={20} />} /> </group>
               <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button primary mini rounded ><icon> <SvgLoader /> </icon></Button> </group>
-              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button secondary mini large icon="arrow_outward" /> </group>
-              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button outline mini large icon="arrow_downward" /> </group>
-              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button accent mini large icon="arrow_forward" /> </group>
+              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button secondary mini large icon={<ArrowUpRight size={20} />}  /> </group>
+              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button outline mini large icon={<ArrowDown size={20} />} /> </group>
+              <group data-align="center" data-justify="center"  data-border="" data-space="30" > <Button accent mini large icon={<ArrowRight size={20} />} /> </group>
 
             </group>
           </group>
@@ -210,9 +211,9 @@ data-width="auto"
             <group data-width="auto" data-border="" data-space-vertical="30"> 
               
               <group data-wrap="no" data-contain="" data-radius="10" data-width="auto" data-background="main" data-color="main-text">
-              <Button data-radius="0" data-space-horizontal="30" large primary text="Menu" /> 
+              <Button data-radius="0" data-space-horizontal="30" large primary text="Pay" /> 
               <separator data-vertical="" data-height="fit"></separator>
-              <Button data-radius="0" mini large primary icon="apps" />
+              <Button data-radius="0" mini large primary icon={<CreditCard size={20}/>} />
               </group>
                </group>
 
@@ -222,7 +223,7 @@ data-width="auto"
               <group data-wrap="no" data-contain="" data-radius="10" data-width="auto" data-background="main" data-color="main-text" data-shrink="no">
               <Button data-radius="0"  data-space-horizontal="30" primary large text="Print" /> 
               <separator data-vertical="" data-height="40"></separator>
-              <Button data-radius="0" mini large primary icon="scan" />
+              <Button data-radius="0" mini large primary icon={<Printer size={20}/>} />
               </group>
 
               <separator data-vertical="" data-height="fit"></separator> <group data-contain=""><text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Can be Combined together in a single container</text></group>
@@ -241,7 +242,7 @@ data-width="auto"
               
               <Button data-radius="0" data-index="1" data-space-horizontal="30" secondary  large  text="Browse..." /> 
               <separator data-vertical="" data-height="fit"></separator>
-              <Button data-radius="0"  secondary mini large  icon="photo_camera" />
+              <Button data-radius="0"  secondary mini large  icon={<Camera size={20}/>} />
               </group>
                </group>
 
