@@ -5,26 +5,32 @@
 
 
 icon {
-    font-family: "Material Symbols Rounded";
+    /* font-family: "Material Symbols Rounded";
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 20;
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
     line-height: 1;
     letter-spacing: normal;
-    text-transform: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-transform: none; 
+    
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
     font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
+    
+    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
     height: 30px;
     /* width: 20px; */
     flex-shrink: 0;
     overflow: hidden;
-    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 20;
+
     max-width: 30px;
     position: relative;
 }

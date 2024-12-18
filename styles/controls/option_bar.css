@@ -1,71 +1,69 @@
 /* CredBone UI Framefork Component / Layout / Version 3.0.0 */
 /* Copyright 2024. Design Department. All rights reserved */
 
-/* stylelint-disable */
 
 
 
 
-/* option_bar */
 
 
-/*filter options*/
-
-:root
-{
-    
-}
-
-.options { max-width: 100%; display: flex; flex-wrap: wrap; }
-
-.options label input { display: none }
-
-.options label wrap:hover,
-.filter_block .data_cell .input_cont:hover,
-.filter_result .filtered_item span:hover,
-.filter_block .Tokenize:hover
-{ background: rgba(136, 136, 136, 0.35); }
 
 
-.options label wrap:active text,
-.options label wrap:active icon,
-.filter_result .filtered_item span:active text { transform: translateY(1px) }
-
-.options label wrap text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-.options label wrap icon { margin: 0 0 0 -10px; }
-
-.options label input:checked ~ wrap { background: var(--main-color); color: #fff; }
-
-.options label { max-width: 100%; margin: 3px; float: left; position: relative; overflow: hidden; border-radius: 30px; }
-
-.options label > wrap { padding: 0 15px; cursor: pointer; height: 30px; line-height: 30px; display: flex; align-items: center; float: left; background: rgba(136, 136, 136, 0.25); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-
-
-.option_bar label text[marquee] {
-    min-width: 100%;
-    text-align: center;
-}
 
 
 
 /**/
 
+[data-name="option-group"]{ --radius:5px; flex-wrap: nowrap;overflow: hidden;}
+[data-name="option-group"] label {display: flex; cursor: pointer; align-items: center;position: relative;}
+[data-name="option-group"] label wrap {display: flex; border-radius: var(--radius); align-items: center;padding: 5px 10px;min-height: 100%; overflow: hidden;}
+[data-name="option-group"] label wrap:hover { background-image: var(--over-color); }
+[data-name="option-group"] label wrap text{padding: 0 5px; font-weight: 600;overflow: hidden; text-overflow: ellipsis; transition-property: max-width, opacity;opacity: 1;transition-duration: .225s;}
+[data-name="option-group"] label input { display: none } 
+[data-name="option-group"] label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);z-index: 3; }
+
+
+
+[data-name="option-group"] [data-name="option-decor"]{box-shadow: inset 0 0 0 1px; flex-shrink: 0; opacity: 0.1; min-width: 1px; width: 1px;  position: relative; z-index: 2; display: flex; height: 20px; position: absolute; left:-1px}
+
+[data-name="option-group"] label:first-of-type [data-name="option-decor"],
+[data-name="option-group"] label:hover [data-name="option-decor"],
+[data-name="option-group"] label:hover + label [data-name="option-decor"],
+[data-name="option-group"] label input:checked ~ [data-name="option-decor"]
+
+{display: none;}
 
 
 
 
+[data-name="option-group"] wrap:active text,
+[data-name="option-group"] wrap:active icon
+
+{ transform: translateY(1px) }
+
+
+
+[data-name="option-group"] label text:not(:only-child)
+{max-width: 100px;}
+
+[data-name="option-group"] label input:not(:checked) ~ wrap text:not(:only-child) {
+
+    
+    opacity: 0;
+    padding: 0;
+    max-width: 0px;
+}
+
+
+/**/
 
 .option_bar { display: flex; height: 30px; position: relative; overflow: hidden;  --radius:5px }
-.option_bar.fixed {min-width:120px; width:120px;flex-grow:initial;     border-radius: var(--radius);
- }
 
-.option_bar line{ flex:1}
-.option_bar line text{}
 
-.option_bar div[title] { flex: 2; align-items: center; display: flex; position: relative; overflow: hidden; }
 
-.option_bar div[title] text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+
+ 
 
 
 
@@ -74,11 +72,15 @@
 .option_bar label { display: flex; flex: 1; position: relative; overflow: hidden; margin-right:-1px;     min-height: 30px; }
 [dir="rtl"] .option_bar label {margin-left: -1px; margin-right: initial;}
 
-.option_bar label:last-of-type, .option_bar label:only-of-type,.option_bar.single:not(.list) label {margin:0}
+.option_bar label:last-of-type,
+.option_bar label:only-of-type
+ 
+ 
+ {margin:0}
 
 .option_bar label:hover{z-index:1}
-.option_bar label.selected{z-index:2}
-.option_bar label.selected:hover{z-index:3}
+
+
 
 .option_bar label:has(input:checked){z-index:2}
 .option_bar label:has(input:checked):hover{z-index:3}
@@ -91,12 +93,11 @@
 .option_bar label wrap { display: flex; flex: 1;  position: relative; overflow: hidden; cursor: pointer; justify-content: center; align-items: center; padding: 0 5px; }
 
 
-.option_bar label wrap[gap="none"]{padding:0}
-
-.option_bar label wrap[gap="none"] text[marquee] span {padding:0 10px; line-height:30px; }
 
 
-.option_bar label:last-child wrap { /*box-shadow: inset 0 0 0 1px var(--outline) */}
+
+
+
 
 .option_bar label:first-of-type,
 .option_bar label:first-of-type wrap,
@@ -122,41 +123,43 @@
 
 .option_bar label:only-of-type,
 .option_bar label:only-of-type wrap,
-.option_bar label:only-of-type [data-name="option-decor"],
+.option_bar label:only-of-type [data-name="option-decor"]
 
-.option_bar.single label:not([select_view]),
-.option_bar.single label:not([select_view]) [data-name="option-decor"],
-.option_bar.single label:not([select_view]).selected wrap
 
 {border-radius:var(--radius);}
 
 
- .option_bar.single.list action label:not([select_view]),
- .option_bar.single.list action label:not([select_view]) [data-name="option-decor"],
- .option_bar.single.list action label:not([select_view]) wrap
 
- {border-radius: var(--radius) 0 0 var(--radius)}
 
 
 .option_bar.autosize{min-width:initial}
 .option_bar.autosize label { flex:auto;}
-/* .option_bar.autosize label wrap{padding:0 15px} */
+
 
 
 
 .option_bar wrap:hover { background-image: var(--over-color); }
 
 .option_bar wrap:active text,
-.option_bar wrap:active icon,
-.option_complex wrap:active icon { transform: translateY(1px) }
+.option_bar wrap:active icon
+
+{ transform: translateY(1px) }
 
 
-.option_bar label text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position:relative;padding:0 5px;; }
-.option_bar label text:only-child{padding: 0 5px;}
-.option_bar label icon + text {}
+.option_bar label text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position:relative;padding:0 5px; 
 
-.option_bar label input,
-.option_complex label input { display: none }
+    transition-property: max-width, opacity;
+    opacity: 1;
+    transition-duration: .225s;
+
+}
+
+
+
+
+
+
+.option_bar label input { display: none } 
 
 
 .option_bar[data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-alpha-15); color:var(--text-color) }
@@ -183,52 +186,32 @@
     --checked-text-color:var(--main-color)
 }
 
+.option_bar.dynamic label text:not(:only-child)
+{max-width: 100px;}
 
-.option_bar.dynamic label input:checked ~ wrap text:not(:only-child),
-.option_bar label[separate] > wrap text
+.option_bar.dynamic label input:not(:checked) ~ wrap text:not(:only-child) {
 
-{
-    max-width: 100px;
-    opacity: 1;
-padding: 0 5px;
-
-}
-
-.option_bar.dynamic label text:not(:only-child) {
-    transition-duration: .225s;
-    transition-property: max-width, opacity;
-    max-width: 0px;
+    
     opacity: 0;
     padding: 0;
+    max-width: 0px;
 }
 
 .option_bar label input:checked:disabled ~ wrap,
-.option_complex label input:checked:disabled ~ wrap,
 .options label input:disabled ~ wrap { background-color: var(--input-color); color: inherit; }
 
-.option_bar .label_group { display: flex }
 
-.option_bar .label_group label { width: 85px; }
-
-/*.option_complex {    display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); overflow:hidden;     margin: 5px; flex: 1;     grid-gap: 1px;padding:1px}
-.option_complex label{ box-shadow: 0 0 0 1px var(--border-color);}*/
-/*.option_complex label wrap{display:flex;flex:1;position:relative;overflow:hidden;cursor:pointer;justify-content: center;align-items:center;   }*/
-/*.option_complex wrap:hover{background: var(--hover);}*/
 
 
 .option_bar label input:disabled ~ wrap icon,
-.option_bar label input:disabled ~ wrap text,
-.option_complex label input:disabled ~ wrap icon,
-.options label input:disabled ~ wrap text { opacity: .3 }
+.option_bar label input:disabled ~ wrap text
+ { opacity: .3 }
 
-.option_bar label input:disabled ~ wrap,
-.option_complex label input:disabled ~ wrap,
-.options label input:disabled ~ wrap { cursor: default; pointer-events: none }
+.option_bar label input:disabled ~ wrap
+ { cursor: default; pointer-events: none }
 
 
-.option_bar.mini { min-width: initial; overflow: initial; }
 
-.option_bar.mini label wrap { padding: 0; /*box-shadow: none*/ }
 
 
 
@@ -246,8 +229,8 @@ padding: 0 5px;
 
 
 .option_bar.animate label wrap,
-.option_bar.animate label input:checked ~ wrap,
-.option_bar.animate label.selected > wrap
+.option_bar.animate label input:checked ~ wrap
+
 {background-color:initial}
 
 .option_bar.animate label:first-of-type wrap:before,
@@ -258,12 +241,11 @@ padding: 0 5px;
 
 
 .option_bar.animate label input:checked ~ wrap:before,
-.option_bar.animate label.selected wrap:before,
-
-[dir="rtl"] .option_bar.animate label input:checked~wrap:before,
-[dir="rtl"] .option_bar.animate label.selected wrap:before
+[dir="rtl"] .option_bar.animate label input:checked~wrap:before
 
 {transform: none;   }
+
+
 .option_bar.animate label input:disabled ~ wrap:before {    background-color: var(--input-color);}
 
 .option_bar.fixed.animate
@@ -277,81 +259,3 @@ padding: 0 5px;
 /* ----- */
 
 
-
-
-
-
-
-/* option_bar */
-
-.option_column { display: flex; flex-direction: column; position: relative; overflow: hidden; width: 100%; align-items: flex-start; }
-
-.option_column separator[horizontal]{margin: 15px 0 10px 0;width: 100%;}
-
-.option_column label { max-width: 100%; margin-top: 5px; }
-
-.option_group { display: flex; flex-direction: column; flex: 1; width: 100%; }
-
-.option_group[space="top"]{margin-top:10px}
-
-
-.option_column.grid_view{
-
-    position: relative;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap:5px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-
-}
-
-.option_column.grid_view label {background: var(--highlight);
-    padding: 10px;
-    border-radius: 5px;
-    margin: 0;}
-
-.option_column.grid_view label:hover {
-    background-image: var(--over-color);
-}
-.option_column.grid_view label:active {
-    background-image: var(--press-color);
-}
-
-
-
-/* ----- */
-
-
-/* toggle bar */
-
-.toggle_bar { display: flex; align-items: center; }
-
-.toggle_bar label { display: flex; position: relative; }
-
-.toggle_bar label input { display: none }
-
-.toggle_bar label:active icon { transform: translateY(1px) }
-
-.toggle_bar label wrap { display: flex; flex: 1; position: relative; overflow: hidden; cursor: pointer; justify-content: center; align-items: center; height: 30px; width: 30px; border-radius: var(--button-radius); flex-shrink: 0 }
-
-.toggle_bar label.selected wrap, .toggle_bar label input:checked ~ wrap { background-color: var(--main-color); color: #fff; }
-
-.toggle_bar label:hover wrap { background-image: var(--over-color); }
-
-.toggle_bar label:active wrap { background-image: var(--press-color); }
-
-.toggle_bar label[separate][text] wrap { width: auto; padding: 0 15px 0 5px; }
-
-/* ----- */
-
-/* stylelint-enable */
-
-
-
-/* @media (max-width: 900px) {
-
-    .option_bar label[separate] > wrap icon + text,
-    .option_bar.dynamic label > wrap icon + text { display: none; }
-
-} */
