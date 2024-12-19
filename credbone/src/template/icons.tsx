@@ -223,6 +223,7 @@ const Icons: React.FC = () => {
                 data-direction="column"
                 data-gap="15"
                 data-align="start"
+                 data-contain=""
               >
                 <text data-weight="700" data-text-size="large" data-ellipsis="">
                   Lucide Icons Demo
@@ -231,8 +232,9 @@ const Icons: React.FC = () => {
                 <text
                   data-opacity="50"
                   data-max-length="300"
+                                 
                   data-wrap="wrap"
-                  data-ellipsis=""
+
                   data-line="20"
                 >
                   Few examples of Lucide Icons in action, showcasing a variety
@@ -298,11 +300,8 @@ const Icons: React.FC = () => {
           </group>
         </group>
 
-      
         <group data-name="icon-group" data-gap="30">
-
-
-        <group>
+          <group>
             <picture
               data-radius="20"
               data-contain=""
@@ -322,20 +321,22 @@ const Icons: React.FC = () => {
                 data-direction="column"
                 data-gap="15"
                 data-align="start"
+                  data-contain=""
               >
-            <text data-weight="700" data-text-size="large" data-ellipsis="">
-              Icons
-            </text>
-            <text data-opacity="50"  data-line="20"                 data-wrap="wrap"
-                  data-ellipsis="">Examples of Custom-Designed Icons</text>
-
-
+                <text data-weight="700" data-text-size="large" data-ellipsis="">
+                  Icons
+                </text>
+                <text
+                  data-opacity="50"
+                  data-line="20"
+                  data-wrap="wrap"
+                 
+                >
+                  Examples of Custom-Designed Icons
+                </text>
               </group>
             </group>
           </group>
-
-
-
 
           <group>
             <group
