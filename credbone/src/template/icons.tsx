@@ -232,6 +232,7 @@ const Icons: React.FC = () => {
                   data-opacity="50"
                   data-max-length="300"
                   data-wrap="wrap"
+                  data-ellipsis=""
                   data-line="20"
                 >
                   Few examples of Lucide Icons in action, showcasing a variety
@@ -325,7 +326,8 @@ const Icons: React.FC = () => {
             <text data-weight="700" data-text-size="large" data-ellipsis="">
               Icons
             </text>
-            <text data-opacity="50">Examples of Custom-Designed Icons</text>
+            <text data-opacity="50"  data-line="20"                 data-wrap="wrap"
+                  data-ellipsis="">Examples of Custom-Designed Icons</text>
 
 
               </group>

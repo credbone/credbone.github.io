@@ -239,7 +239,7 @@ const Components: React.FC = () => {
                 //    data-brightness="adaptive"
 
                 // data-background="grey-light"
-                data-min-height="300"
+              //    data-min-height="300"
               >
                 <img src={sampleImage_3} alt="" />
               </picture>
