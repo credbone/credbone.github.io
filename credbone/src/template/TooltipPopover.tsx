@@ -6,7 +6,7 @@ import Button from "../components/button";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-import sampleImage from "../styles/images/samples/res_74.jpg";
+import sampleImage from "../styles/images/samples/wide_res_74.jpg";
 import Calculator from "../tools/Calculator";
 
 const SimplePopover = (

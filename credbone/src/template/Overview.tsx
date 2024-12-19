@@ -57,7 +57,7 @@ const groupedLinksArray = [
     items: [
 
       { title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard", },
-      { title: "Demos\n& Samples", description: "Sample dashboards for quick insights.", to: "/Components/QuickDemos", },
+      { title: "Demos\n& Samples", description: "Various quick-designed apps, built for demo purposes.", to: "/Components/QuickDemos", },
       { title: "Miscellaneous", description: "Encompasses a variety of small, diverse UI components.", to: "/Components/Miscellaneous", },
     ],
   },
