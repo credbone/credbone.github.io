@@ -245,9 +245,10 @@ const Icons: React.FC = () => {
                   data-type="group"
                   data-drag="none"
                   data-width="auto"
-                  data-link=""
+                 data-color="main"
+                 // data-link=""
                   target="_blank"
-                  rel="noreferrer"
+                //  rel="noreferrer"
                   to="https://lucide.dev/"
                 >
                   <text data-weight="700" data-ellipsis="">
