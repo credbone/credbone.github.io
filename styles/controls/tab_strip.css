@@ -114,9 +114,30 @@
 
 
 
+[data-name="tab"]{border-radius: 5px 5px 0 0;}
+[data-name="tab"].active {background: var(--nav-color); color: var(--main-color-text); z-index: 1;}
+
+[data-name="tab"]::after,
+[data-name="tab"]::before
+
+{content:""; position:absolute; height:5px; width:5px; background:inherit; bottom:0}
 
 
 
+
+[data-name="tab"]::after
+
+{right:-5px;
+    
+-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 0 5 5'%3E%3Cpath d='M5,5H0V0A5,5,0,0,0,5,5Z'/%3E%3C/svg%3E%0A");
+
+}
+
+[data-name="tab"]::before
+
+{left:-5px;
+-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='5' viewBox='0 0 5 5'%3E%3Cpath d='M0,5H5V0A5,5,0,0,1,0,5Z'/%3E%3C/svg%3E%0A");
+}
 
 
 
@@ -174,26 +195,8 @@ html.mobile .nav_strip.classic ul[data-select-sticky="true"] >  li.selected {lef
 {bottom:initial; top:0}
 
 
-/* .nav_strip.classic.invert ul>li:after,
-.nav_strip.classic.invert ul>li:before,
-
-.nav_strip.classic.invert~.button.slider:after,
-.nav_strip.classic.invert~.button.slider:before
-
-{
-bottom: 2px;
-
-} */
 
 
-/* .nav_strip.classic.bottom.invert ul>li:after,
-.nav_strip.classic.bottom.invert ul>li:before,
-
-.nav_strip.classic.bottom.invert~.button.slider:after,
-.nav_strip.classic.bottom.invert~.button.slider:before {
-    top: 2px;
-bottom: initial;
-} */
 
 
 
