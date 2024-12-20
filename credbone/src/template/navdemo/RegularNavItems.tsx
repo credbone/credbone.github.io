@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import Ripple from "../components/Ripple";
+import Ripple from "../../components/Ripple";
 
-import Scroll from "../components/scroll";
-import Button from "../components/button";
-import { SvgHamburger } from "../components/svg";
-import Tabstrip from "../components/tabstrip";
-import Tab from "../components/tabstrip/tab";
+import Scroll from "../../components/scroll";
+import Button from "../../components/button";
+import { SvgHamburger } from "../../components/svg";
+import Tabstrip from "../../components/tabstrip";
+import Tab from "../../components/tabstrip/tab";
 import { Armchair, BookMarked, CircleUser, Cloud, Coffee, Pizza, Shirt, ShoppingBag, Tickets } from "lucide-react";
 
 
@@ -31,7 +31,7 @@ const navData = [
   { key: 16, badge: "", icon: <BookMarked size={20}/>, title: "Courses" },
 ];
 
-const Landing: React.FC = () => {
+const RegularNavItems: React.FC = () => {
   const [selectedItemKey, setSelectedItemKey] = useState<number | null>(2);
   const [selectedItem2Key, setSelectedItem2Key] = useState<number | null>(3);
   const [selectedItem3Key, setSelectedItem3Key] = useState<number | null>(3);
@@ -48,69 +48,36 @@ const Landing: React.FC = () => {
 
   return (
     <>
-      <group data-align="start">
+
         <group
-          //  data-max-length="600"
-          data-space="30"
+
+       //   data-space="30"
           data-gap="30"
           data-direction="column"
           data-shrink="0"
-          data-contain=""
+        //  data-contain=""
           data-wrap="no"
           data-fit="1"
           data-align="start"
         >
-          <group data-direction="column" data-gap="10">
-            <text data-weight="700" data-text-size="xxx-large" data-ellipsis="" data-color="main">
-              Navigation
-            </text>
 
-            <text
-              data-wrap="wrap"
-              data-length="300"
-              data-line="1.5"
-              data-opacity="60"
-            >
-              Navigation bars allow movement between primary destinations in an
-              app.
-            </text>
-          </group>
 
           <group
-            data-elevation="2"
-            data-contain=""
-            data-radius="15"
-            data-background="context"
-                data-max-length="600"
-          >
-            <group
-              // data-background="main"
-              // data-color="main-text"
-              data-contain=""
-              // data-dark=""
-              data-align="center"
-            >
-              {/* <group
-                data-contain=""
-                data-position="absolute"
-                data-max-length="400"
-                data-direction="column"
-                data-justify="end"
-              >
-                <picture
-                  data-min-length="300"
-                  data-contain=""
-                  data-ratio="1:1"
-                  data-shrink="no"
-                >
-                  <img src={sampleImage} alt="" />
-                </picture>
-              </group> */}
 
-              <group data-direction="column" data-gap="10" data-space="30">
+
+            data-radius="20"
+            data-border=""
+       //     data-space="20"
+                data-max-length="600"
+              
+          >
+
+
+
+<group data-direction="column" data-gap="10" data-space="30">
                 <text
                   data-weight="700"
-                  data-text-size="x-large"
+                  data-text-size="large"
                   data-ellipsis=""
                 >
                   Tiles
@@ -120,14 +87,15 @@ const Landing: React.FC = () => {
                 A sleek, tile-based navigation system that offers quick access and smooth transitions between sections. Simple, intuitive, and responsive for an efficient user experience.
                 </text>
               </group>
-            </group>
+
 <separator data-horizontal=""></separator>
+
             <group
               data-type="grid"
               data-weight="600"
               data-grid-template="120"
               data-gap="5"
-              data-space="20"
+data-space="20"
             >
               {navData.map((item) => (
                 <Ripple key={item.key}>
@@ -147,7 +115,7 @@ const Landing: React.FC = () => {
                     <group
                       data-direction="column"
                       data-align="center"
-                      data-space="10"
+                      data-space="15"
                       data-gap="5"
                     >
                       {item.badge ? (
@@ -171,6 +139,10 @@ const Landing: React.FC = () => {
                 </Ripple>
               ))}
             </group>
+
+
+
+
           </group>
 
           <separator data-horizontal="" data-interval="10"></separator>
@@ -201,11 +173,11 @@ const Landing: React.FC = () => {
                       data-cursor="pointer"
                       data-align="center"
                       data-space="5"
-                      data-space-horizontal="10"
-                     // data-gap="5"
+                      data-space-horizontal="15"
+                      data-gap="5"
                     >
                       <icon
-                      data-margin-horizontal="5"
+                   
                         data-fill={item2.key === selectedItem2Key ? "fill" : ""}
                       >
                         {item2.icon}
@@ -214,10 +186,9 @@ const Landing: React.FC = () => {
 
                       {item2.badge ? (
                         <>
-                          <group data-space="5">
-                       
-                          </group>
+
                           <group
+                          data-right="-5"
                             data-ratio="1:1"
                             data-justify="center"
                             data-align="center"
@@ -256,24 +227,7 @@ const Landing: React.FC = () => {
           //  data-contain=""
           >
 
-{/* <group
-                data-contain=""
-                data-position="absolute"
-                data-max-length="400"
-                data-direction="column"
-                data-justify="end"
-                data-right="0"
-                data-name="color-demo"
-              >
-                <picture
-                  data-min-length="300"
-                  data-contain=""
-                  data-ratio="1:1"
-                  data-shrink="no"
-                >
-                  <img src={sampleImage2} alt="" />
-                </picture>
-              </group> */}
+
 
             <group
               data-direction="column"
@@ -281,7 +235,7 @@ const Landing: React.FC = () => {
          //     data-color="main-text"
               data-gap="10"
             >
-              <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
+              <text data-weight="700" data-text-size="large" data-wrap="wrap">
                 Horizontal Navigation
               </text>
               <text
@@ -294,17 +248,19 @@ const Landing: React.FC = () => {
               </text>
             </group>
             <group
-                        data-elevation="1"
 
+
+                      data-border=""
                 data-width="auto"
-              data-radius="5"
+              data-radius="10"
               data-contain=""
-              data-background="main-background"
+
               data-wrap="no"
               data-weight="600"
+              data-snap-button="15"
             >
               <Scroll wheelEnabled={true}>
-                <group data-wrap="no" data-space="5">
+                <group data-wrap="no" data-space="10" >
                   {navData.map((item3) => (
                     <group
                       key={item3.key}
@@ -317,7 +273,7 @@ const Landing: React.FC = () => {
                       data-align="center"
                       data-width="auto"
                     >
-                      <separator data-vertical="" data-height="20"></separator>
+                      <separator data-vertical="" data-height="20" data-position="absolute" data-left="0" ></separator>
                       <Ripple>
                         <group
                           data-background={
@@ -382,7 +338,7 @@ const Landing: React.FC = () => {
             data-gap="20"
           >
             <group data-direction="column" data-width="auto" data-gap="10">
-              <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
+              <text data-weight="700" data-text-size="large" data-wrap="wrap">
                 Horizontal Navigation
               </text>
               <text
@@ -400,7 +356,7 @@ const Landing: React.FC = () => {
               data-contain=""
               data-border="outline"
             >
-              <group data-position="right">
+              <group >
                 <nav data-type="group" data-wrap="no" data-justify="end">
                   <group data-width="auto" data-contain="">
                     <Scroll>
@@ -427,10 +383,10 @@ const Landing: React.FC = () => {
                                 data-length="25"
                                 data-ratio="1:1"
                                 data-radius="20"
-                                data-color="secondary-text"
+                                data-color="white"
                                 data-justify="center"
                                 data-align="center"
-                                data-background="secondary"
+                                data-background="red"
                               >
                                 <text data-weight="700">5</text>
                               </group>
@@ -489,11 +445,11 @@ const Landing: React.FC = () => {
               tabStripContentProps={{
                 "data-space": "30",
                 "data-background": "context",
-                "data-elevation": "1",
+                "data-border": "",
                 "data-radius-top": "10",
               }}
             >
-              {tabsData.map((tab) => (
+              {tabsData.map((tab) => (  
                 <Tab key={tab.index} title={tab.title}>
                   <group data-wrap="no" data-gap="30" data-align="center">
                     <group data-width="auto">
@@ -508,7 +464,7 @@ const Landing: React.FC = () => {
                     >
                       <text
                         data-weight="700"
-                        data-text-size="x-large"
+                        data-text-size="large"
                         data-ellipsis=""
                       >
                         {tab.title}
@@ -523,12 +479,9 @@ const Landing: React.FC = () => {
             </Tabstrip>
           </group>
         </group>
+        
 
-        {/* <group data-name="side_nav-space" data-length="80"></group> */}
-      </group>
-
-      {/* <SideNav /> */}
     </>
   );
 };
-export default Landing;
+export default RegularNavItems;

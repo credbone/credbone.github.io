@@ -1,30 +1,31 @@
-import Marquee from "../components/Marquee";
-import Ripple from "../components/Ripple";
-import { SvgHamburgerToRight } from "../components/svg";
+import Marquee from "../../components/Marquee";
+import Ripple from "../../components/Ripple";
+import { SvgHamburgerToRight } from "../../components/svg";
 import React, { useEffect, useRef, useState } from "react";
 
-import sampleImage from "../styles/images/samples/p_6.png";
-import sampleImage2 from "../styles/images/samples/p_1.png";
+import sampleImage from "../../styles/images/samples/p_6.png";
+import sampleImage2 from "../../styles/images/samples/p_1.png";
+import { Armchair, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(true);
 
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (navRef.current && !navRef.current.contains(event.target as Node)) {
-      setIsNavOpen(false);
-    }
-  };
+  // const handleClickOutside = (event: MouseEvent) => {
+  //   if (navRef.current && !navRef.current.contains(event.target as Node)) {
+  //     setIsNavOpen(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
@@ -39,22 +40,24 @@ const SideNav = () => {
          data-radius="10"
         //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
-        data-name="side_nav"
+       // data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
-       // data-length={isNavOpen ? "300" : "70"}
+        data-length={isNavOpen ? "300" : "70"}
         //  data-width="auto"
        // data-height="fit"
         // data-max-length="300"
-        data-elevation="2"
+       data-border=""
         data-index="999"
         data-align="start"
         data-wrap="no"
         data-direction="column"
         data-scrollbar="none"
         data-scroll=""
+
+        data-duration=".225"
      
-        data-position="absolute"
+     //   data-position="absolute"
 
       >
 
@@ -69,7 +72,7 @@ const SideNav = () => {
           data-cursor="pointer"
           data-interactive=""
           onClick={handleNavToggle}
-          data-adaptive={isNavOpen ? "" : "600"}
+       //   data-adaptive={isNavOpen ? "" : "600"}
         >
 
 
@@ -100,7 +103,7 @@ const SideNav = () => {
         <group
           data-height="autofit"
           data-weight="600"
-          data-space="15"
+          data-space="10"
           data-direction="column"
         >
           <Ripple>
@@ -114,7 +117,7 @@ const SideNav = () => {
               data-interactive=""
               data-space="10"
               data-gap="10"
-              data-radius={isNavOpen ? "10" : "5"}
+              data-radius="10"
               data-align="center"
               data-wrap="no"
             >
@@ -144,7 +147,11 @@ const SideNav = () => {
                 data-align="center"
                 data-wrap="no"
               >
-                <icon data-length="30">chair</icon>
+                <icon data-length="30">
+                  
+                <Armchair size={20}/>
+
+                </icon>
                 <text data-ellipsis="" data-adaptive="open-state">
                   Home
                 </text>
@@ -161,7 +168,9 @@ const SideNav = () => {
                 data-align="center"
                 data-wrap="no"
               >
-                <icon data-length="30">apps</icon>
+                <icon data-length="30">
+                <Grip size={20}/>
+                </icon>
                 <text data-ellipsis="" data-adaptive="open-state">
                   Collections
                 </text>
@@ -178,7 +187,7 @@ const SideNav = () => {
               data-cursor="pointer"
             >
               <icon data-adaptive="open-state" data-length="30">
-                shopping_basket
+              <ShoppingBag size={20}/>
               </icon>
               <text data-light="" data-ellipsis="" data-adaptive="open-state">
                 Cart
@@ -221,7 +230,7 @@ const SideNav = () => {
                   data-width="auto"
                   data-ratio="1:1"
                   data-background="main"
-                  data-height={isNavOpen ? "50" : "80"}
+                  data-height="50"
                   data-radius="30"
                   data-contain=""
                   onClick={() => {

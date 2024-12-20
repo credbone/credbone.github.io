@@ -31,7 +31,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     const updateIndicator = () => {
       const currentIndex = navItems.findIndex((item) =>
-        location.pathname.endsWith(item.to)
+        location.pathname.includes(item.to)
       );
       const activeItem = navRefs.current[currentIndex];
 

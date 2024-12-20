@@ -10,7 +10,7 @@ import "./../styles/demo.css";
 
 import Buttons from "./buttons";
 import Typeface from "./typeface";
-import Landing from "./nav";
+import Landing from "./navdemo/nav";
 
 import CheckboxSwitchers from "./CheckboxSwitchers";
 import InputsAndForms from "./InputsAndForms";
@@ -112,7 +112,11 @@ const Template: React.FC = () => {
               <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
               <Route path="Colors" element={<Colors />} />
               <Route path="Layout" element={<Layout />} />
-              <Route path="Navigation" element={<Landing />} />
+             
+
+              <Route path="Navigation/*" element={<Landing />} />
+             
+
               <Route path="InputsAndForms" element={<InputsAndForms />} />
               <Route path="TooltipAndPopover" element={<TooltipPopover />} />
               <Route path="CardsAndList" element={<Cards />} />

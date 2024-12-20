@@ -8,10 +8,10 @@
     --interval:0px
 }
 
-separator { box-shadow: inset 0 0 0 1px; flex-shrink: 0; opacity: 0.1; }
+separator { box-shadow: inset 0 0 0 1px; flex-shrink: 0; opacity: 0.1; position: relative; }
 
 
-separator[data-vertical] {  min-width: 1px; width: 1px;  position: relative; z-index: 2; display: flex; }
+separator[data-vertical] {  min-width: 1px; width: 1px;   z-index: 2; display: flex; }
 separator[data-vertical]:not([data-height]){height:30px}
 
 separator[data-vertical="fit"]{height: 100%;}
