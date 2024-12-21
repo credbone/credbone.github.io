@@ -615,6 +615,7 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 
 [data-min-height='30']{min-height:30px;}
 [data-min-height='130']{min-height:130px;}
+[data-min-height='120']{min-height:120px;}
 [data-min-height='200']{min-height:200px;}
 [data-min-height='240']{min-height:240px;}
 [data-min-height='280']{min-height:280px;}

@@ -35,7 +35,7 @@ const Navigation: React.FC = () => {
   return (
     <>
 
-<group data-gap="10" data-align="center">
+<group data-gap="10" data-align="center"       data-wrap="no">
 
 <group  ref={buttonRef}  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
 <group>

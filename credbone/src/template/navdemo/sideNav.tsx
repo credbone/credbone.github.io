@@ -120,12 +120,12 @@ const SideNav = () => {
                             data-interactive=""
               data-cursor="pointer"
                
-                data-width="auto"
+              //  data-width="auto"
                 data-ratio="1:1"
                 data-duration=".125"
 
                 data-background="main"
-                data-height={isNavOpen ? "120" : "50"}
+                data-length={isNavOpen ? "120" : "50"}
                 data-radius="full"
                 data-contain=""
                 onClick={() => {
