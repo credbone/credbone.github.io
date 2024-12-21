@@ -1,6 +1,6 @@
 import Marquee from "../../components/Marquee";
 import Ripple from "../../components/Ripple";
-import { SvgHamburgerToRight } from "../../components/svg";
+import { SvgHamburgerToLeft, SvgHamburgerToRight } from "../../components/svg";
 import React, { useEffect, useRef, useState } from "react";
 
 import sampleImage from "../../styles/images/samples/p_6.png";
@@ -8,7 +8,7 @@ import sampleImage2 from "../../styles/images/samples/p_1.png";
 import { Armchair, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
@@ -31,37 +31,34 @@ const SideNav = () => {
   const navRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
+    <group data-align="start" data-gap="30" >
       <group
-       
         ref={navRef}
         data-placement="right"
-       //  data-float={isNavOpen ? "15" : "20"}
-         data-radius="10"
+        //  data-float={isNavOpen ? "15" : "20"}
+        data-radius="15"
         //   data-length={isNavOpen ? "500" : "80"}
         data-shrink="no"
-       // data-name="side_nav"
+        // data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
-        data-length={isNavOpen ? "300" : "70"}
+        data-length={isNavOpen ? "240" : "90"}
+        data-transition-prop="width"
         //  data-width="auto"
-       // data-height="fit"
+        // data-height="fit"
         // data-max-length="300"
-       data-border=""
+        data-border=""
         data-index="999"
         data-align="start"
         data-wrap="no"
         data-direction="column"
         data-scrollbar="none"
         data-scroll=""
-
         data-duration=".225"
-     
-     //   data-position="absolute"
 
+        //   data-position="absolute"
       >
-
-        <group
+        {/* <group
           // data-adaptive="open-state"
           data-background="main"
           data-color="white"
@@ -98,17 +95,79 @@ const SideNav = () => {
             </Marquee>
 
           </group>
-        </group>
+        </group> */}
 
         <group
           data-height="autofit"
           data-weight="600"
-          data-space="10"
+          data-space="20"
           data-direction="column"
         >
+
+            <group
+              // data-space="10"
+              data-space-vertical={isNavOpen ? "30" : ""}
+              data-gap="15"
+          //    data-radius={isNavOpen ? "10" : "30"}
+              data-align="center"
+
+              data-wrap="no"
+              data-contain=""
+              data-direction="column"
+
+            >
+              <group
+                            data-interactive=""
+              data-cursor="pointer"
+               
+                data-width="auto"
+                data-ratio="1:1"
+                data-duration=".125"
+
+                data-background="main"
+                data-height={isNavOpen ? "120" : "50"}
+                data-radius="full"
+                data-contain=""
+                onClick={() => {
+                  handleNavToggle();
+                  // setTimeout(() => {
+                  //   //    console.log("Timeout reached, scrolling...");
+                  //   if (bottomRef.current) {
+                  //     bottomRef.current.scrollIntoView({
+                  //       behavior: "smooth",
+                  //     });
+                  //   }
+                  // }, 325);
+                }}
+              >
+                <picture  data-type="interact" data-position="absolute">
+                  <img src={sampleImage2} alt="" />
+                </picture>
+              </group>
+
+              <group
+                data-width="auto"
+                data-direction="column"
+                data-adaptive="open-state"
+                data-contain=""data-align="center"
+              >
+                <text data-ellipsis="" data-text-size="large" data-weight="700">
+                Charlote Thompson
+                </text>
+
+                <text data-ellipsis="" data-light="">
+                  New York, USA
+                </text>
+              </group>
+            </group>
+
+
+
+
+          <separator data-horizontal="" data-interval="15"></separator>
           <Ripple>
             <group
-            data-touch-action="manipulation"
+              data-touch-action="manipulation"
               className={isNavOpen ? "open" : ""}
               data-name="side_nav_switch"
               onClick={handleNavToggle}
@@ -122,7 +181,7 @@ const SideNav = () => {
               data-wrap="no"
             >
               <icon data-length="30">
-                <SvgHamburgerToRight />
+                <SvgHamburgerToLeft />
               </icon>
               <text data-ellipsis="" data-adaptive="open-state">
                 Close
@@ -135,7 +194,7 @@ const SideNav = () => {
             data-fit="1"
             data-gap="5"
           >
-            <separator data-horizontal="" data-interval="10"></separator>
+            <separator data-horizontal="" data-interval="15"></separator>
             <Ripple>
               <group
                 data-contain=""
@@ -148,9 +207,7 @@ const SideNav = () => {
                 data-wrap="no"
               >
                 <icon data-length="30">
-                  
-                <Armchair size={20}/>
-
+                  <Armchair size={20} />
                 </icon>
                 <text data-ellipsis="" data-adaptive="open-state">
                   Home
@@ -169,14 +226,17 @@ const SideNav = () => {
                 data-wrap="no"
               >
                 <icon data-length="30">
-                <Grip size={20}/>
+                  <Grip size={20} />
                 </icon>
                 <text data-ellipsis="" data-adaptive="open-state">
                   Collections
                 </text>
               </group>
             </Ripple>
-            <separator data-horizontal="" data-interval="10"></separator>
+            <group data-height="100">
+
+            </group>
+            <separator data-horizontal="" data-interval="15"></separator>
             <group
               data-interactive=""
               data-space="10"
@@ -187,13 +247,13 @@ const SideNav = () => {
               data-cursor="pointer"
             >
               <icon data-adaptive="open-state" data-length="30">
-              <ShoppingBag size={20}/>
+                <ShoppingBag size={20} />
               </icon>
               <text data-light="" data-ellipsis="" data-adaptive="open-state">
                 Cart
               </text>
-              <dot data-adaptive="open-state"></dot>
-              <group data-length="30" data-height="30" data-direction="column">
+
+              <group data-position="right" data-length="30" data-height="30" data-direction="column">
                 <group
                   data-position="center"
                   data-length="25"
@@ -208,69 +268,25 @@ const SideNav = () => {
                 </group>
               </group>
             </group>
-            <group data-position="bottom" ref={bottomRef}>
-            <group ></group>
+            {/* <group data-position="bottom" ref={bottomRef}>
+              <group></group>
 
-<separator data-horizontal="" data-interval="10"></separator>
-</group>
-            <Ripple>
-              <group
-                // data-space="10"
-                data-space={isNavOpen ? "10" : ""}
-                data-gap="15"
-                data-radius={isNavOpen ? "10" : "30"}
-                data-align="center"
-                data-interactive=""
-                data-cursor="pointer"
-                data-wrap="no"
-                data-contain=""
-              >
-                <group
-                  data-type="interact"
-                  data-width="auto"
-                  data-ratio="1:1"
-                  data-background="main"
-                  data-height="50"
-                  data-radius="30"
-                  data-contain=""
-                  onClick={() => {
-                    handleNavToggle();
-                    setTimeout(() => {
-                      //    console.log("Timeout reached, scrolling...");
-                      if (bottomRef.current) {
-                        bottomRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }
-                    }, 325);
-                  }}
-                >
-                  <picture data-position="absolute">
-                    <img src={sampleImage2} alt="" />
-                  </picture>
-                </group>
 
-                <group
-                  data-width="auto"
-                  data-direction="column"
-                  data-adaptive="open-state"
-                  data-contain=""
-                >
-                  <text data-ellipsis="" data-weight="700">
-                    Jane Smith
-                  </text>
-
-                  <text data-ellipsis="" data-light="">
-                    Sample Organization
-                  </text>
-                </group>
-              </group>
-            </Ripple>
+            </group> */}
           </group>
         </group>
       </group>
-      
-    </>
+
+
+<group data-width="auto"  data-wrap="no" >
+<separator data-vertical="" data-height=""></separator>
+ <group data-contain="" data-direction="column" data-gap="10" data-space="30">
+  <text data-text-size="large" data-weight="700">Sidebar</text>
+  <text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Can be Combined together in a single container</text>
+  </group>
+</group>
+
+    </group>
   );
 };
 

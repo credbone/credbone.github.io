@@ -959,7 +959,9 @@ picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:au
 [data-transition-prop="stroke-dashoffset"]{transition-property: stroke-dashoffset;}
 [data-transition-prop="stroke-dasharray"]{transition-property: stroke-dasharray;}
 [data-transition-prop="transform"]{transition-property: transform;}
-
+[data-transition-prop="width"]{transition-property: width;}
+[data-transition-prop="height"]{transition-property: height;}
+[data-transition-prop="padding"]{transition-property: padding;}
 
 [data-rotate="-225"]{transform: rotate(-225deg);}
 

@@ -50,6 +50,12 @@ export const routesData: RouteData[] = [
     title: "Navigation" 
   },
   { 
+    path: "Navigation/SideBar", 
+    tags: ["navigation", "menu", "user interface", "navbar", "sidebar", "links", "tabs"], 
+    description: "Sidebar navigation component Example for streamlined UIs.", 
+    title: "Sidebar" 
+  },
+  { 
     path: "InputsAndForms", 
     tags: ["inputs", "forms", "user interface", "password", "text fields", "input fields", "user input", "data entry"], 
     description: "Input fields and forms for user interaction and data entry.", 
