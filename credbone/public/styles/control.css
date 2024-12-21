@@ -446,7 +446,9 @@ a[data-link]:active {transform:translateY(1px)}
 
 
 
-[data-adaptive="mobile"] {
+[data-adaptive="mobile"],
+[data-adaptive="mobile-600"]
+{
   display: none;
 }
 
@@ -467,6 +469,10 @@ a[data-link]:active {transform:translateY(1px)}
 
 {
   [data-adaptive="600"]{display: none;}
+
+  [data-adaptive="mobile-600"]{display: flex;}
+  [data-position="absolute-600"] {position: absolute;}
+
 }
 
 

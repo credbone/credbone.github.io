@@ -46,9 +46,9 @@ const Landing: React.FC = () => {
              data-background="main-background"
              >
                     <group data-height="20"></group>
-            <group data-space-horizontal="20">
-              <NavLink data-type="group" data-drag="none" data-width="auto" data-name="tab" data-interactive="" data-space-vertical="15" data-space-horizontal="20" to="./BarsAndTiles" > <text data-weight="600">Bars & Tiles</text> </NavLink>
-              <NavLink data-type="group" data-drag="none" data-width="auto" data-name="tab" data-interactive="" data-space-vertical="15" data-space-horizontal="20" to="./SideBar" > <text data-weight="600">Sidebar</text> </NavLink>
+            <group data-space-horizontal="20" data-wrap="no" data-scroll="" data-scrollbar="none">
+              <NavLink  data-type="group" data-drag="none" data-width="auto" data-name="tab" data-interactive="" data-space-vertical="15" data-space-horizontal="20" to="./BarsAndTiles" > <text data-weight="600" data-ellipsis="">Bars & Tiles</text> </NavLink>
+              <NavLink  data-type="group" data-drag="none" data-width="auto" data-name="tab" data-interactive="" data-space-vertical="15" data-space-horizontal="20" to="./SideBar" > <text data-weight="600" data-ellipsis="">Sidebar</text> </NavLink>
             </group> 
 
             <group data-background="main" data-height="2"></group>

@@ -31,7 +31,7 @@ const SideNav = () => {
   const navRef = useRef<HTMLDivElement>(null);
 
   return (
-    <group data-align="start" data-gap="30" >
+    <group data-align="start" data-gap="30" data-wrap="no" >
       <group
         ref={navRef}
         data-placement="right"
@@ -278,11 +278,18 @@ const SideNav = () => {
       </group>
 
 
-<group data-width="auto"  data-wrap="no" >
+<group 
+data-width="auto" 
+ data-wrap="no" 
+ data-contain="" 
+ data-position="absolute-600"
+// data-adaptive={isNavOpen ? "600" : ""}
+  >
+    <group data-length="120" data-adaptive="mobile-600"></group>
 <separator data-vertical="" data-height=""></separator>
  <group data-contain="" data-direction="column" data-gap="10" data-space="30">
   <text data-text-size="large" data-weight="700">Sidebar</text>
-  <text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Can be Combined together in a single container</text>
+  <text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Example Sidebar Navigation, customizable to display advanced UI for specific requirements.</text>
   </group>
 </group>
 
