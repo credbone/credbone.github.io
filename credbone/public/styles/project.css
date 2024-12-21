@@ -43,7 +43,7 @@
     [data-theme="dark"] [data-brightness="adaptive"]{filter: brightness(.5);}
     [data-theme="dark"] [data-mix-blend-mode="overlay"]{mix-blend-mode: overlay;}
 
-.selected [data-brightness="adaptive"]{filter: brightness(1);}
+
 
 
 
@@ -124,7 +124,7 @@
   }
 
 
-
+  .selected [data-brightness="adaptive"]{filter: brightness(1);}
 
 [data-sticky="top"].sticky{top: -1px;border-top: 1px solid transparent; flex-shrink: 0; margin-top: -1px;}
 

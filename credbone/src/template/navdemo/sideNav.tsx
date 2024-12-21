@@ -4,8 +4,8 @@ import { SvgHamburgerToLeft, SvgHamburgerToRight } from "../../components/svg";
 import React, { useEffect, useRef, useState } from "react";
 
 import sampleImage from "../../styles/images/samples/p_6.png";
-import sampleImage2 from "../../styles/images/samples/p_1.png";
-import { Armchair, Grip, ShoppingBag } from "lucide-react";
+import sampleImage2 from "../../styles/images/samples/ai_res/res-34.jpg";
+import { Armchair, BookOpen, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -207,7 +207,7 @@ const SideNav = () => {
                 data-wrap="no"
               >
                 <icon data-length="30">
-                  <Armchair size={20} />
+                  <BookOpen size={20} />
                 </icon>
                 <text data-ellipsis="" data-adaptive="open-state">
                   Home

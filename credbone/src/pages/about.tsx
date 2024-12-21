@@ -3,9 +3,9 @@ import React from "react";
 import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
-import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
+import { SvgLogoIllustration, SvgWaves, SvgWood } from "../components/icon/svgRes";
 
-import sampleImage from "../styles/images/samples/res_71.jpg";
+import sampleImage from "../styles/images/samples/res_80.jpg";
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 
 
@@ -42,6 +42,9 @@ function About() {
           >
             <img src={sampleImage} alt="" />
           </picture>
+
+
+
 
           <group data-space="50"  data-dark="" data-sticky="bottom">
           <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
@@ -123,6 +126,8 @@ function About() {
             </group>
         </group>
 
+
+
         <group data-gap="40" data-index="2">
           <group data-width="auto">
             <text
@@ -167,7 +172,7 @@ function About() {
           <SvgLogoIllustration />
         </group>
 
-        <group data-type="grid" data-gap="30" data-grid-template="320">
+        <group data-type="grid" data-gap="50" data-grid-template="320">
           <group
             data-wrap="no"
             data-direction="column"
@@ -177,7 +182,7 @@ function About() {
             data-gap="30"
           >
             <group
-              data-background="context"
+             
               data-border=""
               data-radius="20"
               data-direction="column"
@@ -186,7 +191,7 @@ function About() {
               data-justify="end"
               data-wrap="wrap"
               data-height="200"
-              data-elevation="2"
+       //       data-elevation="2"
             >
               <text
                 data-text-size="72"
@@ -248,7 +253,7 @@ function About() {
             data-gap="30"
           >
             <group
-              data-background="highlight"
+              data-background="adaptive-gray"
               data-radius="20"
               data-direction="column"
               data-space="30"
@@ -258,15 +263,7 @@ function About() {
               data-wrap="wrap"
               data-height="200"
             >
-              {/* <group
-              data-position="absolute"
-              data-left="0"
-              data-bottom="0"
-              data-radius="20"
-              data-contain=""
-            >
-              <SvgPlantTwo />
-            </group> */}
+
 
               <group data-direction="column" data-gap="15">
                 <text
@@ -333,7 +330,7 @@ function About() {
             data-gap="30"
           >
             <group
-              data-background="highlight"
+              data-background="adaptive-gray"
               data-radius="20"
               data-direction="column"
               data-space="30"
