@@ -2,6 +2,7 @@ import React from "react";
 import { SvgResumeQR } from "../components/svg";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
+import { Printer } from "lucide-react";
 
 const handlePrint = () => {
   window.print();
@@ -391,7 +392,7 @@ In parallel, I held a UI design leadership role at Wovenmedia, where
                   data-gap={isSticky ? "0" : "10"}
                 >
                   <group data-length={isSticky ? "60" : "20"}>
-                    <icon data-position="center">print</icon>
+                    <icon data-position="center"> <Printer size={20}/> </icon>
                   </group>
 
                   <text
