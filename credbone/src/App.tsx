@@ -47,9 +47,10 @@ function App() {
           <view data-vertical="">
           <VerticalNav  data-print="hide" /> 
             <Routes>
-              <Route path="/*" element={<Navigate replace to="/Home" />} />
+              <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/Components/*" element={<Template />} />
-              <Route path="/Home" element={<Components />} />
+              <Route path="/" element={<Components />} />
+
 
 
               <Route path="/*" element={<MainLayout />}>

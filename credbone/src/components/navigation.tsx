@@ -5,13 +5,13 @@ import Tooltip from "./tooltip";
 
 import { useNavContext } from "../components/NavProvider";
 
-import { IconBook, IconFold, IconHome, IconSearch, IconSettings } from "./icon/credIcons";
+
 import { SvgHamburger, SvgPlus } from "./svg";
-import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
+import { Bolt, BookOpen, Box, House, Search } from "lucide-react";
 
 
 const navItems = [
-  { to: "/Home", icon: <House size={20}/> , label: "Home",type:"link"  },
+  { to: "", icon: <House size={20}/> , label: "Home",type:"link"  },
   { to: "/Components", icon: <Box size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
   { to: "/Components/Typeface", icon: <Box size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
   { to:"/Components", type:"separator"},
@@ -47,7 +47,7 @@ const Navigation: React.FC = () => {
 
 <separator data-vertical=""></separator>
 
-  <NavLink data-type="group" data-select-theme="main" data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Home">
+  <NavLink data-type="group" data-select-theme="main" data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/">
 <group  data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <House size={20} />
 </group>
@@ -92,9 +92,18 @@ const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> 
 
   useEffect(() => {
     const updateIndicator = () => {
-      const currentIndex = navItems.findIndex((item) =>
-        location.pathname.startsWith(item.to)
-      );
+      const currentIndex = navItems.findIndex((item) => {
+        // If `item.to` is missing, treat it as "Home" and check for empty path or "/"
+        if (!item.to) {
+          return location.pathname === "/" || location.pathname === "";
+        }
+        return location.pathname.startsWith(item.to);
+      });
+    
+      if (currentIndex === -1) {
+        // No matching item found; exit early
+        return;
+      }
       const activeItem = navRefs.current[currentIndex];
 
       if (activeItem) {
