@@ -1,11 +1,11 @@
-import Marquee from "../../components/Marquee";
-import Ripple from "../../components/Ripple";
-import { SvgHamburgerToLeft, SvgHamburgerToRight } from "../../components/svg";
-import React, { useEffect, useRef, useState } from "react";
 
-import sampleImage from "../../styles/images/samples/p_6.png";
+import Ripple from "../../components/Ripple";
+import { SvgHamburgerToLeft } from "../../components/svg";
+import { useRef, useState } from "react";
+
+
 import sampleImage2 from "../../styles/images/samples/ai_res/res-34.jpg";
-import { Armchair, BookOpen, Grip, ShoppingBag } from "lucide-react";
+import { BookOpen, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -27,7 +27,7 @@ const SideNav = () => {
   //   };
   // }, []);
 
-  const bottomRef = useRef<HTMLDivElement>(null);
+  // const bottomRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
   return (

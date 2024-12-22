@@ -130,8 +130,8 @@ const InputInner: React.FC<InputProps> = React.forwardRef<
       ...rest,
     };
     const size = "compact";
-    const antClassName = "form_field_ant";
-    let isAnt = false;
+    // const antClassName = "form_field_ant";
+    // let isAnt = false;
 
     switch (type) {
 

@@ -10,7 +10,7 @@ import { useModal } from "../components/Modal";
 
 const QuickDemos: React.FC = () => {
 
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
 
   return (
     <group data-space="30" data-gap="30" data-align="start">

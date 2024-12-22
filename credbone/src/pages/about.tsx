@@ -3,7 +3,7 @@ import React from "react";
 import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
-import { SvgLogoIllustration, SvgWaves, SvgWood } from "../components/icon/svgRes";
+import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_80.jpg";
 import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";

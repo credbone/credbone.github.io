@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 
 import Ripple from "../components/Ripple";
-import TextReveal from "../components/TextReveal";
+
 import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-import sampleImage from "../styles/images/samples/res_71.jpg";
+
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 import sampleImage_3 from "../styles/images/samples/res_001.png";
 import Popover from "../components/popover";
@@ -54,7 +54,7 @@ const phrases = [
 
 const Components: React.FC = () => {
   const { openModal, closeModal } = useModal();
-  const [message, setMessage] = useState<string>("");
+ // const [message, setMessage] = useState<string>("");
 
   const modalConfig = {
     "data-radius": "none",
@@ -68,10 +68,10 @@ const Components: React.FC = () => {
     "data-modal-backdrop":"dark"
   };
 
-  useEffect(() => {
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    setMessage(randomPhrase);
-  }, []);
+  // useEffect(() => {
+  //   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  //   setMessage(randomPhrase);
+  // }, []);
 
   return (
     <group data-scroll="" data-index="1">

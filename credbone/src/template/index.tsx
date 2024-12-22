@@ -24,8 +24,6 @@ import Dashboard from "./Dashboard";
 import Modal from "./Modal";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
 
-import StuckReporter from "../components/StuckReporter";
-import Ripple from "../components/Ripple";
 import QuickDemos from "./quickDemos";
 import Overview from "./Overview";
 import Snackbar from "./Snackbar";
@@ -36,7 +34,7 @@ const Template: React.FC = () => {
   const viewRef = useRef<HTMLDivElement>(null);
 
   const [isSubNavOpen, setIsNavOpen] = useState(true); // Lift the state up to the parent
-  const toggleNav = () => setIsNavOpen((prev) => !prev); // Function to toggle
+  // const toggleNav = () => setIsNavOpen((prev) => !prev); // Function to toggle
   const closeNav = () => setIsNavOpen(false);
   // const navRef = useRef<HTMLDivElement | null>(null);
   // const toggleBtnRef = useRef<HTMLDivElement | null>(null);

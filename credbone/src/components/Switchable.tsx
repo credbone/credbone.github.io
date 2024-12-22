@@ -1,5 +1,4 @@
 import { PropsWithChildren, useState, useEffect, useRef } from "react";
-import Ripple from "./Ripple";
 import { Grip } from "lucide-react";
 
 type SwitchableProps = PropsWithChildren<{

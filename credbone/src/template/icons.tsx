@@ -3,7 +3,6 @@ import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 
 import {
-  IconBook,
   IconHeart,
   IconHome,
   IconPicker,

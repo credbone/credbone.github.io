@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React from "react";
 
 interface GaugeZoomProps {
   value: number;
@@ -11,7 +11,7 @@ const GaugeZoom: React.FC<GaugeZoomProps> = ({ value, max, size }) => {
   // const circumference = 2 * Math.PI * radius;
   // const offset = circumference - (value / max) * circumference;
 
-  const maskid = useId();
+  //const maskid = useId();
 
   return (
     <svg

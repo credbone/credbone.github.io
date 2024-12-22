@@ -11,7 +11,7 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { isDesktop } from "react-device-detect";
 
 
-import { SvgPlus } from "../components/svg";
+
 import { Paintbrush, PaintBucket } from "lucide-react";
 
 export const ColorPalette = [

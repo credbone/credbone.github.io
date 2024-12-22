@@ -63,33 +63,33 @@ const SimplePaint: React.FC = () => {
     };
   }, []);
 
-  const toggleFullscreen = () => {
-    const paintapp = appRef.current;
-    if (!paintapp) return;
+  // const toggleFullscreen = () => {
+  //   const paintapp = appRef.current;
+  //   if (!paintapp) return;
 
-    if (!isFullscreen) {
-      if (paintapp.requestFullscreen) {
-        paintapp.requestFullscreen();
-      } else if ((paintapp as any).webkitRequestFullscreen) {
-        (paintapp as any).webkitRequestFullscreen(); // Safari
-      } else if ((paintapp as any).mozRequestFullScreen) {
-        (paintapp as any).mozRequestFullScreen(); // Firefox
-      } else if ((paintapp as any).msRequestFullscreen) {
-        (paintapp as any).msRequestFullscreen(); // IE/Edge
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if ((document as any).webkitExitFullscreen) {
-        (document as any).webkitExitFullscreen();
-      } else if ((document as any).mozCancelFullScreen) {
-        (document as any).mozCancelFullScreen();
-      } else if ((document as any).msExitFullscreen) {
-        (document as any).msExitFullscreen();
-      }
-    }
-    setIsFullscreen(!isFullscreen);
-  };
+  //   if (!isFullscreen) {
+  //     if (paintapp.requestFullscreen) {
+  //       paintapp.requestFullscreen();
+  //     } else if ((paintapp as any).webkitRequestFullscreen) {
+  //       (paintapp as any).webkitRequestFullscreen(); // Safari
+  //     } else if ((paintapp as any).mozRequestFullScreen) {
+  //       (paintapp as any).mozRequestFullScreen(); // Firefox
+  //     } else if ((paintapp as any).msRequestFullscreen) {
+  //       (paintapp as any).msRequestFullscreen(); // IE/Edge
+  //     }
+  //   } else {
+  //     if (document.exitFullscreen) {
+  //       document.exitFullscreen();
+  //     } else if ((document as any).webkitExitFullscreen) {
+  //       (document as any).webkitExitFullscreen();
+  //     } else if ((document as any).mozCancelFullScreen) {
+  //       (document as any).mozCancelFullScreen();
+  //     } else if ((document as any).msExitFullscreen) {
+  //       (document as any).msExitFullscreen();
+  //     }
+  //   }
+  //   setIsFullscreen(!isFullscreen);
+  // };
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;

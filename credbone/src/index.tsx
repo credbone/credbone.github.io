@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import { isDesktop, isMobile } from "react-device-detect";
 import { ThemeProvider } from "./components/ThemeProvider";
 import MetaThemeColorUpdater from "./components/MetaThemeColorUpdater";
-import { ModalProvider } from "./components/Modal";
+
 import SnackbarContainer from "./components/snackbar/SnackbarContainer";
 
 isMobile && document.documentElement.classList.add("mobile");

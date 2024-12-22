@@ -1,6 +1,6 @@
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
-import React, { useState, useEffect, useRef, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import Tooltip from "../components/tooltip";
 import { LeftNavigation } from "../components/navigation";
 import buildInfo from "../buildInfo.json";
@@ -13,7 +13,7 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 import { useNavContext } from "../components/NavProvider";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
-import { IconInfo } from "../components/icon/credIcons";
+
 import { Info } from "lucide-react";
 
 const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {

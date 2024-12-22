@@ -1,9 +1,4 @@
-import React from "react";
-import { RouteData, routesData } from "./routesData";
-import Ripple from "../../components/Ripple";
-import { IconSearch } from "../../components/icon/credIcons";
-import { Link } from "react-router-dom";
-import Tooltip from "../../components/tooltip";
+
 import SearchComponent from "./searchComponent";
 
 function Search() {

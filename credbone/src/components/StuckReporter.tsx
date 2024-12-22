@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, cloneElement, ReactElement, ReactNode } from "react";
+import React, { useState, useEffect, useRef, cloneElement, ReactElement } from "react";
 
 interface Props {
   children: (isSticky: boolean) => ReactElement;
