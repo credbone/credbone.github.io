@@ -12,6 +12,7 @@ export const navItems = [
   { to: "Components/Buttons",  label: "Buttons" },
   { to: "Components/InputsAndForms",  label: "Input & Forms" },
   { to: "Components/TooltipAndPopover",  label: "Tooltip & Popover" },
+  { to: "Components/Snackbar",  label: "Snackbar", new:"true"  },
   { to: "Components/Modal",  label: "Modal" },
 
 

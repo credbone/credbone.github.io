@@ -14,7 +14,7 @@ import Tooltip from "../components/tooltip";
 import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
 
 import sectionImage from "../styles/images/samples/wide_res_61.jpg";
-import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Grip, Printer, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Printer, X } from "lucide-react";
 
 
 

@@ -201,7 +201,7 @@ data-gap="20"
 
       </group>
 
-      <group data-height="200"></group>
+
     </group>
   );
 };

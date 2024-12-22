@@ -12,6 +12,7 @@ const routeTitles: { [key: string]: string } = {
   'Navigation': 'Navigation',
   'InputsAndForms': 'Inputs & Forms',
   'TooltipAndPopover': 'Tooltip & Popover',
+  'Snackbar': 'Snackbar',
   'CardsAndList': 'Cards & List',
   'Modals': 'Modals',
   'About': 'About',

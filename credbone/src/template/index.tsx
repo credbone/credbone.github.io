@@ -28,6 +28,7 @@ import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
 import QuickDemos from "./quickDemos";
 import Overview from "./Overview";
+import Snackbar from "./Snackbar";
 
 
 const Template: React.FC = () => {
@@ -119,6 +120,7 @@ const Template: React.FC = () => {
 
               <Route path="InputsAndForms" element={<InputsAndForms />} />
               <Route path="TooltipAndPopover" element={<TooltipPopover />} />
+              <Route path="Snackbar" element={<Snackbar />} />
               <Route path="CardsAndList" element={<Cards />} />
               <Route path="Miscellaneous" element={<Miscellaneous />} />
               <Route path="Dashboard" element={<Dashboard />} />
@@ -126,6 +128,11 @@ const Template: React.FC = () => {
               <Route path="QuickDemos" element={<QuickDemos/>} />
 
             </Routes>
+
+            <group data-height="300">
+
+</group>
+
           </group>
 
           {/* <StuckReporter>

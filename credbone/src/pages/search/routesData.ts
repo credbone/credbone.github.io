@@ -63,9 +63,15 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "TooltipAndPopover", 
-    tags: ["tooltip", "popover", "toast", "snackbar", "user interface", "hover", "hint", "overlay"], 
+    tags: ["tooltip", "popover","user interface", "hover", "hint", "overlay"], 
     description: "Tooltip, popover, toast, and snackbar overlay tools.", 
     title: "Tooltip & Popover" 
+  },
+  { 
+    path: "Snackbar", 
+    tags: ["toast", "snackbar", "user interface", "hint", "overlay"], 
+    description: "Toast, and snackbar overlay tools.", 
+    title: "Snackbar" 
   },
   { 
     path: "CardsAndList", 

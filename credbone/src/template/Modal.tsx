@@ -148,7 +148,7 @@ const Modal: React.FC = () => {
         data-column-gap="15"
       >
           <group
-            data-size="medium"
+           
             data-height="auto"
             data-max-height="fit"
             data-radius="15"
@@ -191,7 +191,7 @@ const Modal: React.FC = () => {
           </group>
 
           <group
-            data-size="medium"
+            
             data-height="auto"
             data-max-height="fit"
             data-radius="15"
