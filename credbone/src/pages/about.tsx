@@ -6,7 +6,7 @@ import Ripple from "../components/Ripple";
 import { SvgLogoIllustration, SvgWaves, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_80.jpg";
-import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
+import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 
 
 const links = [
@@ -172,87 +172,72 @@ function About() {
           <SvgLogoIllustration />
         </group>
 
-        <group data-type="grid" data-gap="50" data-grid-template="320">
-          <group
-            data-wrap="no"
-            data-direction="column"
-            data-width="auto"
-            data-align="start"
-            data-index="2"
-            data-gap="30"
-          >
-            <group
+        <group data-type="grid" data-gap="30" data-grid-template="320">
+
+        <group
              
-              data-border=""
-              data-radius="20"
-              data-direction="column"
-              data-space="30"
-              data-gap="15"
-              data-justify="end"
-              data-wrap="wrap"
-              data-height="200"
-       //       data-elevation="2"
-            >
-              <text
-                data-text-size="72"
-                data-height="50"
-                data-contain=""
-                data-weight="100"
-                data-opacity="10"
-              >
-                01
-              </text>
-              <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
-                Purpose & Vision
-              </text>
-            </group>
+             data-border=""
+             data-radius="20"
+             data-direction="column"
+             data-space="30"
+             data-gap="15"
+             data-justify="end"
+             data-wrap="wrap"
+            // data-height="200"
+      //       data-elevation="2"
+           >
+             <text
+               data-text-size="72"
+               data-height="50"
+               data-contain=""
+               data-weight="100"
+               data-opacity="10"
+             >
+               01
+             </text>
+             <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
+               Purpose & Vision
+             </text>
 
-            <group
-              data-direction="column"
-              data-space-horizontal="30"
-              data-gap="30"
-              data-align="start"
-            >
-              <text data-wrap="wrap" data-line="1.5" data-text-size="15">
-                To provide a robust UI foundation that transforms ideas into
-                complete, functional applications—combining design elegance with
-                practical efficiency.
-              </text>
-              <Ripple>
-                <Link
-                  data-contain=""
-                  data-drag="none"
-                  data-type="group"
-                  to="/Components/Overview"
-                  data-interactive=""
-                  data-width="auto"
-                  data-background="highlight"
-                  data-backdrop="20"
-                  //   data-color="main-text"
-                  //   data-ink-color="main-dark"
-                  data-space="15"
-                  data-radius="10"
-                >
-                  <text
-                    data-weight="700"
-                    //  data-wrap="wrap"
-                    data-ellipsis=""
-                  >
-                    Explore Components
-                  </text>
-                </Link>
-              </Ripple>
-            </group>
-          </group>
+             <group
+             data-direction="column"
+             data-gap="30"
+             data-align="start"
+           >
+             <text data-wrap="wrap" data-line="1.5">
+               To provide a robust UI foundation that transforms ideas into
+               complete, functional applications—combining design elegance with
+               practical efficiency.
+             </text>
+             <Ripple>
+               <Link
+                 data-contain=""
+                 data-drag="none"
+                 data-type="group"
+                 to="/Components/Overview"
+                 data-interactive=""
+                 data-width="auto"
+                 data-background="highlight"
+                 data-backdrop="20"
+                 //   data-color="main-text"
+                 //   data-ink-color="main-dark"
+                 data-space="15"
+                 data-radius="10"
+               >
+                 <text
+                   data-weight="700"
+                   //  data-wrap="wrap"
+                   data-ellipsis=""
+                 >
+                   Explore Components
+                 </text>
+               </Link>
+             </Ripple>
+           </group>
 
-          <group
-            data-wrap="no"
-            data-direction="column"
-            data-width="auto"
-            data-align="start"
-            data-gap="30"
-          >
-            <group
+           </group>
+
+           <group
               data-background="adaptive-gray"
               data-radius="20"
               data-direction="column"
@@ -261,7 +246,7 @@ function About() {
               data-justify="end"
               data-align="start"
               data-wrap="wrap"
-              data-height="200"
+              
             >
 
 
@@ -283,15 +268,13 @@ function About() {
                   Designed to Scale
                 </text>
               </group>
-            </group>
 
-            <group
+              <group
               data-direction="column"
-              data-space-horizontal="30"
               data-gap="30"
               data-align="start"
             >
-              <text data-wrap="wrap" data-line="1.5" data-text-size="15">
+              <text data-wrap="wrap" data-line="1.5" >
                 System built to handle projects of any size. From small
                 prototypes to enterprise-level applications, every element
                 adapts, grows, and evolves.
@@ -320,15 +303,9 @@ function About() {
                 </Link>
               </Ripple>
             </group>
-          </group>
 
-          <group
-            data-wrap="no"
-            data-direction="column"
-            data-width="auto"
-            data-align="start"
-            data-gap="30"
-          >
+            </group>
+
             <group
               data-background="adaptive-gray"
               data-radius="20"
@@ -337,17 +314,10 @@ function About() {
               data-gap="15"
               data-justify="end"
               data-wrap="wrap"
-              data-height="200"
+             
               data-align="start"
             >
-              <group
-                data-position="absolute"
-                data-left="0"
-                data-bottom="0"
-                data-radius="20"
-                data-contain=""
-                data-height="240"
-              ></group>
+
 
               <group data-direction="column" data-gap="15">
                 <text
@@ -367,14 +337,14 @@ function About() {
                   Up to Date
                 </text>
               </group>
-            </group>
 
-            <group
+
+              <group
               data-direction="column"
-              data-space-horizontal="30"
+            
               data-gap="30"
             >
-              <text data-wrap="wrap" data-line="1.5" data-text-size="15">
+              <text data-wrap="wrap" data-line="1.5" >
                 Updated frequently to ensure every component not only keeps up
                 with modern design trends but also stays reliable and ready to
                 meet evolving applications.
@@ -422,7 +392,8 @@ function About() {
                 </group>
               </group>
             </group>
-          </group>
+
+            </group>
         </group>
 
         <group

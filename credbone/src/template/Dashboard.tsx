@@ -3,7 +3,7 @@ import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
-import sampleImage from "../styles/images/samples/wide_res_63.jpg";
+import sampleImage from "../styles/images/samples/wide_res_65.webp";
 import Count from "../components/Coutner";
 
 

@@ -80,7 +80,7 @@ const Overview: React.FC = () => {
           >
             Overview
           </text>
-          <separator data-horizontal=""></separator>
+
           <text
             data-wrap="wrap"
             data-max-length="400"

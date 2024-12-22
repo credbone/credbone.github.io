@@ -33,7 +33,7 @@ import {
 import { Link } from "react-router-dom";
 
 import sectionImage from "../styles/images/samples/wide_res_74.jpg";
-import sectionImage_2 from "../styles/images/samples/wide_res_66.jpg";
+import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
 
 const lucideIcons = [
   { name: <Snail size={20} />, title: "Snail" },
