@@ -8,7 +8,7 @@ import ThemeToggle from "../components/themeToggle";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 
-import sampleImage from "../styles/images/samples/res_73.jpg";
+import sampleImage from "../styles/images/samples/res_73.webp";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -114,15 +114,17 @@ const Modal: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-align="start">
       <group data-gap="30">
-        <group data-direction="column" data-gap="10">
+      <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
           <text
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
-            data-color="transparent"
-            data-background-clip="text"
-            data-background="main"
+
+           
           >
             Modal
           </text>
@@ -130,7 +132,7 @@ const Modal: React.FC = () => {
             data-wrap="wrap"
             data-length="600"
             data-line="1.5"
-            data-light=""
+
           >
             Modals are pop-up windows that capture attention, appearing after a
             user action. They display important content or options, requiring
@@ -145,7 +147,6 @@ const Modal: React.FC = () => {
         data-type="column"
         data-column-gap="15"
       >
-        <group data-gap="15">
           <group
             data-size="medium"
             data-height="auto"
@@ -199,7 +200,6 @@ const Modal: React.FC = () => {
           >
             {demoModals}
           </group>
-        </group>
 
         <group
           data-size="medium"

@@ -268,14 +268,16 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-      <group data-direction="column" data-gap="10">
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-ellipsis=""
-          // data-color="main"
-          data-opacity="10"
+
         >
           Color System
         </text>
@@ -283,7 +285,7 @@ const Colors: React.FC = () => {
           data-wrap="wrap"
           data-max-length="600"
           data-line="1.5"
-          data-light=""
+
         >
           A color system can assist in crafting a color palette that mirrors
           brand or personal style, while also considering features like dark
@@ -522,7 +524,7 @@ const Colors: React.FC = () => {
         //   data-max-length="1120"
         data-type="grid"
         data-gap="5"
-        data-grid-template="120"
+        data-grid-template="110"
         // data-border=""
         // data-radius="20"
         data-contain=""

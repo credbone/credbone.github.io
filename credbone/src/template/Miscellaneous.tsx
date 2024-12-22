@@ -32,13 +32,16 @@ const Miscellaneous: React.FC = () => {
 
 <group data-space="30" data-gap="30" data-align="start" >
 
-<group  data-direction="column" data-gap="10">
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
       <text
         data-weight="700"
         data-text-size="xxx-large"
         data-wrap="wrap"
         data-ellipsis=""
-        data-color="main"
+     //   data-color="main"
       >
        Miscellaneous
       </text>
@@ -46,7 +49,7 @@ const Miscellaneous: React.FC = () => {
         data-wrap="wrap"
         data-length="500"
         data-line="1.5"
-         data-light=""
+
       >
      Encompasses a variety of small, diverse UI components that don't fit into other categories, including elements like marquees and counters.
       </text>

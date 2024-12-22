@@ -12,12 +12,19 @@ const Landing: React.FC = () => {
   return (
     <>
       <group data-height="30"></group>
-<group data-direction="column" data-space-horizontal="30" data-gap="10">
+<group data-direction="column" data-space-horizontal="30">
+
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
+       
+
             <text
               data-weight="700"
               data-text-size="xxx-large"
               data-ellipsis=""
-              data-color="main"
+            
             >
               Navigation
             </text>
@@ -26,11 +33,12 @@ const Landing: React.FC = () => {
               data-wrap="wrap"
               data-length="300"
               data-line="1.5"
-              data-opacity="60"
+             
             >
               Navigation bars allow movement between primary destinations in an
               app.
             </text>
+            </group>
           </group>
 
       <group data-height="10"></group>

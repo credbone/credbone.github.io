@@ -48,8 +48,31 @@ const Typeface: React.FC = () => {
   }));
 
   return (
+
+
+<group  data-space="30" data-gap="30">
+
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
+        <text
+          data-weight="700"
+          data-text-size="xxx-large"
+          data-wrap="wrap"
+        //  data-color="main"
+          data-ellipsis=""
+        >
+          Typeface
+        </text>
+        <text data-wrap="wrap" data-length="400" data-line="1.5">
+        This section shows the current typeface, its glyphs, and sizes in use, with a demo for context.
+        </text>
+      </group>
+
+
     <group
-      data-space="30"
+     
       data-column-gap="15"
       data-align="start"
       data-type="column"
@@ -67,9 +90,6 @@ const Typeface: React.FC = () => {
           data-direction="column"
           data-gap="20"
         >
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-            Typeface
-          </text>
           <text data-weight="700" data-text-size="96" data-cast-shadow="1">
           <TextReveal text="Aa" duration={800} />
           </text>
@@ -253,6 +273,7 @@ const Typeface: React.FC = () => {
         </group>
       </group>
     </group>
+</group>
   );
 };
 

@@ -15,13 +15,16 @@ const QuickDemos: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-align="start">
       <group data-gap="30">
-        <group data-direction="column" data-gap="10">
+      <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
           <text
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
-            data-color="main"
+         //   data-color="main"
           >
             Quick Demos
           </text>

@@ -213,21 +213,24 @@ const TooltipPopover: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="10"
-        // data-background="main-background"
-      >
+
+
+
+      
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
-          data-color="main"
+        //  data-color="main"
           data-ellipsis=""
         >
           Tooltip & Popover
         </text>
-        <text data-wrap="wrap" data-length="600" data-line="1.5" data-light="">
+        <text data-wrap="wrap" data-length="600" data-line="1.5">
           Tooltips display informative text when users hover over, focus on, or
           tap an element, while a popover is a floating card that appears when
           users click or hover over an element.

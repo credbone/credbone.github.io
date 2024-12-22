@@ -121,16 +121,21 @@ const Icons: React.FC = () => {
       data-align="start"
       data-direction="column"
     >
-      <group data-direction="column" data-gap="10">
+
+      
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
-          data-color="main"
-        >
+       //   data-color="main"
+        > 
           Icons
         </text>
-        <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
+        <text data-wrap="wrap" data-length="400" data-line="1.5">
           Currently Lucide is in use as the standard icon set, integrated into
           existing components to save time and simplify maintenance.
         </text>

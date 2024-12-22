@@ -98,35 +98,30 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-      <group data-gap="20">
-        <group data-direction="column">
-          <text
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
+        <text
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
-            data-color="main"
+          //  data-color="main"
             data-ellipsis=""
           >
             Dashboard
           </text>
-        </group>
 
-        <group
-        // data-animation-name="appear-bottom"
-        // data-fill-mode="backwards"
-        // data-animation-duration="1.5"
-        >
           <text
             data-wrap="wrap"
             data-length="400"
             data-line="1.5"
-            data-light=""
+           
             data-ellipsis=""
           >
             Demo features a simple dashboard interface designed for monitoring
             hardware.
           </text>
-        </group>
       </group>
 
       <group>

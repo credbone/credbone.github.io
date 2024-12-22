@@ -67,15 +67,20 @@ const groupedLinksArray = [
 const Overview: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-wrap="no" data-direction="column">
-      <group data-direction="column" data-wrap="no">
-        <group data-direction="column" data-gap="30">
+
+
+
+
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
+
           <text
             data-weight="700"
-          //  data-font-type="hero"
             data-text-size="xxx-large"
             data-wrap="wrap"
             data-ellipsis=""
-           // data-opacity="10"
             data-line='1'
           >
             Overview
@@ -85,14 +90,13 @@ const Overview: React.FC = () => {
             data-wrap="wrap"
             data-max-length="400"
             data-line="1.5"
-            data-light=""
           >
             Components are interactive elements used to build a user interface.
             They can be grouped into categories according to their function:
             Action, Containment, Communication, Navigation, Selection, and Text
             Input.
           </text>
-        </group>
+
       </group>
 
       <group data-gap="30">

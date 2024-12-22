@@ -14,28 +14,35 @@ import { Key } from "lucide-react";
 const InputsAndForms: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group data-direction="column" data-gap="10" data-align="start">
+<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-ellipsis=""
-          data-color="main"
+        //  data-color="main"
         >
           Input & Forms
         </text>
-        <text data-wrap="wrap" data-length="500" data-line="1.5" data-light="">
+        <text data-wrap="wrap" data-length="500" data-line="1.5" >
           Explore input fields and form-related UI elements in this demo,
           featuring validation, error handling, and responsive design.
         </text>
       </group>
 
-      <group
+
+
+<group data-gap="30">
+<group
         data-space="adaptive-30-50"
         data-background="adaptive-gray"
         data-radius="20"
         data-width="auto"
-        data-border=""
+      data-fit='1'
+      data-min-length="300"
         data-gap="30"
         data-wrap="no"
         data-direction="column"
@@ -46,14 +53,14 @@ const InputsAndForms: React.FC = () => {
 
         <separator data-horizontal=""></separator>
 
-        <group data-direction="column" data-gap="10">
+        <group data-direction="column" data-gap="10" >
           <Input
             icon={<IconSearch size={20} />}
             size="large"
             type="text"
             label="Field Label"
             placeholder="Placeholder"
-            dataLength="400"
+            dataLength="fit"
             button={
               <>
                 <group
@@ -88,12 +95,15 @@ const InputsAndForms: React.FC = () => {
       </group>
 
       <group
-         data-border=""
+     
+      data-min-length="300"
+        data-fit='1'
         data-space="adaptive-30-50"
         data-background="adaptive-gray"
         data-radius="20"
         data-gap="30"
         data-width="auto"
+         data-align="end"
       >
         <group data-direction="column" data-gap="10">
           <Input
@@ -102,7 +112,7 @@ const InputsAndForms: React.FC = () => {
             type="text"
             label="Field Label"
             placeholder="Placeholder"
-            dataLength="400"
+            dataLength="fit"
             button={
               <>
                 <group
@@ -148,6 +158,7 @@ const InputsAndForms: React.FC = () => {
           <text data-opacity="50">Optional assistive text</text>
         </group>
       </group>
+</group>
 
       <group data-column-gap="15" data-type="column" data-align="start">
         <group>

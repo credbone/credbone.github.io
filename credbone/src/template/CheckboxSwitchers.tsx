@@ -61,12 +61,15 @@ const CheckboxAndSwitchers: React.FC = () => {
   return (
     <>
       <group data-gap="30" data-space="30" data-align="start">
-        <group data-direction="column" data-gap="10">
+      <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
           <text
             data-weight="700"
             data-text-size="xxx-large"
             data-wrap="wrap"
-            data-color="main"
+           
           >
             Checkbox & Radio
           </text>
@@ -74,7 +77,7 @@ const CheckboxAndSwitchers: React.FC = () => {
             data-wrap="wrap"
             data-length="300"
             data-line="1.5"
-            data-light=""
+           
           >
             Checkboxes let users select one or more items from a list, or turn
             an item on or off
@@ -297,26 +300,25 @@ const CheckboxAndSwitchers: React.FC = () => {
               </group>
             </group>
 
-          <group
-            data-gap="30"
-            data-align="start"
-            data-max-length="800"
- 
-          >
 
-<group data-direction="column" data-gap="10">
+
+
+            <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+        <group data-height="100" data-adaptive="desktop">
+
+        </group>
                   <text
                     data-weight="700"
                     data-text-size="xxx-large"
                     data-wrap="wrap"
-                   data-color="main"
+                //   data-color="main"
                   >
                     Switch
                   </text>
                   <text
                     data-wrap="wrap"
                     data-line="1.5"
-                     data-light=""
+               
                     data-max-length="300"
                     data-index="1"
                   >
@@ -324,6 +326,15 @@ const CheckboxAndSwitchers: React.FC = () => {
                     turning it on or off as needed.
                   </text>
                 </group>
+
+          <group
+            data-gap="30"
+            data-align="start"
+            data-max-length="800"
+ 
+          >
+
+
 
             <group
               data-direction="column"
