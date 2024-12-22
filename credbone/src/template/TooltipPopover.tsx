@@ -5,14 +5,10 @@ import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
 import Count from "../components/Coutner";
 
-
 import Calculator from "../tools/Calculator";
-
 
 import sampleImage from "../styles/images/samples/wide_res_74.jpg";
 import sectionImage from "../styles/images/samples/wide_res_66.webp";
-
-
 
 const SimplePopover = (
   <group
@@ -212,11 +208,11 @@ const TooltipPopover: React.FC = () => {
           <img src={sectionImage} alt="" />
         </picture>
 
-        <group  data-space="30" data-width="auto">
+        <group data-space="30" data-width="auto">
           <group
-           data-direction="column"
-          data-radius="15"
-          data-background="main-background"
+            data-direction="column"
+            data-radius="15"
+            data-background="main-background"
             data-contain=""
             data-align="center"
             data-space="30"
@@ -237,13 +233,13 @@ const TooltipPopover: React.FC = () => {
         </group>
       </group>
 
-      <group         data-gap="15"
+      <group
+        data-gap="15"
         data-align="start"
         data-type="column"
-        data-column-gap="15"  >
-
+        data-column-gap="15"
+      >
         <group
-          
           data-height="auto"
           data-radius="15"
           data-elevation="2"
@@ -328,46 +324,35 @@ const TooltipPopover: React.FC = () => {
                 component.
               </text>
             </group>
-
-
           </group>
         </group>
 
-<group
+        <group
+          data-height="auto"
+          data-radius="15"
+          data-border=""
+          data-contain=""
+          data-background="context"
+        >
+          <group data-space="20" data-gap="15" data-weight="600">
+            <group>
+              <Tooltip content="This is Simple Tooltip">
+                <group
+                  data-interactive=""
+                  data-interact="popover"
+                  data-space="15"
+                  data-radius="10"
+                  data-cursor="pointer"
+                  data-width="auto"
+                >
+                  <text decoration="">Show Simple Tooltip</text>
+                </group>
+              </Tooltip>
+            </group>
 
-data-height="auto"
-data-radius="15"
-data-border=""
-data-contain=""
-data-background="context"
->
-
-<group data-space="20" data-gap="15" data-weight="600">
-
-
-<group>
-            <Tooltip
-
-content="This is Simple Tooltip"
-
->
-<group
-  data-interactive=""
-  data-interact="popover"
-  data-space="15"
-  data-radius="10"
-  data-cursor="pointer"
-  data-width="auto"
->
-  <text decoration="">Show Simple Tooltip</text>
-</group>
-</Tooltip>
-            </group>  
-
-<separator data-horizontal=""></separator>
+            <separator data-horizontal=""></separator>
 
             <group>
-
               <Tooltip
                 // delay={0}
                 placement="auto"
@@ -389,54 +374,45 @@ content="This is Simple Tooltip"
                 </group>
               </Tooltip>
             </group>
-
-
-
-
-  </group>
-
-</group>
-
+          </group>
+        </group>
       </group>
 
-
       <group
-         
-          data-radius="15"
-          data-border=""
-          data-contain=""
+        data-radius="15"
+        data-border=""
+        data-contain=""
+        data-background="context"
+      >
+        <group data-space="30">
+          <text>Simple Usage Example</text>
+        </group>
+        <group
           data-background="context"
+          data-border=""
+          data-dark=""
+          data-text-size="14"
+          data-user-select="text"
         >
-          <group data-space="30">
-            <text>Simple Usage Example</text>
-          </group>
-          <group
-            data-background="context"
-            data-border=""
-            data-dark=""
-            data-text-size="14"
-            data-user-select="text"
-          >
-            <pre data-scroll="" data-space="30">
+          <pre data-scroll="" data-space="30">
+            <mark data-color="main-text" data-background="main">
               <code>
                 {`<Tooltip content="I am a tooltip" placement="right">
   <button>Hover over me</button>
 </Tooltip>`}
               </code>
-            </pre>
-          </group>
-
-          <group data-space="20">
-            <Tooltip content="I am a tooltip" placement="right">
-              <button data-space="15" data-radius="5">
-                Hover over me
-              </button>
-            </Tooltip>
-          </group>
+            </mark>
+          </pre>
         </group>
 
-
-
+        <group data-space="20">
+          <Tooltip content="I am a tooltip" placement="right">
+            <button data-space="15" data-radius="10">
+              Hover over me
+            </button>
+          </Tooltip>
+        </group>
+      </group>
     </group>
   );
 };

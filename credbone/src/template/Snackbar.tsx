@@ -1,30 +1,19 @@
 import React from "react";
 import Count from "../components/Coutner";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-
-
-
+import sectionImage from "../styles/images/samples/wide_res_67.webp";
+import Ripple from "../components/Ripple";
 
 const SnackbarContent = (
   <group>
     <text>
       <text data-opacity="60">Snackbar will dismiss in ... </text>
       <text data-weight="700">
-        <Count
-          from={30}
-          to={0}
-          duration={3000}
-          //  direction="down"
-        />
+        <Count from={30} to={0} duration={3000} />
       </text>
     </text>
   </group>
 );
-
-
-
-
-
 
 const Snackbar: React.FC = () => {
   const { addSnackbar } = useSnackbar();
@@ -76,63 +65,64 @@ const Snackbar: React.FC = () => {
         </text>
       </group>
 
+      <group>
+        <picture
+          data-radius="20"
+          data-contain=""
+          data-brightness="adaptive"
+          data-background="grey-light"
+          data-position="absolute"
+        >
+          <img src={sectionImage} alt="" />
+        </picture>
+
+        <group data-space="30" data-width="auto">
+          <group
+            data-direction="column"
+            data-radius="15"
+            data-background="main-background"
+            data-contain=""
+            data-align="start"
+            data-space="30"
+            data-gap="20"
+          >
+<Ripple>
+<group
+data-ink-color="main-deep"
+data-contain=""
+              data-width="auto"
+              data-interactive=""
+              data-interact="popover"
+              data-space="15"
+              data-radius="10"
+              data-cursor="pointer"
+              data-background="main"
+              data-color="main-text"
+              onClick={() => addSnackbar(<>{SnackbarContent}</>)}
+            >
+              <text data-weight="700" data-ellipsis="">
+                Show Snackbar
+              </text>
+            </group>
+</Ripple>
+
+            <group>
+              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+                Click to view a sample snackbar. The default duration is 3000
+                milliseconds.
+              </text>
+            </group>
+          </group>
+        </group>
+      </group>
+
       <group
         data-column-gap="15"
         data-align="start"
         data-max-length="800"
         data-type="column"
       >
-        <group
-          data-direction="column"
-          data-radius="15"
-          data-border=""
-          data-contain=""
-          data-background="context"
-        >
-          <group
-            data-contain=""
-            data-align="center"
-            // data-dark=""
-          >
-            <group
-              data-space="30"
-              data-gap="20"
-              data-direction="column"
-              data-weight="600"
-            >
-              <group>
-                <group
-                  data-width="auto"
-                  data-interactive=""
-                  data-interact="popover"
-                  data-space="15"
-                  data-radius="10"
-                  data-cursor="pointer"
-                  data-background="main"
-                  data-color="main-text"
-                  onClick={() => addSnackbar(<>{SnackbarContent}</>)}
-                >
-                  <text data-weight="700" data-ellipsis="">
-                    Show Snackbar
-                  </text>
-                </group>
-              </group>
 
-              <group>
-                <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-                  Click to view a sample snackbar. The default duration is 3000
-                  milliseconds.
-                </text>
-              </group>
-            </group>
-
-            {/* <group data-contain="" data-height="120">
-                <picture data-min-length="300" data-contain="" data-ratio="1:1">
-                  <img src={sampleImage_2} alt="" />
-                </picture>
-              </group> */}
-          </group>
-        </group>
 
         <group
           data-background="context"

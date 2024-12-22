@@ -117,14 +117,14 @@ const SideNav = () => {
 
             >
               <group
-                            data-interactive=""
+                        //   data-interactive=""
               data-cursor="pointer"
                
               //  data-width="auto"
                 data-ratio="1:1"
                 data-duration=".125"
 
-                data-background="main"
+
                 data-length={isNavOpen ? "120" : "50"}
                 data-radius="full"
                 data-contain=""
