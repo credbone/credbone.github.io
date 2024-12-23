@@ -4,14 +4,14 @@ import React  from "react";
 
 
 import sectionImage_1 from "../styles/images/samples/wide_res_67.jpg";
-import sectionImage_2 from "../styles/images/samples/wide_res_66.jpg";
+import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
 import sectionImage_3 from "../styles/images/samples/wide_res_61.jpg";
-import sectionImage_4 from "../styles/images/samples/wide_res_63.jpg";
+import sectionImage_4 from "../styles/images/samples/wide_res_67.webp";
 
 import Ripple from "../components/Ripple";
 import { Link } from "react-router-dom";
 
-const groupedLinksArray = [
+const groupedLinksArray = [ 
   {
     title: "Visual\nComponents",
     image:sectionImage_1,
@@ -34,6 +34,7 @@ const groupedLinksArray = [
       { title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
       { title: "Input\n& Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
       { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
+      { title: "Snackbar", description: "Snackbars provide brief notifications about activities at the bottom of the screen.", to: "/Components/Snackbar", },
       { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },
     ],
   },
@@ -140,17 +141,16 @@ const Overview: React.FC = () => {
                     <group
                       data-space="30"
                       data-width="auto"
-                      data-align="center"
-                      data-justify="center"
+                      // data-align="center"
+                      // data-justify="center"
                       data-radius="15"
-                    //  data-backdrop="20"
-                     // data-color="white"
-
                      data-background="context"
-                      data-gap="30"
+                      data-gap="15"
+                      data-direction="column"
+                       data-align="start"
                     >
                      
-                      <text
+                     <text
                         data-text-size="large"
                         data-weight="700"
                         data-wrap="preline"
@@ -158,25 +158,18 @@ const Overview: React.FC = () => {
                       >
                         {group.title}
                       </text>
-                    </group>
-
-                  <group
-                    data-space="30"
-                    data-width="auto"
-                    data-direction="column"
-                    data-radius="15"
-                    data-background="main"
-                    data-color="main-text"
-                  >
-                    <text
+                      <text
                       data-wrap="wrap"
-                      data-max-length="200"
+                      data-max-length="300"
                       data-line="1.5"
                       data-weight="600"
                     >
                       {group.description}
                     </text>
-                  </group>
+
+                    </group>
+
+
                 </group>
               </group>
 
@@ -184,7 +177,7 @@ const Overview: React.FC = () => {
             <group
               data-gap="20"
               data-type="grid"
-              data-grid-template="240"
+              data-grid-template="200"
               data-weight="600"
             >
               {group.items.map((item, index) => (
