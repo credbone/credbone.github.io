@@ -187,7 +187,7 @@ const Template: React.FC = () => {
             )}
           </StuckReporter> */}
 
-          <group data-height="120" data-adaptive="mobile"></group>
+          {/* <group data-height="120" data-adaptive="mobile"></group> */}
         </group>
       </view>
     </>

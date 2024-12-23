@@ -476,7 +476,7 @@ const Components: React.FC = () => {
             <separator data-horizontal=""></separator>
             <group data-space="10">
               <group>
-                <text data-opacity="60">Copyright {currentYear}</text>
+                <text data-opacity="60">Copyright {currentYear}, Credbone. </text>
               </group>
             </group>
           </group>

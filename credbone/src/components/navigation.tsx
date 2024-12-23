@@ -8,6 +8,7 @@ import { useNavContext } from "../components/NavProvider";
 
 import { SvgHamburger, SvgPlus } from "./svg";
 import { Bolt, BookOpen, Box, House, Search } from "lucide-react";
+import { useCurrentHeader } from "./TitleUpdater";
 
 
 const navItems = [
@@ -31,7 +32,7 @@ const Navigation: React.FC = () => {
    // event.stopPropagation(); // Prevents event from bubbling up
     setIsNavOpen(!isNavOpen);
   };
-
+  const header = useCurrentHeader();
   return (
     <>
 
@@ -47,12 +48,32 @@ const Navigation: React.FC = () => {
 
 <separator data-vertical=""></separator>
 
-  <NavLink data-type="group" data-select-theme="main" data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/">
+  <NavLink data-type="group"  data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain=""  to="/">
 <group  data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <House size={20} />
 </group>
 {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text> */}
   </NavLink>
+
+
+  {header && 
+  
+
+  <>
+  
+  <separator data-vertical=""></separator>
+
+<group  data-width="auto" data-space="10" data-align="center">
+<text data-opacity="40" data-ellipsis="">
+{header}
+</text>
+</group>
+
+  </>
+  
+  
+  } {/* Only render if header is available */}
+
 
 
   <NavLink data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
