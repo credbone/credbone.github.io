@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SvgHamburger, SvgHamburgerToRight, SvgPlus } from "../components/svg";
+import { SvgHamburgerToRight, SvgPlus } from "../components/svg";
 import Switchable from "../components/Switchable";
 import { Box, Columns2, FolderOpen, PanelsTopLeft, Proportions, RectangleHorizontal, Rows3, ShoppingBag } from "lucide-react";
 

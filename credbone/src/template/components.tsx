@@ -43,14 +43,14 @@ const linksArray = [
 ];
 
 
-const phrases = [
-  "Hi",
-  "Hello",
-  "Hey",
-  "What's new?",
-  "Hey there",
-  "What's up?",
-];
+// const phrases = [
+//   "Hi",
+//   "Hello",
+//   "Hey",
+//   "What's new?",
+//   "Hey there",
+//   "What's up?",
+// ];
 
 const Components: React.FC = () => {
   const { openModal, closeModal } = useModal();
