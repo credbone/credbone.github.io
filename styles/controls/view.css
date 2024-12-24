@@ -95,7 +95,7 @@ view[data-background="none"]{background:none}
 
 
 :root{
-    --switch-size:50px;
+    --switch-size:60px;
     --float-gap:0px
 }
 
@@ -190,7 +190,7 @@ view[data-background="none"]{background:none}
 [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
 
 
-[data-name="switchable"][data-type="overlap"] {   border-radius: 5px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap); box-shadow: var(--elevation_1); position: absolute; z-index: 10; }
+[data-name="switchable"][data-type="overlap"] {   border-radius: 10px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);position: absolute; z-index: 10; }
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
 
 

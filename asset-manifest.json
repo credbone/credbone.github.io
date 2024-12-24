@@ -1,12 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.c0d1ba34.css",
-    "main.js": "/static/js/main.bbda7645.js",
+    "main.js": "/static/js/main.6bd89aca.js",
     "static/js/453.2382196e.chunk.js": "/static/js/453.2382196e.chunk.js",
     "static/media/wide_res_01.jpg": "/static/media/wide_res_01.ccfcc2a7019abba47791.jpg",
     "static/media/res_73.webp": "/static/media/res_73.7cbb488ee9510903739c.webp",
     "static/media/res-29.jpg": "/static/media/res-29.a10d212c413765c6db50.jpg",
     "static/media/res-33.jpg": "/static/media/res-33.b53fd90dcaa2f0e95312.jpg",
+    "static/media/res_80.webp": "/static/media/res_80.09116a092d4d0525a9fd.webp",
     "static/media/res-34.jpg": "/static/media/res-34.88fdce3ac088be5cb26d.jpg",
     "static/media/res-27.jpg": "/static/media/res-27.ae31d32949886d38f06c.jpg",
     "static/media/res-30.jpg": "/static/media/res-30.d780257c62bd1d24a781.jpg",
@@ -20,18 +21,17 @@
     "static/media/res-21.jpg": "/static/media/res-21.2dda7412a36adcf0d511.jpg",
     "static/media/wide_res_68.webp": "/static/media/wide_res_68.e9c4a510856eee5f57ee.webp",
     "static/media/wide_res_66.webp": "/static/media/wide_res_66.de5a7ba841157edb5088.webp",
-    "static/media/res_80.jpg": "/static/media/res_80.1a11e2ccc699db90b9cd.jpg",
     "static/media/res-28.jpg": "/static/media/res-28.1adec83afea2c31735e0.jpg",
     "static/media/wide_res_61.jpg": "/static/media/wide_res_61.ebad01af1eb86a24c2a0.jpg",
-    "static/media/wide_res_67.jpg": "/static/media/wide_res_67.52402bd9e3408caabb27.jpg",
+    "static/media/wide_res_64.webp": "/static/media/wide_res_64.e9bda87e5896dbb97791.webp",
     "static/media/wide_res_74.jpg": "/static/media/wide_res_74.306a29620ae553428f7c.jpg",
     "index.html": "/index.html",
     "main.c0d1ba34.css.map": "/static/css/main.c0d1ba34.css.map",
-    "main.bbda7645.js.map": "/static/js/main.bbda7645.js.map",
+    "main.6bd89aca.js.map": "/static/js/main.6bd89aca.js.map",
     "453.2382196e.chunk.js.map": "/static/js/453.2382196e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0d1ba34.css",
-    "static/js/main.bbda7645.js"
+    "static/js/main.6bd89aca.js"
   ]
 }
