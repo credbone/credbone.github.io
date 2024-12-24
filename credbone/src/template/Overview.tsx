@@ -110,7 +110,7 @@ const Overview: React.FC = () => {
 
               <group data-direction="column" data-align="start">
                 <picture
-                  data-radius="20"
+                  data-radius="30"
                   data-contain=""
                   data-brightness="adaptive"
                   data-background="grey-light"

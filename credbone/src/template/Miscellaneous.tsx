@@ -65,7 +65,7 @@ const Miscellaneous: React.FC = () => {
           //      data-max-length="500"
           data-height="auto"
           data-max-height="fit"
-          data-radius="15"
+          data-radius="30"
           data-contain=""
         >
           <group data-direction="column" data-justify="end">
@@ -116,7 +116,7 @@ const Miscellaneous: React.FC = () => {
           data-align="center"
           data-border=""
           data-index="2"
-          data-radius="15"
+          data-radius="20"
         >
           <group data-contain="" dir={dir}>
             <Marquee auto={isAutoMode}>
@@ -171,7 +171,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="15" data-contain="">
+        <group data-radius="30" data-contain="">
           <group data-direction="column" data-justify="end">
             <picture
               data-contain=""
@@ -212,7 +212,7 @@ const Miscellaneous: React.FC = () => {
 
         <group
           data-border=""
-          data-radius="15"
+          data-radius="20"
           data-gap="1"
           data-direction="column"
           data-type="grid"
@@ -308,7 +308,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="15" data-contain="">
+        <group data-radius="30" data-contain="">
           <group data-radius="15" data-contain="">
             <group data-direction="column" data-justify="end">
               <picture
@@ -357,7 +357,7 @@ const Miscellaneous: React.FC = () => {
               data-ink-color="neutral"
               data-cursor="pointer"
               data-border=""
-              data-radius="15"
+              data-radius="20"
               data-contain=""
               data-space="30"
               data-length="forcefit"
@@ -390,7 +390,7 @@ const Miscellaneous: React.FC = () => {
               data-direction="column"
               data-cursor="pointer"
               data-background="highlight"
-              data-radius="15"
+              data-radius="20"
               data-contain=""
               data-space="30"
             >
@@ -408,7 +408,7 @@ const Miscellaneous: React.FC = () => {
               data-cursor="pointer"
               data-background="main"
               data-color="main-text"
-              data-radius="15"
+              data-radius="20"
               data-contain=""
               data-space="30"
             >

@@ -199,7 +199,7 @@ const TooltipPopover: React.FC = () => {
 
       <group>
         <picture
-          data-radius="20"
+          data-radius="30"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
