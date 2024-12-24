@@ -2,20 +2,31 @@ import React from "react";
 
 import { SvgHamburgerToRight, SvgPlus } from "../components/svg";
 import Switchable from "../components/Switchable";
-import { Box, Columns2, FolderOpen, PanelsTopLeft, Proportions, RectangleHorizontal, Rows3, ShoppingBag } from "lucide-react";
+import {
+  Columns2,
+  PanelsTopLeft,
+  Proportions,
+  RectangleHorizontal,
+  Rows3,
+} from "lucide-react";
 
 const Layout: React.FC = () => {
   return (
     <group data-gap="30" data-space="30" data-border="no" data-align="start">
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
-
-        </group>
+      <group
+        data-direction="column"
+        data-gap="10"
+        data-background="adaptive-gray"
+        data-radius="20"
+        data-justify="end"
+        data-space="30"
+      >
+        <group data-height="100" data-adaptive="desktop"></group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
-        //  data-color="main"
+          //  data-color="main"
         >
           Layout & Switches
         </text>
@@ -28,10 +39,8 @@ const Layout: React.FC = () => {
       <view
         data-height="400"
         data-direction="row"
-        //  data-gap="20"
-        //   data-border="no"
-        data-radius="10"
-        data-elevation="2"
+        data-radius="15"
+        data-border=""
       >
         <view data-direction="row">
           <group data-name="switch-gap" data-shrink="no"></group>
@@ -41,38 +50,38 @@ const Layout: React.FC = () => {
             data-type="overlap"
             icon={
               <>
-              <SvgPlus />
-            </>
+                <SvgPlus />
+              </>
             }
             title={"Switchable To The Left"}
-          //  togglerProps={{ "data-order": "2" }}
-            //  data-type="overlap"
-            //     data-length="400"
-        //    closeOnOutsideClick={true}
             data-index="3"
           >
             <>
               <group
-                data-space="30"
                 data-align="center"
                 data-justify="center"
                 data-position="center"
+                data-background="context"
+                data-height="fit"
+                data-direction="column"
+                data-gap="30"
+                data-space="30"
+                data-wrap="no"
               >
-                <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                 <PanelsTopLeft size={60}/>
+                  <PanelsTopLeft size={60} />
                 </icon>
-                <space></space>
+
                 <text
                   data-text-align="center"
                   data-light=""
                   data-wrap="wrap"
                   data-line="1.5"
+                  data-length="400"
                 >
                   This is an adaptive switchable section that will overlap the
                   neighboring section if there is not enough room to display
-                  them side by side. You can resize the browser window to see it
-                  in action. This is a configurable option...
+                  them side by side.
                 </text>
               </group>
             </>
@@ -81,17 +90,17 @@ const Layout: React.FC = () => {
           <group data-direction="column" data-align="start">
             <group data-scroll="" data-align="start" data-position="center">
               <group
-                data-space="20"
+                data-direction="column"
+                data-gap="30"
+                data-space="30"
                 data-align="center"
                 data-justify="center"
                 data-position="center"
               >
-                <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                <Proportions size={60}/>
+                  <Proportions size={60} />
                 </icon>
 
-                <space></space>
                 <text
                   data-text-align="center"
                   data-light=""
@@ -102,12 +111,10 @@ const Layout: React.FC = () => {
                   No additional manipulations are needed for the DOM to add ord
                   remove layout sections.
                 </text>
-                <space></space>
               </group>
             </group>
           </group>
-        </view>
-        <Switchable
+          <Switchable
           data-adaptive-float="15"
           //   closeOnOutsideClick={true}
           //     data-radius="10"
@@ -130,15 +137,16 @@ const Layout: React.FC = () => {
                 data-position="center"
               >
                 <group
-                  data-space="20"
+                  data-direction="column"
+                  data-gap="30"
+                  data-space="30"
                   data-align="center"
                   data-justify="center"
                 >
-                  <space></space>
                   <icon data-opacity="20" data-icon-size="large">
-                  <RectangleHorizontal size={60}/>
+                    <RectangleHorizontal size={60} />
                   </icon>
-                  <space></space>
+
                   <text
                     data-text-align="center"
                     data-light=""
@@ -149,7 +157,6 @@ const Layout: React.FC = () => {
                     No additional manipulations are needed for the DOM to add
                     ord remove layout sections.
                   </text>
-                  <space></space>
                 </group>
               </group>
             </view>
@@ -161,7 +168,7 @@ const Layout: React.FC = () => {
               // data-elevation="1"
               data-switch-direction="horizontal"
               data-direction="column"
-              icon={  <Columns2 size={20}/>} 
+              icon={<Columns2 size={20} />}
               togglerProps={
                 {
                   //    "data-background": "main",
@@ -174,15 +181,15 @@ const Layout: React.FC = () => {
             >
               <group data-position="center">
                 <group
-                  data-space="20"
+                  data-direction="column"
+                  data-gap="30"
+                  data-space="30"
                   data-align="center"
                   data-justify="center"
                 >
-                  <space></space>
                   <icon data-opacity="20" data-icon-size="large">
-                  <Rows3 size={60}/>
+                    <Rows3 size={60} />
                   </icon>
-                  <space></space>
 
                   <text
                     data-text-align="center"
@@ -194,13 +201,14 @@ const Layout: React.FC = () => {
                     No additional manipulations are needed for the DOM to add
                     ord remove layout sections.
                   </text>
-                  <space></space>
                 </group>
               </group>
             </Switchable>
           </view>
         </Switchable>
         <group data-name="switch-gap" data-shrink="no"></group>
+        </view>
+
       </view>
 
       <group
@@ -209,15 +217,15 @@ const Layout: React.FC = () => {
         data-contain=""
         //  data-gap="20"
         //   data-border="no"
-        data-radius="10"
-        data-elevation="2"
+        data-radius="15"
+        data-border=""
       >
         <view data-direction="row">
           <Switchable
             data-border="outline"
             data-adaptive-float="15"
             defaultExpanded={false}
-            icon={ <ShoppingBag size={20}/>}
+            icon={ <SvgPlus />}
             title={"Switchable To The Left"}
             //  data-type="overlap"
             //     data-length="400"
@@ -230,17 +238,18 @@ const Layout: React.FC = () => {
           >
             <>
               <group
+                data-direction="column"
+                data-gap="30"
                 data-space="30"
                 data-align="center"
                 data-justify="center"
                 data-position="center"
                 data-max-length="400"
               >
-                <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                <Columns2 size={60}/>
+                  <Columns2 size={60} />
                 </icon>
-                <space></space>
+
                 <text
                   data-text-align="center"
                   data-light=""
@@ -249,8 +258,7 @@ const Layout: React.FC = () => {
                 >
                   This is an adaptive switchable section that will overlap the
                   neighboring section if there is not enough room to display
-                  them side by side. You can resize the browser window to see it
-                  in action. This is a configurable option...
+                  them side by side.
                 </text>
               </group>
             </>
@@ -260,7 +268,7 @@ const Layout: React.FC = () => {
             data-border="outline"
             data-adaptive-float="15"
             defaultExpanded={false}
-            icon={ <Box size={20}/>}
+            icon={ <SvgPlus />}
             title={"Adaptive Switchable To The Left"}
             // data-type="overlap"
             //   data-length="400"
@@ -273,17 +281,18 @@ const Layout: React.FC = () => {
           >
             <>
               <group
+                data-direction="column"
+                data-gap="30"
                 data-space="30"
                 data-align="center"
                 data-justify="center"
                 data-position="center"
                 data-max-length="400"
               >
-                <space></space>
                 <icon data-opacity="20" data-icon-size="large">
-                <Columns2 size={60}/>
+                  <Columns2 size={60} />
                 </icon>
-                <space></space>
+
                 <text
                   data-text-align="center"
                   data-light=""
@@ -292,55 +301,16 @@ const Layout: React.FC = () => {
                 >
                   This is an adaptive switchable section that will overlap the
                   neighboring section if there is not enough room to display
-                  them side by side. You can resize the browser window to see it
-                  in action. This is a configurable option...
+                  them side by side.
                 </text>
               </group>
             </>
           </Switchable>
 
-          <Switchable
-            data-border="outline"
-            data-adaptive-float="15"
-            defaultExpanded={false}
-            icon={ <FolderOpen size={20}/>}
-            title={"Adaptive Switchable To The Left"}
-            // data-type="overlap"
-            //   data-length="400"
-            closeOnOutsideClick={true}
-            data-index="3"
-            togglerProps={{
-              "data-background": "main-darker",
-              "data-color": "white",
-            }}
-          >
-            <>
-              <group
-                data-space="30"
-                data-align="center"
-                data-justify="center"
-                data-position="center"
-                data-max-length="400"
-              >
-                <space></space>
-                <icon data-opacity="20" data-icon-size="large">
-                <Columns2 size={60}/> 
-                </icon>
-                <space></space>
-                <text
-                  data-text-align="center"
-                  data-light=""
-                  data-wrap="wrap"
-                  data-line="1.5"
-                >
-                  This is an adaptive switchable section that will overlap the
-                  neighboring section if there is not enough room to display
-                  them side by side. You can resize the browser window to see it
-                  in action. This is a configurable option...
-                </text>
-              </group>
-            </>
-          </Switchable>
+
+
+
+
         </view>
       </group>
     </group>

@@ -91,7 +91,7 @@ const Switchable: React.FC<SwitchableProps> = ({
         data-index="2"
         data-interactive=""
         data-cursor="pointer"
-        data-space="10"
+        data-space="15"
         data-align="center"
         data-gap="5"
         onClick={handleToggle}
@@ -109,7 +109,7 @@ const Switchable: React.FC<SwitchableProps> = ({
             <text
               data-ellipsis=""
               data-index="1"
-              data-weight="700"
+              data-weight="600"
               data-space="5"
             >
               {title}

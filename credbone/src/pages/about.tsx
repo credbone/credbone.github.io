@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Ripple from "../components/Ripple";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
-import sampleImage from "../styles/images/samples/res_80.jpg";
+import sampleImage from "../styles/images/samples/res_80.webp";
 import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 
 
@@ -46,7 +46,10 @@ function About() {
 
 
 
-          <group data-space="50"  data-dark="" data-sticky="bottom">
+          <group
+           data-space="50"  
+          data-dark=""
+           data-sticky="bottom">
           <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
 
 
@@ -99,10 +102,12 @@ function About() {
             </picture>
           </group>
           <group
+
               data-position="absolute"
               data-direction="column"
               data-height="fit"
               data-wrap="no"
+
             >
 
               <group
@@ -218,7 +223,7 @@ function About() {
                  data-interactive=""
                  data-width="auto"
                  data-background="highlight"
-                 data-backdrop="20"
+                // data-backdrop="20"
                  //   data-color="main-text"
                  //   data-ink-color="main-dark"
                  data-space="15"

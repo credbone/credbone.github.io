@@ -3,7 +3,7 @@ import React  from "react";
 
 
 
-import sectionImage_1 from "../styles/images/samples/wide_res_67.jpg";
+import sectionImage_1 from "../styles/images/samples/wide_res_64.webp";
 import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
 import sectionImage_3 from "../styles/images/samples/wide_res_61.jpg";
 import sectionImage_4 from "../styles/images/samples/wide_res_67.webp";

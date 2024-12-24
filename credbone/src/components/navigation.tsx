@@ -63,7 +63,7 @@ const Navigation: React.FC = () => {
   
   <separator data-vertical=""></separator>
 
-<group  data-width="auto" data-space="10" data-align="center">
+<group  data-width="auto" data-space="10" data-align="center" data-contain="">
 <text data-opacity="40" data-ellipsis="">
 {header}
 </text>
