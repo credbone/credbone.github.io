@@ -52,11 +52,30 @@ const Typeface: React.FC = () => {
 
 <group  data-space="30" data-gap="30">
 
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+<group data-direction="column" data-gap="30" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+
+
+<group data-direction="column">
+<group data-gap="20" data-align="center">
+<group data-space-horizontal="20" data-space-vertical="10" data-background="text" data-width="auto" data-color="main-background" data-radius="30" >
+    <text>Token</text>
+  </group>
+  <separator data-vertical=""></separator>
+<text>
+  Version 3.0.0
+</text>
+</group>
+
+</group>
+<separator data-horizontal=""></separator>
+
+  
         <group data-height="100" data-adaptive="desktop">
 
         </group>
-        <text
+
+<group data-direction="column" data-gap="10">
+<text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
@@ -68,6 +87,9 @@ const Typeface: React.FC = () => {
         <text data-wrap="wrap" data-length="400" data-line="1.5">
         This section shows the current typeface, its glyphs, and sizes in use, with a demo for context.
         </text>
+</group>
+
+
       </group>
 
 

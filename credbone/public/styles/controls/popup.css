@@ -5,7 +5,7 @@
 
 
 
-:root { --dim: rgba(255, 255, 255, 0.8); }
+:root { --dim: rgba(251, 251, 251, 0.85); }
 
     
 [data-name="modal-wrapper"]{z-index: 9997; width: 100%;}

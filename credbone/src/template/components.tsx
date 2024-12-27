@@ -161,7 +161,7 @@ const Components: React.FC = () => {
                       hasHeader: false,
                       hasToolbar: false,
                       customAttributes: modalConfig,
-                      //  dimAttributes: {"data-background" : "dark-shade-70"},
+                    //    dimAttributes: {"data-background" : "dark-shade-10"},
                       spacing: 0,
                     })
                   }

@@ -268,11 +268,29 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
+<group data-direction="column" data-gap="30" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30" data-align="start">
+
+
+<group data-direction="column">
+<group data-gap="20" data-align="center">
+<group data-space-horizontal="20" data-space-vertical="10" data-background="text" data-width="auto" data-color="main-background" data-radius="30" >
+    <text>Token</text>
+  </group>
+  <separator data-vertical=""></separator>
+<text>
+  Version 3.0.0
+</text>
+</group>
+
+</group>
+<separator data-horizontal=""></separator>
         <group data-height="100" data-adaptive="desktop">
 
         </group>
-        <text
+
+
+<group data-direction="column" data-gap="10">
+<text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
@@ -292,6 +310,8 @@ const Colors: React.FC = () => {
           mode compatibility for a seamless user experience across different
           interfaces.
         </text>
+</group>
+
       </group>
 
       <group data-gap="30">
