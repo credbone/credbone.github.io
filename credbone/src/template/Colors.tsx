@@ -69,7 +69,7 @@ const Colors: React.FC = () => {
           data-wrap="no"
           data-contain=""
           data-direction="column"
-          data-gap="10"
+          data-gap="5"
         >
           <group
             data-interactive=""
@@ -151,7 +151,7 @@ const Colors: React.FC = () => {
             <group
               data-duration=".125"
               data-space-horizontal={isSticky ? "30" : ""}
-              data-space-vertical="10"
+              data-space-vertical="5"
               data-space-bottom="30"
               data-sticky="bottom"
             >
@@ -583,15 +583,19 @@ const Colors: React.FC = () => {
               // data-radius="10"
               data-gap="5"
               data-direction="column"
+               data-interactive=""
+                data-over-color="none"
             >
               <group
                 data-direction="column"
                 data-space="15"
-                data-interactive=""
+               data-react="background"
                 data-interact=""
                // data-ratio="1:2"
                 data-gap="20"
                 data-space-top="40"
+              
+              
               >
                
                 <text
