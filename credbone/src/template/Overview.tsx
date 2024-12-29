@@ -33,6 +33,7 @@ const groupedLinksArray = [
       { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
       { title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
       { title: "Input\n& Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
+      { title: "Range\n Slider", description: "For adjusting values dynamically in user interface designs.", to: "/Components/RangeSlider", },
       { title: "Tooltip\n& Popover", description: "Provide additional information and context on hover or focus.", to: "/Components/TooltipAndPopover", },
       { title: "Snackbar", description: "Snackbars provide brief notifications about activities at the bottom of the screen.", to: "/Components/Snackbar", },
       { title: "Modals\n& Alerts", description: "Customizable modal component supporting various sizes, triggers, and animations.", to: "/Components/Modal", },

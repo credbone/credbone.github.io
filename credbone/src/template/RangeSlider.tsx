@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomSlider from "../components/inputs/slider";
 import TickComponent from "../components/inputs/TickComponent";
-
+import sectionImage from "../styles/images/samples/wide_res_68.webp";
 
 
 const RangeSlider: React.FC = () => {
@@ -57,15 +57,37 @@ const RangeSlider: React.FC = () => {
         </group>
       </group>
 
-      <group  data-direction="column" data-gap="30" >
 
 
 
-<group>
-<group data-space="30">
+      <group>
+        <picture
+          data-radius="30"
+          data-contain=""
+          data-brightness="adaptive"
+          data-background="grey-light"
+          data-position="absolute"
+        >
+          <img src={sectionImage} alt="" />
+        </picture>
+
+        <group data-space="30" data-width="auto">
+          <group
+            data-direction="column"
+            data-radius="15"
+            data-background="main-background"
+            data-contain=""
+            data-align="start"
+            data-space="30"
+            data-gap="20"
+          >
+
+
+<group    data-length="300" data-gap="30">
+<group >
 <text
           data-wrap="wrap"
-          data-max-length="400"
+
           data-weight="600"
           data-line="1.5"
         >
@@ -75,10 +97,7 @@ const RangeSlider: React.FC = () => {
 </group>
 
         <group
-          data-space="30"
-          data-background="adaptive-gray"
-          data-radius="20"
-          data-length="500"
+       
         >
           <group>
             <CustomSlider
@@ -91,10 +110,25 @@ const RangeSlider: React.FC = () => {
 </group>
 
 
+          </group>
+        </group>
+      </group>
 
-<group data-space="30" data-gap="30"  data-radius="20" data-border="" data-length="500">
-<group data-direction="column"  data-gap="10">
-<group data-text-size="48" data-weight="300">
+
+      <group   data-gap="30" data-type="grid" data-grid-template="300" >
+
+
+
+
+
+
+
+<group  
+//  data-length="400"
+  
+  >
+<group data-direction="column"  data-space="30" data-gap="10">
+<group data-text-size="36" data-weight="300">
           <text data-line="1">{sliderValue}</text>
           <text data-line="1">°</text>
         </group>
@@ -109,15 +143,15 @@ const RangeSlider: React.FC = () => {
           applied to the slider UI
         </text>
 </group>
-<group data-gap="15" >
+<group data-gap="15" data-radius="20" data-space="30" data-border="" >
             <TickComponent tickCount={17} />
             <CustomSlider
               start={10}
               end={26}
               initialValue={sliderValue}
               onValueChange={(value) => setSliderValue(value)}
-              handlerWidth={70}
-              unit="°C"
+              // handlerWidth={70}
+              // unit="°C"
               handlerProps={{
                 "data-background": "main",
                 "data-color": "main-text",
@@ -139,7 +173,8 @@ const RangeSlider: React.FC = () => {
           data-gap="30"
           data-dark=""
           data-direction="column"
-          data-length="500"
+       //   data-length="400"
+          data-justify="end"
         >
 
 <text

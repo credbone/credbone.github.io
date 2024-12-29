@@ -62,6 +62,12 @@ export const routesData: RouteData[] = [
     title: "Inputs & Forms" 
   },
   { 
+    path: "RangeSlider", 
+    tags: ["inputs", "range", "slider", "tick", "text fields", "input fields", "user input", "data entry"], 
+    description: "For adjusting values dynamically in user interface designs.", 
+    title: "Range Slider" 
+  },
+  { 
     path: "TooltipAndPopover", 
     tags: ["tooltip", "popover","user interface", "hover", "hint", "overlay"], 
     description: "Tooltip, popover, toast, and snackbar overlay tools.", 
