@@ -11,154 +11,172 @@ import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import { Key } from "lucide-react";
 
+
 const InputsAndForms: React.FC = () => {
+
+
+
   return (
     <group data-space="30" data-gap="30" data-align="start">
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
-
-        </group>
+      <group
+        data-direction="column"
+        data-gap="10"
+        data-background="adaptive-gray"
+        data-radius="20"
+        data-justify="end"
+        data-space="30"
+      >
+        <group data-height="100" data-adaptive="desktop"></group>
         <text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
           data-ellipsis=""
-        //  data-color="main"
+          //  data-color="main"
         >
           Input & Forms
         </text>
-        <text data-wrap="wrap" data-length="500" data-line="1.5" >
+        <text data-wrap="wrap" data-length="500" data-line="1.5">
           Explore input fields and form-related UI elements in this demo,
           featuring validation, error handling, and responsive design.
         </text>
       </group>
 
+      <group data-gap="30">
+        <group
+          data-space="adaptive-30-50"
+          data-background="adaptive-gray"
+          data-radius="20"
+          data-width="auto"
+          data-fit="1"
+          data-min-length="300"
+          data-gap="30"
+          data-wrap="no"
+          data-direction="column"
+        >
+          <text
+            data-wrap="wrap"
+            data-max-length="300"
+            data-weight="600"
+            data-line="1.5"
+          >
+            The demo is configured to display a label with a prefix icon, a
+            sample action, and supportive text.
+          </text>
 
+          <separator data-horizontal=""></separator>
 
-<group data-gap="30">
-<group
-        data-space="adaptive-30-50"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-width="auto"
-      data-fit='1'
-      data-min-length="300"
-        data-gap="30"
-        data-wrap="no"
-        data-direction="column"
-      >
-        <text data-wrap="wrap" data-max-length="300" data-weight="600" data-line="1.5">
-        The demo is configured to display a label with a prefix icon, a sample action, and supportive text.
-        </text>
+          <group data-direction="column" data-gap="10">
+            <Input
+              icon={<IconSearch size={20} />}
+              size="large"
+              type="text"
+              label="Field Label"
+              placeholder="Placeholder"
+              dataLength="fit"
+              button={
+                <>
+                  <group
+                    data-radius-bottom-right="input"
+                    data-radius-top-right="input"
+                    data-shrink="no"
+                    data-contain=""
+                    data-height="fit"
+                    data-width="auto"
+                  >
+                    <separator data-vertical="" data-height="fit"></separator>
+                    <Ripple>
+                      <group
+                        data-width="auto"
+                        data-space="10"
+                        data-align="center"
+                        data-height="fit"
+                        data-cursor="pointer"
+                        data-interactive=""
+                      >
+                        <text data-weight="600" data-line="1">
+                          Action
+                        </text>
+                      </group>
+                    </Ripple>
+                  </group>
+                </>
+              }
+            ></Input>
+            <text data-opacity="50">Optional assistive text</text>
+          </group>
+        </group>
 
-        <separator data-horizontal=""></separator>
-
-        <group data-direction="column" data-gap="10" >
-          <Input
-            icon={<IconSearch size={20} />}
-            size="large"
-            type="text"
-            label="Field Label"
-            placeholder="Placeholder"
-            dataLength="fit"
-            button={
-              <>
-                <group
-                  data-radius-bottom-right="input"
-                  data-radius-top-right="input"
-                  data-shrink="no"
-                  data-contain=""
-                  data-height="fit"
-                  data-width="auto"
-                >
-                  <separator data-vertical="" data-height="fit"></separator>
-                  <Ripple>
+        <group
+          data-min-length="300"
+          data-fit="1"
+          data-space="adaptive-30-50"
+          data-background="adaptive-gray"
+          data-radius="20"
+          data-gap="30"
+          data-width="auto"
+          data-align="end"
+        >
+          <group data-direction="column" data-gap="10">
+            <Input
+              icon={<IconHome size={20} />}
+              size="large"
+              type="text"
+              label="Field Label"
+              placeholder="Placeholder"
+              dataLength="fit"
+              button={
+                <>
+                  <group
+                    data-radius-bottom-right="input"
+                    data-radius-top-right="input"
+                    data-shrink="no"
+                    data-contain=""
+                    data-height="fit"
+                    data-width="auto"
+                  >
                     <group
                       data-width="auto"
                       data-space="10"
                       data-align="center"
-                      data-height="fit"
-                      data-cursor="pointer"
-                      data-interactive=""
                     >
-                      <text data-weight="600" data-line="1">
-                        Action
+                      <text data-line="1" data-opacity="30" data-ellipsis="">
+                        Suffix
                       </text>
                     </group>
-                  </Ripple>
-                </group>
-              </>
-            }
-          ></Input>
-          <text data-opacity="50">Optional assistive text</text>
-        </group>
-      </group>
+                    <separator data-vertical="" data-height="fit"></separator>
 
-      <group
-     
-      data-min-length="300"
-        data-fit='1'
-        data-space="adaptive-30-50"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-gap="30"
-        data-width="auto"
-         data-align="end"
-      >
-        <group data-direction="column" data-gap="10">
-          <Input
-            icon={<IconHome size={20} />}
-            size="large"
-            type="text"
-            label="Field Label"
-            placeholder="Placeholder"
-            dataLength="fit"
-            button={
-              <>
-                <group
-                  data-radius-bottom-right="input"
-                  data-radius-top-right="input"
-                  data-shrink="no"
-                  data-contain=""
-                  data-height="fit"
-                  data-width="auto"
-                >
-                  <group data-width="auto" data-space="10" data-align="center">
-                    <text data-line="1" data-opacity="30" data-ellipsis="">
-                      Suffix
-                    </text>
-                  </group>
-                  <separator data-vertical="" data-height="fit"></separator>
-
-                  <Tooltip content="Action">
-                    <group data-width="auto" data-height="fit">
-                      <Ripple>
-                        <group
-                          data-width="auto"
-                          data-space="10"
-                          data-align="center"
-                          data-height="fit"
-                          data-cursor="pointer"
-                          data-interactive=""
-                          //  data-ink-color="main-deep"
-                          // data-background="main"
-                          // data-color="main-text"
-                        >
-                          <group>
-                            <IconMore size={20} />
+                    <Tooltip content="Action">
+                      <group data-width="auto" data-height="fit">
+                        <Ripple>
+                          <group
+                            data-width="auto"
+                            data-space="10"
+                            data-align="center"
+                            data-height="fit"
+                            data-cursor="pointer"
+                            data-interactive=""
+                            //  data-ink-color="main-deep"
+                            // data-background="main"
+                            // data-color="main-text"
+                          >
+                            <group>
+                              <IconMore size={20} />
+                            </group>
                           </group>
-                        </group>
-                      </Ripple>
-                    </group>
-                  </Tooltip>
-                </group>
-              </>
-            }
-          ></Input>
-          <text data-opacity="50">Optional assistive text</text>
+                        </Ripple>
+                      </group>
+                    </Tooltip>
+                  </group>
+                </>
+              }
+            ></Input>
+            <text data-opacity="50">Optional assistive text</text>
+          </group>
         </group>
       </group>
-</group>
+
+
 
       <group data-column-gap="15" data-type="column" data-align="start">
         <group>

@@ -5,7 +5,6 @@ import Tooltip from "../components/tooltip";
 import {
   IconHeart,
   IconHome,
-  IconPicker,
   IconSearch,
   IconSettings,
   IconShare,
@@ -58,7 +57,7 @@ const CustomIcons = [
   { name: <IconHeart />, title: "Heart" },
   { name: <IconStar />, title: "Star" },
   { name: <IconSettings />, title: "Settings" },
-  { name: <IconPicker />, title: "Picker" },
+  // { name: <IconPicker />, title: "Picker" },
 ];
 
 const Icons: React.FC = () => {

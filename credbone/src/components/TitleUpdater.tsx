@@ -11,7 +11,7 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
   'Colors': { title: 'Colors', header: 'Colors' },
   'Layout': { title: 'Layout', header: 'Layout' },
   'Navigation': { title: 'Navigation', header: 'Navigation' },
-  'InputsAndForms': { title: 'Inputs & Forms', header: 'Inputs & Forms' },
+  'RangeSlider': { title: 'Range Slider', header: 'Range Slider' },
   'TooltipAndPopover': { title: 'Tooltip & Popover', header: 'Tooltip & Popover' },
   'Snackbar': { title: 'Snackbar', header: 'Snackbar' },
   'CardsAndList': { title: 'Cards & List', header: 'Cards & List' },

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import Button from "../components/button";
+// import Button from "../components/button";
 import { glyphs } from "./utils/glyphData";
-import Tooltip from "../components/tooltip";
+// import Tooltip from "../components/tooltip";
 import StuckReporter from "../components/StuckReporter";
 import TextReveal from "../components/TextReveal";
-import { Minus, Plus } from "lucide-react";
+// import { Minus, Plus } from "lucide-react";
+import CustomSlider from "../components/inputs/slider";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
-const textSizeOptions = [
-  { value: "small", display: "12" },
-  { value: "medium", display: "16" },
-  { value: "large", display: "18" },
-  { value: "larger", display: "20" },
-  { value: "x-large", display: "24" },
-  { value: "xx-large", display: "32" },
-  { value: "xxx-large", display: "48" },
-];
+// const textSizeOptions = [
+//   { value: "small", display: "12" },
+//   { value: "medium", display: "16" },
+//   { value: "large", display: "18" },
+//   { value: "larger", display: "20" },
+//   { value: "x-large", display: "24" },
+//   { value: "xx-large", display: "32" },
+//   { value: "xxx-large", display: "48" },
+// ];
 
 const initialFontData = [
   // { name: 'Thin 100', weight: 100, previewText: previewText },
@@ -28,24 +29,31 @@ const initialFontData = [
 ];
 
 const Typeface: React.FC = () => {
-  const [textSizeIndex, setTextSizeIndex] = useState(4); // 'x-large' is the 5th item, index 4
+  // const [textSizeIndex, setTextSizeIndex] = useState(4); // 'x-large' is the 5th item, index 4
 
-  const increaseTextSize = () => {
-    setTextSizeIndex((prevIndex) =>
-      Math.min(prevIndex + 1, textSizeOptions.length - 1)
-    );
-  };
+  const [sliderValue, setSliderValue] = useState(24);
 
-  const decreaseTextSize = () => {
-    setTextSizeIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-  };
+  const handleSliderChange = (value: number) => {
+    setSliderValue(value);
+    };
 
-  const currentTextSize = textSizeOptions[textSizeIndex];
 
-  const updatedFontData = initialFontData.map((font) => ({
-    ...font,
-    textSize: currentTextSize.value,
-  }));
+  // const increaseTextSize = () => {
+  //   setTextSizeIndex((prevIndex) =>
+  //     Math.min(prevIndex + 1, textSizeOptions.length - 1)
+  //   );
+  // };
+
+  // const decreaseTextSize = () => {
+  //   setTextSizeIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  // };
+
+  // const currentTextSize = textSizeOptions[textSizeIndex];
+
+  // const updatedFontData = initialFontData.map((font) => ({
+  //   ...font,
+  //   textSize: currentTextSize.value,
+  // }));
 
   return (
 
@@ -112,7 +120,9 @@ const Typeface: React.FC = () => {
           data-direction="column"
           data-gap="20"
         >
-          <text data-weight="700" data-text-size="96" data-cast-shadow="1">
+          <text data-weight="700" data-text-size="96"
+        //   data-cast-shadow="1"
+           >
           <TextReveal text="Aa" duration={800} />
           </text>
           <text data-wrap="wrap" data-opacity="60" data-line="1.5">
@@ -130,7 +140,19 @@ const Typeface: React.FC = () => {
 
 
 
-      <group data-radius="15"  data-border="">
+      <group >
+
+      <group data-direction="column" data-gap="10" data-space="20">
+<text  data-weight="700" data-text-size="large">
+                  Preview
+                </text>
+                <text data-wrap="wrap" data-line="1.5" data-opacity="60" >
+                Experiment with the typeface to evaluate how varying sizes influence its visual impact and overall effectiveness in the design.
+
+
+                </text>
+</group>
+
         <StuckReporter>
           {(isSticky) => (
               <group
@@ -141,17 +163,27 @@ const Typeface: React.FC = () => {
             >
               <group
                 data-backdrop={isSticky ? "10" : ""}
-               data-space="15"
-                data-elevation={isSticky ? "1" : ""}
+               data-space="20"
+                data-elevation={isSticky ? "2" : ""}
                 data-radius={isSticky ? "10" : ""}
              //   data-duration=".125"
                 data-align="center"
 
+               
               >
-                <text data-space="10" data-weight="600">
-                  Preview
-                </text>
-                <group
+
+
+
+<group>
+            <CustomSlider
+              start={12}
+              end={48}
+              initialValue={24}
+              onValueChange={handleSliderChange}
+            />
+          </group>
+
+                {/* <group
                   data-background="context"
                   data-border="outline"
                   data-contain=""
@@ -190,14 +222,20 @@ const Typeface: React.FC = () => {
                       onClick={increaseTextSize}
                     ></Button>
                   </Tooltip>
-                </group>
+                </group> */}
+
+
+
+
               </group>
             </group>
           )}
         </StuckReporter>
-        <separator data-horizontal=""></separator>
-        <group data-radius-bottom="15" data-contain="">
-          {updatedFontData.map((font, index) => (
+      
+<group data-height="20"></group>
+
+        <group data-radius="15"  data-border="" data-contain="">
+          {initialFontData.map((font, index) => (
             <group
               key={index}
               data-space="30"
@@ -212,13 +250,17 @@ const Typeface: React.FC = () => {
                 data-wrap="wrap"
                 data-cursor="auto"
                 data-weight={font.weight}
-                data-text-size={font.textSize}
+             //   data-text-size={font.textSize}
+
+                style={{
+                  fontSize: sliderValue,
+                }}
               >
                 <group
                   //  contentEditable={true}
                   contentEditable="plaintext-only"
                   data-break="break-word"
-                  data-duration=".225"
+              //    data-duration=".225"
                   suppressContentEditableWarning={true}
                 >
                   {font.previewText}
@@ -230,11 +272,10 @@ const Typeface: React.FC = () => {
       </group>
 
       <group
-        data-radius="15"
-       data-border=""
+       
         //data-contain=""
       >
-        <StuckReporter>
+        {/* <StuckReporter>
           {(isSticky) => (
             <group
               data-space={isSticky ? "15" : "10"}
@@ -256,9 +297,22 @@ const Typeface: React.FC = () => {
               </group>
             </group>
           )}
-        </StuckReporter>
-        <separator data-horizontal=""></separator>
-        <group data-radius-bottom="15" data-contain="">
+        </StuckReporter> */}
+
+
+<group data-direction="column" data-gap="10" data-space="20">
+<text  data-weight="700" data-text-size="large">
+Character
+                </text>
+                <text data-wrap="wrap" data-line="1.5" data-opacity="60" >
+                A preview of the standard character set including glyphs for mathematical symbols and numbers.
+
+
+                </text>
+</group>
+
+        <group  data-radius="15"
+       data-border="" data-contain="">
           <group
             data-type="grid"
             data-grid-template="50"
@@ -272,14 +326,11 @@ const Typeface: React.FC = () => {
                 data-border=""
                 data-ratio="1:1"
                 data-background={
-                  glyphs.primary ? "main" : glyphs.secondary ? "secondary" : ""
+                  glyphs.primary ? "main" : ""
                 }
                 data-color={
                   glyphs.primary
-                    ? "main-text"
-                    : glyphs.secondary
-                    ? "secondary-text"
-                    : ""
+                    ? "main-text" : ""
                 }
                 data-glyph-size={glyphs.large ? "double" : ""}
                 data-text-size={glyphs.large ? "64" : ""}

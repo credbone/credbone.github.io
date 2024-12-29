@@ -27,6 +27,7 @@ import VerticalSubNav from "../pages/navigation/verticalSubNav";
 import QuickDemos from "./quickDemos";
 import Overview from "./Overview";
 import Snackbar from "./Snackbar";
+import RangeSlider from "./RangeSlider";
 
 
 const Template: React.FC = () => {
@@ -117,6 +118,8 @@ const Template: React.FC = () => {
              
 
               <Route path="InputsAndForms" element={<InputsAndForms />} />
+              <Route path="RangeSlider" element={<RangeSlider />} />
+
               <Route path="TooltipAndPopover" element={<TooltipPopover />} />
               <Route path="Snackbar" element={<Snackbar />} />
               <Route path="CardsAndList" element={<Cards />} />
