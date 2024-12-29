@@ -15,7 +15,7 @@ const TickComponent: React.FC<TickComponentProps> = ({ tickCount }) => {
 
 
         <group data-length="1"
-         data-background="border-color"
+         data-background="neutral"
          data-height={index === 0 || index === tickCount - 1 ? 20 : index === middleIndex ? 30 : 15}
            data-vertical=""
             key={index}>

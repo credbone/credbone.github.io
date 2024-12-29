@@ -143,7 +143,7 @@ const RangeSlider: React.FC = () => {
           applied to the slider UI
         </text>
 </group>
-<group data-gap="15" data-radius="20" data-space="30" data-border="" >
+<group data-gap="15" data-radius="20" data-space="30"  >
             <TickComponent tickCount={17} />
             <CustomSlider
               start={10}
