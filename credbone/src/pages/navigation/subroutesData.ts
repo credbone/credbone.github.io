@@ -23,8 +23,8 @@ export const navItems = [
 
 
 
+  { to: "Components/Miscellaneous",  label: "Miscellaneous",separator:"true",new:"true"  },
+  { to: "Components/Dashboard",  label: "Dashboard"  },
+  { to: "Components/QuickDemos",  label: "Quick Demos"},
 
-  { to: "Components/Dashboard",  label: "Dashboard",separator:"true"  },
-  { to: "Components/QuickDemos",  label: "Quick Demos",new:"true" },
-  { to: "Components/Miscellaneous",  label: "Miscellaneous" },
 ];
