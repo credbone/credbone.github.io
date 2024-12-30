@@ -198,7 +198,7 @@ useEffect(() => {
   return (
     <group
       data-direction="column"
-
+data-name="weather-widget"
       data-align="start"
       // data-color="main-text"
       // data-background="main"
@@ -275,14 +275,14 @@ useEffect(() => {
             >
               <group
                 data-width="auto"
-                data-text-size="96"
+                data-text-size="72"
                 data-index="2"
                 data-cast-shadow="1"
                 data-weight="700"
               >
                 <text>
                   <Count
-                    // from={0}
+                    from={weather.temperature + 5}
                     to={weather.temperature}
                     duration={900}
                   ></Count>

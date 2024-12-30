@@ -545,7 +545,7 @@
 
 
 
-:root {
+[data-name="weather-widget"] {
   /* Clear Day */
   --weather-01d-bg: linear-gradient(45deg, #f7c965, #eaad26, #f29e50, #ff7f4d);
   --weather-01d-color: #331414;

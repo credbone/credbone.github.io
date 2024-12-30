@@ -240,9 +240,11 @@ input[type=number][data-name="input-reset"] {
 [data-name="range-slider-track-left"],
 [data-name="range-slider-track-right"]
 
+
 {
     height: 2px;
 }
+
 
 
 [data-name="range-slider"] input::-webkit-slider-thumb

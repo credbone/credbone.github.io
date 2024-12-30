@@ -3,6 +3,7 @@ import React, { useState } from "react";
 interface SliderProps {
   start: number;
   end: number;
+  step?: number;
   initialValue?: number;
   onValueChange?: (value: number) => void;
   handlerWidth?: number; // Configurable handlerWidth with default
@@ -15,6 +16,7 @@ interface SliderProps {
 const CustomSlider: React.FC<SliderProps> = ({
   start,
   end,
+  step,
   initialValue = start,
   onValueChange,
   handlerWidth = 60, // Default value for handlerWidth
@@ -47,6 +49,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         value={value}
         onChange={handleChange}
         data-height="fit"
+        step={step}
       />
 
       <group
@@ -70,6 +73,7 @@ const CustomSlider: React.FC<SliderProps> = ({
           data-name="range-slider-track-left"
           data-min-length="600"
           data-position="absolute"
+          data-margin-right="5"
 
           {...trackLeftProps}
 
@@ -79,7 +83,7 @@ const CustomSlider: React.FC<SliderProps> = ({
           data-name="range-slider-track-right"
           data-min-length="600"
           data-position="absolute"
-
+data-margin-left="5"
           {...trackRightProps}
 
         ></group>

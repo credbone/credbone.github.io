@@ -3,7 +3,6 @@ import CustomSlider from "../components/inputs/slider";
 import TickComponent from "../components/inputs/TickComponent";
 import sectionImage from "../styles/images/samples/wide_res_68.webp";
 
-
 const RangeSlider: React.FC = () => {
   const handleSliderChange = (value: number) => {
     //  console.log("Current value:", value);
@@ -57,9 +56,6 @@ const RangeSlider: React.FC = () => {
         </group>
       </group>
 
-
-
-
       <group>
         <picture
           data-radius="30"
@@ -81,90 +77,68 @@ const RangeSlider: React.FC = () => {
             data-space="30"
             data-gap="20"
           >
+            <group data-length="300" data-gap="30">
+              <group>
+                <text data-wrap="wrap" data-weight="600" data-line="1.5">
+                  By default, the slider is configured to fit the available
+                  space, use a neutral palette, and display the current value on
+                  the handle.
+                </text>
+              </group>
 
-
-<group    data-length="300" data-gap="30">
-<group >
-<text
-          data-wrap="wrap"
-
-          data-weight="600"
-          data-line="1.5"
-        >
-          By default, the slider is configured to fit the available space, use a
-          neutral palette, and display the current value on the handle.
-        </text>
-</group>
-
-        <group
-       
-        >
-          <group>
-            <CustomSlider
-              start={30}
-              end={60}
-              onValueChange={handleSliderChange}
-            />
-          </group>
-        </group>
-</group>
-
-
+              <group>
+                <group>
+                  <CustomSlider
+                    start={20}
+                    end={60}
+                    initialValue={25}
+                    onValueChange={handleSliderChange}
+                  />
+                </group>
+              </group>
+            </group>
           </group>
         </group>
       </group>
 
-
-      <group   data-gap="30" data-type="grid" data-grid-template="300" >
-
-
-
-
-
-
-
-<group  
-//  data-length="400"
-  
-  >
-<group data-direction="column"  data-space="30" data-gap="10">
-<group data-text-size="36" data-weight="300">
-          <text data-line="1">{sliderValue}</text>
-          <text data-line="1">°</text>
-        </group>
-
-        <text
-          data-wrap="wrap"
-          data-max-length="300"
-          data-weight="600"
-          data-line="1.5"
+      <group data-gap="15" data-type="grid" data-grid-template="240">
+        <group
+        //  data-length="400"
+                data-background="adaptive-gray"
+        data-radius="20"
         >
-          The demo is set up to show ticks for the range and the primary color
-          applied to the slider UI
-        </text>
-</group>
-<group data-gap="15" data-radius="20" data-space="30"  >
-            <TickComponent tickCount={17} />
+          <group data-direction="column" data-space="30" data-gap="30" >
+            <group data-text-size="36" data-weight="300">
+              <text data-line="1">{sliderValue}</text>
+              <text data-line="1">°</text>
+            </group>
+
+            <text
+              data-wrap="wrap"
+              data-max-length="300"
+              data-weight="600"
+              data-line="1.5"
+            >
+              The demo is set up to show ticks for the range and the primary
+              color applied to the slider UI
+            </text>
+          </group>
+          <group data-gap="15" data-radius="20" data-space="30">
+            <TickComponent tickCount={15} />
             <CustomSlider
               start={10}
               end={26}
               initialValue={sliderValue}
               onValueChange={(value) => setSliderValue(value)}
-              // handlerWidth={70}
-              // unit="°C"
               handlerProps={{
                 "data-background": "main",
                 "data-color": "main-text",
               }}
               trackLeftProps={{ "data-background": "main" }}
-              trackRightProps={{ "data-background": "highlight" }}
+              trackRightProps={{ "data-opacity": "10" }}
             />
           </group>
-
-
-</group>
-
-
+        </group>
 
         <group
           data-space="30"
@@ -173,18 +147,17 @@ const RangeSlider: React.FC = () => {
           data-gap="30"
           data-dark=""
           data-direction="column"
-       //   data-length="400"
+          //   data-length="400"
           data-justify="end"
         >
-
-<text
-          data-wrap="wrap"
-          data-max-length="200"
-          data-weight="600"
-          data-line="1.5"
-        >
-          Adapts to various environments, including dark mode.
-        </text>
+          <text
+            data-wrap="wrap"
+            data-max-length="200"
+            data-weight="600"
+            data-line="1.5"
+          >
+            Adapts to various environments and backgrounds
+          </text>
 
           <group data-gap="15">
             <CustomSlider
@@ -196,6 +169,52 @@ const RangeSlider: React.FC = () => {
             />
           </group>
         </group>
+
+
+        <group
+        //  data-length="400"
+                data-background="adaptive-gray"
+        data-radius="20"
+          data-justify="end"
+          data-direction="column"
+          data-space="30" 
+          data-gap="30"
+        >
+          <group data-direction="column"  >
+
+
+            <text
+              data-wrap="wrap"
+              data-max-length="300"
+              data-weight="600"
+              data-line="1.5"
+            
+            >
+              Another example with a custom handle using different token properties.
+            </text>
+          </group>
+          <group data-gap="15" data-radius="20" >
+         
+            <CustomSlider
+              start={64}
+              end={256}
+             // step={16}
+              initialValue={128}
+              onValueChange={handleSliderChange}
+             //  handlerWidth={40}
+              // unit="°C"
+              handlerProps={{
+                "data-background": "none",
+                "data-color": "text",
+                "data-border" : "inset-2",
+
+              }}
+              trackLeftProps={{ "data-margin":"0" }}
+              trackRightProps={{ "data-opacity": "10" }}
+            />
+          </group>
+        </group>
+
       </group>
     </group>
   );
