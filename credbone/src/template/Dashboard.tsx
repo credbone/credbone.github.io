@@ -3,7 +3,7 @@ import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
-import sampleImage from "../styles/images/samples/wide_res_65.webp";
+import sampleImage from "../styles/images/samples/wide_res_69.webp";
 import Count from "../components/Coutner";
 
 
@@ -49,15 +49,15 @@ interface MonitorCardType {
 
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
-  { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,long:true  },
+  { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,  },
   { title: "Panel Tilt", value: getRandomStepValue(11, 26, 5), unit: "°", max: 360, chart: "gaugezoom",},
   //  { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
   { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
-  { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true, },
+  { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true,},
   { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
   { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",   },
   // { title:"",value:"",chart:"none",},
-  { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
+ // { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
 
 ];
 
@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
               <text>Demo</text>
             </group>
             <separator data-vertical=""></separator>
-            <text>Version 2.0.0</text>
+            <text>Version 2.0.1</text>
           </group>
         </group>
         <separator data-horizontal=""></separator>
@@ -157,6 +157,7 @@ const Dashboard: React.FC = () => {
           data-brightness="adaptive"
           data-background="grey-light"
           data-position="absolute"
+          data-object-position="right"
         >
           <img src={sampleImage} alt="" />
         </picture>
@@ -221,7 +222,7 @@ const Dashboard: React.FC = () => {
         //  data-max-length="800"
       >
         {/* 
-<group   data-row-end="2" data-height="fit"    data-ratio="2:3" data-radius="15" data-direction="column">
+<group   data-row-end="2" data-height="fit"    data-ratio="1:2" data-radius="15" data-direction="column">
 
 <picture
              data-radius="15"
@@ -240,18 +241,20 @@ const Dashboard: React.FC = () => {
 
         <group
           data-contain=""
-          data-elevation="2"
+         // data-elevation="2"
+
           data-index="2"
           data-space="20"
           data-gap="15"
           data-height="fit"
-          data-border=""
+         data-background="adaptive-gray"
           data-align="center"
           data-justify="center"
-          data-ratio="2:3"
+          data-ratio="1:2"
           data-radius="20"
           data-wrap="no"
           data-direction="column"
+
         >
           <group data-width="auto" data-align="center" data-direction="column">
             <group data-space="15">
@@ -285,7 +288,7 @@ const Dashboard: React.FC = () => {
               data-radius="20"
               data-align="center"
               data-justify="center"
-              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-ratio={item.wide === true ? "4:3" : "1:2"}
               data-gap="20"
             >
               <group>
@@ -349,7 +352,7 @@ const Dashboard: React.FC = () => {
               data-radius="20"
               data-align="center"
               data-justify="center"
-              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-ratio={item.wide === true ? "4:3" : "1:2"}
               data-gap="20"
             >
               <group>
@@ -402,7 +405,7 @@ const Dashboard: React.FC = () => {
               data-radius="20"
               data-align="center"
               data-justify="center"
-              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-ratio={item.wide === true ? "4:3" : "1:2"}
             >
               <group data-direction="column" data-height="fit">
                 <LineChart value={parseFloat(item.value)} max={item.max} />
@@ -451,7 +454,7 @@ const Dashboard: React.FC = () => {
               data-radius="20"
               data-align="center"
               data-justify="center"
-              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-ratio={item.wide === true ? "4:3" : "1:2"}
             >
               {item.chart === "gaugezoom" && item.max && (
                 <group
@@ -522,7 +525,7 @@ const Dashboard: React.FC = () => {
               data-radius="20"
               data-align="center"
               data-justify="center"
-              data-ratio={item.wide === true ? "4:3" : "2:3"}
+              data-ratio={item.wide === true ? "4:3" : "1:2"}
             >
               <group
                 data-direction="column"

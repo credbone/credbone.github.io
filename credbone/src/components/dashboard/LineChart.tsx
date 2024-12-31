@@ -52,7 +52,7 @@ const fillPath = `${smoothPath}
 
   return (
     <svg
-      viewBox={`0 0 100 ${totalHeight}`}
+      viewBox={`0 0 75 ${totalHeight}`}
       preserveAspectRatio="none"
     //  width="100%"
       height="100%"
@@ -62,14 +62,14 @@ const fillPath = `${smoothPath}
         <path  d={fillPath} fill="#fff" />
       </mask>
 
-      <text x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" data-text-size="xx-large">
+      <text x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" data-text-size="x-large">
             {value}
           </text>
 
       <path d={fillPath} data-fill="main" />
 
       
-      <text  x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="xx-large">
+      <text  x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="x-large">
             {value}
           </text>
 
