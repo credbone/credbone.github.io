@@ -36,16 +36,19 @@ const Layout: React.FC = () => {
         </text>
       </group>
 
-      <view
-        data-height="400"
+
+      <group
+        data-height="300"
         data-direction="row"
         data-radius="15"
         data-border=""
+
+        data-contain=""
       >
         <view data-direction="row">
           <group data-name="switch-gap" data-shrink="no"></group>
           <Switchable
-            data-adaptive-float="15"
+            data-adaptive-float="10"
             defaultExpanded={false}
             data-type="overlap"
             icon={
@@ -108,14 +111,13 @@ const Layout: React.FC = () => {
                   data-line="1.5"
                   data-max-length="300"
                 >
-                  No additional manipulations are needed for the DOM to add ord
-                  remove layout sections.
+              No extra manipulations are required to add or remove layout sections.
                 </text>
               </group>
             </group>
           </group>
           <Switchable
-          data-adaptive-float="15"
+          data-adaptive-float="10"
           //   closeOnOutsideClick={true}
           //     data-radius="10"
           data-type="adaptive"
@@ -154,17 +156,16 @@ const Layout: React.FC = () => {
                     data-line="1.5"
                     data-max-length="300"
                   >
-                    No additional manipulations are needed for the DOM to add
-                    ord remove layout sections.
+                    No extra manipulations are required to add or remove layout sections.
                   </text>
                 </group>
               </group>
             </view>
 
             <Switchable
-              data-adaptive-float="15"
+             // data-adaptive-float="10"
               defaultExpanded={false}
-              data-type="overlap"
+              data-type="overlap" 
               // data-elevation="1"
               data-switch-direction="horizontal"
               data-direction="column"
@@ -198,8 +199,7 @@ const Layout: React.FC = () => {
                     data-line="1.5"
                     data-max-length="300"
                   >
-                    No additional manipulations are needed for the DOM to add
-                    ord remove layout sections.
+                    No extra manipulations are required to add or remove layout sections.
                   </text>
                 </group>
               </group>
@@ -209,11 +209,12 @@ const Layout: React.FC = () => {
         <group data-name="switch-gap" data-shrink="no"></group>
         </view>
 
-      </view>
+      </group>
 
       <group
+
         //  data-width="auto"
-        data-height="400"
+        data-height="300"
         data-contain=""
         //  data-gap="20"
         //   data-border="no"
@@ -221,9 +222,13 @@ const Layout: React.FC = () => {
         data-border=""
       >
         <view data-direction="row">
+
+  
+
+
           <Switchable
             data-border="outline"
-            data-adaptive-float="15"
+           // data-adaptive-float="10"
             defaultExpanded={false}
             icon={ <SvgPlus />}
             title={"Switchable To The Left"}
@@ -266,7 +271,7 @@ const Layout: React.FC = () => {
 
           <Switchable
             data-border="outline"
-            data-adaptive-float="15"
+         //   data-adaptive-float="10"
             defaultExpanded={false}
             icon={ <SvgPlus />}
             title={"Adaptive Switchable To The Left"}
@@ -313,6 +318,8 @@ const Layout: React.FC = () => {
 
         </view>
       </group>
+
+
     </group>
   );
 };
