@@ -551,7 +551,7 @@
   --weather-01d-color: #331414;
 
   /* Clear Night */
-  --weather-01n-bg: linear-gradient(to top, #09203f 0%, #537895 100%);
+  --weather-01n-bg: linear-gradient(45deg, #09203f 0%, #537895 100%);
   --weather-01n-color: #ffffff;
 
   /* Partly Cloudy Day */
