@@ -238,11 +238,11 @@ data-name="weather-widget"
       ) : weather ? (
         <group
         
-      data-gap="20"
+      data-gap="15"
       data-direction="column"
       data-align="start"
       data-space="15"
-      style={weatherStyle}
+    //  style={weatherStyle}
         >
           <group
             data-direction="column"
@@ -277,7 +277,7 @@ data-name="weather-widget"
                 data-width="auto"
                 data-text-size="72"
                 data-index="2"
-                data-cast-shadow="1"
+                //data-cast-shadow="1"
                 data-weight="700"
               >
                 <text>
@@ -292,21 +292,23 @@ data-name="weather-widget"
                   °
                 </text>
               </group>
-              <group data-align="center" data-gap="10">
-                {/* <group
+
+            </group>
+
+            <group data-align="center" data-gap="10">
+                <group
                   data-direction="column"
                   data-align="center"
                   data-width="auto"
                 >
-                  <icon data-fill="fill">{weather.icon}</icon>
+                  <icon>{weather.icon}</icon>
                 </group>
-                <separator data-vertical="" data-height="20"></separator> */}
+                <separator data-vertical="" data-height="20"></separator>
                 <text>
                   Feels like {weather.feelsLike}°
                   {unit === "imperial" ? "F" : "C"}
                 </text>
               </group>
-            </group>
           </group>
 
           {showForecast && (
@@ -349,7 +351,7 @@ data-name="weather-widget"
               ))}
             </group>
           )}
-
+<separator data-horizontal=""></separator>
           <Popover
             data-radius="15"
             data-space="20"
@@ -433,6 +435,7 @@ data-name="weather-widget"
               data-wrap="no"
               data-align="center"
               data-gap="15"
+              data-position="right"
             >
               <text>Configure</text>
             </group>

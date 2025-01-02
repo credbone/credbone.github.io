@@ -490,6 +490,12 @@
 [data-stroke="main-alpha-50"] { stroke: var(--main-color-alpha-50) }
 [data-stroke="secondary"] { stroke: var(--secondary-color) }
 
+[data-stroke="adaptive-gray"]
+{
+  stroke:rgba(128,128,128,.08);
+}
+
+
 [data-fill="main"] { fill: var(--main-color) }
 [data-fill="main-light"] { fill: var(--main-color-light) }
 [data-fill="main-lighter"] { fill: var(--main-color-lighter) }

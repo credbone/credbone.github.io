@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import CustomSlider from "../components/inputs/slider";
 import TickComponent from "../components/inputs/TickComponent";
 import sectionImage from "../styles/images/samples/wide_res_68.webp";
+import GaugeZoom from "../components/dashboard/GaugeZoom";
 
 const RangeSlider: React.FC = () => {
   const handleSliderChange = (value: number) => {
     //  console.log("Current value:", value);
   };
 
-  const [sliderValue, setSliderValue] = useState(15); // Initial value for the slider
+  const [sliderValue, setSliderValue] = useState(23); // Initial value for the slider
+  const [GaugeValue, setGaugeValue] = useState(90); // Initial value for the slider
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
@@ -101,29 +103,31 @@ const RangeSlider: React.FC = () => {
         </group>
       </group>
 
-      <group data-gap="15" data-type="grid" data-grid-template="240">
+      <group data-gap="15" data-type="grid" data-grid-template="200">
         <group
         //  data-length="400"
                 data-background="adaptive-gray"
         data-radius="20"
+        data-space="30"
+        data-gap="30"
         >
-          <group data-direction="column" data-space="30" data-gap="30" >
-            <group data-text-size="36" data-weight="300">
+          <group data-direction="column" data-gap="30" >
+            <group data-text-size="64" data-weight="700">
               <text data-line="1">{sliderValue}</text>
               <text data-line="1">°</text>
             </group>
 
-            <text
+
+          </group>
+          <text
               data-wrap="wrap"
               data-max-length="300"
               data-weight="600"
               data-line="1.5"
             >
-              The demo is set up to show ticks for the range and the primary
-              color applied to the slider UI
+             Showcases range ticks with primary color applied to slider UI
             </text>
-          </group>
-          <group data-gap="15" data-radius="20" data-space="30">
+          <group data-gap="15" data-radius="20" >
             <TickComponent tickCount={15} />
             <CustomSlider
               start={10}
@@ -173,46 +177,58 @@ const RangeSlider: React.FC = () => {
 
         <group
         //  data-length="400"
-                data-background="adaptive-gray"
+              //  data-background="adaptive-gray"
+              data-border=""
         data-radius="20"
-          data-justify="end"
+          //data-justify="end"
           data-direction="column"
-          data-space="30" 
+         // data-space="30" 
           data-gap="30"
         >
-          <group data-direction="column"  >
+          <group data-ratio="4:5" data-height="fit" data-align="center" data-direction="column" data-contain="">
+            <GaugeZoom value={GaugeValue} max={360} size={0} strokecolor="adaptive-gray"/> 
+            <group data-gap="15" data-radius="20" data-position="bottom" data-space="30" >
 
 
-            <text
-              data-wrap="wrap"
-              data-max-length="300"
-              data-weight="600"
-              data-line="1.5"
-            
-            >
-              Another example with a custom handle using different token properties.
-            </text>
-          </group>
-          <group data-gap="15" data-radius="20" >
+            {/* <group data-direction="column"  >
+
+
+<text
+  data-wrap="wrap"
+data-text-align="center"
+  data-weight="600"
+  data-line="1.5"
+
+
+>
+Custom handle using different properties
+</text>
+</group> */}
+
          
-            <CustomSlider
-              start={64}
-              end={256}
-             // step={16}
-              initialValue={128}
-              onValueChange={handleSliderChange}
-             //  handlerWidth={40}
-              // unit="°C"
-              handlerProps={{
-                "data-background": "none",
-                "data-color": "text",
-                "data-border" : "inset-2",
+         <CustomSlider
+           start={0}
+           end={360}
+           step={5}
+           initialValue={GaugeValue}
+           onValueChange={(value) => setGaugeValue(value)}
+          //  handlerWidth={40}
+           // unit="°C"
+           handlerProps={{
+             "data-background": "none",
+             "data-color": "text",
+             "data-border" : "inset-2",
 
-              }}
-              trackLeftProps={{ "data-margin":"0" }}
-              trackRightProps={{ "data-opacity": "10" }}
-            />
+           }}
+           trackLeftProps={{ "data-margin":"0" }}
+           trackRightProps={{ "data-opacity": "10" }}
+         />
+       </group>
+
+
           </group>
+
+
         </group>
 
       </group>
