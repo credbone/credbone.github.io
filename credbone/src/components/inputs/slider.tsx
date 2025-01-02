@@ -87,8 +87,8 @@ data-margin-left="5"
           {...trackRightProps}
 
         ></group>
-        <text data-weight="700">{value}</text>
-        {unit && <text>{unit}</text>}
+        <text data-weight="700">{value}{unit ? unit : ''}</text>
+        
       </group>
     </group>
   );

@@ -12,6 +12,10 @@ const RangeSlider: React.FC = () => {
   const [sliderValue, setSliderValue] = useState(23); // Initial value for the slider
   const [GaugeValue, setGaugeValue] = useState(90); // Initial value for the slider
 
+
+
+
+
   return (
     <group data-space="30" data-gap="30" data-align="start">
       <group
@@ -187,6 +191,10 @@ const RangeSlider: React.FC = () => {
         >
           <group data-ratio="4:5" data-height="fit" data-align="center" data-direction="column" data-contain="">
             <GaugeZoom value={GaugeValue} max={360} size={0} strokecolor="adaptive-gray"/> 
+
+
+
+
             <group data-gap="15" data-radius="20" data-position="bottom" data-space="30" >
 
 
@@ -213,7 +221,7 @@ Custom handle using different properties
            initialValue={GaugeValue}
            onValueChange={(value) => setGaugeValue(value)}
           //  handlerWidth={40}
-           // unit="°C"
+            unit="°"
            handlerProps={{
              "data-background": "none",
              "data-color": "text",
