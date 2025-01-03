@@ -93,7 +93,7 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "Dashboard", 
-    tags: ["dashboard", "monitoring", "gauge", "widget", "hardware", "temperature"], 
+    tags: ["dashboard","pattern", "monitoring", "gauge", "widget", "hardware", "temperature"], 
     description: "Dashboard interfaces for hardware monitoring and widgets.", 
     title: "Dashboard" 
   },
@@ -105,7 +105,7 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "QuickDemos", 
-    tags: ["demo", "showcase", "converter", "interactive", "weather", "paint", "app", "calculator"], 
+    tags: ["demo", "pattern", "showcase", "converter", "interactive", "weather", "paint", "app", "calculator"], 
     description: "Explore interactive demos, apps, and functional showcases.", 
     title: "Quick Demos" 
   },
