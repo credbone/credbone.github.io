@@ -23,24 +23,33 @@ const links = [
 
 const currentYear: number = new Date().getFullYear();
 
+
+const typefacecontent = ( <> <text data-weight="700" data-text-size="72">Aa</text> </> )
+
 const linksArray = [
 
 
-  { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
-  //{ title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
-  { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
-  { title: "Tooltip\n& Popover", description: "Provide helpful details on hover, focus, or click.", to: "/Components/TooltipAndPopover", },
-  { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
-  { title: "Demos\n& Samples", description: "Various quick-designed apps, built for demo purposes.", to: "/Components/QuickDemos", },
-  { title: "Modals\n& Alerts", description: "Dynamic modals for messages, forms, and notifications.", to: "/Components/Modal", },
-  { title: "And\nmore...", description: "Explore a variety of other components and features.", to: "/Components/Overview", }
+  { title: "Colors\n& Shades", description: "A system to craft and manage color palettes.", to: "/Components/Colors" },
+  { title: "Typography", content:typefacecontent,  description: "Scalable tokens for managing text styles.", to: "/Components/Typography" },
+  { title: "Cards\n& Lists", description: "Structured containers for displaying content.", to: "/Components/CardsAndList" },
+  { title: "Tooltip\n& Popover", description: "Interactive elements on hover, focus, or click.", to: "/Components/TooltipAndPopover" },
+  { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers" },
+  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos" },
+  { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal" },
+  { title: "Full\nOverview", description: "Discover all components and features.", to: "/Components/Overview", color: true }
+  
 
+
+
+  //{ title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
   //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard" },
   // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
   // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
   // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Components/Layout" },
   // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
 ];
+
+
 
 
 // const phrases = [
@@ -274,7 +283,7 @@ const Components: React.FC = () => {
           //    data-max-length="810"
         >
           <group
-            data-gap="20"
+            data-gap="10"
             data-type="grid"
             data-grid-template="180"
             data-weight="600"
@@ -293,41 +302,45 @@ const Components: React.FC = () => {
                   data-type="group"
                   data-contain=""
                   data-min-height="300"
-                  data-radius="20"
+                  data-radius="30"
                   data-direction="column"
                   data-wrap="no"
-                  data-background="adaptive-gray"
+                  data-background={link.color? "main":"adaptive-gray"}
+                  data-color={link.color? "main-text":""}
                 >
                   <group
                     data-index="1"
-                    data-direction="column"
+                    data-direction="column" 
                     data-gap="10"
                     data-space="40"
                     data-height="fit"
                     data-wrap="no"
                   >
                     <text
-                      data-text-size="large"
+                      data-text-size="medium"
                       data-weight="700"
                       data-wrap="preline"
                       data-ellipsis=""
                     >
                       {link.title}
                     </text>
+
+                    {link.content}
+
                     <text
                       data-position="bottom"
                       // data-text-size="72"
                       //  data-height="50"
                       data-contain=""
-                      data-weight="700"
-                      data-opacity="20"
+                   //   data-weight="700"
+                      data-opacity="30"
                     >
                       0{index + 1}
                     </text>
                     <text
                       data-ellipsis=""
                       data-wrap="wrap"
-                      data-line="1.5"
+                      data-line="1.3"
                       data-max-length="300"
                       data-opacity="60"
                     >

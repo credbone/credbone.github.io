@@ -2,7 +2,7 @@ export const navItems = [
   //{ to: "Components",  label: "Components" },
   { to: "Components/Overview",  label: "Overview"},
 
-  { to: "Components/Typeface",  label: "Typeface",separator:"true", },
+  { to: "Components/Typography",  label: "Typography",separator:"true", },
   { to: "Components/Icons",  label: "Icons" },
   { to: "Components/Colors",  label: "Color System",},
   { to: "Components/CardsAndList",  label: "Cards & List" },

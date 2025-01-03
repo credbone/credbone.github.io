@@ -106,7 +106,7 @@ const Template: React.FC = () => {
             
               <Route path="/" element={<Navigate replace to="Overview" />} />
               <Route path="Overview" element={<Overview />} />
-              <Route path="Typeface" element={<Typeface />} />
+              <Route path="Typography" element={<Typeface />} />
               <Route path="Icons" element={<Icons />} />
               <Route path="Buttons" element={<Buttons />} />
               <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />

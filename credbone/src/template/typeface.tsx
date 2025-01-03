@@ -90,7 +90,7 @@ const Typeface: React.FC = () => {
         //  data-color="main"
           data-ellipsis=""
         >
-          Typeface
+          Typography
         </text>
         <text data-wrap="wrap" data-length="400" data-line="1.5">
         This section shows the current typeface, its glyphs, and sizes in use, with a demo for context.

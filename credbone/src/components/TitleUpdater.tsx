@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 // Route titles and headers mapping
 const routeTitles: { [key: string]: { title: string | null, header: string | null } } = {
   'Components': { title: 'Components', header: 'Components' },
-  'Typeface': { title: 'Typeface', header: 'Typeface' },
+  'Typography': { title: 'Typography', header: 'Typography' },
   'Icons': { title: 'Icons', header: 'Icons' },
   'Buttons': { title: 'Buttons', header: 'Buttons' },
   'CheckboxSwitchers': { title: 'Checkbox & Switchers', header: 'Checkbox & Switchers' },
