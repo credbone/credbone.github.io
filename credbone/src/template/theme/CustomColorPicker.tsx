@@ -56,50 +56,41 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
   return (
     <Popover
       data-space="5"
-      data-radius="10"
+      data-radius="15"
       data-elevation="2"
       data-contain="visible"
-    
-      data-backdrop="10"
+  //    data-backdrop="10"
       content={(closePopover) => (
         <group
-        
           data-direction="column"
           data-name="cred-react-colorful"
           data-width="auto"
-            data-gap="5"
+          data-gap="5"
         >
-
-
-
           <HexColorPicker color={customColor} onChange={setCustomColor} />
 
-
-
-
-<Ripple>
-<group
-            onClick={() => {
-              handleColorSelection(customColor);
-              closePopover();
-            }}
-           
-            data-contain=""
-            data-space="15"
-            data-interactive=""
-            data-cursor="pointer"
-            data-radius="5"
-            data-align="center"
-            data-direction="column"
-                data-over-color="neutral"
-                data-ink-color="neutral"
-           // data-background="highlight"
-          >
-            <text>
-              Set as {target === "primary" ? "Primary" : "Secondary"}
-            </text>
-          </group>
-</Ripple>
+          <Ripple>
+            <group
+              onClick={() => {
+                handleColorSelection(customColor);
+                closePopover();
+              }}
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+              data-align="center"
+              data-direction="column"
+              data-over-color="neutral"
+              data-ink-color="neutral"
+              // data-background="highlight"
+            >
+              <text>
+                Set as {target === "primary" ? "Primary" : "Secondary"}
+              </text>
+            </group>
+          </Ripple>
         </group>
       )}
     >
@@ -107,13 +98,13 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-width="auto"
         data-over-color="none"
         data-interactive=""
-    
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
         data-gap="20"
       >
         <group
+          //  data-border="outline"
           data-interact=""
           data-length="30"
           data-height="60"
@@ -123,7 +114,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
 
         <group data-direction="column" data-width="auto">
           <text data-weight="600">
-            Custom 
+            Custom
             {/* {target === "primary" ? "Primary" : "Secondary"} */}
           </text>
           <text data-opacity="30">Design your own</text>
