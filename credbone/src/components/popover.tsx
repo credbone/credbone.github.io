@@ -35,16 +35,43 @@ const Popover: React.FC<PopoverProps> = ({
     }
   }, [containerId]);
 
+
+  
+
+  let isInteractionInside = false;
+
+  const handleMouseDown = (event: MouseEvent) => {
+    // Check if the mousedown starts inside the popover or child
+    isInteractionInside =
+      (popoverRef.current?.contains(event.target as Node) || false) ||
+      (childRef.current?.contains(event.target as Node) || false);
+  };
+  
   const handleDocumentClick = (event: MouseEvent) => {
+    // Do not close the popover if the interaction started inside
     if (
-      popoverRef.current &&
-      !popoverRef.current.contains(event.target as Node) &&
-      childRef.current &&
-      !childRef.current.contains(event.target as Node)
+      !isInteractionInside &&
+      !(popoverRef.current?.contains(event.target as Node) || false) &&
+      !(childRef.current?.contains(event.target as Node) || false)
     ) {
       setIsVisible(false);
     }
+  
+    // Reset the flag after processing the click
+    isInteractionInside = false;
   };
+  
+  useEffect(() => {
+    // Add both mousedown and click event listeners
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("click", handleDocumentClick);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
 
 
   const handleDocumentContextMenu = (event: MouseEvent) => {
@@ -191,30 +218,31 @@ const Popover: React.FC<PopoverProps> = ({
     if (isVisible) {
       const position = calculatePosition();
       setPopoverPosition(position);
+      document.addEventListener("mousedown", handleMouseDown);
       document.addEventListener("click", handleDocumentClick);
       window.addEventListener("resize", handleResize);
       if (hideOnScroll) {
-        window.addEventListener("scroll", handleScroll, true); // capture scroll events in the capture phase
+        window.addEventListener("scroll", handleScroll, true);
       }
-
-      // Add the data-popover-expand attribute to the child element when popover is open
+  
       if (childRef.current) {
         childRef.current.setAttribute("data-popover-expand", "true");
       }
     } else {
+      document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
       if (hideOnScroll) {
         window.removeEventListener("scroll", handleScroll, true);
       }
-
-      // Remove the data-popover-expand attribute when popover is closed
+  
       if (childRef.current) {
         childRef.current.removeAttribute("data-popover-expand");
       }
     }
-
+  
     return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
       if (hideOnScroll) {

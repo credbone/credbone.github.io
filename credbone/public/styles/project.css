@@ -302,3 +302,45 @@ html{zoom: .85;}
 [data-user-select="text"] {user-select: text;
   -webkit-user-select: text;
   cursor: text;}
+
+
+[data-name="cred-react-colorful"] .react-colorful  {height: 320px;width: 160px; gap:5px}
+[data-name="cred-react-colorful"] .react-colorful__pointer{}  
+[data-name="cred-react-colorful"] .react-colorful__saturation{border-radius:5px; box-shadow: none; border:none}
+
+[data-name="cred-react-colorful"] .react-colorful__last-control{border-radius: 5px;}
+
+
+[data-name="cred-react-colorful"] .react-colorful__alpha,
+[data-name="cred-react-colorful"] .react-colorful__hue
+
+{height: 40px;}
+
+
+[data-name="cred-react-colorful"] .react-colorful__hue
+
+{  
+  
+  height: 40px;
+
+
+
+  }
+
+
+
+
+
+[data-name="cred-react-colorful"] .react-colorful__interactive:focus .react-colorful__pointer {transform: translate(-50%, -50%);}
+
+
+/* [data-name="cred-react-colorful"] .react-colorful__alpha-gradient, 
+[data-name="cred-react-colorful"] .react-colorful__pointer-fill
+
+{box-shadow: inset 0px 2px 0 0px rgba(0, 0, 0, .1), inset 0px 0px 0 1px rgba(0, 0, 0, .05);} */
+
+[data-name="cred-react-colorful"] .react-colorful__pointer { height: 18px; width: 18px; box-shadow: 0 0 0px 3px white ;
+  border: none; border-radius: 20px; }
+
+
+  /* [data-name="cred-react-colorful"] .react-colorful__pointer.react-colorful__saturation-pointer { height: 30px; width: 30px; } */

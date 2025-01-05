@@ -694,6 +694,8 @@ picture[data-object-position="left"]  img{object-position: right;}
 [data-space-bottom='20'] {padding-bottom:20px;}
 [data-space-bottom='30'] {padding-bottom:30px;}
 
+
+[data-space-top='0'] {padding-top:0px;}
 [data-space-top='5'] {padding-top:5px;}
 [data-space-top='10'] {padding-top:10px;}
 [data-space-top='20'] {padding-top:20px;}

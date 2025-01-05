@@ -12,7 +12,8 @@ import { isDesktop } from "react-device-detect";
 
 
 
-import { Paintbrush, PaintBucket } from "lucide-react";
+
+import CustomColorPicker from "./theme/CustomColorPicker";
 
 export const ColorPalette = [
   { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
@@ -322,9 +323,8 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group data-gap="30" data-wrap="no">
-            <group data-width="auto" data-align="start">
-              <Popover
+          <group data-gap="30" >
+          <Popover
                 content={
                   <group
                     data-animation-name="appear-bottom"
@@ -339,33 +339,49 @@ const Colors: React.FC = () => {
                 data-backdrop="10"
                 data-width="auto"
               >
-                <group data-width="auto">
-                  <group
-                    data-cursor="pointer"
-                    data-interactive=""
-                    data-contain=""
-                    data-direction="column"
-                    data-space="15"
-                    data-radius="10"
-                    data-background="highlight"
-                  >
-                    <group data-interact="">
-                    
-                    <PaintBucket size={20}/>
-                    </group>
-                  </group>
-                </group>
+
+
+
+<group
+        data-width="auto"
+        data-over-color="none"
+        data-interactive=""
+        data-cursor="pointer"
+        data-align="center"
+        data-wrap="no"
+        data-gap="20"
+      >
+        <group
+          data-interact=""
+          data-length="30"
+          data-height="60"
+          data-radius="5"
+data-background="highlight"
+        >
+
+          
+        </group>
+
+        <group data-direction="column" data-width="auto">
+          <text data-weight="600">
+          Swatches
+          </text>
+          <text data-opacity="30">Select from presets</text>
+        </group>
+      </group>
+
+
               </Popover>
-            </group>
-            <separator data-vertical="" data-height=""></separator>
+            <separator data-vertical="adaptive" data-height=""></separator>
+              <CustomColorPicker target="primary" />
+            <separator data-vertical="adaptive" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
               data-line="20"
               data-max-length="240"
             >
-              Primary color will be used in the UI, with other shades being
-              automatically generated from it.
+The selected color will define the UI, with additional shades generated automatically.
             </text>
           </group>
         </group>
@@ -408,9 +424,9 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group data-gap="30" data-wrap="no">
-            <group data-width="auto" data-align="start">
-              <Popover
+
+          <group data-gap="30" >
+          <Popover
                 content={
                   <group
                     data-animation-name="appear-bottom"
@@ -425,35 +441,51 @@ const Colors: React.FC = () => {
                 data-backdrop="10"
                 data-width="auto"
               >
-                <group data-width="auto">
-                  <group
-                    data-cursor="pointer"
-                    data-interactive=""
-                    data-over-color="secondary"
-                    data-contain=""
-                    data-direction="column"
-                    data-space="15"
-                    data-radius="10"
-                    data-background="highlight"
-                  >
-                    <group data-interact="">
-                <Paintbrush size={20}/>
-                    </group>
-                  </group>
-                </group>
+
+
+
+<group
+        data-width="auto"
+        data-over-color="none"
+        data-interactive=""
+        data-cursor="pointer"
+        data-align="center"
+        data-wrap="no"
+        data-gap="20"
+      >
+        <group
+          data-interact=""
+          data-length="30"
+          data-height="60"
+          data-radius="5"
+data-background="highlight"
+        ></group>
+
+        <group data-direction="column" data-width="auto">
+          <text data-weight="600">
+          Swatches
+          </text>
+          <text data-opacity="30">Select from presets</text>
+        </group>
+      </group>
+
+
               </Popover>
-            </group>
-            <separator data-vertical="" data-height=""></separator>
+            <separator data-vertical="adaptive" data-height=""></separator>
+              <CustomColorPicker target="secondary" />
+            <separator data-vertical="adaptive" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
               data-line="20"
               data-max-length="240"
             >
-              Secondary color will be used in the UI, with other shades being
-              automatically generated from it.
+The selected color will define the UI, with additional shades generated automatically.
             </text>
           </group>
+
+
+
         </group>
 
         <group data-type="grid" data-grid-template="110" data-gap="5">

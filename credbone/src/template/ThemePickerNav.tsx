@@ -20,14 +20,14 @@ const ThemePickerNav: React.FC = () => {
             data-animation-name="appear-bottom"
             data-fill-mode="backwards"
             data-animation-duration="1.25"
-            data-length="700"
+          //  data-length="700"
           >
             <group
               data-gap="5"
               data-wrap="wrap"
               data-direction="column"
             >
-              <RichThemePicker />
+              <RichThemePicker pickerType="primary"/>
             </group>
           </group>
         }

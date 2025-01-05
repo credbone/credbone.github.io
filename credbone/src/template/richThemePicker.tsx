@@ -106,12 +106,10 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll wheelEnabled={true}>
           <group
-            data-position="left"
-            data-wrap="no"
-            data-radius="5"
-            data-width="auto"
-            data-align="start"
-            data-grid-template="50"
+             data-position="left"
+             data-wrap="no"
+             data-radius="5"
+             data-width="auto"
           >
             {seccolors.map((c, index) => (
               <Tooltip
