@@ -4,7 +4,7 @@ export const navItems = [
 
   { to: "Components/Typography",  label: "Typography",separator:"true", },
   { to: "Components/Icons",  label: "Icons" },
-  { to: "Components/Colors",  label: "Color System",},
+  { to: "Components/Colors",  label: "Color System",new:"true"},
   { to: "Components/CardsAndList",  label: "Cards & List" },
 
 
@@ -23,7 +23,7 @@ export const navItems = [
 
 
 
-  { to: "Components/Miscellaneous",  label: "Miscellaneous",separator:"true",new:"true"  },
+  { to: "Components/Miscellaneous",  label: "Miscellaneous",separator:"true"  },
   { to: "Components/Dashboard",  label: "Dashboard"  },
   { to: "Components/QuickDemos",  label: "Quick Demos"},
 

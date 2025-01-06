@@ -22,12 +22,12 @@ const ThemeToggle: React.FC = () => {
     defaultValues: {},
   });
 
-  const DarkModeTip = (  <group data-space="5"
+  const DarkModeTip = (  <group data-space="10"
   data-width=""
   data-length="280" data-gap="10">
-              <text data-weight="700">Auto Mode</text>
-              <text data-line="1.3" data-wrap="wrap">
-                Enable Auto Theme Toggle to switch between light and dark modes
+              {/* <text data-weight="700">Auto Mode</text> */}
+              <text data-line="1.5" data-wrap="wrap">
+                Enable Auto Mode to switch between light and dark modes
                 based on your system settings.
               </text>
   </group>)

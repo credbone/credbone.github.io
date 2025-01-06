@@ -59,8 +59,14 @@ export const getCSSByPalette = (palette: ColorPalette) => {
     const isMainColorLight = isColorLight(colorPrimary);
     const isSecondaryColorLight = isColorLight(colorSecondary);
 
-    const mainColorText = isMainColorLight ? "--main-color-text: var(--main-color-darkest);" : "--main-color-text: var(--main-color-ultra-light);";
-    const secondaryColorText = isSecondaryColorLight ? "--secondary-color-text: var(--secondary-color-darkest);" : "--secondary-color-text: var(--secondary-color-ultra-light);";
+    const mainColorText = isMainColorLight
+      ? "--main-color-text: var(--main-color-darkest); --main-color-font: var(--main-color-dark);"
+      : "--main-color-text: var(--main-color-ultra-light);--main-color-font: var(--main-color);";
+
+      
+    const secondaryColorText = isSecondaryColorLight
+      ? "--secondary-color-text: var(--secondary-color-darkest);"
+      : "--secondary-color-text: var(--secondary-color-ultra-light);";
 
 
     
@@ -69,7 +75,6 @@ export const getCSSByPalette = (palette: ColorPalette) => {
            
             --main-color-alpha-15: ${colorPrimary}26;
             --main-color-alpha-50: ${colorPrimary}80;
-
 
             --main-color-ultra-light: ${colorPrimaryUltraLight || getColorShade(colorPrimary, "10")};
             --main-color-lightest: ${colorPrimaryLightest || getColorShade(colorPrimary, "20")};

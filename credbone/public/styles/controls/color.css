@@ -449,12 +449,33 @@
 [data-color="main-lighter"] { color: var(--main-color-lighter)}
 [data-color="main-light"] { color: var(--main-color-light)}
 [data-color="main-soft"] { color: var(--main-color-soft)}
-[data-color="main"] { color: var(--main-color)}
+[data-color="main"] { color: var(--main-color-font)}
 [data-color="main-deep"] { color: var(--main-color-deep)}
 [data-color="main-dark"] { color: var(--main-color-dark)}
 [data-color="main-darker"] { color: var(--main-color-darker)}
 [data-color="main-darkest"] { color: var(--main-color-darkest)}
 
+
+
+[data-dark],
+[data-theme="dark"]
+
+{
+  [data-color="main"] { color: var(--main-color)}
+}
+
+
+
+@media (prefers-color-scheme: dark) 
+  
+{
+
+  [data-theme="auto"]
+  { 
+    [data-color="main"] { color: var(--main-color)}
+  }
+
+}
 
 
 [data-background="main-alpha-15"] { background-color: var(--main-color-alpha-15)}

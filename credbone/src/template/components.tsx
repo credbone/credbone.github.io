@@ -243,7 +243,7 @@ const Components: React.FC = () => {
               ></group> 
 </Ripple>
             </group>
-            <group data-position="absolute" data-disabled="" data-height="fit">
+            <group data-position="absolute" data-disabled="true" data-height="fit">
               <picture
                 //    data-brightness="adaptive"
 

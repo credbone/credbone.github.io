@@ -32,7 +32,7 @@ separator[data-interval='40'] { --interval:40px }
 separator[data-horizontal="dotted"] { box-shadow: none; opacity: 0.5; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjEiIHZpZXdCb3g9IjAgMCA0IDEiPjxyZWN0IHg9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCBmaWxsPSIjZmZmIiB4PSIxIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PC9zdmc+'); }
 
 
-@media (max-width: 800px)
+@media (max-width: 1000px)
 
 {
     [data-vertical="adaptive"] {min-height: 1px; height: 1px;  flex: 1 1 100%; max-height: 1px; width: 100%;}

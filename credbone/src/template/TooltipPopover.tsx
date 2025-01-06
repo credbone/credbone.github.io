@@ -150,7 +150,7 @@ const SampleData = (
 );
 
 const SampleTooltipData = (
-  <group data-direction="column" data-space="20" data-gap="15">
+  <group data-direction="column" data-gap="15">
     <text data-weight="700" data-text-size="xxx-large">
       <Count from={0} duration={1500} to={128} />
     </text>
@@ -356,11 +356,12 @@ const TooltipPopover: React.FC = () => {
               <Tooltip
                 // delay={0}
                 placement="auto"
-                data-radius="10"
-                data-space="0"
-                data-elevation="2"
+                data-radius="15"
+                data-space="30"
+
+               // data-elevation="2"
                 content={SampleTooltipData}
-                data-length="300"
+                data-length="200"
               >
                 <group
                   data-interactive=""

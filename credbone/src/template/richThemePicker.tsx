@@ -46,6 +46,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           >
             {colors.map((c, index) => (
               <Tooltip
+                data-space="15"
                 key={index}
                 content={
                   theme.colorPrimary === c.code ? (
@@ -113,6 +114,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           >
             {seccolors.map((c, index) => (
               <Tooltip
+              data-space="15"
                 key={index}
                 content={
                   theme.colorSecondary === c.code ? (

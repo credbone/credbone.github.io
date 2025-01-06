@@ -323,7 +323,9 @@ const Colors: React.FC = () => {
             </text>
           </group>
 
-          <group data-gap="30" >
+          <group data-gap="30" 
+          // data-width="auto" data-border="" data-radius="15" data-space="20"
+          >
           <Popover
                 content={
                   <group
@@ -358,6 +360,7 @@ const Colors: React.FC = () => {
           data-radius="5"
 data-background="highlight"
         >
+
 
           
         </group>
@@ -416,7 +419,7 @@ The selected color will define the UI, with additional shades generated automati
 
       <separator data-horizontal=""></separator>
 
-      <group data-gap="30">
+      <group data-gap="30" >
         <group data-gap="30" data-align="center">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
@@ -425,7 +428,9 @@ The selected color will define the UI, with additional shades generated automati
           </group>
 
 
-          <group data-gap="30" >
+          <group data-gap="30"
+          //  data-width="auto" data-border="" data-radius="15" data-space="20"
+           >
           <Popover
                 content={
                   <group
@@ -657,7 +662,8 @@ The selected color will define the UI, with additional shades generated automati
                 data-space="15"
               ></group>
               <group data-ratio="1:1" data-background={colors.value}>
-                <group data-direction="column" data-color="white"></group>
+              
+
               </group>
               <group
                 data-ratio="1:1"
