@@ -48,7 +48,7 @@ function About() {
 
           <group
            data-space="50"  
-          data-dark=""
+          data-theme="dark"
            data-sticky="bottom">
           <group  data-space="30" data-index="2" data-radius="10" data-contain="" data-backdrop="20">
 
@@ -113,7 +113,7 @@ function About() {
               <group
                 data-space="50"
                 data-position="bottom"
-                data-dark=""
+                data-theme="dark"
                 data-width="auto"
               >
                   <text
@@ -375,7 +375,7 @@ function About() {
                   <text data-weight="700">{buildInfo.version}</text>
                 </group>
                 <group
-                  data-dark=""
+                  data-theme="dark"
                   data-background="highlight"
                   data-interactive=""
                   onClick={handleReload}
@@ -407,7 +407,7 @@ function About() {
           data-background="context"
           data-space="30"
           data-radius="20"
-          data-dark=""
+          data-theme="dark"
           data-align="start"
         >
           <group

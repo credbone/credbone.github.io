@@ -126,7 +126,8 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
-        data-gap="20"
+        data-gap="5"
+        
       >
         <group
         data-interact=""
@@ -137,8 +138,8 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           style={{ backgroundColor: customColor }}
         ></group>
 
-        <group data-direction="column" data-width="auto">
-          <text data-weight="600">
+        <group  data-interact="" data-direction="column" data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+          <text data-weight="700">
             Custom
           </text>
           <text data-opacity="30">Design your own</text>

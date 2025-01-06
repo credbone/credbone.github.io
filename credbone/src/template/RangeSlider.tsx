@@ -153,7 +153,7 @@ const RangeSlider: React.FC = () => {
           data-background="context"
           data-radius="20"
           data-gap="30"
-          data-dark=""
+          data-theme="dark"
           data-direction="column"
           //   data-length="400"
           data-justify="end"

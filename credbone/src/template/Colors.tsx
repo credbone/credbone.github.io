@@ -346,15 +346,17 @@ const Colors: React.FC = () => {
 
 <group
         data-width="auto"
+
         data-over-color="none"
         data-interactive=""
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
-        data-gap="20"
+        data-gap="5"
       >
         <group
           data-interact=""
+          
           data-length="30"
           data-height="60"
           data-radius="5"
@@ -365,8 +367,8 @@ data-background="highlight"
           
         </group>
 
-        <group data-direction="column" data-width="auto">
-          <text data-weight="600">
+        <group  data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+          <text data-weight="700">
           Swatches
           </text>
           <text data-opacity="30">Select from presets</text>
@@ -451,12 +453,13 @@ The selected color will define the UI, with additional shades generated automati
 
 <group
         data-width="auto"
+
         data-over-color="none"
         data-interactive=""
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
-        data-gap="20"
+        data-gap="5"
       >
         <group
           data-interact=""
@@ -466,8 +469,8 @@ The selected color will define the UI, with additional shades generated automati
 data-background="highlight"
         ></group>
 
-        <group data-direction="column" data-width="auto">
-          <text data-weight="600">
+        <group data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+          <text data-weight="700">
           Swatches
           </text>
           <text data-opacity="30">Select from presets</text>
@@ -555,10 +558,10 @@ The selected color will define the UI, with additional shades generated automati
               data-background={"neutral" + color.code}
               data-color={"neutral" + color.textcolor}
             >
-              <text data-ellipsis="" data-light="">
+              <text data-ellipsis="" data-light="" data-color="reset">
                 {color.description}
               </text>
-              <text data-weight="700">{color.name}</text>
+              <text data-weight="700"  data-color="reset">{color.name}</text>
             </group>
           ))}
         </group>

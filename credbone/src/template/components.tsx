@@ -373,7 +373,7 @@ const Components: React.FC = () => {
               <group
                 data-space="50"
                 data-position="bottom"
-                data-dark=""
+                data-theme="dark"
                 data-width="auto"
               >
                 <text

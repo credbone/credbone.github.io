@@ -28,7 +28,7 @@ const ContentSlide: React.FC = () => {
                 data-direction="column"
                 data-align="start"
                 data-gap="20"
-             //   data-dark=""
+             //   data-theme="dark"
              data-border=""
               >
                 <text
@@ -53,7 +53,7 @@ const ContentSlide: React.FC = () => {
                 data-space="20"
                 data-min-length="240"
                 data-length="240"
-             //   data-dark=""
+             //   data-theme="dark"
               data-border=""
               >
                 <group data-position="center" data-width="auto">
@@ -171,7 +171,7 @@ const ContentSlide: React.FC = () => {
                 data-direction="column"
                 data-align="start"
                 data-gap="20"
-                // data-dark=""
+                // data-theme="dark"
               >
                 <text data-weight="700" data-text-size="72" data-wrap="wrap">
                   128
@@ -195,7 +195,7 @@ const ContentSlide: React.FC = () => {
                 data-direction="column"
                 data-align="start"
                 data-gap="20"
-                // data-dark=""
+                // data-theme="dark"
               >
                 <text data-weight="700" data-text-size="72" data-wrap="wrap">
                   256

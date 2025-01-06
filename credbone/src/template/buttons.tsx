@@ -67,7 +67,7 @@ const Buttons: React.FC = () => {
 
 <group data-type="grid" data-grid-template="100" data-space="30" data-gap="20" >
 
-<group data-wrap="no" data-ratio="1:1" data-justify="center" data-dark=""  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<group data-wrap="no" data-ratio="1:1" data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="15" data-gap="20">
 <IconHome size={60}/>
 </group>
 

@@ -334,7 +334,7 @@ data-space="20"
             //  data-radius="15"
             //    data-background="main-background"
             data-width="auto"
-            //     data-dark=""
+            //     data-theme="dark"
             data-gap="20"
           >
             <group data-direction="column" data-width="auto" data-gap="10">

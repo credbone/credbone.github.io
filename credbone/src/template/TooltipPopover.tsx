@@ -138,7 +138,7 @@ const SampleData = (
     <group
       //  data-background="main"
       data-contain=""
-      // data-dark=""
+      // data-theme="dark"
       data-align="center"
     >
       <separator data-horizontal=""></separator>
@@ -391,7 +391,7 @@ const TooltipPopover: React.FC = () => {
         <group
           data-background="context"
           data-border=""
-          data-dark=""
+          data-theme="dark"
           data-text-size="14"
           data-user-select="text"
         >

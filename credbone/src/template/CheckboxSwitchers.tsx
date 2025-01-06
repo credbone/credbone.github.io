@@ -349,7 +349,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                  data-color="main-text"
                 data-contain=""
                 //  data-align="center"
-               // data-dark=""
+               // data-theme="dark"
                 data-justify="center"
                 data-space="30"
                 data-gap="30"

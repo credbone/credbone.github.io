@@ -17,19 +17,12 @@ const ThemePickerNav: React.FC = () => {
         placement="top"
         content={
           <group
-            data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration="1.25"
-          //  data-length="700"
-          >
-            <group
-              data-gap="5"
-              data-wrap="wrap"
-              data-direction="column"
-            >
-              <RichThemePicker pickerType="primary"/>
-            </group>
-          </group>
+          data-animation-name="appear-bottom"
+          data-fill-mode="backwards"
+          data-animation-duration="1.25"
+        >
+          <RichThemePicker pickerType="primary" />
+        </group>
         }
         data-space="5"
         data-radius="10"
