@@ -40,8 +40,7 @@
 
 
   
-    [data-theme="dark"] [data-brightness="adaptive"]{filter: brightness(.5);}
-    [data-theme="dark"] [data-mix-blend-mode="overlay"]{mix-blend-mode: overlay;}
+ 
 
 
 
@@ -49,10 +48,11 @@
 
 
 
+    [data-theme="dark"] [data-brightness="adaptive"] {filter: brightness(.5);}
+
+    [data-theme="dark"] [data-color="reset"]{color:var(--text-color)}
 
 
-
-[data-dark],
 [data-theme="dark"]
 
 {
@@ -63,8 +63,6 @@
     --background: #191919;
     --context: #1e1e1e;
     --border-color: #2b2b2b;
-    /* --over-color: linear-gradient(to top, rgba(255, 255, 255, .04) 0%, rgba(255, 255, 255, .04) 100%);
-    --press-color: linear-gradient(to top, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, .1) 100%); */
     --overlay: rgba(6, 6, 6, 0.9);
     --highlight: #212121;
 
@@ -73,9 +71,6 @@
 
     --elevation_1: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
     --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgb(255 255 255 / 5%);
-    /* --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
-    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%); */
-    
 
 }
 
@@ -86,16 +81,7 @@
   {
 
     [data-theme="auto"] [data-brightness="adaptive"]{filter: brightness(.5);}
-
-
-    /* [data-theme="auto"] [data-name="rays"]{transform: scale(0) rotate(-90deg); opacity: 0;}
-    [data-theme="auto"] [data-name="sun"]{r:8; transform: rotate(-90deg);}
-    [data-theme="auto"] [data-name="moon"]{cx: 16;cy: 16;r: 6;} */
-
-
-
-
-
+    [data-theme="auto"] [data-color="reset"]{color:var(--text-color)}
     [data-theme="auto"]
 
 {
@@ -106,8 +92,6 @@
     --background: #191919;
     --context: #1e1e1e;
     --border-color: #2b2b2b;
-    /* --over-color: linear-gradient(to top, rgba(255, 255, 255, .04) 0%, rgba(255, 255, 255, .04) 100%);
-    --press-color: linear-gradient(to top, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, .1) 100%); */
     --overlay: rgba(6, 6, 6, 0.9);
     --highlight: #212121;
 
@@ -116,8 +100,6 @@
 
     --elevation_1: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
     --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgb(255 255 255 / 5%);
-    /* --elevation_5: 0 0 15px 2px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%);
-    --elevation_6: 0 10px 6px -4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 10%); */
 
 }
     
@@ -126,8 +108,8 @@
 
   .selected [data-brightness="adaptive"]{filter: brightness(1);}
 
-[data-sticky="top"].sticky{top: -1px;border-top: 1px solid transparent; flex-shrink: 0; margin-top: -1px;}
 
+[data-sticky="top"].sticky{top: -1px;border-top: 1px solid transparent; flex-shrink: 0; margin-top: -1px;}
 [data-sticky="bottom"]{bottom: -1px;border-bottom: 1px solid transparent; flex-shrink: 0; margin-bottom: -1px;}
 
 
