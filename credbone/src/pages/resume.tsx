@@ -332,6 +332,7 @@ In parallel, I held a UI design leadership role at Wovenmedia, where
           <group data-gap="10" data-align="center">
             <a
               data-type="link"
+              data-color="main"
               href="https://www.linkedin.com/in/sargsyanruben"
               target="blank"
             >
@@ -342,6 +343,7 @@ In parallel, I held a UI design leadership role at Wovenmedia, where
             <dot></dot>
             <a
               data-type="link"
+              data-color="main"
               href="https://www.behance.net/sargsyan"
               target="blank"
             >
@@ -352,6 +354,7 @@ In parallel, I held a UI design leadership role at Wovenmedia, where
             <dot></dot>
             <a
               data-type="link"
+              data-color="main"
               href="https://dribbble.com/sargsyan"
               target="blank"
             >
