@@ -73,9 +73,10 @@ const ClosePopover = (
       </group>
     )}
   >
-    <group data-width="auto">
+    <group>
       <Ripple>
         <group
+       
           data-wrap="no"
           data-ink-color="main-deep"
           data-align="center"
@@ -88,10 +89,9 @@ const ClosePopover = (
           data-radius="10"
           // data-height="80"
           data-gap="20"
+          data-justify="center"
         >
-          <group data-index="1">
-            <text data-weight="700">Show Popover</text>
-          </group>
+           <text data-weight="700">Show Popover</text>
         </group>
       </Ripple>
     </group>
@@ -121,14 +121,14 @@ const SampleData = (
     <group data-direction="column" data-space="30" data-gap="15">
       <text
         data-weight="700"
-        data-text-size="x-large"
+        data-text-size="large"
         data-wrap="wrap"
         data-color="main"
         data-ellipsis=""
       >
         Rich Content
       </text>
-      <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
+      <text data-wrap="wrap" data-length="280" data-line="1.5" data-light="">
         Tooltips display informative text when users hover over, focus on, or
         tap an element, while a popover is a floating card that appears when
         users click or hover over an element.
