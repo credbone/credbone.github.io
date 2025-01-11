@@ -427,7 +427,7 @@ const TypefaceTokens: React.FC = () => {
           >
             <Popover
               placement="mouse"
-              data-radius="15"
+              data-radius="20"
               data-scroll=""
               data-space="20"
               content={(closePopover) => (
