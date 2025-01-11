@@ -71,7 +71,7 @@ const Typeface: React.FC = () => {
   </group>
   <separator data-vertical=""></separator>
 <text>
-  Version 3.0.0
+  Version 3.0.2
 </text>
 </group>
 

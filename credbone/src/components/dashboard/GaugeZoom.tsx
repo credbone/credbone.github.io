@@ -19,6 +19,7 @@ const GaugeZoom: React.FC<GaugeZoomProps> = ({ value, max, size, strokecolor, })
 
   return (
     <svg
+    data-align-center="x"
       data-position="absolute"
       preserveAspectRatio="none"
       height="200%"

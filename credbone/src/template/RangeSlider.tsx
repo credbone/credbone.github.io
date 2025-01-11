@@ -42,7 +42,7 @@ const RangeSlider: React.FC = () => {
               <text>New</text>
             </group>
             <separator data-vertical=""></separator>
-            <text>Version 0.0.9</text>
+            <text>Version 0.1.2</text>
           </group>
         </group>
         <separator data-horizontal=""></separator>
@@ -97,6 +97,7 @@ const RangeSlider: React.FC = () => {
 
               <group>
                 <group>
+                  
                   <CustomSlider
                     start={20}
                     end={60}
@@ -136,7 +137,13 @@ const RangeSlider: React.FC = () => {
              Showcases range ticks with primary color applied to slider UI
             </text>
           <group data-gap="15" data-radius="20" >
+
             <TickComponent tickCount={15} />
+            <group data-justify="space-between">
+              <text>10</text>
+              <text>18</text>
+              <text>26</text>
+            </group>
             <CustomSlider
               start={10}
               end={26}
@@ -193,7 +200,8 @@ const RangeSlider: React.FC = () => {
          // data-space="30" 
           data-gap="30"
         >
-          <group data-ratio="4:5" data-height="fit" data-align="center" data-direction="column" data-contain="">
+          <group data-ratio="4:5" data-height="fit" data-direction="column" data-contain="">
+
             <GaugeZoom value={GaugeValue} max={360} size={0} strokecolor="adaptive-gray"/> 
 
 
