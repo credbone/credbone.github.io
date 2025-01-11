@@ -9,6 +9,7 @@ group[data-type="grid"]{display: grid;grid-template-columns: repeat(auto-fill, m
 
 group[data-type="grid"][data-grid-template="fit"]{grid-template-columns: repeat(auto-fill, 100%);} 
 
+group[data-type="grid"][data-grid-template="20"]{grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));} 
 group[data-type="grid"][data-grid-template="30"]{grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));} 
 
 group[data-type="grid"][data-grid-template="40"]{grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));} 

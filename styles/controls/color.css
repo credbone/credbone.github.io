@@ -439,7 +439,7 @@
 [data-background="text"] { background-color: var(--text-color) }
 [data-background="main-text"] { background-color: var(--main-color-text) }
 [data-background="secondary-text"] { background-color: var(--secondary-color-text) }
-
+[data-background="main-color-font"] { background-color: var(--main-color-font) }
 
 [data-color="main-background"] { color: var(--background) }
 [data-color="highlight"]{ color: var(--highlight) }
