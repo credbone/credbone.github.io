@@ -1032,3 +1032,5 @@ view[data-scroll],
 
 [data-visibility="visible"]{visibility: visible;}
 [data-visibility="hidden"]{visibility: hidden;}
+
+[data-align-center="x"]{transform: translateX(-50%);left:50%}

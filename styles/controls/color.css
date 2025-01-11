@@ -222,7 +222,7 @@
 [data-background="neutral-darker"] { background-color: var(--neutral-color-darker)}
 [data-background="neutral-darkest"] { background-color: var(--neutral-color-darkest)}
 
-
+[data-background="neutral-stable"] { background-color: #9E9E9E;}
 
 [data-color="neutral-lightest"] { color: var(--neutral-color-lightest)}
 [data-color="neutral-lighter"] { color: var(--neutral-color-lighter)}
