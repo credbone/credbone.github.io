@@ -279,11 +279,11 @@ const UnitConverter: React.FC = () => {
       <group data-direction="column" data-gap="10">
         <group data-background="highlight" data-contain="" data-radius="10">
           <Popover
-        //    placement="mouse"
+            placement="middle"
             data-space="5"
             content={(closePopover) => (
               <group
-                data-length="200"
+             //   data-length="200"
                 data-direction="column"
                 data-contain=""
                 onClick={closePopover}
@@ -379,10 +379,11 @@ const UnitConverter: React.FC = () => {
             </group>
 
             <Popover
+            placement="middle"
               data-space="5"
               content={(closePopover) => (
                 <group
-                  data-length="200"
+            //      data-length="200"
                   data-direction="column"
                   onClick={closePopover}
                 >
@@ -454,10 +455,11 @@ const UnitConverter: React.FC = () => {
 
             {/* To Unit Select using Popover */}
             <Popover
+             placement="middle"
               data-space="5"
               content={(closePopover) => (
                 <group
-                  data-length="200"
+           //       data-length="200"
                   data-direction="column"
                   onClick={closePopover}
                 >

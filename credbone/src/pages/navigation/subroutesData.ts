@@ -2,7 +2,7 @@ export const navItems = [
   //{ to: "Components",  label: "Components" },
   { to: "Components/Overview",  label: "Overview"},
 
-  { to: "Components/Typography",  label: "Typography",separator:"true", },
+  { to: "Components/Typography",  label: "Typography",separator:"true",new:"true" },
   { to: "Components/Icons",  label: "Icons" },
   { to: "Components/Colors",  label: "Color System",new:"true"},
   { to: "Components/CardsAndList",  label: "Cards & List" },
@@ -14,7 +14,7 @@ export const navItems = [
   { to: "Components/RangeSlider",  label: "Range Slider",new:"true"  },
 
   { to: "Components/TooltipAndPopover",  label: "Tooltip & Popover" },
-  { to: "Components/Snackbar",  label: "Snackbar", new:"true"  },
+  { to: "Components/Snackbar",  label: "Snackbar" },
   { to: "Components/Modal",  label: "Modal" },
 
 

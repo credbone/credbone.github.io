@@ -18,6 +18,7 @@ const groupedLinksArray = [
     description:
       "Focuses on elements that enhance the visual appeal and provide context.",
     items: [
+      { title: "Typography", description: "Scalable tokens for managing text styles.", to: "/Components/Typography" },
       { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
       { title: "Colors\n& Shades", description: "Color system can assist in crafting a color palette...", to: "/Components/Colors", },
       { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   content: ReactNode | ((closePopover: () => void) => ReactNode);
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right" | "auto" | "mouse";
+  placement?: "top" | "bottom" | "left" | "right" | "auto"| "middle" | "mouse";
   hideOnScroll?: boolean;
   containerId?: string; // Optional custom container ID
   trigger?: "click" | "contextmenu";
@@ -175,7 +175,28 @@ const Popover: React.FC<PopoverProps> = ({
             targetRect.right + 10
           );
           break;
-          case "mouse":
+          case "middle":
+            position.width = targetRect.width - 20;
+            position.top = Math.max(10,
+              
+              Math.min(
+                targetRect.top - popoverRect.height / 2 + 10,
+                window.innerHeight - popoverRect.height - 10 // Prevent bottom overflow
+              )
+
+            //  targetRect.top - popoverRect.height /2 + 10
+            
+            
+            );
+            position.left = Math.max(
+              10,
+              Math.min(
+                targetRect.left + 10,
+                window.innerWidth - targetRect.width - 10
+              )
+            );
+            break;
+        case "mouse":
             if (clickPosition) {
               position.top = Math.max(
                 10,

@@ -230,7 +230,7 @@ input[type=number][data-name="input-reset"] {
 
 
 [data-name="range-slider"]{ cursor: pointer; }
-[data-name="range-slider"] input{width: 100%; background: none; -webkit-appearance: none; appearance: none; position: relative;  position: absolute;   cursor: pointer;}
+[data-name="range-slider"] input{width: 100%; background: none; -webkit-appearance: none; appearance: none; position: relative;  position: absolute; opacity: 0;  cursor: pointer;}
 [data-name="range-slider-handle"]{pointer-events: none;  cursor: pointer;  }
 
 
@@ -250,7 +250,6 @@ input[type=number][data-name="input-reset"] {
 [data-name="range-slider"] input::-webkit-slider-thumb
 {
 
-    background: blue;
 
     height: 30px;
     width: 60px;

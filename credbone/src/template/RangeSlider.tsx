@@ -5,11 +5,14 @@ import sectionImage from "../styles/images/samples/wide_res_68.webp";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 
 const RangeSlider: React.FC = () => {
-  const handleSliderChange = (value: number) => {
-    //  console.log("Current value:", value);
-  };
 
-  const [sliderValue, setSliderValue] = useState(23); // Initial value for the slider
+  
+
+  const [sliderValue, setSliderValue] = useState(25); // Initial value for the slider
+  const [sliderValue_2, setSliderValue_2] = useState(23); // Initial value for the slider
+  const [sliderValue_3, setSliderValue_3] = useState(60); // Initial value for the slider
+
+
   const [GaugeValue, setGaugeValue] = useState(90); // Initial value for the slider
 
 
@@ -97,8 +100,9 @@ const RangeSlider: React.FC = () => {
                   <CustomSlider
                     start={20}
                     end={60}
-                    initialValue={25}
-                    onValueChange={handleSliderChange}
+                    value={sliderValue}
+                    onValueChange={(value) => setSliderValue(value)}
+
                   />
                 </group>
               </group>
@@ -117,7 +121,7 @@ const RangeSlider: React.FC = () => {
         >
           <group data-direction="column" data-gap="30" >
             <group data-text-size="64" data-weight="700">
-              <text data-line="1">{sliderValue}</text>
+              <text data-line="1">{sliderValue_2}</text>
               <text data-line="1">°</text>
             </group>
 
@@ -136,8 +140,8 @@ const RangeSlider: React.FC = () => {
             <CustomSlider
               start={10}
               end={26}
-              initialValue={sliderValue}
-              onValueChange={(value) => setSliderValue(value)}
+              value={sliderValue_2}
+              onValueChange={(value) => setSliderValue_2(value)}
               handlerProps={{
                 "data-background": "main",
                 "data-color": "main-text",
@@ -171,8 +175,8 @@ const RangeSlider: React.FC = () => {
             <CustomSlider
               start={0}
               end={120}
-              initialValue={60}
-              onValueChange={handleSliderChange}
+              value={sliderValue_3}
+              onValueChange={(value) => setSliderValue_3(value)}
               trackRightProps={{ "data-opacity": "30" }}
             />
           </group>
@@ -218,7 +222,7 @@ Custom handle using different properties
            start={0}
            end={360}
            step={5}
-           initialValue={GaugeValue}
+           value={GaugeValue}
            onValueChange={(value) => setGaugeValue(value)}
           //  handlerWidth={40}
             unit="°"

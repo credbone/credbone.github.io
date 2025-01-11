@@ -115,8 +115,7 @@ const Components: React.FC = () => {
               >
                 This space is about personal experiments and demos, featuring a
                 collection of carefully crafted UI components, each designed
-                with attention to detail and a deep understanding of UI
-                principles
+                with attention to detail and a strong focus on UI principles
               </text>
             </group>
 

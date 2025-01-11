@@ -146,7 +146,7 @@ useEffect(() => {
   const selectCity = (
     <Popover
       data-space="5"
-      placement="bottom"
+      placement="middle"
       content={(closePopover) => (
         <group data-direction="column" onClick={closePopover}>
           {cities.map((city, index) => (
@@ -158,11 +158,11 @@ useEffect(() => {
               data-background={city === selectedCity ? "main" : ""}
               data-color={city === selectedCity ? "main-text" : ""}
               key={index}
-              data-length="180"
+           //   data-length="180"
               data-align="center"
               onClick={() => handleCityClick(city)}
               data-gap="5"
-              data-animation-name="appear-top"
+              data-animation-name="appear-bottom"
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
             >

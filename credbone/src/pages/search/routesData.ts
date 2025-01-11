@@ -9,7 +9,7 @@ export interface RouteData {
 export const routesData: RouteData[] = [
   { 
     path: "Typography", 
-    tags: ["typeface", "fonts", "typography", "glyph", "lettering", "font styles", "serif", "sans-serif", "token"], 
+    tags: ["typeface", "fonts", "typography", "glyph", "lettering", "font styles", "serif", "text", "token"], 
     description: "Typography tools, fonts, and typeface design for all styles.", 
     title: "Typography" 
   },

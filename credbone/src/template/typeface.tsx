@@ -6,6 +6,7 @@ import StuckReporter from "../components/StuckReporter";
 import TextReveal from "../components/TextReveal";
 // import { Minus, Plus } from "lucide-react";
 import CustomSlider from "../components/inputs/slider";
+import TypefaceTokens from "./typefaceTokens";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -25,7 +26,7 @@ const initialFontData = [
   { name: "Regular 400", weight: 400, previewText: previewText + " 🐶" },
   { name: "Medium 600", weight: 600, previewText: previewText },
   { name: "Bold 700", weight: 700, previewText: previewText },
-  { name: "Bold 800", weight: 800, previewText: previewText },
+ // { name: "Bold 800", weight: 800, previewText: previewText },
 ];
 
 const Typeface: React.FC = () => {
@@ -33,9 +34,9 @@ const Typeface: React.FC = () => {
 
   const [sliderValue, setSliderValue] = useState(24);
 
-  const handleSliderChange = (value: number) => {
-    setSliderValue(value);
-    };
+  
+
+
 
 
   // const increaseTextSize = () => {
@@ -139,7 +140,6 @@ const Typeface: React.FC = () => {
 
 
 
-
       <group >
 
       <group data-direction="column" data-gap="10" data-space="20">
@@ -176,10 +176,12 @@ const Typeface: React.FC = () => {
 
 <group>
             <CustomSlider
-              start={12}
+              start={13}
               end={48}
-              initialValue={24}
-              onValueChange={handleSliderChange}
+              value={sliderValue}
+
+              onValueChange={(value) => setSliderValue(value)}
+              
             />
           </group>
 
@@ -346,6 +348,10 @@ Character
         </group>
       </group>
     </group>
+
+    <TypefaceTokens/>
+
+
 </group>
   );
 };

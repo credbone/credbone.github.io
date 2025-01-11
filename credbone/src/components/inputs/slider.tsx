@@ -1,43 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface SliderProps {
   start: number;
   end: number;
   step?: number;
-  initialValue?: number;
-  onValueChange?: (value: number) => void;
+  value: number; // Use `value` as a prop for controlled component
+  onValueChange: (value: number) => void; // Ensure this prop is required
   handlerWidth?: number; // Configurable handlerWidth with default
   unit?: string; // Optional unit
   handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }; // Allows extra props
-  trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any; };
-  trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any; };
+  trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
+  trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
 }
 
 const CustomSlider: React.FC<SliderProps> = ({
   start,
   end,
   step,
-  initialValue = start,
+  value,
   onValueChange,
   handlerWidth = 60, // Default value for handlerWidth
   unit,
   handlerProps,
   trackLeftProps,
   trackRightProps,
-  
 }) => {
-  const [value, setValue] = useState(initialValue);
-
+  // Handle input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(event.target.value);
-    setValue(newValue);
-    if (onValueChange) {
-      onValueChange(newValue);
-    }
+    onValueChange(newValue); // Pass the value up to the parent component
   };
 
-
-
+  // Calculate the percentage for positioning
   const percentage = ((value - start) / (end - start)) * 100;
 
   return (
@@ -46,7 +40,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         type="range"
         min={start}
         max={end}
-        value={value}
+        value={value} // Controlled by parent
         onChange={handleChange}
         data-height="fit"
         step={step}
@@ -60,8 +54,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         data-length={handlerWidth}
         data-align="center"
         data-justify="center"
-       // data-direction="column"
-       data-gap="5"
+        data-gap="5"
         data-radius="40"
         style={{
           left: `calc(${percentage}% - ${handlerWidth * (percentage / 100)}px)`,
@@ -74,21 +67,20 @@ const CustomSlider: React.FC<SliderProps> = ({
           data-min-length="600"
           data-position="absolute"
           data-margin-right="5"
-
           {...trackLeftProps}
-
         ></group>
         <group
           data-background="text"
           data-name="range-slider-track-right"
           data-min-length="600"
           data-position="absolute"
-data-margin-left="5"
+          data-margin-left="5"
           {...trackRightProps}
-
         ></group>
-        <text data-weight="700">{value}{unit ? unit : ''}</text>
-        
+        <text data-weight="700">
+          {value}
+          {unit || ""}
+        </text>
       </group>
     </group>
   );
