@@ -34,34 +34,34 @@ const SimplePaint: React.FC = () => {
   const [brushColor, setBrushColor] = useState("#F5745E");
   const [brushSize, setBrushSize] = useState(4);
 
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
 
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // Safari
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange); // Firefox
-    document.addEventListener("msfullscreenchange", handleFullscreenChange); // IE/Edge
+  // useEffect(() => {
+  //   const handleFullscreenChange = () => {
+  //     setIsFullscreen(!!document.fullscreenElement);
+  //   };
 
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener(
-        "webkitfullscreenchange",
-        handleFullscreenChange
-      );
-      document.removeEventListener(
-        "mozfullscreenchange",
-        handleFullscreenChange
-      );
-      document.removeEventListener(
-        "msfullscreenchange",
-        handleFullscreenChange
-      );
-    };
-  }, []);
+  //   document.addEventListener("fullscreenchange", handleFullscreenChange);
+  //   document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // Safari
+  //   document.addEventListener("mozfullscreenchange", handleFullscreenChange); // Firefox
+  //   document.addEventListener("msfullscreenchange", handleFullscreenChange); // IE/Edge
+
+  //   return () => {
+  //     document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  //     document.removeEventListener(
+  //       "webkitfullscreenchange",
+  //       handleFullscreenChange
+  //     );
+  //     document.removeEventListener(
+  //       "mozfullscreenchange",
+  //       handleFullscreenChange
+  //     );
+  //     document.removeEventListener(
+  //       "msfullscreenchange",
+  //       handleFullscreenChange
+  //     );
+  //   };
+  // }, []);
 
   // const toggleFullscreen = () => {
   //   const paintapp = appRef.current;
@@ -194,45 +194,13 @@ const SimplePaint: React.FC = () => {
       data-wrap="no"
       ref={appRef}
       data-background="main-background"
+      data-space="10"
+      data-gap="10"
     >
-      <group data-contain="" data-shrink="no">
-        <group
-          // data-gap="5"
-          data-space="10"
-          data-type="grid"
-          data-grid-template="40"
-        >
-          {colors.map((color, index) => (
-            <group key={index} data-ratio="1:1">
-              <Tooltip content={color.name}>
-                <group
-                  data-radius="10"
-                  data-align="center"
-                  data-justify="center"
-                  data-direction="column"
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-background={
-                    brushColor === color.value ? "highlight" : ""
-                  }
-                  data-space="10"
-                  onClick={() => setBrushColor(color.value)}
-                >
-                  <group
-                    data-interact=""
-                    data-radius="30"
-                    data-height="fit"
-                    style={{
-                      backgroundColor: color.value,
-                    }}
-                  ></group>
-                </group>
-              </Tooltip>
-            </group>
-          ))}
-        </group>
-        <separator data-horizontal=""></separator>
-        <group data-gap="5" data-space="10">
+      <group data-contain=""  data-gap="10" data-shrink="no">
+
+
+        <group data-gap="5" >
           <group data-gap="5" data-width="auto" data-align="center">
             <group
               onClick={clearCanvas}
@@ -295,7 +263,8 @@ const SimplePaint: React.FC = () => {
                 data-cursor="pointer"
                 data-radius="10"
                 data-width="auto"
-                data-background="highlight"
+                // data-background="highlight"
+                data-border="outline"
                 data-contain=""
                 data-interactive=""
                 data-space="15"
@@ -326,34 +295,20 @@ const SimplePaint: React.FC = () => {
               </group>
             </Popover>
 
-            {/* <group
-              onClick={toggleFullscreen}
-              data-cursor="pointer"
-              data-radius="10"
-              data-width="auto"
-              data-background="highlight"
-              data-contain=""
-              data-interactive=""
-              data-space="15"
-              data-wrap="no"
-              data-align="center"
-              data-gap="15"
-            >
-              <text data-weight="700" data-length="autofit">
-                {isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-              </text>
-            </group> */}
+
           </group>
         </group>
       </group>
-      <separator data-horizontal=""></separator>
+     
       <group
+      data-radius="10"
+      data-border="outline"
         data-type="group"
         data-direction="column"
         data-align="start"
         data-contain=""
-        data-height={isFullscreen ? "fit" : "300"}
-        // data-length="400"
+        data-height="300"
+
         data-background="context"
         ref={containerRef}
       >
@@ -370,7 +325,44 @@ const SimplePaint: React.FC = () => {
           onTouchEnd={stopDrawing}
           style={{ cursor: "crosshair", touchAction: "none" }} // 'touchAction: none' prevents zooming/panning on touch devices
         />
+
       </group>
+      <group
+          // data-gap="5"
+          
+          data-type="grid"
+          data-grid-template="40"
+        >
+          {colors.map((color, index) => (
+            <group key={index} data-ratio="1:1">
+              <Tooltip content={color.name}>
+                <group
+                  data-radius="10"
+                  data-align="center"
+                  data-justify="center"
+                  data-direction="column"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-background={
+                    brushColor === color.value ? "highlight" : ""
+                  }
+                  data-space="10"
+                  onClick={() => setBrushColor(color.value)}
+                >
+                  <group
+                    data-interact=""
+                    data-radius="30"
+                    data-height="fit"
+                    style={{
+                      backgroundColor: color.value,
+                    }}
+                  ></group>
+                </group>
+              </Tooltip>
+            </group>
+          ))}
+        </group>
+
     </group>
   );
 };

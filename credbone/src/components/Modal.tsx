@@ -86,8 +86,8 @@ const Modal: React.FC<ModalProps> = ({
       >
         {hasHeader && (
           <>
-            <group data-name="modal-header" data-align="center" data-space="10">
-              <text data-space="10">{title}</text>
+            <group data-name="modal-header" data-align="center" data-space="10" data-wrap="no" data-contain="" data-shrink="no">
+              <text data-space="10" data-ellipsis="">{title}</text>
               <Button large data-position="right" icon={<X size={20}/>} onClick={onClose}></Button>
             </group>
             <group>

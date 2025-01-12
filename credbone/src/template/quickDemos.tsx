@@ -176,7 +176,7 @@ data-gap="20"
                 openModal({
                   id: "paint-modal",
                   title: "Simple Paint",
-                  content: (<group data-length="500"><SimplePaint /></group>),
+                  content: (<group data-length="600"><SimplePaint /></group>),
                   hasHeader: true,
                   hasToolbar: false,
                 //  customAttributes: modalConfig,

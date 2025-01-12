@@ -233,8 +233,9 @@ data-contain=""
                                 data-background="main"
                                 data-color="main-text"
                                 onClick={() => closeModal("modal-01")}
+                                data-containt=""
                               >
-                                <text data-weight="700">Confirm and Close</text>
+                                <text data-weight="700" data-ellipsis="">Confirm and Close</text>
                               </group>
 </Ripple>
                             </group>
@@ -396,7 +397,7 @@ data-contain=""
                     })
                   }
                 >
-                  <text>Open Customized Demo</text>
+                  <text data-ellipsis="">Open Customized Demo</text>
                 </group>
               </group>
             </group>
@@ -493,7 +494,7 @@ data-contain=""
                     })
                   }
                 >
-                  <text>Open Customized Popup</text>
+                  <text data-ellipsis="">Open Customized Popup</text>
                 </group>
               </group>
             </group>
@@ -571,7 +572,7 @@ data-contain=""
                     })
                   }
                 >
-                  <text>Open Custom Apperance Settings</text>
+                  <text data-ellipsis="">Open Custom Apperance Settings</text>
                 </group>
               </group>
             </group>
@@ -649,7 +650,7 @@ data-contain=""
                     })
                   }
                 >
-                  <text>Open Custom Theme Settings</text>
+                  <text data-ellipsis="">Open Custom Theme Settings</text>
                 </group>
               </group>
             </group>
