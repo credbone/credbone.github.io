@@ -328,12 +328,35 @@ const Divider: React.FC = () => {
         data-direction="column"
         data-gap="30"
       >
-        <group data-space-horizontal={selectedDimension}>
+
+
+
+
+<group data-align="center" data-direction="column">
+
+  <group data-width="auto" data-align="center" data-direction="column" data-opacity={selectedOpacity === 0 ? "100":"0"} >
+    <group data-space="15"
+
+
+     data-background={isInverted ? "main-background" :"text"}
+
+     data-color={isInverted ? "text" :"main-background"}
+
+
+       data-radius="10">
+      <text data-text-align="center"  data-wrap="wrap">Fully Transparent</text>
+    </group>
+    <separator data-vertical="" data-height="40" data-opacity="60"></separator> 
+  </group>
+
+
+<group data-space-horizontal={selectedDimension}>
           <separator
             data-horizontal={selectedType}
             data-opacity={selectedOpacity}
           ></separator>
         </group>
+</group>
 
         <group
           data-align="center"
@@ -431,7 +454,7 @@ const Divider: React.FC = () => {
             data-cursor="pointer"
             onClick={toggleInvert}
           >
-            <text> Invert {isInverted ? "On" : "Off"}</text>
+            <text>Invert</text>
           </group>
         </group>
       </group>
