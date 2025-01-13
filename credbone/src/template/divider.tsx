@@ -3,6 +3,7 @@ import CustomSlider from "../components/inputs/slider";
 
 import sectionImage from "../styles/images/samples/wide_res_70.webp";
 import { ArrowRight } from "lucide-react";
+import Tooltip from "../components/tooltip";
 
 const Divider: React.FC = () => {
   const [selectedDimension, setselectedDimension] = useState(50);
@@ -95,17 +96,17 @@ const Divider: React.FC = () => {
             <text>1</text>
           </group>
           <separator
-            data-vertical="dotted"
+            data-vertical=""
             data-height="50"
-            data-opacity="60"
+            // data-opacity="60"
           ></separator>
           <group data-wrap="no" data-align="center">
             <separator data-horizontal=""></separator>
             <group
               data-border="2"
               data-index="2"
-              data-height="5"
-              data-length="5"
+              data-height="3"
+              data-length="3"
               data-radius="5"
             ></group>
             <separator data-horizontal=""></separator>
@@ -137,17 +138,17 @@ const Divider: React.FC = () => {
             <text>1</text>
           </group>
           <separator
-            data-vertical="dotted"
+            data-vertical=""
             data-height="50"
-            data-opacity="60"
+           // data-opacity="60"
           ></separator>
           <group data-wrap="no" data-align="center">
             <separator data-horizontal=""></separator>
             <group
               data-border="2"
               data-index="2"
-              data-height="5"
-              data-length="5"
+              data-height="3"
+              data-length="3"
               data-radius="5"
             ></group>
             <separator data-horizontal=""></separator>
@@ -335,6 +336,18 @@ const Divider: React.FC = () => {
 <group data-align="center" data-direction="column">
 
   <group data-width="auto" data-align="center" data-direction="column" data-opacity={selectedOpacity === 0 ? "100":"0"} >
+    <Tooltip 
+    data-space="20"
+    data-radius="15"
+    content={
+      selectedOpacity === 0 ?
+      <text data-wrap="wrap" data-line="1.5" data-length="300">
+        The divider is now completely transparent, yet it still functions as a separator and responds to the parent's gap.
+      </text> : ""
+    }
+    >
+
+
     <group data-space="15"
 
 
@@ -346,7 +359,10 @@ const Divider: React.FC = () => {
        data-radius="10">
       <text data-text-align="center"  data-wrap="wrap">Fully Transparent</text>
     </group>
+
+        </Tooltip>
     <separator data-vertical="" data-height="40" data-opacity="60"></separator> 
+              
   </group>
 
 
@@ -538,6 +554,7 @@ const Divider: React.FC = () => {
             data-brightness="adaptive"
             data-background="grey-light"
             data-position="absolute"
+            data-object-position="right"
           >
             <img src={sectionImage} alt="" />
           </picture>
@@ -595,14 +612,14 @@ const Divider: React.FC = () => {
               <group
                 data-border="2"
                 data-index="3"
-                data-height="5"
-                data-length="5"
+                data-height="3"
+                data-length="3"
                 data-radius="5"
               ></group>
               <separator data-vertical="" data-height="40"></separator>
             </group>
             <group data-length="50">
-              <separator data-horizontal="dotted" data-opacity="60"></separator>
+              <separator data-horizontal="" ></separator>
             </group>
             <group
               data-radius="20"
