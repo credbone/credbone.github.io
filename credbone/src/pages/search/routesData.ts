@@ -38,6 +38,12 @@ export const routesData: RouteData[] = [
     title: "Colors" 
   },
   { 
+    path: "DividerAndSpace", 
+    tags: ["separator", "layout", "spacing", "structure", "arrangement", "space", "divider"], 
+    description: "Essential components for creating structured layouts and managing spacing.", 
+    title: "Divider & Space" 
+  },
+  { 
     path: "Layout", 
     tags: ["layout", "design", "grid", "structure", "arrangement", "spacing", "alignment"], 
     description: "Grid layouts and structure components for UI design.", 

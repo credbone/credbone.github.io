@@ -28,6 +28,7 @@ import QuickDemos from "./quickDemos";
 import Overview from "./Overview";
 import Snackbar from "./Snackbar";
 import RangeSlider from "./RangeSlider";
+import Divider from "./divider";
 
 
 const Template: React.FC = () => {
@@ -111,6 +112,7 @@ const Template: React.FC = () => {
               <Route path="Buttons" element={<Buttons />} />
               <Route path="CheckboxSwitchers" element={<CheckboxSwitchers />} />
               <Route path="Colors" element={<Colors />} />
+              <Route path="DividerAndSpace" element={<Divider />} />
               <Route path="Layout" element={<Layout />} />
              
 

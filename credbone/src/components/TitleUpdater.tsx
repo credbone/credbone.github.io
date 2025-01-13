@@ -16,7 +16,7 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
   'Snackbar': { title: 'Snackbar', header: 'Snackbar' },
   'CardsAndList': { title: 'Cards & List', header: 'Cards & List' },
   'Modals': { title: 'Modals', header: 'Modals' },
-
+  'DividerAndSpace': { title: 'Divider & Space', header: 'Divider & Space' },
 
   '': { title: 'Home', header: null }, // Root path has title but no header
   'About': { title: 'About', header: 'About' },

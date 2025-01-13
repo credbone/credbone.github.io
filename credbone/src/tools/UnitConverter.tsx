@@ -432,8 +432,8 @@ const UnitConverter: React.FC = () => {
 
           <group 
         //  data-space-horizontal="15"
-           data-opacity="50">
-            <separator data-horizontal="dotted"></separator>
+           >
+            <separator data-opacity="30" data-horizontal="dotted"></separator>
           </group>
 
           <group data-direction="column" data-space="5">
