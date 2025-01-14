@@ -196,7 +196,8 @@ const Modal: React.FC = () => {
                         openModal({
                           id: "modal-01",
                           title: "Sample Basic Popup",
-
+                       //   fullscreen: true,
+                          fullscreenbutton:true,
                           content: (
                             <group
                               data-space="30"
@@ -204,40 +205,44 @@ const Modal: React.FC = () => {
                               data-gap="30"
                               data-align="start"
                             >
-<group                               data-direction="column"
-                              data-gap="10"
-                              data-align="start">
-<text data-weight="700" data-text-size="medium">
-                                Example Modal
-                              </text>
-                              <text
-                                data-wrap="wrap"
-                                data-line="1.5"
-                                data-length="300"
+                              <group
+                                data-direction="column"
+                                data-gap="10"
+                                data-align="start"
                               >
-                                This is a sample modal to demonstrate how
-                                content is displayed. Click the button below to
-                                proceed.
-                              </text>
-  </group>
-<Ripple>
-<group
-                               data-ink-color="main-deep"
-data-contain=""
-                                data-width="auto"
-                                data-interactive=""
-                                data-interact="popover"
-                                data-space="15"
-                                data-radius="5"
-                                data-cursor="pointer"
-                                data-background="main"
-                                data-color="main-text"
-                                onClick={() => closeModal("modal-01")}
-                                data-containt=""
-                              >
-                                <text data-weight="700" data-ellipsis="">Confirm and Close</text>
+                                <text data-weight="700" data-text-size="medium">
+                                  Example Modal
+                                </text>
+                                <text
+                                  data-wrap="wrap"
+                                  data-line="1.5"
+                                  data-length="300"
+                                >
+                                  This is a sample modal to demonstrate how
+                                  content is displayed. Click the button below
+                                  to proceed.
+                                </text>
                               </group>
-</Ripple>
+                              <Ripple>
+                                <group
+                                  data-ink-color="main-deep"
+                                  data-contain=""
+                                  data-width="auto"
+                                  data-interactive=""
+                                  data-interact="popover"
+                                  data-space="15"
+                                  data-radius="5"
+                                  data-cursor="pointer"
+                                  data-background="main"
+                                  data-color="main-text"
+                                  onClick={() => closeModal("modal-01")}
+                                  data-containt=""
+                                >
+                                  <text data-weight="700" data-ellipsis="">
+                                    Confirm and Close
+                                  </text>
+                                </group>
+                              </Ripple>
                             </group>
                           ),
                           //  hasHeader: false,

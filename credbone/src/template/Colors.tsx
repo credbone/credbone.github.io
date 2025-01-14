@@ -377,9 +377,9 @@ data-contain=""
 
 
               </Popover>
-            <separator data-vertical="adaptive" data-height=""></separator>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
               <CustomColorPicker target="primary" />
-            <separator data-vertical="adaptive" data-height=""></separator>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
@@ -484,9 +484,9 @@ data-contain=""
 
 
               </Popover>
-            <separator data-vertical="adaptive" data-height=""></separator>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
               <CustomColorPicker target="secondary" />
-            <separator data-vertical="adaptive" data-height=""></separator>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""

@@ -8,7 +8,8 @@ import React, {
 } from "react";
 import Button from "./button";
 import { useLocation } from "react-router-dom";
-import { X } from "lucide-react";
+import { Maximize, Maximize2, Minimize, Minimize2, X } from "lucide-react";
+import Tooltip from "./tooltip";
 
 // Modal Component
 interface ModalProps {
@@ -20,6 +21,8 @@ interface ModalProps {
   hasHeader?: boolean;
   hasToolbar?: boolean;
   dimClose?: boolean;
+  fullscreen?:boolean;
+  fullscreenbutton?:boolean;
   isTopmost: boolean;
   customAttributes?: { [key: string]: string };
   dimAttributes?: { [key: string]: string };
@@ -34,11 +37,20 @@ const Modal: React.FC<ModalProps> = ({
   hasHeader = true,
   hasToolbar = false,
   dimClose = false,
+  fullscreen = false,
+  fullscreenbutton = false,
   isTopmost,
   customAttributes = {},
   dimAttributes = {},
   spacing = 20,
 }) => {
+
+  const [isFullscreen, setIsFullscreen] = useState(fullscreen); // Local fullscreen state
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev); // Toggle the fullscreen state
+  };
+
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (isOpen && isTopmost && event.key === "Escape") {
@@ -75,7 +87,8 @@ const Modal: React.FC<ModalProps> = ({
       <group
         data-radius="15"
         data-direction="column"
-        data-width="auto"
+        data-width={isFullscreen ? "fit" : "auto"}
+        data-height={isFullscreen ? "fit" : ""}
         data-background="context"
         className="modal-container"
         data-wrap="no"
@@ -88,7 +101,11 @@ const Modal: React.FC<ModalProps> = ({
           <>
             <group data-name="modal-header" data-align="center" data-space="10" data-wrap="no" data-contain="" data-shrink="no">
               <text data-space="10" data-ellipsis="">{title}</text>
-              <Button large data-position="right" icon={<X size={20}/>} onClick={onClose}></Button>
+           
+              <group data-position="right" data-width="auto"   data-border={fullscreenbutton ? "" : "none"} data-radius="5" data-contain="">
+              {fullscreenbutton && (<><Tooltip placement={isFullscreen ? "left" : "auto" } content={isFullscreen ? "Minimize" : "Maximize" }><Button  large  icon={isFullscreen ? <Minimize2 size={20}/> : <Maximize2 size={20}/> } onClick={toggleFullscreen} data-radius="0"></Button></Tooltip><separator data-vertical="" data-height=""></separator></>)}
+              <Button large  icon={<X size={20}/>} onClick={onClose} data-radius="0"></Button>
+              </group>
             </group>
             <group>
               <separator data-horizontal=""></separator>
@@ -134,6 +151,8 @@ interface ModalContextType {
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
+    fullscreen?:boolean;
+    fullscreenbutton?:boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
@@ -162,6 +181,8 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       isOpen: boolean;
       hasHeader?: boolean;
       hasToolbar?: boolean;
+      fullscreen?: boolean;
+      fullscreenbutton?: boolean;
       customAttributes?: { [key: string]: string };
       dimAttributes?: { [key: string]: string };
       spacing?: number;
@@ -174,6 +195,8 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     content,
     hasHeader = true,
     hasToolbar = false,
+    fullscreen = false,
+    fullscreenbutton = false,
     customAttributes = {},
     dimAttributes = {},
     spacing = 20,
@@ -183,13 +206,15 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
+    fullscreen?:boolean;
+    fullscreenbutton?: boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
   }) => {
     setModals((prev) => [
       ...prev,
-      { id, title, content, isOpen: true, hasHeader, hasToolbar, customAttributes, dimAttributes, spacing },
+      { id, title, content, isOpen: true, hasHeader, hasToolbar,fullscreen, fullscreenbutton, customAttributes, dimAttributes, spacing },
     ]);
   };
 
@@ -229,6 +254,8 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             isOpen={modal.isOpen}
             hasHeader={modal.hasHeader}
             hasToolbar={modal.hasToolbar}
+            fullscreen={modal.fullscreen}
+            fullscreenbutton={modal.fullscreenbutton}
             customAttributes={modal.customAttributes}
             dimAttributes={modal.dimAttributes}
             onClose={() => closeModal(modal.id)}
