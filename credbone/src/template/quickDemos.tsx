@@ -179,7 +179,7 @@ data-gap="20"
                   content: (<group data-length="600"><SimplePaint /></group>),
                   hasHeader: true,
                   hasToolbar: false,
-                //  customAttributes: modalConfig,
+                  customAttributes: {"data-background":"main-background"},
                 //  dimAttributes: {"data-background" : "dark-shade-70"},
                  // spacing: 0,
                 })

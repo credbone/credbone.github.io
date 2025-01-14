@@ -197,6 +197,42 @@ const SimplePaint: React.FC = () => {
       data-space="10"
       data-gap="10"
     >
+            <group
+          // data-gap="5"
+          
+          data-type="grid"
+          data-grid-template="40"
+        >
+          {colors.map((color, index) => (
+            <group key={index} data-ratio="1:1">
+              <Tooltip content={color.name}>
+                <group
+                  data-radius="10"
+                  data-align="center"
+                  data-justify="center"
+                  data-direction="column"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-background={
+                    brushColor === color.value ? "highlight" : ""
+                  }
+                  data-space="10"
+                  onClick={() => setBrushColor(color.value)}
+                >
+                  <group
+                    data-interact=""
+                    data-radius="30"
+                    data-height="fit"
+                    style={{
+                      backgroundColor: color.value,
+                    }}
+                  ></group>
+                </group>
+              </Tooltip>
+            </group>
+          ))}
+        </group>
+        <separator data-horizontal=""></separator>
       <group data-contain=""  data-gap="10" data-shrink="no">
 
 
@@ -299,7 +335,7 @@ const SimplePaint: React.FC = () => {
           </group>
         </group>
       </group>
-     
+
       <group
       data-radius="10"
       data-border="outline"
@@ -327,41 +363,7 @@ const SimplePaint: React.FC = () => {
         />
 
       </group>
-      <group
-          // data-gap="5"
-          
-          data-type="grid"
-          data-grid-template="40"
-        >
-          {colors.map((color, index) => (
-            <group key={index} data-ratio="1:1">
-              <Tooltip content={color.name}>
-                <group
-                  data-radius="10"
-                  data-align="center"
-                  data-justify="center"
-                  data-direction="column"
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-background={
-                    brushColor === color.value ? "highlight" : ""
-                  }
-                  data-space="10"
-                  onClick={() => setBrushColor(color.value)}
-                >
-                  <group
-                    data-interact=""
-                    data-radius="30"
-                    data-height="fit"
-                    style={{
-                      backgroundColor: color.value,
-                    }}
-                  ></group>
-                </group>
-              </Tooltip>
-            </group>
-          ))}
-        </group>
+
 
     </group>
   );

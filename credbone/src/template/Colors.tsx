@@ -12,7 +12,6 @@ import { isDesktop } from "react-device-detect";
 
 
 
-
 import CustomColorPicker from "./theme/CustomColorPicker";
 
 export const ColorPalette = [
@@ -361,13 +360,14 @@ const Colors: React.FC = () => {
           data-height="60"
           data-radius="5"
 data-background="highlight"
+data-contain=""
         >
 
 
           
         </group>
 
-        <group  data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+        <group  data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
           <text data-weight="700">
           Swatches
           </text>
@@ -467,9 +467,14 @@ The selected color will define the UI, with additional shades generated automati
           data-height="60"
           data-radius="5"
 data-background="highlight"
-        ></group>
+data-contain=""
+        >
 
-        <group data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+
+
+        </group>
+
+        <group data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
           <text data-weight="700">
           Swatches
           </text>

@@ -138,7 +138,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           style={{ backgroundColor: customColor }}
         ></group>
 
-        <group  data-interact="" data-direction="column" data-react="background" data-over-color="neutral" data-space="15" data-radius="5">
+        <group  data-interact="" data-direction="column" data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
           <text data-weight="700">
             Custom
           </text>
