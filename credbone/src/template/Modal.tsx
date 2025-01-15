@@ -666,7 +666,7 @@ const Modal: React.FC = () => {
                             </group>
 
                             <separator data-horizontal=""></separator>
-                            <group>
+                            <group data-width="auto">
                               <RichThemePicker pickerType="primary" />
                             </group>
                           </group>
