@@ -140,7 +140,7 @@ const Divider: React.FC = () => {
           <separator
             data-vertical=""
             data-height="50"
-           // data-opacity="60"
+            // data-opacity="60"
           ></separator>
           <group data-wrap="no" data-align="center">
             <separator data-horizontal=""></separator>
@@ -329,50 +329,52 @@ const Divider: React.FC = () => {
         data-direction="column"
         data-gap="30"
       >
+        <group data-align="center" data-direction="column">
+          <group
+            data-width="auto"
+            data-align="center"
+            data-direction="column"
+            data-opacity={selectedOpacity === 0 ? "100" : "0"}
+          >
+            <Tooltip
+              data-space="20"
+              data-radius="15"
+              content={
+                selectedOpacity === 0 ? (
+                  <text data-wrap="wrap" data-line="1.5" data-length="300">
+                    The divider is now completely transparent, yet it still
+                    functions as a separator and responds to the parent's gap.
+                  </text>
+                ) : (
+                  ""
+                )
+              }
+            >
+              <group
+                data-space="15"
+                data-background={isInverted ? "main-background" : "text"}
+                data-color={isInverted ? "text" : "main-background"}
+                data-radius="10"
+              >
+                <text data-text-align="center" data-wrap="wrap">
+                  Fully Transparent
+                </text>
+              </group>
+            </Tooltip>
+            <separator
+              data-vertical=""
+              data-height="40"
+              data-opacity="60"
+            ></separator>
+          </group>
 
-
-
-
-<group data-align="center" data-direction="column">
-
-  <group data-width="auto" data-align="center" data-direction="column" data-opacity={selectedOpacity === 0 ? "100":"0"} >
-    <Tooltip 
-    data-space="20"
-    data-radius="15"
-    content={
-      selectedOpacity === 0 ?
-      <text data-wrap="wrap" data-line="1.5" data-length="300">
-        The divider is now completely transparent, yet it still functions as a separator and responds to the parent's gap.
-      </text> : ""
-    }
-    >
-
-
-    <group data-space="15"
-
-
-     data-background={isInverted ? "main-background" :"text"}
-
-     data-color={isInverted ? "text" :"main-background"}
-
-
-       data-radius="10">
-      <text data-text-align="center"  data-wrap="wrap">Fully Transparent</text>
-    </group>
-
-        </Tooltip>
-    <separator data-vertical="" data-height="40" data-opacity="60"></separator> 
-              
-  </group>
-
-
-<group data-space-horizontal={selectedDimension}>
-          <separator
-            data-horizontal={selectedType}
-            data-opacity={selectedOpacity}
-          ></separator>
+          <group data-space-horizontal={selectedDimension}>
+            <separator
+              data-horizontal={selectedType}
+              data-opacity={selectedOpacity}
+            ></separator>
+          </group>
         </group>
-</group>
 
         <group
           data-align="center"
@@ -530,7 +532,7 @@ const Divider: React.FC = () => {
             <separator data-horizontal=""></separator>
           </group>
 
-          <group data-wrap="no" data-align="center" >
+          <group data-wrap="no" data-align="center">
             {/* <group
             data-width="auto"
             data-wrap="no"
@@ -540,11 +542,16 @@ const Divider: React.FC = () => {
             <text>Left Aligned Text</text>
           </group> */}
             <separator data-horizontal=""></separator>
-            <group data-border="" data-width="auto" data-space="15" data-radius="10"><text>Sample Title</text></group>
+            <group
+              data-border=""
+              data-width="auto"
+              data-space="15"
+              data-radius="10"
+            >
+              <text>Sample Title</text>
+            </group>
             <separator data-horizontal=""></separator>
           </group>
-
-
         </group>
         <group></group>
         <group>
@@ -554,7 +561,7 @@ const Divider: React.FC = () => {
             data-brightness="adaptive"
             data-background="grey-light"
             data-position="absolute"
-            data-object-position="right"
+            data-object-position="right-bottom"
           >
             <img src={sectionImage} alt="" />
           </picture>
@@ -619,7 +626,7 @@ const Divider: React.FC = () => {
               <separator data-vertical="" data-height="40"></separator>
             </group>
             <group data-length="50">
-              <separator data-horizontal="" ></separator>
+              <separator data-horizontal=""></separator>
             </group>
             <group
               data-radius="20"
@@ -668,35 +675,57 @@ const Divider: React.FC = () => {
         </group>
       </group>
 
-      <group
+<group   data-gap="30" data-type="grid" data-grid-template="300">
+
+<group
         data-background="adaptive-gray"
         data-radius="20"
         data-space="50"
-        //    data-align="center"
+        //  data-align="center"
         data-gap="30"
+
       >
         <separator
-          data-opacity="100"
+          data-opacity="30"
           data-vertical=""
           data-height="50"
         ></separator>
         <separator
-          data-opacity="80"
+          data-opacity="30"
           data-vertical=""
           data-height="40"
         ></separator>
-        <separator data-opacity="60" data-vertical=""></separator>
+        <separator data-opacity="30" data-vertical=""></separator>
         <separator
-          data-opacity="40"
+          data-opacity="30"
           data-vertical=""
           data-height="20"
         ></separator>
         <separator
-          data-opacity="20"
+          data-opacity="30"
           data-vertical=""
           data-height="10"
         ></separator>
+
       </group>
+
+
+      <group
+        data-background="adaptive-gray"
+        data-radius="20"
+        data-space="50"
+        //  data-align="center"
+        data-gap="30"
+
+      >
+
+
+        <text data-wrap="wrap" data-line="1.5" >
+        Vertical dividers in various sizes, configurable to fit containers and organize side-by-side content.
+        </text>
+      </group>
+
+</group>
     </group>
   );
 };
