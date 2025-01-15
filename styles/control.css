@@ -522,6 +522,8 @@ picture[data-object-position="left"]  img{object-position: right;}
 picture[data-object-position="bottom"]  img{object-position: bottom;}
 picture[data-object-position="top"]  img{object-position: top;}
 
+picture[data-object-position="right-bottom"]  img{object-position: bottom right;}
+
 [data-react="scale"] picture {transition: .425s;}
 [data-react="scale"]:hover picture {transform: scale(1.025);transition: .125s;}
 [data-react="scale"]:active  picture {transform:none; transition: none;}
