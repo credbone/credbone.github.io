@@ -221,7 +221,7 @@ const Modal: React.FC = () => {
                                     <text
                                       data-wrap="wrap"
                                       data-line="1.5"
-                                      data-length="300"
+                                      data-length="400"
                                     >
                                       This is a sample modal to demonstrate how
                                       content is displayed. Click the button
