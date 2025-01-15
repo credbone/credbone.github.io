@@ -25,11 +25,11 @@ export const seccolors = [
   // { "code": "#FEFFBE", "name": "Sunny Pearl", "description": "A soft, pale yellow." },
   { "code": "#EBD494", "name": "Golden Sand", "description": "A warm, creamy beige.", "separator": "true" },
 
-  // { "code": "#C97B84", "name": "Blush Rose", "description": "A muted rose pink." },
-  // { "code": "#A85751", "name": "Rustic Red", "description": "A bold red with earthy tones." },
-  // { "code": "#7D2E68", "name": "Royal Plum", "description": "A deep, regal purple." },
-  // { "code": "#251351", "name": "Midnight Violet", "description": "A dark, mysterious violet.", "separator": "true" },
-  // // { "code": "#040926", "name": "Deep Space", "description": "An intense, dark blue.", "separator": "true" },
+  { "code": "#C97B84", "name": "Blush Rose", "description": "A muted rose pink." },
+  { "code": "#A85751", "name": "Rustic Red", "description": "A bold red with earthy tones." },
+  { "code": "#7D2E68", "name": "Royal Plum", "description": "A deep, regal purple." },
+  { "code": "#251351", "name": "Midnight Violet", "description": "A dark, mysterious violet.", "separator": "true" },
+  // { "code": "#040926", "name": "Deep Space", "description": "An intense, dark blue.", "separator": "true" },
 
   { "code": "#AA562C", "name": "Copper", "description": "A warm reddish-brown." },
   // { "code": "#312D3B", "name": "Charcoal", "description": "A deep gray with purple." },

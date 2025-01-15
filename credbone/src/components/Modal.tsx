@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import Button from "./button";
 import { useLocation } from "react-router-dom";
-import { Maximize, Maximize2, Minimize, Minimize2, X } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, X } from "lucide-react";
 import Tooltip from "./tooltip";
 
 // Modal Component
@@ -21,8 +21,8 @@ interface ModalProps {
   hasHeader?: boolean;
   hasToolbar?: boolean;
   dimClose?: boolean;
-  fullscreen?:boolean;
-  fullscreenbutton?:boolean;
+  fullscreen?: boolean;
+  fullscreenbutton?: boolean;
   isTopmost: boolean;
   customAttributes?: { [key: string]: string };
   dimAttributes?: { [key: string]: string };
@@ -44,7 +44,6 @@ const Modal: React.FC<ModalProps> = ({
   dimAttributes = {},
   spacing = 20,
 }) => {
-
   const [isFullscreen, setIsFullscreen] = useState(fullscreen); // Local fullscreen state
 
   const toggleFullscreen = () => {
@@ -83,7 +82,13 @@ const Modal: React.FC<ModalProps> = ({
       data-height="fit"
       data-position="absolute"
     >
-      <group data-position="absolute" onClick={handleBackdropClick} data-height="fit" data-background="modal-backdrop" {...dimAttributes}></group>
+      <group
+        data-position="absolute"
+        onClick={handleBackdropClick}
+        data-height="fit"
+        data-background="modal-backdrop"
+        {...dimAttributes}
+      ></group>
       <group
         data-radius="15"
         data-direction="column"
@@ -99,12 +104,51 @@ const Modal: React.FC<ModalProps> = ({
       >
         {hasHeader && (
           <>
-            <group data-name="modal-header" data-align="center" data-space="10" data-wrap="no" data-contain="" data-shrink="no">
-              <text data-space="10" data-ellipsis="">{title}</text>
-           
-              <group data-position="right" data-width="auto"   data-border={fullscreenbutton ? "" : "none"} data-radius="5" data-contain="">
-              {fullscreenbutton && (<><Tooltip placement={isFullscreen ? "left" : "auto" } content={isFullscreen ? "Minimize" : "Maximize" }><Button  large  icon={isFullscreen ? <Minimize2 size={20}/> : <Maximize2 size={20}/> } onClick={toggleFullscreen} data-radius="0"></Button></Tooltip><separator data-vertical="" data-height=""></separator></>)}
-              <Button large  icon={<X size={20}/>} onClick={onClose} data-radius="0"></Button>
+            <group
+              data-name="modal-header"
+              data-align="center"
+              data-space="10"
+              data-wrap="no"
+              data-contain=""
+              data-shrink="no"
+            >
+              <text data-space="10" data-ellipsis="">
+                {title}
+              </text>
+
+              <group
+                data-position="right"
+                data-width="auto"
+              //  data-gap="5"
+                data-align="center"
+              >
+                {fullscreenbutton && (
+                  <>
+                    <Tooltip
+                      placement={isFullscreen ? "left" : "auto"}
+                      content={isFullscreen ? "Minimize" : "Maximize"}
+                    ><group data-width="auto" data-name="autoseparation">
+                      <Button
+                        large
+                        icon={
+                          isFullscreen ? (
+                            <ArrowDownLeft size={20} />
+                          ) : (
+                            <ArrowUpRight size={20} />
+                          )
+                        }
+                        onClick={toggleFullscreen}
+                      ></Button>
+                      </group>
+                    </Tooltip>
+                    
+                  </>
+                )}
+                <group data-width="auto" data-align="center" data-name="autoseparation">
+                {fullscreenbutton && (  <separator data-vertical="" data-height="20"></separator>  )}
+                <Button large icon={<X size={20} />} onClick={onClose}></Button>
+                </group>
+              
               </group>
             </group>
             <group>
@@ -118,7 +162,12 @@ const Modal: React.FC<ModalProps> = ({
             <group>
               <separator data-horizontal=""></separator>
             </group>
-            <group data-name="modal-toolbar" data-space="30" data-gap="20" data-background="light-gray">
+            <group
+              data-name="modal-toolbar"
+              data-space="30"
+              data-gap="20"
+              data-background="light-gray"
+            >
               <group data-gap="10" data-type="grid" data-grid-template="120">
                 <group
                   onClick={onClose}
@@ -151,8 +200,8 @@ interface ModalContextType {
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
-    fullscreen?:boolean;
-    fullscreenbutton?:boolean;
+    fullscreen?: boolean;
+    fullscreenbutton?: boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
@@ -172,7 +221,9 @@ export const useModal = () => {
 };
 
 // ModalProvider that provides context
-export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ModalProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [modals, setModals] = useState<
     {
       id: string;
@@ -206,7 +257,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
-    fullscreen?:boolean;
+    fullscreen?: boolean;
     fullscreenbutton?: boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
@@ -214,15 +265,30 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }) => {
     setModals((prev) => [
       ...prev,
-      { id, title, content, isOpen: true, hasHeader, hasToolbar,fullscreen, fullscreenbutton, customAttributes, dimAttributes, spacing },
+      {
+        id,
+        title,
+        content,
+        isOpen: true,
+        hasHeader,
+        hasToolbar,
+        fullscreen,
+        fullscreenbutton,
+        customAttributes,
+        dimAttributes,
+        spacing,
+      },
     ]);
   };
 
   const closeModal = (id: string) => {
-    setModals((prev) =>
-      prev.map((modal) =>
-        modal.id === id ? { ...modal, isOpen: false } : modal
-      ).filter((modal) => modal.isOpen) // Optionally filter out closed modals
+    setModals(
+      (prev) =>
+        prev
+          .map((modal) =>
+            modal.id === id ? { ...modal, isOpen: false } : modal
+          )
+          .filter((modal) => modal.isOpen) // Optionally filter out closed modals
     );
   };
 

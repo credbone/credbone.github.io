@@ -7,7 +7,7 @@ import ThemeToggle from "../components/themeToggle";
 import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 
-import sampleImage from "../styles/images/samples/res_73.webp";
+import sampleImage from "../styles/images/samples/wide_res_63.webp";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -138,22 +138,17 @@ const Modal: React.FC = () => {
         </group>
       </group>
 
+
       <group
-        data-gap="15"
-        data-align="start"
-        data-type="column"
-        data-column-gap="15"
-      >
-        <group
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="30"
           //       data-border=""
           data-contain=""
         >
           <group
             data-direction="column"
-            data-min-height="400"
+        //    data-min-height="400"
             data-justify="end"
           >
             <picture
@@ -161,6 +156,7 @@ const Modal: React.FC = () => {
               data-brightness="adaptive"
               data-position="absolute"
               data-background="grey-light"
+              data-object-position="bottom"
             >
               <img src={sampleImage} alt="" />
             </picture>
@@ -173,14 +169,11 @@ const Modal: React.FC = () => {
                 data-contain=""
                 //   data-backdrop="20-dark"
                 data-background="main-background"
+                data-direction="column"
+                 data-width="auto"
               >
-                <group data-width="auto" data-gap="20">
-                  <text data-wrap="wrap" data-line="1.5">
-                    Component with customizable headers, toolbars, and
-                    attributes, supporting global management via context and
-                    handling open/close logic.
-                  </text>
-                  <Ripple>
+                <group data-width="auto" data-gap="20"  data-direction="column" data-align="start">
+                <Ripple>
                     <group
                       data-ink-color="main-deep"
                       data-contain=""
@@ -196,53 +189,69 @@ const Modal: React.FC = () => {
                         openModal({
                           id: "modal-01",
                           title: "Sample Basic Popup",
-                       //   fullscreen: true,
-                          fullscreenbutton:true,
+                          //   fullscreen: true,
+                          fullscreenbutton: true,
                           content: (
                             <group
                               data-space="30"
                               data-direction="column"
-                              data-gap="30"
                               data-align="start"
+                              data-scroll=""
+                              data-wrap="no"
+                              //data-shrink="no"
                             >
                               <group
                                 data-direction="column"
-                                data-gap="10"
                                 data-align="start"
+                                data-gap="30"
+                                data-width="auto"
                               >
-                                <text data-weight="700" data-text-size="medium">
-                                  Example Modal
-                                </text>
-                                <text
-                                  data-wrap="wrap"
-                                  data-line="1.5"
-                                  data-length="300"
-                                >
-                                  This is a sample modal to demonstrate how
-                                  content is displayed. Click the button below
-                                  to proceed.
-                                </text>
-                              </group>
-                              <Ripple>
                                 <group
-                                  data-ink-color="main-deep"
-                                  data-contain=""
-                                  data-width="auto"
-                                  data-interactive=""
-                                  data-interact="popover"
-                                  data-space="15"
-                                  data-radius="5"
-                                  data-cursor="pointer"
-                                  data-background="main"
-                                  data-color="main-text"
-                                  onClick={() => closeModal("modal-01")}
-                                  data-containt=""
+                                  data-direction="column"
+                                  data-gap="30"
+                                  data-align="start"
                                 >
-                                  <text data-weight="700" data-ellipsis="">
-                                    Confirm and Close
-                                  </text>
+                                  <group data-gap="10" data-direction="column">
+                                    <text
+                                      data-weight="700"
+                                      data-text-size="medium"
+                                    >
+                                      Example Modal
+                                    </text>
+                                    <text
+                                      data-wrap="wrap"
+                                      data-line="1.5"
+                                      data-length="300"
+                                    >
+                                      This is a sample modal to demonstrate how
+                                      content is displayed. Click the button
+                                      below to proceed.
+                                    </text>
+                                  </group>
+                                  <separator data-horizontal=""></separator>
                                 </group>
-                              </Ripple>
+
+                                <Ripple>
+                                  <group
+                                    data-ink-color="main-deep"
+                                    data-contain=""
+                                    data-width="auto"
+                                    data-interactive=""
+                                    data-interact="popover"
+                                    data-space="15"
+                                    data-radius="5"
+                                    data-cursor="pointer"
+                                    data-background="main"
+                                    data-color="main-text"
+                                    onClick={() => closeModal("modal-01")}
+                                    data-containt=""
+                                  >
+                                    <text data-weight="700" data-ellipsis="">
+                                      Confirm and Close
+                                    </text>
+                                  </group>
+                                </Ripple>
+                              </group>
                             </group>
                           ),
                           //  hasHeader: false,
@@ -253,15 +262,30 @@ const Modal: React.FC = () => {
                       }
                     >
                       <text data-weight="700" data-ellipsis="">
-                        Open Basic Modal
+                        Open Modal
                       </text>
                     </group>
                   </Ripple>
+                  <text data-wrap="wrap" data-line="1.5" data-length="300">
+                    Component with customizable headers, toolbars, and
+                    attributes, supporting global management via context and
+                    handling open/close logic.
+                  </text>
+
                 </group>
               </group>
             </group>
           </group>
         </group>
+
+
+      <group
+        data-gap="15"
+        data-align="start"
+        data-type="column"
+        data-column-gap="15"
+      >
+
 
         <group
           data-height="auto"
