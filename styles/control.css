@@ -519,6 +519,8 @@ picture img{ pointer-events: none; transform-origin: bottom center; object-fit: 
 picture[data-object-fit='contain'] img{object-fit: contain;width: auto;height:auto;max-height: 100%;max-width: 100%;}
 picture[data-object-position="right"]  img{object-position: right;}
 picture[data-object-position="left"]  img{object-position: right;}
+picture[data-object-position="bottom"]  img{object-position: bottom;}
+picture[data-object-position="top"]  img{object-position: top;}
 
 [data-react="scale"] picture {transition: .425s;}
 [data-react="scale"]:hover picture {transform: scale(1.025);transition: .125s;}
