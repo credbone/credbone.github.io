@@ -3,9 +3,10 @@ import React from 'react';
 interface IconProps {
   size?: number;
   fill?: boolean;
+  stroke?:number
 }
 
-const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, fill = false, children }) => {
+const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, fill = false, stroke = 2, children }) => {
   return (
     <svg
       data-shrink="no"
@@ -21,23 +22,23 @@ const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, 
   );
 };
 
-export const IconSearch: React.FC<IconProps> = (props) => {
+export const IconSearch: React.FC<IconProps> = ({stroke = 2,...restProps}) => {
   return (
-    <Icon {...props}>
-      <circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
-      <line x1="16.1" y1="16.1" x2="20" y2="20" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
+    <Icon {...restProps}>
+      <circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={stroke}/>
+      <line x1="16.1" y1="16.1" x2="20" y2="20" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={stroke}/>
     </Icon>
   );
 };
 
 
 
-export const IconHome: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+export const IconHome: React.FC<IconProps> = ({ fill = false, stroke = 2, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
       <path d="m18.25,17.89c0,1.12-.9,2.02-2,2.02h-8c-1.1,0-2-.91-2-2.02,0,0,0-4.17,0-7.64l6-5.33,6,5.33c0,3.43,0,7.55,0,7.64Z" fill={fill ? 'currentColor' : 'none'} />
-      <path d="m18,10.33v7.67c0,1.1-.9,2-2,2h-8c-1.1,0-2-.9-2-2v-7.67" fill="none" stroke="currentcolor" strokeMiterlimit="10" strokeWidth="2"/>
-      <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2">
+      <path d="m18,10.33v7.67c0,1.1-.9,2-2,2h-8c-1.1,0-2-.9-2-2v-7.67" fill="none" stroke="currentcolor" strokeMiterlimit="10" strokeWidth={stroke}/>
+      <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth={stroke}>
       <line x1="12" y1="5" x2="20" y2="12" />
       <line x1="4" y1="12" x2="12" y2="5"/>
       </g>
@@ -89,20 +90,20 @@ export const IconMoreHoriz: React.FC<IconProps> = (props) => {
 };
 
 
-export const IconHeart: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+export const IconHeart: React.FC<IconProps> = ({ fill = false, stroke = 2, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
-      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth={stroke} fill={fill ? 'currentColor' : 'none'}>
         <path d="m5.37,12.3l6.73,6.67,6.73-6.67c1.69-1.68,1.69-4.39,0-6.07-1.69-1.68-4.43-1.68-6.12,0l-.61.61-.61-.61c-1.69-1.68-4.43-1.68-6.12,0s-1.69,4.39,0,6.07Z"  />
       </g>
     </Icon>
   );
 };
 
-export const IconStar: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+export const IconStar: React.FC<IconProps> = ({ fill = false, stroke = 2, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
-      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'}>
+      <g stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth={stroke} fill={fill ? 'currentColor' : 'none'}>
   <path d="m11.09,5.56c.36-.77,1.45-.77,1.81,0l1.66,3.54,3.88.49c.84.11,1.18,1.14.56,1.72l-2.85,2.68.73,3.84c.16.83-.72,1.47-1.46,1.06l-3.43-1.89-3.43,1.89c-.74.41-1.62-.23-1.46-1.06l.73-3.84-2.85-2.68c-.62-.58-.28-1.62.56-1.72l3.88-.49,1.66-3.54Z"/>
 
   </g>
