@@ -31,36 +31,35 @@ import {
 import { Link } from "react-router-dom";
 
 import sectionImage from "../styles/images/samples/wide_res_74.jpg";
-import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
+import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
 import CustomSlider from "../components/inputs/slider";
 
 const lucideIcons = [
-  { name: <Snail size={20} />, title: "Snail" },
-  { name: <Package size={20} />, title: "Package" },
-  { name: <PencilRuler size={20} />, title: "Pencil Ruler" },
-  { name: <Box size={20} />, title: "Box" },
-  { name: <CakeSlice size={20} />, title: "Cake Slice" },
-  { name: <Database size={20} />, title: "Database" },
-  { name: <Feather size={20} />, title: "Feather" },
-  { name: <Pizza size={20} />, title: "Pizza" },
-  { name: <Armchair size={20} />, title: "Armchair" },
-  { name: <Bird size={20} />, title: "Bird" },
-  { name: <Wallet size={20} />, title: "Wallet" },
-  { name: <BookMarked size={20} />, title: "BookMarked" },
-  { name: <Paintbrush size={20} />, title: "Paint Brush" },
+  { Component: Snail, title: "Snail" },
+  { Component: Package, title: "Package" },
+  { Component: PencilRuler, title: "Pencil Ruler" },
+  { Component: Box, title: "Box" },
+  { Component: CakeSlice, title: "Cake Slice" },
+  { Component: Database, title: "Database" },
+  { Component: Feather, title: "Feather" },
+  { Component: Pizza, title: "Pizza" },
+  { Component: Armchair, title: "Armchair" },
+  { Component: Bird, title: "Bird" },
+  { Component: Wallet, title: "Wallet" },
+  { Component: BookMarked, title: "BookMarked" },
+  { Component: Paintbrush, title: "Paint Brush" },
 ];
 
 const CustomIcons = [
-  { name: <IconHome />, title: "Home" },
-  { name: <IconSearch />, title: "Search" },
-  { name: <IconSun />, title: "Sun" },
-  { name: <IconShare />, title: "Share" },
-  { name: <IconHeart />, title: "Heart" },
-  { name: <IconStar />, title: "Star" },
-  { name: <IconSettings />, title: "Settings" },
-  // { name: <IconPicker />, title: "Picker" },
+  { Component: IconHome, title: "Home" },
+  { Component: IconSearch, title: "Search" },
+  { Component: IconSun, title: "Sun" },
+  { Component: IconShare, title: "Share" },
+  { Component: IconHeart, title: "Heart" },
+  { Component: IconStar, title: "Star" },
+  { Component: IconSettings, title: "Settings" },
+  // { Component: IconPicker, title: "Picker" },
 ];
-
 
 
 const Icons: React.FC = () => {
@@ -126,6 +125,10 @@ const Icons: React.FC = () => {
   };
 
 
+  const selectedCustomIcon = CustomIcons.find((icon) => icon.title === selectedIcon);
+const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIcon);
+
+
 
   
   return (
@@ -158,10 +161,16 @@ const Icons: React.FC = () => {
         </text>
       </group>
 
-      <group data-gap="30">
-        <group data-sticky="top" data-top="30" data-width="auto">
+
+
+
+<group data-gap="30" data-align="start">
+<group data-gap="30" data-width="auto" data-fit="1">
+
+
+<group data-sticky="top" data-top="30" >
           <group
-            data-length="600"
+          //  data-length="600"
             data-radius="10"
             data-border="outline"
             data-align="center"
@@ -224,9 +233,10 @@ const Icons: React.FC = () => {
           </group>
         </group>
 
+
         <group data-gap="30">
           <group data-name="icon-group" data-gap="30">
-            <group>
+            {/* <group>
               <picture
                 data-radius="30"
                 data-contain=""
@@ -237,12 +247,15 @@ const Icons: React.FC = () => {
                 <img src={sectionImage} alt="" />
               </picture>
 
-              <group data-space="30">
-                <group
-                  data-background="main-background"
+
+            </group> */}
+
+
+<group
+              //    data-background="main-background"
                   data-space="30"
                   data-width="auto"
-                  data-radius="15"
+              //    data-radius="15"
                   data-direction="column"
                   data-gap="15"
                   data-align="start"
@@ -258,7 +271,7 @@ const Icons: React.FC = () => {
 
                   <text
                     data-opacity="50"
-                    data-max-length="300"
+                    data-max-length="240"
                     data-wrap="wrap"
                     data-line="20"
                   >
@@ -266,7 +279,7 @@ const Icons: React.FC = () => {
                     of icons
                   </text>
 
-                  <Link
+                  {/* <Link
                     data-type="group"
                     data-drag="none"
                     data-width="auto"
@@ -279,17 +292,15 @@ const Icons: React.FC = () => {
                     <text data-weight="700" data-ellipsis="">
                       View More
                     </text>
-                  </Link>
+                  </Link> */}
                 </group>
-              </group>
-            </group>
 
             <group>
               <group
                 // data-max-length="900"
                 data-type="grid"
-                data-gap="5"
-                data-grid-template="100"
+                data-gap="10"
+                data-grid-template="120"
                 data-contain=""
               >
                 {lucideIcons.map((icon, index) => (
@@ -314,7 +325,7 @@ const Icons: React.FC = () => {
                         data-gap="20"
                         data-direction="column"
                       >
-                        <icon>{icon.name}</icon>
+                        <icon.Component size={20} />
                         <text data-light="" data-ellipsis="">
                           {icon.title}
                         </text>
@@ -354,10 +365,10 @@ const Icons: React.FC = () => {
                     data-text-size="large"
                     data-ellipsis=""
                   >
-                    Icons
+                   Custom Icons
                   </text>
-                  <text data-opacity="50" data-line="20" data-wrap="wrap">
-                    Examples of Custom-Designed Icons
+                  <text data-opacity="50" data-line="20" data-wrap="wrap" data-length="300">
+                  Examples of custom-designed icons. If a fill option is supported, a specific part of the icon will be filled
                   </text>
                 </group>
               </group>
@@ -366,8 +377,8 @@ const Icons: React.FC = () => {
             <group>
               <group
                 data-type="grid"
-                data-gap="5"
-                data-grid-template="100"
+                              data-gap="10"
+                data-grid-template="120"
                 data-contain=""
               >
                 {CustomIcons.map((icon, index) => (
@@ -398,7 +409,7 @@ const Icons: React.FC = () => {
                           data-align="center"
                           data-justify="center"
                         >
-                          {icon.name}
+                         <icon.Component />
                         </group>
                         <text data-light="" data-ellipsis="">
                           {icon.title}
@@ -413,32 +424,95 @@ const Icons: React.FC = () => {
         </group>
       </group>
 
-      <group
-        data-direction="column"
-        data-gap="30"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="50" data-adaptive="desktop"></group>
-        <group data-direction="column" data-gap="10">
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-ellipsis="">
-          Options
-          </text>
-          <text data-wrap="wrap" data-line="1.5" data-max-length="400">
-            Design parameters applicable for icon component, including style,
-            size, and stroke properties.
-          </text>
-        </group>
-      </group>
+
 
       <group
         data-gap="30"
-        data-type="grid"
-        data-grid-template="300"
+        // data-type="grid"
+        // data-grid-template="300"
         data-align="start"
+        data-length="300"
+        
+        data-direction="column"
+       data-autofit="1-600"
       >
+
+<group
+          data-background={isInverted ? "text" : ""}
+          data-color={isInverted ? "main-background" : ""}
+          // data-sticky="top"
+          // data-top="15"
+          //   data-direction="column"
+
+          data-border=""
+          data-radius="20"
+          data-align="center"
+          data-gap="30"
+          data-space="30"
+        >
+          <group
+            data-height="120"
+            data-align="center"
+            data-justify="center"
+            data-gap="30"
+
+          >
+
+
+
+
+           {selectedCustomIcon ? (
+  <selectedCustomIcon.Component
+    fill={isFilled}
+    stroke={IconStroke}
+    size={IconSize}
+  />
+) : selectedLucideIcon ? (
+  <selectedLucideIcon.Component
+
+    strokeWidth={IconStroke}
+    size={IconSize}
+    fill={isFilled ? "currentcolor" : "transparent"}
+  />
+) : (
+  <text data-opacity="50">Select an icon</text>
+)}
+
+
+
+          </group>
+
+          <separator data-horizontal=""></separator>
+
+          <group data-direction="column">
+            <text data-wrap="wrap" data-opacity="60" data-line="1.5">
+              Icons use the current color by default. Invert the container to
+              see how icons adapt to different contexts.
+            </text>
+          </group>
+
+          <group data-width="auto" data-gap="30">
+            <separator data-horizontal=""></separator>
+            <group
+              data-space="15"
+              data-align="center"
+              data-justify="center"
+              data-background="adaptive-gray"
+              // data-border="outline"
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="10"
+              data-cursor="pointer"
+              onClick={toggleInvert}
+            >
+              <text>Invert</text>
+            </group>
+          </group>
+        </group>
+
+
+
         <group data-gap="15" data-direction="column">
           <group
             data-border=""
@@ -446,8 +520,12 @@ const Icons: React.FC = () => {
             data-align="center"
             data-gap="15"
             data-space="15"
+            // data-disabled={selectedLucideIcon ? "true" : ""}
+            // data-opacity={selectedLucideIcon ? "50" : ""}
+            // data-background={selectedLucideIcon ? "highlight" : ""}
           >
             <group
+           
               data-width="auto"
               //data-min-length="80"
             >
@@ -600,62 +678,9 @@ const Icons: React.FC = () => {
           </group>
         </group>
 
-        <group
-          data-background={isInverted ? "text" : ""}
-          data-color={isInverted ? "main-background" : ""}
-          // data-sticky="top"
-          // data-top="15"
-          //   data-direction="column"
 
-          data-border=""
-          data-radius="20"
-          data-align="center"
-          data-gap="30"
-          data-space="30"
-        >
-          <group
-            data-height="120"
-            data-align="center"
-            data-justify="center"
-            data-gap="30"
-
-          >
-           <IconHome fill={isFilled} stroke={IconStroke} size={IconSize} />
-
-
-
-
-          </group>
-
-          <separator data-horizontal=""></separator>
-
-          <group data-direction="column">
-            <text data-wrap="wrap" data-opacity="60" data-line="1.5">
-              Icons use the current color by default. Invert the container to
-              see how icons adapt to different contexts.
-            </text>
-          </group>
-
-          <group data-width="auto" data-gap="30">
-            <separator data-horizontal=""></separator>
-            <group
-              data-space="15"
-              data-align="center"
-              data-justify="center"
-              data-background="adaptive-gray"
-              // data-border="outline"
-              data-width="auto"
-              data-interactive=""
-              data-over-color="neutral"
-              data-radius="10"
-              data-cursor="pointer"
-              onClick={toggleInvert}
-            >
-              <text>Invert</text>
-            </group>
-          </group>
-        </group>
       </group>
+</group>
     </group>
   );
 };

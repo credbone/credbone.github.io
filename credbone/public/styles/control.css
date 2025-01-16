@@ -432,6 +432,9 @@ text[data-width="auto"]{width: initial;}
 {
   [data-length='forcefit'] { flex: 1 1 100%; }
   [data-length='autofit-600'] { flex: 1; }
+
+  [data-autofit="1-600"]  { flex: 1; }
+
 }
 
 

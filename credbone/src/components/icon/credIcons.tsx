@@ -6,7 +6,7 @@ interface IconProps {
   stroke?:number
 }
 
-const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, fill = false, stroke = 2, children }) => {
+const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({ size = 24, fill = false, children }) => {
   return (
     <svg
       data-shrink="no"
@@ -49,10 +49,10 @@ export const IconHome: React.FC<IconProps> = ({ fill = false, stroke = 2, ...res
 
 
 
-export const IconShare: React.FC<IconProps> = (props) => {
+export const IconShare: React.FC<IconProps> = ({stroke = 2,...restProps}) => {
   return (
-    <Icon {...props}>
-    <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="2">
+    <Icon {...restProps}>
+    <g fill="none" stroke="currentcolor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth={stroke}>
       <circle cx="7" cy="12" r="3" />
       <circle cx="17" cy="18" r="3" />
       <line x1="9.57" y1="13.54" x2="14.43" y2="16.46"/>
@@ -112,10 +112,11 @@ export const IconStar: React.FC<IconProps> = ({ fill = false, stroke = 2, ...res
 };
 
 
-export const IconSettings: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+export const IconSettings: React.FC<IconProps> = ({ fill = false,stroke = 2, ...restProps }) => {
   return (
     <Icon fill={fill} {...restProps}>
-<path fill="currentColor" d="M12 1L21.5 6.5V17.5L12 23L2.5 17.5V6.5L12 1ZM12 3.311L4.5 7.65311V16.3469L12 20.689L19.5 16.3469V7.65311L12 3.311ZM12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16ZM12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z"></path>
+
+<path fill={fill ? 'currentColor' : 'none'}  stroke="currentColor" strokeMiterlimit="10" strokeWidth={stroke} xmlns="http://www.w3.org/2000/svg" d="m18.66,6.5l-5.33-3.14c-.82-.48-1.83-.48-2.65,0l-5.33,3.14c-.83.49-1.34,1.4-1.34,2.38v6.23c0,.98.51,1.89,1.34,2.38l5.33,3.14c.82.48,1.83.48,2.65,0l5.33-3.14c.83-.49,1.34-1.4,1.34-2.38v-6.23c0-.98-.51-1.89-1.34-2.38Zm-6.66,8.5c-1.66,0-3-1.34-3-3s1.34-3,3-3,3,1.34,3,3-1.34,3-3,3Z" />
     </Icon>
   );
 };
@@ -260,23 +261,23 @@ export const IconViewColumn: React.FC<IconProps> = ({ fill = false, ...restProps
 //   );
 // };
 
-export const IconSun: React.FC<IconProps> = (props) => {
+export const IconSun: React.FC<IconProps> = ({fill = false,stroke = 2,...restProps}) => {
   return (
-    <Icon {...props}>
+    <Icon {...restProps}>
       <g fill="none"
         stroke="currentcolor"
         strokeLinecap="round"
         strokeMiterlimit="10"
-        strokeWidth="2">
-      <circle cx="12" cy="12" r="5"/>
-      <line x1="12" y1="1" x2="12" y2="3"/>
-      <line x1="12" y1="21" x2="12" y2="23"/>
-      <line x1="1" y1="12" x2="3" y2="12"/>
-      <line x1="21" y1="12" x2="23" y2="12"/>
-      <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/>
-      <line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/>
-      <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/>
-      <line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/>
+        strokeWidth={stroke}>
+      <circle fill={fill ? 'currentColor' : 'none'} cx="12" cy="12" r="4"/>
+      <line x1="12" y1="2" x2="12" y2="4"></line>
+    <line x1="12" y1="20" x2="12" y2="22"></line>
+    <line x1="2" y1="12" x2="4" y2="12"></line>
+    <line x1="20" y1="12" x2="22" y2="12"></line>
+    <line x1="5" y1="5" x2="6.5" y2="6.5"></line>
+    <line x1="17.5" y1="17.5" x2="19" y2="19"></line>
+    <line x1="5" y1="19" x2="6.5" y2="17.5"></line>
+    <line x1="17.5" y1="6.5" x2="19" y2="5"></line>
 </g>
     </Icon>
   );
