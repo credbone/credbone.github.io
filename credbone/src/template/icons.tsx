@@ -13,12 +13,12 @@ import {
 } from "../components/icon/credIcons";
 
 import {
-  Armchair,
+  Proportions,
   Bird,
   BookMarked,
   Box,
   CakeSlice,
-  Database,
+  Videotape,
   Feather,
   Package,
   Paintbrush,
@@ -31,7 +31,7 @@ import {
 import { Link } from "react-router-dom";
 
 import sectionImage from "../styles/images/samples/wide_res_74.jpg";
-import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
+import sectionImage_2 from "../styles/images/samples/wide_res_67.webp";
 import CustomSlider from "../components/inputs/slider";
 
 const lucideIcons = [
@@ -40,10 +40,10 @@ const lucideIcons = [
   { Component: PencilRuler, title: "Pencil Ruler" },
   { Component: Box, title: "Box" },
   { Component: CakeSlice, title: "Cake Slice" },
-  { Component: Database, title: "Database" },
+  { Component: Videotape, title: "Videotape" },
   { Component: Feather, title: "Feather" },
   { Component: Pizza, title: "Pizza" },
-  { Component: Armchair, title: "Armchair" },
+  { Component: Proportions, title: "Proportions" },
   { Component: Bird, title: "Bird" },
   { Component: Wallet, title: "Wallet" },
   { Component: BookMarked, title: "BookMarked" },
@@ -164,13 +164,13 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
 
 
 
-<group data-gap="30" data-align="start">
-<group data-gap="30" data-width="auto" data-fit="1">
+
+      <group data-gap="30"  >
 
 
 <group data-sticky="top" data-top="30" >
           <group
-          //  data-length="600"
+            data-length="600"
             data-radius="10"
             data-border="outline"
             data-align="center"
@@ -236,7 +236,7 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
 
         <group data-gap="30">
           <group data-name="icon-group" data-gap="30">
-            {/* <group>
+            <group>
               <picture
                 data-radius="30"
                 data-contain=""
@@ -247,15 +247,12 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
                 <img src={sectionImage} alt="" />
               </picture>
 
-
-            </group> */}
-
-
+<group data-space="30">
 <group
-              //    data-background="main-background"
+                 data-background="main-background"
                   data-space="30"
                   data-width="auto"
-              //    data-radius="15"
+                 data-radius="15"
                   data-direction="column"
                   data-gap="15"
                   data-align="start"
@@ -294,6 +291,12 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
                     </text>
                   </Link> */}
                 </group>
+</group>
+
+            </group>
+
+
+
 
             <group>
               <group
@@ -426,15 +429,15 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
 
 
 
-      <group
+<group
         data-gap="30"
-        // data-type="grid"
-        // data-grid-template="300"
+        data-type="grid"
+        data-grid-template="300"
         data-align="start"
-        data-length="300"
+       // data-length="300"
         
         data-direction="column"
-       data-autofit="1-600"
+   //    data-autofit="1-600"
       >
 
 <group
@@ -472,7 +475,7 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
 
     strokeWidth={IconStroke}
     size={IconSize}
-    fill={isFilled ? "currentcolor" : "transparent"}
+    fill={isFilled ? "currentcolor" : "none"}
   />
 ) : (
   <text data-opacity="50">Select an icon</text>
@@ -481,8 +484,8 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
 
 
           </group>
-
-          <separator data-horizontal=""></separator>
+{/* 
+          <separator data-horizontal=""></separator> */}
 
           <group data-direction="column">
             <text data-wrap="wrap" data-opacity="60" data-line="1.5">
@@ -591,6 +594,7 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
               icons also support fill customization
             </text>
           </group>
+
           <group data-border="" data-radius="15">
             <group data-align="center" data-gap="15" data-space="15">
               <group
@@ -676,11 +680,15 @@ const selectedLucideIcon = lucideIcons.find((icon) => icon.title === selectedIco
               </group>
             </group>
           </group>
+
         </group>
 
 
+
+
       </group>
-</group>
+
+
     </group>
   );
 };
