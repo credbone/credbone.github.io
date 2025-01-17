@@ -113,9 +113,12 @@ const Components: React.FC = () => {
                 data-opacity="70"
                 data-text-size="15"
               >
-                This space is about personal experiments and demos, featuring a
+                {/* This space is about personal experiments and demos, featuring a
                 collection of carefully crafted UI components, each designed
-                with attention to detail and a strong focus on UI principles
+                with attention to detail and a strong focus on UI principles */}
+                A hybrid, atomic, and declarative design system that brings
+                flexibility, control and speed to projects. With no
+                classes or pre-defined styles.
               </text>
             </group>
 
@@ -169,7 +172,7 @@ const Components: React.FC = () => {
                       hasHeader: false,
                       hasToolbar: false,
                       customAttributes: modalConfig,
-                    //    dimAttributes: {"data-background" : "dark-shade-10"},
+                      //    dimAttributes: {"data-background" : "dark-shade-10"},
                       spacing: 0,
                     })
                   }
@@ -194,7 +197,7 @@ const Components: React.FC = () => {
                   data-space-vertical="20"
                   data-radius="15"
                   data-direction="column"
-                  data-length='autofit-600'
+                  data-length="autofit-600"
                   data-align="center"
                 >
                   {/* <TextReveal text={message} duration={1200} /> */}
@@ -210,54 +213,50 @@ const Components: React.FC = () => {
             </group>
           </group>
 
-
-
           <Popover
-          placement="mouse"
-                content={
-                  <group
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="1.25"
-                  >
-                    <RichThemePicker pickerType="primary" />
-                  </group>
-                }
-                data-space="5"
-                data-radius="10"
-                data-backdrop="10"
-                data-width="auto"
+            placement="mouse"
+            content={
+              <group
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="1.25"
               >
-
-
-<group data-max-length="500" data-cursor="pointer">
-            <group data-space="10%">
-<Ripple>
-<group
-                data-contain=""
-                data-ink-color="main-dark"
-                data-ratio="1:1"
-                data-background="main"
-                data-radius="full"
-              ></group> 
-</Ripple>
-            </group>
-            <group data-position="absolute" data-disabled="true" data-height="fit">
-              <picture
+                <RichThemePicker pickerType="primary" />
+              </group>
+            }
+            data-space="5"
+            data-radius="10"
+            data-backdrop="10"
+            data-width="auto"
+          >
+            <group data-max-length="500" data-cursor="pointer">
+              <group data-space="10%">
+                <Ripple>
+                  <group
+                    data-contain=""
+                    data-ink-color="main-dark"
+                    data-ratio="1:1"
+                    data-background="main"
+                    data-radius="full"
+                  ></group>
+                </Ripple>
+              </group>
+              <group
+                data-position="absolute"
+                data-disabled="true"
+                data-height="fit"
+              >
+                <picture
                 //    data-brightness="adaptive"
 
                 // data-background="grey-light"
-              //    data-min-height="300"
-              >
-                <img src={sampleImage_3} alt="" />
-              </picture>
+                //    data-min-height="300"
+                >
+                  <img src={sampleImage_3} alt="" />
+                </picture>
+              </group>
             </group>
-          </group>
-
-                </Popover>
-
-
-
+          </Popover>
         </group>
 
         <separator data-horizontal=""></separator>
@@ -304,12 +303,12 @@ const Components: React.FC = () => {
                   data-radius="30"
                   data-direction="column"
                   data-wrap="no"
-                  data-background={link.color? "main":"adaptive-gray"}
-                  data-color={link.color? "main-text":""}
+                  data-background={link.color ? "main" : "adaptive-gray"}
+                  data-color={link.color ? "main-text" : ""}
                 >
                   <group
                     data-index="1"
-                    data-direction="column" 
+                    data-direction="column"
                     data-gap="10"
                     data-space="40"
                     data-height="fit"
@@ -331,7 +330,7 @@ const Components: React.FC = () => {
                       // data-text-size="72"
                       //  data-height="50"
                       data-contain=""
-                   //   data-weight="700"
+                      //   data-weight="700"
                       data-opacity="30"
                     >
                       0{index + 1}
@@ -488,7 +487,9 @@ const Components: React.FC = () => {
             <separator data-horizontal=""></separator>
             <group data-space="10">
               <group>
-                <text data-opacity="60">Copyright {currentYear}, Credbone. </text>
+                <text data-opacity="60">
+                  Copyright {currentYear}, Credbone.{" "}
+                </text>
               </group>
             </group>
           </group>

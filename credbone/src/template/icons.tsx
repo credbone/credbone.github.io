@@ -33,6 +33,7 @@ import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
 //import sectionImage_2 from "../styles/images/samples/wide_res_67.webp";
 import CustomSlider from "../components/inputs/slider";
 import StuckReporter from "../components/StuckReporter";
+import SystemColorPicker from "./systemColorPicker";
 
 const lucideIcons = [
   { Component: Snail, title: "Snail" },
@@ -68,10 +69,30 @@ const Icons: React.FC = () => {
   const [isFilled, setisFilled] = useState(false);
 
   const [isInverted, setIsInverted] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string>("text");
+
+
 
   const toggleInvert = () => {
     setIsInverted((prev) => !prev);
+    if (selectedColor === "text") {
+      setSelectedColor("main-background");
+    } else if (selectedColor === "main-background") {
+      setSelectedColor("text");
+    }
   };
+  
+  const handleColorSelect = (color: string) => {
+    setSelectedColor(color);
+  
+    if (color === "text") {
+      setIsInverted(false); // Set inverted state to false for "text"
+    } else if (color === "main-background") {
+      setIsInverted(true); // Set inverted state to true for "main-background"
+    }
+  };
+
+
 
   const updateDisplay = (value: string) => {
     const parentContainers = document.querySelectorAll(
@@ -450,6 +471,7 @@ const Icons: React.FC = () => {
               data-align="center"
               data-justify="center"
               data-gap="30"
+              data-color={selectedColor}
             >
               {selectedCustomIcon ? (
                 <selectedCustomIcon.Component
@@ -666,6 +688,15 @@ const Icons: React.FC = () => {
                 </group>
               </group>
             </group>
+
+
+
+
+<group data-border="" data-radius="15" data-contain="">
+ <SystemColorPicker selectedColor={selectedColor} handleColorSelect={handleColorSelect}/>
+</group>
+
+
           </group>
         </group>
       </group>

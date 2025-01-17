@@ -5,7 +5,7 @@ export const BaseColors = [
   { value: "deep-purple", name: "Deep Purple", description: "Majestic violet, bold and striking.", dark: "true", hex: "5e35b1", hexlight: "9165e5", hexdark: "2e0083" },
   { value: "indigo", name: "Indigo", description: "Classic denim, timeless and modern.", dark: "true", hex: "3949ab", hexlight: "6b75dd", hexdark: "00217c" },
   { value: "blue", name: "Blue", description: "Bright cerulean, crisp and serene.", hex: "1e88e5", hexlight: "6bbdff", hexdark: "005db3" },
-  { value: "light-blue", name: "Ocean Blue", description: "Cool ocean blue, fresh and breezy.", hex: "039be5", hexlight: "63ccff", hexdark: "006cb3" },
+ // { value: "light-blue", name: "Ocean Blue", description: "Cool ocean blue, fresh and breezy.", hex: "039be5", hexlight: "63ccff", hexdark: "006cb3" },
   { value: "cyan", name: "Cyan", description: "Exotic teal, lively and peacock-like.", hex: "00acc1", hexlight: "5fd8ee", hexdark: "007b8f" },
   { value: "teal", name: "Teal", description: "Mystic teal, vibrant and refreshing.", dark: "true", hex: "00897b", hexlight: "4ebaaa", hexdark: "005b4d" },
   { value: "green", name: "Green", description: "Lush fern green, calm and natural.", hex: "43a047", hexlight: "76d275", hexdark: "00701a" },
@@ -15,7 +15,7 @@ export const BaseColors = [
   { value: "amber", name: "Amber", text: "black", description: "Rich golden amber, warm and inviting.", hex: "ffb300", hexlight: "ffe54c", hexdark: "e1982e" },
   { value: "orange", name: "Orange", description: "Bright pumpkin orange, bold and fun.", hex: "fb8c00", hexlight: "ffbd45", hexdark: "c25e00" },
   { value: "deep-orange", name: "Deep Orange", description: "Intense burnt orange, bold and warm.", dark: "true", hex: "f4511e", hexlight: "ff844c", hexdark: "b91400" },
-  { value: "peach", name: "Peach", description: "Soft peach, light and delicate.", hex: "ffb997", hexlight: "ffceb3", hexdark: "d98673" },
+ // { value: "peach", name: "Peach", description: "Soft peach, light and delicate.", hex: "ffb997", hexlight: "ffceb3", hexdark: "d98673" },
   { value: "brown", name: "Brown", description: "Cocoa brown, warm, cozy, and earthy.", dark: "true", hex: "8d6e63", hexlight: "be9c91", hexdark: "5f4339" },
   { value: "grey", name: "Grey", description: "Neutral slate grey, versatile and cool.", dark: "true", hex: "757575", hexlight: "a4a4a4", hexdark: "494949" },
   { value: "blue-grey", name: "Blue Grey", description: "Stormy blue-grey, elegant and calm.", dark: "true", hex: "546e7a", hexlight: "819ca9", hexdark: "29434e" }
