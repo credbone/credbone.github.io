@@ -13,7 +13,7 @@ import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
 
-import sectionImage from "../styles/images/samples/wide_res_61.jpg";
+import sectionImage from "../styles/images/samples/wide_res_68.webp";
 import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Printer, X } from "lucide-react";
 
 
@@ -56,11 +56,12 @@ const Buttons: React.FC = () => {
 
 <group>
 <picture
-            data-radius="20"
+            data-radius="30"
             data-contain=""
             data-brightness="adaptive"
             data-background="grey-light"
             data-position="absolute"
+           // data-object-position="bottom"
           >
             <img src={sectionImage} alt="" />
           </picture>

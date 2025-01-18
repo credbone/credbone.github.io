@@ -88,7 +88,7 @@ const CheckboxAndSwitchers: React.FC = () => {
           <group
            data-width="auto"
             data-contain=""
-            data-radius="15"
+            data-radius="20"
 
         //    data-elevation="2-main-color"
              data-index="2"
@@ -425,10 +425,10 @@ const CheckboxAndSwitchers: React.FC = () => {
               data-radius="15"
                data-border=""
               data-contain=""
-              data-space="20"
-              data-gap="10"
+              data-space="30"
+              data-gap="30"
             >
-              <group data-gap="10" data-background="main-background">
+              <group data-gap="10" data-background="main-background" data-width="auto">
                 <OptionBar
                   compact
                   dynamic
@@ -450,7 +450,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </OptionBar>
               </group>
 
-              <separator data-horizontal="" data-interval="10"></separator>
+              <separator data-horizontal=""></separator>
               <text
                 data-wrap="wrap"
                 data-light=""
@@ -463,8 +463,8 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
 
             <group
-              data-gap="10"
-              data-space="20"
+              data-gap="30"
+              data-space="30"
               data-border=""
               data-background="context"
               data-radius="15"
@@ -522,7 +522,7 @@ const CheckboxAndSwitchers: React.FC = () => {
               </group> */}
 
 
-              <separator data-horizontal="" data-interval="10"></separator>
+              <separator data-horizontal=""></separator>
 
 
 
@@ -565,10 +565,10 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
 
             <group
-              data-space="20"
+              data-space="30"
               data-border=""
               data-align="center"
-              data-gap="10"
+              data-gap="30"
               data-background="context"
               data-radius="15"
              
@@ -589,7 +589,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 ))}
               </OptionBar>
 
-              <separator data-horizontal="" data-interval="10"></separator>
+              <separator data-horizontal="" ></separator>
               <group data-align="center" data-width="auto" data-wrap="no">
                 <OptionBar animate data-length="100" data-height="40">
                   <Radio
@@ -613,33 +613,26 @@ const CheckboxAndSwitchers: React.FC = () => {
               </group>
             </group>
 
+
+<separator data-horizontal=""></separator>
+
             <group
-              data-space="20"
-              data-border=""
-              data-align="center"
-              data-gap="10"
-              data-background="context"
-              data-radius="15"
-             
-            >
-              <group
                 data-contain=""
                 data-space="15"
                 data-space-horizontal="30"
                 data-interactive=""
                 data-cursor="pointer"
-                data-radius="5"
+                data-radius="10"
                 data-width="auto"
                 data-align="center"
                 data-direction="column"
-                data-background="secondary"
-                data-color="secondary-text"
+                data-background="adaptive-gray"
+
                 data-weight="700"
                 onClick={() => reset()}
               >
                 <text>Reset Form</text>
               </group>
-            </group>
           </group>
         </group>
 

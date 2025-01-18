@@ -411,7 +411,7 @@ const Components: React.FC = () => {
                 data-text-clamp="64"
                 data-max-length="800"
               >
-                Powered by <br></br>passion.
+                Driven by <br></br>passion.
               </text>
               <text
                 data-wrap="wrap"
