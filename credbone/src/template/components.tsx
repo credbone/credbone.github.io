@@ -351,8 +351,8 @@ const Components: React.FC = () => {
           </group>
         </group>
 
-        <group data-contain="" data-radius="20" data-direction="column">
-          <group data-direction="column">
+        <group data-gap="10"  data-direction="column">
+          <group data-contain="" data-radius="30" data-direction="column">
             <picture
               data-brightness="adaptive"
               // data-position="absolute"
@@ -389,6 +389,7 @@ const Components: React.FC = () => {
           </group>
 
           <group
+           data-radius="30"
             data-gap="30"
             data-direction="column"
             //  data-background="context"

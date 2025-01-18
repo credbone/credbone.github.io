@@ -53,6 +53,8 @@
 [data-animation-delay="4"] {animation-delay: 0.4s;} /* Added for 4 */
 
 
+[data-animation-duration="none"] {animation-duration: 0s;}
+
 [data-animation-duration="1"] {animation-duration: 0.1s;}
 [data-animation-duration="1.25"] {animation-duration: 0.125s;}
 [data-animation-duration="1.5"] {animation-duration: 0.15s;}

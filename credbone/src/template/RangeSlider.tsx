@@ -13,6 +13,8 @@ const RangeSlider: React.FC = () => {
   const [sliderValue_3, setSliderValue_3] = useState(60); // Initial value for the slider
 
 
+
+
   const [GaugeValue, setGaugeValue] = useState(90); // Initial value for the slider
 
 
@@ -72,8 +74,9 @@ const RangeSlider: React.FC = () => {
           data-brightness="adaptive"
           data-background="grey-light"
           data-position="absolute"
+         
         >
-          <img src={sectionImage} alt="" />
+          <img src={sectionImage} alt=""  style={{ objectPosition: `${sliderValue}% ${sliderValue}%` }} data-duration="none" />
         </picture>
 
         <group data-space="30" data-width="auto">
@@ -99,8 +102,8 @@ const RangeSlider: React.FC = () => {
                 <group>
                   
                   <CustomSlider
-                    start={20}
-                    end={60}
+                    start={0}
+                    end={100}
                     value={sliderValue}
                     onValueChange={(value) => setSliderValue(value)}
 

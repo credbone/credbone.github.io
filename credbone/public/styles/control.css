@@ -512,7 +512,7 @@ space { display: flex; height: 30px; width: 100%; flex-shrink: 0; }
 
 
 picture {height: 100%;width: 100%;position: relative;display: flex;overflow: hidden;align-items: center;justify-content: center;text-align: center;flex-direction: column;}
-picture img{ pointer-events: none; transform-origin: bottom center; object-fit: cover; width: 100%; height: 100%;transition: .125s; }
+picture img{ pointer-events: none; transform-origin: bottom center; object-fit: cover; width: 100%; height: 100%; }
 /* picture[data-mask] { -webkit-mask-image: linear-gradient(black 50%, transparent); mask-image: linear-gradient(black 50%, transparent); } */
 
 

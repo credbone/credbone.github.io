@@ -454,8 +454,8 @@ const Icons: React.FC = () => {
           //    data-autofit="1-600"
         >
           <group
-            data-background={isInverted ? "text" : ""}
-            data-color={isInverted ? "main-background" : ""}
+            data-background={selectedColor === "main-text" ? "main" :  selectedColor === "secondary-text" ? "secondary" : isInverted ? "text" : ""}
+            data-color={selectedColor === "main-text" ? "main-text" : selectedColor === "secondary-text" ? "secondary-text" : isInverted ? "main-background" : ""}
             // data-sticky="top"
             // data-top="15"
             //   data-direction="column"
@@ -501,21 +501,37 @@ const Icons: React.FC = () => {
 
             <group data-width="auto" data-gap="30">
               <separator data-horizontal=""></separator>
-              <group
-                data-space="15"
-                data-align="center"
-                data-justify="center"
-                data-background="adaptive-gray"
-                // data-border="outline"
-                data-width="auto"
-                data-interactive=""
-                data-over-color="neutral"
-                data-radius="10"
-                data-cursor="pointer"
-                onClick={toggleInvert}
-              >
-                <text>Invert</text>
-              </group>
+
+
+{selectedColor === "main-text" || selectedColor === "secondary-text" ? 
+
+
+<group data-length="240">
+<text data-wrap="wrap" data-line="1.5" data-max-length="300">
+Ensuring optimal contrast on main & secondary backgrounds with
+system-generated colors
+</text>
+  </group>
+
+: 
+
+<group
+data-space="15"
+data-align="center"
+data-justify="center"
+data-background="adaptive-gray"
+// data-border="outline"
+data-width="auto"
+data-interactive=""
+data-over-color="neutral"
+data-radius="10"
+data-cursor="pointer"
+onClick={toggleInvert}
+>
+<text>Invert</text>
+</group>
+}
+
             </group>
           </group>
 
