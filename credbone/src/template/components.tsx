@@ -25,17 +25,27 @@ const currentYear: number = new Date().getFullYear();
 
 
 const typefacecontent = ( <> <text data-weight="700" data-text-size="72">Aa</text> </> )
+const colorcontent = (
+  <group data-space-vertical="10" data-interact="" data-length="120">
+    <group data-contain=""  data-wrap="no">
+      <group data-ratio="1:1" data-radius="full" data-background="main-soft" data-index="3"></group>
+      <group data-ratio="1:1" data-radius="full" data-backdrop="10-main-color"data-index="2" data-margin-horizontal="-15"></group>
+      <group data-ratio="1:1" data-radius="full" data-background="main-dark"></group>
+    </group>
+  </group>
+);
 
 const linksArray = [
 
 
-  { title: "Colors\n& Shades", description: "A system to craft and manage color palettes.", to: "/Components/Colors" },
+  { title: "Colors\n& Shades",content:colorcontent, description: "A system to craft and manage color palettes.", to: "/Components/Colors" },
   { title: "Typography", content:typefacecontent,  description: "Scalable tokens for managing text styles.", to: "/Components/Typography" },
   { title: "Cards\n& Lists", description: "Structured containers for displaying content.", to: "/Components/CardsAndList" },
   { title: "Tooltip\n& Popover", description: "Interactive elements on hover, focus, or click.", to: "/Components/TooltipAndPopover" },
   { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers" },
-  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos" },
+
   { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal" },
+  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos" },
   { title: "Full\nOverview", description: "Discover all components and features.", to: "/Components/Overview", color: true }
   
 
