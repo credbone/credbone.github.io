@@ -379,7 +379,7 @@ const Components: React.FC = () => {
               data-wrap="no"
             >
               <group
-                data-space="50"
+                data-space="45"
                 data-position="bottom"
                 data-theme="dark"
                 data-width="auto"
