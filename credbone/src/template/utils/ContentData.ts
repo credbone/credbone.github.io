@@ -6,7 +6,7 @@ import list_res_5 from  "../../styles/images/samples/ai_res/res-25.webp";
 import list_res_6 from  "../../styles/images/samples/ai_res/res-26.webp";
 import list_res_7 from  "../../styles/images/samples/ai_res/res-24.webp";
 import list_res_8 from  "../../styles/images/samples/ai_res/res-28.webp";
-import list_res_9 from  "../../styles/images/samples/ai_res/res-29.jpg";
+import list_res_9 from  "../../styles/images/samples/ai_res/res-31.webp";
 import list_res_10 from "../../styles/images/samples/ai_res/res-30.webp";
 
 

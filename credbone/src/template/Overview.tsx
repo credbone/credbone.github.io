@@ -3,9 +3,9 @@ import React  from "react";
 
 
 
-import sectionImage_1 from "../styles/images/samples/wide_res_70.webp";
+import sectionImage_1 from "../styles/images/samples/wide_res_63.webp";
 import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
-import sectionImage_3 from "../styles/images/samples/wide_res_71.webp";
+import sectionImage_3 from "../styles/images/samples/wide_res_64.webp";
 import sectionImage_4 from "../styles/images/samples/wide_res_67.webp";
 
 import Ripple from "../components/Ripple";
