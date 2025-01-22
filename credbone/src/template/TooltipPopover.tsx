@@ -9,6 +9,7 @@ import Calculator from "../tools/Calculator";
 
 import sampleImage from "../styles/images/samples/wide_res_74.jpg";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
+import TooltipPropsDemo from "./TooltipPropsDemo";
 
 const SimplePopover = (
   <group
@@ -379,41 +380,7 @@ const TooltipPopover: React.FC = () => {
         </group>
       </group>
 
-      <group
-        data-radius="20"
-        data-border=""
-        data-contain=""
-        data-background="context"
-      >
-        <group data-space="30">
-          <text>Simple Usage Example</text>
-        </group>
-        <group
-          data-background="context"
-          data-border=""
-          data-theme="dark"
-          data-text-size="14"
-          data-user-select="text"
-        >
-          <pre data-scroll="" data-space="30">
-            <mark data-color="main-text" data-background="main">
-              <code>
-                {`<Tooltip content="I am a tooltip" placement="right">
-  <button>Hover over me</button>
-</Tooltip>`}
-              </code>
-            </mark>
-          </pre>
-        </group>
-
-        <group data-space="20">
-          <Tooltip content="I am a tooltip" placement="right">
-            <button data-space="15" data-radius="10">
-              Hover over me
-            </button>
-          </Tooltip>
-        </group>
-      </group>
+<TooltipPropsDemo/>
     </group>
   );
 };

@@ -5,12 +5,14 @@ interface TooltipProps {
   content: any;
   children: React.ReactNode;
   placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  distance?:number;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   content,
   children,
   placement = 'top',
+  distance = 10,
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,55 +40,55 @@ const Tooltip: React.FC<TooltipProps> = ({
     const spaceAbove = targetRect.top;
     const spaceBelow = window.innerHeight - targetRect.bottom;
 
-    const fitTop = spaceAbove >= popoverRect.height + 10;
-    const fitBottom = spaceBelow >= popoverRect.height + 10;
+    const fitTop = spaceAbove >= popoverRect.height + distance;
+    const fitBottom = spaceBelow >= popoverRect.height + distance;
 
     const determinePosition = (placement: string) => {
       switch (placement) {
         case 'top':
-          position.top = Math.max(10, targetRect.top - popoverRect.height - 10);
+          position.top = Math.max(distance, targetRect.top - popoverRect.height - distance);
           position.left = Math.max(
-            10,
+            distance,
             Math.min(
               targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - 10
+              window.innerWidth - popoverRect.width - distance
             )
           );
           break;
         case 'bottom':
           position.top = Math.min(
-            window.innerHeight - popoverRect.height - 10,
-            targetRect.bottom + 10
+            window.innerHeight - popoverRect.height - distance,
+            targetRect.bottom + distance
           );
           position.left = Math.max(
-            10,
+            distance,
             Math.min(
               targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - 10
+              window.innerWidth - popoverRect.width - distance
             )
           );
           break;
         case 'left':
           position.top = Math.max(
-            10,
+            distance,
             Math.min(
               targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-              window.innerHeight - popoverRect.height - 10
+              window.innerHeight - popoverRect.height - distance
             )
           );
-          position.left = Math.max(10, targetRect.left - popoverRect.width - 10);
+          position.left = Math.max(distance, targetRect.left - popoverRect.width - distance);
           break;
         case 'right':
           position.top = Math.max(
-            10,
+            distance,
             Math.min(
               targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-              window.innerHeight - popoverRect.height - 10
+              window.innerHeight - popoverRect.height - distance
             )
           );
           position.left = Math.min(
-            window.innerWidth - popoverRect.width - 10,
-            targetRect.right + 10
+            window.innerWidth - popoverRect.width - distance,
+            targetRect.right + distance
           );
           break;
 
