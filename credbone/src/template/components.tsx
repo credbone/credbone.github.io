@@ -12,6 +12,7 @@ import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 import sampleImage_3 from "../styles/images/samples/res_001.png";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
+import { colorcontent, typefacecontent } from "./utils/richTumbnail";
 
 
 const links = [
@@ -24,16 +25,7 @@ const links = [
 const currentYear: number = new Date().getFullYear();
 
 
-const typefacecontent = ( <> <text data-weight="700" data-text-size="72">Aa</text> </> )
-const colorcontent = (
-  <group data-space-vertical="10" data-interact="" data-length="120">
-    <group data-contain=""  data-wrap="no">
-      <group data-ratio="1:1" data-radius="full" data-background="main-soft" data-index="3"></group>
-      <group data-ratio="1:1" data-radius="full" data-backdrop="10-main-color"data-index="2" data-margin-horizontal="-15"></group>
-      <group data-ratio="1:1" data-radius="full" data-background="main-dark"></group>
-    </group>
-  </group>
-);
+
 
 const linksArray = [
 
