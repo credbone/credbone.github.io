@@ -241,7 +241,7 @@ const TooltipPopover: React.FC = () => {
       >
         <group
           data-height="auto"
-          data-radius="15"
+          data-radius="20"
           data-elevation="2"
           data-index="2"
           data-contain=""
@@ -329,7 +329,7 @@ const TooltipPopover: React.FC = () => {
 
         <group
           data-height="auto"
-          data-radius="15"
+          data-radius="20"
           data-border=""
           data-contain=""
           data-background="context"
@@ -380,7 +380,7 @@ const TooltipPopover: React.FC = () => {
       </group>
 
       <group
-        data-radius="15"
+        data-radius="20"
         data-border=""
         data-contain=""
         data-background="context"

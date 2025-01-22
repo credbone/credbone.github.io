@@ -29,6 +29,7 @@ import Overview from "./Overview";
 import Snackbar from "./Snackbar";
 import RangeSlider from "./RangeSlider";
 import Divider from "./divider";
+import BottomNav from "../pages/navigation/bottomNav";
 
 
 const Template: React.FC = () => {
@@ -132,9 +133,14 @@ const Template: React.FC = () => {
 
             </Routes>
 
+            <BottomNav/>
             <group data-height="300">
-
+            
 </group>
+
+
+
+
 
           </group>
 
