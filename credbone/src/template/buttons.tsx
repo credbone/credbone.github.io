@@ -13,7 +13,7 @@ import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
 
-import sectionImage from "../styles/images/samples/wide_res_68.webp";
+import sectionImage from "../styles/images/samples/wide_res_73.webp";
 import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Printer, X } from "lucide-react";
 
 

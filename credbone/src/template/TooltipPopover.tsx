@@ -8,7 +8,7 @@ import Count from "../components/Coutner";
 import Calculator from "../tools/Calculator";
 
 import sampleImage from "../styles/images/samples/wide_res_74.jpg";
-import sectionImage from "../styles/images/samples/wide_res_66.webp";
+import sectionImage from "../styles/images/samples/wide_res_72.webp";
 
 const SimplePopover = (
   <group

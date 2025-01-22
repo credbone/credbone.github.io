@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomSlider from "../components/inputs/slider";
 
-import sectionImage from "../styles/images/samples/wide_res_70.webp";
+import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import { ArrowRight } from "lucide-react";
 import Tooltip from "../components/tooltip";
 

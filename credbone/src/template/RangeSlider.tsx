@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomSlider from "../components/inputs/slider";
 import TickComponent from "../components/inputs/TickComponent";
-import sectionImage from "../styles/images/samples/wide_res_68.webp";
+import sectionImage from "../styles/images/samples/wide_res_70.webp";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 
 const RangeSlider: React.FC = () => {
