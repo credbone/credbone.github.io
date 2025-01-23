@@ -21,14 +21,35 @@ const TooltipPropsDemo: React.FC = () => {
     setSelectedPlacement(placement);
   };
 
+  const [selectedColor, setSelectedColor] = useState<{
+    background: string;
+    color: string;
+  }>({
+    background: "tooltip",
+    color: "white",
+  });
+
+  const colorOptions = [
+    { background: "tooltip", color: "white" },
+
+    { background: "main", color: "main-text" },
+    { background: "neutral-light", color: "default" },
+    { background: "neutral-lighter", color: "default" },
+    { background: "neutral-lightest", color: "default" },
+  ];
+
+  const handleColorSelect = (option: {
+    background: string;
+    color: string;
+  }) => {
+    setSelectedColor(option);
+  };
+
   const [GapValue, setGapValue] = useState(10);
   const [RadiusValue, setRadiusValue] = useState(10);
-  
 
   return (
     <>
-      
-
       <group data-space="20">
         <text data-wrap="wrap" data-line="1.5" data-max-length="400">
           This demo showcases token functionality for value demonstration only.
@@ -40,7 +61,7 @@ const TooltipPropsDemo: React.FC = () => {
         data-type="grid"
         data-grid-template="300"
         data-gap="30"
-       // data-align="start"
+        // data-align="start"
       >
         <group data-gap="15">
           <group data-border="" data-radius="15" data-contain="">
@@ -184,14 +205,12 @@ const TooltipPropsDemo: React.FC = () => {
             </group>
           </group>
 
-
-
-
-
-
           <group data-space="20">
             <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-            This tooltip configuration includes specific settings tailored for its behavior, along with a subset of system-level configurations applicable to tooltips. Only the most relevant options are shown here for clarity.
+              This tooltip configuration includes specific settings tailored for
+              its behavior, along with a subset of system-level configurations
+              applicable to tooltips. Only the most relevant options are shown
+              here for clarity.
             </text>
           </group>
 
@@ -236,8 +255,71 @@ const TooltipPropsDemo: React.FC = () => {
                 />
               </group>
             </group>
-          </group>
 
+<separator data-horizontal=""></separator>
+
+            <group data-align="center" data-gap="15" data-space="15">
+              <group
+                data-width="auto"
+                //data-min-length="80"
+              >
+                <group
+                  data-space-horizontal="15"
+                  data-space-vertical="10"
+                  data-background="text"
+                  data-width="auto"
+                  data-color="main-background"
+                  data-radius="30"
+                >
+                  <text>Color</text>
+                </group>
+              </group>
+
+              <separator data-vertical=""></separator>
+
+              <group data-fit="1">
+                <group
+                  data-width="auto"
+                  data-wrap="no"
+                  data-type="grid"
+                  data-grid-template="30"
+                >
+                  {colorOptions.map((option, index) => (
+                    <group
+                      data-ratio="1:1"
+                      data-interactive=""
+                      data-over-color="none"
+                      data-cursor="pointer"
+                      key={index}
+                      onClick={() => handleColorSelect(option)}
+                    >
+                      <group
+                        data-duration=".125"
+                        data-over-color="neutral-10"
+                        data-react="background"
+                        data-border="none"
+                        data-margin={
+                          selectedColor.background === option.background
+                            ? "5"
+                            : ""
+                        }
+                        data-align="center"
+                        data-justify="center"
+                        data-space="5"
+                        data-background={option.background}
+                        data-color={option.color}
+                        data-radius={
+                          selectedColor.background === option.background
+                            ? "30"
+                            : ""
+                        }
+                      ></group>
+                    </group>
+                  ))}
+                </group>
+              </group>
+            </group>
+          </group>
         </group>
 
         <group
@@ -247,15 +329,17 @@ const TooltipPropsDemo: React.FC = () => {
           data-justify="center"
           data-gap="30"
           data-space="30"
-      //    data-height="240"
+          //    data-height="240"
         >
           <Tooltip
             distance={GapValue}
             content="I am a tooltip"
             placement={selectedPlacement}
             data-radius={RadiusValue}
+            data-background={selectedColor.background}
+            data-color={selectedColor.color}
           >
-            <button data-interactive="" data-space="15" data-radius="10">
+            <button data-background="adaptive-gray" data-color="default" data-interactive="" data-space="15" data-radius="10">
               Hover over me
             </button>
           </Tooltip>
@@ -270,56 +354,61 @@ const TooltipPropsDemo: React.FC = () => {
           data-user-select="text"
         >
           <pre data-scroll="" data-space="30">
-            
-
-          <code>
-<span data-color="grey">{`<`}</span>
-  <span data-color="teal-light">Tooltip</span> 
-  <br />
-  <span>  </span><span data-color="blue-light">content</span>
-  <span data-color="grey">=</span>
-  <span data-color="peach">"I am a tooltip"</span> 
-  <br />
-  <span>  </span><span data-color="blue-light">placement</span>
-  <span data-color="grey">=</span>
-  <span data-color="peach">"{selectedPlacement}"</span>
-  <br />
-
-  <span>  </span><span data-color="blue-light">distance</span>
-  <span data-color="grey">=</span>
-  <span data-color="peach">"{GapValue}"</span>
-  <br />
-
-
-  {RadiusValue !== 10 && (
-  <>
-    <span>  </span><span data-color="blue-light">data-radius</span>
-    <span data-color="grey">=</span>
-    <span data-color="peach">"{RadiusValue}"</span>
-    <br />
-  </>
-)}
-
-
-
-  <span data-color="grey">{`>`}</span>
-  <br />
-  <span>  </span><span data-color="grey">{`<`}</span>
-  <span data-color="blue">button</span>
-  <span data-color="grey">{`>`}</span>
-  
-  <br />
-  <span>    </span>Hover over me
-  <br />
-  <span>  </span><span data-color="grey">{`</`}</span>
-  <span data-color="blue">button</span>
-  <span data-color="grey">{`>`}</span>
-  <br />
-  <span data-color="grey">{`</`}</span>
-  <span data-color="teal-light">Tooltip</span>
-  <span data-color="grey">{`>`}</span>
-</code>
-            
+            <code>
+              <span data-color="grey">{`<`}</span>
+              <span data-color="teal-light">Tooltip</span>
+              <br />
+              <span>  </span>
+              <span data-color="blue-light">content</span>
+              <span data-color="grey">=</span>
+              <span data-color="peach">"I am a tooltip"</span>
+              <br />
+              <span>  </span>
+              <span data-color="blue-light">placement</span>
+              <span data-color="grey">=</span>
+              <span data-color="peach">"{selectedPlacement}"</span>
+              <br />
+              <span>  </span>
+              <span data-color="blue-light">distance</span>
+              <span data-color="grey">=</span>
+              <span data-color="peach">"{GapValue}"</span>
+              <br />
+              {RadiusValue !== 10 && (
+                <>
+                  <span>  </span>
+                  <span data-color="blue-light">data-radius</span>
+                  <span data-color="grey">=</span>
+                  <span data-color="peach">"{RadiusValue}"</span>
+                  <br />
+                </>
+              )}
+              {selectedColor.background !== "tooltip" && (
+                <>
+                  <span>  </span>
+                  <span data-color="blue-light">data-background</span>
+                  <span data-color="grey">=</span>
+                  <span data-color="peach">"{selectedColor.background}"</span>
+                  <br />
+                </>
+              )}
+              <span data-color="grey">{`>`}</span>
+              <br />
+              <span>  </span>
+              <span data-color="grey">{`<`}</span>
+              <span data-color="blue">button</span>
+              <span data-color="grey">{`>`}</span>
+              <br />
+              <span>    </span>Hover over me
+              <br />
+              <span>  </span>
+              <span data-color="grey">{`</`}</span>
+              <span data-color="blue">button</span>
+              <span data-color="grey">{`>`}</span>
+              <br />
+              <span data-color="grey">{`</`}</span>
+              <span data-color="teal-light">Tooltip</span>
+              <span data-color="grey">{`>`}</span>
+            </code>
           </pre>
         </group>
       </group>

@@ -31,22 +31,25 @@ const BottomNav: React.FC = () => {
               data-over-color="neutral"
               data-type="group"
               data-width="auto"
-              // data-border="inset"
-              data-background="adaptive-gray"
+               data-border=""
+            //  data-background="adaptive-gray"
               data-space="20"
               data-radius="15"
               data-gap="20"
               data-drag="none"
               data-wrap="no"
+              data-shrink="none"
               to={`/${prevItem.to}`}
+
             >
               <group
                 data-height="fit"
                 data-align="center"
                 data-justify="center"
                 data-length="30"
+                data-interact=""
               >
-                <ChevronLeft />
+                <ChevronLeft strokeWidth={1} />
               </group>
 
               {isLastItem && (
@@ -71,13 +74,13 @@ const BottomNav: React.FC = () => {
               data-min-length="200"
               data-ink-color="neutral"
               data-contain=""
-              data-background="adaptive-gray"
+           //   data-background="adaptive-gray"
               data-interactive=""
               data-over-color="neutral"
               data-type="group"
               data-width="auto"
               data-length="forcefit"
-              //   data-border=""
+                 data-border=""
               data-space="20"
               data-radius="15"
               data-gap="20"
@@ -100,7 +103,7 @@ const BottomNav: React.FC = () => {
                 data-interact=""
                 data-length="30"
               >
-                <ChevronRight />
+                <ChevronRight strokeWidth={1} />
               </group>
             </Link>
           </Ripple>
