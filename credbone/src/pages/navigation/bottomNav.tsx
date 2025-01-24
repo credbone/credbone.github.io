@@ -38,7 +38,7 @@ const BottomNav: React.FC = () => {
               data-gap="20"
               data-drag="none"
               data-wrap="no"
-              data-shrink="none"
+              data-shrink="no"
               to={`/${prevItem.to}`}
 
             >

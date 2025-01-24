@@ -64,7 +64,7 @@ const TooltipPropsDemo: React.FC = () => {
         // data-align="start"
       >
         <group data-gap="15">
-          <group data-border="" data-radius="15" data-contain="">
+          <group data-border="" data-radius="15" data-contain="" data-background="main-background">
             <Popover
               placement="middle"
               data-radius="10"
@@ -214,7 +214,7 @@ const TooltipPropsDemo: React.FC = () => {
             </text>
           </group>
 
-          <group data-border="" data-radius="15" data-contain="">
+          <group data-border="" data-radius="15" data-contain="" data-background="main-background">
             <group data-align="center" data-gap="15" data-space="15">
               <group
                 data-width="auto"
@@ -323,6 +323,7 @@ const TooltipPropsDemo: React.FC = () => {
         </group>
 
         <group
+        data-background="main-background"
           data-border=""
           data-radius="20"
           data-align="center"
