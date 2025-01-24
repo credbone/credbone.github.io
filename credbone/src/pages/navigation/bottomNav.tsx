@@ -41,6 +41,10 @@ const BottomNav: React.FC = () => {
               data-shrink="no"
               to={`/${prevItem.to}`}
 
+
+              data-min-length={isLastItem ? "200" : undefined}
+              data-length={isLastItem ? "forcefit" : undefined}
+
             >
               <group
                 data-height="fit"
@@ -48,6 +52,8 @@ const BottomNav: React.FC = () => {
                 data-justify="center"
                 data-length="30"
                 data-interact=""
+
+                 
               >
                 <ChevronLeft strokeWidth={1} />
               </group>
