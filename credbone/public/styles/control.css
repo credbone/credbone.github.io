@@ -174,6 +174,7 @@ text[data-width="auto"]{width: initial;}
 
 
 [data-position="absolute"] {position: absolute;}
+[data-position="relative"] {position: relative;}
 [data-position="fixed"] {position: fixed;}
 
 

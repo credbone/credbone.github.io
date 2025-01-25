@@ -3,7 +3,7 @@ import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
-import sampleImage from "../styles/images/samples/wide_res_69.webp";
+import sampleImage from "../styles/images/samples/wide_res_72.webp";
 import Count from "../components/Coutner";
 
 
@@ -163,7 +163,7 @@ const Dashboard: React.FC = () => {
         </picture>
 
         <group data-space="30" data-gap="10">
-          <group
+          {/* <group
             data-space="30"
             data-width="auto"
            // data-align="center"
@@ -193,7 +193,7 @@ const Dashboard: React.FC = () => {
             >
            {getGreeting()}
             </text>
-          </group>
+          </group> */}
 
           <group
             data-space="30"
