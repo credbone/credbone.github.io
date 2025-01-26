@@ -6,6 +6,9 @@ import Radio, { RadioType } from "../components/inputs/radio";
 import OptionBar from "../components/inputs/optionBar";
 import { IconHome, IconSearch, IconTableRows, IconViewColumn, IconViewStream, IconViewWindow } from "../components/icon/credIcons";
 
+import sectionImage from "../styles/images/samples/wide_res_72.webp";
+import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
+
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
     defaultValues: {
@@ -38,15 +41,15 @@ const CheckboxAndSwitchers: React.FC = () => {
   ];
 
   const checkboxData = [
-    { name: "checkbox_option_1", label: "Phone", icon: "phone" },
-    { name: "checkbox_option_2", label: "Book", icon: "book_2" },
-    { name: "checkbox_option_4", label: "Home", icon: "home" },
-    { name: "checkbox_option_5", label: "Music", icon: "headphones" },
+    { name: "checkbox_option_1", label: "Forest",  icon: "phone" },
+    { name: "checkbox_option_2", label: "Oasis", icon: "book_2" },
+    { name: "checkbox_option_4", label: "Sky", icon: "home" },
+    { name: "checkbox_option_5", label: "River",  icon: "headphones" },
   ];
 
   const radioData = [
     { key: "1", name: "RadioDemo", icon: <IconSearch size={20}/> },
-    { key: "2", name: "RadioDemo", label: "Home", icon: <IconHome size={20}/> },
+    { key: "2", name: "RadioDemo", icon: <IconHome size={20}/> },
     { key: "3", name: "RadioDemo", label: "Explore" },
     // { key: "4", name: "RadioDemo", label: "Nutrition" },
   ];
@@ -61,50 +64,58 @@ const CheckboxAndSwitchers: React.FC = () => {
   return (
     <>
       <group data-gap="30" data-space="30" data-align="start">
-      <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
-
-        </group>
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-           
-          >
+        <group
+          data-direction="column"
+          data-gap="10"
+          data-background="adaptive-gray"
+          data-radius="20"
+          data-justify="end"
+          data-space="30"
+        >
+          <group data-height="100" data-adaptive="desktop"></group>
+          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
             Checkbox & Radio
           </text>
-          <text
-            data-wrap="wrap"
-            data-length="300"
-            data-line="1.5"
-           
-          >
+          <text data-wrap="wrap" data-length="300" data-line="1.5">
             Checkboxes let users select one or more items from a list, or turn
             an item on or off
           </text>
         </group>
 
         <group data-gap="30">
-          <group
-           data-width="auto"
-            data-contain=""
-            data-radius="20"
 
-        //    data-elevation="2-main-color"
-             data-index="2"
+
+
+        <group>
+<picture
+            data-radius="30"
+            data-contain=""
+            data-brightness="adaptive"
+            data-background="grey-light"
+            data-position="absolute"
+           // data-object-position="bottom"
+          >
+            <img src={sectionImage} alt="" />
+          </picture>
+
+
+
+          <group
+data-space="30"
           >
             <group
+                        data-radius="20"
               data-background="main"
               data-space="30"
               data-gap="30"
               data-color="main-text"
-              data-wrap="no"
+           //   data-wrap="no"
               data-contain=""
-             
-             // data-direction="column"
-           
+              data-width="auto"
+
+              // data-direction="column"
             >
-              <group data-height="60" data-length="60" data-contain="">
+              <group data-height="60" data-length="" style={{width:"54px"}} data-contain="">
                 <group
                   data-scale="3"
                   data-origin="left"
@@ -116,323 +127,315 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </group>
               </group>
 
-<separator data-vertical="" data-height="fit"></separator>
+              <separator data-vertical="adaptive" data-height=""></separator>
 
-              <group data-direction="column" data-contain="" >
-
-          <text
-            data-wrap="wrap"
-            data-length="300"
-            data-line="1.5"
-            data-light=""
-            data-weight="600"
-          >
-        This checkbox is adaptable to various backgrounds, each element can be configured individually.
-          </text>
-        </group>
-
+              <group data-direction="column" data-contain="" data-width="auto">
+                <text
+                  data-wrap="wrap"
+                  data-length="300"
+                  data-line="1.5"
+             //    data-opacity="60"
+                  data-weight="600"
+                >
+                  Checkbox and its variations adapt seamlessly to different backgrounds, with each element individually configurable.
+                </text>
+              </group>
             </group>
+          </group>
 
 
           </group>
 
-          <group             data-max-length="800"
+
+
+
+          <group
             data-contain=""
-           
-              data-type="grid" data-grid-template="180" data-gap="1">
-              <group data-direction="column" data-wrap="no" data-gap="1">
-                <group data-border=""  data-space="20" data-space-vertical="15"  data-color="default" > <Checkbox name="1" label="Classic Checkbox" checkbox control={control} /> </group>
-
-                <group
-                  data-width="auto"
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Tooltip content="No Label Here" placement="right">
-                    <group data-width="auto">
-                      <Checkbox name="4" control={control} />
-                    </group>
-                  </Tooltip>
-                </group>
-
-                <group
-                  data-width="auto"
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox
-                    name="2"
-                    label="Disabled Classic Checkbox "
-                    classic
-                    control={control}
-                    disabled
-                  />
-                </group>
+            data-type="grid"
+            data-grid-template="240"
+            data-gap="1"
+          >
+            <group data-direction="column" data-wrap="no" data-gap="1">
+              <group
+                data-border=""
+                data-space="30"
+                data-space-vertical="20"
+                data-color="default"
+              >
+                <Checkbox
+                  name="1"
+                  label="Classic Checkbox"
+                  checkbox
+                  control={control}
+                />
               </group>
 
-              <group data-wrap="no" data-direction="column" data-gap="1">
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox
-                    name="3"
-                    simple
-                    label="Toggle Switch"
-                    control={control}
-                  />
-                </group>
-                <group
-                  data-width="auto"
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox name="11" simple control={control} />
-                </group>
-                <group
-                  data-width="auto"
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox
-                    name="5"
-                    label="Disabled Toggle Switch"
-                    disabled
-                    simple
-                    control={control}
-                  />
-                </group>
+              <group
+                data-width="auto"
+                data-border=""
+                data-space="30"
+                data-space-vertical="20"
+              >
+                <Tooltip content="No Label Here" placement="right">
+                  <group data-width="auto">
+                    <Checkbox name="4" control={control} />
+                  </group>
+                </Tooltip>
               </group>
 
-              <group data-wrap="no" data-direction="column" data-gap="1">
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                  
-                >
-                  <Checkbox
-                    name="6"
-                    minimal
-                    label="Minimal Checkbox"
-                    control={control}
-                  />
-                </group>
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox name="9" minimal control={control} />
-                </group>
-
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Checkbox
-                    name="7"
-                    minimal
-                    label="Disabled Checkbox 7"
-                    disabled
-                    control={control}
-                  />
-                </group>
-              </group>
-
-              <group data-wrap="no" data-direction="column" data-gap="1">
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Radio
-                    name="8"
-                    radioValue="Option1"
-                    label="Radio Button"
-                    control={control}
-                  />
-                </group>
-
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                
-                >
-                  <Radio
-                    name="8"
-                    radioValue="Option3"
-                    label="Radio Button disabled"
-                    control={control}
-                    disabled
-                  />
-                </group>
-                <group
-                  data-border=""
-                  data-space="20"
-                  data-space-vertical="15"
-                 
-                >
-                  <Radio
-                    name="8"
-                    radioValue="Option4"
-                    allowUncheck
-                    label="Uncheck Me"
-                    control={control}
-                    tooltip="Radio Button Allowed Uncheck"
-                  />
-                </group>
+              <group
+                data-width="auto"
+                data-border=""
+                data-space="30"
+                data-space-vertical="20"
+              >
+                <Checkbox
+                  name="2"
+                  label="Disabled Classic Checkbox "
+                  classic
+                  control={control}
+                  disabled
+                />
               </group>
             </group>
 
+            <group data-wrap="no" data-direction="column" data-gap="1">
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Checkbox
+                  name="3"
+                  simple
+                  label="Toggle Switch"
+                  control={control}
+                />
+              </group>
+              <group
+                data-width="auto"
+                data-border=""
+                data-space="30"
+                data-space-vertical="20"
+              >
+                <Checkbox name="11" simple control={control} />
+              </group>
+              <group
+                data-width="auto"
+                data-border=""
+                data-space="30"
+                data-space-vertical="20"
+              >
+                <Checkbox
+                  name="5"
+                  label="Disabled Toggle Switch"
+                  disabled
+                  simple
+                  control={control}
+                />
+              </group>
+            </group>
 
+            <group data-wrap="no" data-direction="column" data-gap="1">
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Checkbox
+                  name="6"
+                  minimal
+                  label="Minimal Checkbox"
+                  control={control}
+                />
+              </group>
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Checkbox name="9" minimal control={control} />
+              </group>
 
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Checkbox
+                  name="7"
+                  minimal
+                  label="Disabled Checkbox 7"
+                  disabled
+                  control={control}
+                />
+              </group>
+            </group>
 
-            <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
+            <group data-wrap="no" data-direction="column" data-gap="1">
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Radio
+                  name="8"
+                  radioValue="Option1"
+                  label="Radio Button"
+                  control={control}
+                />
+              </group>
 
-        </group>
-                  <text
-                    data-weight="700"
-                    data-text-size="xxx-large"
-                    data-wrap="wrap"
-                //   data-color="main"
-                  >
-                    Switch
-                  </text>
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-               
-                    data-max-length="300"
-                    data-index="1"
-                  >
-                    Switches are used to toggle the selection of an item,
-                    turning it on or off as needed.
-                  </text>
-                </group>
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Radio
+                  name="8"
+                  radioValue="Option3"
+                  label="Radio Button disabled"
+                  control={control}
+                  disabled
+                />
+              </group>
+              <group data-border="" data-space="30" data-space-vertical="20">
+                <Radio
+                  name="8"
+                  radioValue="Option4"
+                  allowUncheck
+                  label="Uncheck Me"
+                  control={control}
+                  tooltip="Radio Button Allowed Uncheck"
+                />
+              </group>
+            </group>
+          </group>
 
           <group
-            data-gap="30"
-            data-align="start"
-            data-max-length="800"
- 
+            data-direction="column"
+            data-gap="10"
+            data-background="adaptive-gray"
+            data-radius="20"
+            data-justify="end"
+            data-space="30"
+          >
+            <group data-height="100" data-adaptive="desktop"></group>
+            <text
+              data-weight="700"
+              data-text-size="xxx-large"
+              data-wrap="wrap"
+              //   data-color="main"
+            >
+              Switch
+            </text>
+            <text
+              data-wrap="wrap"
+              data-line="1.5"
+              data-max-length="300"
+              data-index="1"
+            >
+              Switches are used to toggle the selection of an item, turning it
+              on or off as needed.
+            </text>
+          </group>
+
+
+
+
+
+          <group>
+<picture
+            data-radius="30"
+            data-contain=""
+            data-brightness="adaptive"
+            data-background="grey-light"
+            data-position="absolute"
+           // data-object-position="bottom"
+          >
+            <img src={sectionImage_2} alt="" />
+          </picture>
+
+
+
+          <group
+data-space="30"
           >
 
-
-
-            <group
+<group
               data-direction="column"
               data-radius="15"
-           
               data-contain=""
-               data-width="auto"
+              data-width="auto"
             >
               <group
-             
-                data-background="main"
-                 data-color="main-text"
+                data-background="main-background"
+             //   data-color="main-text"
                 data-contain=""
-                //  data-align="center"
-               // data-theme="dark"
-                data-justify="center"
+
+               
                 data-space="30"
                 data-gap="30"
+
               >
 
 
-                {/* <group data-mix-lend-mode="multiply" data-timing="fancy" data-duration=".725" data-translate-vertical={radioValue} data-contain="" data-position="absolute" data-right="0" data-height="600" data-max-length="400" data-direction="column" >
-                    <picture   data-min-length="300" data-contain="" data-ratio="1:1" data-shrink="no">
-                      <img src={sampleImage_2} alt="" />
-                    </picture>
-                  </group> */}
+                <group data-gap="30"  data-weight="600"  data-width="auto"            data-direction="column"
+                data-align="start" >
 
-                <group data-gap="20" data-direction="column" data-weight="600">
-                  <OptionBar
-                    data-height="40"
-                   // data-backdrop="3"
-                   // data-background="main-lighter"
-                    data-radius="5"
-                    data-border="outline"
 
-                    data-switch-color="invert"
-                  >
-                    <Radio
-                      labelProps={{
-                        "data-background": "main",
-                      //  "data-color": "main-text-lighter-white",
-                      }}
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="0"
-                      label="Day"
-                    />
-                    <Radio
-                      labelProps={{
-                        "data-background": "main",
-                     //   "data-color": "main-text-lighter-white",
-                      }}
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="200"
-                      label="Week"
-                    />
-                    <Radio
-                      labelProps={{
-                        "data-background": "main",
-                    //    "data-color": "main-text-lighter-white",
-                      }}
-                      control={control}
-                      radioType={RadioType.Button}
-                      name="RadioDemo1"
-                      radioValue="300"
-                      label="Month"
-                    />
-                  </OptionBar>
 
-                  <group>
+<group
+data-name="option-group"
+              data-width="auto"
+              data-space="5"
+              data-border=""
+              data-radius="10"
+
+              >
+                {radioData.map((radio, index) => (
+                  <Radio
+                    // tooltip={ radio.label}
+                    labelProps={{ "data-background": "none" }}
+                    iconProps={{ "data-length": "30" }}
+                    icon={radio.icon}
+                    key={index}
+                    radioValue={radio.name + radio.key}
+                    control={control}
+                    radioType={RadioType.Button}
+                    name={radio.name}
+                    label={radio.label}
+                  />
+                ))}
+              </group>
+
+
+                  <group data-width="auto">
+
+                  
+
                     <text
                       data-wrap="wrap"
                       data-light=""
                       data-line="1.5"
                       data-max-length="300"
                     >
-                    The component is configured to use an inverted color scheme to enhance contrast against vibrant backgrounds.
+                     The component is set up to use an alternate wrapper, offering a adjusted UI for specific requirements.
                     </text>
                   </group>
                 </group>
               </group>
             </group>
 
+            </group>
+            </group>
+
+
+
+
+
+          <group data-gap="30" data-align="start" >
+
+
+
+
+
+
+
             <group
-              data-radius="15"
-               data-border=""
+
               data-contain=""
               data-space="30"
               data-gap="30"
+              data-direction="column"
+              data-align="start"
             >
-              <group data-gap="10" data-background="main-background" data-width="auto">
+              <group
+                data-gap="10"
+                data-background="main-background"
+                data-width="auto"
+                
+              >
                 <OptionBar
                   compact
                   dynamic
-                  data-palette="secondary"
+                       data-palette="lighter"
                   data-height="40"
                 >
                   {radioViewData.map((radio, index) => (
@@ -450,129 +453,25 @@ const CheckboxAndSwitchers: React.FC = () => {
                 </OptionBar>
               </group>
 
-              <separator data-horizontal=""></separator>
+
               <text
                 data-wrap="wrap"
                 data-light=""
                 data-line="1.5"
                 data-max-length="300"
               >
-                Component configured to use a secondary color pallete and
+                Component configured to use a lighter color pallete and
                 tooltips.
               </text>
-            </group>
-
-            <group
-              data-gap="30"
-              data-space="30"
-              data-border=""
-              data-background="context"
-              data-radius="15"
-           
-            >
-              <OptionBar
-                compact
-                dynamic
-                data-palette="lighter"
-                data-height="40"
-                data-weight="600"
-              >
-                {radioData.map((radio, index) => (
-                  <Radio
-                    // tooltip={ radio.label}
-                    iconProps={{ "data-length": "30" }}
-                    icon={radio.icon}
-                    key={index}
-                    radioValue={radio.name + radio.key}
-                    control={control}
-                    radioType={RadioType.Button}
-                    name={radio.name}
-                    label={radio.label}
-                  />
-                ))}
-              </OptionBar>
 
 
-              {/* <separator data-horizontal="" data-interval="10"></separator>
 
-
-              <group
- 
-
- data-name="option-group"
-              data-width="auto"
-              data-space="5"
-              data-border=""
-              data-radius="10"
-
-              >
-                {radioData.map((radio, index) => (
-                  <Radio
-                    // tooltip={ radio.label}
-                    iconProps={{ "data-length": "30" }}
-                    icon={radio.icon}
-                    key={index}
-                    radioValue={radio.name + radio.key}
-                    control={control}
-                    radioType={RadioType.Button}
-                    name={radio.name}
-                    label={radio.label}
-                  />
-                ))}
-              </group> */}
-
-
+              <group data-direction="column" data-width="auto" data-align="start" data-gap="30">
               <separator data-horizontal=""></separator>
 
 
+            
 
-              <OptionBar
-                data-length="autofit"
-                data-height="40"
-                // data-palette="lighter"
-                data-weight="600"
-              >
-                {checkboxData.map((checkbox, index) => (
-                  <Checkbox
-                    //        icon={checkbox.icon}
-                    key={index}
-                    control={control}
-                    checkboxType={CheckboxType.Button}
-                    name={checkbox.name}
-                    label={checkbox.label}
-                  />
-                ))}
-              </OptionBar>
-            </group>
-
-            <group data-length="400" data-gap="10" data-radius="5">
-              <OptionBar
-                data-length="autofit"
-                data-height="40"
-                data-weight="600"
-              >
-                {weekdays.map((option) => (
-                  <Checkbox
-                    tooltip={option.tooltip}
-                    key={option.name}
-                    control={control}
-                    checkboxType={CheckboxType.Button}
-                    name={option.name}
-                    label={option.label}
-                  />
-                ))}
-              </OptionBar>
-            </group>
-
-            <group
-              data-space="30"
-              data-border=""
-              data-align="center"
-              data-gap="30"
-              data-background="context"
-              data-radius="15"
-             
-            >
               <OptionBar compact dynamic data-height="40">
                 {radioViewData.map((radio, index) => (
                   <Radio
@@ -589,7 +488,145 @@ const CheckboxAndSwitchers: React.FC = () => {
                 ))}
               </OptionBar>
 
-              <separator data-horizontal="" ></separator>
+
+              <text
+                data-wrap="wrap"
+                data-light=""
+                data-line="1.5"
+                data-max-length="200"
+              >
+                Configured to use labels for every selected option.
+              </text>
+              </group>
+            </group>
+
+
+
+
+            <separator data-horizontal=""></separator>
+
+
+            <group
+              data-gap="30"
+              data-space="30"
+
+              data-direction="column"
+              data-align="start"
+
+            >
+              {/* <OptionBar
+                compact
+                dynamic
+                data-palette="lighter"
+                data-height="40"
+                data-weight="600"
+              >
+                {radioData.map((radio, index) => (
+                  <Radio
+                    // tooltip={ radio.label}
+                    iconProps={{ "data-length": "30" }}
+                 
+                    icon={radio.icon}
+                    key={index}
+                    radioValue={radio.name + radio.key}
+                    control={control}
+                    radioType={RadioType.Button}
+                    name={radio.name}
+                    label={radio.label}
+                  />
+                ))}
+              </OptionBar> */}
+
+
+
+
+
+
+
+
+              <OptionBar
+ data-length="400"
+                data-height="40"
+                data-weight="600"
+              >
+                {checkboxData.map((checkbox, index) => (
+                  <Checkbox
+                    //        icon={checkbox.icon}
+                    key={index}
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name={checkbox.name}
+                    label={checkbox.label}
+                  />
+                ))}
+              </OptionBar>
+
+
+
+              <text
+                data-wrap="wrap"
+                data-light=""
+                data-line="1.5"
+                data-max-length="300"
+              >
+               The switch is configurable to function as either a picker or a toggle, based on the selected options.
+              </text>
+
+              {/* <OptionBar
+ data-length="600"
+                data-height="40"
+                data-weight="600"
+              >
+                {weekdays.map((option) => (
+                  <Checkbox
+                    tooltip={option.tooltip}
+                    key={option.name}
+                    control={control}
+                    checkboxType={CheckboxType.Button}
+                    name={option.name}
+                    label={option.label}
+                  />
+                ))}
+              </OptionBar> */}
+
+
+<group data-direction="column" data-width="auto" data-align="start" data-gap="30">
+  <separator data-horizontal=""></separator>
+<group
+              data-contain=""
+              data-space="15"
+              data-space-horizontal="30"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="10"
+              data-width="auto"
+              data-align="center"
+              data-direction="column"
+              data-background="adaptive-gray"
+              data-weight="700"
+              onClick={() => reset()}
+            >
+              <text>Reset Form</text>
+            </group>
+</group>
+
+            </group>
+
+
+
+
+
+
+            {/* <group
+              data-space="30"
+          //    data-border=""
+              data-align="center"
+              data-gap="30"
+          //    data-background="context"
+          //    data-radius="15"
+            >
+
+
               <group data-align="center" data-width="auto" data-wrap="no">
                 <OptionBar animate data-length="100" data-height="40">
                   <Radio
@@ -613,29 +650,11 @@ const CheckboxAndSwitchers: React.FC = () => {
               </group>
             </group>
 
+            <separator data-horizontal=""></separator> */}
 
-<separator data-horizontal=""></separator>
 
-            <group
-                data-contain=""
-                data-space="15"
-                data-space-horizontal="30"
-                data-interactive=""
-                data-cursor="pointer"
-                data-radius="10"
-                data-width="auto"
-                data-align="center"
-                data-direction="column"
-                data-background="adaptive-gray"
-
-                data-weight="700"
-                onClick={() => reset()}
-              >
-                <text>Reset Form</text>
-              </group>
           </group>
         </group>
-
       </group>
     </>
   );
