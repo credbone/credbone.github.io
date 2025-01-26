@@ -7,7 +7,7 @@ import OptionBar from "../components/inputs/optionBar";
 import { IconHome, IconSearch, IconTableRows, IconViewColumn, IconViewStream, IconViewWindow } from "../components/icon/credIcons";
 
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
-import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
+// import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
 
 const CheckboxAndSwitchers: React.FC = () => {
   const { reset, control, watch } = useForm<FieldValues>({
@@ -71,9 +71,10 @@ const CheckboxAndSwitchers: React.FC = () => {
           data-radius="20"
           data-justify="end"
           data-space="30"
+          data-contain=""
         >
           <group data-height="100" data-adaptive="desktop"></group>
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
+          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap" data-ellipsis="">
             Checkbox & Radio
           </text>
           <text data-wrap="wrap" data-length="300" data-line="1.5">
@@ -295,6 +296,7 @@ data-space="30"
             data-radius="20"
             data-justify="end"
             data-space="30"
+            data-contain=""
           >
             <group data-height="100" data-adaptive="desktop"></group>
             <text
@@ -320,91 +322,7 @@ data-space="30"
 
 
 
-          <group>
-<picture
-            data-radius="30"
-            data-contain=""
-            data-brightness="adaptive"
-            data-background="grey-light"
-            data-position="absolute"
-           // data-object-position="bottom"
-          >
-            <img src={sectionImage_2} alt="" />
-          </picture>
 
-
-
-          <group
-data-space="30"
-          >
-
-<group
-              data-direction="column"
-              data-radius="15"
-              data-contain=""
-              data-width="auto"
-            >
-              <group
-                data-background="main-background"
-             //   data-color="main-text"
-                data-contain=""
-
-               
-                data-space="30"
-                data-gap="30"
-
-              >
-
-
-                <group data-gap="30"  data-weight="600"  data-width="auto"            data-direction="column"
-                data-align="start" >
-
-
-
-<group
-data-name="option-group"
-              data-width="auto"
-              data-space="5"
-              data-border=""
-              data-radius="10"
-
-              >
-                {radioData.map((radio, index) => (
-                  <Radio
-                    // tooltip={ radio.label}
-                    labelProps={{ "data-background": "none" }}
-                    iconProps={{ "data-length": "30" }}
-                    icon={radio.icon}
-                    key={index}
-                    radioValue={radio.name + radio.key}
-                    control={control}
-                    radioType={RadioType.Button}
-                    name={radio.name}
-                    label={radio.label}
-                  />
-                ))}
-              </group>
-
-
-                  <group data-width="auto">
-
-                  
-
-                    <text
-                      data-wrap="wrap"
-                      data-light=""
-                      data-line="1.5"
-                      data-max-length="300"
-                    >
-                     The component is set up to use an alternate wrapper, offering a adjusted UI for specific requirements.
-                    </text>
-                  </group>
-                </group>
-              </group>
-            </group>
-
-            </group>
-            </group>
 
 
 
@@ -498,8 +416,54 @@ data-name="option-group"
                 Configured to use labels for every selected option.
               </text>
               </group>
-            </group>
 
+
+              <group data-direction="column" data-width="auto" data-align="start" data-gap="30">
+              <separator data-horizontal=""></separator>
+
+<group
+data-name="option-group"
+  data-width="auto"
+  data-space="5"
+  data-border=""
+  data-radius="10"
+  data-contain=""
+
+  >
+    {radioData.map((radio, index) => (
+      <Radio
+        // tooltip={ radio.label}
+        labelProps={{ "data-background": "none" }}
+        iconProps={{ "data-length": "30" }}
+        icon={radio.icon}
+        key={index}
+        radioValue={radio.name + radio.key}
+        control={control}
+        radioType={RadioType.Button}
+        name={radio.name}
+        label={radio.label}
+      />
+    ))}
+  </group>
+
+
+      <group data-width="auto">
+
+      
+
+        <text
+          data-wrap="wrap"
+          data-light=""
+          data-line="1.5"
+          data-max-length="300"
+        >
+         The component is set up to use an alternate wrapper, offering a adjusted UI for specific requirements.
+        </text>
+      </group>
+
+</group>
+
+            </group>
 
 
 
