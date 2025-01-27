@@ -109,9 +109,8 @@ const CheckboxAndSwitchers: React.FC = () => {
           >
             Checkbox & Radio
           </text>
-          <text data-wrap="wrap" data-length="300" data-line="1.5">
-            Checkboxes let users select one or more items from a list, or turn
-            an item on or off
+          <text data-wrap="wrap" data-length="400" data-line="1.5">
+          Checkboxes allow users to toggle individual items on or off or select multiple options from a list, while radio buttons restrict selection to a single option.
           </text>
         </group>
 

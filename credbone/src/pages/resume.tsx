@@ -17,6 +17,7 @@ function Resume() {
         data-direction="column"
         data-user-select="text"
       >
+        
         <group data-direction="column" data-gap="20">
           <text
             data-user-select="text"
@@ -35,9 +36,11 @@ function Resume() {
             data-wrap="wrap"
             data-ellipsis=""
           >
-            Product Designer
+            Product Designer, UI/UX & Design Systems 
           </text>
         </group>
+
+        
 
         <group>
           <text
