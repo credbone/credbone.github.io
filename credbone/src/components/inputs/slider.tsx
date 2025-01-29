@@ -11,6 +11,7 @@ interface SliderProps {
   handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }; // Allows extra props
   trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
+  showvalue?: boolean;
 }
 
 const CustomSlider: React.FC<SliderProps> = ({
@@ -24,6 +25,7 @@ const CustomSlider: React.FC<SliderProps> = ({
   handlerProps,
   trackLeftProps,
   trackRightProps,
+  showvalue = true,
 }) => {
   // Handle input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +80,7 @@ const CustomSlider: React.FC<SliderProps> = ({
           {...trackRightProps}
         ></group>
         <text data-weight="700">
-          {value}
+         {showvalue ? value : ""}
           {unit || ""}
         </text>
       </group>

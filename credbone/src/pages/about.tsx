@@ -2,7 +2,6 @@ import React from "react";
 
 import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
-import Ripple from "../components/Ripple";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_81.webp";
@@ -32,7 +31,7 @@ function About() {
       <group data-length="300" data-adaptive="desktop">
         <group data-direction="column" data-justify="end">
           <picture
-            data-radius="20"
+            data-radius="30"
             data-contain=""
             data-brightness="adaptive"
             data-position="absolute"
@@ -66,7 +65,7 @@ function About() {
       </group>
 
       <group
-        data-gap="50"
+        data-gap="30"
         data-direction="column"
         data-align="start"
         data-max-length="1200"
