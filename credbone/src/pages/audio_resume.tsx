@@ -147,12 +147,12 @@ const AudioPlayer: React.FC = () => {
           value={progress}
           onValueChange={handleSliderChange}
           unit={formatTime(currentTime)}
-          trackLeftProps={{ "data-margin":"0" }}
-          trackRightProps={{ "data-opacity": "20" }}
+          trackLeftProps={{ "data-margin": "0", "data-height": "1" }}
+          trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
         />
 
         <group
-          data-length="100"
+          data-length="140"
           data-cursor="pointer"
           data-interactive=""
           data-radius="10"

@@ -14,10 +14,13 @@ const handlePrint = () => {
 function Resume() {
   return (
     <view data-scroll="" data-border="no">
-<group data-print="hide" data-max-length="1200" data-space="50" data-space-bottom="0" >
-<group      >
+<group data-print="hide" data-max-length="1200" data-space="30" data-space-bottom="0" >
+<group>
 
-<group   data-max-length="600">
+
+<group data-height="30" data-adaptive="desktop"></group>
+
+<group data-space="45"  data-max-length="600">
   <text
     data-wrap="wrap"
     data-font-type="hero"
@@ -29,20 +32,22 @@ function Resume() {
    10+ years, crafting user-focused designs.
   </text>
 </group>
+
+<group data-height="30" data-adaptive="desktop"></group>
 </group>
 
 </group>
 
 
 
-      <group data-gap="50" data-space="50"  data-wrap="no" data-direction="column-800">
+      <group data-gap="30" data-space="30"  data-wrap="no" data-direction="column-800">
         <group data-length="300" data-width="auto-800" data-align="start" data-print="hide">
           <group
             data-border=""
-            data-space="10"
-            data-radius="20"
+            data-space="15"
+            data-radius="30"
             data-sticky="top"
-            data-top="50"
+            data-top="30"
           >
             <AudioPlayer />
           </group>
