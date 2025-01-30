@@ -7,6 +7,7 @@ import AudioPlayer from "./audio_resume";
 
 
 
+
 const handlePrint = () => {
   window.print();
 };
@@ -50,6 +51,9 @@ function Resume() {
             data-top="30"
           >
             <AudioPlayer />
+
+
+
           </group>
         </group>
 
@@ -100,12 +104,13 @@ function Resume() {
                 <SvgResumeQR />
               </a>
               <group
+             
                 data-direction="column"
                 data-width="auto"
                 data-gap="10"
                 data-align="start"
               >
-                <a href="tel:+37493080648" data-type="group" data-width="auto">
+                <a  data-print="show" href="tel:+37493080648" data-type="group" data-width="auto">
                   <text
                     data-wrap="wrap"
                     data-weight="700"
