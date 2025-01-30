@@ -102,3 +102,7 @@
 [data-delay="4"] {transition-delay: 0.4s;} /* Added for 4 */
 
 [data-delay="7.25"] {transition-delay: 0.725s;} /* Added for 4 */
+
+
+
+[data-will-change="transform"] {will-change: transform;}
