@@ -40,22 +40,38 @@ function About() {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-space="50" data-theme="dark" data-sticky="bottom">
+          <group data-space="40"  data-sticky="bottom">
             <group
-              data-space="30"
+              data-space="40"
               data-index="2"
-              data-radius="10"
+              data-radius="15"
               data-contain=""
-              data-backdrop="20"
+          //    data-backdrop="20"
+          data-background="main-background"
             >
-              <group data-width="auto" data-gap="20">
+              <group data-width="auto" data-gap="30">
+
+              <text
+                    data-wrap="wrap"
+                    data-font-type="hero"
+                    data-line="1"
+                    data-text-size="15"
+                    data-max-length="800"
+                  >
+                    Crafted <br></br>for growth.
+                  </text>
+                  <separator
+                    data-horizontal=""
+
+                  ></separator>
+
                 <text
                   data-wrap="wrap"
                   //  data-opacity="80"
                   data-line="20"
                   data-text-size="15"
                 >
-                  Designed for flexibility and growth, modern by default.
+                    Adapting from prototypes to enterprise apps, evolving with every project.
                 </text>
                 <SvgWood />
               </group>
