@@ -8,15 +8,32 @@ const Overview: React.FC = () => {
     <group data-space="30" data-gap="30" data-wrap="no" data-direction="column">
       <group
         data-direction="column"
-        data-gap="10"
+       data-gap="30"
         data-background="adaptive-gray"
         data-radius="30"
         data-justify="end"
         data-space="30"
       >
+
+<group data-direction="column">
+<group data-gap="20" data-align="center">
+<group data-space-horizontal="20" data-space-vertical="10" data-background="text" data-width="auto" data-color="main-background" data-radius="30" >
+    <text>System</text>
+  </group>
+  <separator data-vertical=""></separator>
+<text>
+  Version 3.0.2
+</text>
+</group>
+
+</group>
+<separator data-horizontal=""></separator>
+
+
         <group data-height="100" data-adaptive="desktop"></group>
 
-        <text
+<group data-direction="column" data-gap="10">
+<text
           data-weight="700"
           data-text-size="xxx-large"
           data-wrap="wrap"
@@ -30,6 +47,7 @@ const Overview: React.FC = () => {
           Components are interactive elements used to build a user interface.
           They can be grouped into categories according to their function.
         </text>
+</group>
       </group>
 
       <group data-gap="30">

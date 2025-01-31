@@ -42,7 +42,10 @@ function Resume() {
 
 
       <group data-gap="30" data-space="30"  data-wrap="no" data-direction="column-800">
-        <group data-length="300" data-width="auto-800" data-align="start" data-print="hide">
+        <group data-length="300" data-width="auto-800" data-direction="column" data-gap="30" data-align="start" data-print="hide">
+
+
+
           <group
             data-border=""
             data-space="15"
@@ -50,6 +53,7 @@ function Resume() {
             data-sticky="top"
             data-top="30"
           >
+
             <AudioPlayer />
 
 
@@ -411,7 +415,7 @@ function Resume() {
               </group>
             </group>
           </group>
-          <group data-height="50" data-print="hide"></group>
+
 
           <StuckReporter>
             {(isSticky) => (
@@ -422,7 +426,9 @@ function Resume() {
                 data-sticky="bottom"
                 data-width="auto"
                 data-space-vertical="30"
+                data-over-color="neutral"
               >
+                          <group data-height="50"></group>
                 <group data-width="auto">
                   <group
                     onClick={handlePrint}

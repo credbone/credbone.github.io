@@ -763,6 +763,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-bottom='0'] {padding-bottom:0px;}
 [data-space-bottom='5'] {padding-bottom:5px;}
 [data-space-bottom='10'] {padding-bottom:10px;}
+[data-space-bottom='15'] {padding-bottom:15px;}
 [data-space-bottom='20'] {padding-bottom:20px;}
 [data-space-bottom='30'] {padding-bottom:30px;}
 
@@ -841,9 +842,9 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-radius="bubble-left"] {
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
-  border-bottom-right-radius: 60px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 
 }
 
@@ -852,6 +853,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius-top="10"]{border-top-left-radius:10px;border-top-right-radius: 10px;}
 [data-radius-top="15"]{border-top-left-radius:15px;border-top-right-radius: 15px;}
 [data-radius-top="30"]{border-top-left-radius:30px;border-top-right-radius: 30px;}
+
+
 
 [data-radius-bottom="10"]{border-bottom-left-radius:10px;border-bottom-right-radius: 10px;}
 [data-radius-bottom="15"]{border-bottom-left-radius:15px;border-bottom-right-radius: 15px;}
@@ -863,6 +866,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-radius-bottom-left="15"]{border-bottom-left-radius: 15px;}
 
+
+[data-radius-top="0"]{border-top-left-radius:0px;border-top-right-radius: 0px;}
 
 
 [data-shadow]{filter: drop-shadow(0 15px 10px rgba(0, 0, 0, 0.1)) drop-shadow(0 0px 1px rgba(0, 0, 0, 0.2))}
