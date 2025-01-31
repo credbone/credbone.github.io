@@ -106,3 +106,4 @@
 
 
 [data-will-change="transform"] {will-change: transform;}
+[data-transition-behavior="allow-discrete"]{transition-behavior: allow-discrete;}

@@ -593,6 +593,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 /* [data-height]{flex-shrink: 0;} */
+[data-height='0'] { height:0px; }
 [data-height='1'] { height:1px; }
 [data-height='2'] { height:2px; }
 [data-height='3'] { height:3px; }
