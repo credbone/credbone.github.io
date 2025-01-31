@@ -119,8 +119,8 @@ const Components: React.FC = () => {
                 collection of carefully crafted UI components, each designed
                 with attention to detail and a strong focus on UI principles */}
                 A hybrid, atomic, and declarative design system that brings
-                flexibility, control and speed to projects. With no
-                classes or pre-defined styles.
+                flexibility, control and speed to projects. With no classes or
+                pre-defined styles.
               </text>
             </group>
 
@@ -262,6 +262,12 @@ const Components: React.FC = () => {
         </group>
 
         <separator data-horizontal=""></separator>
+
+
+
+
+
+
         <group>
           <text
             data-wrap="wrap"
@@ -321,6 +327,8 @@ const Components: React.FC = () => {
                       data-weight="700"
                       data-wrap="preline"
                       data-ellipsis=""
+
+                      
                     >
                       {link.title}
                     </text>
@@ -353,56 +361,73 @@ const Components: React.FC = () => {
           </group>
         </group>
 
-        <group data-gap="10"  data-direction="column">
-          <group data-contain="" data-radius="30" data-direction="column">
-            <picture
+        <group   data-direction="column">
+          <picture
+          data-radius="30"
               data-brightness="adaptive"
-              // data-position="absolute"
+               data-position="absolute"
               data-background="grey-light"
-              data-min-height="300"
+
             >
               <img src={sampleImage_2} alt="" />
             </picture>
 
+          <group
+          
+            data-direction="column"
+            data-space="40"
+    data-align="start"
+          >
             <group
-              data-position="absolute"
-              data-direction="column"
-              data-height="fit"
-              data-wrap="no"
+              data-space="45"
+              data-position="bottom"
+              data-background="main-background"
+              data-width="auto"
+              data-radius="20"
             >
-              <group
-                data-space="45"
-                data-position="bottom"
-                data-theme="dark"
-                data-width="auto"
-              >
-                <text
-                  data-wrap="wrap"
-                  data-font-type="hero"
-                  data-line="1"
-                  data-text-size="64"
-                  data-text-clamp="64"
-                  data-max-length="800"
-                >
-                  Crafted <br></br>for growth.
-                </text>
-              </group>
+                <group data-gap="40" data-direction="column-1200">
+                  <text
+                    data-wrap="wrap"
+                    data-font-type="hero"
+                    data-line="1"
+                    data-text-size="15"
+                    data-max-length="800"
+                  >
+                    Crafted <br></br>for growth.
+                  </text>
+                  <separator
+                    data-vertical="adaptive-1200"
+                    data-height=""
+                  ></separator>
+                  <group data-width="auto" data-direction="column" data-align="start" data-gap="20">
+                    <text data-wrap="wrap" data-line="1.5" data-length="240" data-text-size="15">
+                    Adapting from prototypes to enterprise apps, evolving with every project.
+                    </text>
+
+
+                  </group>
+                </group>
             </group>
           </group>
+        </group>
 
+        <group
+          data-radius="30"
+          data-contain=""
+          data-border=""
+          data-direction="column"
+        >
           <group
-           data-radius="30"
             data-gap="30"
             data-direction="column"
             //  data-background="context"
             data-space="30"
-            data-background="highlight"
             data-align="start"
           >
             <group
               data-width="auto"
               data-direction="column"
-              data-gap="20"
+              data-gap="30"
               data-space="15"
             >
               <text
@@ -418,8 +443,8 @@ const Components: React.FC = () => {
               <text
                 data-wrap="wrap"
                 data-max-length="400"
-                data-opacity="40"
-                data-line="20"
+                data-opacity="60"
+                data-line="1.5"
                 data-text-size="15"
               >
                 Let's connect! Whether you're curious about my work, looking to
@@ -488,7 +513,7 @@ const Components: React.FC = () => {
               </group>
             </group>
             <separator data-horizontal=""></separator>
-            <group data-space="10">
+            <group data-space="15">
               <group>
                 <text data-opacity="60">
                   Copyright {currentYear}, Credbone.{" "}
