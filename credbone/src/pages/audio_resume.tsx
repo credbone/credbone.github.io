@@ -277,16 +277,15 @@ const AudioPlayer: React.FC = () => {
               return (
                 <group
                   key={time}
-                  
                   data-color="text"
                   data-cursor="pointer"
                   onClick={() => jumpToTime(time)}
                 >
                   <Ripple>
                     <group
-                    data-background={isActive ? "highlight" : ""}
-                    data-contain=""
-                    data-ink-color="neutral"
+                      data-background={isActive ? "highlight" : ""}
+                      data-contain=""
+                      data-ink-color="neutral"
                       data-radius="10"
                       data-space="15"
                       data-gap="10"
@@ -316,7 +315,7 @@ const AudioPlayer: React.FC = () => {
               trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
             />
 
-            <group data-gap="30" data-align="center">
+            <group>
               <group
                 data-length="140"
                 data-cursor="pointer"
@@ -331,10 +330,17 @@ const AudioPlayer: React.FC = () => {
               >
                 <text data-weight="700">{isPlaying ? "Pause" : "Listen"}</text>
               </group>
-
               <group
-                data-hide={isPlaying ? "false" : "true"}
-                data-height="40"
+                data-height={isPlaying ? "45" : "0"}
+    
+                data-duration=".125"
+              ></group>
+              <group
+
+                data-height={isPlaying ? "40" : "0"}
+                data-opacity={isPlaying ? "" : "0"}
+                data-contain=""
+                data-duration=".125"
                 data-width="auto"
                 data-align="center"
                 data-gap="2"

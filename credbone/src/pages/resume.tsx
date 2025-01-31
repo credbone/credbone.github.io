@@ -443,7 +443,6 @@ function Resume() {
                   >
                     <group data-length={isSticky ? "60" : "20"}>
                       <icon data-position="center">
-                        {" "}
                         <Printer size={20} />{" "}
                       </icon>
                     </group>
@@ -455,7 +454,7 @@ function Resume() {
                       data-transition-prop="font-size"
                       data-text-size={isSticky ? "0" : ""}
                     >
-                      Print
+                      Save
                     </text>
                   </group>
                 </group>
