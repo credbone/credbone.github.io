@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_81.webp";
+// import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
+
+
 
 const links = [
   { name: "View Resume", url: "/Resume" },
@@ -40,30 +43,26 @@ function About() {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-space="40"  data-sticky="bottom">
+          <group data-space="40" data-sticky="bottom">
             <group
               data-space="40"
               data-index="2"
               data-radius="15"
               data-contain=""
-          //    data-backdrop="20"
-          data-background="main-background"
+              //    data-backdrop="20"
+              data-background="main-background"
             >
               <group data-width="auto" data-gap="30">
-
-              <text
-                    data-wrap="wrap"
-                    data-font-type="hero"
-                    data-line="1"
-                    data-text-size="15"
-                    data-max-length="800"
-                  >
-                    Crafted <br></br>for growth.
-                  </text>
-                  <separator
-                    data-horizontal=""
-
-                  ></separator>
+                <text
+                  data-wrap="wrap"
+                  data-font-type="hero"
+                  data-line="1"
+                  data-text-size="15"
+                  data-max-length="800"
+                >
+                  Crafted <br></br>for growth.
+                </text>
+                <separator data-horizontal=""></separator>
 
                 <text
                   data-wrap="wrap"
@@ -71,7 +70,8 @@ function About() {
                   data-line="20"
                   data-text-size="15"
                 >
-                    Adapting from prototypes to enterprise apps, evolving with every project.
+                  Adapting from prototypes to enterprise apps, evolving with
+                  every project.
                 </text>
                 <SvgWood />
               </group>
@@ -88,18 +88,18 @@ function About() {
         data-contain=""
       >
         <group
-        //  data-adaptive="desktop"
+          //  data-adaptive="desktop"
           data-gap="30"
           data-direction="column"
           // data-background="highlight"
 
-          data-height="50"
+          data-height="30"
           data-align="center"
           data-contain=""
         ></group>
 
         <group data-space="45">
-          <group data-gap="40" data-index="2" >
+          <group data-gap="40" data-index="2">
             <group data-width="auto">
               <text
                 data-weight="700"
@@ -142,9 +142,19 @@ function About() {
           </group>
         </group>
 
-        <group data-radius="30" data-border="inset" data-direction='column-1200' data-contain="" data-gap="1" >
+
+
+
+
+        <group
+          data-radius="30"
+          data-border="inset"
+          data-direction="column-1200"
+          data-contain=""
+          data-gap="1"
+        >
           <group
-                 data-border=""
+            data-border=""
             // data-radius="30"
             data-direction="column"
             data-space="45"
@@ -248,7 +258,7 @@ function About() {
           </group>
 
           <group
-               data-border=""
+            data-border=""
             //       data-radius="30"
             data-direction="column"
             data-space="45"
@@ -303,6 +313,10 @@ function About() {
           </group>
         </group>
 
+
+
+
+
         <group
           data-gap="30"
           data-direction="column"
@@ -318,7 +332,7 @@ function About() {
             data-gap="20"
             data-space="15"
           >
-            <text data-text-size="xx-large" data-weight="700" data-wrap="">
+            <text data-text-size="xx-large" data-weight="700" data-wrap="wrap">
               Get in Touch
             </text>
             <text

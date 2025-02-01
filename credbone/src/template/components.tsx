@@ -92,19 +92,30 @@ const Components: React.FC = () => {
         data-direction="column"
         data-max-length="1200"
       >
-        <group data-gap="50" data-align="center">
-          <group data-width="auto" data-direction="column" data-gap="50">
+
+
+
+
+
+
+
+        <group  data-wrap="no" data-direction="column-1000">
+
+
+
+          <group data-width="auto" data-space="adaptive-30-50" data-direction="column" data-gap="50">
             <text
               // data-wrap="wrap"
               // data-ellipsis=""
 
               data-line="1"
-              data-text-size="96"
-              data-text-clamp="96"
+              data-text-size="64"
+              data-text-clamp="64"
               data-max-length="800"
               data-font-type="hero"
+              data-wrap="wrap"
             >
-              Designed to<br></br> evolve and<br></br> adapt.
+              Designed to<br></br> evolve and adapt.
             </text>
 
             <group>
@@ -231,7 +242,7 @@ const Components: React.FC = () => {
             data-backdrop="10"
             data-width="auto"
           >
-            <group data-max-length="500" data-cursor="pointer">
+<group data-max-length="500" data-position="center"  data-cursor="pointer">
               <group data-space="10%">
                 <Ripple>
                   <group
@@ -277,6 +288,7 @@ const Components: React.FC = () => {
             data-text-size="64"
             data-text-clamp="64"
             data-max-length="800"
+            data-space="adaptive-30-50"
           >
             Basic <br></br>structures
           </text>
