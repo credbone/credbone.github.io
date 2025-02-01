@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
 import sampleImage from "../styles/images/samples/res_81.webp";
+import Tooltip from "../components/tooltip";
 // import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 
 
@@ -67,7 +68,7 @@ function About() {
                 <text
                   data-wrap="wrap"
                   //  data-opacity="80"
-                  data-line="20"
+                  data-line="1.5"
                   data-text-size="15"
                 >
                   Adapting from prototypes to enterprise apps, evolving with
@@ -289,7 +290,8 @@ function About() {
               </text>
             </group>
 
-            <group
+<Tooltip content={buildInfo.buildDateTime}>
+<group
               data-position="bottom"
               data-interactive=""
               onClick={handleReload}
@@ -310,6 +312,7 @@ function About() {
 
               <text data-weight="700">{buildInfo.version}</text>
             </group>
+</Tooltip>
           </group>
         </group>
 
@@ -339,7 +342,7 @@ function About() {
               data-wrap="wrap"
               data-max-length="400"
               data-opacity="40"
-              data-line="20"
+              data-line="1.5"
               data-text-size="15"
             >
               Let's connect! Whether you're curious about my work, looking to

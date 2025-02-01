@@ -16,8 +16,8 @@ function Settings() {
   };
 
   return (
-    <group data-space="30" data-gap="30" data-direction="column">
-      <group
+    <group  data-space="adaptive-30-50"  data-gap="30" data-direction="column"  data-max-length="1200">
+      {/* <group
         data-direction="column"
         data-gap="10"
         data-animation-name="appear-bottom"
@@ -25,14 +25,11 @@ function Settings() {
         data-animation-duration="2.25"
       >
         <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          data-opacity="20"
+         data-weight="700" data-text-size="xxx-large" data-wrap="wrap"
         >
           Settings
         </text>
-      </group>
+      </group> */}
 
 
 
@@ -52,9 +49,9 @@ function Settings() {
           Apperance
         </text>
         <text
-          data-light=""
+         // data-light=""
           data-wrap="wrap"
-          data-line="20"
+          data-line="1.5"
           data-max-length="400"
         >
           Choose Dark Mode for low-light, Light Mode for bright environments, or
@@ -91,9 +88,9 @@ function Settings() {
           Theme
         </text>
         <text
-          data-light=""
+        //  data-light=""
           data-wrap="wrap"
-          data-line="20"
+        data-line="1.5"
           data-max-length="400"
         >
 Primary and secondary colors will define the UI, with additional shades generated automatically.
@@ -129,9 +126,9 @@ Primary and secondary colors will define the UI, with additional shades generate
         </text>
 
         <text
-          data-light=""
+          //data-light=""
           data-wrap="wrap"
-          data-line="20"
+       data-line="1.5"
           data-max-length="400"
         >
           Once you reset the settings, your previous customizations cannot be

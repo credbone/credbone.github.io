@@ -22,7 +22,7 @@ const ButtonTemplate: React.FC<{
     <Button
       data-contain="visible"
       micro
-      primary
+data-backdrop="10"
       className={classNames("slide-button", direction, { show })}
       icon={icon}
       onClick={onClick}
