@@ -14,7 +14,7 @@ import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import { colorcontent, typefacecontent } from "./utils/richTumbnail";
 // import ThemNameDisplay from "./themeName";
-import { ArrowDown } from "lucide-react";
+// import { ArrowDown } from "lucide-react";
 
 
 const links = [
@@ -296,7 +296,7 @@ const Components: React.FC = () => {
 
 
         
-          <group data-wrap="no" data-align="center" data-gap="20" >
+          {/* <group data-wrap="no" data-align="center" data-gap="20" >
             <separator data-horizontal=""></separator>
             <group
               data-direction="column"
@@ -315,7 +315,7 @@ const Components: React.FC = () => {
              
             </group>
             <separator data-horizontal=""></separator>
-          </group>
+          </group> */}
 
 
 
