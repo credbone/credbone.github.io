@@ -206,6 +206,9 @@ text[data-width="auto"]{width: initial;}
 [data-right="25"] { right: 25px; }
 [data-right="30"] { right: 30px; }
 
+[data-right="100%"] { right: 100%; }
+[data-right="50%"] { right: 50%; }
+
 
 /* Top positions */
 [data-top="-30"] { top: -30px; }

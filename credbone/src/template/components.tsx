@@ -13,6 +13,8 @@ import sampleImage_3 from "../styles/images/samples/res_001.png";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 import { colorcontent, typefacecontent } from "./utils/richTumbnail";
+// import ThemNameDisplay from "./themeName";
+import { ArrowDown } from "lucide-react";
 
 
 const links = [
@@ -103,7 +105,7 @@ const Components: React.FC = () => {
 
 
 
-          <group data-width="auto" data-space="adaptive-30-50" data-direction="column" data-gap="50">
+          <group data-width="auto" data-space="adaptive-30-50" data-direction="column" data-gap="40" data-index="3">
             <text
               // data-wrap="wrap"
               // data-ellipsis=""
@@ -114,21 +116,21 @@ const Components: React.FC = () => {
               data-max-length="800"
               data-font-type="hero"
               data-wrap="wrap"
+          
             >
               Designed to<br></br> evolve and adapt.
             </text>
 
-            <group>
+            <group data-background="main-background" data-space-vertical="10">
               <text
                 data-wrap="wrap"
                 data-max-length="400"
                 data-line="1.5"
                 data-opacity="70"
                 data-text-size="15"
+                          
               >
-                {/* This space is about personal experiments and demos, featuring a
-                collection of carefully crafted UI components, each designed
-                with attention to detail and a strong focus on UI principles */}
+
                 A hybrid, atomic, and declarative design system that brings
                 flexibility, control and speed to projects. With no classes or
                 pre-defined styles.
@@ -226,6 +228,8 @@ const Components: React.FC = () => {
             </group>
           </group>
 
+
+
           <Popover
             placement="mouse"
             content={
@@ -244,20 +248,34 @@ const Components: React.FC = () => {
           >
 <group data-max-length="500" data-position="center"  data-cursor="pointer">
               <group data-space="10%">
-                <Ripple>
+<group  data-height="fit">
+  <group data-position="absolute" data-border="inset" data-right="100%" data-height="fit"  data-disabled="true" data-radius="full"></group>
+  {/* <group data-position="absolute" data-index="3" data-right="50%" data-background="main-alpha-15" data-height="fit"  data-disabled="true" data-radius="full"></group> */}
+<Ripple>
                   <group
-                    data-contain=""
+                  data-index="4"
+                    data-contain="" 
                     data-ink-color="main-dark"
                     data-ratio="1:1"
                     data-background="main"
+                    data-color="main-text"
                     data-radius="full"
-                  ></group>
+                  >
+
+
+{/* <ThemNameDisplay/> */}
+
+
+
+                  </group>
                 </Ripple>
+</group>
               </group>
               <group
                 data-position="absolute"
                 data-disabled="true"
                 data-height="fit"
+                 data-index="4"
               >
                 <picture
                 //    data-brightness="adaptive"
@@ -272,10 +290,32 @@ const Components: React.FC = () => {
           </Popover>
         </group>
 
-        <separator data-horizontal=""></separator>
+     
+
+     
 
 
+        
+          <group data-wrap="no" data-align="center" data-gap="20" >
+            <separator data-horizontal=""></separator>
+            <group
+              data-direction="column"
+              data-width="auto"
+              data-align="center"
+              data-text-align="center"
 
+              data-border=""
+              data-space="15"
+              data-radius="30"
+              data-height="90"
+              data-justify="center"
+            >
+
+              <ArrowDown strokeWidth="1"/>
+             
+            </group>
+            <separator data-horizontal=""></separator>
+          </group>
 
 
 
