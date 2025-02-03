@@ -196,6 +196,8 @@ text[data-width="auto"]{width: initial;}
 [data-bottom="100"] { bottom: 100px; }
 [data-bottom="110"] { bottom: 110px; }
 
+[data-bottom="100%"] { bottom: 100%; }
+
 /* Right positions */
 [data-right="-5"] { right: -5px; }
 [data-right="0"] { right: 0px; }
@@ -432,12 +434,13 @@ text[data-width="auto"]{width: initial;}
 [data-length='auto']{ flex: auto; }
 
 
+[data-length='autofit-600'] { width: auto;}
 
 
 @media (max-width: 600px)
 {
   [data-length='forcefit'] { flex: 1 1 100%; }
-  [data-length='autofit-600'] { flex: 1; }
+  [data-length='autofit-600'] { flex: 1; width: 100%; }
 
   [data-autofit="1-600"]  { flex: 1; }
 

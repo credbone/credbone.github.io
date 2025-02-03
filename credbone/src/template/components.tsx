@@ -101,7 +101,7 @@ const Components: React.FC = () => {
 
 
 
-        <group  data-wrap="no" data-direction="column-1000">
+        <group  data-wrap="no" data-direction="column-1200">
 
 
 
@@ -118,7 +118,7 @@ const Components: React.FC = () => {
               data-wrap="wrap"
           
             >
-              Designed to<br></br> evolve and adapt.
+              <text data-wrap="no">Designed to</text><br></br> evolve and adapt.
             </text>
 
             <group data-background="main-background" data-space-vertical="10">
@@ -195,7 +195,7 @@ const Components: React.FC = () => {
                   <IconSearch></IconSearch>
                 </group>
               </Ripple>
-              <separator data-vertical="" data-height="20"></separator>
+              {/* <separator data-vertical="" data-height="20"></separator> */}
               <Ripple>
                 <Link
                   data-contain=""
