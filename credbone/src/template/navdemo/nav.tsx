@@ -3,6 +3,7 @@ import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import RegularNavItems from "./RegularNavItems";
 import SideNav from "./sideNav";
 import StuckReporter from "../../components/StuckReporter";
+import TemplatePageHeader from "../TemplatePageHeader";
 
 
 
@@ -14,32 +15,25 @@ const Landing: React.FC = () => {
       <group data-height="30"></group>
 <group data-direction="column" data-space-horizontal="30">
 
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
 
-        </group>
-       
 
-            <text
-              data-weight="700"
-              data-text-size="xxx-large"
-              data-ellipsis=""
-            
-            >
-              Navigation
-            </text>
 
-            <text
-              data-wrap="wrap"
-              data-length="300"
-              data-line="1.5"
-             
-            >
-              Navigation bars allow movement between primary destinations in an
-              app.
-            </text>
-            </group>
+
+            <TemplatePageHeader
+        title="Navigation"
+        description="Navigation bars allow movement between primary destinations in an
+              app."
+        // version="1.0.2"
+         type="Pattern"
+        descriptionProps={{"data-length":"300"}}
+      />
+
+
           </group>
+
+
+
+
 
       <group data-height="10"></group>
 

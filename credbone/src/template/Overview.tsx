@@ -2,53 +2,21 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { groupedLinksArray } from "./utils/OverviewData";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const Overview: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-wrap="no" data-direction="column">
-      <group
-        data-direction="column"
-       data-gap="30"
-        data-background="adaptive-gray"
-        data-radius="30"
-        data-justify="end"
-        data-space="30"
-      >
-
-<group data-direction="column">
-<group data-gap="20" data-align="center">
-<group data-space-horizontal="20" data-space-vertical="10" data-background="text" data-width="auto" data-color="main-background" data-radius="30" >
-    <text>System</text>
-  </group>
-  <separator data-vertical=""></separator>
-<text>
-  Version 3.0.2
-</text>
-</group>
-
-</group>
-<separator data-horizontal=""></separator>
 
 
-        <group data-height="100" data-adaptive="desktop"></group>
 
-<group data-direction="column" data-gap="10">
-<text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          data-ellipsis=""
-          data-line="1"
-        >
-          Overview
-        </text>
-
-        <text data-wrap="wrap" data-max-length="400" data-line="1.5">
-          Components are interactive elements used to build a user interface.
-          They can be grouped into categories according to their function.
-        </text>
-</group>
-      </group>
+      <TemplatePageHeader
+        title="Overview"
+        description="Explore how interactive elements come together to shape the user experience. This section organizes them into categories, making it easier to navigate and understand their roles."
+        version="3.0.2"
+        type="System"
+        descriptionProps={{"data-length":"500"}}
+      />
 
       <group data-gap="30">
         {groupedLinksArray.map((group, index) => (

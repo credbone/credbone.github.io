@@ -34,6 +34,7 @@ import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
 import CustomSlider from "../components/inputs/slider";
 import StuckReporter from "../components/StuckReporter";
 import SystemColorPicker from "./systemColorPicker";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const lucideIcons = [
   { Component: Snail, title: "Snail" },
@@ -157,27 +158,14 @@ const Icons: React.FC = () => {
       data-align="start"
       data-direction="column"
     >
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="100" data-adaptive="desktop"></group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          //   data-color="main"
-        >
-          Icons
-        </text>
-        <text data-wrap="wrap" data-length="400" data-line="1.5">
-        Currently, Lucide serves as the standard icon set, integrated into existing components, with additional custom-designed icons for specific use cases.
-        </text>
-      </group>
+
+
+
+      <TemplatePageHeader
+        title="Icons"
+        description="Currently, Lucide serves as the standard icon set, integrated into existing components, with additional custom-designed icons for specific use cases."
+      />
+
 
       <group data-direction="column" data-gap="50">
         <group >

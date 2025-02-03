@@ -3,6 +3,7 @@ import CustomSlider from "../components/inputs/slider";
 import TickComponent from "../components/inputs/TickComponent";
 import sectionImage from "../styles/images/samples/wide_res_70.webp";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const RangeSlider: React.FC = () => {
 
@@ -23,49 +24,20 @@ const RangeSlider: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="30"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-direction="column">
-          <group data-gap="20" data-align="center">
-            <group
-              data-space-horizontal="20"
-              data-space-vertical="10"
-              data-background="text"
-              data-width="auto"
-              data-color="main-background"
-              data-radius="30"
-            >
-              <text>New</text>
-            </group>
-            <separator data-vertical=""></separator>
-            <text>Version 0.1.2</text>
-          </group>
-        </group>
-        <separator data-horizontal=""></separator>
 
-        <group data-height="100" data-adaptive="desktop"></group>
 
-        <group data-direction="column" data-gap="10">
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            data-ellipsis=""
-          >
-            Range Slider
-          </text>
-          <text data-wrap="wrap" data-length="500" data-line="1.5">
-            A modern, flexible React range slider with dynamic value mapping and
-            customizable styles for seamless integration.
-          </text>
-        </group>
-      </group>
+
+
+      <TemplatePageHeader
+        title="Range Slider"
+        description="A modern, flexible React range slider with dynamic value mapping and customizable styles for seamless integration."
+        version="0.1.2"
+        type="Component"
+        descriptionProps={{"data-length":"500"}}
+      />
+
+
+
 
       <group>
         <picture

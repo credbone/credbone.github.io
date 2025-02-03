@@ -7,6 +7,7 @@ import sampleImage from "../styles/images/samples/wide_res_68.webp";
 import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 import sampleImage_3 from "../styles/images/samples/wide_res_67.webp";
 import Ripple from "../components/Ripple";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
@@ -31,29 +32,17 @@ const Miscellaneous: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="100" data-adaptive="desktop"></group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          data-ellipsis=""
-          //   data-color="main"
-        >
-          Miscellaneous
-        </text>
-        <text data-wrap="wrap" data-length="500" data-line="1.5">
-          Encompasses a variety of small, diverse UI components that don't fit
-          into other categories, including elements like marquees and counters.
-        </text>
-      </group>
+
+
+
+      <TemplatePageHeader
+        title="Miscellaneous"
+        description="Encompasses a variety of small, diverse UI components that don't fit
+          into other categories, including elements like marquees and counters."
+        // version="1.0.2"
+       //  type="Pattern"
+        descriptionProps={{"data-length":"500"}}
+      />
 
       <group
         data-justify="start"

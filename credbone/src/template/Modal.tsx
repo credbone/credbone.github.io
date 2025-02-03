@@ -8,6 +8,7 @@ import RichThemePicker from "./richThemePicker";
 import Ripple from "../components/Ripple";
 
 import sampleImage from "../styles/images/samples/wide_res_63.webp";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -112,31 +113,22 @@ const Modal: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group data-gap="30">
-        <group
-          data-direction="column"
-          data-gap="10"
-          data-background="adaptive-gray"
-          data-radius="20"
-          data-justify="end"
-          data-space="30"
-        >
-          <group data-height="100" data-adaptive="desktop"></group>
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            data-ellipsis=""
-          >
-            Modal
-          </text>
-          <text data-wrap="wrap" data-length="600" data-line="1.5">
-            Modals are pop-up windows that capture attention, appearing after a
+ 
+
+
+
+        <TemplatePageHeader
+        title="Modal"
+        description="Modals are pop-up windows that capture attention, appearing after a
             user action. They display important content or options, requiring
-            interaction before closing, ensuring focus on key tasks.
-          </text>
-        </group>
-      </group>
+            interaction before closing, ensuring focus on key tasks."
+        version="1.0.2"
+        type="Component"
+        descriptionProps={{"data-length":"600"}}
+      />
+
+
+
 
 
       <group

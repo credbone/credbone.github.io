@@ -9,33 +9,22 @@ import {
   RectangleHorizontal,
   Rows3,
 } from "lucide-react";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const Layout: React.FC = () => {
   return (
     <group data-gap="30" data-space="30" data-border="no" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="100" data-adaptive="desktop"></group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          //  data-color="main"
-        >
-          Layout & Switches
-        </text>
-        <text data-wrap="wrap" data-length="300" data-line="1.5">
-          Concerns the arrangement and organization of elements in a design,
-          often utilizing grids.
-        </text>
-      </group>
 
+
+
+      <TemplatePageHeader
+        title="Layout & Switches"
+        description="Concerns the arrangement and organization of elements in a design,
+          often utilizing grids."
+        // version="1.0.2"
+       //  type="Pattern"
+        descriptionProps={{"data-length":"300"}}
+      />
 
       <group
         data-height="300"

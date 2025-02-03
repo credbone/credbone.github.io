@@ -13,6 +13,7 @@ import { isDesktop } from "react-device-detect";
 
 
 import CustomColorPicker from "./theme/CustomColorPicker";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 export const ColorPalette = [
   { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
@@ -268,51 +269,22 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-<group data-direction="column" data-gap="30" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30" data-align="start">
 
 
-<group data-direction="column">
-<group data-gap="20" data-align="center">
-<group data-space-horizontal="20" data-space-vertical="10" data-background="text" data-width="auto" data-color="main-background" data-radius="30" >
-    <text>Token</text>
-  </group>
-  <separator data-vertical=""></separator>
-<text>
-  Version 3.0.1
-</text>
-</group>
-
-</group>
-<separator data-horizontal=""></separator>
-        <group data-height="100" data-adaptive="desktop">
-
-        </group>
 
 
-<group data-direction="column" data-gap="10">
-<text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          data-ellipsis=""
-
-        >
-          Color System
-        </text>
-        <text
-          data-wrap="wrap"
-          data-max-length="600"
-          data-line="1.5"
-
-        >
-          A color system can assist in crafting a color palette that mirrors
+      <TemplatePageHeader
+        title="Color System"
+        description="A color system can assist in crafting a color palette that mirrors
           brand or personal style, while also considering features like dark
           mode compatibility for a seamless user experience across different
-          interfaces.
-        </text>
-</group>
+          interfaces."
+        version="3.0.1"
+        type="Token"
+        descriptionProps={{"data-length":"600"}}
+        
+      />
 
-      </group>
 
       <group data-gap="30">
         <group data-gap="30" data-align="center">

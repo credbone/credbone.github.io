@@ -10,6 +10,7 @@ import {
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import { Key } from "lucide-react";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 
 const InputsAndForms: React.FC = () => {
@@ -18,29 +19,20 @@ const InputsAndForms: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="100" data-adaptive="desktop"></group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          data-ellipsis=""
-          //  data-color="main"
-        >
-          Input & Forms
-        </text>
-        <text data-wrap="wrap" data-length="500" data-line="1.5">
-          Explore input fields and form-related UI elements in this demo,
-          featuring validation, error handling, and responsive design.
-        </text>
-      </group>
+
+
+
+
+      <TemplatePageHeader
+        title="Input & Forms"
+        description="Explore input fields and form-related UI elements in this demo,
+          featuring validation, error handling, and responsive design."
+        version="1.8.0"
+        type="Component"
+        descriptionProps={{"data-length":"500"}}
+      />
+
+
 
       <group data-gap="30">
         <group

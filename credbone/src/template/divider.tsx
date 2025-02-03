@@ -4,6 +4,7 @@ import CustomSlider from "../components/inputs/slider";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import { ArrowRight } from "lucide-react";
 import Tooltip from "../components/tooltip";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const Divider: React.FC = () => {
   const [selectedDimension, setselectedDimension] = useState(50);
@@ -27,50 +28,17 @@ const Divider: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30">
-      <group
-        data-direction="column"
-        data-gap="30"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-direction="column">
-          <group data-gap="20" data-align="center">
-            <group
-              data-space-horizontal="20"
-              data-space-vertical="10"
-              data-background="text"
-              data-width="auto"
-              data-color="main-background"
-              data-radius="30"
-            >
-              <text>Token</text>
-            </group>
-            <separator data-vertical=""></separator>
-            <text>Version 2.0.0</text>
-          </group>
-        </group>
-        <separator data-horizontal=""></separator>
 
-        <group data-height="100" data-adaptive="desktop"></group>
 
-        <group data-direction="column" data-gap="10">
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            //  data-color="main"
-            data-ellipsis=""
-          >
-            Divider & Space
-          </text>
-          <text data-wrap="wrap" data-length="400" data-line="1.5">
-            Dividers organize and separate content, while space tokens define
-            consistent spacing across layouts.
-          </text>
-        </group>
-      </group>
+
+      <TemplatePageHeader
+        title="Divider & Space"
+        description="Dividers organize and separate content, while space tokens define
+            consistent spacing across layouts."
+        version="2.0.0"
+        type="Token"
+      />
+
 
       <group data-gap="30">
         <group

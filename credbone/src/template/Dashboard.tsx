@@ -5,6 +5,7 @@ import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
 import sampleImage from "../styles/images/samples/wide_res_72.webp";
 import Count from "../components/Coutner";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 
 // Utility function to generate random values
@@ -98,57 +99,18 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-<group data-direction="column" data-gap="30" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
 
 
-<group data-direction="column">
-          <group data-gap="20" data-align="center">
-            <group
-              data-space-horizontal="20"
-              data-space-vertical="10"
-              data-background="text"
-              data-width="auto"
-              data-color="main-background"
-              data-radius="30"
-            >
-              <text>Demo</text>
-            </group>
-            <separator data-vertical=""></separator>
-            <text>Version 2.0.1</text>
-          </group>
-        </group>
-        <separator data-horizontal=""></separator>
 
 
-        <group data-height="100" data-adaptive="desktop">
-
-        </group>
-
-
-<group data-direction="column" data-gap="10">
-<text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-          //  data-color="main"
-            data-ellipsis=""
-          >
-            Dashboard
-          </text>
-
-          <text
-            data-wrap="wrap"
-            data-length="400"
-            data-line="1.5"
-           
-            data-ellipsis=""
-          >
-            Demo features a simple dashboard interface designed for monitoring
-            hardware.
-          </text>
-</group>
-
-      </group>
+      <TemplatePageHeader
+        title="Dashboard"
+        description="Demo features a simple dashboard interface designed for monitoring
+            hardware."
+         version="2.0.1"
+        type="Demo"
+        descriptionProps={{"data-length":"400"}}
+      />
 
       <group>
         <picture

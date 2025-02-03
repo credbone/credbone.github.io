@@ -7,6 +7,7 @@ import SimplePaint from "../tools/SimplePaint";
 import WeatherWidget from "../tools/WeatherWidget";
 import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const QuickDemos: React.FC = () => {
 
@@ -14,33 +15,19 @@ const QuickDemos: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group data-gap="30">
-      <group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
 
-        </group>
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            data-ellipsis=""
-         //   data-color="main"
-          >
-            Quick Demos
-          </text>
-          <text
-            data-wrap="wrap"
-            data-length="600"
-            data-line="1.5"
-            // data-light=""
-          >
-            Explore the UI system through a few simple demo apps designed purely
+
+      <TemplatePageHeader
+        title=" Quick Demos"
+        description="Explore the UI system through a few simple demo apps designed purely
             for demonstration purposes, showcasing its versatility and
             performance. Notably, these apps utilize the design system with zero
-            lines of app-specific UI code written.
-          </text>
-        </group>
-      </group>
+            lines of app-specific UI code written."
+       //  version="2.0.1"
+        type="Demo"
+        descriptionProps={{"data-length":"600"}}
+      />
+
 
       <group
        // data-max-length="900"

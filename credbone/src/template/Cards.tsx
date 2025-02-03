@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 
 interface ContentToolbarProps {
@@ -482,25 +483,18 @@ const Cards: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30">
-<group data-direction="column" data-gap="10" data-background="adaptive-gray" data-radius="20" data-justify="end" data-space="30">
-        <group data-height="100" data-adaptive="desktop">
 
-        </group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-        //  data-color="main"
-          data-ellipsis=""
-        >
-          Cards & List
-        </text>
-        <text data-wrap="wrap" data-length="600" data-line="1.5">
-          A card is an excellent tool for displaying content and actions related
+
+
+
+      <TemplatePageHeader
+        title="Cards & List"
+        description="A card is an excellent tool for displaying content and actions related
           to a single subject, offering a cohesive presentation of multiple
-          elements that vary in type and size.
-        </text>
-      </group>
+          elements that vary in type and size."
+
+      />
+
 
       <StuckReporter>
         {(isSticky) => (

@@ -3,6 +3,7 @@ import Count from "../components/Coutner";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import sectionImage from "../styles/images/samples/wide_res_67.webp";
 import Ripple from "../components/Ripple";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const SnackbarContent = (
   <group>
@@ -41,29 +42,19 @@ const Snackbar: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="100" data-adaptive="desktop"></group>
-        <text
-          data-weight="700"
-          data-text-size="xxx-large"
-          data-wrap="wrap"
-          //  data-color="main"
-          data-ellipsis=""
-        >
-          Snackbar
-        </text>
-        <text data-wrap="wrap" data-length="300" data-line="1.5">
-          Snackbars provide brief notifications about app activities at the
-          bottom of the screen.
-        </text>
-      </group>
+
+
+
+      <TemplatePageHeader
+        title="Snackbar"
+        description="Snackbars provide brief notifications about app activities at the
+          bottom of the screen."
+        version="2.0.0"
+        type="Component"
+        descriptionProps={{"data-length":"300"}}
+      />
+
+
 
       <group>
         <picture

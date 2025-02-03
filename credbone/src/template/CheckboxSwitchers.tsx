@@ -14,6 +14,7 @@ import {
 } from "../components/icon/credIcons";
 
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
+import TemplatePageHeader from "./TemplatePageHeader";
 // import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
 
 const CheckboxAndSwitchers: React.FC = () => {
@@ -91,28 +92,17 @@ const CheckboxAndSwitchers: React.FC = () => {
   return (
     <>
       <group data-gap="30" data-space="30" data-align="start">
-        <group
-          data-direction="column"
-          data-gap="10"
-          data-background="adaptive-gray"
-          data-radius="20"
-          data-justify="end"
-          data-space="30"
-          data-contain=""
-        >
-          <group data-height="100" data-adaptive="desktop"></group>
-          <text
-            data-weight="700"
-            data-text-size="xxx-large"
-            data-wrap="wrap"
-            data-ellipsis=""
-          >
-            Checkbox & Radio
-          </text>
-          <text data-wrap="wrap" data-length="400" data-line="1.5">
-          Checkboxes allow users to toggle individual items on or off or select multiple options from a list, while radio buttons restrict selection to a single option.
-          </text>
-        </group>
+
+
+
+
+        <TemplatePageHeader
+        title="Checkbox & Radio"
+        description="Checkboxes allow users to toggle individual items on or off or select multiple options from a list, while radio buttons restrict selection to a single option."
+        version="2.0.0"
+        type="Component"
+      />
+
 
         <group data-gap="30">
           <group>
@@ -318,34 +308,15 @@ const CheckboxAndSwitchers: React.FC = () => {
             </group>
           </group>
 
-          <group
-            data-direction="column"
-            data-gap="10"
-            data-background="adaptive-gray"
-            data-radius="20"
-            data-justify="end"
-            data-space="30"
-            data-contain=""
-          >
-            <group data-height="100" data-adaptive="desktop"></group>
-            <text
-              data-weight="700"
-              data-text-size="xxx-large"
-              data-wrap="wrap"
-              //   data-color="main"
-            >
-              Switch
-            </text>
-            <text
-              data-wrap="wrap"
-              data-line="1.5"
-              data-max-length="300"
-              data-index="1"
-            >
-              Switches are used to toggle the selection of an item, turning it
-              on or off as needed.
-            </text>
-          </group>
+
+
+
+          <TemplatePageHeader
+        title="Switch"
+        description="Switches are used to toggle the selection of an item, turning it
+              on or off as needed."
+descriptionProps={{"data-length":"300"}}
+      />
 
           <group data-gap="30" data-align="start">
             <group
