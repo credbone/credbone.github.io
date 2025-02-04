@@ -92,8 +92,8 @@ function About() {
 
 
 <group  data-space="adaptive-30-50"  >
-<group  data-gap="10" data-index="2" data-direction="column">
-            <group data-width="auto">
+<group  data-gap="30" data-index="2" data-direction="column" data-width="auto" data-align="start">
+            <group data-width="auto" data-gap="30">
               <text
                 data-weight="800"
                 data-text-size="15"
@@ -104,34 +104,14 @@ function About() {
                 The
                 <br /> Project
               </text>
+              <separator data-horizontal=""></separator>
             </group>
-
-            <group data-width="auto">
-              <text
-                data-wrap="wrap"
-                data-max-length="300"
-               data-opacity="60"
-                data-line="1.5"
-                data-text-size="15"
-              >
-                A hybrid, atomic, and declarative design system that brings
-                flexibility, control and speed to projects.
-              </text>
-            </group>
-          </group>
-
-<group data-space="30" >
-
-</group>
-
-          <group
-        
+          
+            <group
             data-index="2"
-            
+          
             data-direction="column"
-            // data-background="highlight"
-
-            data-max-length="400"
+            data-length="200"
         
             data-radius="20"
             data-justify="center"
@@ -139,6 +119,25 @@ function About() {
           >
             <SvgLogoIllustration />
           </group>
+
+            <group data-width="auto">
+              <text
+                data-wrap="wrap"
+                data-length="300"
+            //   data-opacity="60"
+                data-line="1.5"
+                data-text-size="15"
+              >
+                A hybrid, atomic, and declarative design system that brings
+                flexibility, control and speed to projects.
+              </text>
+            </group>
+
+          </group>
+
+
+
+
 </group>
 
 

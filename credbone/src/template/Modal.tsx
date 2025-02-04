@@ -173,7 +173,7 @@ const Modal: React.FC = () => {
                       data-interactive=""
                       data-interact="popover"
                       data-space="15"
-                      data-radius="10"
+                      data-radius="5"
                       data-cursor="pointer"
                       data-background="main"
                       data-color="main-text"
