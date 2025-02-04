@@ -5,6 +5,7 @@ import Ripple from "../components/Ripple";
 
 import CustomSlider from "../components/inputs/slider";
 import SystemColorPicker from "./systemColorPicker";
+import TemplatePageHeader from "./TemplatePageHeader";
 
 const TypefaceTokens: React.FC = () => {
   const [selectedWeight, setSelectedWeight] = useState<string>("400");
@@ -88,31 +89,13 @@ const TypefaceTokens: React.FC = () => {
 
   return (
     <group data-gap="30">
-      <group
-        data-direction="column"
-        data-gap="30"
-        data-background="adaptive-gray"
-        data-radius="20"
-        data-justify="end"
-        data-space="30"
-      >
-        <group data-height="50" data-adaptive="desktop"></group>
 
-        <group data-direction="column" data-gap="10">
-          <text data-weight="700" data-text-size="xxx-large" data-wrap="wrap">
-            Tokens
-          </text>
-          <text
-            data-wrap="wrap"
-            data-line="1.5"
-            //   data-opacity="60"
-            data-max-length="400"
-          >
-            Design parameters applicable for text components, including style,
-            spacing, and alignment properties.
-          </text>
-        </group>
-      </group>
+
+      <TemplatePageHeader
+        title="Tokens"
+        description="Design parameters applicable for text components, including style, spacing, and alignment properties."
+      />
+
 
       <group data-gap="15" data-align="start">
         <group data-space="20">

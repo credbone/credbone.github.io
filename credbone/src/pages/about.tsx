@@ -88,25 +88,18 @@ function About() {
         data-max-length="1200"
         data-contain=""
       >
-        <group
-          //  data-adaptive="desktop"
-          data-gap="30"
-          data-direction="column"
-          // data-background="highlight"
 
-          data-height="30"
-          data-align="center"
-          data-contain=""
-        ></group>
 
-        <group data-space="45">
-          <group data-gap="40" data-index="2">
+
+<group  data-space="adaptive-30-50"  >
+<group  data-gap="10" data-index="2" data-direction="column">
             <group data-width="auto">
               <text
-                data-weight="700"
-                data-text-size="xx-large"
+                data-weight="800"
+                data-text-size="15"
                 data-wrap="wrap"
-                data-line="30"
+                data-line="1"
+                data-font-type="hero"
               >
                 The
                 <br /> Project
@@ -117,7 +110,7 @@ function About() {
               <text
                 data-wrap="wrap"
                 data-max-length="300"
-                data-opacity="40"
+               data-opacity="60"
                 data-line="1.5"
                 data-text-size="15"
               >
@@ -127,21 +120,26 @@ function About() {
             </group>
           </group>
 
+<group data-space="30" >
+
+</group>
+
           <group
+        
             data-index="2"
-            data-gap="30"
+            
             data-direction="column"
             // data-background="highlight"
 
             data-max-length="400"
-            data-space-vertical="30"
+        
             data-radius="20"
             data-justify="center"
             data-align="center"
           >
             <SvgLogoIllustration />
           </group>
-        </group>
+</group>
 
 
 
