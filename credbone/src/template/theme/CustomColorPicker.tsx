@@ -126,7 +126,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
-        data-gap="5"
+        data-gap="10"
         
       >
         <group

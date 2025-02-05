@@ -269,10 +269,6 @@ const Colors: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-
-
-
-
       <TemplatePageHeader
         title="Color System"
         description="A color system can assist in crafting a color palette that mirrors
@@ -281,95 +277,85 @@ const Colors: React.FC = () => {
           interfaces."
         version="3.0.1"
         type="Token"
-        descriptionProps={{"data-length":"600"}}
-        
+        descriptionProps={{ "data-length": "600" }}
       />
 
-
-      <group data-gap="30">
-        <group data-gap="30" data-align="center">
+      <group data-gap="30"   data-border=""  data-radius="30" data-space="30">
+        <group data-gap="15" data-align="center" data-space="15">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Primary Color
             </text>
           </group>
 
-          <group data-gap="30" 
-          // data-width="auto" data-border="" data-radius="15" data-space="20"
+          <group
+            data-gap="30"
+            // data-width="auto" data-border="" data-radius="15" data-space="20"
           >
-          <Popover
-                content={
-                  <group
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="1.25"
-                  >
-                    <RichThemePicker pickerType="primary" />
-                  </group>
-                }
-                data-space="5"
-                data-radius="10"
-                data-backdrop="10"
-                data-width="auto"
-              >
-
-
-
-<group
-        data-width="auto"
-
-        data-over-color="none"
-        data-interactive=""
-        data-cursor="pointer"
-        data-align="center"
-        data-wrap="no"
-        data-gap="5"
-      >
-        <group
-          data-interact=""
-          
-          data-length="30"
-          data-height="60"
-          data-radius="5"
-data-background="highlight"
-data-contain=""
-        >
-
-
-          
-        </group>
-
-        <group  data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
-          <text data-weight="700">
-          Swatches
-          </text>
-          <text data-opacity="30">Select from presets</text>
-        </group>
-      </group>
-
-
-              </Popover>
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
-              <CustomColorPicker target="primary" />
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
             <text
               data-wrap="wrap"
               data-light=""
               data-line="20"
               data-max-length="240"
             >
-The selected color will define the UI, with additional shades generated automatically.
+              The selected color will define the UI, with additional shades
+              generated automatically.
             </text>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
+
+            <Popover
+              content={
+                <group
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="primary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
+            >
+              <group
+                data-width="auto"
+                data-over-color="none"
+                data-interactive=""
+                data-cursor="pointer"
+                data-align="center"
+                data-wrap="no"
+                data-gap="15"
+              >
+
+
+                <group
+                  data-interact=""
+                  data-direction="column"
+                  data-react="background"
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-radius="10"
+                >
+                  <text data-weight="700">Swatches</text>
+                  <text data-opacity="30">Select from presets</text>
+                </group>
+              </group>
+            </Popover>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
+            <CustomColorPicker target="primary" />
           </group>
         </group>
 
-        <group data-type="grid" data-grid-template="110" data-gap="5">
+        <group
+          data-type="grid"
+          data-grid-template="110"
+          data-gap="5"
+          data-contain=""
+          data-radius="10"
+        >
           {ColorPalette.map((color, index) => (
             <group
-
-
-
-
               key={index}
               data-contain=""
               data-length="auto"
@@ -391,89 +377,88 @@ The selected color will define the UI, with additional shades generated automati
         </group>
       </group>
 
-      <separator data-horizontal=""></separator>
+      <group data-space="50" data-gap="30">
 
-      <group data-gap="30" >
-        <group data-gap="30" data-align="center">
+
+
+
+  <group data-width="auto"><text data-wrap="wrap" data-line="1.5" data-max-length="300">This demo showcases token functionality for value demonstration only. Combine tokens thoughtfully to create valid and effective designs.</text></group>
+      </group>
+
+      <group data-gap="30"  data-border="" data-radius="30" data-space="30">
+        <group data-gap="15" data-align="center" data-space="15">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Secondary Color
             </text>
           </group>
 
-
-          <group data-gap="30"
-          //  data-width="auto" data-border="" data-radius="15" data-space="20"
-           >
-          <Popover
-                content={
-                  <group
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="1.25"
-                  >
-                    <RichThemePicker pickerType="secondary" />
-                  </group>
-                }
-                data-space="5"
-                data-radius="10"
-                data-backdrop="10"
-                data-width="auto"
-              >
-
-
-
-<group
-        data-width="auto"
-
-        data-over-color="none"
-        data-interactive=""
-        data-cursor="pointer"
-        data-align="center"
-        data-wrap="no"
-        data-gap="5"
-      >
-        <group
-          data-interact=""
-          data-length="30"
-          data-height="60"
-          data-radius="5"
-data-background="highlight"
-data-contain=""
-        >
-
-
-
-        </group>
-
-        <group data-interact="" data-direction="column"  data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
-          <text data-weight="700">
-          Swatches
-          </text>
-          <text data-opacity="30">Select from presets</text>
-        </group>
-      </group>
-
-
-              </Popover>
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
-              <CustomColorPicker target="secondary" />
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
+          <group
+            data-gap="30"
+            //  data-width="auto" data-border="" data-radius="15" data-space="20"
+          >
             <text
               data-wrap="wrap"
               data-light=""
               data-line="20"
               data-max-length="240"
             >
-The selected color will define the UI, with additional shades generated automatically.
+              The selected color will define the UI, with additional shades
+              generated automatically.
             </text>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
+            <Popover
+              content={
+                <group
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+                >
+                  <RichThemePicker pickerType="secondary" />
+                </group>
+              }
+              data-space="5"
+              data-radius="10"
+              data-backdrop="10"
+              data-width="auto"
+            >
+              <group
+                data-width="auto"
+                data-over-color="none"
+                data-interactive=""
+                data-cursor="pointer"
+                data-align="center"
+                data-wrap="no"
+                data-gap="5"
+              >
+                {/* <group
+                  data-interact=""
+                  data-length="30"
+                  data-height="60"
+                  data-radius="5"
+                  data-background="highlight"
+                  data-contain=""
+                ></group> */}
+
+                <group
+                  data-interact=""
+                  data-direction="column"
+                  data-react="background"
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-radius="10"
+                >
+                  <text data-weight="700">Swatches</text>
+                  <text data-opacity="30">Select from presets</text>
+                </group>
+              </group>
+            </Popover>
+            <separator data-vertical="adaptive-1200" data-height=""></separator>
+            <CustomColorPicker target="secondary" />
           </group>
-
-
-
         </group>
 
-        <group data-type="grid" data-grid-template="110" data-gap="5">
+        <group data-type="grid" data-grid-template="110" data-gap="5"   data-contain=""        data-radius="10">
           {ColorPalette.map((color, index) => (
             <group
               key={index}
@@ -497,12 +482,10 @@ The selected color will define the UI, with additional shades generated automati
         </group>
       </group>
 
-      <separator data-horizontal=""></separator>
-
-      <group data-gap="30">
-        <group data-gap="30" data-align="center">
+      <group data-gap="30"  data-border="" data-radius="30" data-space="30">
+        <group data-gap="15" data-align="center" data-space="15">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="x-large">
+            <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Neutral Scale
             </text>
           </group>
@@ -520,7 +503,7 @@ The selected color will define the UI, with additional shades generated automati
           </group>
         </group>
 
-        <group data-type="grid" data-grid-template="110" data-gap="5">
+        <group data-type="grid" data-grid-template="110" data-gap="5"   data-contain=""         data-radius="10">
           {ColorPalette.map((color, index) => (
             <group
               key={index}
@@ -538,15 +521,17 @@ The selected color will define the UI, with additional shades generated automati
               <text data-ellipsis="" data-light="" data-color="reset">
                 {color.description}
               </text>
-              <text data-weight="700"  data-color="reset">{color.name}</text>
+              <text data-weight="700" data-color="reset">
+                {color.name}
+              </text>
             </group>
           ))}
         </group>
       </group>
 
-      <separator data-horizontal=""></separator>
-      <group data-direction="column" data-gap="10">
-        <text data-weight="700" data-text-size="x-large" data-wrap="wrap">
+<group data-gap="30"  data-border="" data-radius="30" data-space="30">
+      <group data-direction="column" data-gap="15" data-space="15">
+        <text data-weight="700" data-text-size="large" data-wrap="wrap">
           Base Colors
         </text>
         <text data-wrap="wrap" data-length="400" data-line="1.5" data-light="">
@@ -557,20 +542,18 @@ The selected color will define the UI, with additional shades generated automati
 
       <group
         data-shrink="no"
-        data-weight="600"
         //   data-max-length="1120"
         data-type="grid"
-        data-gap="5"
-        data-grid-template="110"
+data-gap="2"
+        data-grid-template="55"
         // data-border=""
         // data-radius="20"
         data-contain=""
+        data-radius="10"
       >
         {BaseColors.map((colors, index) => (
           <group
             data-background="main-background"
-            // data-row-end={colors.type === "tall" ? "2" : ""}
-            // data-column-end={colors.type === "wide" ? "2" : ""}
             onClick={() =>
               handleColorClick(
                 colors.name,
@@ -581,40 +564,31 @@ The selected color will define the UI, with additional shades generated automati
                 colors.hexdark
               )
             }
-            data-over-color="neutral"
-            data-cursor="pointer"
+
             key={index}
             data-contain=""
             data-direction="column"
-            daat-wrap="no"
             data-wrap="no"
-            //     data-border=""
-            //  data-space="5"
-            //  data-radius="15"
+            
           >
             <group
               data-interact=""
               data-position="bottom"
               data-wrap="no"
-              // data-contain=""
-              // data-radius="10"
-              data-gap="5"
+
               data-direction="column"
-               data-interactive=""
-                data-over-color="none"
+data-gap="2"
+
+              data-height="fit"
             >
-              <group
+              {/* <group
                 data-direction="column"
-                data-space="15"
-               data-react="background"
+                data-space="20"
+                data-react="background"
                 data-interact=""
-               // data-ratio="1:2"
+                data-height="fit"
                 data-gap="20"
-                data-space-top="40"
-              
-              
               >
-               
                 <text
                   data-wrap="wrap"
                   data-opacity="30"
@@ -624,34 +598,25 @@ The selected color will define the UI, with additional shades generated automati
                 >
                   {colors.description}
                 </text>
-<separator data-horizontal=""></separator>
-                <group data-direction="column" data-gap="5">
-                  <text data-ellipsis="" data-wrap="wrap" data-weight="700">
+                <separator data-horizontal=""></separator>
+                <text data-ellipsis="" data-weight="600">
                     {colors.name}
                   </text>
+                <group data-direction="column">
                   <text data-contain="" data-opacity="20">
                     {index + 1 < 10 ? `0${index + 1}` : index + 1}
                   </text>
+
                 </group>
-              </group>
+              </group> */}
 
-              <group
-
-                data-ratio="1:1"
-                data-background={colors.value + "-light"}
-                data-space="15"
-              ></group>
-              <group data-ratio="1:1" data-background={colors.value}>
-              
-
-              </group>
-              <group
-                data-ratio="1:1"
-                data-background={colors.value + "-dark"}
-              ></group>
+              <group data-interactive="" data-cursor="pointer"   data-ratio="1:1" data-background={colors.value + "-light"} data-space="15" ></group>
+              <group data-interactive="" data-cursor="pointer"   data-ratio="1:1" data-background={colors.value}></group>
+              <group data-interactive="" data-cursor="pointer"   data-ratio="1:1" data-background={colors.value + "-dark"} ></group>
             </group>
           </group>
         ))}
+      </group>
       </group>
     </group>
   );
