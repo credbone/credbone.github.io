@@ -684,8 +684,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
-
-[data-margin-left="5"]{margin-right:5px;}
+[data-margin-left="-15"]{margin-left:-15px;}
+[data-margin-left="5"]{margin-left:5px;}
 [data-margin-right="5"]{margin-right:5px;}
 
 [data-margin="0"]{margin:0px;}
@@ -793,6 +793,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-gap='1'] { gap: 1px; }
 [data-gap='2'] { gap: 2px; }
+[data-gap='3'] { gap: 3px; }
+[data-gap='4'] { gap: 4px; }
 [data-gap='5'] { gap: 5px; }
 [data-gap='10'] { gap: 10px; }
 [data-gap='15'] { gap: 15px; }
