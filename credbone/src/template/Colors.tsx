@@ -280,8 +280,8 @@ const Colors: React.FC = () => {
         descriptionProps={{ "data-length": "600" }}
       />
 
-      <group data-gap="30"   data-border=""  data-radius="30" data-space="30">
-        <group data-gap="15" data-align="center" data-space="15">
+      <group data-gap="30"   >
+        <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Primary Color
@@ -377,16 +377,16 @@ const Colors: React.FC = () => {
         </group>
       </group>
 
-      <group data-space="50" data-gap="30">
+      {/* <group data-space="50" data-gap="30">
 
 
 
 
   <group data-width="auto"><text data-wrap="wrap" data-line="1.5" data-max-length="300">This demo showcases token functionality for value demonstration only. Combine tokens thoughtfully to create valid and effective designs.</text></group>
-      </group>
+      </group> */}
 
-      <group data-gap="30"  data-border="" data-radius="30" data-space="30">
-        <group data-gap="15" data-align="center" data-space="15">
+      <group data-gap="30"  >
+        <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Secondary Color
@@ -482,8 +482,8 @@ const Colors: React.FC = () => {
         </group>
       </group>
 
-      <group data-gap="30"  data-border="" data-radius="30" data-space="30">
-        <group data-gap="15" data-align="center" data-space="15">
+      <group data-gap="30"  >
+        <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-weight="700" data-text-size="large">
               Neutral Scale
@@ -529,8 +529,8 @@ const Colors: React.FC = () => {
         </group>
       </group>
 
-<group data-gap="30"  data-border="" data-radius="30" data-space="30">
-      <group data-direction="column" data-gap="15" data-space="15">
+<group data-gap="30"  >
+      <group data-direction="column" data-gap="15" data-space="30">
         <text data-weight="700" data-text-size="large" data-wrap="wrap">
           Base Colors
         </text>
@@ -545,7 +545,7 @@ const Colors: React.FC = () => {
         //   data-max-length="1120"
         data-type="grid"
 data-gap="2"
-        data-grid-template="55"
+        data-grid-template="60"
         // data-border=""
         // data-radius="20"
         data-contain=""
