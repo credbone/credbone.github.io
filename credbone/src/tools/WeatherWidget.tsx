@@ -262,6 +262,8 @@ data-name="weather-widget"
                 data-text-size="large"
                 data-text-transform="capitalize"
                 data-wrap="wrap"
+                              data-font-type="hero"
+              data-line="1"
               >
                 {weather.description}
               </text>

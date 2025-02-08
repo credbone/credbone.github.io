@@ -305,6 +305,11 @@ const Popover: React.FC<PopoverProps> = ({
             data-index="3"
             data-space="15"
             data-contain=""
+
+            data-animation-name="tooltip"
+            data-fill-mode="backwards"
+            data-animation-duration="2.25"
+
             ref={popoverRef}
             className={`popover ${placement}`}
             style={popoverPosition}

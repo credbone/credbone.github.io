@@ -15,7 +15,7 @@ group[data-type="grid"][data-grid-template="30"]{grid-template-columns: repeat(a
 
 group[data-type="grid"][data-grid-template="40"]{grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));} 
 group[data-type="grid"][data-grid-template="50"]{grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));} 
-group[data-type="grid"][data-grid-template="55"]{grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));} 
+group[data-type="grid"][data-grid-template="58"]{grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));} 
 group[data-type="grid"][data-grid-template="60"]{grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));} 
 group[data-type="grid"][data-grid-template="70"]{grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));} 
 group[data-type="grid"][data-grid-template="80"]{grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));} 
@@ -69,7 +69,7 @@ group[data-type="grid"][data-grid-template="360"]
 
 @media (max-width: 300px) {
 group[data-type="grid"],
-group[data-type="grid"][data-grid-template]:not([data-grid-template="50"]):not([data-grid-template="40"]):not([data-grid-template="30"]):not([data-grid-template="55"])
+group[data-type="grid"][data-grid-template]:not([data-grid-template="50"]):not([data-grid-template="40"]):not([data-grid-template="30"]):not([data-grid-template="58"])
 
 
 {grid-template-columns: repeat(auto-fit, 100%);}

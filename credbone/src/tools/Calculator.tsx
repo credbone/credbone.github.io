@@ -61,7 +61,7 @@ const Calculator: React.FC = () => {
     { color:"", background:"",  label: "1", action: () => handleButtonClick("1"), type: "" },
     { color:"", background:"",  label: "2", action: () => handleButtonClick("2"), type: "" },
     { color:"", background:"",  label: "3", action: () => handleButtonClick("3"), type: "" },
-    { color:"peach-light", background:"deep-orange-light", label: "=", action: calculateResult, type: "tall" },
+    { color:"ember-lighter", background:"ember-light", label: "=", action: calculateResult, type: "tall" },
     { color:"", background:"", label: "0", action: () => handleButtonClick("0"), type: "wide" },
     { color:"", background:"", label: ".", action: () => handleButtonClick("."), type: "" },
    

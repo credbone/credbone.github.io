@@ -70,6 +70,8 @@ data-gap="20"
               data-text-size="large"
               data-ellipsis=""
               //    data-opacity="70"
+              data-font-type="hero"
+              data-line="1"
             >
               Unit<br></br> Converter
             </text>
@@ -100,6 +102,8 @@ data-gap="20"
               data-text-size="large"
               data-ellipsis=""
               // data-opacity="70"
+                            data-font-type="hero"
+              data-line="1"
             >
               Basic<br></br> Calculator
             </text>
@@ -134,6 +138,8 @@ data-gap="20"
               data-text-size="large"
               data-ellipsis=""
               //  data-opacity="70"
+                            data-font-type="hero"
+              data-line="1"
             >
               Simple
               <br></br> Paint

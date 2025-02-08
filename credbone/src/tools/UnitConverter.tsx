@@ -510,17 +510,10 @@ const UnitConverter: React.FC = () => {
       </group>
 
       {getFormula() && (
-        <group data-gap="10" data-space="15" data-direction="column" data-align="start" data-max-length="260">
-          <group
-            data-background="amber-light"
-            data-color="brown-dark"
-            data-width="auto"
-            data-space="10"
-            data-radius="10"
-          >
-            <text data-weight="700">Formula</text>
-          </group>
-          <text data-wrap="wrap" data-line="20">
+        <group   data-background="yellow-light"
+        data-color="yellow-darker" data-radius="10" data-gap="10" data-space="15" data-direction="column" data-align="start" >
+ <text data-weight="700">Formula</text>
+          <text data-wrap="wrap" data-line="1.5">
             {getFormula()}
           </text>
         </group>
