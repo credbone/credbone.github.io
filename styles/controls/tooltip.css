@@ -1,8 +1,7 @@
-@keyframes tooltip {
-  from {
-    opacity: 0;
-  }
-}
+@keyframes tooltip { from { opacity: 0; } }
+[data-animation-name="tooltip"] {animation-name: tooltip;}
+
+
 
 group.tooltip {
   animation: tooltip .225s backwards;
@@ -13,11 +12,7 @@ group.tooltip {
 }
 
 [data-length].tooltip{max-width: calc(100% - 20px);}
-
-[data-background="tooltip"]
-{
-  background-color: #2d2d2d;
-}
+[data-background="tooltip"] { background-color: #2d2d2d; }
 
 
 @keyframes popover-top {
@@ -38,7 +33,7 @@ group.tooltip {
 
 
 group.popover {
-  animation: tooltip .225s  backwards;
+
   position: absolute;
   z-index: 9998;
   max-width: calc(100% - 20px);
