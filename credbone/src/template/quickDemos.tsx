@@ -47,6 +47,7 @@ data-radius="20"
 data-contain=""
 data-border="outline"
 data-gap="20"
+
 >
 
 <WeatherWidget  />
@@ -127,7 +128,7 @@ data-gap="20"
          data-border=""
           data-contain=""
           data-space="30"
-             data-gap="20"
+             data-gap="30"
           data-length="500"
         >
 

@@ -8,35 +8,15 @@ import CustomColorPicker from "./theme/CustomColorPicker";
 import TemplatePageHeader from "./TemplatePageHeader";
 
 export const ColorPalette = [
-  {
-    textcolor: "-darker",
-    code: "-lightest",
-    name: "Lightest",
-    description: "100",
-  },
-  {
-    textcolor: "-darker",
-    code: "-lighter",
-    name: "Lighter",
-    description: "200",
-  },
+  { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
+  { textcolor: "-darker", code: "-lighter", name: "Lighter", description: "200", },
   { textcolor: "-darker", code: "-light", name: "Light", description: "300" },
   { textcolor: "-text", code: "-soft", name: "Soft", description: "400" },
   { textcolor: "-text", code: "", name: "Base", description: "500" },
   { textcolor: "-lighter", code: "-deep", name: "Deep", description: "600" },
   { textcolor: "-lighter", code: "-dark", name: "Dark", description: "700" },
-  {
-    textcolor: "-lightest",
-    code: "-darker",
-    name: "Darker",
-    description: "800",
-  },
-  {
-    textcolor: "-lightest",
-    code: "-darkest",
-    name: "Darkest",
-    description: "900",
-  },
+  { textcolor: "-lightest", code: "-darker", name: "Darker", description: "800", },
+  { textcolor: "-lightest", code: "-darkest", name: "Darkest", description: "900", },
 ];
 
 const Colors: React.FC = () => {
@@ -125,7 +105,7 @@ const Colors: React.FC = () => {
 
         <group
           data-type="grid"
-          data-grid-template="110"
+          data-grid-template="110/80"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -143,11 +123,12 @@ const Colors: React.FC = () => {
               data-space="20"
               data-background={"main" + color.code}
               data-color={"main" + color.textcolor}
+              data-wrap="no"
             >
               <text data-ellipsis="" data-light="">
                 {color.description}
               </text>
-              <text data-weight="700">{color.name}</text>
+              <text data-ellipsis="" data-weight="700">{color.name}</text>
             </group>
           ))}
         </group>
@@ -219,7 +200,7 @@ const Colors: React.FC = () => {
 
         <group
           data-type="grid"
-          data-grid-template="110"
+                    data-grid-template="110/80"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -237,11 +218,12 @@ const Colors: React.FC = () => {
               data-space="20"
               data-background={"secondary" + color.code}
               data-color={"secondary" + color.textcolor}
+              data-wrap="no"
             >
               <text data-ellipsis="" data-light="">
                 {color.description}
               </text>
-              <text data-weight="700">{color.name}</text>
+              <text data-ellipsis="" data-weight="700">{color.name}</text>
             </group>
           ))}
         </group>
@@ -270,7 +252,7 @@ const Colors: React.FC = () => {
 
         <group
           data-type="grid"
-          data-grid-template="110"
+                  data-grid-template="110/80"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -288,11 +270,12 @@ const Colors: React.FC = () => {
               data-space="20"
               data-background={"neutral" + color.code}
               data-color={"neutral" + color.textcolor}
+              data-wrap="no"
             >
               <text data-ellipsis="" data-light="" data-color="reset">
                 {color.description}
               </text>
-              <text data-weight="700" data-color="reset">
+              <text data-ellipsis="" data-weight="700" data-color="reset">
                 {color.name}
               </text>
             </group>

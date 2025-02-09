@@ -209,6 +209,7 @@ text[data-width="auto"]{width: initial;}
 [data-right="30"] { right: 30px; }
 
 [data-right="100%"] { right: 100%; }
+[data-right="75%"] { right: 75%; }
 [data-right="50%"] { right: 50%; }
 
 
@@ -243,6 +244,10 @@ text[data-width="auto"]{width: initial;}
 [data-left="25"] { left: 25px; }
 [data-left="30"] { left: 30px; }
 [data-left="full"] { left: 100%; }
+
+[data-left="100%"] { left: 100%; }
+[data-left="75%"] { left: 75%; }
+[data-left="50%"] { left: 50%; }
 
 
 [dir="rtl"] [data-position="right"] {margin-right: auto;margin-left: initial;}
