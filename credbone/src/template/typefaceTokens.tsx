@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Popover from "../components/popover";
 import Ripple from "../components/Ripple";
@@ -14,6 +14,46 @@ const TypefaceTokens: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<string>("text");
   const [LineValue, setLineValue] = useState(1.2);
   const [selectedTransform, setselectedTransform] = useState<string>("none");
+
+
+
+
+
+
+
+
+    const [hasChanged, setHasChanged] = useState(false);
+  
+    // Check if any value has changed from the initial state
+    useEffect(() => {
+      if (
+        selectedWeight !== "400" ||
+        selectedAlignment !== "left" ||
+        selectedSize !== "large" ||
+        selectedColor !== "text" ||
+        LineValue !== 1.2 ||
+        selectedTransform !== "none"
+      ) {
+        setHasChanged(true);
+      }
+    }, [selectedWeight, selectedAlignment, selectedSize, selectedColor,LineValue,selectedTransform]);
+
+
+
+
+
+const resetValues = () => {
+  setSelectedWeight("400");
+  setSelectedAlignment("left");
+  setSelectedSize("large");
+  setSelectedColor("text");
+  setLineValue(1.2);
+  setselectedTransform("none");
+  setHasChanged(false); // Hide the reset button after reset
+};
+
+
+
 
   // const isTransparent = selectedColor === "transparent";
   const isbackground = selectedColor === "main-background";
@@ -572,9 +612,12 @@ const TypefaceTokens: React.FC = () => {
           data-sticky="top"
           data-top="15"
           data-direction="column"
+          data-align="start"
           data-fit="2"
           data-border=""
-          data-radius="15"
+          data-radius="20"
+           data-space="30"
+           data-gap="30"
           data-background={
             isbackground
               ? "text"
@@ -586,7 +629,9 @@ const TypefaceTokens: React.FC = () => {
           }
         >
           <text
-            data-space="30"
+           
+           data-duration=".125"
+          data-transition-prop="font-size-line-height"
             data-weight={selectedWeight}
             data-text-align={selectedAlignment}
             data-text-size={selectedSize}
@@ -604,9 +649,8 @@ const TypefaceTokens: React.FC = () => {
           {isbackground ? (
             <group
               data-color="main-background"
-              data-gap="20"
-              data-space="30"
-              data-space-top="0"
+              data-gap="30"
+
             >
               <separator data-horizontal=""></separator>
               <text data-wrap="wrap" data-line="1.5" data-max-length="400">
@@ -623,9 +667,9 @@ const TypefaceTokens: React.FC = () => {
                   ? "secondary-text"
                   : ""
               }
-              data-gap="20"
-              data-space="30"
-              data-space-top="0"
+              data-gap="30"
+
+
             >
               <separator data-horizontal=""></separator>
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
@@ -634,7 +678,7 @@ const TypefaceTokens: React.FC = () => {
               </text>
             </group>
           ) : ismain ? (
-            <group data-gap="20" data-space="30" data-space-top="0">
+            <group data-gap="30">
               <separator data-horizontal=""></separator>
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
                 If the main color lacks contrast, a different shade will be
@@ -642,7 +686,7 @@ const TypefaceTokens: React.FC = () => {
               </text>
             </group>
           ) : (
-            <group data-gap="20" data-space="30" data-space-top="0">
+            <group data-gap="30">
               <separator data-horizontal=""></separator>
               <text
                 data-wrap="wrap"
@@ -654,6 +698,37 @@ const TypefaceTokens: React.FC = () => {
               </text>
             </group>
           )}
+
+
+
+  
+{hasChanged && (
+                <group
+                  data-space="15"
+                  data-align="center"
+                  data-justify="center"
+               data-background={selectedColor === "main-text" ? "main-text" : selectedColor === "secondary-text" ? "secondary-text" : selectedColor === "main-background" ? "main-background" : "adaptive-gray"}
+               data-color={selectedColor === "main-text" ? "main-color" : selectedColor === "secondary-text" ? "secondary" : selectedColor === "main-background" ? "text" : "adaptive-gray"}
+
+                  data-width="auto"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="10"
+                  data-cursor="pointer"
+
+
+                  data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+
+                  onClick={resetValues}
+                >
+                  <text>Reset</text>
+                </group>
+              )}
+
+
+
         </group>
       </group>
     </group>

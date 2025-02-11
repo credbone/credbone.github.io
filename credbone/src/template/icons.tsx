@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 
@@ -72,8 +72,6 @@ const Icons: React.FC = () => {
   const [isInverted, setIsInverted] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>("text");
 
-
-
   const toggleInvert = () => {
     setIsInverted((prev) => !prev);
     if (selectedColor === "text") {
@@ -82,18 +80,16 @@ const Icons: React.FC = () => {
       setSelectedColor("text");
     }
   };
-  
+
   const handleColorSelect = (color: string) => {
     setSelectedColor(color);
-  
+
     if (color === "text") {
       setIsInverted(false); // Set inverted state to false for "text"
     } else if (color === "main-background") {
       setIsInverted(true); // Set inverted state to true for "main-background"
     }
   };
-
-
 
   const updateDisplay = (value: string) => {
     const parentContainers = document.querySelectorAll(
@@ -151,100 +147,143 @@ const Icons: React.FC = () => {
     (icon) => icon.title === selectedIcon
   );
 
+  const [hasChanged, setHasChanged] = useState(false);
+
+
+
+    // Check if any value has changed from the initial state
+    useEffect(() => {
+      if (
+        IconSize !== 64 || IconStroke !== 2 || isFilled !== false || (selectedColor !== "text" && selectedColor !== "main-background")
+      ) {
+        setHasChanged(true);
+      }
+    }, [IconSize, IconStroke, isFilled, selectedColor,selectedColor]);
+
+
+const resetValues = () => {
+  setIconSize(64);
+  setIconStroke(2);
+  setisFilled(false);
+  setSelectedColor("text");
+  setIsInverted(false)
+  setHasChanged(false); // Hide the reset button after reset
+};
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
   return (
     <group
       data-space="30"
-    //  data-gap="30"
+      //  data-gap="30"
       data-align="start"
       data-direction="column"
     >
-
-
-
       <TemplatePageHeader
         title="Icons"
         description="Currently, Lucide serves as the standard icon set, integrated into existing components, with additional custom-designed icons for specific use cases."
       />
 
-
       <group data-direction="column" data-gap="50">
-        <group >
-
-
-<StuckReporter>
-{(isSticky) => (
-<group data-sticky="top" data-space-vertical="30" data-space-horizontal={isSticky ? "30" : ""} data-duration=".125">
-            <group
-              data-length="600"
-              data-radius="10"
-              data-border="outline"
-              data-align="center"
-              data-backdrop="10"
-              data-contain=""
-              data-shrink="no"
-            >
-              <Ripple>
-                <label
+        <group>
+          <StuckReporter>
+            {(isSticky) => (
+              <group
+                data-sticky="top"
+                data-space-vertical="30"
+                data-space-horizontal={isSticky ? "30" : ""}
+                data-duration=".125"
+              >
+                <group
+                  data-length="600"
+                  data-radius="10"
+                  data-border="outline"
                   data-align="center"
-                  className="field"
-                  data-label="left"
-                  data-multi-element=""
-                  data-length="autofit"
-                  data-space-horizontal="10"
+                  data-backdrop="10"
+                  data-contain=""
+                  data-shrink="no"
                 >
-                  <div className="form_fields">
-                    <div className="field_cont" data-height="50" data-gap="10">
-                      <group
-                        data-length="30"
-                        data-align="center"
-                        data-justify="center"
-                      >
-                        <IconSearch size={20} />
-                      </group>
-
-                      <separator data-vertical="" data-height="20"></separator>
-                      <input
-                        type="search"
-                        className="icon_search"
-                        placeholder="Search..."
-                        onChange={handleSearch}
-                        value={searchValue}
-                      />
-                      {searchValue && (
-                        <Tooltip content="Clear">
+                  <Ripple>
+                    <label
+                      data-align="center"
+                      className="field"
+                      data-label="left"
+                      data-multi-element=""
+                      data-length="autofit"
+                      data-space-horizontal="10"
+                    >
+                      <div className="form_fields">
+                        <div
+                          className="field_cont"
+                          data-height="50"
+                          data-gap="10"
+                        >
                           <group
-                            data-contain=""
-                            data-space="5"
-                            data-shrink="no"
-                            data-interactive=""
-                            data-width="auto"
-                            data-cursor="pointer"
-                            data-radius="5"
+                            data-length="30"
                             data-align="center"
-                            data-direction="column"
-                            onClick={clearSearch}
-                            data-animation-name="appear-bottom"
-                            data-fill-mode="backwards"
-                            data-animation-duration="2"
+                            data-justify="center"
                           >
-                            <icon data-height="auto">{<X size={20} />}</icon>
+                            <IconSearch size={20} />
                           </group>
-                        </Tooltip>
-                      )}
-                    </div>
-                  </div>
-                </label>
-              </Ripple>
-            </group>
-          </group>
- )}
-</StuckReporter>
+
+                          <separator
+                            data-vertical=""
+                            data-height="20"
+                          ></separator>
+                          <input
+                            type="search"
+                            className="icon_search"
+                            placeholder="Search..."
+                            onChange={handleSearch}
+                            value={searchValue}
+                          />
+                          {searchValue && (
+                            <Tooltip content="Clear">
+                              <group
+                                data-contain=""
+                                data-space="5"
+                                data-shrink="no"
+                                data-interactive=""
+                                data-width="auto"
+                                data-cursor="pointer"
+                                data-radius="5"
+                                data-align="center"
+                                data-direction="column"
+                                onClick={clearSearch}
+                                data-animation-name="appear-bottom"
+                                data-fill-mode="backwards"
+                                data-animation-duration="2"
+                              >
+                                <icon data-height="auto">
+                                  {<X size={20} />}
+                                </icon>
+                              </group>
+                            </Tooltip>
+                          )}
+                        </div>
+                      </div>
+                    </label>
+                  </Ripple>
+                </group>
+              </group>
+            )}
+          </StuckReporter>
 
           <group data-gap="50">
             <group data-name="icon-group" data-gap="50">
               <group data-border="" data-radius="20">
-
-
                 <group data-space="30">
                   <group
                     data-background="main-background"
@@ -442,8 +481,24 @@ const Icons: React.FC = () => {
           //    data-autofit="1-600"
         >
           <group
-            data-background={selectedColor === "main-text" ? "main" :  selectedColor === "secondary-text" ? "secondary" : isInverted ? "text" : ""}
-            data-color={selectedColor === "main-text" ? "main-text" : selectedColor === "secondary-text" ? "secondary-text" : isInverted ? "main-background" : ""}
+            data-background={
+              selectedColor === "main-text"
+                ? "main"
+                : selectedColor === "secondary-text"
+                ? "secondary"
+                : isInverted
+                ? "text"
+                : ""
+            }
+            data-color={
+              selectedColor === "main-text"
+                ? "main-text"
+                : selectedColor === "secondary-text"
+                ? "secondary-text"
+                : isInverted
+                ? "main-background"
+                : ""
+            }
             // data-sticky="top"
             // data-top="15"
             //   data-direction="column"
@@ -490,36 +545,61 @@ const Icons: React.FC = () => {
             <group data-width="auto" data-gap="30">
               <separator data-horizontal=""></separator>
 
+<group data-gap="10">
+{selectedColor === "main-text" || selectedColor === "secondary-text" ? (
+                <group data-length="240" data-space-bottom="20" >
+                  <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+                    Ensuring optimal contrast on main & secondary backgrounds
+                    with system-generated colors
+                  </text>
 
-{selectedColor === "main-text" || selectedColor === "secondary-text" ? 
+                </group>
+              ) : (
+                <group
+                  data-space="15"
+                  data-align="center"
+                  data-justify="center"
+                  data-background="adaptive-gray"
+                  data-width="auto"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="10"
+                  data-cursor="pointer"
+                  onClick={toggleInvert}
+                >
+                  <text>Invert</text>
+                </group>
+              )}
 
 
-<group data-length="240">
-<text data-wrap="wrap" data-line="1.5" data-max-length="300">
-Ensuring optimal contrast on main & secondary backgrounds with
-system-generated colors
-</text>
-  </group>
 
-: 
+{hasChanged && (
+                <group
+                  data-space="15"
+                  data-align="center"
+                  data-justify="center"
+               data-background={selectedColor === "main-text" ? "main-text": selectedColor === "secondary-text" ? "secondary-text" : "adaptive-gray"}
+               data-color={selectedColor === "main-text" ? "main-color" : selectedColor === "secondary-text" ? "secondary" : "adaptive-gray"}
 
-<group
-data-space="15"
-data-align="center"
-data-justify="center"
-data-background="adaptive-gray"
-// data-border="outline"
-data-width="auto"
-data-interactive=""
-data-over-color="neutral"
-data-radius="10"
-data-cursor="pointer"
-onClick={toggleInvert}
->
-<text>Invert</text>
+                  data-width="auto"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="10"
+                  data-cursor="pointer"
+
+
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+
+                  onClick={resetValues}
+                >
+                  <text>Reset</text>
+                </group>
+              )}
+
+
 </group>
-}
-
             </group>
           </group>
 
@@ -693,14 +773,12 @@ onClick={toggleInvert}
               </group>
             </group>
 
-
-
-
-<group data-border="" data-radius="15" data-contain="">
- <SystemColorPicker selectedColor={selectedColor} handleColorSelect={handleColorSelect}/>
-</group>
-
-
+            <group data-border="" data-radius="15" data-contain="">
+              <SystemColorPicker
+                selectedColor={selectedColor}
+                handleColorSelect={handleColorSelect}
+              />
+            </group>
           </group>
         </group>
       </group>

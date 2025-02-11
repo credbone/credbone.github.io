@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import Popover from "../components/popover";
@@ -47,6 +47,34 @@ const TooltipPropsDemo: React.FC = () => {
 
   const [GapValue, setGapValue] = useState(10);
   const [RadiusValue, setRadiusValue] = useState(10);
+
+
+
+
+
+  const [hasChanged, setHasChanged] = useState(false);
+
+  // Check if any value has changed from the initial state
+  useEffect(() => {
+    if (
+      selectedColor.background !== "tooltip" ||
+      selectedColor.color !== "white" ||
+      GapValue !== 10 ||
+      RadiusValue !== 10 ||
+      selectedPlacement !== "auto"
+    ) {
+      setHasChanged(true);
+    }
+  }, [selectedColor, GapValue, RadiusValue, selectedPlacement]);
+  
+  const resetValues = () => {
+    setSelectedColor({ background: "tooltip", color: "white" });
+    setGapValue(10);
+    setRadiusValue(10);
+    setSelectedPlacement("auto");
+    setHasChanged(false); // Hide the reset button after reset
+  };
+
 
   return (
     <>
@@ -324,10 +352,10 @@ const TooltipPropsDemo: React.FC = () => {
 
         <group
         data-background="main-background"
-          data-border=""
+          data-elevation="2"
           data-radius="20"
           data-align="center"
-          data-justify="center"
+        
           data-gap="30"
           data-space="30"
           //    data-height="240"
@@ -339,11 +367,45 @@ const TooltipPropsDemo: React.FC = () => {
             data-radius={RadiusValue}
             data-background={selectedColor.background}
             data-color={selectedColor.color}
+            
           >
-            <button data-background="adaptive-gray" data-color="default" data-interactive="" data-space="15" data-radius="10">
+            <button data-index="1" data-position="center" data-background="adaptive-gray" data-color="default" data-interactive="" data-space="15" data-radius="10">
               Hover over me
             </button>
           </Tooltip>
+
+
+
+          {hasChanged  && (
+
+<group data-gap="30" data-position="absolute" data-bottom="0" data-left="0" data-space="30">
+
+
+                <group
+                  data-space="15"
+                  data-align="center"
+                  data-justify="center"
+              data-border=""
+
+
+                  data-width="auto" 
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="10"
+                  data-cursor="pointer"
+
+
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="1.25"
+
+                  onClick={resetValues}
+                >
+                  <text>Reset</text>
+                </group>
+</group>
+              )}
+
         </group>
 
         <group

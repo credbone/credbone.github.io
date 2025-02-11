@@ -159,7 +159,7 @@
 [data-color="main-darker"] { color: var(--main-color-darker)}
 [data-color="main-darkest"] { color: var(--main-color-darkest)}
 
-
+[data-color="main-color"] { color: var(--main-color)}
 
 
 [data-theme="dark"]:root{

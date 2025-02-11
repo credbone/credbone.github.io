@@ -120,6 +120,7 @@ group[data-type="column"] {display: block; flex-direction: column; columns: 6 30
 [data-break-after="column"]{break-after: column;}
 [data-type="column"][data-column-gap="0"] {column-gap: 0;}
 [data-type="column"][data-column-gap="1"] {column-gap: 1px;}
+[data-type="column"][data-column-gap="5"] {column-gap: 5px;}
 [data-type="column"][data-column-gap="15"] {column-gap: 15px;}
 [data-type="column"][data-column-gap="20"] {column-gap: 20px;}
 [data-type="column"][data-column-gap="30"] {column-gap: 30px;}
