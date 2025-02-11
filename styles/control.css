@@ -209,6 +209,7 @@ text[data-width="auto"]{width: initial;}
 [data-right="30"] { right: 30px; }
 
 [data-right="100%"] { right: 100%; }
+[data-right="75%"] { right: 75%; }
 [data-right="50%"] { right: 50%; }
 
 
@@ -243,6 +244,10 @@ text[data-width="auto"]{width: initial;}
 [data-left="25"] { left: 25px; }
 [data-left="30"] { left: 30px; }
 [data-left="full"] { left: 100%; }
+
+[data-left="100%"] { left: 100%; }
+[data-left="75%"] { left: 75%; }
+[data-left="50%"] { left: 50%; }
 
 
 [dir="rtl"] [data-position="right"] {margin-right: auto;margin-left: initial;}
@@ -302,6 +307,7 @@ text[data-width="auto"]{width: initial;}
 [data-length="auto"] {width:initial}
 
 
+/* [data-length]{ width: attr(data-length type(<length>))} */
 
 
 [data-length='0'] { width: 0px; }
@@ -368,7 +374,7 @@ text[data-width="auto"]{width: initial;}
 [data-length='610'] { width: 610px; }
 
 [data-length='fit']{width:100%;}
-
+[data-length='50%']{width:50%;}
 
 
 [data-max-length='auto']{max-width:initial;}
@@ -648,6 +654,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height='600'] { height:600px; }
 
 
+[data-height='50%'] { height:50%; }
 [data-height='fit'] { height:100%; }
 [data-height='auto'] { height:initial; }
 [data-height='autofit'] { flex:1 }
@@ -716,7 +723,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 }
 
 
-
+/* [data-space]{ width: attr(data-space type(<length>))} */
 
 [data-space='0'] { padding:0px;}
 [data-space='3'] { padding:3px;}
@@ -1071,6 +1078,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-bottom="10-sab"]{padding-bottom:max(var(--sab), 10px);}
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
+[data-transition-prop="font-size-line-height"]{transition-property: font-size, line-height;}
 [data-transition-prop="stroke-dashoffset"]{transition-property: stroke-dashoffset;}
 [data-transition-prop="stroke-dasharray"]{transition-property: stroke-dasharray;}
 [data-transition-prop="transform"]{transition-property: transform;}
