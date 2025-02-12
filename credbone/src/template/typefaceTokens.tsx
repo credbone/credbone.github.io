@@ -129,13 +129,10 @@ const resetValues = () => {
 
   return (
     <group data-gap="30">
-
-
       <TemplatePageHeader
         title="Tokens"
         description="Design parameters applicable for text components, including style, spacing, and alignment properties."
       />
-
 
       <group data-gap="15" data-align="start">
         <group data-space="20">
@@ -616,22 +613,13 @@ const resetValues = () => {
           data-fit="2"
           data-border=""
           data-radius="20"
-           data-space="30"
-           data-gap="30"
-          data-background={
-            isbackground
-              ? "text"
-              : istextmain
-              ? "main"
-              : istextsecondary
-              ? "secondary"
-              : ""
-          }
+          data-background={ isbackground ? "text" : istextmain ? "main" : istextsecondary ? "secondary" : ""}
+          data-color={ isbackground ? "main-background" : istextmain ? "main-text" : istextsecondary ? "secondary-text" : "" }
         >
           <text
-           
-           data-duration=".125"
-          data-transition-prop="font-size-line-height"
+            data-space="30"
+            data-duration=".125"
+            data-transition-prop="font-size-line-height"
             data-weight={selectedWeight}
             data-text-align={selectedAlignment}
             data-text-size={selectedSize}
@@ -646,89 +634,71 @@ const resetValues = () => {
             alignment {selectedAlignment}
           </text>
 
-          {isbackground ? (
-            <group
-              data-color="main-background"
-              data-gap="30"
-
-            >
-              <separator data-horizontal=""></separator>
-              <text data-wrap="wrap" data-line="1.5" data-max-length="400">
-                Text color can also serve as the background, enabling inverted
-                designs that adapt to the system theme
-              </text>
-            </group>
+<group data-space="30" data-space-top="0" data-gap="30" data-direction="column" data-align="start">
+<separator data-horizontal=""></separator>
+{isbackground ? (
+              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+              Text color can also serve as the background, enabling inverted
+              designs that adapt to the system theme
+            </text>
           ) : istextmain || istextsecondary ? (
-            <group
-              data-color={
-                istextmain
-                  ? "main-text"
-                  : istextsecondary
-                  ? "secondary-text"
-                  : ""
-              }
-              data-gap="30"
-
-
-            >
-              <separator data-horizontal=""></separator>
-              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-                Ensuring optimal contrast on main & secondary backgrounds with
-                system-generated colors
-              </text>
-            </group>
+            <text data-wrap="wrap" data-line="1.5" data-max-length="400">
+            Ensuring optimal contrast on main & secondary backgrounds with
+            system-generated colors
+          </text>
           ) : ismain ? (
-            <group data-gap="30">
-              <separator data-horizontal=""></separator>
-              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-                If the main color lacks contrast, a different shade will be
-                used, with variations in dark and light modes.
-              </text>
-            </group>
+            <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+              If the main color lacks contrast, a different shade will be used,
+              with variations in dark and light modes.
+            </text>
           ) : (
-            <group data-gap="30">
-              <separator data-horizontal=""></separator>
-              <text
-                data-wrap="wrap"
-                data-line="1.5"
-                data-max-length="200"
-                data-opacity="60"
-              >
-                Adjust the values to explore how they affect the text
-              </text>
-            </group>
+            <text
+              data-wrap="wrap"
+              data-line="1.5"
+              data-max-length="200"
+              data-opacity="60"
+            >
+              Adjust the values to explore how they affect the text
+            </text>
           )}
 
-
-
-  
-{hasChanged && (
-                <group
-                  data-space="15"
-                  data-align="center"
-                  data-justify="center"
-               data-background={selectedColor === "main-text" ? "main-text" : selectedColor === "secondary-text" ? "secondary-text" : selectedColor === "main-background" ? "main-background" : "adaptive-gray"}
-               data-color={selectedColor === "main-text" ? "main-color" : selectedColor === "secondary-text" ? "secondary" : selectedColor === "main-background" ? "text" : "adaptive-gray"}
-
-                  data-width="auto"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-radius="10"
-                  data-cursor="pointer"
-
-
-                  data-animation-name="appear-top"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-
-                  onClick={resetValues}
-                >
-                  <text>Reset</text>
-                </group>
-              )}
-
-
-
+          {hasChanged && (
+            <group
+              data-space="15"
+              data-align="center"
+              data-justify="center"
+              data-background={
+                selectedColor === "main-text"
+                  ? "main-text"
+                  : selectedColor === "secondary-text"
+                  ? "secondary-text"
+                  : selectedColor === "main-background"
+                  ? "main-background"
+                  : "adaptive-gray"
+              }
+              data-color={
+                selectedColor === "main-text"
+                  ? "main-color"
+                  : selectedColor === "secondary-text"
+                  ? "secondary"
+                  : selectedColor === "main-background"
+                  ? "text"
+                  : "adaptive-gray"
+              }
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="10"
+              data-cursor="pointer"
+              data-animation-name="appear-top"
+              data-fill-mode="backwards"
+              data-animation-duration="1.25"
+              onClick={resetValues}
+            >
+              <text>Reset</text>
+            </group>
+          )}
+</group>
         </group>
       </group>
     </group>

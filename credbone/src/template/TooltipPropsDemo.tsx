@@ -3,7 +3,7 @@ import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import Popover from "../components/popover";
 import CustomSlider from "../components/inputs/slider";
-import { RotateCcw, Undo } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
 type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
