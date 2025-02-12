@@ -3,6 +3,7 @@ import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import Popover from "../components/popover";
 import CustomSlider from "../components/inputs/slider";
+import { RotateCcw, Undo } from "lucide-react";
 
 type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
@@ -352,13 +353,15 @@ const TooltipPropsDemo: React.FC = () => {
 
         <group
         data-background="main-background"
-          data-elevation="2"
+
+       data-border=""
+
           data-radius="20"
           data-align="center"
         
           data-gap="30"
           data-space="30"
-          //    data-height="240"
+
         >
           <Tooltip
             distance={GapValue}
@@ -370,7 +373,7 @@ const TooltipPropsDemo: React.FC = () => {
             
           >
             <button data-index="1" data-position="center" data-background="adaptive-gray" data-color="default" data-interactive="" data-space="15" data-radius="10">
-              Hover over me
+              Hover or Touch
             </button>
           </Tooltip>
 
@@ -378,14 +381,19 @@ const TooltipPropsDemo: React.FC = () => {
 
           {hasChanged  && (
 
-<group data-gap="30" data-position="absolute" data-bottom="0" data-left="0" data-space="30">
+<group data-gap="30" data-position="absolute" data-bottom="0" data-width="auto" data-right="0" data-space="30">
 
 
                 <group
-                  data-space="15"
+                  data-space="10"
+                  data-space-horizontal="15"
                   data-align="center"
                   data-justify="center"
-              data-border=""
+             
+data-background="adaptive-gray"
+
+data-height="45"
+data-direction="column"
 
 
                   data-width="auto" 
@@ -401,7 +409,8 @@ const TooltipPropsDemo: React.FC = () => {
 
                   onClick={resetValues}
                 >
-                  <text>Reset</text>
+                  <group data-adaptive="mobile" data-interact=""><RotateCcw size={20} /></group>
+                  <text data-adaptive="desktop">Reset</text>
                 </group>
 </group>
               )}
@@ -461,7 +470,7 @@ const TooltipPropsDemo: React.FC = () => {
               <span data-color="blue">button</span>
               <span data-color="grey">{`>`}</span>
               <br />
-              <span>    </span>Hover over me
+              <span>    </span>Hover or Touch
               <br />
               <span>  </span>
               <span data-color="grey">{`</`}</span>
