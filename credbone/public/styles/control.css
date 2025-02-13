@@ -803,6 +803,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-gap='3'] { gap: 3px; }
 [data-gap='4'] { gap: 4px; }
 [data-gap='5'] { gap: 5px; }
+
 [data-gap='10'] { gap: 10px; }
 [data-gap='15'] { gap: 15px; }
 [data-gap='20'] { gap: 20px; }
@@ -979,6 +980,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-index="3"] {z-index: 3;}
 [data-index="2"] {z-index: 2;}
 [data-index="1"] {z-index: 1;}
+[data-index="0"] {z-index: 0;}
 
 [data-user-select="text"] {user-select: text; cursor: text;}
 [data-user-select="initial"] {user-select: initial;cursor: initial; -webkit-user-select: initial;}

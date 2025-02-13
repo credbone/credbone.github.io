@@ -42,7 +42,7 @@ const BottomNav: React.FC = () => {
               to={`/${prevItem.to}`}
 
 
-              data-min-length={isLastItem ? "200" : undefined}
+            //  data-min-length={isLastItem ? "200" : undefined}
               data-length={isLastItem ? "forcefit" : undefined}
 
             >
@@ -77,7 +77,7 @@ const BottomNav: React.FC = () => {
         {nextItem && (
           <Ripple>
             <Link
-              data-min-length="200"
+           //   data-min-length="200"
               data-ink-color="neutral"
               data-contain=""
            //   data-background="adaptive-gray"

@@ -23,6 +23,7 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
       data-radius="30"
       data-justify="end"
       data-space="30"
+      data-contain=""
     >
       {(version || type) && (
         <>
