@@ -84,12 +84,13 @@ const Switchable: React.FC<SwitchableProps> = ({
       {...rest}
     >
       <group
-        data-background="context"
+        data-background="main-background"
         data-name="switch"
         data-wrap="no"
         data-border=""
         data-index="2"
         data-interactive=""
+        data-over-color="neutral"
         data-cursor="pointer"
         data-space="15"
         data-align="center"
@@ -109,7 +110,7 @@ const Switchable: React.FC<SwitchableProps> = ({
             <text
               data-ellipsis=""
               data-index="1"
-              data-weight="600"
+            
               data-space="5"
             >
               {title}
