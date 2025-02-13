@@ -190,7 +190,7 @@ view[data-background="none"]{background:none}
 [data-collapse-radius="30"][data-name="switchable"][data-expanded="true"][data-type="overlap"] {border-radius:10px;}
 
 
-[data-name="switchable"][data-type="overlap"] {   border-radius: 10px; max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);position: absolute; z-index: 10; }
+[data-name="switchable"][data-type="overlap"] {   max-width:calc(100% - calc(2 * var(--float-gap))); max-height: calc(100% - calc(2 * var(--float-gap)));  margin: var(--float-gap);position: absolute; z-index: 10; }
 [data-name="switchable"][data-expanded="false"][data-type="overlap"] [data-name="switch"]{}
 
 
