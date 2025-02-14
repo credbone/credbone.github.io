@@ -20,13 +20,11 @@ const Layout: React.FC = () => {
 
   const [hasChanged, setHasChanged] = useState(false);
 
-
   useEffect(() => {
     if (count !== 8 || template !== 120 || gap !== 10) {
       setHasChanged(true);
     }
   }, [count, template, gap]);
-
 
   const resetValues = () => {
     setCount(8);
@@ -34,9 +32,7 @@ const Layout: React.FC = () => {
     setgap(10);
     setshowoverlay(true);
     setHasChanged(false);
-
   };
-
 
   return (
     <>
@@ -48,15 +44,16 @@ const Layout: React.FC = () => {
         //   data-opacity="20"
         data-space="30"
         data-opacity="20"
-        data-hide={isshowoverlay ? null : "true"}
+        data-hide={isshowoverlay ? undefined : "true"}
       >
-        {Array.from({ length: 7 }).map((_, index) => (
+        {Array.from({ length: 9 }).map((_, index) => (
           <group
             key={index}
             data-length={gap}
             data-justify="space-between"
             data-height="fit"
             data-wrap="no"
+            data-adaptive={index >= 5 ? "desktop" : undefined}
           >
             <group
               data-length="1"
@@ -88,29 +85,41 @@ const Layout: React.FC = () => {
             <group
               data-sticky="top"
               //data-space-vertical="30"
-              data-space={isSticky ? "30" : ""}
+              data-space-horizontal={isSticky ? gap : undefined}
               data-duration=".125"
+              data-width="auto"
             >
               <group
                 data-backdrop="20"
                 data-contain=""
                 data-radius="15"
                 data-width="auto"
+                data-top={isSticky ? "30" : undefined}
               >
-                <group data-align="center" data-gap="15" data-space="15" data-wrap="no">
+                <group
+                  data-align="center"
+                  data-gap="15"
+                  data-space="15"
+                  data-wrap="no"
+                >
                   <group
                     data-width="auto"
                     //data-min-length="80"
-                   data-contain=""
+                    data-contain=""
                   >
-                    <group data-space="10" data-width="auto"  >
+                    <group data-space="10" data-width="auto">
                       <text data-ellipsis="">Guides</text>
                     </group>
                   </group>
 
                   <separator data-vertical=""></separator>
 
-                  <group data-fit="1">
+                  <group
+                    data-fit="1"
+                    data-gap="5"
+                    data-wrap="no"
+                    data-contain=""
+                  >
                     <group
                       onClick={toggleoverlay}
                       data-align="center"
@@ -124,43 +133,36 @@ const Layout: React.FC = () => {
                       data-cursor="pointer"
                       data-space-vertical="10"
                       data-space-horizontal="15"
+                      data-contain=""
                     >
-                      <text>{isshowoverlay ? "Hide" : "Show"}</text>
+                      <text data-ellipsis="">
+                        {isshowoverlay ? "Hide" : "Show"}
+                      </text>
                     </group>
 
                     {hasChanged && (
-                <group
-                data-align="center"
-                data-justify="center"
-                data-background="text"
-                data-color="main-background"
-                data-width="auto"
-                data-interactive=""
-                data-over-color="neutral"
-                data-radius="10"
-                data-cursor="pointer"
-                data-space-vertical="10"
-                data-space-horizontal="15"
-
-
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-
-                  onClick={resetValues}
-                >
-                  <text>Reset</text>
-                </group>
-              )}
-
-
+                      <group
+                        data-align="center"
+                        data-justify="center"
+                        data-width="auto"
+                        data-interactive=""
+                        data-over-color="neutral"
+                        data-radius="10"
+                        data-cursor="pointer"
+                        data-space-vertical="10"
+                        data-space-horizontal="15"
+                        data-contain=""
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="1.25"
+                        onClick={resetValues}
+                      >
+                        <text data-ellipsis="">Reset</text>
+                      </group>
+                    )}
                   </group>
                 </group>
               </group>
-
-
-
-
             </group>
           )}
         </StuckReporter>
@@ -376,7 +378,7 @@ const Layout: React.FC = () => {
               data-animation-name="appear-top"
               data-animation-duration="1.25"
             >
-              <text>{index + 1}</text>
+              {/* <text > {index + 1 < 10 ? `0${index + 1}` : index + 1}</text> */}
             </group>
           ))}
         </group>
