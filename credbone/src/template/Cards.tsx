@@ -335,7 +335,6 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-index="1"
             >
               <picture data-brightness="adaptive">
-                {" "}
                 <img src={item.image} alt={item.title} />{" "}
               </picture>
             </group>
@@ -349,7 +348,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               >
                 <text
                   data-weight="700"
-                  data-text-size="medium"
+                 // data-text-size="medium"
                   data-wrap="wrap"
                 >
                   {item.title}
@@ -379,9 +378,9 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
           key={item.key}
           data-space="20"
           data-gap="20"
-          data-radius="20"
+       //   data-radius="20"
           // data-direction="column"
-          data-border="outline"
+          data-border=""
           data-name="card"
           data-interactive=""
           data-over-color="neutral"
@@ -396,10 +395,11 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
         >
           <group data-wrap="no" data-align="start">
             <group
-              data-ratio="1:1"
+              data-height="60"
               data-length="60"
               data-radius="10"
               data-contain=""
+              data-interact=""
             >
               <picture data-brightness="adaptive">
                 <img src={item.image} alt={item.title} />{" "}
@@ -432,7 +432,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
             </group>
           </group>
 
-          <group data-gap="5" data-direction="column">
+          <group data-gap="10" data-direction="column">
             <text data-weight="700"  data-wrap="wrap">
               {item.title}
             </text>
@@ -452,11 +452,11 @@ type ViewTypes = "CardView" | "ListView" | "GridView";
 // Mapping views to their templates and grid templates
 const ViewTemplates: Record<
   ViewTypes,
-  { component: React.FC<TemplateProps>; gridTemplate: string }
+  { component: React.FC<TemplateProps>; gridTemplate: string, gridGap: string, wrapperProps?: Record<string, string>; }
 > = {
-  CardView: { component: CardTemplate, gridTemplate: "200" },
-  ListView: { component: ListTemplate, gridTemplate: "fit" },
-  GridView: { component: GridTemplate, gridTemplate: "240" },
+  CardView: { component: CardTemplate, gridTemplate: "200", gridGap: "10" },
+  ListView: { component: ListTemplate, gridTemplate: "fit", gridGap: "5",  },
+  GridView: { component: GridTemplate, gridTemplate: "240", gridGap: "1",  wrapperProps: { "data-radius": "20", "data-contain":"", "data-border":"" }  },
 };
 
 // Define a type for the props that the template components will receive
@@ -473,7 +473,7 @@ const Cards: React.FC = () => {
   });
 
   const view = watch("ViewSwitch") as ViewTypes; // Ensure the view type is correct
-  const { component: ViewComponent, gridTemplate } = ViewTemplates[view];
+  const { component: ViewComponent, gridTemplate, gridGap, wrapperProps } = ViewTemplates[view];
 
   const [selectedKey, setSelectedKey] = useState<string>("1");
 
@@ -482,87 +482,95 @@ const Cards: React.FC = () => {
   };
 
   return (
-    <group data-space="30" data-gap="30">
+<>
+<group data-space="30" data-gap="30">
 
 
 
 
-      <TemplatePageHeader
-        title="Cards & List"
-        description="A card is an excellent tool for displaying content and actions related
-          to a single subject, offering a cohesive presentation of multiple
-          elements that vary in type and size."
+<TemplatePageHeader
+  title="Cards & List"
+  description="A card is an excellent tool for displaying content and actions related
+    to a single subject, offering a cohesive presentation of multiple
+    elements that vary in type and size."
 
-      />
+/>
 
 
-      <StuckReporter>
-        {(isSticky) => (
-          <group
-            data-sticky="top"
-            data-index="3"
-            data-width="auto"
-            data-space-vertical={isSticky ? "30" : ""}
-          >
-            <group
-              data-gap="10"
-              data-space={isSticky ? "5" : ""}
-              data-background={isSticky ? "context" : ""}
-              data-elevation={isSticky ? "1" : ""}
-              data-radius={isSticky ? "10" : ""}
-              data-duration=".125"
-            >
-              <OptionBar
-                compact
-                dynamic
-                data-height="40"
-                data-radius="5"
-                data-weight="600"
-              >
-                {ViewSwitch.map((radio) => (
-                  <Controller
-                    key={radio.key}
-                    name={radio.name}
-                    control={control}
-                    render={({ field }) => (
-                      <Radio
-                        {...field}
-                        label={radio.label}
-                        iconProps={{ "data-length": "30" }}
-                        tooltip={
-                          field.value === radio.value ? null : radio.label
-                        }
-                        // labelProps={{
-                        //   "data-background": "none",
+<StuckReporter>
+  {(isSticky) => (
+    <group
+      data-sticky="top"
+      data-index="3"
+      data-width="auto"
+      data-space-vertical={isSticky ? "30" : ""}
+    >
+      <group
+        data-gap="10"
+        data-space={isSticky ? "5" : ""}
+        data-background={isSticky ? "context" : ""}
+        data-elevation={isSticky ? "1" : ""}
+        data-radius={isSticky ? "10" : ""}
+        data-duration=".125"
+      >
+        <OptionBar
+          compact
+          dynamic
+          data-height="40"
+          data-radius="5"
+          data-weight="600"
+        >
+          {ViewSwitch.map((radio) => (
+            <Controller
+              key={radio.key}
+              name={radio.name}
+              control={control}
+              render={({ field }) => (
+                <Radio
+                  {...field}
+                  label={radio.label}
+                  iconProps={{ "data-length": "30" }}
+                  tooltip={
+                    field.value === radio.value ? null : radio.label
+                  }
+                  // labelProps={{
+                  //   "data-background": "none",
 
-                        // }}
-                        //     tooltip={radio.label}
-                        icon={radio.icon}
-                        radioValue={radio.value}
-                        radioType={RadioType.Button}
-                        checked={field.value === radio.value}
-                      />
-                    )}
-                  />
-                ))}
-              </OptionBar>
-            </group>
-          </group>
-        )}
-      </StuckReporter>
-
-      <separator data-horizontal=""></separator>
-      <group data-type="grid" data-grid-template={gridTemplate} data-gap="10">
-        <ViewComponent selectedKey={selectedKey} onSelect={handleSelect} />
-      </group>
-
-      <group>
-        <text data-wrap="wrap" data-length="600" data-line="1.5">
-          Please note, the subjects portrayed are entirely digital creations,
-          crafted with precision. For more captivating visuals, an account on <Link data-link="" to="https://www.instagram.com/musesincode/" target="_blank" >Instagram</Link> holds them all
-        </text>
+                  // }}
+                  //     tooltip={radio.label}
+                  icon={radio.icon}
+                  radioValue={radio.value}
+                  radioType={RadioType.Button}
+                  checked={field.value === radio.value}
+                />
+              )}
+            />
+          ))}
+        </OptionBar>
       </group>
     </group>
+  )}
+</StuckReporter>
+
+<separator data-horizontal=""></separator>
+<group data-type="grid" data-grid-template={gridTemplate} data-gap={gridGap} {...wrapperProps} >
+  <ViewComponent selectedKey={selectedKey} onSelect={handleSelect} />
+</group>
+
+
+</group>
+
+
+<group data-space="30">
+<group data-space="30">
+<text data-wrap="wrap" data-length="600" data-line="1.5">
+Please note, the subjects portrayed are entirely digital creations,
+crafted with precision. For more captivating visuals, an account on <Link data-link="" to="https://www.instagram.com/musesincode/" target="_blank" >Instagram</Link> holds them all
+</text>
+</group>
+</group>
+</>
+
   );
 };
 

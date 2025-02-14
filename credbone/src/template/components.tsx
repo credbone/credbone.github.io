@@ -335,12 +335,6 @@ const Components: React.FC = () => {
         </group>
 
         <group
-          //      data-space-horizontal="30"
-          data-border="no"
-          data-background="none"
-          //    data-max-length="810"
-        >
-          <group
             data-gap="10"
             data-type="grid"
             data-grid-template="180"
@@ -411,7 +405,6 @@ const Components: React.FC = () => {
               </Ripple>
             ))}
           </group>
-        </group>
 
         <group   data-direction="column">
           <picture
