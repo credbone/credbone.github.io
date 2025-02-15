@@ -6,6 +6,11 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+
+
+import "./styles"
+
+
 import Template from "./template";
 import About from "./pages/about";
 

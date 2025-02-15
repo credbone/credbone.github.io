@@ -1,30 +1,6 @@
 /* stylelint-disable */
 
-@import url(controls/view.css);
 
-@import url(controls/icon.css);
-@import url(controls/button.css);
-@import url(controls/tab_strip.css);
-@import url(controls/scrollbar.css);
-@import url(controls/material.css);
-@import url(controls/separator.css);
-
-
-@import url(controls/group.css);
-@import url(controls/navigation.css);
-@import url(controls/badge.css);
-@import url(controls/checkbox.css);
-@import url(controls/option_bar.css);
-@import url(controls/list.css);
-
-
-@import url(controls/inputs.css);
-@import url(controls/popup.css);
-@import url(controls/loader.css);
-
-@import url(controls/color.css);
-@import url(controls/animation.css);
-@import url(controls/tooltip.css);
 
 
 :root {
