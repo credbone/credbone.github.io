@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5a98cf01.css",
-    "main.js": "/static/js/main.b1e8bb8e.js",
+    "main.css": "/static/css/main.7f1190ed.css",
+    "main.js": "/static/js/main.7c26bfdd.js",
     "static/js/206.b75d2b8c.chunk.js": "/static/js/206.b75d2b8c.chunk.js",
     "static/media/resume_audio.mp3": "/static/media/resume_audio.564ef05d986ee2ffa983.mp3",
     "static/media/wide_res_01.jpg": "/static/media/wide_res_01.ccfcc2a7019abba47791.jpg",
@@ -18,7 +18,15 @@
     "static/media/res-24.webp": "/static/media/res-24.1737e4b400ee864cda32.webp",
     "static/media/wide_res_66.webp": "/static/media/wide_res_66.de5a7ba841157edb5088.webp",
     "static/media/res-31.webp": "/static/media/res-31.0db6f2fefe4a5a9fc432.webp",
+    "static/media/Gilroy-UltraLight.ttf": "/static/media/Gilroy-UltraLight.6c356bf421a0b34d2b76.ttf",
     "static/media/wide_res_72.webp": "/static/media/wide_res_72.e35ffe6538ea7bfd770b.webp",
+    "static/media/Gilroy-Light.ttf": "/static/media/Gilroy-Light.0ac7c2f9cb59ea1ba11c.ttf",
+    "static/media/Gilroy-Thin.ttf": "/static/media/Gilroy-Thin.fc813b757bc09eb509dc.ttf",
+    "static/media/Gilroy-Semibold.ttf": "/static/media/Gilroy-Semibold.41fa36c3c8e966b35423.ttf",
+    "static/media/Gilroy-Black.ttf": "/static/media/Gilroy-Black.4628979a4dac24916ba7.ttf",
+    "static/media/Gilroy-Heavy.ttf": "/static/media/Gilroy-Heavy.bf729a99bcad6fccc3f4.ttf",
+    "static/media/Gilroy-Medium.ttf": "/static/media/Gilroy-Medium.f9f832b0ed3f1ab138c9.ttf",
+    "static/media/Gilroy-Bold.ttf": "/static/media/Gilroy-Bold.b900325e44ec0c673e88.ttf",
     "static/media/wide_res_73.webp": "/static/media/wide_res_73.694fc5df018fa1434a82.webp",
     "static/media/wide_res_74.jpg": "/static/media/wide_res_74.306a29620ae553428f7c.jpg",
     "static/media/wide_res_71.webp": "/static/media/wide_res_71.a95e10dd676802668220.webp",
@@ -26,11 +34,12 @@
     "static/media/wide_res_70.webp": "/static/media/wide_res_70.b5b710ffeb690fe59601.webp",
     "static/media/res-28.webp": "/static/media/res-28.dd18259ac5c8dc096bb8.webp",
     "static/media/res-30.webp": "/static/media/res-30.63d935d720fd22c6c3d7.webp",
+    "static/media/CalSans-SemiBold.woff2": "/static/media/CalSans-SemiBold.82d4f62fb972e38abe4a.woff2",
     "static/media/res-25.webp": "/static/media/res-25.cee8dbe956e9464c204e.webp",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.5a98cf01.css",
-    "static/js/main.b1e8bb8e.js"
+    "static/css/main.7f1190ed.css",
+    "static/js/main.7c26bfdd.js"
   ]
 }
