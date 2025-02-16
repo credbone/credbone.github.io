@@ -21,6 +21,9 @@ export const groupedLinksArray = [
       { title: "Colors\n& Shades", description: "A system to craft and manage color palettes.", to: "/Components/Colors",content:colorcontent, },
       { title: "Divider\n& Space", description: "Dividers organize and separate content.", to: "/Components/DividerAndSpace", },
       { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
+
+      { title: "Motion\n& Animation", description: "Bring interfaces to life with smooth transitions.",  to: "/Components/Motion", },
+
     ],
   },
   {

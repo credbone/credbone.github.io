@@ -51,7 +51,7 @@ const Motion: React.FC = () => {
       data-align="start"
     >
       <TemplatePageHeader
-        title="Motion"
+        title="Motion & Animation"
         description="Motion establishes relationships and smooth transitions, guiding users through changes and helping them progress toward their goals."
         version="2.0.0"
         type="Token"
@@ -68,7 +68,8 @@ const Motion: React.FC = () => {
             data-line="20"
             data-max-length="400"
           >
-           Motion should feel natural, meaningful, and enhance clarity without distraction.
+            Motion should feel natural, meaningful, and enhance clarity without
+            distraction.
           </text>
         </group>
 
@@ -193,7 +194,8 @@ const Motion: React.FC = () => {
                 data-line="20"
                 data-max-length="400"
               >
-               Creates meaningful connections and guides focus through intentional movement.
+                Creates meaningful connections and guides focus through
+                intentional movement.
               </text>
             </group>
           </group>
@@ -279,7 +281,8 @@ const Motion: React.FC = () => {
                 data-line="20"
                 data-max-length="400"
               >
-             Ensures choreographed movement for smooth, consistent, and connected experiences.
+                Ensures choreographed movement for smooth, consistent, and
+                connected experiences.
               </text>
             </group>
           </group>

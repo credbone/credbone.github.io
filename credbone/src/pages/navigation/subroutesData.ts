@@ -4,16 +4,16 @@ export const navItems = [
 
   { to: "Components/Typography",  label: "Typography",separator:"true",new:"true" },
   { to: "Components/Icons",  label: "Icons" },
-  { to: "Components/Colors",  label: "Color System",new:"true"},
+  { to: "Components/Colors",  label: "Color System"},
   { to: "Components/DividerAndSpace",  label: "Divider & Space" },
   { to: "Components/CardsAndList",  label: "Cards & List" },
-  { to: "Components/Motion",  label: "Motion" },
+  { to: "Components/Motion",  label: "Motion & Animation",new:"true" },
 
 
   { to: "Components/CheckboxSwitchers",  label: "Checkbox & Switchers",separator:"true" },
   { to: "Components/Buttons",  label: "Buttons" },
   { to: "Components/InputsAndForms",  label: "Input & Forms" },
-  { to: "Components/RangeSlider",  label: "Range Slider",new:"true"  },
+  { to: "Components/RangeSlider",  label: "Range Slider"  },
 
   { to: "Components/TooltipAndPopover",  label: "Tooltip & Popover" },
   { to: "Components/Snackbar",  label: "Snackbar" },
@@ -21,7 +21,7 @@ export const navItems = [
 
 
   { to: "Components/Navigation",  label: "Navigation & Tabs",separator:"true" },
-  { to: "Components/Layout",  label: "Layout & Switches" },
+  { to: "Components/Layout",  label: "Layout & Switches",new:"true" },
 
 
 

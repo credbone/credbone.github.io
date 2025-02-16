@@ -15,6 +15,7 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
   'TooltipAndPopover': { title: 'Tooltip & Popover', header: 'Tooltip & Popover' },
   'Snackbar': { title: 'Snackbar', header: 'Snackbar' },
   'CardsAndList': { title: 'Cards & List', header: 'Cards & List' },
+  'Motion': { title: 'Motion & Animation', header: 'Motion & Animation' },
   'Modals': { title: 'Modals', header: 'Modals' },
   'DividerAndSpace': { title: 'Divider & Space', header: 'Divider & Space' },
 

@@ -121,6 +121,13 @@ export const routesData: RouteData[] = [
     tags: ["overview", "all", "summary", "collection", "catalog", "categories","interface","experience","comprehensive"], 
     description: "Contains all routes and a summary of components.", 
     title: "Overview" 
+  },
+
+  {
+    path: "Motion",
+    tags: ["motion", "animation", "transition", "effect", "interaction", "movement"],
+    description: "Create fluid animations and transitions for dynamic interactions.",
+    title: "Motion"
   }
 
 ];
