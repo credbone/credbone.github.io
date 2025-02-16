@@ -6,11 +6,11 @@ export const navItems = [
   { to: "Components/Icons",  label: "Icons" },
   { to: "Components/Colors",  label: "Color System"},
   { to: "Components/DividerAndSpace",  label: "Divider & Space" },
-  { to: "Components/CardsAndList",  label: "Cards & List" },
+
   { to: "Components/Motion",  label: "Motion & Animation",new:"true" },
 
-
-  { to: "Components/CheckboxSwitchers",  label: "Checkbox & Switchers",separator:"true" },
+  { to: "Components/CardsAndList",  label: "Cards & List",separator:"true" },
+  { to: "Components/CheckboxSwitchers",  label: "Checkbox & Switchers" },
   { to: "Components/Buttons",  label: "Buttons" },
   { to: "Components/InputsAndForms",  label: "Input & Forms" },
   { to: "Components/RangeSlider",  label: "Range Slider"  },

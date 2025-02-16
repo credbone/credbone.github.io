@@ -7,6 +7,7 @@
 @keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
 @keyframes zoom-in {from{opacity: 0;transform: scale(.5);}to{}}
+@keyframes zoom-in-9 {from{opacity: 0;transform: scale(.9);}to{}}
 @keyframes zoom-out {to{opacity: 0;transform: scale(.5);}}
 
 
@@ -39,6 +40,7 @@
 [data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
 [data-animation-name="appear-top"]{animation-name: appear-top;}
 [data-animation-name="zoom-in"]{animation-name:zoom-in;}
+[data-animation-name="zoom-in-9"]{animation-name:zoom-in-9;}
 [data-animation-name="zoom-out"]{animation-name:zoom-out;}
 [data-animation-name="to-top"]{animation-name: to-top;}
 [data-animation-name="to-bottom"]{animation-name: to-bottom;}

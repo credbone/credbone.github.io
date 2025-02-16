@@ -46,6 +46,16 @@ const Modal: React.FC = () => {
     "data-scroll": "",
     "data-min-height": "fit",
     "data-contain": "scroll",
+    "data-animation-name":"appear-bottom",
+    "data-animation-duration":"2.75",
+    "data-fill-mode":"backwards",
+  };
+
+
+  const animationConfig = {
+    "data-animation-name":"zoom-in-9",
+    "data-animation-duration":"2.75",
+    "data-fill-mode":"backwards"
   };
 
   const modalData = [
@@ -93,6 +103,7 @@ const Modal: React.FC = () => {
                 openModal({
                   id: `modal-map-${index}`,
                   title: title,
+                  customAttributes: animationConfig,
                   content: (
                     <group data-max-height="fit" data-contain="">
                       {content}
@@ -113,163 +124,176 @@ const Modal: React.FC = () => {
 
   return (
     <group data-space="30" data-gap="30" data-align="start">
- 
-
-
-
-        <TemplatePageHeader
+      <TemplatePageHeader
         title="Modal"
         description="Modals are pop-up windows that capture attention, appearing after a
             user action. They display important content or options, requiring
             interaction before closing, ensuring focus on key tasks."
         version="1.0.2"
         type="Component"
-        descriptionProps={{"data-length":"600"}}
+        descriptionProps={{ "data-length": "600" }}
       />
 
-
-
-
-
       <group
-          data-height="auto"
-          data-max-height="fit"
-          data-radius="30"
-          //       data-border=""
-          data-contain=""
+        data-height="auto"
+        data-max-height="fit"
+        data-radius="30"
+        //       data-border=""
+        data-contain=""
+      >
+        <group
+          data-direction="column"
+          //    data-min-height="400"
+          data-justify="end"
         >
-          <group
-            data-direction="column"
-        //    data-min-height="400"
-            data-justify="end"
+          <picture
+            data-contain=""
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+            data-object-position="bottom"
           >
-            <picture
-              data-contain=""
-              data-brightness="adaptive"
-              data-position="absolute"
-              data-background="grey-light"
-              data-object-position="bottom"
-            >
-              <img src={sampleImage} alt="" />
-            </picture>
+            <img src={sampleImage} alt="" />
+          </picture>
 
-            <group data-space="30">
+          <group data-space="30">
+            <group
+              data-space="30"
+              data-index="2"
+              data-radius="15"
+              data-contain=""
+              //   data-backdrop="20-dark"
+              data-background="main-background"
+              data-direction="column"
+              data-width="auto"
+            >
               <group
-                data-space="30"
-                data-index="2"
-                data-radius="15"
-                data-contain=""
-                //   data-backdrop="20-dark"
-                data-background="main-background"
+                data-width="auto"
+                data-gap="20"
                 data-direction="column"
-                 data-width="auto"
+                data-align="start"
               >
-                <group data-width="auto" data-gap="20"  data-direction="column" data-align="start">
                 <Ripple>
-                    <group
-                      data-ink-color="main-deep"
-                      data-contain=""
-                      data-width="auto"
-                      data-interactive=""
-                      data-interact="popover"
-                      data-space="15"
-                      data-radius="5"
-                      data-cursor="pointer"
-                      data-background="main"
-                      data-color="main-text"
-                      onClick={() =>
-                        openModal({
-                          id: "modal-01",
-                          title: "Sample Basic Popup",
-                          //   fullscreen: true,
-                          fullscreenbutton: true,
-                          content: (
+                  <group
+                    data-ink-color="main-deep"
+                    data-contain=""
+                    data-width="auto"
+                    data-interactive=""
+                    data-interact="popover"
+                    data-space="15"
+                    data-radius="5"
+                    data-cursor="pointer"
+                    data-background="main"
+                    data-color="main-text"
+                    onClick={() =>
+                      openModal({
+                        id: "modal-01",
+                        title: "Sample Basic Popup",
+                        //   fullscreen: true,
+                        fullscreenbutton: true,
+                        customAttributes:{
+                          "data-animation-name":"appear-top",
+                          "data-animation-duration":"2.75",
+                          " data-fill-mode":"backwards"
+                        },
+                        content: (
+                          <group
+                            data-space="30"
+                            data-direction="column"
+                            data-align="start"
+                            data-scroll=""
+                            data-wrap="no"
+                            //data-shrink="no"
+                          >
                             <group
-                              data-space="30"
                               data-direction="column"
                               data-align="start"
-                              data-scroll=""
-                              data-wrap="no"
-                              //data-shrink="no"
+                              data-gap="30"
+                              data-width="auto"
                             >
                               <group
                                 data-direction="column"
-                                data-align="start"
                                 data-gap="30"
-                                data-width="auto"
+                                data-align="start"
                               >
-                                <group
-                                  data-direction="column"
-                                  data-gap="30"
-                                  data-align="start"
-                                >
-                                  <group data-gap="10" data-direction="column">
-                                    <text
-                                      data-weight="700"
-                                      data-text-size="medium"
-                                    >
-                                      Example Modal
-                                    </text>
-                                    <text
-                                      data-wrap="wrap"
-                                      data-line="1.5"
-                                      data-length="400"
-                                    >
-                                      This is a sample modal to demonstrate how
-                                      content is displayed. Click the button
-                                      below to proceed.
-                                    </text>
-                                  </group>
-                                  <separator data-horizontal=""></separator>
-                                </group>
+                                <group data-gap="10" data-direction="column">
+                                  <text
+                                    data-weight="700"
+                                    data-text-size="medium"
+                                    data-animation-name="appear-top"
+                                    data-fill-mode="backwards"
+                                    data-animation-duration="1.75"
 
-                                <Ripple>
-                                  <group
-                                    data-ink-color="main-deep"
-                                    data-contain=""
-                                    data-width="auto"
-                                    data-interactive=""
-                                    data-interact="popover"
-                                    data-space="15"
-                                    data-radius="5"
-                                    data-cursor="pointer"
-                                    data-background="main"
-                                    data-color="main-text"
-                                    onClick={() => closeModal("modal-01")}
-                                    data-containt=""
                                   >
-                                    <text data-weight="700" data-ellipsis="">
-                                      Confirm and Close
-                                    </text>
-                                  </group>
-                                </Ripple>
-                              </group>
-                            </group>
-                          ),
-                          //  hasHeader: false,
-                          //   hasToolbar: false,
-                          //    customAttributes: modalConfig,
-                          // spacing: 0,
-                        })
-                      }
-                    >
-                      <text data-weight="700" data-ellipsis="">
-                        Open Modal
-                      </text>
-                    </group>
-                  </Ripple>
-                  <text data-wrap="wrap" data-line="1.5" data-length="300">
-                    Component with customizable headers, toolbars, and
-                    attributes, supporting global management via context and
-                    handling open/close logic.
-                  </text>
+                                    Example Modal
+                                  </text>
+                                  <text
+                                    data-wrap="wrap"
+                                    data-line="1.5"
+                                    data-length="400"
 
-                </group>
+                                    data-animation-name="appear-top"
+                                    data-fill-mode="backwards"
+                                    data-animation-duration="2"
+                                  >
+                                    This is a sample modal to demonstrate how
+                                    content is displayed. Click the button below
+                                    to proceed.
+                                  </text>
+                                </group>
+                                <separator data-horizontal=""></separator>
+                              </group>
+
+                              <Ripple>
+                                <group
+                                  data-ink-color="main-deep"
+                                  data-contain=""
+                                  data-width="auto"
+                                  data-interactive=""
+                                  data-interact="popover"
+                                  data-space="15"
+                                  data-radius="5"
+                                  data-cursor="pointer"
+                                  data-background="main"
+                                  data-color="main-text"
+                                  onClick={() => closeModal("modal-01")}
+                                  data-containt=""
+
+                                  data-animation-name="appear-top"
+                                  data-fill-mode="backwards"
+                                  data-animation-duration="2.25"
+
+                                >
+                                  <text data-weight="700" data-ellipsis="">
+                                    Confirm and Close
+                                  </text>
+                                </group>
+                              </Ripple>
+                            </group>
+                          </group>
+                        ),
+                        //  hasHeader: false,
+                        //   hasToolbar: false,
+                        //    customAttributes: modalConfig,
+                        // spacing: 0,
+                      })
+                    }
+                  >
+                    <text data-weight="700" data-ellipsis="">
+                      Open Modal
+                    </text>
+                  </group>
+                </Ripple>
+                <text data-wrap="wrap" data-line="1.5" data-length="300">
+                  Component with customizable headers, toolbars, and attributes,
+                  supporting global management via context and handling
+                  open/close logic.
+                </text>
               </group>
             </group>
           </group>
         </group>
-
+      </group>
 
       <group
         data-gap="15"
@@ -277,8 +301,6 @@ const Modal: React.FC = () => {
         data-type="column"
         data-column-gap="15"
       >
-
-
         <group
           data-height="auto"
           data-max-height="fit"

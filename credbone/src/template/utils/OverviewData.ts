@@ -20,7 +20,7 @@ export const groupedLinksArray = [
       { title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
       { title: "Colors\n& Shades", description: "A system to craft and manage color palettes.", to: "/Components/Colors",content:colorcontent, },
       { title: "Divider\n& Space", description: "Dividers organize and separate content.", to: "/Components/DividerAndSpace", },
-      { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
+
 
       { title: "Motion\n& Animation", description: "Bring interfaces to life with smooth transitions.",  to: "/Components/Motion", },
 
@@ -32,6 +32,7 @@ export const groupedLinksArray = [
     description:
       "Interactive components that facilitate user actions and engagement.",
     items: [
+      { title: "Cards\n& Lists", description: "Organized containers for content display.", to: "/Components/CardsAndList", },
       { title: "Checkbox\n& Switches", description: "Customizable toggle elements for user selection.", to: "/Components/CheckboxSwitchers", },
       { title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
       { title: "Input\n& Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
