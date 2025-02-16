@@ -7,6 +7,7 @@ export const navItems = [
   { to: "Components/Colors",  label: "Color System",new:"true"},
   { to: "Components/DividerAndSpace",  label: "Divider & Space" },
   { to: "Components/CardsAndList",  label: "Cards & List" },
+  { to: "Components/Motion",  label: "Motion" },
 
 
   { to: "Components/CheckboxSwitchers",  label: "Checkbox & Switchers",separator:"true" },

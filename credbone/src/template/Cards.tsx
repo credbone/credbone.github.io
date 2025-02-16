@@ -246,6 +246,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
             data-position="absolute"
             data-bottom="0"
             data-left="0"
+            
           >
             <group
               data-backdrop="20"
@@ -334,17 +335,18 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-contain=""
               data-index="1"
             >
-              <picture data-brightness="adaptive">
+              <picture data-brightness="adaptive" data-object-position="top">
                 <img src={item.image} alt={item.title} />{" "}
               </picture>
             </group>
 
-            <group>
+            <group data-align="center" data-contain="">
               <group
-                data-gap="5"
+               data-contain=""
                 data-space="10"
                 data-direction="column"
                 data-index="1"
+                data-gap="5"
               >
                 <text
                   data-weight="700"
@@ -353,7 +355,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
                 >
                   {item.title}
                 </text>
-                <text data-opacity="60" data-wrap="wrap" data-line="1.5">
+                <text data-opacity="60" data-ellipsis="">
                   {item.description}
                 </text>
               </group>
@@ -401,7 +403,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-contain=""
               data-interact=""
             >
-              <picture data-brightness="adaptive">
+              <picture data-brightness="adaptive" data-object-position="top">
                 <img src={item.image} alt={item.title} />{" "}
               </picture>
             </group>

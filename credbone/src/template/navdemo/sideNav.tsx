@@ -4,7 +4,7 @@ import { SvgHamburgerToLeft } from "../../components/svg";
 import { useRef, useState } from "react";
 
 
-import sampleImage2 from "../../styles/images/samples/ai_res/res-34.jpg";
+import sampleImage2 from "../../styles/images/samples/list_res/res_05.jpg";
 import { BookOpen, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
@@ -140,7 +140,7 @@ const SideNav = () => {
                   // }, 325);
                 }}
               >
-                <picture  data-type="interact" data-position="absolute">
+                <picture  data-type="interact" data-position="absolute" data-object-position="top">
                   <img src={sampleImage2} alt="" />
                 </picture>
               </group>

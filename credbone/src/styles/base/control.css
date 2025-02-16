@@ -205,6 +205,9 @@ text[data-width="auto"]{width: initial;}
 [data-top="60"] { top: 60px; }
 [data-top="90"] { top: 90px; }
 
+
+[data-top="-50%"] { top: -50%; }
+
 /* Left positions */
 
 [data-left="-10"] { left:-10px; }
@@ -224,6 +227,7 @@ text[data-width="auto"]{width: initial;}
 [data-left="100%"] { left: 100%; }
 [data-left="75%"] { left: 75%; }
 [data-left="50%"] { left: 50%; }
+[data-left="25%"] { left: 25%; }
 
 
 [dir="rtl"] [data-position="right"] {margin-right: auto;margin-left: initial;}

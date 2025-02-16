@@ -70,14 +70,14 @@ const resetValues = () => {
     { value: "800", name: "Extra-Bold" },
   ];
 
-  // Alignment options
+
   const alignmentOptions = [
     { value: "left", title: "Left" },
     { value: "center", title: "Center" },
     { value: "right", title: "Right" },
   ];
 
-  // Alignment options
+
   const transformOptions = [
     { value: "none" },
     { value: "capitalize" },
@@ -85,7 +85,7 @@ const resetValues = () => {
     { value: "lowercase" },
   ];
 
-  // Alignment options
+
   const sizeOptions = [
     { value: "0", title: "Extra Option" },
     { value: "", title: "", type: "separator" },
@@ -172,6 +172,7 @@ const resetValues = () => {
                       onClick={() => handleWeightSelect(value)}
                       data-background={selectedWeight === value ? "main" : ""}
                       data-color={selectedWeight === value ? "main-text" : ""}
+                      
                       data-align="center"
                       data-interactive=""
                       data-over-color="neutral"

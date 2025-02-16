@@ -30,6 +30,7 @@ import Snackbar from "./Snackbar";
 import RangeSlider from "./RangeSlider";
 import Divider from "./divider";
 import BottomNav from "../pages/navigation/bottomNav";
+import Motion from "./Motion";
 
 
 const Template: React.FC = () => {
@@ -115,7 +116,7 @@ const Template: React.FC = () => {
               <Route path="Colors" element={<Colors />} />
               <Route path="DividerAndSpace" element={<Divider />} />
               <Route path="Layout" element={<Layout />} />
-             
+              <Route path="Motion" element={<Motion />} />
 
               <Route path="Navigation/*" element={<Landing />} />
              
