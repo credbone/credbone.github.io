@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense, useState } from "react";
 import StuckReporter from "../components/StuckReporter";
+import { SvgLoader } from "../components/svg";
 
 interface CardModalProps {
   item: {
@@ -13,6 +14,15 @@ interface CardModalProps {
 }
 
 const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
+
+
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+
+
   return (
     <group data-min-height="fit">
       <group
@@ -95,9 +105,21 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
           data-wrap="no"
         //  data-elevation="1"
         >
-          <picture data-position="center">
-            <img src={item.image} alt={item.title} />
+
+{loading && <group data-space="30" data-backdrop="20"  data-gap="30"><SvgLoader/><text>Loading image...</text></group>}
+          <picture data-position="center" data-hide={loading ? "true" : undefined}>
+
+         
+      <img 
+        src={item.image} 
+        alt={item.title} 
+        onLoad={handleImageLoad} 
+       
+      />
+
           </picture>
+
+
 
         </group>
         <group
