@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useModal } from "../components/Modal";
 import TooltipPopover from "./TooltipPopover";
@@ -12,6 +12,10 @@ import TemplatePageHeader from "./TemplatePageHeader";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
+
+
+
+
 
   const sampleContent = (
     <group
@@ -46,16 +50,15 @@ const Modal: React.FC = () => {
     "data-scroll": "",
     "data-min-height": "fit",
     "data-contain": "scroll",
-    "data-animation-name":"appear-bottom",
-    "data-animation-duration":"2.75",
-    "data-fill-mode":"backwards",
+    "data-animation-name": "appear-bottom",
+    "data-animation-duration": "2.75",
+    "data-fill-mode": "backwards",
   };
 
-
   const animationConfig = {
-    "data-animation-name":"zoom-in-9",
-    "data-animation-duration":"2.75",
-    "data-fill-mode":"backwards"
+    "data-animation-name": "zoom-in-9",
+    "data-animation-duration": "2.75",
+    "data-fill-mode": "backwards",
   };
 
   const modalData = [
@@ -189,12 +192,11 @@ const Modal: React.FC = () => {
                       openModal({
                         id: "modal-01",
                         title: "Sample Basic Popup",
-                        //   fullscreen: true,
                         fullscreenbutton: true,
-                        customAttributes:{
-                          "data-animation-name":"appear-top",
-                          "data-animation-duration":"2.75",
-                          " data-fill-mode":"backwards"
+                        customAttributes: {
+                          "data-animation-name": "appear-top",
+                          "data-animation-duration": "1.75",
+                          "data-fill-mode": "backwards",
                         },
                         content: (
                           <group
@@ -223,7 +225,6 @@ const Modal: React.FC = () => {
                                     data-animation-name="appear-top"
                                     data-fill-mode="backwards"
                                     data-animation-duration="1.75"
-
                                   >
                                     Example Modal
                                   </text>
@@ -231,7 +232,6 @@ const Modal: React.FC = () => {
                                     data-wrap="wrap"
                                     data-line="1.5"
                                     data-length="400"
-
                                     data-animation-name="appear-top"
                                     data-fill-mode="backwards"
                                     data-animation-duration="2"
@@ -240,6 +240,11 @@ const Modal: React.FC = () => {
                                     content is displayed. Click the button below
                                     to proceed.
                                   </text>
+
+
+
+
+
                                 </group>
                                 <separator data-horizontal=""></separator>
                               </group>
@@ -258,11 +263,9 @@ const Modal: React.FC = () => {
                                   data-color="main-text"
                                   onClick={() => closeModal("modal-01")}
                                   data-containt=""
-
                                   data-animation-name="appear-top"
                                   data-fill-mode="backwards"
                                   data-animation-duration="2.25"
-
                                 >
                                   <text data-weight="700" data-ellipsis="">
                                     Confirm and Close

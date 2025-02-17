@@ -234,16 +234,18 @@ input[type=number][data-name="input-reset"] {
 [data-name="range-slider-handle"]{pointer-events: none;  cursor: pointer;  }
 
 
-[data-name="range-slider-track-left"]{right:100%;margin-right: 5px;}
-[data-name="range-slider-track-right"]{left:100%;margin-left: 5px;}
+/* [data-name="range-slider"]:active text {transform: translateY(1px);} */
 
-[data-name="range-slider-track-left"],
+[data-name="range-slider-track-left"]{right:100%;}
+[data-name="range-slider-track-right"]{left:100%;}
+
+/* [data-name="range-slider-track-left"],
 [data-name="range-slider-track-right"]
 
 
 {
     height: 2px;
-}
+} */
 
 
 
@@ -263,7 +265,7 @@ input[type=number][data-name="input-reset"] {
 [data-name="range-slider"] input::-moz-range-thumb
 {
     -moz-appearance: none;
-    background: blue;
+    /* background: blue; */
 
     height: 30px;
     width: 60px;

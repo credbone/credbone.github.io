@@ -4,7 +4,7 @@ import { SvgHamburgerToLeft } from "../../components/svg";
 import { useRef, useState } from "react";
 
 
-import sampleImage2 from "../../styles/images/samples/list_res/res_05.jpg";
+import sampleImage2 from "../../styles/images/samples/list_res/res_04.jpg";
 import { BookOpen, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {

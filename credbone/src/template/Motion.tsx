@@ -440,7 +440,7 @@ const Motion: React.FC = () => {
                     "data-height": "initial",
                     "data-space-vertical": "10",
                   }}
-                  trackLeftProps={{ "data-margin": "0", "data-height": "1" }}
+                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
                   trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
                 />
               </group>

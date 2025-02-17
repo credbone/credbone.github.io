@@ -236,7 +236,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-brightness="adaptive"
               //    data-mask={selectedKey === item.key ? "bottom" : ""}
             >
-              <img src={item.image} alt={item.title} />
+              <img src={item.image_1x} srcSet={`${item.image} 2x`}  alt={item.title} />
             </picture>
           </group>
 
@@ -336,7 +336,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-index="1"
             >
               <picture data-brightness="adaptive" data-object-position="top">
-                <img src={item.image} alt={item.title} />{" "}
+                <img src={item.thumbnail}  alt={item.title} />
               </picture>
             </group>
 
@@ -404,7 +404,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               data-interact=""
             >
               <picture data-brightness="adaptive" data-object-position="top">
-                <img src={item.image} alt={item.title} />{" "}
+              <img src={item.thumbnail}  alt={item.title} />
               </picture>
             </group>
 

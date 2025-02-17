@@ -113,12 +113,12 @@ const SystemColorPicker: React.FC<ColorPickerProps> = ({ selectedColor, handleCo
                         data-radius={
                           selectedColor === basecolor.value + "-light"
                             ? "30"
-                            : ""
+                            : undefined
                         }
                         data-margin={
                           selectedColor === basecolor.value + "-light"
                             ? "5"
-                            : ""
+                            : undefined
                         }
                         data-duration=".125"
                         data-react="background"

@@ -66,6 +66,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         <group
           data-background="text"
           data-name="range-slider-track-left"
+          data-height="2"
           data-min-length="600"
           data-position="absolute"
           data-margin-right="5"
@@ -73,6 +74,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         ></group>
         <group
           data-background="text"
+          data-height="2"
           data-name="range-slider-track-right"
           data-min-length="600"
           data-position="absolute"

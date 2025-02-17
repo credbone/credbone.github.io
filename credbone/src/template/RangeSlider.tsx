@@ -215,7 +215,7 @@ Custom handle using different properties
              "data-border" : "inset-2",
 
            }}
-           trackLeftProps={{ "data-margin":"0" }}
+           trackLeftProps={{ "data-margin-right":"0" }}
            trackRightProps={{ "data-opacity": "10" }}
          />
        </group>
