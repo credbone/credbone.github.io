@@ -36,36 +36,31 @@ icon {
 }
 
 
-icon[data-icon-weight="100"]{font-variation-settings: 'wght' 100;}
+/* icon[data-icon-weight="100"]{font-variation-settings: 'wght' 100;}
 icon[data-icon-weight="200"]{font-variation-settings: 'wght' 200;}
 icon[data-icon-weight="300"]{font-variation-settings: 'wght' 300;}
 icon[data-icon-weight="500"]{font-variation-settings: 'wght' 500;}
 icon[data-icon-weight="600"]{font-variation-settings: 'wght' 600;}
-icon[data-icon-weight="700"]{font-variation-settings: 'wght' 700;}
+icon[data-icon-weight="700"]{font-variation-settings: 'wght' 700;} */
 
 
-icon[data-icon-size="16"]      {font-size: 16px; height: 16px;  max-width: 16px;}
+/* icon[data-icon-size="16"]      {font-size: 16px; height: 16px;  max-width: 16px;}
 icon[data-icon-size="small"]   {font-size: 20px; height: 20px;  max-width: 20px;}
 icon[data-icon-size="24"]      {font-size: 18px; height: 24px;  max-width: 24px;}
 
 icon[data-icon-size="48"]      {font-size: 30px; height: 48px;  width: 48px; max-width: 48px;}
 icon[data-icon-size="mini"]  {font-size:24px; }
 icon[data-icon-size="medium"]  {font-size:48px;  height: 48px;  max-width: 48px;}
-icon[data-icon-size="large"] {
-    font-size: 60px;
-    height: 60px;
-    max-width: 60px;
-}
+icon[data-icon-size="large"] { font-size: 60px; height: 60px; max-width: 60px; }
 icon[data-icon-size="x-large"] {font-size:96px;  height: 96px;  max-width: 96px;}
-icon[data-icon-size="x-large"] {font-size:112px; height: 112px; max-width: 112px;}
+icon[data-icon-size="x-large"] {font-size:112px; height: 112px; max-width: 112px;} */
 
-icon[data-fill="fill"] 
-{ font-variation-settings: "FILL" 1;}
-
+/* icon[data-fill="fill"] { font-variation-settings: "FILL" 1;} */
 
 
 
-[data-opacity="light"] { opacity: .15 }
+
+/* [data-opacity="light"] { opacity: .15 } */
 
 
 [data-svg-icon-size="55"] svg {width: 55px; height: 55px;}
@@ -75,10 +70,10 @@ icon[data-fill="fill"]
 /* Sizes */
 
 
-icon[large] { width: 90px; height: 90px; font-size: 90px; }
+/* icon[large] { width: 90px; height: 90px; font-size: 90px; }
 icon[extralarge] { width:130px; height: 130px; font-size: 130px; }
 icon[medium] { width: 60px; height: 60px; font-size: 50px; }
-icon[micro] { width: 15px; height: 15px; font-size: 15px; }
+icon[micro] { width: 15px; height: 15px; font-size: 15px; } */
 
 
 
@@ -151,7 +146,7 @@ icon svg { max-width: 100%; max-height: 100%;  }
 
 /* stylelint-enable */
 
-@keyframes cred-icon-demo_draw{100%{stroke-dashoffset:0;}}@keyframes cred-icon-demo_fade{0%{stroke-opacity:1;}93.54838709677419%{stroke-opacity:1;}100%{stroke-opacity:0;}}
+/* @keyframes cred-icon-demo_draw{100%{stroke-dashoffset:0;}}@keyframes cred-icon-demo_fade{0%{stroke-opacity:1;}93.54838709677419%{stroke-opacity:1;}100%{stroke-opacity:0;}}
 
 .cred-icon-demo_0{stroke-dasharray:41 43;stroke-dashoffset:42;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;}
 .cred-icon-demo_1{stroke-dasharray:6 8;stroke-dashoffset:7;animation:cred-icon-demo_draw 2000ms ease-out    .125s forwards;}
@@ -161,4 +156,4 @@ icon svg { max-width: 100%; max-height: 100%;  }
 .cred-icon-demo_5{stroke-dasharray:11 13;stroke-dashoffset:12;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;}
 .cred-icon-demo_6{stroke-dasharray:11 13;stroke-dashoffset:12;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;}
 .cred-icon-demo_7{stroke-dasharray:51 53;stroke-dashoffset:52;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;}
-.cred-icon-demo_8{stroke-dasharray:96 98;stroke-dashoffset:97;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;}
+.cred-icon-demo_8{stroke-dasharray:96 98;stroke-dashoffset:97;animation:cred-icon-demo_draw 2000ms ease-out .125s forwards;} */

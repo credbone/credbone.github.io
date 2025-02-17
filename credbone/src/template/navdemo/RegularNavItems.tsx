@@ -408,7 +408,7 @@ data-space="20"
                               data-align="center"
                               data-interactive=""
                             >
-                              <icon data-fill="fill"><CircleUser size={20}/></icon>
+                              <icon><CircleUser size={20}/></icon>
                               <text data-adaptive="desktop">
                                 Welcome Username
                               </text>

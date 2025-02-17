@@ -60,7 +60,7 @@ separator[data-horizontal="dotted"] { box-shadow: none;
 
 /*space*/
 
-space { display: flex; height: 30px; width: 100%; flex-shrink: 0; }
+/* space { display: flex; height: 30px; width: 100%; flex-shrink: 0; }
 
 space[top] { margin-top: auto; }
 space[tiny] { height: 5px; }
@@ -72,10 +72,11 @@ space[x-large] { height: 40px }
 
 space[horizontal] { flex-shrink: initial; height: initial; }
 space[horizontal="medium"]
+[space='no'] { padding: 0; } */
 
 dot { padding: 0 10px; font-weight: 700; position: relative; }
 dot::after { content: '\00b7'; }
-[space='no'] { padding: 0; }
+
 
 
 
