@@ -18,7 +18,7 @@ import TemplatePageHeader from "./TemplatePageHeader";
 // import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
 
 const CheckboxAndSwitchers: React.FC = () => {
-  const { reset, control, watch } = useForm<FieldValues>({
+  const { reset, control } = useForm<FieldValues>({
     defaultValues: {
       1: true,
       4: true,

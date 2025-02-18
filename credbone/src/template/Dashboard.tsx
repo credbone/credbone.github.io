@@ -4,7 +4,7 @@ import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
 import sampleImage from "../styles/images/samples/wide_res_72.webp";
-import Count from "../components/Coutner";
+
 import TemplatePageHeader from "./TemplatePageHeader";
 
 
@@ -63,17 +63,17 @@ const generateMonitorCardData = (): MonitorCardType[] => [
 ];
 
 
-const getGreeting = (): string => {
-  const hour = new Date().getHours();
+// const getGreeting = (): string => {
+//   const hour = new Date().getHours();
 
-  if (hour >= 5 && hour < 12) {
-    return 'Good morning';
-  } else if (hour >= 12 && hour < 17) {
-    return 'Good afternoon';
-  } else {
-    return 'Good evening';
-  }
-};
+//   if (hour >= 5 && hour < 12) {
+//     return 'Good morning';
+//   } else if (hour >= 12 && hour < 17) {
+//     return 'Good afternoon';
+//   } else {
+//     return 'Good evening';
+//   }
+// };
 
 const Dashboard: React.FC = () => {
   const [monitorCard, setMonitorCard] = useState<MonitorCardType[]>(

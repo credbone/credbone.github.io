@@ -158,7 +158,7 @@ const Icons: React.FC = () => {
       ) {
         setHasChanged(true);
       }
-    }, [IconSize, IconStroke, isFilled, selectedColor,selectedColor]);
+    }, [IconSize, IconStroke, isFilled,selectedColor]);
 
 
 const resetValues = () => {

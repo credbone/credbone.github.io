@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { navItems } from "./subroutesData";
-import Tooltip from "../../components/tooltip";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Ripple from "../../components/Ripple";
 

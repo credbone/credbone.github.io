@@ -4,7 +4,7 @@ import Radio, { RadioType } from "../components/inputs/radio";
 import { FieldValues, useForm, Controller } from "react-hook-form";
 import { ContentData } from "./utils/ContentData";
 
-import Ripple from "../components/Ripple";
+
 import {
   IconHeart,
   IconMoreHoriz,
@@ -286,6 +286,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
                 </text>
                 <Marquee
                   data-space-horizontal="15"
+                  data-disabled="true"
                   auto={selectedKey === item.key ? true : false}
                 >
                   <text
@@ -459,7 +460,7 @@ const ViewTemplates: Record<
   ViewTypes,
   { component: React.FC<TemplateProps>; gridTemplate: string, gridGap: string, wrapperProps?: Record<string, string>; }
 > = {
-  CardView: { component: CardTemplate, gridTemplate: "200", gridGap: "10" },
+  CardView: { component: CardTemplate, gridTemplate: "200", gridGap: "5" },
   ListView: { component: ListTemplate, gridTemplate: "fit", gridGap: "5",  },
   GridView: { component: GridTemplate, gridTemplate: "240", gridGap: "1",  wrapperProps: { "data-radius": "20", "data-contain":"", "data-border":"" }  },
 };
