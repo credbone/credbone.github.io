@@ -222,7 +222,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
 
         >
           <group
-            data-ratio="1:2/4:5"
+            data-ratio="4:7"
             data-contain=""
             data-direction="column"
             data-wrap="no"
