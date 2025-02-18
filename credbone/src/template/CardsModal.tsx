@@ -101,11 +101,27 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
           data-wrap="no"
           //  data-elevation="1"
           data-ratio="4:7"
-          data-backdrop="20"
+         data-backdrop="20"
         >
           {loading && (
-            <group data-space="30" data-gap="30">
-              <text>Loading image...</text>
+            <group data-space="50"  data-direction="column">
+              <group
+                data-background="adaptive-gray"
+                data-height="2"
+                data-length="80"
+                data-contain=""
+                data-radius="10"
+                data-position="center"
+              >
+                <group
+                  data-radius="10"
+                  data-background="text"
+                  data-animation-interation="infinite"
+                  data-animation-name="to-left-right"
+                  data-animation-duration="7.75"
+                  data-animation-direction="alternate"
+                ></group>
+              </group>
             </group>
           )}
           <picture

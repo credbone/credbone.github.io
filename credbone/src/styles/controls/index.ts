@@ -13,7 +13,6 @@ import './option_bar.css';
 import './list.css';
 import './inputs.css';
 import './popup.css';
-import './loader.css';
 import './color.css';
 import './animation.css';
 import './tooltip.css';

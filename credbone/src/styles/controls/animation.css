@@ -11,6 +11,9 @@
 @keyframes zoom-out {to{opacity: 0;transform: scale(.5);}}
 
 
+
+
+
 @keyframes to-top { 50%, 100%{transform: translateY(-100%);} }
 
 @keyframes to-bottom { 40%,60%{transform: scale(0);} }
@@ -21,6 +24,8 @@
 @keyframes to-left { to{transform: translateX(-100%);} }
 @keyframes to-right { to{transform: translateX(100%) translateX(-60px) ;} }
 
+
+@keyframes to-left-right { from{transform: translateX(-100%);}to{transform: translateX(100%);} }
 
 @keyframes bounce
  {
@@ -46,6 +51,9 @@
 [data-animation-name="to-bottom"]{animation-name: to-bottom;}
 
 [data-animation-name="to-left"]{animation-name: to-left;}
+
+[data-animation-name="to-left-right"]{animation-name: to-left-right;}
+
 [data-animation-name="to-right"]{animation-name: to-right;}
 
 [data-animation-name="scale-8"]{animation-name: scale-8;}
