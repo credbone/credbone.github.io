@@ -572,11 +572,11 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-ratio="4:7"]{aspect-ratio: 4/7;}
 
-[ data-ratio="1:2/4:5"]{aspect-ratio:1/2} 
+[ data-ratio="4:7/4:5"]{aspect-ratio:4/7} 
 
 @media (max-width: 600px)
 {
-  [ data-ratio="1:2/4:5"]{aspect-ratio:4/5} 
+  [ data-ratio="4:7/4:5"]{aspect-ratio:4/5} 
 }
 
 

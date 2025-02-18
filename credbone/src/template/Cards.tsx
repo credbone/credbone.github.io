@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import OptionBar from "../components/inputs/optionBar";
 import Radio, { RadioType } from "../components/inputs/radio";
 import { FieldValues, useForm, Controller } from "react-hook-form";
@@ -161,7 +161,7 @@ const ViewSwitch = [
   },
 ];
 
-const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
+const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSelect }) => {
   const openCustomModal = useOpenCustomModal();
 
 
@@ -201,9 +201,10 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
 
   return (
     <>
-      {ContentData.map((item) => (
+      {ContentData.map((item,index) => (
         <group
           key={item.key}
+          ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
           data-space="5"
           //data-gap="5"
           data-radius="20"
@@ -222,7 +223,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
 
         >
           <group
-            data-ratio="4:7"
+            data-ratio="4:7/4:5"
             data-contain=""
             data-direction="column"
             data-wrap="no"
@@ -304,15 +305,16 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
   );
 };
 
-const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
+const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSelect }) => {
   const openCustomModal = useOpenCustomModal();
   return (
     <>
-      {ContentData.map((item) => (
-        <Ripple key={item.key}>
+      {ContentData.map((item,index) => (
+
           <group
             data-max-length="700"
             key={item.key}
+            ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
             data-space="5"
             data-gap="5"
             data-radius="15"
@@ -365,19 +367,20 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
               )}
             </group>
           </group>
-        </Ripple>
+
       ))}
     </>
   );
 };
 
-const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, onSelect }) => {
+const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSelect }) => {
   const openCustomModal = useOpenCustomModal();
   return (
     <>
-      {ContentData.map((item) => (
+      {ContentData.map((item,index) => (
         <group
           key={item.key}
+          ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
           data-space="20"
           data-gap="20"
        //   data-radius="20"
@@ -464,6 +467,7 @@ const ViewTemplates: Record<
 // Define a type for the props that the template components will receive
 type TemplateProps = {
   selectedKey: string;
+  selectedRef: React.RefObject<HTMLDivElement>;
   onSelect: (key: string) => void;
 };
 
@@ -478,14 +482,26 @@ const Cards: React.FC = () => {
   const { component: ViewComponent, gridTemplate, gridGap, wrapperProps } = ViewTemplates[view];
 
   const [selectedKey, setSelectedKey] = useState<string>("1");
+  const selectedRef = useRef<HTMLDivElement | null>(null);
 
   const handleSelect = (key: string) => {
     setSelectedKey((prevKey) => (prevKey === key ? "" : key));
   };
 
+
+
+
+  useEffect(() => {
+
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+  }, [view]);
+
   return (
 <>
-<group data-space="30" data-gap="30">
+<group data-space="30" >
 
 
 
@@ -505,7 +521,9 @@ const Cards: React.FC = () => {
       data-sticky="top"
       data-index="3"
       data-width="auto"
-      data-space-vertical={isSticky ? "30" : ""}
+      data-space-vertical="30"
+      data-space-horizontal={isSticky? "30" :""}
+      data-duration=".125"
     >
       <group
         data-gap="10"
@@ -513,7 +531,7 @@ const Cards: React.FC = () => {
         data-background={isSticky ? "context" : ""}
         data-elevation={isSticky ? "1" : ""}
         data-radius={isSticky ? "10" : ""}
-        data-duration=".125"
+        
       >
         <OptionBar
           compact
@@ -554,9 +572,10 @@ const Cards: React.FC = () => {
   )}
 </StuckReporter>
 
-<separator data-horizontal=""></separator>
+{/* <separator data-horizontal=""></separator>
+<group data-height="30"></group> */}
 <group data-type="grid" data-grid-template={gridTemplate} data-gap={gridGap} {...wrapperProps} >
-  <ViewComponent selectedKey={selectedKey} onSelect={handleSelect} />
+  <ViewComponent selectedKey={selectedKey} onSelect={handleSelect} selectedRef={selectedRef} />
 </group>
 
 
