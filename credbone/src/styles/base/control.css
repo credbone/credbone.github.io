@@ -183,7 +183,7 @@ text[data-width="auto"]{width: initial;}
 [data-right="20"] { right: 20px; }
 [data-right="25"] { right: 25px; }
 [data-right="30"] { right: 30px; }
-
+[data-right="-30"] { right: -30px; }
 [data-right="100%"] { right: 100%; }
 [data-right="75%"] { right: 75%; }
 [data-right="50%"] { right: 50%; }
@@ -431,7 +431,7 @@ text[data-width="auto"]{width: initial;}
   [data-autofit="1-600"]  { flex: 1; }
 
   [data-width="auto-600"]{width: auto;}
-
+  [data-min-length='600']{min-width:100%;}
 }
 
 
@@ -449,7 +449,7 @@ text[data-width="auto"]{width: initial;}
 
 
 [data-shrink="no"] { flex-shrink: 0 }
-[data-shrink="yes"] { flex-shrink: initial }
+[data-shrink="initial"] { flex-shrink: initial }
 
 
 

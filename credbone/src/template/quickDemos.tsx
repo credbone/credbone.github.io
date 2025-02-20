@@ -9,6 +9,10 @@ import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
 import TemplatePageHeader from "./TemplatePageHeader";
 
+import { isMobile } from "react-device-detect";
+
+
+
 const QuickDemos: React.FC = () => {
 
   const { openModal } = useModal();
@@ -170,11 +174,21 @@ data-gap="20"
                 openModal({
                   id: "paint-modal",
                   title: "Simple Paint",
-                  content: (<group data-length="600"><SimplePaint /></group>),
+                  content: (<group data-min-length="600" data-max-height="fit" data-height="fit" data-contain="" data-shrink="initial"><SimplePaint /></group>),
                   hasHeader: true,
+
+                  fullscreenbutton: true,
+                  fullscreen:isMobile,
+                  
+
+
                   hasToolbar: false,
-                  customAttributes: {"data-background":"main-background"},
-                //  dimAttributes: {"data-background" : "dark-shade-70"},
+                  customAttributes: {"data-background":"main-background",
+                    "data-animation-name": "zoom-in-9",
+                    "data-animation-duration": "2.75",
+                    "data-fill-mode": "backwards",
+                  },
+               //   dimAttributes: {"data-background" : "dark-shade-70"},
                  // spacing: 0,
                 })
               }
