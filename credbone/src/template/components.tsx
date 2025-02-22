@@ -67,7 +67,7 @@ const linksArray = [
 
 const Components: React.FC = () => {
   const { openModal, closeModal } = useModal();
- // const [message, setMessage] = useState<string>("");
+  // const [message, setMessage] = useState<string>("");
 
   const modalConfig = {
     "data-radius": "none",
@@ -78,7 +78,7 @@ const Components: React.FC = () => {
     "data-scroll": "",
     "data-min-height": "fit",
     "data-contain": "scroll",
-    "data-modal-backdrop":"dark"
+    "data-modal-backdrop": "dark",
   };
 
   // useEffect(() => {
@@ -94,18 +94,14 @@ const Components: React.FC = () => {
         data-direction="column"
         data-max-length="1200"
       >
-
-
-
-
-
-
-
-        <group  data-wrap="no" data-direction="column-1200">
-
-
-
-          <group data-width="auto" data-space="adaptive-30-50" data-direction="column" data-gap="40" data-index="3">
+        <group data-wrap="no" data-direction="column-1200">
+          <group
+            data-width="auto"
+            data-space="adaptive-30-50"
+            data-direction="column"
+            data-gap="40"
+            data-index="3"
+          >
             <text
               // data-wrap="wrap"
               // data-ellipsis=""
@@ -116,9 +112,9 @@ const Components: React.FC = () => {
               data-max-length="800"
               data-font-type="hero"
               data-wrap="wrap"
-          
             >
-              <text data-wrap="no">Designed to</text><br></br> evolve and adapt.
+              <text data-wrap="no">Designed to</text>
+              <br></br> evolve and adapt.
             </text>
 
             <group data-background="main-background" data-space-vertical="10">
@@ -128,9 +124,7 @@ const Components: React.FC = () => {
                 data-line="1.5"
                 data-opacity="70"
                 data-text-size="15"
-                          
               >
-
                 A hybrid, atomic, and declarative design system that brings
                 flexibility, control and speed to projects. With no classes or
                 pre-defined styles.
@@ -228,9 +222,7 @@ const Components: React.FC = () => {
             </group>
           </group>
 
-
-
-          <Popover
+          {/* <Popover
             placement="mouse"
             content={
               <group
@@ -246,36 +238,42 @@ const Components: React.FC = () => {
             data-backdrop="10"
             data-width="auto"
           >
-<group data-max-length="500" data-position="center"  data-cursor="pointer">
+            <group
+              data-max-length="500"
+              data-position="center"
+              data-cursor="pointer"
+            >
               <group data-space="10%">
-<group  data-height="fit">
-  <group data-position="absolute" data-border="inset" data-right="100%" data-height="fit"  data-disabled="true" data-radius="full"></group>
-  {/* <group data-position="absolute" data-index="3" data-right="50%" data-background="main-alpha-15" data-height="fit"  data-disabled="true" data-radius="full"></group> */}
-<Ripple>
+                <group data-height="fit">
                   <group
-                  data-index="4"
-                    data-contain="" 
-                    data-ink-color="main-dark"
-                    data-ratio="1:1"
-                    data-background="main"
-                    data-color="main-text"
+                    data-position="absolute"
+                    data-border="inset"
+                    data-right="100%"
+                    data-height="fit"
+                    data-disabled="true"
                     data-radius="full"
-                  >
+                  ></group>
 
-
-{/* <ThemNameDisplay/> */}
-
-
-
-                  </group>
-                </Ripple>
-</group>
+                  <Ripple>
+                    <group
+                      data-index="4"
+                      data-contain=""
+                      data-ink-color="main-dark"
+                      data-ratio="1:1"
+                      data-background="main"
+                      data-color="main-text"
+                      data-radius="full"
+                    >
+                      <ThemNameDisplay/>
+                    </group>
+                  </Ripple>
+                </group>
               </group>
               <group
                 data-position="absolute"
                 data-disabled="true"
                 data-height="fit"
-                 data-index="4"
+                data-index="4"
               >
                 <picture
                 //    data-brightness="adaptive"
@@ -287,37 +285,62 @@ const Components: React.FC = () => {
                 </picture>
               </group>
             </group>
-          </Popover>
+          </Popover> */}
         </group>
 
-     
 
-     
+        <group data-direction="column">
+          <picture
+            data-radius="30"
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage_2} alt="" />
+          </picture>
 
-
-        
-          {/* <group data-wrap="no" data-align="center" data-gap="20" >
-            <separator data-horizontal=""></separator>
+          <group data-direction="column" data-space="40" data-align="start">
             <group
-              data-direction="column"
+              data-space="45"
+              data-position="bottom"
+              data-background="main-background"
               data-width="auto"
-              data-align="center"
-              data-text-align="center"
-
-              data-border=""
-              data-space="15"
-              data-radius="30"
-              data-height="90"
-              data-justify="center"
+              data-radius="20"
             >
-
-              <ArrowDown strokeWidth="1"/>
-             
+              <group data-gap="40" data-direction="column-1200">
+                <text
+                  data-wrap="wrap"
+                  data-font-type="hero"
+                  data-line="1"
+                  data-text-size="15"
+                  data-max-length="800"
+                >
+                  Crafted <br></br>for growth.
+                </text>
+                <separator
+                  data-vertical="adaptive-1200"
+                  data-height=""
+                ></separator>
+                <group
+                  data-width="auto"
+                  data-direction="column"
+                  data-align="start"
+                  data-gap="20"
+                >
+                  <text
+                    data-wrap="wrap"
+                    data-line="1.5"
+                    data-length="240"
+                    data-text-size="15"
+                  >
+                    Adapting from prototypes to enterprise apps, evolving with
+                    every project.
+                  </text>
+                </group>
+              </group>
             </group>
-            <separator data-horizontal=""></separator>
-          </group> */}
-
-
+          </group>
+        </group>
 
         <group>
           <text
@@ -325,8 +348,8 @@ const Components: React.FC = () => {
             data-font-type="hero"
             data-ellipsis=""
             data-line="1"
-            data-text-size="64"
-            data-text-clamp="64"
+            data-text-size="48"
+            data-text-clamp="48"
             data-max-length="800"
             data-space="adaptive-30-50"
           >
@@ -335,126 +358,75 @@ const Components: React.FC = () => {
         </group>
 
         <group
-            data-gap="10"
-            data-type="grid"
-            data-grid-template="180"
-            data-weight="600"
-            // data-contain=""
-          >
-            {linksArray.map((link, index) => (
-              <Ripple key={index}>
-                <Link
-                  data-drag="none"
-                  to={link.to}
-                  key={index}
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-ink-color="neutral"
-                  data-width="auto"
-                  data-type="group"
-                  data-contain=""
-                  data-min-height="300"
-                  data-radius="30"
+          data-gap="10"
+          data-type="grid"
+          data-grid-template="180"
+          data-weight="600"
+          // data-contain=""
+        >
+          {linksArray.map((link, index) => (
+            <Ripple key={index}>
+              <Link
+                data-drag="none"
+                to={link.to}
+                key={index}
+                data-interactive=""
+                data-over-color="neutral"
+                data-ink-color="neutral"
+                data-width="auto"
+                data-type="group"
+                data-contain=""
+                data-min-height="300"
+                data-radius="30"
+                data-direction="column"
+                data-wrap="no"
+                data-background={link.color ? "main" : "adaptive-gray"}
+                data-color={link.color ? "main-text" : ""}
+              >
+                <group
+                  data-index="1"
                   data-direction="column"
+                  data-gap="10"
+                  data-space="40"
+                  data-height="fit"
                   data-wrap="no"
-                  data-background={link.color ? "main" : "adaptive-gray"}
-                  data-color={link.color ? "main-text" : ""}
                 >
-                  <group
-                    data-index="1"
-                    data-direction="column"
-                    data-gap="10"
-                    data-space="40"
-                    data-height="fit"
-                    data-wrap="no"
-                  >
-                    <text
-                      data-text-size="medium"
-                      data-weight="700"
-                      data-wrap="preline"
-                      data-ellipsis=""
-
-                      
-                    >
-                      {link.title}
-                    </text>
-
-                    {link.content}
-
-                    <text
-                      data-position="bottom"
-                      // data-text-size="72"
-                      //  data-height="50"
-                      data-contain=""
-                      //   data-weight="700"
-                      data-opacity="30"
-                    >
-                      0{index + 1}
-                    </text>
-                    <text
-                      data-ellipsis=""
-                      data-wrap="wrap"
-                      data-line="1.3"
-                      data-max-length="300"
-                      data-opacity="60"
-                    >
-                      {link.description}
-                    </text>
-                  </group>
-                </Link>
-              </Ripple>
-            ))}
-          </group>
-
-        <group   data-direction="column">
-          <picture
-          data-radius="30"
-              data-brightness="adaptive"
-               data-position="absolute"
-              data-background="grey-light"
-
-            >
-              <img src={sampleImage_2} alt="" />
-            </picture>
-
-          <group
-          
-            data-direction="column"
-            data-space="40"
-    data-align="start"
-          >
-            <group
-              data-space="45"
-              data-position="bottom"
-              data-background="main-background"
-              data-width="auto"
-              data-radius="20"
-            >
-                <group data-gap="40" data-direction="column-1200">
                   <text
-                    data-wrap="wrap"
-                    data-font-type="hero"
-                    data-line="1"
-                    data-text-size="15"
-                    data-max-length="800"
+                    data-text-size="medium"
+                    data-weight="700"
+                    data-wrap="preline"
+                    data-ellipsis=""
                   >
-                    Crafted <br></br>for growth.
+                    {link.title}
                   </text>
-                  <separator
-                    data-vertical="adaptive-1200"
-                    data-height=""
-                  ></separator>
-                  <group data-width="auto" data-direction="column" data-align="start" data-gap="20">
-                    <text data-wrap="wrap" data-line="1.5" data-length="240" data-text-size="15">
-                    Adapting from prototypes to enterprise apps, evolving with every project.
-                    </text>
 
+                  {link.content}
 
-                  </group>
+                  <text
+                    data-position="bottom"
+                    // data-text-size="72"
+                    //  data-height="50"
+                    data-contain=""
+                    //   data-weight="700"
+                    data-opacity="30"
+                  >
+                    0{index + 1}
+                  </text>
+                  <text
+                    data-ellipsis=""
+                    data-wrap="wrap"
+                    data-line="1.3"
+                    data-max-length="300"
+                    data-opacity="60"
+                  >
+                    {link.description}
+                  </text>
                 </group>
-            </group>
-          </group>
+              </Link>
+            </Ripple>
+          ))}
         </group>
+
 
         <group
           data-radius="30"
@@ -465,7 +437,6 @@ const Components: React.FC = () => {
           <group
             data-gap="30"
             data-direction="column"
-            //  data-background="context"
             data-space="30"
             data-align="start"
           >
@@ -479,8 +450,8 @@ const Components: React.FC = () => {
                 data-wrap="wrap"
                 data-font-type="hero"
                 data-line="1"
-                data-text-size="64"
-                data-text-clamp="64"
+                data-text-size="48"
+                data-text-clamp="48"
                 data-max-length="800"
               >
                 Driven by <br></br>passion.
