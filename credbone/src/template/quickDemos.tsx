@@ -39,7 +39,7 @@ const QuickDemos: React.FC = () => {
         data-justify="start"
         data-align="start"
         data-type="column"
-        data-column-size="260"
+        data-column-size="240"
       >
 
 <group

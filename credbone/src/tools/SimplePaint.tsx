@@ -30,7 +30,7 @@ const SimplePaint: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  
+
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState("#F5745E");
   const [brushSize, setBrushSize] = useState(4);
@@ -73,15 +73,15 @@ const SimplePaint: React.FC = () => {
     };
   }, [handleResize]);
 
-  useEffect(() => {
-    window.addEventListener("pointermove", handleResize);
-    window.addEventListener("pointerup", stopResize);
+  // useEffect(() => {
+  //   window.addEventListener("pointermove", handleResize);
+  //   window.addEventListener("pointerup", stopResize);
 
-    return () => {
-      window.removeEventListener("pointermove", handleResize);
-      window.removeEventListener("pointerup", stopResize);
-    };
-  }, [handleResize]);
+  //   return () => {
+  //     window.removeEventListener("pointermove", handleResize);
+  //     window.removeEventListener("pointerup", stopResize);
+  //   };
+  // }, [handleResize]);
 
   useEffect(() => {
     if (appRef.current) {
@@ -90,16 +90,13 @@ const SimplePaint: React.FC = () => {
     }
   }, []);
 
-
   useEffect(() => {
     if (wrapperRef.current) {
-
       const containerHeight = wrapperRef.current.offsetHeight;
 
       setHeight(containerHeight - 60);
-    } 
+    }
   }, []);
-
 
   const getCoordinates = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current;
@@ -179,17 +176,20 @@ const SimplePaint: React.FC = () => {
     >
       <group
         //  data-space="10"
-       // data-gap="10"
+        // data-gap="10"
         data-border="overprint"
         data-index="2"
       >
-        <group data-snap-button="15" >
-          <Scroll >
+        <group data-snap-button="15">
+          <Scroll>
             <group data-wrap="no" data-space="10">
               {colors.map((color, index) => (
                 <group key={index} data-ratio="1:1" data-length="40">
                   <Tooltip content={color.name}>
                     <group
+                      data-animation-name="appear-left"
+                      data-fill-mode="backwards"
+                      data-animation-duration={2 + index * 0.25}
                       data-radius="10"
                       data-align="center"
                       data-justify="center"

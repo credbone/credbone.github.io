@@ -67,7 +67,7 @@ const CustomSlider: React.FC<SliderProps> = ({
           data-background="text"
           data-name="range-slider-track-left"
           data-height="2"
-          data-min-length="600"
+          data-min-length="700"
           data-position="absolute"
           data-margin-right="5"
           {...trackLeftProps}
@@ -76,7 +76,7 @@ const CustomSlider: React.FC<SliderProps> = ({
           data-background="text"
           data-height="2"
           data-name="range-slider-track-right"
-          data-min-length="600"
+          data-min-length="700"
           data-position="absolute"
           data-margin-left="5"
           {...trackRightProps}

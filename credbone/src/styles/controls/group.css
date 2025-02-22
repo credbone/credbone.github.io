@@ -111,6 +111,7 @@ group[data-type="column"] {display: block; flex-direction: column; columns: 6 30
 [data-type="column"][data-column-template="8"]{ columns: 8 300px;}
 
 [data-type="column"][data-column-size="200"]{ column-width: 200px;}
+[data-type="column"][data-column-size="220"]{ column-width: 220px;}
 [data-type="column"][data-column-size="240"]{ column-width: 240px;}
 [data-type="column"][data-column-size="260"]{ column-width: 260px;}
 [data-type="column"][data-column-size="320"]{ column-width: 320px;}

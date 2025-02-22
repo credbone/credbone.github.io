@@ -1082,9 +1082,10 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-filter="blur-90"]{filter: blur(90px);}
-[data-mix-lend-mode="hardlight"] { mix-blend-mode: hard-light;}
-[data-mix-lend-mode="multiply"] { mix-blend-mode: multiply;}
-[data-mix-lend-mode="screen"] { mix-blend-mode: screen;}
+[data-mix-blend-mode="hardlight"] { mix-blend-mode: hard-light;}
+[data-mix-blend-mode="multiply"] { mix-blend-mode: multiply;}
+[data-mix-blend-mode="screen"] { mix-blend-mode: screen;}
+[data-mix-blend-mode="difference"] { mix-blend-mode: difference;}
 
 
 [data-contain=""]{contain: content; overflow:hidden;}
