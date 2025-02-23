@@ -9,10 +9,15 @@ import SearchComponent from "../pages/search/searchComponent";
 
 
 import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-import sampleImage_3 from "../styles/images/samples/res_001.png";
-import Popover from "../components/popover";
-import RichThemePicker from "./richThemePicker";
+import sampleImage_4 from "../styles/images/samples/wide_res_67.webp";
+// import sampleImage_3 from "../styles/images/samples/res_001.png";
+// import Popover from "../components/popover";
+// import RichThemePicker from "./richThemePicker";
 import { colorcontent, typefacecontent } from "./utils/richTumbnail";
+// import RichThemePicker from "./richThemePicker";
+// import Popover from "../components/popover";
+import buildInfo from "../buildInfo.json";
+
 // import ThemNameDisplay from "./themeName";
 // import { ArrowDown } from "lucide-react";
 
@@ -92,16 +97,23 @@ const Components: React.FC = () => {
         data-space="adaptive-30-50"
         data-gap="50"
         data-direction="column"
-        data-max-length="1200"
+data-max-length="1200"
+
       >
-        <group data-wrap="no" data-direction="column-1200">
-          <group
-            data-width="auto"
-            data-space="adaptive-30-50"
-            data-direction="column"
-            data-gap="40"
-            data-index="3"
-          >
+
+
+
+
+        <group
+          data-width="auto"
+          data-space="adaptive-30-50"
+          data-direction="column"
+          data-gap="50"
+          data-index="3"
+        
+      
+          data-wrap="no"
+        >
             <text
               // data-wrap="wrap"
               // data-ellipsis=""
@@ -117,112 +129,214 @@ const Components: React.FC = () => {
               <br></br> evolve and adapt.
             </text>
 
-            <group data-background="main-background" data-space-vertical="10">
-              <text
-                data-wrap="wrap"
-                data-max-length="400"
-                data-line="1.5"
-                data-opacity="70"
-                data-text-size="15"
-              >
-                A hybrid, atomic, and declarative design system that brings
-                flexibility, control and speed to projects. With no classes or
-                pre-defined styles.
-              </text>
-            </group>
+            <text
+              data-wrap="wrap"
+              data-max-length="400"
+              data-line="1.5"
+              data-opacity="70"
+              data-text-size="15"
+            >
+              A hybrid, atomic, and declarative design system that brings
+              flexibility, control and speed to projects. With no classes or
+              pre-defined styles.
+            </text>
 
-            <group data-width="auto" data-gap="15" data-align="center">
-              <Ripple>
-                <group
-                  data-contain=""
-                  data-drag="none"
-                  data-type="group"
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-width="auto"
-                  data-background="highlight"
-                  data-space="15"
-                  data-radius="15"
-                  onClick={() =>
-                    openModal({
-                      id: "modal-2",
-                      title: "Customized Popup",
-                      content: (
+          <group data-width="auto" data-gap="15" data-align="center">
+            <Ripple>
+              <group
+                data-contain=""
+                data-drag="none"
+                data-type="group"
+                data-cursor="pointer"
+                data-interactive=""
+                data-width="auto"
+                data-background="highlight"
+                data-space="15"
+                data-radius="15"
+                onClick={() =>
+                  openModal({
+                    id: "modal-2",
+                    title: "Customized Popup",
+                    content: (
+                      <group
+                        data-min-height="fit"
+                        data-justify="center"
+                        data-align="start"
+                        data-space="30"
+                        data-contain="scroll"
+                      >
                         <group
-                          data-min-height="fit"
-                          data-justify="center"
-                          data-align="start"
-                          data-space="30"
-                          data-contain="scroll"
-                        >
-                          <group
-                            data-top="0"
-                            data-position="absolute"
-                            data-height="fit"
-                            onClick={() => closeModal("modal-2")}
-                          ></group>
+                          data-top="0"
+                          data-position="absolute"
+                          data-height="fit"
+                          onClick={() => closeModal("modal-2")}
+                        ></group>
 
-                          <group
-                            data-max-length="600"
-                            data-border=""
-                            data-background="context"
-                            data-radius="20"
-                            data-space="10"
-                            data-gap="10"
-                            data-elevation="2"
-                            data-animation-name="appear-top"
-                            data-fill-mode="backwards"
-                            data-animation-duration="2"
-                          >
-                            <SearchComponent showRandomTagsByDefault={false} />
-                          </group>
+                        <group
+                          data-max-length="600"
+                          data-border=""
+                          data-background="context"
+                          data-radius="20"
+                          data-space="10"
+                          data-gap="10"
+                          data-elevation="2"
+                          data-animation-name="appear-top"
+                          data-fill-mode="backwards"
+                          data-animation-duration="2"
+                        >
+                          <SearchComponent showRandomTagsByDefault={false} />
                         </group>
-                      ),
-                      hasHeader: false,
-                      hasToolbar: false,
-                      customAttributes: modalConfig,
-                      //    dimAttributes: {"data-background" : "dark-shade-10"},
-                      spacing: 0,
-                    })
-                  }
+                      </group>
+                    ),
+                    hasHeader: false,
+                    hasToolbar: false,
+                    customAttributes: modalConfig,
+                    //    dimAttributes: {"data-background" : "dark-shade-10"},
+                    spacing: 0,
+                  })
+                }
+              >
+                <IconSearch></IconSearch>
+              </group>
+            </Ripple>
+            {/* <separator data-vertical="" data-height="20"></separator> */}
+            <Ripple>
+              <Link
+                data-contain=""
+                data-drag="none"
+                data-type="group"
+                to="/Components"
+                data-interactive=""
+                data-over-color="neutral-10"
+                data-width="auto"
+                data-background="main"
+                data-color="main-text"
+                data-ink-color="main-dark"
+                data-space-horizontal="40"
+                data-space-vertical="20"
+                data-radius="15"
+                data-direction="column"
+                data-length="autofit-600"
+                data-align="center"
+              >
+                {/* <TextReveal text={message} duration={1200} /> */}
+                <text
+                  data-weight="700"
+                  //  data-wrap="wrap"
+                  data-ellipsis=""
                 >
-                  <IconSearch></IconSearch>
-                </group>
-              </Ripple>
-              {/* <separator data-vertical="" data-height="20"></separator> */}
-              <Ripple>
-                <Link
-                  data-contain=""
-                  data-drag="none"
-                  data-type="group"
-                  to="/Components"
-                  data-interactive=""
-                  data-over-color="neutral-10"
+                  Get Started
+                </text>
+              </Link>
+            </Ripple>
+          </group>
+        </group>
+
+
+
+
+
+        <group data-direction="column" >
+          <picture
+            data-radius="30"
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage_2} alt="" />
+          </picture>
+
+          <group data-direction="column" data-space="30" data-align="start">
+            <group
+              data-space="45"
+              data-position="bottom"
+              data-backdrop="20-adaptive"
+              data-width="auto"
+              data-radius="15"
+            >
+              <group data-gap="40" >
+                <text
+                  data-wrap="wrap"
+                  data-font-type="hero"
+                  data-line="1"
+                  data-text-size="15"
+                  data-max-length="800"
+                >
+                  Crafted <br></br>for growth.
+                </text>
+                <separator
+                  data-vertical="adaptive"
+                  data-height=""
+                ></separator>
+                <group
                   data-width="auto"
-                  data-background="main"
-                  data-color="main-text"
-                  data-ink-color="main-dark"
-                  data-space-horizontal="40"
-                  data-space-vertical="20"
-                  data-radius="15"
                   data-direction="column"
-                  data-length="autofit-600"
-                  data-align="center"
+                  data-align="start"
+                  data-gap="20"
                 >
-                  {/* <TextReveal text={message} duration={1200} /> */}
                   <text
-                    data-weight="700"
-                    //  data-wrap="wrap"
-                    data-ellipsis=""
+                    data-wrap="wrap"
+                    data-line="1.5"
+                    data-length="240"
+                    data-text-size="15"
                   >
-                    Get Started
+                    Adapting from prototypes to enterprise apps, evolving with
+                    every project.
                   </text>
-                </Link>
-              </Ripple>
+       </group>
+
+            
+
+
+              </group>
             </group>
           </group>
+        </group>
 
-          {/* <Popover
+
+
+
+
+
+        <group
+         
+          data-space="adaptive-30-50"
+          data-gap="20"
+          data-direction="column"
+          data-align="start"
+          // data-text-align="center"
+          // data-align="center"
+        >
+          <text
+            data-wrap="wrap"
+            data-font-type="hero"
+            data-ellipsis=""
+            data-line="1"
+            data-text-size="48"
+            data-text-clamp="48"
+            data-max-length="800"
+          >
+            Basic structures
+          </text>
+
+          <text
+            data-wrap="wrap"
+            data-max-length="400"
+            data-line="1.5"
+            data-opacity="70"
+            data-text-size="15"
+          >
+          Check out some component demos below—just a glimpse of what's possible!
+          </text>
+
+
+
+         
+
+        </group>
+
+
+        {/* <Popover
             placement="mouse"
             content={
               <group
@@ -239,7 +353,7 @@ const Components: React.FC = () => {
             data-width="auto"
           >
             <group
-              data-max-length="500"
+              data-max-length="300"
               data-position="center"
               data-cursor="pointer"
             >
@@ -286,84 +400,24 @@ const Components: React.FC = () => {
               </group>
             </group>
           </Popover> */}
-        </group>
 
 
-        <group data-direction="column">
-          <picture
-            data-radius="30"
-            data-brightness="adaptive"
-            data-position="absolute"
-            data-background="grey-light"
-          >
-            <img src={sampleImage_2} alt="" />
-          </picture>
 
-          <group data-direction="column" data-space="40" data-align="start">
-            <group
-              data-space="45"
-              data-position="bottom"
-              data-background="main-background"
-              data-width="auto"
-              data-radius="20"
-            >
-              <group data-gap="40" data-direction="column-1200">
-                <text
-                  data-wrap="wrap"
-                  data-font-type="hero"
-                  data-line="1"
-                  data-text-size="15"
-                  data-max-length="800"
-                >
-                  Crafted <br></br>for growth.
-                </text>
-                <separator
-                  data-vertical="adaptive-1200"
-                  data-height=""
-                ></separator>
-                <group
-                  data-width="auto"
-                  data-direction="column"
-                  data-align="start"
-                  data-gap="20"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    data-length="240"
-                    data-text-size="15"
-                  >
-                    Adapting from prototypes to enterprise apps, evolving with
-                    every project.
-                  </text>
-                </group>
-              </group>
-            </group>
-          </group>
-        </group>
 
-        <group>
-          <text
-            data-wrap="wrap"
-            data-font-type="hero"
-            data-ellipsis=""
-            data-line="1"
-            data-text-size="48"
-            data-text-clamp="48"
-            data-max-length="800"
-            data-space="adaptive-30-50"
-          >
-            Basic <br></br>structures
-          </text>
-        </group>
+
+
 
         <group
-          data-gap="10"
+          data-gap="5"
           data-type="grid"
-          data-grid-template="180"
+          data-grid-template="200"
           data-weight="600"
           // data-contain=""
+          
         >
+
+
+
           {linksArray.map((link, index) => (
             <Ripple key={index}>
               <Link
@@ -417,7 +471,7 @@ const Components: React.FC = () => {
                     data-wrap="wrap"
                     data-line="1.3"
                     data-max-length="300"
-                    data-opacity="60"
+                  //  data-opacity="60"
                   >
                     {link.description}
                   </text>
@@ -429,46 +483,104 @@ const Components: React.FC = () => {
 
 
         <group
-          data-radius="30"
-          data-contain=""
-          data-border=""
+        //  data-width="auto"
+          data-space="adaptive-30-50"
+          data-gap="20"
           data-direction="column"
+          // data-text-align="center"
+          // data-align="center"
+
+          
         >
-          <group
-            data-gap="30"
-            data-direction="column"
-            data-space="30"
-            data-align="start"
+          <text
+            data-wrap="wrap"
+            data-font-type="hero"
+            data-ellipsis=""
+            data-line="1"
+            data-text-size="48"
+            data-text-clamp="48"
+            data-max-length="800"
           >
+            Reach Out
+          </text>
+
+          <text
+            data-wrap="wrap"
+            data-max-length="400"
+            data-line="1.5"
+            data-opacity="70"
+            data-text-size="15"
+          >
+            Got a question or just want to say hi? Drop me a message, and I'll get back to you soon.
+          </text>
+        </group>
+
+
+        <group data-direction="column" >
+          <picture
+            data-radius="30"
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage_4} alt="" />
+          </picture>
+
+          <group data-direction="column" data-space="30" data-align="start">
             <group
+              data-space="45"
+              data-position="bottom"
+             data-backdrop="20-adaptive"
               data-width="auto"
-              data-direction="column"
-              data-gap="30"
-              data-space="15"
+              data-radius="15"
             >
-              <text
-                data-wrap="wrap"
-                data-font-type="hero"
-                data-line="1"
-                data-text-size="48"
-                data-text-clamp="48"
-                data-max-length="800"
-              >
-                Driven by <br></br>passion.
-              </text>
-              <text
-                data-wrap="wrap"
-                data-max-length="400"
-                data-opacity="60"
-                data-line="1.5"
-                data-text-size="15"
-              >
-                Let's connect! Whether you're curious about my work, looking to
+              <group data-gap="40">
+                <text
+                  data-wrap="wrap"
+                  data-font-type="hero"
+                  data-line="1"
+                  data-text-size="15"
+                  data-max-length="800"
+                >
+                  Driven by <br></br>passion.
+                </text>
+                <separator
+                  data-vertical="adaptive"
+                  data-height=""
+                ></separator>
+                <group
+                  data-width="auto"
+                  data-direction="column"
+                  data-align="start"
+                  data-gap="20"
+                >
+                  <text
+                    data-wrap="wrap"
+                    data-line="1.5"
+                    data-length="400"
+                    data-text-size="15"
+                  >
+                                  Let's connect! Whether you're curious about my work, looking to
                 collaborate, or simply want to reach out, feel free to explore
                 or drop a message.
-              </text>
+                  </text>
+                </group>
+              </group>
             </group>
+          </group>
+        </group>
 
+
+
+        <group
+          
+
+          data-contain=""
+       
+          data-direction="column"
+   data-gap="30"
+                    
+        >
             <group data-gap="30" data-type="grid" data-grid-template="200">
               <group
                 data-direction="column"
@@ -528,16 +640,32 @@ const Components: React.FC = () => {
                 </Link>
               </group>
             </group>
-            <separator data-horizontal=""></separator>
+
+
+
+
+
+        </group>
+
+   
+
+        <separator data-horizontal=""></separator>
             <group data-space="15">
-              <group>
+              <group data-direction="column" data-gap="5" >
+                <text data-weight="700">
+                  Copyright {currentYear}, Credbone.
+                </text>
                 <text data-opacity="60">
-                  Copyright {currentYear}, Credbone.{" "}
+            
+
+                Last updated on {buildInfo.buildDateTime}
                 </text>
               </group>
             </group>
-          </group>
-        </group>
+
+
+
+
       </group>
     </group>
   );

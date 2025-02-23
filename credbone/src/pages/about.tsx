@@ -50,8 +50,8 @@ function About() {
               data-index="2"
               data-radius="15"
               data-contain=""
-              //    data-backdrop="20"
-              data-background="main-background"
+                  data-backdrop="20-adaptive"
+             // data-background="main-background"
             >
               <group data-width="auto" data-gap="30">
                 <text
