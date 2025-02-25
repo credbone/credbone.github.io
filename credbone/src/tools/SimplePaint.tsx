@@ -184,7 +184,7 @@ const SimplePaint: React.FC = () => {
           <Scroll>
             <group data-wrap="no" data-space="10">
               {colors.map((color, index) => (
-                <group key={index} data-ratio="1:1" data-length="40">
+                <group key={index} data-height="40" data-length="40">
                   <Tooltip content={color.name}>
                     <group
                       data-animation-name="appear-left"

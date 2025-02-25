@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Ripple from "../components/Ripple";
@@ -8,18 +8,14 @@ import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
 
-import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-import sampleImage_4 from "../styles/images/samples/wide_res_67.webp";
-// import sampleImage_3 from "../styles/images/samples/res_001.png";
-// import Popover from "../components/popover";
-// import RichThemePicker from "./richThemePicker";
-import { colorcontent, typefacecontent } from "./utils/richTumbnail";
-// import RichThemePicker from "./richThemePicker";
-// import Popover from "../components/popover";
-import buildInfo from "../buildInfo.json";
+import sampleImage_2 from "../styles/images/samples/wide_res_85.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_83.webp";
 
-// import ThemNameDisplay from "./themeName";
-// import { ArrowDown } from "lucide-react";
+import { colorcontent, typefacecontent } from "./utils/richTumbnail";
+import buildInfo from "../buildInfo.json";
+import ThemePicker from "./themePicker";
+
+
 
 
 const links = [
@@ -71,6 +67,9 @@ const linksArray = [
 // ];
 
 const Components: React.FC = () => {
+
+
+
   const { openModal, closeModal } = useModal();
   // const [message, setMessage] = useState<string>("");
 
@@ -97,49 +96,42 @@ const Components: React.FC = () => {
         data-space="adaptive-30-50"
         data-gap="50"
         data-direction="column"
-data-max-length="1200"
-
+        data-max-length="1200"
       >
-
-
-
-
         <group
           data-width="auto"
           data-space="adaptive-30-50"
           data-direction="column"
           data-gap="50"
           data-index="3"
-        
-      
           data-wrap="no"
         >
-            <text
-              // data-wrap="wrap"
-              // data-ellipsis=""
+          <text
+            // data-wrap="wrap"
+            // data-ellipsis=""
 
-              data-line="1"
-              data-text-size="64"
-              data-text-clamp="64"
-              data-max-length="800"
-              data-font-type="hero"
-              data-wrap="wrap"
-            >
-              <text data-wrap="no">Designed to</text>
-              <br></br> evolve and adapt.
-            </text>
+            data-line="1"
+            data-text-size="64"
+            data-text-clamp="64"
+            data-max-length="800"
+            data-font-type="hero"
+            data-wrap="wrap"
+          >
+            <text data-wrap="no">Designed to</text>
+            <br></br> evolve and adapt.
+          </text>
 
-            <text
-              data-wrap="wrap"
-              data-max-length="400"
-              data-line="1.5"
-              data-opacity="70"
-              data-text-size="15"
-            >
-              A hybrid, atomic, and declarative design system that brings
-              flexibility, control and speed to projects. With no classes or
-              pre-defined styles.
-            </text>
+          <text
+            data-wrap="wrap"
+            data-max-length="400"
+            data-line="1.5"
+            data-opacity="70"
+            data-text-size="15"
+          >
+            A hybrid, atomic, and declarative design system that brings
+            flexibility, control and speed to projects. With no classes or
+            pre-defined styles.
+          </text>
 
           <group data-width="auto" data-gap="15" data-align="center">
             <Ripple>
@@ -232,11 +224,7 @@ data-max-length="1200"
           </group>
         </group>
 
-
-
-
-
-        <group data-direction="column" >
+        <group>
           <picture
             data-radius="30"
             data-brightness="adaptive"
@@ -246,47 +234,37 @@ data-max-length="1200"
             <img src={sampleImage_2} alt="" />
           </picture>
 
-          <group data-direction="column" data-space="30" data-align="start">
+          <group data-space="30"  >
             <group
-              data-space="45"
-              data-position="bottom"
+data-width="auto"
               data-backdrop="20-adaptive"
-              data-width="auto"
-              data-radius="15"
+              data-gap="30"
+              data-space="30"
+              data-radius="15"  
+              data-align="start"
+              data-wrap="no"
+data-direction="column-800"
+
             >
-              <group data-gap="40" >
+              <group data-direction="column" data-gap="30" data-autofit="1-800" data-length="180" >
+                <ThemePicker />
+              </group>
+              <separator
+                  data-vertical="adaptive-800"
+                  data-height="fit"
+                ></separator>
+              <group  data-gap="10"  data-autofit="1-800" data-length="300"  >
+
+
                 <text
                   data-wrap="wrap"
-                  data-font-type="hero"
-                  data-line="1"
+                  data-line="1.5"
+                
                   data-text-size="15"
-                  data-max-length="800"
                 >
-                  Crafted <br></br>for growth.
+                  Shape the system theme with flexible customization, bringing a
+                  unified look across all elements
                 </text>
-                <separator
-                  data-vertical="adaptive"
-                  data-height=""
-                ></separator>
-                <group
-                  data-width="auto"
-                  data-direction="column"
-                  data-align="start"
-                  data-gap="20"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    data-length="240"
-                    data-text-size="15"
-                  >
-                    Adapting from prototypes to enterprise apps, evolving with
-                    every project.
-                  </text>
-       </group>
-
-            
-
 
               </group>
             </group>
@@ -298,8 +276,8 @@ data-max-length="1200"
 
 
 
+
         <group
-         
           data-space="adaptive-30-50"
           data-gap="20"
           data-direction="column"
@@ -326,15 +304,10 @@ data-max-length="1200"
             data-opacity="70"
             data-text-size="15"
           >
-          Check out some component demos below—just a glimpse of what's possible!
+            Check out some component demos below—just a glimpse of what's
+            possible!
           </text>
-
-
-
-         
-
         </group>
-
 
         {/* <Popover
             placement="mouse"
@@ -401,23 +374,13 @@ data-max-length="1200"
             </group>
           </Popover> */}
 
-
-
-
-
-
-
         <group
           data-gap="5"
           data-type="grid"
           data-grid-template="200"
           data-weight="600"
           // data-contain=""
-          
         >
-
-
-
           {linksArray.map((link, index) => (
             <Ripple key={index}>
               <Link
@@ -441,7 +404,7 @@ data-max-length="1200"
                   data-index="1"
                   data-direction="column"
                   data-gap="10"
-                  data-space="40"
+                  data-space="50"
                   data-height="fit"
                   data-wrap="no"
                 >
@@ -471,7 +434,7 @@ data-max-length="1200"
                     data-wrap="wrap"
                     data-line="1.3"
                     data-max-length="300"
-                  //  data-opacity="60"
+                    //  data-opacity="60"
                   >
                     {link.description}
                   </text>
@@ -481,16 +444,13 @@ data-max-length="1200"
           ))}
         </group>
 
-
         <group
-        //  data-width="auto"
+          //  data-width="auto"
           data-space="adaptive-30-50"
           data-gap="20"
           data-direction="column"
           // data-text-align="center"
           // data-align="center"
-
-          
         >
           <text
             data-wrap="wrap"
@@ -511,12 +471,12 @@ data-max-length="1200"
             data-opacity="70"
             data-text-size="15"
           >
-            Got a question or just want to say hi? Drop me a message, and I'll get back to you soon.
+            Got a question or just want to say hi? Drop me a message, and I'll
+            get back to you soon.
           </text>
         </group>
 
-
-        <group data-direction="column" >
+        <group data-direction="column">
           <picture
             data-radius="30"
             data-brightness="adaptive"
@@ -528,9 +488,9 @@ data-max-length="1200"
 
           <group data-direction="column" data-space="30" data-align="start">
             <group
-              data-space="45"
+              data-space="30"
               data-position="bottom"
-             data-backdrop="20-adaptive"
+              data-backdrop="20-adaptive"
               data-width="auto"
               data-radius="15"
             >
@@ -544,10 +504,7 @@ data-max-length="1200"
                 >
                   Driven by <br></br>passion.
                 </text>
-                <separator
-                  data-vertical="adaptive"
-                  data-height=""
-                ></separator>
+                <separator data-vertical="adaptive" data-height=""></separator>
                 <group
                   data-width="auto"
                   data-direction="column"
@@ -560,9 +517,9 @@ data-max-length="1200"
                     data-length="400"
                     data-text-size="15"
                   >
-                                  Let's connect! Whether you're curious about my work, looking to
-                collaborate, or simply want to reach out, feel free to explore
-                or drop a message.
+                    Let's connect! Whether you're curious about my work, looking
+                    to collaborate, or simply want to reach out, feel free to
+                    explore or drop a message.
                   </text>
                 </group>
               </group>
@@ -570,46 +527,10 @@ data-max-length="1200"
           </group>
         </group>
 
-
-
-        <group
-          
-
-          data-contain=""
-       
-          data-direction="column"
-   data-gap="30"
-                    
-        >
-            <group data-gap="30" data-type="grid" data-grid-template="200">
-              <group
-                data-direction="column"
-                data-width="auto"
-                data-align="start"
-              >
-                {links.map((link, index) => (
-                  <Link
-                    data-drag="none"
-                    data-width="auto"
-                    data-type="group"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-space="15"
-                    data-radius="10"
-                    data-weight="600"
-                    to={link.url}
-                    key={index}
-                  >
-                    <text data-ellipsis="">{link.name}</text>
-                  </Link>
-                ))}
-              </group>
-
-              <group
-                data-direction="column"
-                data-width="auto"
-                data-align="start"
-              >
+        <group data-contain="" data-direction="column" data-gap="30">
+          <group data-gap="30" data-type="grid" data-grid-template="200">
+            <group data-direction="column" data-width="auto" data-align="start">
+              {links.map((link, index) => (
                 <Link
                   data-drag="none"
                   data-width="auto"
@@ -619,53 +540,56 @@ data-max-length="1200"
                   data-space="15"
                   data-radius="10"
                   data-weight="600"
-                  to="https://calendly.com/sargsyanrubens/15-minute-chat"
-                  target="_blank"
+                  to={link.url}
+                  key={index}
                 >
-                  <text>Reserve 15-Minute Call</text>
+                  <text data-ellipsis="">{link.name}</text>
                 </Link>
-                <Link
-                  data-drag="none"
-                  data-width="auto"
-                  data-type="group"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-space="15"
-                  data-radius="10"
-                  data-weight="600"
-                  to="https://t.me/sargsyanruben"
-                  target="_blank"
-                >
-                  <text>Message Me</text>
-                </Link>
-              </group>
+              ))}
             </group>
 
-
-
-
-
+            <group data-direction="column" data-width="auto" data-align="start">
+              <Link
+                data-drag="none"
+                data-width="auto"
+                data-type="group"
+                data-interactive=""
+                data-over-color="neutral"
+                data-space="15"
+                data-radius="10"
+                data-weight="600"
+                to="https://calendly.com/sargsyanrubens/15-minute-chat"
+                target="_blank"
+              >
+                <text>Reserve 15-Minute Call</text>
+              </Link>
+              <Link
+                data-drag="none"
+                data-width="auto"
+                data-type="group"
+                data-interactive=""
+                data-over-color="neutral"
+                data-space="15"
+                data-radius="10"
+                data-weight="600"
+                to="https://t.me/sargsyanruben"
+                target="_blank"
+              >
+                <text>Message Me</text>
+              </Link>
+            </group>
+          </group>
         </group>
 
-   
-
         <separator data-horizontal=""></separator>
-            <group data-space="15">
-              <group data-direction="column" data-gap="5" >
-                <text data-weight="700">
-                  Copyright {currentYear}, Credbone.
-                </text>
-                <text data-opacity="60">
-            
-
-                Last updated on {buildInfo.buildDateTime}
-                </text>
-              </group>
-            </group>
-
-
-
-
+        <group data-space="15">
+          <group data-direction="column" data-gap="5">
+            <text data-weight="700">Copyright {currentYear}, Credbone.</text>
+            <text data-opacity="60">
+              Last updated on {buildInfo.buildDateTime}
+            </text>
+          </group>
+        </group>
       </group>
     </group>
   );

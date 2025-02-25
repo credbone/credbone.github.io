@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
-import { defaultPrimaryColor, defaultSecondaryColor } from "../styles/skin";
-import Scroll from "../components/scroll";
-import Button from "../components/button";
-import { colors, seccolors } from "../styles/colorData";
-import Tooltip from "../components/tooltip";
+
+import { democolors } from "../styles/colorData";
+
 
 const ThemePicker: React.FC = () => {
   const themeContext = useContext(ThemeContext);
@@ -26,86 +24,32 @@ const ThemePicker: React.FC = () => {
   };
 
   return (
-    <group
-      //data-width="auto"
-      data-snap-button="15"
-      data-height="fit"
-      data-contain=""
-      data-direction="column"
-      data-max-height="fit"
-    >
-      <Scroll vertical>
+    <group data-align="center" data-type="grid" data-gap="5" data-grid-template="30" >
+    {democolors.map((color, index) => (
+      <group
+        data-ratio="1:1"
+        data-interactive=""
+        data-over-color="none"
+        key={color.code}
+        onClick={() => handleColorSelection(color.code, true)}
+        data-animation-name="zoom-in"
+        data-fill-mode="backwards"
+        data-animation-duration={1 + index * 0.25}
+      >
         <group
-          data-wrap="no"
-          data-align="center"
+          data-radius={theme.colorPrimary === color.code ? "40" : ""}
+          data-margin={theme.colorPrimary === color.code ? "5" : ""}
+          data-duration=".125"
+          data-transition-prop="border-radius-margin"
+          data-interact=""
+          data-over-color="neutral-10"
+          data-cursor="pointer"
           data-direction="column"
-          data-name="themes"
-        >
-          <text data-space="20" data-orientation="vertical">
-            Theme Primary Color
-          </text>
-          {colors.map((c) => (
-            <Tooltip
-              content={
-                <group data-direction="column">
-                  <text data-weight="700">{c.name}</text>
-                  <text>{c.description}</text>
-                </group>
-              }
-              placement="right"
-            >
-              <Button
-                key={c.code}
-                mini
-                rounded
-                onClick={() => handleColorSelection(c.code, true)}
-                data-background={
-                  theme.colorPrimary === c.code ? "main-lighter" : ""
-                }
-              >
-                <icon>
-                  <svg width="20" height="20" viewBox="0 0 20 20">
-                    <circle cx="10" cy="10" r="10" fill={c.code}></circle>
-                  </svg>
-                </icon>
-              </Button>
-            </Tooltip>
-          ))}
-          <text data-space="20" data-orientation="vertical">
-            Secondary Color
-          </text>
-          {seccolors.map((c) => (
-                        <Tooltip
-                        content={
-                          <group data-direction="column">
-                            <text data-weight="700">{c.name}</text>
-                            <text>{c.description}</text>
-                          </group>
-                        }
-                        placement="right"
-                      >
-            <Button
-            data-ink-color="secondary-light"
-              key={c.code}
-              mini
-              rounded
-              onClick={() => handleColorSelection(c.code, false)}
-              data-background={
-                theme.colorSecondary === c.code ? "secondary-lighter" : ""
-              }
-            >
-              <icon>
-                <svg width="20" height="20" viewBox="0 0 20 20">
-                  <circle cx="10" cy="10" r="10" fill={c.code}></circle>
-                </svg>
-              </icon>
-            </Button>
-            </Tooltip>
-          ))}
-          <space data-height="10"></space>
-        </group>
-      </Scroll>
-    </group>
+          style={{ backgroundColor: color.code }}
+        ></group>
+      </group>
+    ))}
+  </group>
   );
 };
 
