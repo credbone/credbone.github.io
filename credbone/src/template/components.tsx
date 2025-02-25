@@ -246,14 +246,14 @@ data-width="auto"
 data-direction="column-800"
 
             >
-              <group data-direction="column" data-gap="30" data-autofit="1-800" data-length="180" >
+              <group data-direction="column" data-gap="30" data-autofit="1-800" data-length="240" >
                 <ThemePicker />
               </group>
               <separator
                   data-vertical="adaptive-800"
                   data-height="fit"
                 ></separator>
-              <group  data-gap="10"  data-autofit="1-800" data-length="300"  >
+              <group  data-gap="10"  data-autofit="1-800" data-length="300" data-fit="1" data-contain="" >
 
 
                 <text
