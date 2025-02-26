@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
 
 import { democolors } from "../styles/colorData";
+import { getPalette } from "../styles/skin";
 
 
 const ThemePicker: React.FC = () => {
@@ -14,11 +15,8 @@ const ThemePicker: React.FC = () => {
 
   const { theme, setTheme } = themeContext;
 
-  const handleColorSelection = (color: string, isPrimary: boolean) => {
-    const newTheme = {
-      colorPrimary: isPrimary ? color : theme.colorPrimary,
-      colorSecondary: isPrimary ? theme.colorSecondary : color,
-    };
+  const handleColorSelection = (color: string) => {
+    const newTheme = getPalette(color); // Primary color will update and secondary will adjust automatically
     setTheme(newTheme);
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
@@ -31,7 +29,7 @@ const ThemePicker: React.FC = () => {
         data-interactive=""
         data-over-color="none"
         key={color.code}
-        onClick={() => handleColorSelection(color.code, true)}
+        onClick={() => handleColorSelection(color.code)}
         data-animation-name="zoom-in"
         data-fill-mode="backwards"
         data-animation-duration={1 + index * 0.25}

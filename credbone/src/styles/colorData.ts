@@ -11,8 +11,6 @@ export const colors = [
   { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade.",separator:"true"  },
   { code: "#03dac5", name: "Mint", description: "A refreshing greenish-blue color." },
   { code: "#e0e721", name: "Yellow", description: "A bright, neon yellow hue." },
-
-
 ];
 
 export const seccolors = [
@@ -41,9 +39,12 @@ export const seccolors = [
   { "code": "#57A773", "name": "Emerald Leaf", "description": "A vibrant, lush green." },
   { "code": "#157145", "name": "Pine Forest", "description": "A rich, deep green." },
 
-  // { "code": "#ffb703", "name": "Gold", "description": "A warm golden tone." },
-  // { "code": "#ff7330", "name": "Orange", "description": "A bold orange hue." },
-  // { "code": "#f9473f", "name": "Crimson", "description": "A deep, rich red." }
+
+
+
+  
+
+
 ];
 
 

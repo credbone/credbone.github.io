@@ -107,7 +107,10 @@ export const getCSSByPalette = (palette: ColorPalette) => {
     `;
 };
 
-export const getPalette = (colorPrimary: string, colorSecondary: string): ColorPalette => {
+export const getPalette = (colorPrimary: string, colorSecondary?: string): ColorPalette => {
+    // If no secondary color is provided, calculate the complementary color from the primary
+    const secondaryColor = colorSecondary || getComplementaryColor(colorPrimary);
+
     return {
 
         colorPrimaryUltraLight: getColorShade(colorPrimary, "10"),
@@ -121,18 +124,30 @@ export const getPalette = (colorPrimary: string, colorSecondary: string): ColorP
         colorPrimaryDarker: getColorShade(colorPrimary, "700"),
         colorPrimaryDarkest: getColorShade(colorPrimary, "900"),
 
-        colorSecondaryUltraLight: getColorShade(colorPrimary, "10"),
-        colorSecondaryLightest: getColorShade(colorSecondary, "20"),
-        colorSecondaryLighter: getColorShade(colorSecondary, "40"),
-        colorSecondaryLight: getColorShade(colorSecondary, "60"),
-        colorSecondarySoft: getColorShade(colorSecondary, "80"),
-        colorSecondary,
-        colorSecondaryDeep: getColorShade(colorSecondary, "300"),
-        colorSecondaryDark: getColorShade(colorSecondary, "500"),
-        colorSecondaryDarker: getColorShade(colorSecondary, "700"),
-        colorSecondaryDarkest: getColorShade(colorSecondary, "900"),
+        colorSecondaryUltraLight: getColorShade(secondaryColor, "10"),
+        colorSecondaryLightest: getColorShade(secondaryColor, "20"),
+        colorSecondaryLighter: getColorShade(secondaryColor, "40"),
+        colorSecondaryLight: getColorShade(secondaryColor, "60"),
+        colorSecondarySoft: getColorShade(secondaryColor, "80"),
+        colorSecondary: secondaryColor,
+        colorSecondaryDeep: getColorShade(secondaryColor, "300"),
+        colorSecondaryDark: getColorShade(secondaryColor, "500"),
+        colorSecondaryDarker: getColorShade(secondaryColor, "700"),
+        colorSecondaryDarkest: getColorShade(secondaryColor, "900"),
     };
 };
+
+
+
+export const getComplementaryColor = (color: string): string => {
+    const hex = color.replace("#", "");
+    const r = 255 - parseInt(hex.substring(0, 2), 16);
+    const g = 255 - parseInt(hex.substring(2, 4), 16);
+    const b = 255 - parseInt(hex.substring(4, 6), 16);
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+};
+
+
 
 const getColorShade = (color: string, shade: Shade): string => {
     return ShadeGenerator.hue(color).shade(shade).hex();

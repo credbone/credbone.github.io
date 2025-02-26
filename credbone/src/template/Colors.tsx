@@ -84,7 +84,11 @@ const Colors: React.FC = () => {
                 data-align="center"
                 data-wrap="no"
                 data-gap="15"
+                data-autofit="1-800"
+                
               >
+
+
                 <group
                   data-interact=""
                   data-direction="column"
@@ -92,20 +96,21 @@ const Colors: React.FC = () => {
                   data-over-color="neutral"
                   data-space="15"
                   data-radius="10"
+
                 >
                   <text data-weight="700">Swatches</text>
                   <text data-opacity="30">Select from presets</text>
                 </group>
               </group>
             </Popover>
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
+            <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="primary" />
           </group>
         </group>
 
         <group
           data-type="grid"
-          data-grid-template="110/80"
+          data-grid-template="110"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -128,7 +133,9 @@ const Colors: React.FC = () => {
               <text data-ellipsis="" data-light="">
                 {color.description}
               </text>
-              <text data-ellipsis="" data-weight="700">{color.name}</text>
+              <text data-ellipsis="" data-weight="700">
+                {color.name}
+              </text>
             </group>
           ))}
         </group>
@@ -179,7 +186,12 @@ const Colors: React.FC = () => {
                 data-align="center"
                 data-wrap="no"
                 data-gap="5"
+                data-autofit="1-800"
               >
+
+
+
+
                 <group
                   data-interact=""
                   data-direction="column"
@@ -193,14 +205,14 @@ const Colors: React.FC = () => {
                 </group>
               </group>
             </Popover>
-            <separator data-vertical="adaptive-1200" data-height=""></separator>
+            <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="secondary" />
           </group>
         </group>
 
         <group
           data-type="grid"
-                    data-grid-template="110/80"
+          data-grid-template="110"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -223,7 +235,9 @@ const Colors: React.FC = () => {
               <text data-ellipsis="" data-light="">
                 {color.description}
               </text>
-              <text data-ellipsis="" data-weight="700">{color.name}</text>
+              <text data-ellipsis="" data-weight="700">
+                {color.name}
+              </text>
             </group>
           ))}
         </group>
@@ -252,7 +266,7 @@ const Colors: React.FC = () => {
 
         <group
           data-type="grid"
-                  data-grid-template="110/80"
+          data-grid-template="110"
           data-gap="5"
           data-contain=""
           data-radius="10"
@@ -305,7 +319,7 @@ const Colors: React.FC = () => {
           data-gap="5"
           data-grid-template="58"
           data-contain=""
-          data-radius="10"  
+          data-radius="10"
         >
           {BaseColors.map((colors, index) => (
             <group
@@ -329,7 +343,6 @@ const Colors: React.FC = () => {
                   data-space={null}
                   data-radius="20"
                   data-elevation={null}
-
                   data-animation-name="appear-top"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
@@ -338,10 +351,13 @@ const Colors: React.FC = () => {
                       onClick={closePopover}
                       data-direction="column"
                       data-color={colors.value + "-darker"}
-
                       data-space="10"
                     >
-                      <group data-gap="10" data-space="20" data-direction="column">
+                      <group
+                        data-gap="10"
+                        data-space="20"
+                        data-direction="column"
+                      >
                         <text
                           data-wrap="wrap"
                           data-weight="700"
@@ -349,7 +365,7 @@ const Colors: React.FC = () => {
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.25"
-                                    data-font-type="hero"
+                          data-font-type="hero"
                           data-line="1"
                         >
                           Light <br></br> {colors.name}
@@ -375,14 +391,12 @@ const Colors: React.FC = () => {
                         data-justify="center"
                         data-align="center"
                         data-radius="10"
-
                         data-background={colors.value + "-darker"}
                         data-color={colors.value + "-light"}
                       >
                         <text data-weight="700">Done</text>
                       </group>
                     </group>
-                    
                   )}
                 >
                   <group
@@ -409,10 +423,13 @@ const Colors: React.FC = () => {
                       data-color={
                         colors.light ? colors.value + "-darker" : "white"
                       }
-
                       data-space="10"
                     >
-                      <group data-gap="10" data-direction="column" data-space="20">
+                      <group
+                        data-gap="10"
+                        data-direction="column"
+                        data-space="20"
+                      >
                         <text
                           data-wrap="wrap"
                           data-weight="700"
@@ -420,7 +437,7 @@ const Colors: React.FC = () => {
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.25"
-                                    data-font-type="hero"
+                          data-font-type="hero"
                           data-line="1"
                         >
                           Base <br></br> {colors.name}
@@ -431,7 +448,7 @@ const Colors: React.FC = () => {
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.75"
-                                                    data-opacity="70"
+                          data-opacity="70"
                         >
                           {colors.description}
                         </text>
@@ -446,7 +463,6 @@ const Colors: React.FC = () => {
                         data-justify="center"
                         data-align="center"
                         data-radius="10"
-
                         data-background={
                           colors.light ? colors.value + "-darker" : "white"
                         }
@@ -479,10 +495,13 @@ const Colors: React.FC = () => {
                       onClick={closePopover}
                       data-direction="column"
                       data-color={colors.value + "-lighter"}
-                     
                       data-space="10"
                     >
-                      <group data-gap="10" data-direction="column"  data-space="20">
+                      <group
+                        data-gap="10"
+                        data-direction="column"
+                        data-space="20"
+                      >
                         <text
                           data-wrap="wrap"
                           data-weight="700"
@@ -501,7 +520,7 @@ const Colors: React.FC = () => {
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.75"
-                                                    data-opacity="70"
+                          data-opacity="70"
                         >
                           {colors.description}
                         </text>
@@ -516,7 +535,6 @@ const Colors: React.FC = () => {
                         data-justify="center"
                         data-align="center"
                         data-radius="10"
-
                         data-background={colors.value + "-lighter"}
                         data-color={colors.value + "-dark"}
                       >

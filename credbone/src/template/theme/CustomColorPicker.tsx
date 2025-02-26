@@ -4,6 +4,7 @@ import { ThemeContext } from "../../components/ThemeProvider";
 import { HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
+import { getComplementaryColor } from "../../styles/skin";
 
 
 
@@ -53,13 +54,48 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
 
   const { theme, setTheme } = themeContext;
 
-  const handleColorSelection = (color: string) => {
-    const newTheme = {
-      colorPrimary: target === "primary" ? color : theme.colorPrimary,
-      colorSecondary: target === "secondary" ? color : theme.colorSecondary,
-    };
-    setTheme(newTheme);
+  // const handleColorSelection = (color: string) => {
+  //   const newTheme = {
+  //     colorPrimary: target === "primary" ? color : theme.colorPrimary,
+  //     colorSecondary: target === "secondary" ? color : theme.colorSecondary,
+  //   };
+  //   setTheme(newTheme);
 
+  //   addSnackbar(
+  //     <text>
+  //       <text data-opacity="60">
+  //         {target === "primary" ? "Primary" : "Secondary"} color set to
+  //       </text>{" "}
+  //       <text data-weight="700">{color}</text>
+  //     </text>,
+  //     3000,
+  //     "theme-picker",
+  //     true
+  //   );
+
+  //   localStorage.setItem("selectedColors", JSON.stringify(newTheme));
+  // };
+
+
+  const handleColorSelection = (color: string) => {
+    let newTheme;
+  
+    if (target === "primary") {
+      // If primary color is being changed, update primary and set complementary secondary color
+      newTheme = {
+        colorPrimary: color,
+        colorSecondary: getComplementaryColor(color), // Automatically set complementary secondary color
+      };
+    } else {
+      // If secondary color is being changed, update only secondary
+      newTheme = {
+        colorPrimary: theme.colorPrimary, // Keep the primary color unchanged
+        colorSecondary: color,
+      };
+    }
+  
+    setTheme(newTheme);
+  
     addSnackbar(
       <text>
         <text data-opacity="60">
@@ -71,9 +107,15 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
       "theme-picker",
       true
     );
-
+  
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
+
+
+
+
+
+
 
   return (
     <Popover
@@ -87,6 +129,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           data-name="cred-react-colorful"
           data-width="auto"
           data-gap="5"
+
         >
           <HexColorPicker color={customColor} onChange={setCustomColor} />
 
@@ -127,6 +170,8 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-align="center"
         data-wrap="no"
         data-gap="10"
+                   data-autofit="1-800"
+
         
       >
         <group

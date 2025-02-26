@@ -4,6 +4,7 @@ import { colors, seccolors } from "../styles/colorData";
 import Scroll from "../components/scroll";
 import Tooltip from "../components/tooltip";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import { getComplementaryColor } from "../styles/skin";
 
 
 interface RichThemePickerProps {
@@ -23,15 +24,31 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
   const { theme, setTheme } = themeContext;
 
   const handleColorSelection = (color: string, colorName: string, isPrimary: boolean) => {
-    const newTheme = {
-      colorPrimary: isPrimary ? color : theme.colorPrimary,
-      colorSecondary: isPrimary ? theme.colorSecondary : color,
-    };
+    let newTheme;
+  
+    if (isPrimary) {
+      // If primary is being changed, update primary and set complementary secondary color
+      newTheme = {
+        colorPrimary: color,
+        colorSecondary: getComplementaryColor(color), // Automatically update secondary with complementary color
+      };
+    } else {
+      // If secondary is being changed, update only secondary
+      newTheme = {
+        colorPrimary: theme.colorPrimary, // Keep the primary color unchanged
+        colorSecondary: color,
+      };
+    }
+  
     setTheme(newTheme);
     const colorType = isPrimary ? 'Primary' : 'Secondary';
-    addSnackbar(<text><text data-opacity="60">{colorType} color set to</text> <text data-weight="700">{colorName}</text></text>,3000,'theme-picker', true);
+    addSnackbar(<text><text data-opacity="60">{colorType} color set to</text> <text data-weight="700">{colorName}</text></text>, 3000, 'theme-picker', true);
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
+
+
+
+  
 
 
   const renderPrimaryPicker = () => {

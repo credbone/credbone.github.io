@@ -5,6 +5,7 @@ import RichThemePicker from "../template/richThemePicker";
 import { useTheme } from "../components/ThemeProvider";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import { Link } from "react-router-dom";
 
 function Settings() {
   const { resetTheme } = useTheme();
@@ -16,7 +17,12 @@ function Settings() {
   };
 
   return (
-    <group  data-space="adaptive-30-50"  data-gap="30" data-direction="column"  data-max-length="1200">
+    <group
+      data-space="adaptive-30-50"
+      data-gap="30"
+      data-direction="column"
+      data-max-length="1200"
+    >
       {/* <group
         data-direction="column"
         data-gap="10"
@@ -31,25 +37,22 @@ function Settings() {
         </text>
       </group> */}
 
-
-
-
-
-<group
+      <group
         data-direction="column"
         data-gap="10"
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
-        data-animation-duration="2"
+        data-animation-duration="2.25"
       >
         <text
-         data-weight="700"
-        //    data-color="main"
-           data-text-size="large">
+          data-weight="700"
+          //    data-color="main"
+          data-text-size="large"
+        >
           Apperance
         </text>
         <text
-         // data-light=""
+          // data-light=""
           data-wrap="wrap"
           data-line="1.5"
           data-max-length="400"
@@ -65,11 +68,47 @@ function Settings() {
         data-max-length="300"
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
-        data-animation-duration="1.75"
+        data-animation-duration="2"
       >
         <ThemeToggle />
       </group>
 
+      <separator data-horizontal="" data-interval="10"></separator>
+
+      <group
+        data-direction="column"
+        data-gap="10"
+        data-animation-name="appear-bottom"
+        data-fill-mode="backwards"
+        data-animation-duration="1.75"
+      >
+        <text
+          data-weight="700"
+          //    data-color="main"
+          data-text-size="large"
+        >
+          Theme
+        </text>
+        <text
+          //  data-light=""
+          data-wrap="wrap"
+          data-line="1.5"
+          data-max-length="400"
+        >
+          The UI will be defined by primary and secondary colors, with the
+          secondary color being an auto-generated complementary shade.
+        </text>
+      </group>
+
+      <group
+        data-animation-name="appear-bottom"
+        data-fill-mode="backwards"
+        data-animation-duration="1.75"
+      >
+        <group data-gap="5" data-direction="column">
+          <RichThemePicker pickerType="primary" />
+        </group>
+      </group>
 
 
 
@@ -82,43 +121,8 @@ function Settings() {
         data-fill-mode="backwards"
         data-animation-duration="1.5"
       >
-        <text data-weight="700"
-     //    data-color="main"
-          data-text-size="large">
-          Theme
-        </text>
-        <text
-        //  data-light=""
-          data-wrap="wrap"
-        data-line="1.5"
-          data-max-length="400"
-        >
-Primary and secondary colors will define the UI, with additional shades generated automatically.
-        </text>
-      </group>
-
-      <group
-        data-animation-name="appear-bottom"
-        data-fill-mode="backwards"
-        data-animation-duration="1.25"
-      >
-        <group data-gap="5" data-direction="column">
-          <RichThemePicker />
-        </group>
-      </group>
-
-      <separator data-horizontal="" data-interval="10"></separator>
-
-      <group
-        data-direction="column"
-        data-gap="10"
-        data-animation-name="appear-bottom"
-        data-fill-mode="backwards"
-        data-animation-duration="1.25"
-      >
         <text
           data-weight="700"
-         // data-color="main"
           data-text-size="large"
           data-ellipsis=""
         >
@@ -126,9 +130,9 @@ Primary and secondary colors will define the UI, with additional shades generate
         </text>
 
         <text
-          //data-light=""
+
           data-wrap="wrap"
-       data-line="1.5"
+          data-line="1.5"
           data-max-length="400"
         >
           Once you reset the settings, your previous customizations cannot be
