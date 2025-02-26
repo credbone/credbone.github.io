@@ -46,7 +46,12 @@ const ThemePicker: React.FC = () => {
           data-cursor="pointer"
           data-direction="column"
           style={{ backgroundColor: color.code }}
-        ></group>
+
+        >
+
+
+
+        </group>
       </group>
     ))}
   </group>

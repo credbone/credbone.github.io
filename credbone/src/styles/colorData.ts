@@ -67,32 +67,30 @@ export const democolors = [
 
 
 
-  { name: "Coral Sunset", code: "#F5745E" }, // Warm coral
-  { name: "Sunset Orange", code: "#EF7843" }, // Bright sunset orange
-  { name: "Warm Apricot", code: "#F39555" }, // Soft apricot
-  { name: "Golden Sand", code: "#F2CA89" }, // Light golden yellow
-  { name: "Lemon Chiffon", code: "#EBC368" }, // Soft lemon yellow
-  { name: "Mossy Green", code: "#CBC24B" }, // Earthy moss green
-  { name: "Olive Drab", code: "#AFB247" }, // Muted olive green
-  { name: "Slate Gray", code: "#717896" }, // Cool slate gray
-  { name: "Dusty Blue", code: "#7F959F" }, // Soft dusty blue
-  { name: "Aqua Teal", code: "#8DAFB2" }, // Gentle aqua teal
-  { name: "Seafoam Green", code: "#9DC3BE" }, // Light seafoam
-  { name: "Cool Breeze", code: "#84CEC0" }, // Refreshing cool teal
+  { code: "#5c1f2e" },
+  { code: "#896170" },
+  { code: "#c77782" },
+  { code: "#d5aeb6" },
+  { code: "#f7d3d0" },
+  { code: "#F5745E" },
+  { code: "#EF7843" },
+  { code: "#c35731" },
+  { code: "#d38733" },
+  { code: "#F39555" },
+  { code: "#fbcc89" },
+  { code: "#eaba6e" },
+  { code: "#CBC24B" },
+  { code: "#AFB247" },
+  { code: "#5f6040" },
+  { code: "#235842" },
+  { code: "#56311a" },
+  { code: "#213349" },
+  { code: "#717896" },
+  { code: "#6995a0" },
+  { code: "#90bec7" },
+  { code: "#9DC3BE" },
+  { code: "#84CEC0" },
+  { code: "#c0e6ea" }
 
-
-
-
-  { code:"#c0e6ea"},
-  { code:"#90bec7"},
-  { code:"#6995a0"},
-  { code:"#f7d3d0"},
-  { code:"#c77782"},
-  { code:"#896170"},
-  { code:"#fbcc89"},
-  { code:"#eaba6e"},
-  { code:"#bc5725"},
-  { code:"#d5aeb6"},
-  { code:"#6b7189"},
 
 ];
