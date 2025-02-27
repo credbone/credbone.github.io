@@ -343,7 +343,7 @@ const Colors: React.FC = () => {
                   data-space={null}
                   data-radius="20"
                   data-elevation={null}
-                  data-animation-name="appear-top"
+                  data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
                   content={(closePopover) => (
@@ -413,7 +413,7 @@ const Colors: React.FC = () => {
                   data-space={null}
                   data-radius="20"
                   data-elevation={null}
-                  data-animation-name="appear-top"
+                  data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
                   content={(closePopover) => (
@@ -487,7 +487,7 @@ const Colors: React.FC = () => {
                   data-space={null}
                   data-radius="20"
                   data-elevation={null}
-                  data-animation-name="appear-top"
+                  data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
                   content={(closePopover) => (
