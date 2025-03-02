@@ -46,7 +46,7 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const updateTheme = (mode: string) => {
     document.documentElement.setAttribute('data-theme', mode);
-    document.documentElement.classList.toggle('dark-mode', mode === 'dark');
+  //  document.documentElement.classList.toggle('dark-mode', mode === 'dark');
   };
 
   const resetTheme = () => {

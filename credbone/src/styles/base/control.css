@@ -843,6 +843,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius="25"]{border-radius: 25px;}
 [data-radius="30"]{border-radius: 30px;}
 [data-radius="40"]{border-radius: 40px;}
+[data-radius="50"]{border-radius: 50px;}
 [data-radius="full"]{border-radius: 100%;}
 
 
@@ -1056,6 +1057,17 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
     [data-translate-vertical="50%"] {transform: translateY(-50%);}
 
 
+
+    [data-backface-visibility="hidden"]{backface-visibility: hidden;}
+    [data-rotate-x="180"]{transform: rotateX( 180deg ) ;}
+    [data-rotate-x="360"]{transform: rotateX( 360deg ) ;}
+    [data-rotate-x="-180"]{transform: rotateX( -180deg ) ;}
+
+    [data-rotate-y="180"]{transform: rotateY( 180deg ) ;}
+    [data-rotate-y="-180"]{transform: rotateY( -180deg ) ;}
+
+    [data-perspective="500"] {perspective: 500px;}
+    [data-transoform-style="preserve-3d"]{transform-style: preserve-3d;}
 
 
 [data-drag="none"]{-webkit-user-drag: none;}

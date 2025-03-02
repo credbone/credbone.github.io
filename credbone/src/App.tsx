@@ -27,6 +27,7 @@ import Resume from "./pages/resume";
 import { ModalProvider } from "./components/Modal";
 import { NavProvider } from "./components/NavProvider";
 import HorizontalNav from "./template/horizontalNav";
+import Tools from "./pages/tools";
 
 const MainLayout = () => {
   return (
@@ -63,6 +64,7 @@ function App() {
                 <Route path="Settings" element={<Settings />} />
                 <Route path="Search" element={<Search />} />
                 <Route path="Components" element={<Template />} />
+                <Route path="Tools" element={<Tools />} />
               </Route>
               
               <Route path="/Resume" element={<Resume />} />

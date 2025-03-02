@@ -124,8 +124,54 @@
 [data-animation-duration="8"] {animation-duration: 0.8s;} /* Added for 8 */
 
 
+
+
+[data-duration="1"] {transition-duration: 0.1s;}
+[data-duration="1.25"] {transition-duration: 0.125s;}
+[data-duration="1.5"] {transition-duration: 0.15s;}
+[data-duration="1.75"] {transition-duration: 0.175s;}
+[data-duration="2"] {transition-duration: 0.2s;}
+[data-duration="2.25"] {transition-duration: 0.225s;}
+[data-duration="2.5"] {transition-duration: 0.25s;}
+[data-duration="2.75"] {transition-duration: 0.275s;}
+
+[data-duration="3"] {transition-duration: 0.3s;} /* Added for 3 */
+[data-duration="3.25"] {transition-duration: 0.325s;} /* Added for 3.25 */
+[data-duration="3.5"] {transition-duration: 0.35s;} /* Added for 3.5 */
+[data-duration="3.75"] {transition-duration: 0.375s;} /* Added for 3.75 */
+[data-duration="4"] {transition-duration: 0.4s;} /* Added for 4 */
+[data-duration="4.25"] {transition-duration: 0.425s;} /* Added for 4.25 */
+[data-duration="4.5"] {transition-duration: 0.45s;} /* Added for 4.5 */
+[data-duration="4.75"] {transition-duration: 0.475s;} /* Added for 4.75 */
+[data-duration="5"] {transition-duration: 0.5s;} /* Added for 5 */
+[data-duration="5.25"] {transition-duration: 0.525s;} /* Added for 5.25 */
+[data-duration="5.5"] {transition-duration: 0.55s;} /* Added for 5.5 */
+[data-duration="5.75"] {transition-duration: 0.575s;} /* Added for 5.75 */
+[data-duration="6"] {transition-duration: 0.6s;} /* Added for 6 */
+[data-duration="6.25"] {transition-duration: 0.625s;} /* Added for 6.25 */
+[data-duration="6.5"] {transition-duration: 0.65s;} /* Added for 6.5 */
+[data-duration="6.75"] {transition-duration: 0.675s;} /* Added for 6.75 */
+[data-duration="7"] {transition-duration: 0.7s;} /* Added for 7 */
+[data-duration="7.25"] {transition-duration: 0.725s;} /* Added for 7.25 */
+[data-duration="7.5"] {transition-duration: 0.75s;} /* Added for 7.5 */
+[data-duration="7.75"] {transition-duration: 0.775s;} /* Added for 7.75 */
+[data-duration="8"] {transition-duration: 0.8s;} /* Added for 8 */
+
+
+
+
+
+
 [data-animation-duration="14"] {animation-duration: 1.4s;} /* Added for 7.25 */
 [data-animation-duration="28"] {animation-duration: 2.8s;} /* Added for 7.25 */
+
+
+
+
+
+
+
+
 
 
 [data-delay="1"] {transition-delay: 0.1s;}

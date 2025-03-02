@@ -65,3 +65,21 @@ export const groupedLinksArray = [
     ],
   },
 ];
+
+
+
+export const linksArray = [
+
+
+  { title: "Colors\n& Shades",content:colorcontent, description: "A system to craft and manage color palettes.", to: "/Components/Colors" },
+  { title: "Typography", content:typefacecontent,  description: "Scalable tokens for managing text styles.", to: "/Components/Typography" },
+  { title: "Cards\n& Lists", description: "Structured containers for displaying content.", to: "/Components/CardsAndList" },
+  { title: "Tooltip\n& Popover", description: "Interactive elements on hover, focus, or click.", to: "/Components/TooltipAndPopover" },
+  { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers" },
+
+  { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal" },
+  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos" },
+  { title: "Full\nOverview", description: "Discover all components and features.", to: "/Components/Overview", color: true }
+  
+
+];

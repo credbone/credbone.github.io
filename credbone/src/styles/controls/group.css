@@ -54,6 +54,8 @@ group[data-type="grid"][data-grid-template-columns="3"]{grid-template-columns:re
 group[data-type="grid"][data-grid-template-columns="2"]{grid-template-columns:repeat(2, 1fr)}
 
 
+group[data-type="grid"][data-grid-template-columns="16"]{grid-template-columns:repeat(16, 1fr)}
+
 @media (max-width: 500px) {
 
 

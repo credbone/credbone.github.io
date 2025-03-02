@@ -7,55 +7,22 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-
 import sampleImage_2 from "../styles/images/samples/wide_res_85.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_83.webp";
 
-import { colorcontent, typefacecontent } from "./utils/richTumbnail";
 import buildInfo from "../buildInfo.json";
 import ThemePicker from "./themePicker";
-
-
+import { linksArray } from "./utils/OverviewData";
+import DemoThemeToggle from "../components/DemoThemeToggle";
 
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
   { name: "About The Project", url: "/About" },
-  { name: "Search", url: "/Search" }
+  { name: "Search", url: "/Search" },
 ];
-
 
 const currentYear: number = new Date().getFullYear();
-
-
-
-
-const linksArray = [
-
-
-  { title: "Colors\n& Shades",content:colorcontent, description: "A system to craft and manage color palettes.", to: "/Components/Colors" },
-  { title: "Typography", content:typefacecontent,  description: "Scalable tokens for managing text styles.", to: "/Components/Typography" },
-  { title: "Cards\n& Lists", description: "Structured containers for displaying content.", to: "/Components/CardsAndList" },
-  { title: "Tooltip\n& Popover", description: "Interactive elements on hover, focus, or click.", to: "/Components/TooltipAndPopover" },
-  { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers" },
-
-  { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal" },
-  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos" },
-  { title: "Full\nOverview", description: "Discover all components and features.", to: "/Components/Overview", color: true }
-  
-
-
-
-  //{ title: "Icons\n& Shapes", description: "Beautifully crafted and carefully designed icons.", to: "/Components/Icons", },
-  //{ picture: "", long: "", color: "", title: "Dashboard", description: "Demo features a simple dashboard interface designed for monitoring hardware.", to: "/Components/Dashboard" },
-  // { picture: "", long: "", color: "", title: "Navigation & Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
-  // { picture: "", long: "", color: "", title: "Input & Forms", description: "Deals with input fields and form-related user interface elements.", to: "/Components/InputsAndForms", },
-  // { picture: "", long: "", color: "", title: "Layout & Switches", description: "Concerns the arrangement and organization of elements in a design, often utilizing grids.", to: "/Components/Layout" },
-  // { picture: "", long: "", color: "", title: "Buttons", description: "Allow users to take actions, and make choices, with a single tap.", to: "/Components/Buttons", },
-];
-
-
-
 
 // const phrases = [
 //   "Hi",
@@ -67,9 +34,6 @@ const linksArray = [
 // ];
 
 const Components: React.FC = () => {
-
-
-
   const { openModal, closeModal } = useModal();
   // const [message, setMessage] = useState<string>("");
 
@@ -224,69 +188,63 @@ const Components: React.FC = () => {
           </group>
         </group>
 
-        <group>
-          <picture
-            data-radius="30"
-            data-brightness="adaptive"
-            data-position="absolute"
-            data-background="grey-light"
-          >
-            <img src={sampleImage_2} alt="" />
-          </picture>
-
-          <group data-space="30"  >
-            <group
-data-width="auto"
-              data-backdrop="20-adaptive"
-              data-gap="30"
-              data-space="30"
-              data-radius="15"  
-              data-align="start"
-              data-wrap="no"
-data-direction="column-800"
-
+        <group >
+            <picture
+              data-radius="50"
+              data-brightness="adaptive"
+              data-position="absolute"
+              data-background="grey-light"
             >
-              <group data-direction="column" data-gap="30" data-autofit="1-800" data-length="240" >
-                <ThemePicker />
-              </group>
-              <separator
+              <img src={sampleImage_2} alt="" />
+            </picture>
+
+            <group data-space="30" data-gap="5">
+              <group
+                data-width="auto"
+                data-backdrop="20-adaptive"
+                // data-elevation="2-main-color"
+                data-gap="30"
+                data-space="30"
+                data-radius="20"
+                data-align="start"
+                data-wrap="no"
+                data-direction="column-800"
+              >
+                <group
+                  data-direction="column"
+                  data-gap="30"
+                  data-autofit="1-800"
+                  data-length="240"
+                >
+                  <ThemePicker />
+                </group>
+                <separator
                   data-vertical="adaptive-800"
                   data-height="fit"
                 ></separator>
-              <group  data-gap="10"  data-autofit="1-800" data-length="300" data-fit="1" data-contain="" >
-
-
-                <text
-                  data-wrap="wrap"
-                  data-line="1.5"
-                
-                  data-text-size="15"
+                <group
+                  data-gap="20"
+                  data-autofit="1-800"
+                  data-length="200"
+                  data-fit="1"
                 >
-                  Shape the system theme with flexible customization, bringing a
-                  unified look across all elements
-                </text>
+                  <text data-wrap="wrap" data-line="1.5" data-text-size="15">
+                    Shape the system theme with flexible customization, bringing
+                    a unified look across all elements
+                  </text>
 
 
-                
-
+                </group>
               </group>
+              <DemoThemeToggle/>
             </group>
           </group>
-        </group>
-
-
-
-
-
-
 
         <group
           data-space="adaptive-30-50"
           data-gap="20"
           data-direction="column"
           data-align="start"
-          // data-text-align="center"
-          // data-align="center"
         >
           <text
             data-wrap="wrap"
@@ -311,71 +269,6 @@ data-direction="column-800"
             possible!
           </text>
         </group>
-
-        {/* <Popover
-            placement="mouse"
-            content={
-              <group
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                data-animation-duration="1.25"
-              >
-                <RichThemePicker pickerType="primary" />
-              </group>
-            }
-            data-space="5"
-            data-radius="10"
-            data-backdrop="10"
-            data-width="auto"
-          >
-            <group
-              data-max-length="300"
-              data-position="center"
-              data-cursor="pointer"
-            >
-              <group data-space="10%">
-                <group data-height="fit">
-                  <group
-                    data-position="absolute"
-                    data-border="inset"
-                    data-right="100%"
-                    data-height="fit"
-                    data-disabled="true"
-                    data-radius="full"
-                  ></group>
-
-                  <Ripple>
-                    <group
-                      data-index="4"
-                      data-contain=""
-                      data-ink-color="main-dark"
-                      data-ratio="1:1"
-                      data-background="main"
-                      data-color="main-text"
-                      data-radius="full"
-                    >
-                      <ThemNameDisplay/>
-                    </group>
-                  </Ripple>
-                </group>
-              </group>
-              <group
-                data-position="absolute"
-                data-disabled="true"
-                data-height="fit"
-                data-index="4"
-              >
-                <picture
-                //    data-brightness="adaptive"
-
-                // data-background="grey-light"
-                //    data-min-height="300"
-                >
-                  <img src={sampleImage_3} alt="" />
-                </picture>
-              </group>
-            </group>
-          </Popover> */}
 
         <group
           data-gap="5"
@@ -481,7 +374,7 @@ data-direction="column-800"
 
         <group data-direction="column">
           <picture
-            data-radius="30"
+            data-radius="50"
             data-brightness="adaptive"
             data-position="absolute"
             data-background="grey-light"
@@ -495,9 +388,9 @@ data-direction="column-800"
               data-position="bottom"
               data-backdrop="20-adaptive"
               data-width="auto"
-              data-radius="15"
+              data-radius="20"
             >
-              <group data-gap="40">
+              <group data-gap="30">
                 <text
                   data-wrap="wrap"
                   data-font-type="hero"

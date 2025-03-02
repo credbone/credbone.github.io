@@ -133,10 +133,10 @@ transition: background-color 5000s 0s, color 5000s 0s;
 }
 
 
-  .dark-mode,
-  .dark-mode input:-webkit-autofill,
-  .dark-mode input:-webkit-autofill:focus,
-  .dark-mode input:-internal-autofill-selected
+  [data-theme="dark"],
+  [data-theme="dark"] input:-webkit-autofill,
+  [data-theme="dark"] input:-webkit-autofill:focus,
+  [data-theme="dark"] input:-internal-autofill-selected
  {
    color-scheme: dark;
 }

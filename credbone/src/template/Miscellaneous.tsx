@@ -9,8 +9,11 @@ import sampleImage_3 from "../styles/images/samples/wide_res_67.webp";
 import Ripple from "../components/Ripple";
 import TemplatePageHeader from "./TemplatePageHeader";
 
+
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
+
+
 
   const handleRestartCount = () => {
     // Increment the restart key to trigger a re-render of the Count component
@@ -34,14 +37,13 @@ const Miscellaneous: React.FC = () => {
     <group data-space="30" data-gap="30" data-align="start">
 
 
-
       <TemplatePageHeader
         title="Miscellaneous"
         description="Encompasses a variety of small, diverse UI components that don't fit
           into other categories, including elements like marquees and counters."
         // version="1.0.2"
-       //  type="Pattern"
-        descriptionProps={{"data-length":"500"}}
+        //  type="Pattern"
+        descriptionProps={{ "data-length": "500" }}
       />
 
       <group
