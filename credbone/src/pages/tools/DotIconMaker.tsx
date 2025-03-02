@@ -88,6 +88,19 @@ function DotIconMaker() {
         170, 155, 182, 183, 184, 185, 201, 198, 147, 180,
       ]),
     },
+
+    {
+      label: "Envelope",
+      set: new Set([
+        115, 85, 86, 87, 88, 89, 90, 75, 74, 73, 72, 71, 70, 69, 68, 52, 53, 54,
+        55, 56, 57, 58, 59, 60, 195, 196, 197, 199, 200, 201, 202, 203, 204,
+        198, 187, 186, 185, 184, 183, 182, 181, 180, 188, 172, 171, 170, 169,
+        166, 165, 163, 147, 148, 149, 154, 155, 156, 140, 139, 132, 131, 119,
+        120, 102, 103, 104, 105, 124, 164, 179, 98, 114, 130, 146, 162, 178,
+        194, 109, 125, 141, 157, 189, 173, 205, 51, 50, 67, 84, 101, 118, 121,
+        106, 91, 76, 61, 135, 136,
+      ]),
+    },
   ];
 
   const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'
@@ -100,10 +113,8 @@ function DotIconMaker() {
   };
 
   return (
-    <group data-space="30" data-gap="30" >
-      <group data-gap="30" >
-
-
+    <group data-space="30" data-gap="30">
+      <group data-gap="30">
         <group data-gap="5">
           {buttonData.map((button, index) => (
             <Tooltip content={button.label} distance={0} key={index}>
@@ -126,7 +137,6 @@ function DotIconMaker() {
           ))}
         </group>
 
-
         <group
           data-border=""
           data-width="auto"
@@ -139,7 +149,6 @@ function DotIconMaker() {
           data-justify="center"
           data-gap="20"
         >
-         
           <DotDisplay activeIndexes={activeDots} />
           <text data-opacity="30">Preview</text>
         </group>
@@ -152,8 +161,6 @@ function DotIconMaker() {
         >
           <DotDisplayEdit predefinedActiveIndexes={activeDots} />
         </group>
-
-
       </group>
     </group>
   );

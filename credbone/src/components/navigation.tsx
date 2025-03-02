@@ -16,7 +16,7 @@ const navItems = [
   { to: "/Components", icon: <Box size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
   { to: "/Components/Typography", icon: <Box size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
   { to:"/Components", type:"separator"},
-  { to: "/Tools", icon: <PencilRuler size={20}/> , label: "Tools",type:"link"  },
+  // { to: "/Tools", icon: <PencilRuler size={20}/> , label: "Tools",type:"link"  },
   { to: "/About", icon: <BookOpen size={20}/>, label: "About",type:"link" },
 
   { to: "/Settings", icon: <Bolt size={20} />, label: "Settings",type:"link" },

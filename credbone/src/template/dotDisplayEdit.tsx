@@ -1,3 +1,4 @@
+import { Eraser } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
 const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
@@ -5,18 +6,24 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
 }) => {
   const [currentActiveIndexes, setCurrentActiveIndexes] = useState<Set<number>>(
     predefinedActiveIndexes || new Set()
-    
   );
   const [isMouseDown, setIsMouseDown] = useState(false);
+  const [isEraserActive, setIsEraserActive] = useState(false); // State for eraser mode
   const rows = 16;
   const cols = 16;
 
   const handleCircleClick = (index: number) => {
     const newActiveIndexes = new Set(currentActiveIndexes);
-    if (newActiveIndexes.has(index)) {
+    if (isEraserActive) {
+      // Remove dot if eraser is active
       newActiveIndexes.delete(index);
     } else {
-      newActiveIndexes.add(index);
+      // Add or remove dot depending on its current state
+      if (newActiveIndexes.has(index)) {
+        newActiveIndexes.delete(index);
+      } else {
+        newActiveIndexes.add(index);
+      }
     }
     setCurrentActiveIndexes(newActiveIndexes);
   };
@@ -27,16 +34,26 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   const handleMouseMove = (index: number) => {
     if (isMouseDown) {
       const newActiveIndexes = new Set(currentActiveIndexes);
-      newActiveIndexes.add(index);
+      if (isEraserActive) {
+        // Erase dot on mouse move
+        newActiveIndexes.delete(index);
+      } else {
+        // Add dot on mouse move
+        newActiveIndexes.add(index);
+      }
       setCurrentActiveIndexes(newActiveIndexes);
     }
   };
 
+
+
+  
+
+
   const handleClear = () => {
     setCurrentActiveIndexes(new Set());
+    setIsEraserActive(false);
   };
-
-  const getRawData = () => Array.from(currentActiveIndexes).join(", ");
 
   const copyRawData = () => {
     navigator.clipboard.writeText(getRawData());
@@ -71,6 +88,10 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     }
   }, [predefinedActiveIndexes]);
 
+  const getRawData = () => Array.from(currentActiveIndexes).join(", ");
+
+  const toggleEraser = () => setIsEraserActive(!isEraserActive); // Toggle eraser mode
+
   return (
     <group data-direction="column">
       <group data-space="10" data-gap="10" data-align="center">
@@ -79,7 +100,6 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
           data-align="center"
           data-justify="center"
           data-background="adaptive-gray"
-          data-color="adaptive-gray"
           data-width="auto"
           data-interactive=""
           data-over-color="neutral"
@@ -87,10 +107,29 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
           data-cursor="pointer"
           onClick={handleClear}
         >
-          <text>Clear</text>
+          <text>New</text>
         </group>
 
-        <separator data-vertical=""></separator>
+        <separator data-vertical="" data-height="20"></separator>
+
+        <group
+          data-space-horizontal="15"
+          data-align="center"
+          data-justify="center"
+          data-background={isEraserActive ? "main" : "adaptive-gray"}
+          data-color={isEraserActive ? "main-text" : ""}
+          data-height="45"
+          data-width="auto"
+          data-interactive=""
+          data-over-color="neutral"
+          data-radius="10"
+          data-cursor="pointer"
+          onClick={toggleEraser}
+        >
+          <group data-interact="">
+            <Eraser size={20} />
+          </group>
+        </group>
 
         <group
           data-space="15"
@@ -171,7 +210,6 @@ const Dot: React.FC<{
       fill="currentcolor"
       onClick={onClick}
       onMouseMove={onMouseMove}
-      style={{ cursor: "pointer" }}
     />
   );
 };
