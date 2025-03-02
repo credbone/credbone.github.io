@@ -2,15 +2,16 @@ import React from 'react';
 
 type GridProps = {
   activeIndexes?: Set<number>;
+  size?: number; // Optional size prop to control the SVG size
 };
 
-const DotDisplay: React.FC<GridProps> = ({ activeIndexes = new Set() }) => {
+const DotDisplay: React.FC<GridProps> = ({ activeIndexes = new Set(), size = 110 }) => {
   const rows = 16;
   const cols = 16;
   
   return (
-<group  data-contain="" data-width="auto">
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="128" viewBox="0 0 160 160" fill="currentcolor"  >
+<group  data-contain="" data-width="auto"  data-name="dot-display">
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 160 160" fill="currentcolor"  >
 
 {/* <defs>  
     <filter id="filter">

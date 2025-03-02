@@ -1104,7 +1104,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="padding"]{transition-property: padding;}
 [data-transition-prop="border-radius"]{transition-property: border-radius;}
 [data-transition-prop="border-radius-margin"]{transition-property: border-radius, margin;}
-
+[data-transition-prop="r"]{transition-property: r;}
 
 
 

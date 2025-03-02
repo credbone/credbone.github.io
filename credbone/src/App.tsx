@@ -27,7 +27,8 @@ import Resume from "./pages/resume";
 import { ModalProvider } from "./components/Modal";
 import { NavProvider } from "./components/NavProvider";
 import HorizontalNav from "./template/horizontalNav";
-import Tools from "./pages/tools";
+import Tools from "./pages/tools/tools";
+import ToolsCollection from "./pages/tools";
 
 const MainLayout = () => {
   return (
@@ -56,7 +57,8 @@ function App() {
               <Route path="/*" element={<Navigate replace to="/" />} />
               <Route path="/Components/*" element={<Template />} />
               <Route path="/" element={<Components />} />
-
+              <Route path="Tools" element={<Tools />} />
+              <Route path="/Tools/*" element={<ToolsCollection />} />
 
 
               <Route path="/*" element={<MainLayout />}>
@@ -64,7 +66,7 @@ function App() {
                 <Route path="Settings" element={<Settings />} />
                 <Route path="Search" element={<Search />} />
                 <Route path="Components" element={<Template />} />
-                <Route path="Tools" element={<Tools />} />
+
               </Route>
               
               <Route path="/Resume" element={<Resume />} />

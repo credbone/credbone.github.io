@@ -306,3 +306,7 @@ html{zoom: .85;}
 
 [data-name="cred-react-colorful"] .react-colorful__pointer.react-colorful__saturation-pointer { height: 20px; width: 20px; border-radius: 20px;}
 [data-name="cred-react-colorful"] .react-colorful__pointer-fill {box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);}
+
+
+
+[data-name="dot-display"] circle {transition-property: r;}
