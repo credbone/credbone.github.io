@@ -24,6 +24,8 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
   'Settings': { title: 'Settings', header: 'Settings' },
   'Search': { title: 'Search', header: null },
 
+  'Tools': { title: 'Tools & Resources', header: "Tools & Resources" },
+
   'Resume': { title: 'Ruben Sargsyan', header: 'Ruben Sargsyan' },
   'Dashboard': { title: 'Dashboard', header: 'Dashboard' },
   'QuickDemos': { title: 'Quick Demos', header: 'Quick Demos' },

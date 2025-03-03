@@ -198,8 +198,9 @@ const Components: React.FC = () => {
               <img src={sampleImage_2} alt="" />
             </picture>
 
-            <group data-space="30" data-gap="5">
+            <group data-space="30" data-gap="5" data-contain="" data-direction="column-600" data-wrap="no">
               <group
+              data-contain=""
                 data-width="auto"
                 data-backdrop="20-adaptive"
                 // data-elevation="2-main-color"
@@ -214,7 +215,8 @@ const Components: React.FC = () => {
                   data-direction="column"
                   data-gap="30"
                   data-autofit="1-800"
-                  data-length="240"
+                  data-length="220"
+                  data-fit="1"
                 >
                   <ThemePicker />
                 </group>

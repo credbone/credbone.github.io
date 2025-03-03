@@ -210,7 +210,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
               data-contain=""
               data-type="group"
               key={index}
-              to={`../Components/${result.path}`}
+              to={`${result.path}`}
               data-space="20"
               
               data-direction="column"
