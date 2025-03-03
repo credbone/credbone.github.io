@@ -2,6 +2,7 @@ import { Eraser } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import DotDisplay from "./dotDisplay";
 
 const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   predefinedActiveIndexes,
@@ -10,7 +11,8 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     predefinedActiveIndexes || new Set()
   );
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [isEraserActive, setIsEraserActive] = useState(false); // State for eraser mode
+  const [isTouchActive, setIsTouchActive] = useState(false);
+  const [isEraserActive, setIsEraserActive] = useState(false);
   const rows = 16;
   const cols = 16;
 
@@ -30,6 +32,7 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     setCurrentActiveIndexes(newActiveIndexes);
   };
 
+  // Mouse event handlers
   const handleMouseDown = () => setIsMouseDown(true);
   const handleMouseUp = () => setIsMouseDown(false);
 
@@ -47,6 +50,45 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     }
   };
 
+  // Touch event handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault(); // Prevent scrolling
+    setIsTouchActive(true);
+  };
+  
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsTouchActive(false);
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent, svgElement: SVGSVGElement) => {
+    e.preventDefault();
+    if (!isTouchActive || !svgElement) return;
+    
+    // Get touch position relative to SVG
+    const touch = e.touches[0];
+    const svgRect = svgElement.getBoundingClientRect();
+    const x = touch.clientX - svgRect.left;
+    const y = touch.clientY - svgRect.top;
+    
+    // Convert to grid coordinates
+    const col = Math.floor(x / (svgRect.width / cols));
+    const row = Math.floor(y / (svgRect.height / rows));
+    
+    // Ensure valid index
+    if (col >= 0 && col < cols && row >= 0 && row < rows) {
+      const index = row * cols + col;
+      
+      const newActiveIndexes = new Set(currentActiveIndexes);
+      if (isEraserActive) {
+        newActiveIndexes.delete(index);
+      } else {
+        newActiveIndexes.add(index);
+      }
+      setCurrentActiveIndexes(newActiveIndexes);
+    }
+  };
+
   const handleClear = () => {
     setCurrentActiveIndexes(new Set());
     setIsEraserActive(false);
@@ -56,15 +98,14 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   const copyRawData = async () => {
     try {
       await navigator.clipboard.writeText(getRawData());
-      // console.log("Raw data copied to clipboard!");
       addSnackbar("Raw data copied to clipboard", 1000);
     } catch (err) {
-      //  console.error("Failed to copy raw data", err);
       addSnackbar("Failed to copy raw data", 1000);
     }
   };
 
   const exportSVG = () => {
+    const currentDateTime = new Date().toISOString().replace(/[^\w]/g, "").slice(0, 15);
     const svgContent = `
       <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
         ${Array.from(currentActiveIndexes)
@@ -80,7 +121,7 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "dots.svg";
+    a.download = `dots-${currentDateTime}.svg`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -102,14 +143,36 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
 
     try {
       await navigator.clipboard.writeText(svgContent);
-      // console.log("SVG copied to clipboard!");
-
       addSnackbar("SVG copied to clipboard", 1000);
     } catch (err) {
-      // console.error("Failed to copy SVG", err);
       addSnackbar("Failed to copy", 1000);
     }
   };
+
+
+
+useEffect(() => {
+  // Handle mouse up and touch end events globally
+  const handleGlobalMouseUp = () => {
+    setIsMouseDown(false);
+  };
+  
+  const handleGlobalTouchEnd = () => {
+    setIsTouchActive(false);
+  };
+  
+  // Add global event listeners
+  document.addEventListener('mouseup', handleGlobalMouseUp);
+  document.addEventListener('touchend', handleGlobalTouchEnd);
+  
+  // Clean up
+  return () => {
+    document.removeEventListener('mouseup', handleGlobalMouseUp);
+    document.removeEventListener('touchend', handleGlobalTouchEnd);
+  };
+}, []);
+
+
 
   useEffect(() => {
     if (predefinedActiveIndexes) {
@@ -119,139 +182,173 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
 
   const getRawData = () => Array.from(currentActiveIndexes).join(", ");
 
-  const toggleEraser = () => setIsEraserActive(!isEraserActive); // Toggle eraser mode
+  const toggleEraser = () => setIsEraserActive(!isEraserActive);
+
+  // SVG reference for touch events
+  const svgRef = React.useRef<SVGSVGElement>(null);
 
   return (
-    <group data-direction="column">
-      <group data-space="10" data-gap="10" data-align="center">
-        <group
-          data-space="15"
-          data-align="center"
-          data-justify="center"
-          data-background="adaptive-gray"
-          data-width="auto"
-          data-interactive=""
-          data-over-color="neutral"
-          data-radius="10"
-          data-cursor="pointer"
-          onClick={handleClear}
-        >
-          <text>Clear</text>
-        </group>
-
-        <separator data-vertical="" data-height="20"></separator>
-
-        <group
-          data-space-horizontal="15"
-          data-align="center"
-          data-justify="center"
-          data-background={isEraserActive ? "main" : "adaptive-gray"}
-          data-color={isEraserActive ? "main-text" : ""}
-          data-height="45"
-          data-width="auto"
-          data-interactive=""
-          data-over-color="neutral"
-          data-radius="10"
-          data-cursor="pointer"
-          onClick={toggleEraser}
-        >
-          <group data-interact="">
-            <Eraser size={20} />
-          </group>
-        </group>
-
-        <Popover
-          data-space="5"
-          content={(closePopover) => (
+    <>
+      <group
+        data-border=""
+        data-width="auto"
+        data-radius="20"
+        data-contain=""
+      >
+        <group data-direction="column">
+          <group data-space="10" data-gap="10" data-align="center">
             <group
-              data-direction="column"
-              data-length="180"
-              onClick={closePopover}
+              data-space="15"
+              data-align="center"
+              data-justify="center"
+              data-background="adaptive-gray"
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="10"
+              data-cursor="pointer"
+              onClick={handleClear}
+            >
+              <text>Clear</text>
+            </group>
+
+            <separator data-vertical="" data-height="20"></separator>
+
+            <group
+              data-space-horizontal="15"
+              data-align="center"
+              data-justify="center"
+              data-background={isEraserActive ? "main" : "adaptive-gray"}
+              data-color={isEraserActive ? "main-text" : ""}
+              data-height="45"
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="10"
+              data-cursor="pointer"
+              onClick={toggleEraser}
+            >
+              <group data-interact="">
+                <Eraser size={20} />
+              </group>
+            </group>
+
+            <Popover
+              data-space="5"
+              content={(closePopover) => (
+                <group
+                  data-direction="column"
+                  data-length="180"
+                  onClick={closePopover}
+                >
+                  <group
+                    data-space="15"
+                    data-width="auto"
+                    data-interactive=""
+                    data-radius="5"
+                    data-cursor="pointer"
+                    onClick={exportSVG}
+                  >
+                    <text>Export SVG</text>
+                  </group>
+
+                  <group
+                    data-space="15"
+                    data-width="auto"
+                    data-interactive=""
+                    data-radius="5"
+                    data-cursor="pointer"
+                    onClick={copySVGToClipboard}
+                  >
+                    <text>Copy SVG</text>
+                  </group>
+
+                  <group
+                    data-space="15"
+                    data-width="auto"
+                    data-interactive=""
+                    data-radius="5"
+                    data-cursor="pointer"
+                    onClick={copyRawData}
+                  >
+                    <text>Copy Raw Data</text>
+                  </group>
+                </group>
+              )}
             >
               <group
                 data-space="15"
+                data-align="center"
+                data-justify="center"
+                data-background="adaptive-gray"
+                data-color="adaptive-gray"
                 data-width="auto"
                 data-interactive=""
-                data-radius="5"
+                data-over-color="neutral"
+                data-radius="10"
                 data-cursor="pointer"
-                onClick={exportSVG}
+                data-position="right"
               >
-                <text>Export SVG</text>
+                <text>Export</text>
               </group>
-
-              <group
-                data-space="15"
-                data-width="auto"
-                data-interactive=""
-                data-radius="5"
-                data-cursor="pointer"
-                onClick={copySVGToClipboard}
-              >
-                <text>Copy SVG</text>
-              </group>
-
-              <group
-                data-space="15"
-                data-width="auto"
-                data-interactive=""
-                data-radius="5"
-                data-cursor="pointer"
-                onClick={copyRawData}
-              >
-                <text>Copy Raw Data</text>
-              </group>
-            </group>
-          )}
-        >
-          <group
-            data-space="15"
-            data-align="center"
-            data-justify="center"
-            data-background="adaptive-gray"
-            data-color="adaptive-gray"
-            data-width="auto"
-            data-interactive=""
-            data-over-color="neutral"
-            data-radius="10"
-            data-cursor="pointer"
-            data-position="right"
-          >
-            <text>Export</text>
+            </Popover>
           </group>
-        </Popover>
-      </group>
 
-      <separator data-horizontal=""></separator>
+          <separator data-horizontal=""></separator>
+
+          <group
+            data-space="30"
+            data-background="adaptive-gray"
+            data-justify="center"
+          >
+            <svg
+              ref={svgRef}
+              width="256"
+              height="256"
+              viewBox="0 0 160 160"
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
+              style={{ touchAction: "none" }}
+            >
+              {Array.from({ length: rows * cols }).map((_, index) => {
+                const x = (index % cols) * 10 + 5;
+                const y = Math.floor(index / cols) * 10 + 5;
+                return (
+                  <Dot
+                    key={index}
+                    x={x}
+                    y={y}
+                    active={currentActiveIndexes.has(index)}
+                    onClick={() => handleCircleClick(index)}
+                    onMouseMove={() => handleMouseMove(index)}
+                  />
+                );
+              })}
+            </svg>
+          </group>
+        </group>
+      </group>
 
       <group
-        data-space="30"
-        data-background="adaptive-gray"
+        data-width="auto"
+        data-radius="30"
+        data-space="adaptive-30-50"
+        data-background="text"
+        data-color="main-background"
+        data-align="center"
+        data-direction="column"
         data-justify="center"
+        data-gap="20"
       >
-        <svg
-          width="256"
-          height="256"
-          viewBox="0 0 160 160"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        >
-          {Array.from({ length: rows * cols }).map((_, index) => {
-            const x = (index % cols) * 10 + 5;
-            const y = Math.floor(index / cols) * 10 + 5;
-            return (
-              <Dot
-                key={index}
-                x={x}
-                y={y}
-                active={currentActiveIndexes.has(index)}
-                onClick={() => handleCircleClick(index)}
-                onMouseMove={() => handleMouseMove(index)}
-              />
-            );
-          })}
-        </svg>
+        <group data-position="center" data-justify="center">
+          <DotDisplay activeIndexes={currentActiveIndexes} />
+        </group>
+        <text data-opacity="30">Preview</text>
       </group>
-    </group>
+    </>
   );
 };
 
