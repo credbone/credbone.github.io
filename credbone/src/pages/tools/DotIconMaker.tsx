@@ -27,14 +27,14 @@ function DotIconMaker() {
   };
 
   return (
-    <group data-gap="30">
+    <group data-gap="30" data-max-length="1200">
 
-<group data-gap="5" data-type="grid" data-grid-template="80">
+<group data-gap="5" >
       {buttonData.map((button, index) => (
         <Tooltip content={button.label} distance={0} key={index}>
           <group
             key={index} // Using index as the key
-           
+           data-width="auto"
             data-space="10"
             data-radius="15"
             data-interactive=""
@@ -45,19 +45,33 @@ function DotIconMaker() {
             data-direction="column"
           >
             <group data-interact="">
-              <DotDisplay size={80} activeIndexes={button.set} />
+              <DotDisplay size={64} activeIndexes={button.set} />
             </group>
           </group>
         </Tooltip>
       ))}
     </group>
 
-<group data-gap="10" data-direction="column-800" data-length="700" >
+
+<group data-gap="30" data-direction="column-800" data-width="auto"  data-autofit="1-600">
+
+<group
+      data-border=""
+      data-width="auto"
+      data-radius="20"
+      data-contain=""
+
+
+
+    >
+      <DotDisplayEdit predefinedActiveIndexes={activeDots} />
+    </group>
+
 
     <group
       
       data-width="auto"
-      data-radius="20"
+      data-radius="30"
        data-space="adaptive-30-50"
       data-background="text"
       data-color="main-background"
@@ -73,17 +87,7 @@ function DotIconMaker() {
     </group>
 
 
-    <group
-      data-border=""
-      data-width="auto"
-      data-radius="20"
-      data-contain=""
- data-autofit="1-800"
- data-fit="1"
 
-    >
-      <DotDisplayEdit predefinedActiveIndexes={activeDots} />
-    </group>
 
 
 </group>

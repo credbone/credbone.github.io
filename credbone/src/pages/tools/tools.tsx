@@ -4,7 +4,7 @@ import Ripple from "../../components/Ripple";
 import DotDisplay from "../../template/dotDisplay";
 import { arrow } from "./dotIcon";
 
-import section_image from "../../styles/images/samples/wide_res_83.webp";
+import section_image from "../../styles/images/samples/wide_res_69.webp";
 
 function Tools() {
   return (
@@ -104,7 +104,7 @@ function Tools() {
             <Ripple>
               <group
                 data-interact=""
-                data-space="50"
+                data-space="30"
                 data-background="adaptive-gray"
                 data-radius="30"
                 data-contain=""
@@ -116,7 +116,7 @@ function Tools() {
               </group>
             </Ripple>
             <group data-gap="20" data-space="15" data-position="bottom">
-              <text data-weight="700" data-text-size="medium">
+              <text data-weight="700">
                 Dot Icon Maker
               </text>
               <text data-wrap="wrap" data-line="1.3">

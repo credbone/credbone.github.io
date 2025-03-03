@@ -122,7 +122,7 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   const toggleEraser = () => setIsEraserActive(!isEraserActive); // Toggle eraser mode
 
   return (
-    <group data-direction="column"  >
+    <group data-direction="column">
       <group data-space="10" data-gap="10" data-align="center">
         <group
           data-space="15"
@@ -159,38 +159,7 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
             <Eraser size={20} />
           </group>
         </group>
-      </group>
 
-      <separator data-horizontal=""></separator>
-
-      <group data-space="30" data-background="adaptive-gray" data-justify="center">
-        <svg
-          width="160"
-          height="160"
-          viewBox="0 0 160 160"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        >
-          {Array.from({ length: rows * cols }).map((_, index) => {
-            const x = (index % cols) * 10 + 5;
-            const y = Math.floor(index / cols) * 10 + 5;
-            return (
-              <Dot
-                key={index}
-                x={x}
-                y={y}
-                active={currentActiveIndexes.has(index)}
-                onClick={() => handleCircleClick(index)}
-                onMouseMove={() => handleMouseMove(index)}
-              />
-            );
-          })}
-        </svg>
-      </group>
-
-      <separator data-horizontal=""></separator>
-
-      <group data-space="10">
         <Popover
           data-space="5"
           content={(closePopover) => (
@@ -245,10 +214,42 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
             data-over-color="neutral"
             data-radius="10"
             data-cursor="pointer"
+            data-position="right"
           >
             <text>Export</text>
           </group>
         </Popover>
+      </group>
+
+      <separator data-horizontal=""></separator>
+
+      <group
+        data-space="30"
+        data-background="adaptive-gray"
+        data-justify="center"
+      >
+        <svg
+          width="256"
+          height="256"
+          viewBox="0 0 160 160"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          {Array.from({ length: rows * cols }).map((_, index) => {
+            const x = (index % cols) * 10 + 5;
+            const y = Math.floor(index / cols) * 10 + 5;
+            return (
+              <Dot
+                key={index}
+                x={x}
+                y={y}
+                active={currentActiveIndexes.has(index)}
+                onClick={() => handleCircleClick(index)}
+                onMouseMove={() => handleMouseMove(index)}
+              />
+            );
+          })}
+        </svg>
       </group>
     </group>
   );
