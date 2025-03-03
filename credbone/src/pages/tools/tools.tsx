@@ -45,7 +45,7 @@ function Tools() {
             data-opacity="70"
             data-text-size="15"
           >
-            A set of tools to enhance design and code workflows—ideal for
+            A set of tools to enhance design and code workflows, for
             developers and designers.
           </text>
         </group>
