@@ -5,6 +5,7 @@ import DotDisplay from "../../template/dotDisplay";
 import { arrow } from "./dotIcon";
 
 import section_image from "../../styles/images/samples/wide_res_69.webp";
+import { links } from "./toolData";
 
 function Tools() {
   return (
@@ -45,8 +46,8 @@ function Tools() {
             data-opacity="70"
             data-text-size="15"
           >
-            A set of tools to enhance design and code workflows, for
-            developers and designers.
+            A set of tools to enhance design and code workflows, for developers
+            and designers.
           </text>
         </group>
 
@@ -91,41 +92,62 @@ function Tools() {
           </group>
         </group> */}
 
-        <group data-type="grid" data-grid-template="180">
-          <Link
-            data-type="group"
-            data-contain=""
-            data-drag="none"
-            to="DotIconMaker"
-            data-interactive=""
-            data-over-color="none"
-            data-gap="10"
-          >
-            <Ripple>
-              <group
-                data-interact=""
-                data-space="30"
-                data-background="adaptive-gray"
-                data-radius="30"
-                data-contain=""
-                data-react="background"
-                
-              >
-                <group data-interact="" data-justify="center">
-                  <DotDisplay size={180} activeIndexes={arrow} />
+        <group data-type="grid" data-grid-template="180/140" data-gap="20">
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              data-type="group"
+              data-contain=""
+              data-drag="none"
+              to={link.url}
+              data-interactive=""
+              data-over-color="none"
+              data-gap="10"
+              data-direction="column"
+              data-wrap="no"
+              data-justify="start"
+            >
+              <Ripple>
+                <group
+                  data-interact=""
+                  data-space="30"
+                  data-background="adaptive-gray"
+                  data-radius="30"
+                  data-contain=""
+                  data-react="background"
+                  data-direction="column"
+                >
+                  {link.new === "true" && (
+                    <group
+                      data-background="red"
+                      data-space="5"
+                      data-position="absolute"
+                      data-width="auto"
+                      data-radius="5"
+                      data-left="20"
+                      data-top="20"
+                    ></group>
+                  )}
+
+                  <group
+                    data-interact=""
+                    data-ratio="1:1"
+                    data-justify="center"
+                  >
+                    {link.content}
+                  </group>
                 </group>
+              </Ripple>
+              <group data-gap="10" data-space="20">
+                <text data-weight="700" data-wrap="preline" data-text-size="large" data-ellipsis="" data-font-type="hero" data-line="1">
+                  {link.title}
+                </text>
+                <text data-wrap="wrap" data-line="1.5">
+                  {link.description}
+                </text>
               </group>
-            </Ripple>
-            <group data-gap="20" data-space="15" data-position="bottom">
-              <text data-weight="700">
-                Dot Icon Maker
-              </text>
-              <text data-wrap="wrap" data-line="1.3">
-                A simple tool for creating, editing, and exporting 16x16 dotted
-                icons.
-              </text>
-            </group>
-          </Link>
+            </Link>
+          ))}
         </group>
       </group>
 
