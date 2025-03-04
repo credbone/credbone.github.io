@@ -41,7 +41,7 @@ type DotProps = {
 
 const Dot: React.FC<DotProps> = ({ x, y, row, active }) => {
   return (
-    <circle data-duration={3 + row * 0.25}   cx={x} cy={y} r={active ? '4' : '0'}  />
+    <circle data-duration={3 + row * 0.25}   cx={x} cy={y} r={active ? '4' : '0'}  transform={active ? "translate(0 0)" : "translate(2 5)"}  />
   );
 };
 

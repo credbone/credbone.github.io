@@ -109,8 +109,9 @@ function Tools() {
                 data-radius="30"
                 data-contain=""
                 data-react="background"
+                
               >
-                <group data-interact="">
+                <group data-interact="" data-justify="center">
                   <DotDisplay size={180} activeIndexes={arrow} />
                 </group>
               </group>

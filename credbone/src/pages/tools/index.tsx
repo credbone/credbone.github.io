@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import DotIconMaker from "./DotIconMaker";
-import Tools from "./tools";
+
 
 function ToolsCollection() {
   return (
@@ -10,7 +10,7 @@ function ToolsCollection() {
       data-direction="column"
       data-scroll=""
       data-index="1"
-     data-space="30"
+         data-space="adaptive-30-50"
      data-gap="30"
     >
       <group data-sticky="top">

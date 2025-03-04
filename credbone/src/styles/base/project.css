@@ -309,4 +309,4 @@ html{zoom: .85;}
 
 
 
-[data-name="dot-display"] circle {transition-property: r;}
+[data-name="dot-display"] circle {transition-property: r, transform;}

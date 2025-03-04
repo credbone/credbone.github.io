@@ -39,8 +39,17 @@ function DotIconMaker() {
               data-cursor="pointer"
               onClick={() => handleClick(index, button.set)}
               data-direction="column"
+              data-animation-name="appear-top-small"
+              data-fill-mode="backwards"
+              data-animation-duration={2 + index * 0.25}
             >
-              <group data-interact="">
+              <group data-interact=""
+              
+              data-animation-name="appear-top-small"
+              data-fill-mode="backwards"
+              data-animation-duration={4 + index * 0.25}
+              
+              >
                 <DotDisplay size={64} activeIndexes={button.set} />
               </group>
             </group>

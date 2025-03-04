@@ -6,6 +6,9 @@
 @keyframes appear-left {from{opacity: 0;transform: translateX(-50px);}to{}}
 @keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
+
+@keyframes appear-top-small {from{opacity: 0;transform: translateY(-20px);}to{}}
+
 @keyframes zoom-in {from{opacity: 0;transform: scale(.5);}to{}}
 @keyframes zoom-in-9 {from{opacity: 0;transform: scale(.9);}to{}}
 @keyframes zoom-out {to{opacity: 0;transform: scale(.5);}}
@@ -44,6 +47,7 @@
 [data-animation-name="appear-left"]{animation-name: appear-left;}
 [data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
 [data-animation-name="appear-top"]{animation-name: appear-top;}
+[data-animation-name="appear-top-small"]{animation-name: appear-top-small;}
 [data-animation-name="zoom-in"]{animation-name:zoom-in;}
 [data-animation-name="zoom-in-9"]{animation-name:zoom-in-9;}
 [data-animation-name="zoom-out"]{animation-name:zoom-out;}
