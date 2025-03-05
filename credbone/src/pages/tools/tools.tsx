@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Ripple from "../../components/Ripple";
 
 
-import section_image from "../../styles/images/samples/wide_res_69.webp";
+import section_image from "../../styles/images/samples/wide_res_67.webp";
 import { links } from "./toolData";
 
 function Tools() {
@@ -20,37 +20,8 @@ function Tools() {
         data-direction="column"
         data-max-length="1200"
       >
-        <group
-          data-space="adaptive-30-50"
-          data-gap="20"
-          data-direction="column"
-          data-align="start"
-        >
-          <text
-            data-wrap="wrap"
-            data-font-type="hero"
-            data-ellipsis=""
-            data-line="1"
-            data-text-size="48"
-            data-text-clamp="48"
-            data-max-length="800"
-          >
-            Tools & Resources
-          </text>
 
-          <text
-            data-wrap="wrap"
-            data-max-length="400"
-            data-line="1.5"
-            data-opacity="70"
-            data-text-size="15"
-          >
-            A set of tools to enhance design and code workflows, for developers
-            and designers.
-          </text>
-        </group>
-
-        {/* <group data-direction="column">
+        <group data-direction="column">
           <picture
             data-radius="50"
             data-brightness="adaptive"
@@ -78,20 +49,53 @@ function Tools() {
                   <text
                     data-wrap="wrap"
                     data-line="1.5"
-                    data-length="400"
-                    data-text-size="15"
+                    data-length="300"
+
+
                   >
-                    Let's connect! Whether you're curious about my work, looking
-                    to collaborate, or simply want to reach out, feel free to
-                    explore or drop a message.
+                 Built with the system's own resources, to meet various UI and design needs.
                   </text>
                 </group>
               </group>
             </group>
           </group>
-        </group> */}
+        </group>
 
-        <group data-type="grid" data-grid-template="180/140" data-gap="20">
+        <group
+          data-space="adaptive-30-50"
+          data-gap="20"
+          data-direction="column"
+          data-align="start"
+          // data-background="adaptive-gray"
+          // data-radius="50"
+        >
+          <text
+            data-wrap="wrap"
+            data-font-type="hero"
+            data-ellipsis=""
+            data-line="1"
+            data-text-size="48"
+            data-text-clamp="48"
+            data-max-length="800"
+          >
+            Tools & Resources
+          </text>
+
+          <text
+            data-wrap="wrap"
+            data-max-length="400"
+            data-line="1.5"
+            data-opacity="70"
+            data-text-size="15"
+          >
+            A set of tools to enhance design and code workflows, for developers
+            and designers.
+          </text>
+        </group>
+
+
+
+        <group data-type="grid" data-grid-template="180/140" data-gap="10" >
           {links.map((link, index) => (
             <Link
               key={index}

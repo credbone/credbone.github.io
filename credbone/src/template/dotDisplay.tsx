@@ -33,6 +33,18 @@ const DotDisplay: React.FC<GridProps> = ({
           const row = Math.floor(index / cols);
           const x = (index % cols) * 10 + 5;
           const y = Math.floor(index / cols) * 10 + 5;
+
+
+          //offset
+
+
+          // const row = Math.floor(index / cols);
+          // const col = index % cols;
+          // const offsetX = row % 2 === 0 ? 0 : 5;
+          // const x = col * 10 + 5 + offsetX;
+          // const y = row * 10 + 5;
+
+
           return (
             <Dot
               key={index}
@@ -45,26 +57,7 @@ const DotDisplay: React.FC<GridProps> = ({
         })}
 
 
-{/* {Array.from({ length: rows * cols }).map((_, index) => {
-  const row = Math.floor(index / cols);
-  const col = index % cols;
 
-  // Offset the odd rows
-  const offsetX = row % 2 === 0 ? 0 : 5;
-
-  const x = col * 10 + 5 + offsetX;
-  const y = row * 10 + 5;
-
-  return (
-    <Dot
-      key={index}
-      row={row}
-      x={x}
-      y={y}
-      active={activeIndexes.has(index)}
-    />
-  );
-})} */}
       </svg>
     </group>
   );

@@ -189,12 +189,7 @@ useEffect(() => {
 
   return (
     <>
-      <group
-        data-border=""
-        data-width="auto"
-        data-radius="20"
-        data-contain=""
-      >
+      <group data-border="" data-width="auto" data-radius="20" data-contain="">
         <group data-direction="column">
           <group data-space="10" data-gap="10" data-align="center">
             <group
@@ -234,40 +229,43 @@ useEffect(() => {
             </group>
 
             <Popover
-              data-space="5"
+              data-space={undefined}
               content={(closePopover) => (
                 <group
                   data-direction="column"
-                  data-length="180"
+                  data-length="210"
                   onClick={closePopover}
+data-space-vertical="10"
                 >
                   <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-                    data-radius="5"
+
                     data-cursor="pointer"
                     onClick={exportSVG}
                   >
-                    <text>Export SVG</text>
+                    <text>Download</text>
                   </group>
 
                   <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-                    data-radius="5"
+
                     data-cursor="pointer"
                     onClick={copySVGToClipboard}
                   >
-                    <text>Copy SVG</text>
+                    <text>Copy</text>
                   </group>
+
+                  <group data-space-vertical="10"><separator data-horizontal=""></separator></group>
 
                   <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-                    data-radius="5"
+
                     data-cursor="pointer"
                     onClick={copyRawData}
                   >
@@ -301,10 +299,47 @@ useEffect(() => {
             data-background="adaptive-gray"
             data-justify="center"
           >
+            {/* <group
+             data-disabled="true"
+            data-opacity="30"
+             data-position="absolute"
+
+              data-height="fit"
+              data-wrap="no"
+              data-top="0"
+              data-justify="center"
+            >
+              <group
+                data-length="1"
+                data-height="fit"
+                data-background="red"
+              ></group>
+
+            </group>
+
+            <group
+            data-disabled="true"
+            data-opacity="30"
+             data-top="0"
+             data-position="absolute"
+                          data-justify="center"
+              data-height="fit"
+              data-wrap="no"
+              data-direction="column"
+            >
+              <group
+                data-height="1"
+                data-length="fit"
+                data-background="red"
+              ></group>
+
+            </group> */}
+
             <svg
+            
               ref={svgRef}
               width="256"
-              height="256"
+              //height="256"
               viewBox="0 0 160 160"
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
@@ -316,6 +351,7 @@ useEffect(() => {
               {Array.from({ length: rows * cols }).map((_, index) => {
                 const x = (index % cols) * 10 + 5;
                 const y = Math.floor(index / cols) * 10 + 5;
+
                 return (
                   <Dot
                     key={index}

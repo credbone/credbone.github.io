@@ -284,7 +284,7 @@ const BlobGenerator: React.FC = () => {
               data-over-color="neutral"
               data-radius="10"
               data-cursor="pointer"
-              data-position="right"
+            //  data-position="right"
             >
               <text>Export</text>
             </group>
