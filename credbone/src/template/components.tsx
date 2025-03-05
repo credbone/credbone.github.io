@@ -480,14 +480,17 @@ const Components: React.FC = () => {
         </group>
 
         <separator data-horizontal=""></separator>
-        <group data-space="15">
+        <group data-space="15" data-direction="column">
           <group data-direction="column" data-gap="5">
             <text data-weight="700">Copyright {currentYear}, Credbone.</text>
             <text data-opacity="60">
               Last updated on {buildInfo.buildDateTime}
             </text>
+
           </group>
+          <group data-height="20" data-adaptive="mobile-600"></group>
         </group>
+
       </group>
     </group>
   );

@@ -25,12 +25,12 @@ function DotIconMaker() {
 
   return (
     <group data-gap="30" data-max-length="1200">
-      <group data-gap="5">
+      <group data-gap="5" data-type="grid" data-grid-template="80">
         {buttonData.map((button, index) => (
           <Tooltip content={button.label} distance={0} key={index}>
             <group
               key={index} // Using index as the key
-              data-width="auto"
+             // data-width="auto"
               data-space="10"
               data-radius="15"
               data-interactive=""
@@ -50,7 +50,7 @@ function DotIconMaker() {
               data-animation-duration={4 + index * 0.25}
               
               >
-                <DotDisplay size={64} activeIndexes={button.set} />
+                <DotDisplay size={"fit"} activeIndexes={button.set} />
               </group>
             </group>
           </Tooltip>

@@ -7,6 +7,7 @@ import { Grip } from "lucide-react";
 import Popover from "../../components/popover";
 import BlobGenerator from "./BlobGenerator";
 
+
 function ToolsCollection() {
   return (
     <group
@@ -16,8 +17,10 @@ function ToolsCollection() {
       data-index="1"
       data-space="adaptive-30-50"
       data-gap="30"
+      data-align="start"
+      data-min-height="fit"
     >
-      <group data-sticky="top">
+      <group data-sticky="top" data-width="auto">
         <group
           data-border=""
           data-space="10"
@@ -93,13 +96,16 @@ function ToolsCollection() {
         </group>
       </group>
 
-      <Routes>
+<group data-max-length="1200">
+<Routes>
         <Route path="/*" element={<Navigate replace to="./" />} />
         <Route path="DotIconMaker" element={<DotIconMaker />} />
         <Route path="BlobGenerator" element={<BlobGenerator />} />
       </Routes>
 
-      <group data-height="300" data-shrink="no"></group>
+</group>
+      <group data-position="bottom" data-height="200" data-shrink="no"></group>
+
     </group>
   );
 }

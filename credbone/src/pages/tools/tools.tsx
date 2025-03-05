@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Ripple from "../../components/Ripple";
-import DotDisplay from "../../template/dotDisplay";
-import { arrow } from "./dotIcon";
+
 
 import section_image from "../../styles/images/samples/wide_res_69.webp";
 import { links } from "./toolData";
