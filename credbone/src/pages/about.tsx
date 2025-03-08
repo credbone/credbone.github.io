@@ -4,11 +4,10 @@ import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
-import sampleImage from "../styles/images/samples/res_81.webp";
+import sampleImage from "../styles/images/samples/res_82.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_86.webp";
 import Tooltip from "../components/tooltip";
 // import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
-
-
 
 const links = [
   { name: "View Resume", url: "/Resume" },
@@ -32,10 +31,10 @@ const handleReload = () => {
 function About() {
   return (
     <group data-space="30" data-gap="30" data-wrap="no">
-      <group data-length="300" data-adaptive="desktop">
+      <group data-length="260" data-adaptive="desktop">
         <group data-direction="column" data-justify="end">
           <picture
-            data-radius="30"
+            data-radius="50"
             data-contain=""
             data-brightness="adaptive"
             data-position="absolute"
@@ -44,14 +43,14 @@ function About() {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-space="40" data-sticky="bottom">
+          <group data-space="30" data-sticky="bottom">
             <group
-              data-space="40"
+              data-space="30"
               data-index="2"
-              data-radius="15"
+              data-radius="20"
               data-contain=""
-                  data-backdrop="20-adaptive"
-             // data-background="main-background"
+              data-backdrop="20-adaptive"
+              // data-background="main-background"
             >
               <group data-width="auto" data-gap="30">
                 <text
@@ -88,11 +87,14 @@ function About() {
         data-max-length="1200"
         data-contain=""
       >
-
-
-
-<group  data-space="adaptive-30-50"  >
-<group  data-gap="30" data-index="2" data-direction="column" data-width="auto" data-align="start">
+        <group data-space="adaptive-30-50">
+          <group
+            data-gap="30"
+            data-index="2"
+            data-direction="column"
+            data-width="auto"
+            data-align="start"
+          >
             <group data-width="auto" data-gap="30">
               <text
                 data-weight="800"
@@ -106,25 +108,23 @@ function About() {
               </text>
               <separator data-horizontal=""></separator>
             </group>
-          
+
             <group
-            data-index="2"
-          
-            data-direction="column"
-            data-length="200"
-        
-            data-radius="20"
-            data-justify="center"
-            data-align="center"
-          >
-            <SvgLogoIllustration />
-          </group>
+              data-index="2"
+              data-direction="column"
+              data-length="200"
+              data-radius="20"
+              data-justify="center"
+              data-align="center"
+            >
+              <SvgLogoIllustration />
+            </group>
 
             <group data-width="auto">
               <text
                 data-wrap="wrap"
                 data-length="300"
-            //   data-opacity="60"
+                //   data-opacity="60"
                 data-line="1.5"
                 data-text-size="15"
               >
@@ -132,17 +132,60 @@ function About() {
                 flexibility, control and speed to projects.
               </text>
             </group>
-
           </group>
+        </group>
 
+        <group data-direction="column" data-adaptive="mobile">
+          <picture
+            data-radius="50"
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage_4} alt="" />
+          </picture>
 
-
-
-</group>
-
-
-
-
+          <group data-direction="column" data-space="30" data-align="start">
+            <group
+              data-space="30"
+              data-position="bottom"
+              data-backdrop="20-adaptive"
+              data-width="auto"
+              data-radius="20"
+            >
+              <group data-gap="30" data-direction="column" data-align="start">
+                <group data-width="auto" data-gap="30">
+                  <text
+                    data-wrap="wrap"
+                    data-font-type="hero"
+                    data-line="1"
+                    data-text-size="15"
+                    data-max-length="800"
+                  >
+                    Crafted <br></br>for growth.
+                  </text>
+                  <separator data-horizontal="" data-height=""></separator>
+                </group>
+                <group
+                  data-width="auto"
+                  data-direction="column"
+                  data-align="start"
+                  data-gap="20"
+                >
+                  <text
+                    data-wrap="wrap"
+                    data-line="1.5"
+                    data-length="300"
+                    data-text-size="15"
+                  >
+                    Adapting from prototypes to enterprise apps, evolving with
+                    every project.
+                  </text>
+                </group>
+              </group>
+            </group>
+          </group>
+        </group>
 
         <group
           data-radius="30"
@@ -287,43 +330,39 @@ function About() {
               </text>
             </group>
 
-<Tooltip content={buildInfo.buildDateTime}>
-<group
-              data-position="bottom"
-              data-interactive=""
-              onClick={handleReload}
-              data-align="center"
-              data-gap="10"
-              data-contain=""
-              // data-interactive=""
-              data-cursor="pointer"
-              data-space="15"
-              data-radius="10"
-              data-width="auto"
-              data-wrap="no"
-              data-border=""
-              data-over-color="neutral"
-              data-ink-color="neutral"
-            >
-              <text data-ellipsis="">Version</text>
+            <Tooltip content={buildInfo.buildDateTime}>
+              <group
+                data-position="bottom"
+                data-interactive=""
+                onClick={handleReload}
+                data-align="center"
+                data-gap="10"
+                data-contain=""
+                // data-interactive=""
+                data-cursor="pointer"
+                data-space="15"
+                data-radius="10"
+                data-width="auto"
+                data-wrap="no"
+                data-border=""
+                data-over-color="neutral"
+                data-ink-color="neutral"
+              >
+                <text data-ellipsis="">Version</text>
 
-              <text data-weight="700">{buildInfo.version}</text>
-            </group>
-</Tooltip>
+                <text data-weight="700">{buildInfo.version}</text>
+              </group>
+            </Tooltip>
           </group>
         </group>
-
-
-
-
 
         <group
           data-gap="30"
           data-direction="column"
-          data-background="context"
+          // data-background="context"
           data-space="30"
           data-radius="30"
-          data-theme="dark"
+          // data-theme="dark"
           data-align="start"
         >
           <group
