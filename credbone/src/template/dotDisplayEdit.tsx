@@ -229,19 +229,19 @@ useEffect(() => {
             </group>
 
             <Popover
-              data-space={undefined}
+               data-space="5"
               content={(closePopover) => (
                 <group
                   data-direction="column"
                   data-length="210"
                   onClick={closePopover}
-data-space-vertical="10"
+
                 >
                   <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-
+ data-radius="5"
                     data-cursor="pointer"
                     onClick={exportSVG}
                   >
@@ -252,20 +252,19 @@ data-space-vertical="10"
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-
+ data-radius="5"
                     data-cursor="pointer"
                     onClick={copySVGToClipboard}
                   >
                     <text>Copy</text>
                   </group>
 
-                  <group data-space-vertical="10"><separator data-horizontal=""></separator></group>
 
                   <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
-
+ data-radius="5"
                     data-cursor="pointer"
                     onClick={copyRawData}
                   >

@@ -30,6 +30,8 @@ const SimplePaint: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  // Add a reference to a temporary canvas to store image data during resize
+  const tempCanvasRef = useRef<HTMLCanvasElement | null>(document.createElement('canvas'));
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState("#F5745E");
@@ -38,9 +40,29 @@ const SimplePaint: React.FC = () => {
   const [width, setWidth] = useState(200);
   const [height, setHeight] = useState(200);
   const [isResizing, setIsResizing] = useState(false);
+  // Track previous dimensions to determine crop or expand
+  const [prevDimensions, setPrevDimensions] = useState({ width: 200, height: 200 });
 
-  const startResize = () => setIsResizing(true);
-  const stopResize = () => setIsResizing(false);
+  const startResize = () => {
+    // Save current dimensions before resize
+    setPrevDimensions({ width, height });
+    
+    // Store the current canvas content in tempCanvas
+    if (canvasRef.current && tempCanvasRef.current) {
+      tempCanvasRef.current.width = width;
+      tempCanvasRef.current.height = height;
+      const tempCtx = tempCanvasRef.current.getContext('2d');
+      if (tempCtx) {
+        tempCtx.drawImage(canvasRef.current, 0, 0);
+      }
+    }
+    
+    setIsResizing(true);
+  };
+  
+  const stopResize = () => {
+    setIsResizing(false);
+  };
 
   const handleResize = useCallback(
     (e: PointerEvent | TouchEvent) => {
@@ -59,6 +81,22 @@ const SimplePaint: React.FC = () => {
     [isResizing]
   );
 
+  // Apply the stored canvas content when dimensions change
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !tempCanvasRef.current) return;
+    
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    
+    // Clear the new canvas
+    context.clearRect(0, 0, width, height);
+    
+    // Draw the temporary canvas content onto the new canvas
+    // This will automatically crop if the new dimensions are smaller
+    context.drawImage(tempCanvasRef.current, 0, 0);
+  }, [width, height]);
+
   useEffect(() => {
     window.addEventListener("pointermove", handleResize);
     window.addEventListener("pointerup", stopResize);
@@ -72,16 +110,6 @@ const SimplePaint: React.FC = () => {
       window.removeEventListener("touchend", stopResize);
     };
   }, [handleResize]);
-
-  // useEffect(() => {
-  //   window.addEventListener("pointermove", handleResize);
-  //   window.addEventListener("pointerup", stopResize);
-
-  //   return () => {
-  //     window.removeEventListener("pointermove", handleResize);
-  //     window.removeEventListener("pointerup", stopResize);
-  //   };
-  // }, [handleResize]);
 
   useEffect(() => {
     if (appRef.current) {
@@ -163,6 +191,14 @@ const SimplePaint: React.FC = () => {
     const context = canvas.getContext("2d");
     if (!context) return;
     context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Also clear the temp canvas
+    if (tempCanvasRef.current) {
+      const tempContext = tempCanvasRef.current.getContext("2d");
+      if (tempContext) {
+        tempContext.clearRect(0, 0, tempCanvasRef.current.width, tempCanvasRef.current.height);
+      }
+    }
   };
 
   return (

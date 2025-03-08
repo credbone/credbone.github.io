@@ -33,7 +33,7 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "../Components/Colors", 
-    tags: ["colors", "design", "palette", "theme", "light", "dark", "shades", "hues", "tints", "token"], 
+    tags: ["colors", "design", "palette", "theme", "light", "dark", "shades", "hues", "tints", "swatches", "token"], 
     description: "Color design, palettes, and tools for theme building.", 
     title: "Colors" 
   },
@@ -134,16 +134,24 @@ export const routesData: RouteData[] = [
 
   {
     path: "../Tools",
-    tags: ["design", "editor", "creation", "tools", "icon"],
+    tags: ["design", "editor", "creation","generator", "tools", "icon", "blob"],
     description: "A collection of tools for designing, editing, and generating visuals, starting with the Dot Icon Maker.",
     title: "Tools & Resources"
   },
 
   {
     path: "../Tools/DotIconMaker",
-    tags: ["icon", "pixel", "retro", "dot", "editor", "grid"],
+    tags: ["icon", "pixel", "retro", "dot", "editor","tools",  "generator", "svg", "vector"],
     description: "Create and edit 16x16 dotted icons. Export raw data or optimized SVGs for a retro pixel-perfect look.",
-    title: "Dot Icon Maker"
+    title: "Icon Maker"
+  },
+
+
+  {
+    path: "../Tools/BlobGenerator",
+    tags: ["blob", "pixel", "retro", "dot","tools", "editor", "svg", "vector"],
+    description: "Yet another blob generator—because the world clearly needs more blobs.",
+    title: "Blob Generator"
   }
 
 ];
