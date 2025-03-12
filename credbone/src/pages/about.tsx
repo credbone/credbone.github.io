@@ -31,7 +31,7 @@ const handleReload = () => {
 function About() {
   return (
     <group data-space="30" data-gap="30" data-wrap="no">
-      <group data-length="260" data-adaptive="desktop">
+      {/* <group data-length="260" data-adaptive="desktop">
         <group data-direction="column" data-justify="end">
           <picture
             data-radius="50"
@@ -78,7 +78,7 @@ function About() {
             </group>
           </group>
         </group>
-      </group>
+      </group> */}
 
       <group
         data-gap="30"
@@ -135,7 +135,7 @@ function About() {
           </group>
         </group>
 
-        <group data-direction="column" data-adaptive="mobile">
+        {/* <group data-direction="column" >
           <picture
             data-radius="50"
             data-brightness="adaptive"
@@ -185,7 +185,7 @@ function About() {
               </group>
             </group>
           </group>
-        </group>
+        </group> */}
 
         <group
           data-radius="30"
