@@ -28,7 +28,7 @@ const DemoThemeToggle: React.FC = () => {
   const activeDots =
     themeMode === "dark" || (themeMode === "auto" && prefersDarkMode)
       ? sun // Active dots for dark mode
-      : moon
+      : moon;
 
   const handleModeChange = () => {
     const newMode =
@@ -56,35 +56,32 @@ const DemoThemeToggle: React.FC = () => {
       data-cursor="pointer"
       data-width="auto"
       data-direction="column"
-// data-background="text"
-// data-color="main-background"
- data-autofit="1-600"
-data-backdrop="20-adaptive"
-
-data-shrink="no"
-
+      // data-background="text"
+      // data-color="main-background"
+      data-autofit="1-600"
+      data-backdrop="20-adaptive"
+      data-shrink="no"
       data-space="20"
       data-contain=""
-      data-radius="20"
-
+      data-radius="30"
       data-gap="30"
       data-interactive=""
       data-over-color="neutral"
       data-justify="center"
       data-align="center"
     >
-<group data-interact="" data-width="auto">
-<DotDisplay activeIndexes={activeDots} />
-</group>
+      <group data-interact="" data-width="auto">
+        <DotDisplay size={200} activeIndexes={activeDots} />
+      </group>
 
-{/* <group data-direction="column" data-gap="10">
-<text >
+      {/* <group data-direction="column" data-gap="10" data-align="center" data-space="30">
+<text data-text-size="15">Switch to 
         {themeMode === "dark" || (themeMode === "auto" && prefersDarkMode)
-          ? "Light Theme"
-          : "Dark Theme"}
+          ? " Light Mode"
+          : " Dark Mode"}
       </text>
 
-      <text  data-text-size="15" data-wrap="wrap" data-line="1.5" data-opacity="40" data-length="200">Switch and watch how the system adapts.</text>
+
 
 </group> */}
     </group>

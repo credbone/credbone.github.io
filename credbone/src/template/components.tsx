@@ -7,7 +7,7 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-import sampleImage_2 from "../styles/images/samples/wide_res_85.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_84.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_86.webp";
 
 import buildInfo from "../buildInfo.json";
@@ -70,13 +70,25 @@ const Components: React.FC = () => {
           data-index="3"
           data-wrap="no"
         >
+
+<text
+            data-wrap="wrap"
+            data-max-length="400"
+            data-line="1.5"
+            data-opacity="70"
+            data-text-size="15"
+          >
+            A hybrid, atomic, and declarative design system that brings
+            flexibility, control and speed to projects.
+          </text>
+
           <text
             // data-wrap="wrap"
             // data-ellipsis=""
 
             data-line="1"
-            data-text-size="64"
-            data-text-clamp="64"
+          //  data-text-size="96"
+            data-text-clamp="96"
             data-max-length="800"
             data-font-type="hero"
             data-wrap="wrap"
@@ -85,17 +97,7 @@ const Components: React.FC = () => {
             <br></br> evolve and adapt.
           </text>
 
-          <text
-            data-wrap="wrap"
-            data-max-length="400"
-            data-line="1.5"
-            data-opacity="70"
-            data-text-size="15"
-          >
-            A hybrid, atomic, and declarative design system that brings
-            flexibility, control and speed to projects. With no classes or
-            pre-defined styles.
-          </text>
+
 
           <group data-width="auto" data-gap="15" data-align="center">
             <Ripple>
@@ -198,7 +200,7 @@ const Components: React.FC = () => {
               <img src={sampleImage_2} alt="" />
             </picture>
 
-            <group data-space="30" data-gap="5" data-contain="" data-direction="column-600" data-wrap="no">
+            <group data-space="30" data-gap="5" data-contain="" data-type="grid" data-grid-template="240">
               <group
               data-contain=""
                 data-width="auto"
@@ -206,23 +208,15 @@ const Components: React.FC = () => {
                 // data-elevation="2-main-color"
                 data-gap="30"
                 data-space="30"
-                data-radius="20"
+                data-radius="30"
                 data-align="start"
                 data-wrap="no"
-                data-direction="column-800"
+                data-direction="column"
               >
-                <group
-                  data-direction="column"
-                  data-gap="30"
-                  data-autofit="1-800"
-                  data-length="220"
-                  data-fit="1"
-                >
                   <ThemePicker />
-                </group>
                 <separator
-                  data-vertical="adaptive-800"
-                  data-height="fit"
+                  data-horizontal=""
+              
                 ></separator>
                 <group
                   data-gap="20"
