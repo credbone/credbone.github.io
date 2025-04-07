@@ -74,7 +74,7 @@
 .field_cont i { position: absolute; display: flex; z-index:-1; height: 100%; width: 100%; left: 0; top: 0; pointer-events: none; background: var(--background); box-shadow: 0 0 0 1px var(--outline); border-radius: var(--input-radius); }
 
 
-.form_fields textarea {width: 100%;color: inherit;position: relative; line-height: 1.5;background-color: transparent; resize: none;padding:var(--input-padding);}
+.form_fields textarea {width: 100%;color: inherit;position: relative; line-height: 1.5;background-color: transparent; resize: none;padding:var(--input-padding); field-sizing: content;}
 
 /* .field_cont input:-internal-autofill-selected ~ i { background: rgb(232, 240, 254); } */
 

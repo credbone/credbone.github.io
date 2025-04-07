@@ -311,7 +311,7 @@ const InputsAndForms: React.FC = () => {
               label="Message"
               dataLength="fit"
               placeholder="Write Your Message"
-              data-height="100"
+              data-min-height="120"
             ></Input>
 
             <group data-type="group">
