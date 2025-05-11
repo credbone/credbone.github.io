@@ -473,7 +473,7 @@ a[data-link]:hover { color:var(--main-color)}
 a[data-link]:active {transform:translateY(1px)}
 
 
-
+[data-decoration="underline"]{text-decoration:underline;}
 
 
 [data-adaptive="mobile"],

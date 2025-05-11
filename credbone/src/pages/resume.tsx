@@ -1,12 +1,8 @@
-
 import { SvgResumeQR } from "../components/svg";
 import StuckReporter from "../components/StuckReporter";
 
 import { Printer } from "lucide-react";
 import AudioPlayer from "./audio_resume";
-
-
-
 
 const handlePrint = () => {
   window.print();
@@ -15,37 +11,46 @@ const handlePrint = () => {
 function Resume() {
   return (
     <view data-scroll="" data-border="no">
-<group data-print="hide" data-max-length="1200" data-space="30" data-space-bottom="0" >
-<group>
+      <group
+        data-print="hide"
+        data-max-length="1200"
+        data-space="30"
+        data-space-bottom="0"
+      >
+        <group>
+          <group data-height="30" data-adaptive="desktop"></group>
 
+          <group data-space="45" data-max-length="600">
+            <text
+              data-wrap="wrap"
+              data-font-type="hero"
+              data-ellipsis=""
+              data-line="1"
+              data-text-size="64"
+              data-text-clamp="64"
+            >
+              10+ years, crafting user-focused designs.
+            </text>
+          </group>
 
-<group data-height="30" data-adaptive="desktop"></group>
+          <group data-height="30" data-adaptive="desktop"></group>
+        </group>
+      </group>
 
-<group data-space="45"  data-max-length="600">
-  <text
-    data-wrap="wrap"
-    data-font-type="hero"
-    data-ellipsis=""
-    data-line="1"
-    data-text-size="64"
-    data-text-clamp="64"
-  >
-   10+ years, crafting user-focused designs.
-  </text>
-</group>
-
-<group data-height="30" data-adaptive="desktop"></group>
-</group>
-
-</group>
-
-
-
-      <group data-gap="30" data-space="30"  data-wrap="no" data-direction="column-800">
-        <group data-length="300" data-width="auto-800" data-direction="column" data-gap="30" data-align="start" data-print="hide">
-
-
-
+      <group
+        data-gap="30"
+        data-space="30"
+        data-wrap="no"
+        data-direction="column-800"
+      >
+        <group
+          data-length="300"
+          data-width="auto-800"
+          data-direction="column"
+          data-gap="30"
+          data-align="start"
+          data-print="hide"
+        >
           <group
             data-border=""
             data-space="15"
@@ -53,11 +58,7 @@ function Resume() {
             data-sticky="top"
             data-top="30"
           >
-
             <AudioPlayer />
-
-
-
           </group>
         </group>
 
@@ -108,13 +109,17 @@ function Resume() {
                 <SvgResumeQR />
               </a>
               <group
-             
                 data-direction="column"
                 data-width="auto"
                 data-gap="10"
                 data-align="start"
               >
-                <a  data-print="show" href="tel:+37493080648" data-type="group" data-width="auto">
+                <a
+                  data-print="show"
+                  href="tel:+37493080648"
+                  data-type="group"
+                  data-width="auto"
+                >
                   <text
                     data-wrap="wrap"
                     data-weight="700"
@@ -283,7 +288,7 @@ function Resume() {
 
               <text data-line="1.5">
                 <text data-user-select="text" data-weight="700">
-                  Coding
+                  <mark>Coding</mark>
                 </text>
 
                 <dot data-margin="10"></dot>
@@ -306,16 +311,16 @@ function Resume() {
             <group data-gap="10">
               <group data-gap="10">
                 <text data-user-select="text" data-weight="700">
+                  <mark>Figma</mark>
+                </text>
+                <dot></dot>
+                <text data-user-select="text" data-weight="700">
                   Adobe Suite
                 </text>
                 <dot></dot>
                 <text>PS</text>
                 <dot></dot>
                 <text>AI</text>
-                <dot></dot>
-                <text data-user-select="text" data-weight="700">
-                  Figma
-                </text>
               </group>
 
               <group data-gap="10">
@@ -383,6 +388,7 @@ function Resume() {
                 <a
                   data-type="link"
                   //    data-color="main"
+                  data-decoration="underline"
                   href="https://www.linkedin.com/in/sargsyanruben"
                   target="blank"
                 >
@@ -394,6 +400,7 @@ function Resume() {
                 <a
                   data-type="link"
                   //     data-color="main"
+                  data-decoration="underline"
                   href="https://www.behance.net/sargsyan"
                   target="blank"
                 >
@@ -405,6 +412,7 @@ function Resume() {
                 <a
                   data-type="link"
                   //    data-color="main"
+                  data-decoration="underline"
                   href="https://dribbble.com/sargsyan"
                   target="blank"
                 >
@@ -415,7 +423,6 @@ function Resume() {
               </group>
             </group>
           </group>
-
 
           <StuckReporter>
             {(isSticky) => (
@@ -428,7 +435,7 @@ function Resume() {
                 data-space-vertical="30"
                 data-over-color="neutral"
               >
-                          <group data-height="50"></group>
+                <group data-height="50"></group>
                 <group data-width="auto">
                   <group
                     onClick={handlePrint}
@@ -474,4 +481,4 @@ function Resume() {
   );
 }
 
-export default Resume;  
+export default Resume;
