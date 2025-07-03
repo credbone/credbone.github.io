@@ -7,8 +7,8 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-import sampleImage_2 from "../styles/images/samples/wide_res_85.webp";
-import sampleImage_4 from "../styles/images/samples/wide_res_86.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_84.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_67.webp";
 
 import buildInfo from "../buildInfo.json";
 import ThemePicker from "./themePicker";
