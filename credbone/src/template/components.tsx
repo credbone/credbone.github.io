@@ -7,8 +7,9 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import SearchComponent from "../pages/search/searchComponent";
 
-import sampleImage_2 from "../styles/images/samples/wide_res_84.webp";
-import sampleImage_4 from "../styles/images/samples/wide_res_67.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_86.webp";
+import sampleImage_3 from "../styles/images/samples/res_82.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 
 import buildInfo from "../buildInfo.json";
 import ThemePicker from "./themePicker";
@@ -197,7 +198,9 @@ const Components: React.FC = () => {
               data-position="absolute"
               data-background="grey-light"
             >
-              <img src={sampleImage_2} alt="" />
+              {/* <source media="(max-width: 700px)" srcSet={sampleImage_3}></source> */}
+              <img src={sampleImage_3} data-adaptive="mobile" alt=""></img>
+              <img src={sampleImage_2} data-adaptive="desktop" alt="" />
             </picture>
 
             <group data-space="30" data-gap="5" data-contain="" data-type="grid" data-grid-template="240">
@@ -214,7 +217,7 @@ const Components: React.FC = () => {
                 data-direction="column"
               >
                   <ThemePicker />
-                <separator
+                {/* <separator
                   data-horizontal=""
               
                 ></separator>
@@ -230,7 +233,7 @@ const Components: React.FC = () => {
                   </text>
 
 
-                </group>
+                </group> */}
               </group>
               <DemoThemeToggle/>
             </group>

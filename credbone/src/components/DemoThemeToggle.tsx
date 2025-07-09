@@ -61,7 +61,7 @@ const DemoThemeToggle: React.FC = () => {
       data-autofit="1-600"
       data-backdrop="20-adaptive"
       data-shrink="no"
-      data-space="20"
+      data-space="30"
       data-contain=""
       data-radius="30"
       data-gap="30"
@@ -69,9 +69,10 @@ const DemoThemeToggle: React.FC = () => {
       data-over-color="neutral"
       data-justify="center"
       data-align="center"
+      data-ratio="1:1"
     >
-      <group data-interact="" data-width="auto">
-        <DotDisplay size={200} activeIndexes={activeDots} />
+      <group data-interact=""  data-width="auto">
+        <DotDisplay size="fit" activeIndexes={activeDots} />
       </group>
 
       {/* <group data-direction="column" data-gap="10" data-align="center" data-space="30">

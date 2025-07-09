@@ -22,7 +22,7 @@ const ThemePicker: React.FC = () => {
   };
 
   return (
-    <group data-align="center" data-type="grid" data-gap="5" data-grid-template="30" >
+    <group data-align="center" data-type="grid" data-gap="5" data-grid-template-columns="5" >
     {democolors.map((color, index) => (
       <group
         data-ratio="1:1"
