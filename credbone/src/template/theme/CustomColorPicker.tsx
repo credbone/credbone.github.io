@@ -140,32 +140,38 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         >
           <HexColorPicker color={customColor} onChange={setCustomColor} />
 
-          {!isMobile && (
-            <group
-              data-length="160"
-              data-wrap="no"
-              data-radius="10"
-              data-contain=""
-              data-direction="column"
-              data-interactive=""
-              data-over-color="neutral"
-              data-font-feature="tnum"
-            >
-              <group data-contain="">
+          <group data-direction="column" data-align="center" data-gap="5">
+            {!isMobile && (
+
+<>
+
+              <group
+                
+                data-wrap="no"
+                data-radius="10"
+                data-contain=""
+                data-direction="column"
+                data-interactive=""
+                data-over-color="neutral"
+                data-font-feature="tnum"
+               
+                 data-length="80"
+              >
                 <HexColorInput
                   color={customColor}
                   onChange={setCustomColor}
                   data-name="input-reset"
                   data-space="15"
                   data-text-align="center"
-                  data-length="fit"
+                 
                   data-font-feature="tnum"
                   // data-background="adaptive-gray"
                   name="theme-color-hex"
+                  data-weight="700"
                 />
-              </group>
 
-              {/* <Ripple>
+              
+                {/* <Ripple>
                 <group
                   data-contain=""
                   data-ink-color="neutral"
@@ -184,39 +190,47 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                   </group>
                 </group>
               </Ripple> */}
-            </group>
-          )}
-<group data-space-horizontal="30">
-  
-<separator data-horizontal=""></separator>
+              </group>
+
+
+<group data-length="80">
+    <separator data-horizontal=""></separator>
 </group>
 
-          <Ripple>
-            <group
-              onClick={() => {
-                if (!isDisabled) {
-                  handleColorSelection(customColor);
-                  closePopover();
-                }
-              }}
-              data-space="15"
-              data-interactive=""
-              data-over-color="neutral"
-              data-cursor={isDisabled ? "" : "pointer"}
-              data-radius="10"
-              data-align="center"
-              data-direction="column"
-              data-contain=""
-              data-ink-color="neutral"
-              data-disabled={isDisabled ? "true" : ""}
-            >
-              <text>
-                {isDisabled
-                  ? "Unsupported Color"
-                  : `Set as ${target === "primary" ? "Primary" : "Secondary"}`}
-              </text>
-            </group>
-          </Ripple>
+</>
+
+
+            )}
+
+            <Ripple>
+              <group
+                onClick={() => {
+                  if (!isDisabled) {
+                    handleColorSelection(customColor);
+                    closePopover();
+                  }
+                }}
+                data-space="15"
+                data-interactive=""
+                data-over-color="neutral"
+                data-cursor={isDisabled ? "" : "pointer"}
+                data-radius="10"
+                data-align="center"
+                data-direction="column"
+                data-contain=""
+                data-ink-color="neutral"
+                data-disabled={isDisabled ? "true" : ""}
+              >
+                <text>
+                  {isDisabled
+                    ? "Unsupported Color"
+                    : `Set as ${
+                        target === "primary" ? "Primary" : "Secondary"
+                      }`}
+                </text>
+              </group>
+            </Ripple>
+          </group>
         </group>
       )}
     >

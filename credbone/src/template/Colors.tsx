@@ -33,7 +33,7 @@ const Colors: React.FC = () => {
           brand or personal style, while also considering features like dark
           mode compatibility for a seamless user experience across different
           interfaces."
-        version="3.0.1"
+        version="3.0.2"
         type="Token"
         descriptionProps={{ "data-length": "600" }}
       />
