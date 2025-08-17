@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import { ThemeContext } from "../../components/ThemeProvider";
-import { HexColorPicker } from "react-colorful";
+import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
 import { getComplementaryColor } from "../../styles/skin";
 
-
-
+import { isMobile } from "react-device-detect";
 
 interface CustomColorPickerProps {
   target: "primary" | "secondary";
@@ -76,10 +75,9 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
   //   localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   // };
 
-
   const handleColorSelection = (color: string) => {
     let newTheme;
-  
+
     if (target === "primary") {
       // If primary color is being changed, update primary and set complementary secondary color
       newTheme = {
@@ -93,9 +91,9 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         colorSecondary: color,
       };
     }
-  
+
     setTheme(newTheme);
-  
+
     addSnackbar(
       <text>
         <text data-opacity="60">
@@ -107,15 +105,25 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
       "theme-picker",
       true
     );
-  
+
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
 
+  const copyHexClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(customColor);
 
-
-
-
-
+      addSnackbar(
+        <text>
+          <text data-weight="700">{customColor.toUpperCase()}</text>{" "}
+          <text data-opacity="60">Color copied</text>
+        </text>,
+        1000
+      );
+    } catch (err) {
+      addSnackbar("Failed to copy", 1000);
+    }
+  };
 
   return (
     <Popover
@@ -129,9 +137,59 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           data-name="cred-react-colorful"
           data-width="auto"
           data-gap="5"
-
         >
           <HexColorPicker color={customColor} onChange={setCustomColor} />
+
+          {!isMobile && (
+            <group
+              data-length="160"
+              data-wrap="no"
+              data-radius="10"
+              data-contain=""
+              data-direction="column"
+              data-interactive=""
+              data-over-color="neutral"
+              data-font-feature="tnum"
+            >
+              <group data-contain="">
+                <HexColorInput
+                  color={customColor}
+                  onChange={setCustomColor}
+                  data-name="input-reset"
+                  data-space="15"
+                  data-text-align="center"
+                  data-length="fit"
+                  data-font-feature="tnum"
+                  // data-background="adaptive-gray"
+                  name="theme-color-hex"
+                />
+              </group>
+
+              {/* <Ripple>
+                <group
+                  data-contain=""
+                  data-ink-color="neutral"
+
+ data-space="15"
+                  data-width="auto"
+                  data-interactive=""
+                  data-radius="5"
+                  data-cursor="pointer"
+                  onClick={copyHexClipboard}
+                  data-over-color="neutral"
+                  data-length="30"
+                >
+                  <group >
+                   <text>Copy</text>
+                  </group>
+                </group>
+              </Ripple> */}
+            </group>
+          )}
+<group data-space-horizontal="30">
+  
+<separator data-horizontal=""></separator>
+</group>
 
           <Ripple>
             <group
@@ -141,14 +199,14 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                   closePopover();
                 }
               }}
-              data-contain=""
               data-space="15"
               data-interactive=""
+              data-over-color="neutral"
               data-cursor={isDisabled ? "" : "pointer"}
               data-radius="10"
               data-align="center"
               data-direction="column"
-              data-over-color="neutral"
+              data-contain=""
               data-ink-color="neutral"
               data-disabled={isDisabled ? "true" : ""}
             >
@@ -170,12 +228,10 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-align="center"
         data-wrap="no"
         data-gap="10"
-                   data-autofit="1-800"
-
-        
+        data-autofit="1-800"
       >
         <group
-        data-interact=""
+          data-interact=""
           data-length="30"
           data-height="60"
           data-radius="5"
@@ -183,10 +239,15 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           style={{ backgroundColor: customColor }}
         ></group>
 
-        <group  data-interact="" data-direction="column" data-react="background" data-over-color="neutral" data-space="15" data-radius="10">
-          <text data-weight="700">
-            Custom
-          </text>
+        <group
+          data-interact=""
+          data-direction="column"
+          data-react="background"
+          data-over-color="neutral"
+          data-space="15"
+          data-radius="10"
+        >
+          <text data-weight="700">Custom</text>
           <text data-opacity="30">Design your own</text>
         </group>
       </group>

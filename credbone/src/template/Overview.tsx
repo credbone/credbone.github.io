@@ -137,7 +137,7 @@ const Overview: React.FC = () => {
                   >
                     <text
                       data-contain=""
-                      data-opacity="20"
+                               data-font-feature="tnum"
                     >
                       {index + 1 < 10 ? `0${index + 1}` : index + 1}
                     </text>
@@ -158,6 +158,7 @@ const Overview: React.FC = () => {
                       data-max-length="300"
                       data-opacity="60"
                       data-position="bottom"
+                      
                     >
                       {item.description}
                     </text>

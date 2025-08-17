@@ -320,7 +320,8 @@ const Components: React.FC = () => {
                     //  data-height="50"
                     data-contain=""
                     //   data-weight="700"
-                    data-opacity="30"
+                   // data-opacity="30"
+                             data-font-feature="tnum"
                   >
                     0{index + 1}
                   </text>

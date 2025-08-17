@@ -136,6 +136,7 @@ data-cursor="pointer"
                   <separator data-horizontal="" data-interval="20"></separator>
                 )}
                 <NavLink
+                aria-label={item.label}
                   data-animation-name="appear-left"
                   data-fill-mode="backwards"
                   data-animation-duration={2 + index * 0.25}

@@ -77,7 +77,7 @@ const Navigation: React.FC = () => {
 
 
 
-  <NavLink data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
+  <NavLink  data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
   {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Search</text> */}
 <group data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <Search size={20} />
@@ -242,6 +242,7 @@ const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> 
 
       (
         <NavLink
+        aria-label={item.label}
           key={index}
           to={item.to}
           data-adaptive={item.adaptive}
