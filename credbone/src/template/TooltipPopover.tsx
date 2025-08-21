@@ -7,7 +7,7 @@ import Count from "../components/Coutner";
 
 import Calculator from "../tools/Calculator";
 
-import sampleImage from "../styles/images/samples/wide_res_68.webp";
+import sampleImage from "../styles/images/samples/wide_res_66.webp";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TooltipPropsDemo from "./TooltipPropsDemo";
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -28,16 +28,10 @@ const SimplePopover = (
   </group>
 );
 
-const ClosePopover = (
-  <Popover
-    data-elevation="2"
-    placement="auto"
-    data-length="200"
-    data-space="30"
-    data-radius="20"
-    content={(closePopover) => (
-      <group data-direction="column" data-gap="30">
-        <group data-direction="column" data-gap="15">
+
+const SemiSimplePopover = ({ closePopover }: { closePopover: () => void }) => (
+      <group data-direction="column" data-gap="20">
+        <group data-direction="column" data-gap="15" data-space="20" data-space-bottom="10">
           <text         data-weight="700"
       
        
@@ -85,6 +79,48 @@ const ClosePopover = (
           </group>
         </Ripple>
       </group>
+);
+
+const ShowPopover = (
+  <Popover
+    data-elevation="2"
+    placement="auto"
+    data-length="200"
+    data-space="20"
+    data-radius="20"
+    content={(closePopover) => (
+<SemiSimplePopover closePopover={closePopover} />
+    )}
+  >
+        <group
+       
+data-contain=""
+              data-width="auto"
+              data-interactive=""
+             data-over-color="neutral"
+              data-space="15"
+              data-space-horizontal="25"
+              data-radius="15"
+              data-cursor="pointer"
+              data-background="text"
+              data-color="main-background"
+        >
+           <text data-weight="700">Show Popover</text>
+        </group>
+  </Popover>
+);
+
+
+
+const showinsidepopover = (
+  <Popover
+    data-elevation="2"
+    placement="auto"
+    data-length="200"
+    data-space="20"
+    data-radius="20"
+    content={(closePopover) => (
+<SemiSimplePopover closePopover={closePopover} />
     )}
   >
     <group>
@@ -100,7 +136,7 @@ const ClosePopover = (
           data-color="main-text"
           data-interactive=""
           data-space="15"
-          data-radius="5"
+          data-radius="15"
           // data-height="80"
           data-gap="20"
           data-justify="center"
@@ -112,9 +148,11 @@ const ClosePopover = (
   </Popover>
 );
 
+
+
 const SampleData = (
   <group
-    data-length="600"
+    data-length="300"
     data-height="auto"
     data-radius="10"
     data-border=""
@@ -122,14 +160,15 @@ const SampleData = (
   >
     <group data-space="10">
       <picture
+     data-object-position="left"
         data-contain=""
         data-brightness="adaptive"
         //  data-position="absolute"
         data-background="grey-light"
-        data-radius="10"
-        data-height="120"
+        data-radius="20"
+        data-height="160"
       >
-        <img src={sampleImage} alt="" />
+        <img src={sampleImage} alt="" />  
       </picture>
     </group>
 
@@ -164,9 +203,9 @@ const SampleData = (
       // data-theme="dark"
       data-align="center"
     >
-      <separator data-horizontal=""></separator>
+    
       <group data-length="fit" data-space="20">
-        {ClosePopover}
+        {showinsidepopover}
       </group>
     </group>
   </group>
@@ -211,6 +250,7 @@ const TooltipPopover: React.FC = () => {
 
       <group>
         <picture
+        data-object-position="left"
           data-radius="40"
           data-contain=""
           data-brightness="adaptive"
@@ -220,7 +260,7 @@ const TooltipPopover: React.FC = () => {
           <img src={sectionImage} alt="" />
         </picture>
 
-        <group data-space="30" data-width="auto">
+        <group data-space="30" data-width="auto" data-direction="column" data-align="start" data-gap="30">
           <group
             data-direction="column"
             data-radius="15"
@@ -230,9 +270,7 @@ const TooltipPopover: React.FC = () => {
             data-space="30"
             data-gap="20"
           >
-            <group data-width="auto" data-position="left">
-              {ClosePopover}
-            </group>
+
 
             <group>
               <text data-wrap="wrap" data-line="1.5" data-max-length="400">
@@ -242,6 +280,8 @@ const TooltipPopover: React.FC = () => {
               </text>
             </group>
           </group>
+
+                        {ShowPopover}
         </group>
       </group>
 
@@ -280,7 +320,7 @@ const TooltipPopover: React.FC = () => {
             <group>
               <Popover
                 placement="right"
-                data-radius="20"
+                data-radius="30"
                 data-space="0"
                 data-elevation="2"
                 content={SampleData}

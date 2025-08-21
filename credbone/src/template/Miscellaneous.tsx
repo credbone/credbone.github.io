@@ -65,6 +65,7 @@ const Miscellaneous: React.FC = () => {
               data-brightness="adaptive"
               data-position="absolute"
               data-background="grey-light"
+                          data-object-position="right"
             >
               <img src={sampleImage} alt="" />
             </picture>
@@ -169,6 +170,7 @@ const Miscellaneous: React.FC = () => {
               data-brightness="adaptive"
               data-position="absolute"
               data-background="grey-light"
+                       data-object-position="right"
             >
               <img src={sampleImage_2} alt="" />
             </picture>

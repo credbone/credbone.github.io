@@ -45,6 +45,7 @@ const Overview: React.FC = () => {
               <picture
                 data-brightness="adaptive"
                 data-position="absolute"
+                data-object-position="right"
               >
                 <img src={group.image} alt={group.title} />
               </picture>

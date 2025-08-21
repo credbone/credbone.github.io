@@ -107,6 +107,7 @@ const CheckboxAndSwitchers: React.FC = () => {
         <group data-gap="30">
           <group>
             <picture
+            data-object-position="right"
               data-radius="40"
               data-contain=""
               data-brightness="adaptive"

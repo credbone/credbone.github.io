@@ -159,7 +159,7 @@ const Modal: React.FC = () => {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group data-space="30">
+          <group data-space="30" data-direction="column" data-align="start" data-gap="30">
             <group
               data-space="30"
               data-index="2"
@@ -176,18 +176,28 @@ const Modal: React.FC = () => {
                 data-direction="column"
                 data-align="start"
               >
-                <Ripple>
-                  <group
-                    data-ink-color="main-deep"
-                    data-contain=""
-                    data-width="auto"
-                    data-interactive=""
-                    data-interact="popover"
-                    data-space="15"
-                    data-radius="5"
-                    data-cursor="pointer"
-                    data-background="main"
-                    data-color="main-text"
+
+                <text data-wrap="wrap" data-line="1.5" data-length="300">
+                  Component with customizable headers, toolbars, and attributes,
+                  supporting global management via context and handling
+                  open/close logic.
+                </text>
+              </group>
+
+
+
+            </group>
+
+                              <group
+ data-width="auto"
+              data-interactive=""
+             data-over-color="neutral"
+              data-space="15"
+              data-space-horizontal="25"
+              data-radius="15"
+              data-cursor="pointer"
+              data-background="text"
+              data-color="main-background"
                     onClick={() =>
                       openModal({
                         id: "modal-01",
@@ -286,14 +296,6 @@ const Modal: React.FC = () => {
                       Open Modal
                     </text>
                   </group>
-                </Ripple>
-                <text data-wrap="wrap" data-line="1.5" data-length="300">
-                  Component with customizable headers, toolbars, and attributes,
-                  supporting global management via context and handling
-                  open/close logic.
-                </text>
-              </group>
-            </group>
           </group>
         </group>
       </group>

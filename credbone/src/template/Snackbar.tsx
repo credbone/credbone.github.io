@@ -67,7 +67,7 @@ const Snackbar: React.FC = () => {
           <img src={sectionImage} alt="" />
         </picture>
 
-        <group data-space="30" data-width="auto">
+        <group data-space="30" data-width="auto" data-direction="column" data-align="start" data-gap="30">
           <group
             data-direction="column"
             data-radius="15"
@@ -77,25 +77,7 @@ const Snackbar: React.FC = () => {
             data-space="30"
             data-gap="20"
           >
-<Ripple>
-<group
-data-ink-color="main-deep"
-data-contain=""
-              data-width="auto"
-              data-interactive=""
-              data-interact="popover"
-              data-space="15"
-              data-radius="5"
-              data-cursor="pointer"
-              data-background="main"
-              data-color="main-text"
-              onClick={() => addSnackbar(<>{SnackbarContent}</>)}
-            >
-              <text data-weight="700" data-ellipsis="">
-                Show Snackbar
-              </text>
-            </group>
-</Ripple>
+
 
             <group>
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
@@ -104,6 +86,28 @@ data-contain=""
               </text>
             </group>
           </group>
+
+
+<group
+
+data-contain=""
+              data-width="auto"
+              data-interactive=""
+             data-over-color="neutral"
+              data-space="15"
+              data-space-horizontal="25"
+              data-radius="15"
+              data-cursor="pointer"
+              data-background="text"
+              data-color="main-background"
+              onClick={() => addSnackbar(<>{SnackbarContent}</>)}
+            >
+              <text data-weight="700" data-ellipsis="">
+                Show Snackbar
+              </text>
+            </group>
+
+
         </group>
       </group>
 
