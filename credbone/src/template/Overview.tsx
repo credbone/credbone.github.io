@@ -39,7 +39,7 @@ const Overview: React.FC = () => {
             <group
               data-direction="column"
               data-align="start"
-              data-radius="30"
+              data-radius="40"
               data-contain=""
             >
               <picture
@@ -83,10 +83,13 @@ const Overview: React.FC = () => {
                   data-align="start"
                 >
                   <text
-                    data-text-size="large"
-                    data-weight="700"
+                    
+                   data-font-type="hero"
                     data-wrap="preline"
-                    data-ellipsis=""
+                                     
+                     data-text-size="large"
+                    
+                      data-line="1"
                   >
                     {group.title}
                   </text>
@@ -104,7 +107,7 @@ const Overview: React.FC = () => {
             </group>
 
             <group
-              data-radius="30"
+             data-radius="40"
               data-contain=""
               data-border="inset"
               data-gap="1"

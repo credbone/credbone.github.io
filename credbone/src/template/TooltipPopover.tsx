@@ -7,7 +7,7 @@ import Count from "../components/Coutner";
 
 import Calculator from "../tools/Calculator";
 
-import sampleImage from "../styles/images/samples/wide_res_74.jpg";
+import sampleImage from "../styles/images/samples/wide_res_68.webp";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TooltipPropsDemo from "./TooltipPropsDemo";
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -38,7 +38,19 @@ const ClosePopover = (
     content={(closePopover) => (
       <group data-direction="column" data-gap="30">
         <group data-direction="column" data-gap="15">
-          <text data-weight="700" data-text-size="large">
+          <text         data-weight="700"
+      
+       
+       
+        data-ellipsis=""
+
+
+                             data-font-type="hero"
+                     data-text-size="large"
+                      data-wrap="preline"
+                      data-line="1">
+                        Sample
+                         {"\n"}
             Popover
           </text>
           <text data-line="1.5" data-wrap="wrap" data-max-length="300">
@@ -55,15 +67,15 @@ const ClosePopover = (
         <Ripple>
           <group
             data-wrap="no"
-            data-ink-color="main-deep"
+          //  data-ink-color="main"
             data-align="center"
             data-cursor="pointer"
             data-contain=""
-            data-background="main"
-            data-color="main-text"
+           // data-background="main"
+          //  data-color="main-text"
             data-interactive=""
             data-space="15"
-            data-radius="5"
+            data-radius="10"
             // data-height="80"
             data-gap="20"
             onClick={closePopover}
@@ -108,13 +120,14 @@ const SampleData = (
     data-border=""
     data-contain=""
   >
-    <group>
+    <group data-space="10">
       <picture
         data-contain=""
         data-brightness="adaptive"
         //  data-position="absolute"
         data-background="grey-light"
-        data-height="160"
+        data-radius="10"
+        data-height="120"
       >
         <img src={sampleImage} alt="" />
       </picture>
@@ -123,12 +136,20 @@ const SampleData = (
     <group data-direction="column" data-space="30" data-gap="15">
       <text
         data-weight="700"
-        data-text-size="large"
-        data-wrap="wrap"
+      
+       
         data-color="main"
         data-ellipsis=""
+
+
+                             data-font-type="hero"
+                     data-text-size="large"
+                      data-wrap="preline"
+                      data-line="1"
       >
-        Rich Content
+        Rich
+       {"\n"}
+        Content
       </text>
       <text data-wrap="wrap" data-length="280" data-line="1.5" data-light="">
         Tooltips display informative text when users hover over, focus on, or
@@ -144,7 +165,7 @@ const SampleData = (
       data-align="center"
     >
       <separator data-horizontal=""></separator>
-      <group data-length="fit" data-space="30">
+      <group data-length="fit" data-space="20">
         {ClosePopover}
       </group>
     </group>
@@ -190,7 +211,7 @@ const TooltipPopover: React.FC = () => {
 
       <group>
         <picture
-          data-radius="30"
+          data-radius="40"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -232,7 +253,7 @@ const TooltipPopover: React.FC = () => {
       >
         <group
           data-height="auto"
-          data-radius="20"
+          data-radius="30"
           data-elevation="2"
           data-index="2"
           data-contain=""
@@ -320,7 +341,7 @@ const TooltipPopover: React.FC = () => {
 
         <group
           data-height="auto"
-          data-radius="20"
+          data-radius="30"
           data-border=""
           data-contain=""
           data-background="context"
@@ -347,7 +368,7 @@ const TooltipPopover: React.FC = () => {
               <Tooltip
                 // delay={0}
                 placement="auto"
-                data-radius="15"
+                data-radius="20"
                 data-space="30"
 
                // data-elevation="2"

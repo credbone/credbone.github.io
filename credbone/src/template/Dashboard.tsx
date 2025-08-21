@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
 
       <group>
         <picture
-          data-radius="30"
+          data-radius="40"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -213,7 +213,7 @@ const Dashboard: React.FC = () => {
           data-align="center"
           data-justify="center"
           data-ratio="1:2"
-          data-radius="20"
+          data-radius="30"
           data-wrap="no"
           data-direction="column"
 
@@ -247,7 +247,7 @@ const Dashboard: React.FC = () => {
               data-border=""
               data-wrap="no"
               data-direction="column"
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "1:2"}
@@ -311,7 +311,7 @@ const Dashboard: React.FC = () => {
               //  data-border=""
               data-wrap="no"
               data-direction="column"
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "1:2"}
@@ -364,7 +364,7 @@ const Dashboard: React.FC = () => {
               data-border=""
               data-wrap="no"
               data-direction="column"
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "1:2"}
@@ -413,7 +413,7 @@ const Dashboard: React.FC = () => {
               data-border=""
               data-wrap="no"
               data-direction="column"
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "1:2"}
@@ -484,7 +484,7 @@ const Dashboard: React.FC = () => {
               data-border=""
               data-wrap="no"
               data-direction="column"
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-ratio={item.wide === true ? "4:3" : "1:2"}

@@ -56,7 +56,7 @@ const Miscellaneous: React.FC = () => {
           //      data-max-length="500"
           data-height="auto"
           data-max-height="fit"
-          data-radius="30"
+          data-radius="40"
           data-contain=""
         >
           <group data-direction="column" data-justify="end">
@@ -162,7 +162,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="30" data-contain="">
+        <group data-radius="40" data-contain="">
           <group data-direction="column" data-justify="end">
             <picture
               data-contain=""
@@ -299,7 +299,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="30" data-contain="">
+        <group data-radius="40" data-contain="">
           <group data-radius="15" data-contain="">
             <group data-direction="column" data-justify="end">
               <picture

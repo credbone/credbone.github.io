@@ -43,7 +43,7 @@ const Divider: React.FC = () => {
       <group data-gap="30">
         <group
           data-border=""
-          data-radius="20"
+          data-radius="30"
           data-space="50"
           data-align="center"
           data-direction="column"
@@ -51,7 +51,7 @@ const Divider: React.FC = () => {
           data-min-length="300"
         >
           <group
-            data-radius="20"
+            data-radius="30"
             data-align="center"
             data-justify="center"
             data-direction="column"
@@ -85,7 +85,7 @@ const Divider: React.FC = () => {
           data-border=""
           data-background="text"
           data-color="main-background"
-          data-radius="20"
+          data-radius="30"
           data-space="50"
           data-align="center"
           data-direction="column"
@@ -93,7 +93,7 @@ const Divider: React.FC = () => {
           data-min-length="300"
         >
           <group
-            data-radius="20"
+            data-radius="30"
             data-align="center"
             data-justify="center"
             data-direction="column"
@@ -126,7 +126,7 @@ const Divider: React.FC = () => {
 
       <group data-gap="20" data-space="50">
         <group
-          data-radius="20"
+          data-radius="30"
           data-justify="center"
           data-align="center"
           data-direction="column"
@@ -291,7 +291,7 @@ const Divider: React.FC = () => {
       <group
         data-background={isInverted ? "text" : "highlight"}
         data-color={isInverted ? "main-background" : ""}
-        data-radius="20"
+        data-radius="30"
         data-space="50"
         data-align="start"
         data-direction="column"
@@ -524,7 +524,7 @@ const Divider: React.FC = () => {
         <group></group>
         <group>
           <picture
-            data-radius="30"
+            data-radius="40"
             data-contain=""
             data-brightness="adaptive"
             data-background="grey-light"
@@ -568,7 +568,7 @@ const Divider: React.FC = () => {
         <group data-gap="30">
           <group
             data-border=""
-            data-radius="20"
+            data-radius="30"
             data-space="50"
             data-align="center"
             data-fit="1"
@@ -597,7 +597,7 @@ const Divider: React.FC = () => {
               <separator data-horizontal=""></separator>
             </group>
             <group
-              data-radius="20"
+              data-radius="30"
               data-align="center"
               data-justify="center"
               data-direction="column"
@@ -615,7 +615,7 @@ const Divider: React.FC = () => {
 
       <group data-gap="20" data-space="50">
         <group
-          data-radius="20"
+          data-radius="30"
           data-justify="center"
           data-align="center"
           data-direction="column"
@@ -647,7 +647,7 @@ const Divider: React.FC = () => {
 
 <group
         data-background="adaptive-gray"
-        data-radius="20"
+        data-radius="30"
         data-space="50"
         //  data-align="center"
         data-gap="30"
@@ -680,7 +680,7 @@ const Divider: React.FC = () => {
 
       <group
         data-background="adaptive-gray"
-        data-radius="20"
+        data-radius="30"
         data-space="50"
         //  data-align="center"
         data-gap="30"

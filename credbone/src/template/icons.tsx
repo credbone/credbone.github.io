@@ -29,8 +29,8 @@ import {
   X,
 } from "lucide-react";
 
-import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
-//import sectionImage_2 from "../styles/images/samples/wide_res_67.webp";
+// import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
+import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
 import CustomSlider from "../components/inputs/slider";
 import StuckReporter from "../components/StuckReporter";
 import SystemColorPicker from "./systemColorPicker";
@@ -207,13 +207,16 @@ const resetValues = () => {
                 data-duration=".125"
               >
                 <group
-                  data-length="600"
-                  data-radius="10"
+                  data-length="400"
+                  data-radius="40"
                   data-border="outline"
                   data-align="center"
-                  data-backdrop="10"
+                 // data-backdrop="10"
                   data-contain=""
                   data-shrink="no"
+                  data-color="main-background"
+                  data-background="text"
+
                 >
                   <Ripple>
                     <label
@@ -223,6 +226,7 @@ const resetValues = () => {
                       data-multi-element=""
                       data-length="autofit"
                       data-space-horizontal="10"
+       
                     >
                       <div className="form_fields">
                         <div
@@ -283,7 +287,7 @@ const resetValues = () => {
 
           <group data-gap="50">
             <group data-name="icon-group" data-gap="50">
-              <group data-border="" data-radius="20">
+              <group data-border="" data-radius="40">
                 <group data-space="30">
                   <group
                     data-background="main-background"
@@ -352,9 +356,9 @@ const resetValues = () => {
                         data-name="icon-demo"
                         data-contain=""
                         data-interactive=""
-                        data-space="15"
+                        data-space="30"
                         data-cursor="pointer"
-                        data-radius="10"
+                        data-radius="20"
                       >
                         <group
                           data-index="1"
@@ -378,7 +382,7 @@ const resetValues = () => {
             <group data-name="icon-group" data-gap="50">
               <group>
                 <picture
-                  data-radius="30"
+                  data-radius="40"
                   data-contain=""
                   data-brightness="adaptive"
                   data-background="grey-light"
@@ -386,6 +390,9 @@ const resetValues = () => {
                 >
                   <img src={sectionImage_2} alt="" />
                 </picture>
+
+
+
 
                 <group data-space="30">
                   <group
@@ -399,11 +406,15 @@ const resetValues = () => {
                     data-contain=""
                   >
                     <text
-                      data-weight="700"
-                      data-text-size="large"
-                      data-ellipsis=""
+                     data-font-type="hero"
+                     data-text-size="large"
+                      data-wrap="preline"
+                      data-line="1"
+
                     >
-                      Custom Icons
+                      Custom
+                      {"\n"}
+                      Icons
                     </text>
                     <text
                       data-opacity="50"
@@ -438,9 +449,9 @@ const resetValues = () => {
                         data-name="icon-demo"
                         data-contain=""
                         data-interactive=""
-                        data-space="15"
+                        data-space="30"
                         data-cursor="pointer"
-                        data-radius="10"
+                        data-radius="20"
                       >
                         <group
                           data-index="1"

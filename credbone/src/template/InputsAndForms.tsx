@@ -38,7 +38,7 @@ const InputsAndForms: React.FC = () => {
         <group
           data-space="adaptive-30-50"
           data-background="adaptive-gray"
-          data-radius="20"
+          data-radius="30"
           data-width="auto"
           data-fit="1"
           data-min-length="300"
@@ -104,7 +104,7 @@ const InputsAndForms: React.FC = () => {
           data-fit="1"
           data-space="adaptive-30-50"
           data-background="adaptive-gray"
-          data-radius="20"
+          data-radius="30"
           data-gap="30"
           data-width="auto"
           data-align="end"
@@ -201,7 +201,7 @@ const InputsAndForms: React.FC = () => {
             </group>
           </group>
           <group
-            data-radius="20"
+            data-radius="30"
             data-contain=""
             data-background="context"
             data-shrink="no"

@@ -58,17 +58,17 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
     };
   
-    if (isNavOpen) {
-      // Push a new state only if the current state doesn't already indicate the nav is open
-      if (!window.history.state?.navOpen) {
-        window.history.pushState({ navOpen: true }, "");
-      }
-    } else {
-      // Go back in history only if the current state indicates the nav was open
-      if (window.history.state?.navOpen) {
-        window.history.go(-1);
-      }
-    }
+    // if (isNavOpen) {
+    //   // Push a new state only if the current state doesn't already indicate the nav is open
+    //   if (!window.history.state?.navOpen) {
+    //     window.history.pushState({ navOpen: true }, "");
+    //   }
+    // } else {
+    //   // Go back in history only if the current state indicates the nav was open
+    //   if (window.history.state?.navOpen) {
+    //     window.history.go(-1);
+    //   }
+    // }
   
     // Add the popstate listener
     window.addEventListener("popstate", handlePopState);

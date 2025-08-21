@@ -140,7 +140,7 @@ const Modal: React.FC = () => {
       <group
         data-height="auto"
         data-max-height="fit"
-        data-radius="30"
+        data-radius="40"
         //       data-border=""
         data-contain=""
       >
@@ -307,7 +307,7 @@ const Modal: React.FC = () => {
         <group
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="30"
           data-border=""
           data-contain=""
         >
@@ -318,7 +318,7 @@ const Modal: React.FC = () => {
           data-size="medium"
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="30"
           data-border=""
           data-contain=""
         >

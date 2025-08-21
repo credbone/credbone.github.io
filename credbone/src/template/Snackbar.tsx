@@ -58,7 +58,7 @@ const Snackbar: React.FC = () => {
 
       <group>
         <picture
-          data-radius="30"
+          data-radius="40"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -119,7 +119,7 @@ data-contain=""
           data-background="context"
           data-width="auto"
           data-height="auto"
-          data-radius="20"
+          data-radius="30"
           data-border=""
           data-contain=""
           data-direction="column"

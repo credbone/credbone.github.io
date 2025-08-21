@@ -79,7 +79,7 @@ const Typeface: React.FC = () => {
       data-type="column"
     >
       <group
-        data-radius="15"
+        data-radius="20"
         data-background="main"
         data-color="main-text"
         data-break="break-word"
@@ -206,7 +206,7 @@ const Typeface: React.FC = () => {
       
 <group data-height="20"></group>
 
-        <group data-radius="15"  data-border="" data-contain="">
+        <group data-radius="20"  data-border="" data-contain="">
           {initialFontData.map((font, index) => (
             <group
               key={index}
@@ -283,7 +283,7 @@ Character
                 </text>
 </group>
 
-        <group  data-radius="15"
+        <group  data-radius="20"
        data-border="" data-contain="">
           <group
             data-type="grid"

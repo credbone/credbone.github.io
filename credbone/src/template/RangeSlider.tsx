@@ -41,7 +41,7 @@ const RangeSlider: React.FC = () => {
 
       <group>
         <picture
-          data-radius="30"
+          data-radius="40"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -91,7 +91,7 @@ const RangeSlider: React.FC = () => {
         <group
         //  data-length="400"
                 data-background="adaptive-gray"
-        data-radius="20"
+        data-radius="30"
         data-space="30"
         data-gap="30"
         >
@@ -111,7 +111,7 @@ const RangeSlider: React.FC = () => {
             >
              Showcases range ticks with primary color applied to slider UI
             </text>
-          <group data-gap="15" data-radius="20" >
+          <group data-gap="15" data-radius="30" >
 
             <TickComponent tickCount={15} />
             <group data-justify="space-between">
@@ -137,7 +137,7 @@ const RangeSlider: React.FC = () => {
         <group
           data-space="30"
           data-background="context"
-          data-radius="20"
+          data-radius="30"
           data-gap="30"
           data-theme="dark"
           data-direction="column"
@@ -169,7 +169,7 @@ const RangeSlider: React.FC = () => {
         //  data-length="400"
               //  data-background="adaptive-gray"
               data-border=""
-        data-radius="20"
+        data-radius="30"
           //data-justify="end"
           data-direction="column"
          // data-space="30" 
@@ -182,7 +182,7 @@ const RangeSlider: React.FC = () => {
 
 
 
-            <group data-gap="15" data-radius="20" data-position="bottom" data-space="30" >
+            <group data-gap="15" data-radius="30" data-position="bottom" data-space="30" >
 
 
             {/* <group data-direction="column"  >

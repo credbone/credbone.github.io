@@ -47,7 +47,7 @@ const Buttons: React.FC = () => {
 
 <group>
 <picture
-            data-radius="30"
+            data-radius="40"
             data-contain=""
             data-brightness="adaptive"
             data-background="grey-light"
