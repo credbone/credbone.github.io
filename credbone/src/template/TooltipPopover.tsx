@@ -17,13 +17,13 @@ const SimplePopover = (
     data-direction="column"
     data-gap="10"
     data-length="200"
-    data-space="10"
+    data-space="20"
   >
     <text data-weight="700" data-text-size="large">
       Popover
     </text>
-    <text data-wrap="wrap" data-line="1.5">
-      The floating card pops up when clicking an element.
+    <text data-wrap="wrap" data-line="1.3">
+     A floating card that appears on click and can flexibly display any content.
     </text>
   </group>
 );
@@ -152,7 +152,7 @@ const showinsidepopover = (
 
 const SampleData = (
   <group
-    data-length="300"
+
     data-height="auto"
     data-radius="10"
     data-border=""
@@ -190,7 +190,7 @@ const SampleData = (
        {"\n"}
         Content
       </text>
-      <text data-wrap="wrap" data-length="280" data-line="1.5" data-light="">
+      <text data-wrap="wrap"  data-line="1.5" data-opacity="60">
         Tooltips display informative text when users hover over, focus on, or
         tap an element, while a popover is a floating card that appears when
         users click or hover over an element.
@@ -204,7 +204,7 @@ const SampleData = (
       data-align="center"
     >
     
-      <group data-length="fit" data-space="20">
+      <group data-length="fit" data-space="15">
         {showinsidepopover}
       </group>
     </group>
@@ -301,7 +301,7 @@ const TooltipPopover: React.FC = () => {
         >
           <group data-space="20" data-gap="15" data-weight="600">
             <group>
-              <Popover content={SimplePopover} data-width="auto">
+              <Popover content={SimplePopover} data-width="auto" data-radius="20">
                 <group
                   data-interactive=""
                   data-interact="popover"

@@ -225,14 +225,14 @@ const resetValues = () => {
                       data-label="left"
                       data-multi-element=""
                       data-length="autofit"
-                      data-space-horizontal="10"
+                      data-space-horizontal="15"
        
                     >
                       <div className="form_fields">
                         <div
                           className="field_cont"
                           data-height="50"
-                          data-gap="10"
+                          data-gap="5"
                         >
                           <group
                             data-length="30"
@@ -242,10 +242,7 @@ const resetValues = () => {
                             <IconSearch size={20} />
                           </group>
 
-                          <separator
-                            data-vertical=""
-                            data-height="20"
-                          ></separator>
+
                           <input
                             type="search"
                             className="icon_search"
@@ -387,6 +384,7 @@ const resetValues = () => {
                   data-brightness="adaptive"
                   data-background="grey-light"
                   data-position="absolute"
+                  data-object-position="right"
                 >
                   <img src={sectionImage_2} alt="" />
                 </picture>

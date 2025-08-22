@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import StuckReporter from "../components/StuckReporter";
+import { X } from "lucide-react";
 
 interface CardModalProps {
   item: {
@@ -39,7 +40,7 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
               data-animation-name="appear-bottom"
               data-fill-mode="backwards"
               data-animation-duration="2.25"
-              data-weight="700"
+              data-font-type="hero"
               data-text-size="x-large"
               data-wrap="wrap"
             >
@@ -68,22 +69,27 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
               data-sticky="top"
             >
               <group
+              data-over-color="neutral"
                 data-animation-name="appear-bottom"
                 data-fill-mode="backwards"
                 data-animation-duration="2.5"
-                data-background="main"
-                data-color="main-text"
+                data-background="text"
+                data-color="main-background"
                 data-interactive=""
                 data-width="auto"
                 data-cursor="pointer"
                 data-space="15"
-                data-radius="10"
+                data-radius="30"
                 onClick={onClose}
                 data-align="center"
-                data-min-length="160"
-                data-direction="column"
+             //   data-min-length="160"
+                data-gap="10"
+                
               >
-                <text data-weight="700">Close</text>
+                <group data-width="auto" data-interact="">
+                  <X size={20} />
+                </group>
+              
               </group>
             </group>
           )}
@@ -96,7 +102,7 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
           data-fill-mode="backwards"
           data-animation-duration="2.75"
           data-contain=""
-          data-radius="20"
+          data-radius="30"
           data-direction="column"
           data-wrap="no"
           //  data-elevation="1"
@@ -136,8 +142,9 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
           data-fill-mode="backwards"
           data-animation-duration="3"
           data-space="30"
-          data-radius="20"
-          data-backdrop="10"
+          data-radius="30"
+data-backdrop="20"
+          
         >
           <text
             data-weight="600"
