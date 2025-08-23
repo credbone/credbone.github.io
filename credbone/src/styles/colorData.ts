@@ -81,10 +81,12 @@ export const democolors = [
   { code: "#213349" },
   { code: "#717896" },
   { code: "#6995a0" },
+    { code: "#bdc7a8" },
   { code: "#90bec7" },
   { code: "#9DC3BE" },
   { code: "#84CEC0" },
-  { code: "#c0e6ea" }
+  { code: "#c0e6ea" },
+
 
 
 ];

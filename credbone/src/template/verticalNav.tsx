@@ -165,7 +165,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             </Tooltip>
             <separator
               data-horizontal=""
-              data-interval="10"
+              data-interval="5"
               data-adaptive="desktop"
             ></separator>
             <LeftNavigation isSubNavOpen={isSubNavOpen} onToggle={toggleNav} />
@@ -179,6 +179,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             
               data-width="auto"
               data-space="5"
+              data-radius="15"
               content={isSubNavOpen && isNavOpen ? <group ref={toggleRef}> <ThemeToggle /></group> : ""}
             >
 
@@ -207,23 +208,22 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
 
             <Popover
+            data-radius="15"
               data-width="auto"
               data-space="5"
               content={isNavOpen ? "" : <ThemeToggle />}
             >
               <group
-                data-cursor="pointer"
-                data-interactive="color"
+              
                 data-position="bottom"
+              //  data-background="red"
                 data-contain=""
-                data-space="10"
-                data-gap="10"
-                data-radius="10"
+
                 data-align="center"
                 data-wrap="no"
                 data-adaptive="desktop"
               >
-                {isNavOpen ? <ThemeToggle /> : <ThemeIcon />}
+                {isNavOpen ? <ThemeToggle /> : <group data-cursor="pointer" data-interactive="color" data-space="10" data-gap="10"  data-radius="10"><ThemeIcon /></group>}
                 {/* {isSubNavOpen && isNavOpen ? <ThemeIcon /> : isNavOpen ? <ThemeToggle /> : <ThemeIcon />} */}
               </group>
             </Popover>
@@ -231,7 +231,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
             <separator
               data-horizontal=""
-              data-interval="10"
+              data-interval="5"
         //      data-adaptive="desktop"
             ></separator>
             <Tooltip

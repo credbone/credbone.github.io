@@ -45,7 +45,7 @@ function Settings() {
         data-animation-duration="2.25"
       >
         <text
-          data-weight="700"
+          data-font-type="hero"
           //    data-color="main"
           data-text-size="large"
         >
@@ -70,7 +70,9 @@ function Settings() {
         data-fill-mode="backwards"
         data-animation-duration="2"
       >
-        <ThemeToggle />
+      <group data-space="5" data-radius="15" data-border="">
+          <ThemeToggle />
+      </group>
       </group>
 
       <separator data-horizontal="" data-interval="10"></separator>
@@ -83,7 +85,7 @@ function Settings() {
         data-animation-duration="1.75"
       >
         <text
-          data-weight="700"
+          data-font-type="hero"
           //    data-color="main"
           data-text-size="large"
         >
@@ -122,7 +124,7 @@ function Settings() {
         data-animation-duration="1.5"
       >
         <text
-          data-weight="700"
+          data-font-type="hero"
           data-text-size="large"
           data-ellipsis=""
         >

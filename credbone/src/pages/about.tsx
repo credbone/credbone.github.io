@@ -4,8 +4,8 @@ import buildInfo from "../buildInfo.json";
 import { Link } from "react-router-dom";
 import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 
-import sampleImage from "../styles/images/samples/res_82.webp";
-import sampleImage_4 from "../styles/images/samples/wide_res_86.webp";
+//import sampleImage from "../styles/images/samples/res_82.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_68.webp";
 import Tooltip from "../components/tooltip";
 // import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 
@@ -135,7 +135,7 @@ function About() {
           </group>
         </group>
 
-        {/* <group data-direction="column" >
+        <group data-direction="column" >
           <picture
             data-radius="50"
             data-brightness="adaptive"
@@ -164,8 +164,8 @@ function About() {
                   >
                     Crafted <br></br>for growth.
                   </text>
-                  <separator data-horizontal="" data-height=""></separator>
-                </group>
+                  <separator data-vertical="adaptive" data-height=""></separator>
+
                 <group
                   data-width="auto"
                   data-direction="column"
@@ -182,13 +182,16 @@ function About() {
                     every project.
                   </text>
                 </group>
+
+                </group>
+
               </group>
             </group>
           </group>
-        </group> */}
+        </group>
 
         <group
-          data-radius="30"
+          data-radius="40"
           data-border="inset"
           data-direction="column-1200"
           data-contain=""

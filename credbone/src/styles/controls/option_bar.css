@@ -14,13 +14,17 @@
 
 /**/
 
-[data-name="option-group"]{ --radius:5px; flex-wrap: nowrap;overflow: hidden;}
-[data-name="option-group"] label {display: flex; cursor: pointer; align-items: center;position: relative;}
-[data-name="option-group"] label wrap {display: flex; border-radius: var(--radius); align-items: center;padding: 5px 10px;min-height: 100%; overflow: hidden;}
+[data-name="option-group"]{ --radius:10px; flex-wrap: nowrap;overflow: hidden;}
+[data-name="option-group"] label {display: flex; cursor: pointer; align-items: center;position: relative; }
+[data-name="option-group"] label wrap {display: flex; border-radius: var(--radius); align-items: center;padding: 5px 10px;min-height: 100%; overflow: hidden;width: 100%; justify-content: center;}
 [data-name="option-group"] label wrap:hover { background-image: var(--over-color); }
 [data-name="option-group"] label wrap text{padding: 0 5px; font-weight: 600;overflow: hidden; text-overflow: ellipsis; transition-property: max-width, opacity;opacity: 1;transition-duration: .225s;}
 [data-name="option-group"] label input { display: none } 
 [data-name="option-group"] label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);z-index: 3; }
+
+
+[data-name="option-group"][data-palette="lighter"] label input:checked ~ wrap{ background-color: var(--main-color-alpha-15); color:var(--text-color) }
+
 
 
 
@@ -54,6 +58,7 @@
     max-width: 0px;
 }
 
+[data-name="option-group"] label[data-fit="true"] {width: 100%;}
 
 /**/
 

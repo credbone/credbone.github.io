@@ -27,25 +27,26 @@ const ThemeToggle: React.FC = () => {
   data-length="280" data-gap="10">
               {/* <text data-weight="700">Auto Mode</text> */}
               <text data-line="1.5" data-wrap="wrap">
-                Enable Auto Mode to switch between light and dark modes
+                Enables Auto Mode to switch between light and dark modes
                 based on your system settings.
               </text>
   </group>)
   
 
   const radioOptions = [
-    { icon: <Sun size={20}/>, radioValue: "light", label: "Light Mode", tooltip: null, },
-    { icon: <Moon size={20}/>, radioValue: "dark", label: "Dark Mode", tooltip: null, },
+    { icon: <Sun size={20}/>, radioValue: "light", label: "Light", tooltip: null, },
+    { icon: <Moon size={20}/>, radioValue: "dark", label: "Dark", tooltip: null, },
     { icon: null, radioValue: "auto", label: "Auto Mode", tooltip: DarkModeTip, },
   ];
 
 
   return (
-    <group>
-      <OptionBar data-length="autofit" dynamic compact data-height="40" >
+    <group data-height="50" data-name="option-group"  >
+
     
       {radioOptions.map((option, index) => (
         <Radio
+        labelProps={{ "data-background": "" }}
         iconProps={{ "data-length": "30" }}
         key={index}
         value={themeMode}
@@ -61,7 +62,7 @@ const ThemeToggle: React.FC = () => {
       />
     ))}
         
-      </OptionBar>
+
     </group>
   );
 };

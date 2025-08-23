@@ -62,7 +62,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
         <label
           data-background={isButton? "context":""}
           {...(isButton ? null : { radio: "" })}
-          {...(fitLabel ? { "data-fit": true } : null)}
+          {...(fitLabel ? { "data-length": "autofit" } : null)}
           className={classNames(className, {
             error: invalid,
             touched: isTouched,

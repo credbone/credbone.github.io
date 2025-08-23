@@ -410,7 +410,7 @@ descriptionProps={{"data-length":"300"}}
                   data-width="auto"
                   data-space="5"
                   data-border=""
-                  data-radius="10"
+                  data-radius="15"
                   data-contain=""
                 >
                   {radioData.map((radio, index) => (

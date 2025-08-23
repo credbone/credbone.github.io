@@ -80,7 +80,7 @@ const Miscellaneous: React.FC = () => {
                 data-radius="15"
               >
                 <text
-                  data-weight="700"
+                  data-font-type="hero"
                   data-text-size="large"
                   data-wrap="wrap"
                   data-ellipsis=""
@@ -185,7 +185,7 @@ const Miscellaneous: React.FC = () => {
                 data-radius="15"
               >
                 <text
-                  data-weight="700"
+                  data-font-type="hero"
                   data-text-size="large"
                   data-wrap="wrap"
                   data-ellipsis=""
@@ -323,7 +323,7 @@ const Miscellaneous: React.FC = () => {
                   data-radius="15"
                 >
                   <text
-                    data-weight="700"
+                    data-font-type="hero"
                     data-text-size="large"
                     data-wrap="wrap"
                     data-ellipsis=""

@@ -100,7 +100,7 @@ const Components: React.FC = () => {
 
 
 
-          <group data-width="auto" data-gap="15" data-align="center">
+          <group data-width="auto" data-gap="10" data-align="center">
             <Ripple>
               <group
                 data-contain=""
@@ -135,7 +135,7 @@ const Components: React.FC = () => {
                           data-max-length="600"
                           data-border=""
                           data-background="context"
-                          data-radius="20"
+                          data-radius="25"
                           data-space="10"
                           data-gap="10"
                           data-elevation="2"
@@ -203,14 +203,14 @@ const Components: React.FC = () => {
               <img src={sampleImage_2} data-adaptive="desktop" alt="" />
             </picture>
 
-            <group data-space="30" data-gap="5" data-contain="" data-type="grid" data-grid-template="240">
+            <group data-space="30" data-gap="10" data-contain="" data-type="grid" data-grid-template="240">
               <group
               data-contain=""
                 data-width="auto"
                 data-backdrop="20-adaptive"
                 // data-elevation="2-main-color"
                 data-gap="30"
-                data-space="30"
+                data-space="10"
                 data-radius="30"
                 data-align="start"
                 data-wrap="no"
@@ -378,6 +378,7 @@ const Components: React.FC = () => {
             data-brightness="adaptive"
             data-position="absolute"
             data-background="grey-light"
+
           >
             <img src={sampleImage_4} alt="" />
           </picture>
