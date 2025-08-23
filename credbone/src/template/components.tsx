@@ -5,7 +5,7 @@ import Ripple from "../components/Ripple";
 
 import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
-import SearchComponent from "../pages/search/searchComponent";
+
 
 import sampleImage_2 from "../styles/images/samples/wide_res_86.webp";
 import sampleImage_3 from "../styles/images/samples/res_82.webp";
@@ -15,6 +15,7 @@ import buildInfo from "../buildInfo.json";
 import ThemePicker from "./themePicker";
 import { linksArray } from "./utils/OverviewData";
 import DemoThemeToggle from "../components/DemoThemeToggle";
+import SearchFloating from "../pages/search/searchFloating";
 
 
 const links = [
@@ -132,18 +133,24 @@ const Components: React.FC = () => {
                         ></group>
 
                         <group
-                          data-max-length="600"
-                          data-border=""
-                          data-background="context"
-                          data-radius="25"
+                        
+
+                                  data-animation-name="appear-top"
+          data-fill-mode="backwards"
+          data-animation-duration="2.75"
+
+                          data-max-length="500"
+                        //  data-border=""
+                         // data-background="context"
+                         // data-radius="25"
                           data-space="10"
-                          data-gap="10"
-                          data-elevation="2"
-                          data-animation-name="appear-top"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2"
+                          data-gap="20"
+                         // data-elevation="2"
+                      //    data-animation-name="appear-top"
+                      //    data-fill-mode="backwards"
+                     //     data-animation-duration="2"
                         >
-                          <SearchComponent showRandomTagsByDefault={false} />
+                          <SearchFloating showRandomTagsByDefault={false} />
                         </group>
                       </group>
                     ),

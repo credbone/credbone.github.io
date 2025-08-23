@@ -118,7 +118,7 @@ export const routesData: RouteData[] = [
 
   { 
     path: "../Components/Overview", 
-    tags: ["overview", "all", "summary", "collection", "catalog", "categories","interface","experience","comprehensive"], 
+    tags: ["overview", "all", "summary", "collection", "catalog", "categories","interface","experience"], 
     description: "Contains all routes and a summary of components.", 
     title: "Overview" 
   },
@@ -135,7 +135,7 @@ export const routesData: RouteData[] = [
   {
     path: "../Tools",
     tags: ["design", "editor", "creation","generator", "tools", "icon", "blob"],
-    description: "A collection of tools for designing, editing, and generating visuals, starting with the Dot Icon Maker.",
+    description: "A collection of tools for designing, editing, and generating visuals.",
     title: "Tools & Resources"
   },
 

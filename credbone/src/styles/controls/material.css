@@ -19,6 +19,9 @@
 [data-ink-color="secondary-dark"] { --ink-color: var(--secondary-color-dark);}
 [data-ink-color="neutral"]{--ink-color: var(--outline);}
 
+[data-ink-color="dark-shade-10"]{--ink-color: var(--dark-shade-10);}
+
+
 
 
 .material_ink {

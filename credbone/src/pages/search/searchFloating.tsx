@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { RouteData, routesData } from "./routesData";
-import Ripple from "../../components/Ripple";
+
 import { IconSearch } from "../../components/icon/credIcons";
 import { Link } from "react-router-dom";
 import Tooltip from "../../components/tooltip";
@@ -10,7 +10,9 @@ interface SearchComponentProps {
   showRandomTagsByDefault?: boolean; // Add a prop to control random tags
 }
 
-function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProps) {
+function SearchFloating({
+  showRandomTagsByDefault = true,
+}: SearchComponentProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [results, setResults] = useState<RouteData[]>([]);
   const [randomTags, setRandomTags] = useState<string[]>([]);
@@ -87,75 +89,75 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
   };
 
   return (
-    <>
-      <group data-sticky="top" data-top="adaptive-30-50" data-width="auto" data-gap="20">
+    <
+
+    >
+      <group data-width="auto" data-gap="20"          data-sticky="top">
         <group
-          data-length="600"
-          data-radius="15"
-          data-border="outline"
+          data-length="500"
+          data-border=""
           data-align="center"
-          data-backdrop="10"
+          data-background="text"
+          data-color="main-background"
+          data-index="2"
+          data-radius="20"
           data-contain=""
           data-shrink="no"
-          data-animation-name="appear-bottom"
-          data-fill-mode="backwards"
-          data-animation-duration="1.75"
+
         >
-          <Ripple>
-            <label
-              data-align="center"
-              className="field"
-              data-label="left"
-              data-multi-element=""
-              data-length="autofit"
-              data-space-horizontal="15"
-            >
-              <div className="form_fields">
-                <div className="field_cont" data-height="60" data-gap="15">
-                  <group
-                    data-length="30"
-                    data-align="center"
-                    data-justify="center"
-                  >
-                    <IconSearch size={20} />
-                  </group>
+          <label
+            data-align="center"
+            className="field"
+            data-label="left"
+            data-multi-element=""
+            data-length="autofit"
+            data-space-horizontal="15"
+          >
+            <div className="form_fields">
+              <div className="field_cont" data-height="60" data-gap="15">
+                <group
+                  data-length="30"
+                  data-align="center"
+                  data-justify="center"
+                >
+                  <IconSearch size={20} />
+                </group>
 
-                  <separator data-vertical="" data-height="20"></separator>
-                  <input
-                    autoCapitalize="off"
-                    type="search"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={handleSearch}
-                    autoFocus={!showRandomTagsByDefault}
-                   name="searchinput"
-                  />
+                <separator data-vertical="" data-height="20"></separator>
+                <input
+                  autoCapitalize="off"
+                  type="search"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={handleSearch}
+                  autoFocus={!showRandomTagsByDefault}
+                  name="floatingsearch"
+                />
 
-                  {searchQuery && (
-                    <Tooltip content="Clear">
-                      <group
-                        data-contain=""
-                        data-space="5"
-                        data-shrink="no"
-                        data-interactive=""
-                        data-width="auto"
-                        data-cursor="pointer"
-                        data-radius="5"
-                        data-align="center"
-                        data-direction="column"
-                        onClick={clearSearch}
-                        data-animation-name="appear-bottom"
-                        data-fill-mode="backwards"
-                        data-animation-duration="2"
-                      >
-                        <icon data-height="auto">{<X size={20}/>}</icon>
-                      </group>
-                    </Tooltip>
-                  )}
-                </div>
+                {searchQuery && (
+                  <Tooltip content="Clear">
+                    <group
+                      data-contain=""
+                      data-space="5"
+                      data-shrink="no"
+                      data-interactive=""
+                      data-width="auto"
+                      data-cursor="pointer"
+                      data-radius="5"
+                      data-align="center"
+                      data-direction="column"
+                      onClick={clearSearch}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="2"
+                    >
+                      <icon data-height="auto">{<X size={20} />}</icon>
+                    </group>
+                  </Tooltip>
+                )}
               </div>
-            </label>
-          </Ripple>
+            </div>
+          </label>
         </group>
 
         {!searchQuery && showRandomTagsByDefault && (
@@ -177,7 +179,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                   data-interactive=""
                   data-width="auto"
                   data-cursor="pointer"
-                  data-radius="15"
+                  data-radius="10"
                   data-align="center"
                   data-direction="column"
                   data-background="highlight"
@@ -202,28 +204,35 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       </group>
 
       {results.length > 0 && (
-        <group data-direction="column"  data-max-length="600" data-align="start">
+        <group
+          data-direction="column"
+          data-background="main-background"
+          data-radius="20"
+          data-elevation="2"
+          data-space="10"
+          data-max-length="500"
+          data-align="start"
+        >
           {results.map((result, index) => (
             <Link
-          //  data-drag="none"
+              //  data-drag="none"
               autoFocus={true}
               data-contain=""
               data-type="group"
               key={index}
               to={`${result.path}`}
               data-space="20"
-              
               data-direction="column"
               data-gap="3"
-              data-radius="15"
+              data-radius="10"
               data-interactive=""
               data-animation-name="appear-top"
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
-             // data-border=""
+              // data-border=""
             >
-              <text data-weight="700" data-color="main"  >
+              <text data-weight="700" data-color="main">
                 {result.title}
               </text>
               <text
@@ -234,6 +243,10 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
               >
                 {result.description}
               </text>
+
+
+
+
             </Link>
           ))}
         </group>
@@ -242,4 +255,4 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
   );
 }
 
-export default SearchComponent;
+export default SearchFloating;
