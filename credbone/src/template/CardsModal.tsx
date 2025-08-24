@@ -79,17 +79,27 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
                 data-width="auto"
                 data-cursor="pointer"
                 data-space="15"
+                 data-space-horizontal={isSticky ? "" : "20"}
                 data-radius="30"
                 onClick={onClose}
                 data-align="center"
              //   data-min-length="160"
-                data-gap="10"
+                data-gap={isSticky ? "0" : "10"}
                 
               >
                 <group data-width="auto" data-interact="">
                   <X size={20} />
+                 
                 </group>
-              
+               <text
+               
+                                     data-weight="600"
+                      data-duration=".225"
+                      data-opacity={isSticky ? "0" : ""}
+                      data-transition-prop="font-size"
+                      data-text-size={isSticky ? "0" : ""}
+
+               >Close</text>
               </group>
             </group>
           )}

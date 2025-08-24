@@ -108,10 +108,10 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
               data-label="left"
               data-multi-element=""
               data-length="autofit"
-              data-space-horizontal="15"
+              data-space-horizontal="10"
             >
               <div className="form_fields">
-                <div className="field_cont" data-height="60" data-gap="15">
+                <div className="field_cont" data-height="50" data-gap="10">
                   <group
                     data-length="30"
                     data-align="center"

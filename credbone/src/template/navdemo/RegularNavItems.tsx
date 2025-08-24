@@ -199,7 +199,7 @@ data-space="20"
                                 : "red"
                             }
                             data-color={
-                              item2.key === selectedItem2Key ? "main" : "white"
+                              item2.key === selectedItem2Key ? "main-color" : "white"
                             }
                             data-radius="20"
                           >
@@ -252,7 +252,7 @@ data-space="20"
 
                       data-border=""
                 data-width="auto"
-              data-radius="10"
+              data-radius="15"
               data-contain=""
 
               data-wrap="no"
@@ -290,10 +290,10 @@ data-space="20"
                           data-interactive=""
                           data-cursor="pointer"
                           data-align="center"
-                          data-space-horizontal="10"
+                          data-space-horizontal="15"
                           data-gap="10"
                           data-wrap="no"
-                          data-radius="5"
+                          data-radius="10"
                           data-contain=""
                         >
                           {/* <icon data-fill={item3.key === selectedItem3Key ? 'fill' : ''}>{item3.icon}</icon> */}
@@ -311,7 +311,7 @@ data-space="20"
                               }
                               data-color={
                                 item3.key === selectedItem3Key
-                                  ? "main"
+                                  ? "main-color"
                                   : "white"
                               }
                               data-radius="20"
@@ -352,7 +352,7 @@ data-space="20"
             </group>
             <group
               data-background="context"
-              data-radius="5"
+              data-radius="10"
               data-contain=""
               data-border="outline"
             >

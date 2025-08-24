@@ -9,6 +9,7 @@ import Ripple from "../components/Ripple";
 
 import sampleImage from "../styles/images/samples/wide_res_63.webp";
 import TemplatePageHeader from "./TemplatePageHeader";
+import { X } from "lucide-react";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -404,7 +405,7 @@ const Modal: React.FC = () => {
                                       data-align="center"
                                       flex-direction="column"
                                       data-justify="center"
-                                      data-min-length="140"
+                                      //data-min-length="140"
                                       data-ink-color="main-dark"
                                       data-background="main"
                                       data-color="main-text"
@@ -416,8 +417,23 @@ const Modal: React.FC = () => {
                                       data-radius="30"
                                       data-contain=""
                                       onClick={() => closeModal("modal-1")}
+                                                                           data-gap="10"
+                                       
                                     >
-                                      <text data-weight="700">Close</text>
+                                                      <group data-width="auto" data-interact="">
+                  <X size={20} />
+                 
+                </group>
+                                      <text  
+                                       data-weight="600"
+                      // data-duration=".225"
+                      // data-opacity={isSticky ? "0" : ""}
+                      // data-transition-prop="font-size"
+                      // data-text-size={isSticky ? "0" : ""}
+                      
+                      >
+                                        Close
+                                      </text>
                                     </group>
                                   </Ripple>
                                 </group>
@@ -512,18 +528,28 @@ const Modal: React.FC = () => {
                                   <Ripple>
                                     <group
                                       data-ink-color="main-dark"
-                                      data-background="main"
-                                      data-color="main-text"
+                                       data-background="main"
+                data-color="main-text"
                                       data-interactive=""
                                       data-width="auto"
                                       data-cursor="pointer"
                                       data-space="15"
-                                      data-space-horizontal="20"
+                                       data-space-horizontal={isSticky ? "" : "20"}
                                       data-radius="30"
                                       data-contain=""
                                       onClick={() => closeModal("modal-2")}
+                                       data-gap={isSticky ? "0" : "10"}
+                                       data-align="center"
                                     >
-                                      <text data-weight="700">
+                                                      <group data-width="auto" data-interact="">
+                  <X size={20} />
+                 
+                </group>
+                                      <text   data-weight="600"
+                      data-duration=".225"
+                      data-opacity={isSticky ? "0" : ""}
+                      data-transition-prop="font-size"
+                      data-text-size={isSticky ? "0" : ""}>
                                         Custom Close Button
                                       </text>
                                     </group>
@@ -583,7 +609,7 @@ const Modal: React.FC = () => {
                               data-width="auto"
                             >
                               <text
-                                data-weight="700"
+                                data-font-type="hero"
                                 data-text-size="x-large"
                                 data-wrap="wrap"
                                 data-ellipsis=""
@@ -607,7 +633,7 @@ const Modal: React.FC = () => {
 
                             <separator data-horizontal=""></separator>
 
-                            <group>
+                            <group data-border="" data-space="5" data-radius="15" data-backdrop="10"  data-max-length="300">
                               <ThemeToggle />
                             </group>
                           </group>
@@ -662,7 +688,7 @@ const Modal: React.FC = () => {
                               data-width="auto"
                             >
                               <text
-                                data-weight="700"
+                                data-font-type="hero"
                                 data-text-size="x-large"
                                 data-wrap="wrap"
                                 data-ellipsis=""
