@@ -22,7 +22,7 @@ function Search() {
           Search
         </text>
 
-        <text data-wrap="wrap" data-max-length="360" data-line="1.5" data-text-size="15" data-opacity="70">
+        <text data-wrap="wrap" data-max-length="360" data-line="1.5" data-text-size="medium-small" data-opacity="70">
           You can search for routes, topics, or tags to quickly find what you
           need. Try typing a keyword or select a suggestion to get started!
         </text>

@@ -1,4 +1,4 @@
-export const typefacecontent = ( <> <text data-weight="700" data-text-size="72">Aa</text> </> )
+export const typefacecontent = ( <> <text data-weight="700" data-text-size="display-md">Aa</text> </> )
 export const colorcontent = (
   <group data-space-vertical="10" data-interact="" data-length="120">
     <group data-contain=""  data-wrap="no">

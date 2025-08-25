@@ -77,7 +77,7 @@ const ContentSlide: React.FC = () => {
                   data-align="start"
                   data-gap="20"
                 >
-                  <text data-weight="700" data-text-size="72" data-wrap="wrap">
+                  <text data-weight="700" data-text-size="display-md" data-wrap="wrap">
                    64
                   </text>
                   <text  data-weight="600" data-wrap="wrap" data-line="1.5">
@@ -173,7 +173,7 @@ const ContentSlide: React.FC = () => {
                 data-gap="20"
                 // data-theme="dark"
               >
-                <text data-weight="700" data-text-size="72" data-wrap="wrap">
+                <text data-weight="700" data-text-size="display-md" data-wrap="wrap">
                   128
                 </text>
                 <text data-wrap="wrap" data-line="1.5">
@@ -197,7 +197,7 @@ const ContentSlide: React.FC = () => {
                 data-gap="20"
                 // data-theme="dark"
               >
-                <text data-weight="700" data-text-size="72" data-wrap="wrap">
+                <text data-weight="700" data-text-size="display-md" data-wrap="wrap">
                   256
                 </text>
                 <text data-wrap="wrap" data-line="1.5">

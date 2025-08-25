@@ -181,7 +181,8 @@ transition: background-color 5000s 0s, color 5000s 0s;
 
 
 
-[data-name="theme-item"]:not(.selected) > group{font-size: 0px;}
+/* [data-name="theme-item"]:not(.selected) > group{font-size: 0px;} */
+
 [data-name="theme-item"]{transition: .225s .125s; transition-property: margin,  border-radius}
 [data-name="theme-item"]:has( + .selected){ border-bottom-right-radius: 5px;border-top-right-radius: 5px;}
 [data-name="theme-item"].selected + [data-name="theme-item"],

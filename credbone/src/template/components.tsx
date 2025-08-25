@@ -78,7 +78,7 @@ const Components: React.FC = () => {
             data-max-length="400"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="15"
+            data-text-size="medium-small"
           >
             A hybrid, atomic, and declarative design system that brings
             flexibility, control and speed to projects.
@@ -234,7 +234,7 @@ const Components: React.FC = () => {
                   data-length="200"
                   data-fit="1"
                 >
-                  <text data-wrap="wrap" data-line="1.5" data-text-size="15">
+                  <text data-wrap="wrap" data-line="1.5" data-text-size="medium-small">
                     Shape the system theme with flexible customization, bringing
                     a unified look across all elements
                   </text>
@@ -269,7 +269,7 @@ const Components: React.FC = () => {
             data-max-length="400"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="15"
+            data-text-size="medium-small"
           >
             Check out some component demos below—just a glimpse of what's
             possible!
@@ -312,7 +312,8 @@ const Components: React.FC = () => {
                 >
                   <text
                     data-text-size="medium"
-                    data-weight="700"
+                    data-font-type="hero"
+                    data-line="1"
                     data-wrap="preline"
                     data-ellipsis=""
                   >
@@ -372,7 +373,7 @@ const Components: React.FC = () => {
             data-max-length="400"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="15"
+            data-text-size="medium-small"
           >
             Got a question or just want to say hi? Drop me a message, and I'll
             get back to you soon.
@@ -403,7 +404,7 @@ const Components: React.FC = () => {
                   data-wrap="wrap"
                   data-font-type="hero"
                   data-line="1"
-                  data-text-size="15"
+                  data-text-size="medium-small"
                   data-max-length="800"
                 >
                   Driven by <br></br>passion.
@@ -419,7 +420,7 @@ const Components: React.FC = () => {
                     data-wrap="wrap"
                     data-line="1.5"
                     data-length="400"
-                    data-text-size="15"
+                    data-text-size="medium-small"
                   >
                     Let's connect! Whether you're curious about my work, looking
                     to collaborate, or simply want to reach out, feel free to

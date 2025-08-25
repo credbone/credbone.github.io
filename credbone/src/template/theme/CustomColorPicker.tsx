@@ -154,10 +154,12 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                 data-interactive=""
                 data-over-color="neutral"
                 data-font-feature="tnum"
-               
-                 data-length="80"
+               data-width="auto"
+               data-max-length="160"
+                // data-length="80"
               >
                 <HexColorInput
+                data-length="content"
                   color={customColor}
                   onChange={setCustomColor}
                   data-name="input-reset"
@@ -220,6 +222,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                 data-contain=""
                 data-ink-color="neutral"
                 data-disabled={isDisabled ? "true" : ""}
+                 data-max-length="160"
               >
                 <text>
                   {isDisabled

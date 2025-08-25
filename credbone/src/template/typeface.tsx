@@ -8,6 +8,7 @@ import TextReveal from "../components/TextReveal";
 import CustomSlider from "../components/inputs/slider";
 import TypefaceTokens from "./typefaceTokens";
 import TemplatePageHeader from "./TemplatePageHeader";
+import { useFontSize } from "../components/FontSizeProvider";
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -33,9 +34,8 @@ const initialFontData = [
 const Typeface: React.FC = () => {
   // const [textSizeIndex, setTextSizeIndex] = useState(4); // 'x-large' is the 5th item, index 4
 
-  const [sliderValue, setSliderValue] = useState(24);
+  const [sliderValue, setSliderValue] = useState(2);
 
-  
 
 
 
@@ -91,7 +91,7 @@ const Typeface: React.FC = () => {
           data-direction="column"
           data-gap="20"
         >
-          <text data-weight="700" data-text-size="96"
+          <text data-weight="700" data-text-size="display-lg"
         //   data-cast-shadow="1"
            >
           <TextReveal text="Aa" duration={800} />
@@ -146,12 +146,12 @@ const Typeface: React.FC = () => {
 
 <group>
             <CustomSlider
-              start={13}
-              end={48}
+              start={1.25}
+              end={3.5}
               value={sliderValue}
-
+step={0.05}
               onValueChange={(value) => setSliderValue(value)}
-              
+           //   unit="rem"
             />
           </group>
 
@@ -225,7 +225,7 @@ const Typeface: React.FC = () => {
              //   data-text-size={font.textSize}
 
                 style={{
-                  fontSize: sliderValue,
+                  fontSize: `${sliderValue}rem`
                 }}
               >
                 <group
@@ -287,7 +287,7 @@ Character
        data-border="" data-contain="">
           <group
             data-type="grid"
-            data-grid-template="50"
+            data-grid-template="4-adaptive"
             data-text-size="larger"
             data-gap="1"
             data-contain=""
@@ -305,7 +305,7 @@ Character
                     ? "main-text" : ""
                 }
                 data-glyph-size={glyphs.large ? "double" : ""}
-                data-text-size={glyphs.large ? "64" : ""}
+                data-text-size={glyphs.large ? "display-sm" : ""}
                 data-align="center"
                 data-justify="center"
                 data-interactive=""
@@ -318,6 +318,12 @@ Character
         </group>
       </group>
     </group>
+
+
+
+
+
+
 
     <TypefaceTokens/>
 

@@ -148,9 +148,10 @@ const Overview: React.FC = () => {
 
                     <text
                       data-text-size="medium"
-                      data-weight="700"
+                      data-font-type="hero"
                       data-wrap="preline"
                       data-ellipsis=""
+                      data-line="1"
                     >
                       {item.title}
                     </text>

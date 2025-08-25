@@ -57,7 +57,7 @@ function About() {
                   data-wrap="wrap"
                   data-font-type="hero"
                   data-line="1"
-                  data-text-size="15"
+                  data-text-size="medium-small"
                   data-max-length="800"
                 >
                   Crafted <br></br>for growth.
@@ -68,7 +68,7 @@ function About() {
                   data-wrap="wrap"
                   //  data-opacity="80"
                   data-line="1.5"
-                  data-text-size="15"
+                  data-text-size="medium-small"
                 >
                   Adapting from prototypes to enterprise apps, evolving with
                   every project.
@@ -98,7 +98,7 @@ function About() {
             <group data-width="auto" data-gap="30">
               <text
                 data-weight="800"
-                data-text-size="15"
+                data-text-size="medium-small"
                 data-wrap="wrap"
                 data-line="1"
                 data-font-type="hero"
@@ -126,7 +126,7 @@ function About() {
                 data-length="300"
                 //   data-opacity="60"
                 data-line="1.5"
-                data-text-size="15"
+                data-text-size="medium-small"
               >
                 A hybrid, atomic, and declarative design system that brings
                 flexibility, control and speed to projects.
@@ -159,7 +159,7 @@ function About() {
                     data-wrap="wrap"
                     data-font-type="hero"
                     data-line="1"
-                    data-text-size="15"
+                    data-text-size="medium-small"
                     data-max-length="800"
                   >
                     Crafted <br></br>for growth.
@@ -176,7 +176,7 @@ function About() {
                     data-wrap="wrap"
                     data-line="1.5"
                     data-length="300"
-                    data-text-size="15"
+                    data-text-size="medium-small"
                   >
                     Adapting from prototypes to enterprise apps, evolving with
                     every project.
@@ -211,8 +211,8 @@ function About() {
           >
             <group data-direction="column" data-gap="15" data-align="start">
               <text
-                data-text-size="72"
-                data-height="50"
+                data-text-size="display-md"
+               data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
@@ -260,8 +260,8 @@ function About() {
           >
             <group data-direction="column" data-gap="15">
               <text
-                data-text-size="72"
-                data-height="50"
+                data-text-size="display-md"
+               data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
@@ -315,8 +315,8 @@ function About() {
           >
             <group data-direction="column" data-gap="15">
               <text
-                data-text-size="72"
-                data-height="50"
+                data-text-size="display-md"
+               data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
@@ -382,7 +382,7 @@ function About() {
               data-max-length="400"
               data-opacity="40"
               data-line="1.5"
-              data-text-size="15"
+              data-text-size="medium-small"
             >
               Let's connect! Whether you're curious about my work, looking to
               collaborate, or simply want to reach out, feel free to explore or

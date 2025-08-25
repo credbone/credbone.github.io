@@ -10,6 +10,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import MetaThemeColorUpdater from "./components/MetaThemeColorUpdater";
 
 import SnackbarContainer from "./components/snackbar/SnackbarContainer";
+import { FontSizeProvider } from "./components/FontSizeProvider";
 
 isMobile && document.documentElement.classList.add("mobile");
 isDesktop && document.documentElement.classList.add("desktop");
@@ -27,8 +28,9 @@ root.render(
       
   <MetaThemeColorUpdater />
   <SnackbarContainer>
-
+<FontSizeProvider>
       <App />
+      </FontSizeProvider>
       <TooltipContainer />
 
       </SnackbarContainer>

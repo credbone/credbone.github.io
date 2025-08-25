@@ -277,7 +277,7 @@ data-name="weather-widget"
             >
               <group
                 data-width="auto"
-                data-text-size="72"
+                data-text-size="display-md"
                 data-index="2"
                 //data-cast-shadow="1"
                 data-weight="700"

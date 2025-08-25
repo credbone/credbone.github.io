@@ -86,7 +86,7 @@ function Tools() {
             data-max-length="400"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="15"
+            data-text-size="medium-small"
           >
             A set of tools to enhance design and code workflows, for developers
             and designers.

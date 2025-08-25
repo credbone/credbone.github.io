@@ -264,13 +264,34 @@ text[data-width="auto"]{width: initial;}
 [data-text-size="14"] {font-size:14px;}
 [data-text-size="15"] {font-size:15px;}
 
-[data-text-size="small"] {font-size:13px;}
-[data-text-size="medium"] {font-size:16px;}
+
+[data-text-size="base"] {font-size:1rem;}
+[data-text-size="small"] {font-size:1rem;}
+
+/* [data-text-size="medium"] {font-size:16px;}
 [data-text-size="large"] {font-size:18px;}
 [data-text-size="larger"] {font-size:20px;}
 [data-text-size="x-large"] {font-size:24px;}
 [data-text-size="xx-large"] {font-size:32px;}
-[data-text-size="xxx-large"] {font-size:48px;}
+[data-text-size="xxx-large"] {font-size:48px;} */
+
+
+[data-text-size="medium-small"] { font-size: 1.154rem; } /* 15px */
+
+[data-text-size="medium"]   { font-size: 1.231rem; } /* 16px */
+[data-text-size="large"]    { font-size: 1.385rem; } /* 18px */
+[data-text-size="larger"]   { font-size: 1.538rem; } /* 20px */
+[data-text-size="x-large"]  { font-size: 1.846rem; } /* 24px */
+[data-text-size="xx-large"] { font-size: 2.462rem; } /* 32px */
+[data-text-size="xxx-large"]{ font-size: 3.692rem; } /* 48px */
+
+
+[data-text-size="display-sm"] { font-size: 4.923rem; } /* 64px */
+[data-text-size="display-md"] { font-size: 5.538rem; } /* 72px */
+[data-text-size="display-lg"] { font-size: 7.385rem; } /* 96px */
+[data-text-size="display-xl"] { font-size: 9.846rem; } /* 128px */
+
+
 
 [data-text-size="36"] {font-size:36px;}
 [data-text-size="48"] {font-size:48px;}
@@ -375,10 +396,14 @@ text[data-width="auto"]{width: initial;}
 [data-length="50%"]{width:50%;}
 
 
+[data-length="content"]{field-sizing: content;}
+
+
 [data-max-length="auto"]{max-width:initial;}
 [data-max-length="fit"]{max-width:100%;}
 [data-max-length="100"]{max-width:100px;}
 [data-max-length="120"]{max-width:120px;}
+[data-max-length="160"]{max-width:160px;}
 [data-max-length="180"]{max-width:180px;}
 [data-max-length="200"]{max-width:200px;}
 
@@ -440,6 +465,11 @@ text[data-width="auto"]{width: initial;}
 
 
 [data-length="autofit-600"] { width: auto;}
+
+
+
+
+
 
 
 @media (max-width: 600px)
@@ -629,6 +659,11 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height="40"] { height:40px; }
 [data-height="45"] { height:45px; }
 [data-height="50"] { height:50px; }
+
+[data-height="3.846rem"] { height:3.846rem; }
+[data-height="60-to-rem"] { height:4.6154rem; }
+
+
 [data-height="60"] { height:60px; }
 [data-height="70"] { height:70px; }
 [data-height="80"] { height:80px; }

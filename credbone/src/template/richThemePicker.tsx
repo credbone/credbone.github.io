@@ -85,7 +85,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                   data-cursor="pointer"
                   className={theme.colorPrimary === c.code ? "selected" : ""}
                   data-color={theme.colorPrimary === c.code ? "main-text" : ""}
-                  data-height="60"
+                //  data-height="60"
+                
                   data-wrap="no"
                   data-contain=""
                   data-name="theme-item"
@@ -98,14 +99,19 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                     <group
                       data-justify="end"
                       data-contain=""
-                      data-duration=".125"
+                      data-duration={theme.colorPrimary === c.code ? "4.75" : "2.25"}
+                      data-transition-prop="width"
+
+                      data-length={theme.colorPrimary === c.code ? "140" : "0"}
+                      data-opacity={theme.colorPrimary === c.code ? "" : "0"}
+
                       key={c.code}
                       data-direction="column"
                     >
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                      <text data-wrap="wrap" data-light="">
+                      <text data-ellipsis="" data-opacity="50">
                         {c.description}
                       </text>
                     </group>
@@ -121,7 +127,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
 
   const renderSecondaryPicker = () => {
     return (
-      <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
+      <group data-scroll-mask="false" data-snap-button="15" data-width="auto" >
         <Scroll wheelEnabled={true}>
           <group
              data-position="left"
@@ -156,7 +162,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                   data-color={
                     theme.colorSecondary === c.code ? "secondary-text" : ""
                   }
-                  data-height="60"
+               //   data-height="60"
+
                   data-wrap="no"
                   data-contain=""
                   onClick={() => handleColorSelection(c.code, c.name, false)}
@@ -171,7 +178,16 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                   >
                     <group
                       data-justify="end"
-                      data-duration=".125"
+                     
+
+
+                                            data-duration={theme.colorSecondary === c.code ? "4.75" : "2.25"}
+                      data-transition-prop="width"
+
+                      data-length={theme.colorSecondary === c.code ? "140" : "0"}
+                      data-opacity={theme.colorSecondary === c.code ? "" : "0"}
+
+
                       data-contain=""
                       key={c.code}
                       data-direction="column"
@@ -179,7 +195,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                      <text data-wrap="wrap" data-light="">
+                      <text data-ellipsis="" data-light="">
                         {c.description}
                       </text>
                     </group>
