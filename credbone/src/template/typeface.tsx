@@ -8,7 +8,7 @@ import TextReveal from "../components/TextReveal";
 import CustomSlider from "../components/inputs/slider";
 import TypefaceTokens from "./typefaceTokens";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { useFontSize } from "../components/FontSizeProvider";
+
 
 const previewText = "The quick brown fox jumps over the lazy dog";
 
@@ -68,7 +68,7 @@ const Typeface: React.FC = () => {
       <TemplatePageHeader
         title="Typography"
         description="This section shows the current typeface, its glyphs, and sizes in use, with a demo for context."
-        version="3.0.2"
+        version="3.5.0"
         type="Token"
       />
 
