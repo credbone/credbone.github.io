@@ -1,12 +1,19 @@
 import React from "react";
-import { isIOS } from "react-device-detect";
 
 type Props = {
   children: React.ReactNode;
 };
 
-// Keep device-specific default in one place
-const DEFAULT_FONT_SIZE = isIOS ? 15 : 13;
+// Determine base font size from screen density
+function getDefaultFontSize(): number {
+  const dpr = window.devicePixelRatio || 1;
+  // Typical: desktop ~1, iPhone retina ~3
+  if (dpr > 4) return 15;   // high-density screens
+  if (dpr >= 2) return 14;   // medium-density
+  return 13;                 // standard density
+}
+
+const DEFAULT_FONT_SIZE = getDefaultFontSize();
 
 function updateFontSizeStyle(size: number) {
   let styleEl = document.getElementById("textsize") as HTMLStyleElement | null;

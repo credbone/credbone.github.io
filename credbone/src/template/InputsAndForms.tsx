@@ -188,12 +188,14 @@ const InputsAndForms: React.FC = () => {
               //  data-color="main-text"
             >
               {/* <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon> */}
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text           data-font-type="hero"
+
+          data-text-size="large">
                 Password
                 <br />
                 Change
               </text>
-              <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+              <text data-wrap="wrap" data-line="1.5" data-opacity="60">
                 Your password is Case Sensitive. It should contain a minimum of
                 8 characters and at least one each of Uppercase, Lowercase, and
                 Special characters
@@ -210,7 +212,7 @@ const InputsAndForms: React.FC = () => {
             data-space="30"
             data-gap="30"
           >
-            <form data-type="group">
+            <form data-type="group" data-gap="30">
               <group data-hidden="">
                 <Input
                   type="text"
@@ -224,7 +226,7 @@ const InputsAndForms: React.FC = () => {
                 />
               </group>
 
-              <group data-direction="column" data-gap="10">
+              <group data-direction="column" data-gap="30">
                 <Password
                   size="large"
                   icon={<Key size={20} />}
@@ -235,9 +237,10 @@ const InputsAndForms: React.FC = () => {
                   autoComplete="off"
                 />
 
-                <separator data-horizontal="" data-interval="10"></separator>
+                <separator data-horizontal="" ></separator>
 
-                <Input
+<group data-gap="10"  data-direction="column" >
+                  <Input
                   type="password"
                   size="large"
                   // icon="key"
@@ -255,19 +258,21 @@ const InputsAndForms: React.FC = () => {
                   name="password_1"
                   autoComplete="new-password"
                 />
+</group>
               </group>
 
-              <space data-height="10"></space>
+             
               <separator data-horizontal="" data-interval="10"></separator>
-              <space data-height="10"></space>
+            
 
-              <group data-gap="10" data-type="grid">
-                <Button data-radius="5" large highlight data-shrink="no">
-                  <text>Cancel</text>
-                </Button>
-                <Button data-radius="5" large secondary fit>
+              <group data-gap="10"  data-direction="column" >
+                                <Button data-radius="30" large primary fit>
                   <text>Update Password</text>
                 </Button>
+                <Button data-radius="30" large highlight  >
+                  <text>Cancel</text>
+                </Button>
+
               </group>
             </form>
           </group>
@@ -276,18 +281,18 @@ const InputsAndForms: React.FC = () => {
         <group data-radius="15" data-contain="" data-shrink="no">
           <group data-space="30">
             <group data-direction="column" data-align="start" data-gap="10">
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text           data-font-type="hero"
+          //    data-color="main"
+          data-text-size="large" data-wrap="wrap">
                 Customer Feedback
               </text>
-              <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+              <text data-wrap="wrap" data-line="1.5" data-opacity="60">
                 Share your thoughts to help us improve. Be as specific as
                 possible to ensure we address your concerns effectively.
               </text>
             </group>
           </group>
-          <group data-space-horizontal="30">
-            <separator data-horizontal=""></separator>
-          </group>
+
           <group data-space="30" data-gap="30" flex-direction="column">
             <Input
               size="large"
@@ -316,7 +321,7 @@ const InputsAndForms: React.FC = () => {
 
             <group data-type="group">
               <Button
-                data-radius="5"
+                data-radius="30"
                 wide
                 large
                 primary

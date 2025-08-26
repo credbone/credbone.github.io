@@ -86,7 +86,7 @@ const ShowPopover = (
     data-elevation="2"
     placement="auto"
     data-length="200"
-    data-space="20"
+    data-space="15"
     data-radius="20"
     content={(closePopover) => (
 <SemiSimplePopover closePopover={closePopover} />
@@ -117,7 +117,7 @@ const showinsidepopover = (
     data-elevation="2"
     placement="auto"
     data-length="200"
-    data-space="20"
+    data-space="15"
     data-radius="20"
     content={(closePopover) => (
 <SemiSimplePopover closePopover={closePopover} />

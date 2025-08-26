@@ -5,12 +5,12 @@ import RichThemePicker from "../template/richThemePicker";
 import { useTheme } from "../components/ThemeProvider";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-import { Link } from "react-router-dom";
-import CustomSlider from "../components/inputs/slider";
+
 import { useFontSize } from "../components/FontSizeProvider";
+import FontSizeControl from "../components/FontSizeControl";
 
 function Settings() {
-  const { fontSize, setFontSize, resetFontSize } = useFontSize();
+  const { resetFontSize } = useFontSize();
 
   const { resetTheme } = useTheme();
 
@@ -111,15 +111,12 @@ function Settings() {
       <group
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
-        data-animation-duration="1.75"
+        data-animation-duration="1.25"
       >
-        <group data-gap="5" data-direction="column">
-          <RichThemePicker pickerType="primary" />
-        </group>
+ <RichThemePicker pickerType="primary" />
       </group>
 
       <separator data-horizontal="" data-interval="10"></separator>
-
 
       <group
         data-direction="column"
@@ -141,77 +138,21 @@ function Settings() {
           data-line="1.5"
           data-max-length="400"
         >
-        Customize the font size across the app to enhance your reading experience.
+          Customize the font size across the app to enhance your reading
+          experience.
         </text>
       </group>
 
 
-
-
-      <group
-     
-     
-        data-width="auto"
-      //  data-weight="600"
-        data-max-length="400"
+            <group
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
-        data-animation-duration="1.5"
+        data-animation-duration="1.25"
       >
-        <group  data-wrap="no" data-gap="20" data-align="center">
-
-
-<group data-gap="20"  data-width="auto" data-wrap="no" data-align="center">
-  <text  data-text-size="x-large" data-weight="700" data-space-right="10">Aa</text>
-
-</group>
-<separator data-vertical="" ></separator>
-
-<group 
-//  data-background="adaptive-gray"
-//   data-radius="15" 
-//   data-space="5"
-  
-  >
-
-
-
-<group data-justify="space-between" data-wrap="no" data-align="center" data-gap="10" data-height="30" data-position="absolute" data-left="0">
-<group  data-length="10"></group>
-
-<group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-<separator data-horizontal=""></separator>
-<group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-<separator data-horizontal=""></separator>
-<group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-{/* <separator data-horizontal=""></separator>
-<group data-length="4" data-height="4" data-radius="5" data-background="text"></group> */}
-
-<group  data-length="10"></group>
-
-</group>
-
-
-          <CustomSlider
-
-         handlerWidth={50}
-            start={13}
-            end={15}
-            step={1}
-            showvalue={false}
-            value={fontSize}
-            onValueChange={(value) => setFontSize(value)}
-
-            //handlerProps={{"data-border":"10"}}
-
-            trackLeftProps={{ "data-opacity": "0" }}
-            trackRightProps={{ "data-opacity": "0" }}
-          />
-
-</group>
-
-        </group>
+      <FontSizeControl />
       </group>
+
+
 
       <separator data-horizontal="" data-interval="10"></separator>
 
