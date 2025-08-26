@@ -158,11 +158,11 @@ function Settings() {
         data-fill-mode="backwards"
         data-animation-duration="1.5"
       >
-        <group  data-wrap="no" data-gap="30" data-align="center">
+        <group  data-wrap="no" data-gap="20" data-align="center">
 
 
 <group data-gap="20"  data-width="auto" data-wrap="no" data-align="center">
-  <text  data-text-size="xx-large" data-weight="700" data-space-right="10">Aa</text>
+  <text  data-text-size="x-large" data-weight="700" data-space-right="10">Aa</text>
 
 </group>
 <separator data-vertical="" ></separator>
@@ -177,20 +177,24 @@ function Settings() {
 
 
 <group data-justify="space-between" data-wrap="no" data-align="center" data-gap="10" data-height="30" data-position="absolute" data-left="0">
-<group  data-length="5" data-height="2"></group>
+<group  data-length="10"></group>
+
 <group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-<group data-background="adaptive-gray" data-height="2"></group>
+<separator data-horizontal=""></separator>
 <group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-<group data-background="adaptive-gray" data-height="2"></group>
+<separator data-horizontal=""></separator>
 <group data-length="4" data-height="4" data-radius="5" data-background="text"></group>
-<group  data-length="5" data-height="2"></group>
+{/* <separator data-horizontal=""></separator>
+<group data-length="4" data-height="4" data-radius="5" data-background="text"></group> */}
+
+<group  data-length="10"></group>
 
 </group>
 
 
           <CustomSlider
 
-         handlerWidth={30}
+         handlerWidth={50}
             start={13}
             end={15}
             step={1}
@@ -198,6 +202,7 @@ function Settings() {
             value={fontSize}
             onValueChange={(value) => setFontSize(value)}
 
+            //handlerProps={{"data-border":"10"}}
 
             trackLeftProps={{ "data-opacity": "0" }}
             trackRightProps={{ "data-opacity": "0" }}
