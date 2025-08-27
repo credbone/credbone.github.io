@@ -4,7 +4,7 @@ export const navItems = [
 
   { to: "Components/Typography",  label: "Typography",separator:"true",new:"true" },
   { to: "Components/Icons",  label: "Icons" },
-  { to: "Components/Colors",  label: "Color System",new:"true"},
+  { to: "Components/Colors",  label: "Color System"},
   { to: "Components/DividerAndSpace",  label: "Divider & Space" },
 
   { to: "Components/Motion",  label: "Motion & Animation",new:"true" },

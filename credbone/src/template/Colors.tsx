@@ -41,7 +41,7 @@ const Colors: React.FC = () => {
       <group data-gap="30">
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Primary Color
             </text>
           </group>
@@ -113,10 +113,11 @@ const Colors: React.FC = () => {
           data-grid-template="110"
           data-gap="5"
           data-contain=""
-          data-radius="10"
+          data-radius="20"
         >
           {ColorPalette.map((color, index) => (
             <group
+           // data-radius="20"
               key={index}
               data-contain=""
               data-length="auto"
@@ -144,7 +145,7 @@ const Colors: React.FC = () => {
       <group data-gap="30">
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Secondary Color
             </text>
           </group>
@@ -215,7 +216,7 @@ const Colors: React.FC = () => {
           data-grid-template="110"
           data-gap="5"
           data-contain=""
-          data-radius="10"
+          data-radius="20"
         >
           {ColorPalette.map((color, index) => (
             <group
@@ -246,7 +247,7 @@ const Colors: React.FC = () => {
       <group data-gap="30">
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Neutral Scale
             </text>
           </group>
@@ -269,7 +270,7 @@ const Colors: React.FC = () => {
           data-grid-template="110"
           data-gap="5"
           data-contain=""
-          data-radius="10"
+          data-radius="20"
         >
           {ColorPalette.map((color, index) => (
             <group
@@ -299,7 +300,7 @@ const Colors: React.FC = () => {
 
       <group data-gap="30">
         <group data-direction="column" data-gap="15" data-space="30">
-          <text data-weight="700" data-text-size="large" data-wrap="wrap">
+          <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
             Base Colors
           </text>
           <text
@@ -319,7 +320,7 @@ const Colors: React.FC = () => {
           data-gap="5"
           data-grid-template="58"
           data-contain=""
-          data-radius="10"
+          data-radius="15"
         >
           {BaseColors.map((colors, index) => (
             <group

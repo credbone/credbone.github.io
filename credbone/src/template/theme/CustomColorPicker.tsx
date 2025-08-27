@@ -244,14 +244,14 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
         data-cursor="pointer"
         data-align="center"
         data-wrap="no"
-        data-gap="10"
+        data-gap="15"
         data-autofit="1-800"
       >
         <group
           data-interact=""
           data-length="30"
-          data-height="60"
-          data-radius="5"
+          data-height="30"
+          data-radius="30"
           data-border="outline-soft"
           style={{ backgroundColor: customColor }}
         ></group>

@@ -58,7 +58,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           <group
             data-position="left"
             data-wrap="no"
-            data-radius="5"
+            data-radius="10"
             data-width="auto"
           >
             {colors.map((c, index) => (
@@ -104,6 +104,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
 
                       data-length={theme.colorPrimary === c.code ? "140" : "0"}
                       data-opacity={theme.colorPrimary === c.code ? "" : "0"}
+                      data-space-horizontal={theme.colorPrimary === c.code ? "5" : "0"}
 
                       key={c.code}
                       data-direction="column"
@@ -133,7 +134,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           <group
              data-position="left"
              data-wrap="no"
-             data-radius="5"
+             data-radius="10"
              data-width="auto"
           >
             {seccolors.map((c, index) => (
@@ -188,6 +189,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                       data-length={theme.colorSecondary === c.code ? "140" : "0"}
                       data-opacity={theme.colorSecondary === c.code ? "" : "0"}
 
+                      data-space-horizontal={theme.colorSecondary === c.code ? "5" : "0"}
 
                       data-contain=""
                       key={c.code}
