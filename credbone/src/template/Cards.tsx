@@ -31,7 +31,7 @@ interface ContentToolbarProps {
 const modalConfig = {
   "data-radius": "none",
   "data-margin": "0",
-  "data-background": "none",
+  "data-background": "main-background-top",
   "data-elevation": "none",
   "data-width": "fit",
   "data-scroll": "",

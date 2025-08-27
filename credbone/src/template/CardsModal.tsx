@@ -25,7 +25,7 @@ const CardModal: React.FC<CardModalProps> = ({ item, onClose }) => {
       <group
         data-position="absolute"
         data-height="fit"
-        data-background="main-background-top"
+        data-background=""
         onClick={onClose}
       ></group>
       <group

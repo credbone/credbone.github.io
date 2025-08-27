@@ -45,7 +45,7 @@ const Modal: React.FC = () => {
   const modalConfig = {
     "data-radius": "none",
     "data-margin": "0",
-    "data-background": "none",
+    "data-background": "main-background-top",
     "data-elevation": "none",
     "data-width": "fit",
     "data-scroll": "",
@@ -350,7 +350,7 @@ const Modal: React.FC = () => {
                           <group
                             data-position="absolute"
                             data-height="fit"
-                            data-background="main-background-top"
+                          //  data-background="red"
                             onClick={() => closeModal("modal-1")}
                           ></group>
 
@@ -484,7 +484,7 @@ const Modal: React.FC = () => {
                           <group
                             data-position="absolute"
                             data-height="fit"
-                            data-background="main-background-top"
+                         //   data-background="main-background-top"
                             onClick={() => closeModal("modal-2")}
                           ></group>
                           <group data-max-length="500" data-position="center">
@@ -591,7 +591,7 @@ const Modal: React.FC = () => {
                           <group
                             data-position="absolute"
                             data-height="fit"
-                            data-background="main-background-top"
+                         //   data-background="main-background-top"
                             onClick={() => closeModal("modal-2")}
                           ></group>
                           <group
@@ -669,7 +669,7 @@ const Modal: React.FC = () => {
                           <group
                             data-position="absolute"
                             data-height="fit"
-                            data-background="main-background-top"
+                        //    data-background="main-background-top"
                             onClick={() => closeModal("modal-2")}
                           ></group>
 
