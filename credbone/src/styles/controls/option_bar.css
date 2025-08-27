@@ -18,7 +18,7 @@
 [data-name="option-group"] label {display: flex; cursor: pointer; align-items: center;position: relative; }
 [data-name="option-group"] label wrap {display: flex; border-radius: var(--radius); align-items: center;padding: 5px 10px;min-height: 100%; overflow: hidden;width: 100%; justify-content: center;}
 [data-name="option-group"] label wrap:hover { background-image: var(--over-color); }
-[data-name="option-group"] label wrap text{padding: 0 5px; font-weight: 600;overflow: hidden; text-overflow: ellipsis; transition-property: max-width, opacity;opacity: 1;transition-duration: .225s;}
+[data-name="option-group"] label wrap text{padding: 0 5px; font-weight: 600;overflow: hidden; text-overflow: ellipsis; transition-property: max-width,padding, opacity;opacity: 1;transition-duration: .225s;}
 [data-name="option-group"] label input { display: none } 
 [data-name="option-group"] label input:checked ~ wrap{ background-color: var(--main-color); color:var(--main-color-text);z-index: 3; }
 

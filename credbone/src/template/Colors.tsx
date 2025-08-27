@@ -72,7 +72,7 @@ const Colors: React.FC = () => {
                 </group>
               }
               data-space="5"
-              data-radius="10"
+              data-radius="15"
               data-backdrop="10"
               data-width="auto"
             >
@@ -174,7 +174,7 @@ const Colors: React.FC = () => {
                 </group>
               }
               data-space="5"
-              data-radius="10"
+              data-radius="15"
               data-backdrop="10"
               data-width="auto"
             >

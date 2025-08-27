@@ -111,6 +111,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
+                     
                       <text data-ellipsis="" data-opacity="50">
                         {c.description}
                       </text>

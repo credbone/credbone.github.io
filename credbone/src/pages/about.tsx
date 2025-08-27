@@ -240,6 +240,7 @@ function About() {
               data-color="main-background"
               data-over-color="neutral"
               data-space="15"
+              data-space-horizontal="25"
               data-radius="10"
             >
               <text data-weight="700" data-ellipsis="">
@@ -289,6 +290,7 @@ function About() {
               data-border=""
               data-over-color="neutral"
               data-space="15"
+              data-space-horizontal="25"
               data-radius="10"
             >
               <text
@@ -344,6 +346,7 @@ function About() {
                 // data-interactive=""
                 data-cursor="pointer"
                 data-space="15"
+                              data-space-horizontal="25"
                 data-radius="10"
                 data-width="auto"
                 data-wrap="no"
