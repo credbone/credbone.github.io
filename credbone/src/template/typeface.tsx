@@ -113,7 +113,7 @@ const Typeface: React.FC = () => {
       <group >
 
       <group data-direction="column" data-gap="10" data-space="20">
-<text  data-weight="700" data-text-size="large">
+<text  data-font-type="hero" data-text-size="large">
                   Preview
                 </text>
                 <text data-wrap="wrap" data-line="1.5" data-opacity="60" >
@@ -273,7 +273,7 @@ step={0.05}
 
 
 <group data-direction="column" data-gap="10" data-space="20">
-<text  data-weight="700" data-text-size="large">
+<text  data-font-type="hero" data-text-size="large">
 Character
                 </text>
                 <text data-wrap="wrap" data-line="1.5" data-opacity="60" >

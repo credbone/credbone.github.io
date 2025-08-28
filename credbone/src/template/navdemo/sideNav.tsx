@@ -151,7 +151,7 @@ const SideNav = () => {
                 data-adaptive="open-state"
                 data-contain=""data-align="center"
               >
-                <text data-ellipsis="" data-text-size="large" data-weight="700">
+                <text data-ellipsis="" data-text-size="large" data-font-type="hero">
                 Charlote Thompson
                 </text>
 
@@ -288,7 +288,7 @@ data-width="auto"
     <group data-length="120" data-adaptive="mobile-600"></group>
 <separator data-vertical="" data-height=""></separator>
  <group data-contain="" data-direction="column" data-gap="10" data-space="30">
-  <text data-text-size="large" data-weight="700">Sidebar</text>
+  <text data-text-size="large" data-font-type="hero">Sidebar</text>
   <text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Example Sidebar Navigation, customizable to display advanced UI for specific requirements.</text>
   </group>
 </group>

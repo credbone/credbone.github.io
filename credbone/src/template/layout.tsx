@@ -170,7 +170,7 @@ const Layout: React.FC = () => {
         <separator data-horizontal=""></separator>
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Auto grid layout example
             </text>
           </group>
@@ -638,7 +638,7 @@ const Layout: React.FC = () => {
 
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
-            <text data-wrap="wrap" data-weight="700" data-text-size="large">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Basic page layout example
             </text>
           </group>

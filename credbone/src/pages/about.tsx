@@ -219,7 +219,7 @@ function About() {
               >
                 01
               </text>
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
                 Purpose & Vision
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="300">
@@ -269,7 +269,7 @@ function About() {
               >
                 02
               </text>
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
                 Designed to Scale
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="200">
@@ -325,7 +325,7 @@ function About() {
               >
                 {buildInfo.version}
               </text>
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
                 Up to Date
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="300">
@@ -377,7 +377,7 @@ function About() {
             data-gap="20"
             data-space="15"
           >
-            <text data-text-size="xx-large" data-weight="700" data-wrap="wrap">
+            <text data-text-size="xx-large" data-font-type="hero" data-wrap="wrap">
               Get in Touch
             </text>
             <text

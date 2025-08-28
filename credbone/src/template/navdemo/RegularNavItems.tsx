@@ -76,7 +76,7 @@ const RegularNavItems: React.FC = () => {
 
 <group data-direction="column" data-gap="10" data-space="30">
                 <text
-                  data-weight="700"
+                data-font-type="hero"
                   data-text-size="large"
                   data-ellipsis=""
                 >
@@ -235,7 +235,7 @@ data-space="20"
          //     data-color="main-text"
               data-gap="10"
             >
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text data-font-type="hero"data-text-size="large" data-wrap="wrap">
                 Horizontal Navigation
               </text>
               <text
@@ -338,7 +338,7 @@ data-space="20"
             data-gap="20"
           >
             <group data-direction="column" data-width="auto" data-gap="10">
-              <text data-weight="700" data-text-size="large" data-wrap="wrap">
+              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
                 Horizontal Navigation
               </text>
               <text
@@ -463,7 +463,7 @@ data-space="20"
                       data-contain=""
                     >
                       <text
-                        data-weight="700"
+                        data-font-type="hero"
                         data-text-size="large"
                         data-ellipsis=""
                       >

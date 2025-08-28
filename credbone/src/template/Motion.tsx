@@ -59,7 +59,7 @@ const Motion: React.FC = () => {
 
       <group data-gap="30">
         <group data-gap="15" data-direction="column" data-space="30">
-          <text data-wrap="wrap" data-weight="700" data-text-size="large">
+          <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
             Foundations
           </text>
           <text
@@ -185,7 +185,7 @@ const Motion: React.FC = () => {
             </group>
 
             <group data-direction="column" data-gap="15">
-              <text data-wrap="wrap" data-weight="700" data-text-size="large">
+              <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
                 Purpose & Intent
               </text>
               <text
@@ -272,7 +272,7 @@ const Motion: React.FC = () => {
             </group>
 
             <group data-direction="column" data-gap="15" data-align="start">
-              <text data-wrap="wrap" data-weight="700" data-text-size="large">
+              <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
                 Harmony & Continuity
               </text>
               <text
