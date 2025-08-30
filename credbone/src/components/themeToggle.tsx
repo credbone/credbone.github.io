@@ -36,7 +36,7 @@ const ThemeToggle: React.FC = () => {
   const radioOptions = [
     { icon: <Sun size={20}/>, radioValue: "light", label: "Light", tooltip: null, },
     { icon: <Moon size={20}/>, radioValue: "dark", label: "Dark", tooltip: null, },
-    { icon: null, radioValue: "auto", label: "Auto Mode", tooltip: DarkModeTip, },
+    { icon: null, radioValue: "auto", label: "Auto Mode", tooltip: DarkModeTip, tooltipProps: { placement: 'auto' as const, distance: -10, delay: 500,'data-radius': '20' } },
   ];
 
 
@@ -58,6 +58,7 @@ const ThemeToggle: React.FC = () => {
         label={option.label}
         onChange={handleModeChange}
         tooltip={option.tooltip}
+        tooltipProps={option.tooltipProps}
         fitLabel={option.radioValue === "auto"}
       />
     ))}

@@ -5,7 +5,8 @@ interface TooltipProps {
   content: any;
   children: React.ReactNode;
   placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
-  distance?:number;
+  distance?: number;
+  delay?: number;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -13,6 +14,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   children,
   placement = 'top',
   distance = 10,
+  delay = 0,
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,16 +22,8 @@ const Tooltip: React.FC<TooltipProps> = ({
   const tooltipRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
   const touchTimeout = useRef<NodeJS.Timeout | null>(null);
+  const showTimeout = useRef<NodeJS.Timeout | null>(null);
 
-
-
-
-  // const handleTouchStart = () => {
-  //   setIsVisible(false);
-  // };
-
-
-  
   const calculatePosition = () => {
     if (!childRef.current || !tooltipRef.current) return {};
 
@@ -43,51 +37,53 @@ const Tooltip: React.FC<TooltipProps> = ({
     const fitTop = spaceAbove >= popoverRect.height + distance;
     const fitBottom = spaceBelow >= popoverRect.height + distance;
 
-    const determinePosition = (placement: string) => {
+const determinePosition = (placement: string) => {
+      const minDistance = Math.max(10, Math.abs(distance)); // Minimum 5px from viewport edges
+      
       switch (placement) {
         case 'top':
-          position.top = Math.max(distance, targetRect.top - popoverRect.height - distance);
+          position.top = Math.max(minDistance, targetRect.top - popoverRect.height - distance);
           position.left = Math.max(
-            distance,
+            minDistance,
             Math.min(
               targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - distance
+              window.innerWidth - popoverRect.width - minDistance
             )
           );
           break;
         case 'bottom':
           position.top = Math.min(
-            window.innerHeight - popoverRect.height - distance,
+            window.innerHeight - popoverRect.height - minDistance,
             targetRect.bottom + distance
           );
           position.left = Math.max(
-            distance,
+            minDistance,
             Math.min(
               targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
-              window.innerWidth - popoverRect.width - distance
+              window.innerWidth - popoverRect.width - minDistance
             )
           );
           break;
         case 'left':
           position.top = Math.max(
-            distance,
+            minDistance,
             Math.min(
               targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-              window.innerHeight - popoverRect.height - distance
+              window.innerHeight - popoverRect.height - minDistance
             )
           );
-          position.left = Math.max(distance, targetRect.left - popoverRect.width - distance);
+          position.left = Math.max(minDistance, targetRect.left - popoverRect.width - distance);
           break;
         case 'right':
           position.top = Math.max(
-            distance,
+            minDistance,
             Math.min(
               targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
-              window.innerHeight - popoverRect.height - distance
+              window.innerHeight - popoverRect.height - minDistance
             )
           );
           position.left = Math.min(
-            window.innerWidth - popoverRect.width - distance,
+            window.innerWidth - popoverRect.width - minDistance,
             targetRect.right + distance
           );
           break;
@@ -116,21 +112,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     return position;
   };
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsVisible(false);
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-  //   window.addEventListener('touchstart', handleTouchStart);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //     window.removeEventListener('touchstart', handleTouchStart);
-  //     clearTimeout(timer);
-  //   };
-  // }, []);
-
   useEffect(() => {
     if (isVisible) {
       const position = calculatePosition();
@@ -138,27 +119,24 @@ const Tooltip: React.FC<TooltipProps> = ({
     }
   }, [isVisible]);
 
+  useEffect(() => {
+    const handleOutsideClickOrMouseDown = (event: MouseEvent) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(event.target as Node) &&
+        childRef.current &&
+        !childRef.current.contains(event.target as Node)
+      ) {
+        setIsVisible(false); // Close tooltip if the click or mousedown is outside
+      }
+    };
 
-useEffect(() => {
-  const handleOutsideClickOrMouseDown = (event: MouseEvent) => {
-    if (
-      tooltipRef.current &&
-      !tooltipRef.current.contains(event.target as Node) &&
-      childRef.current &&
-      !childRef.current.contains(event.target as Node)
-    ) {
-      setIsVisible(false); // Close tooltip if the click or mousedown is outside
-    }
-  };
+    document.addEventListener('pointerdown', handleOutsideClickOrMouseDown);
 
- 
-  document.addEventListener('pointerdown', handleOutsideClickOrMouseDown);
-
-  return () => {
-
-    document.removeEventListener('pointerdown', handleOutsideClickOrMouseDown);
-  };
-}, []);
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideClickOrMouseDown);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = (event: Event) => {
@@ -171,7 +149,6 @@ useEffect(() => {
         setIsVisible(false);
       }
     };
-
 
     const handleDocumentClick = (event: MouseEvent) => {
       if (
@@ -188,21 +165,33 @@ useEffect(() => {
       document.addEventListener("click", handleDocumentClick);
       window.addEventListener("scroll", handleScroll, true); // Capture scroll events
     } else {
-   //   document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     }
   
     return () => {
- //     document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [isVisible]);
 
-
   const handleTooltipTrigger = (showTooltip: boolean) => {
-    setIsVisible(showTooltip);
-  };
+    // Clear any existing timeouts
+    if (showTimeout.current) {
+      clearTimeout(showTimeout.current);
+      showTimeout.current = null;
+    }
 
+    if (showTooltip) {
+      if (delay > 0) {
+        showTimeout.current = setTimeout(() => {
+          setIsVisible(true);
+        }, delay);
+      } else {
+        setIsVisible(true);
+      }
+    } else {
+      setIsVisible(false);
+    }
+  };
 
   const handlePointerDown = (e: React.PointerEvent) => {
     // Start a timer for long-press detection
@@ -214,53 +203,41 @@ useEffect(() => {
   const handlePointerUp = (e: React.PointerEvent) => {
     if (e.pointerType === "touch" && touchTimeout.current) {
       clearTimeout(touchTimeout.current); // Cancel long-press detection
-   //   console.log("cleared")
     }
     handleTooltipTrigger(false); // Hide tooltip on touch/mouse release
   };
 
   const handlePointerLeave = (e: React.PointerEvent) => {
-  //  console.log("leave");
     if (e.pointerType === "touch" && touchTimeout.current) {
       clearTimeout(touchTimeout.current); // Cancel long-press detection
-     // console.log("cleared on leave")
     }
     handleTooltipTrigger(false);
   };
 
-  // const handlePointerMove = (e: React.PointerEvent) => {
-  //   if (e.pointerType === "touch") {
-  //     handleTooltipTrigger(false); // Close tooltip immediately if touch moves
-  //   }
-  // };
-
   return (
     <>
-{React.cloneElement(children as React.ReactElement, {
-  ref: childRef,
-  onPointerDown: (e: React.PointerEvent) => {
-    if (e.pointerType === "touch") {
-      handlePointerDown(e);
-    }
-  },
- //onPointerUp: handlePointerUp,
- //onPointerMove: handlePointerMove, // Detect swipe
-  onPointerEnter: (e: React.PointerEvent) => {
-    if (e.pointerType === "mouse") {
-      handleTooltipTrigger(true); // Show tooltip on mouse hover
-    }
-  },
-  onPointerLeave: handlePointerLeave,
-  
-})}
+      {React.cloneElement(children as React.ReactElement, {
+        ref: childRef,
+        onPointerDown: (e: React.PointerEvent) => {
+          if (e.pointerType === "touch") {
+            handlePointerDown(e);
+          }
+        },
+        onPointerEnter: (e: React.PointerEvent) => {
+          if (e.pointerType === "mouse") {
+            handleTooltipTrigger(true); // Show tooltip on mouse hover
+          }
+        },
+        onPointerLeave: handlePointerLeave,
+      })}
 
       {isVisible &&
         content &&
         ReactDOM.createPortal(
           <group
-          data-contain=""
-           data-background="tooltip"
-           data-color="white"
+            data-contain=""
+            data-background="tooltip"
+            data-color="white"
             data-length="auto"
             data-radius="10"
             data-space="12"

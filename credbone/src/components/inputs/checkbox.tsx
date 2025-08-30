@@ -18,7 +18,8 @@ export type CheckboxProps = InputProps & {
   simple?: boolean;
   checkboxType?: CheckboxType;
   checkboxProps?: any;
-  tooltip?: string;
+  tooltip?: any;
+  tooltipProps?: Omit<React.ComponentProps<typeof Tooltip>, 'content' | 'children'>;
 };
 
 export const CheckboxInner: React.FC<CheckboxProps> = forwardRef<

@@ -63,6 +63,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           >
             {colors.map((c, index) => (
               <Tooltip
+              delay={500}
+              distance={-10}
                 data-space="15"
                 key={index}
                 content={
@@ -97,6 +99,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                 >
                   <group style={{ backgroundColor: c.code }} data-space="15">
                     <group
+                    data-name="marquee_cont"
                       data-justify="end"
                       data-contain=""
                       data-duration={theme.colorPrimary === c.code ? "4.75" : "2.25"}
@@ -113,7 +116,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                         {c.name}
                       </text>
                      
-                      <text data-ellipsis="" data-opacity="50">
+                      <text  data-opacity="50">
                         {c.description}
                       </text>
                     </group>
@@ -139,6 +142,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
           >
             {seccolors.map((c, index) => (
               <Tooltip
+                            delay={500}
+              distance={-10}
               data-space="15"
                 key={index}
                 content={
@@ -194,11 +199,12 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                       data-contain=""
                       key={c.code}
                       data-direction="column"
+                       data-name="marquee_cont"
                     >
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                      <text data-ellipsis="" data-light="">
+                      <text data-light="">
                         {c.description}
                       </text>
                     </group>

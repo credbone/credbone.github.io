@@ -16,6 +16,7 @@ export type RadioProps = InputProps & {
   icon?: ReactElement | string;
   iconProps?: any;
   tooltip?: any;
+  tooltipProps?: Omit<React.ComponentProps<typeof Tooltip>, 'content' | 'children'>;
   labelProps?: Record<string, any>;
 };
 
@@ -28,6 +29,7 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
       children,
       label,
       tooltip,
+      tooltipProps,
       icon,
       iconProps, // Destructured iconProps here
       className,
@@ -57,8 +59,9 @@ export const RadioInner: React.FC<RadioProps> = forwardRef<
     );
 
     const isButton = radioType === RadioType.Button;
+
     let content = (
-      <Tooltip content={tooltip} placement="auto">
+      <Tooltip content={tooltip} {...tooltipProps}>
         <label
           data-background={isButton? "context":""}
           {...(isButton ? null : { radio: "" })}
