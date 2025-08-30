@@ -383,7 +383,10 @@ const Colors: React.FC = () => {
                         </text>
                       </group>
 
-                      <group
+
+
+
+                      {/* <group
                         data-interactive=""
                         data-cursor="pointer"
                         data-over-color="neutral"
@@ -396,7 +399,7 @@ const Colors: React.FC = () => {
                         data-color={colors.value + "-light"}
                       >
                         <text data-weight="700">Done</text>
-                      </group>
+                      </group> */}
                     </group>
                   )}
                 >
@@ -404,6 +407,8 @@ const Colors: React.FC = () => {
                     data-interactive=""
                     data-cursor="pointer"
                     data-ratio="1:1"
+                    data-expand-react="radius"
+                    data-duration="1.25"
                     data-background={colors.value + "-light"}
                   ></group>
                 </Popover>
@@ -455,7 +460,7 @@ const Colors: React.FC = () => {
                         </text>
                       </group>
 
-                      <group
+                      {/* <group
                         data-interactive=""
                         data-cursor="pointer"
                         data-over-color="neutral"
@@ -470,7 +475,7 @@ const Colors: React.FC = () => {
                         data-color={colors.value}
                       >
                         <text data-weight="700">Done</text>
-                      </group>
+                      </group> */}
                     </group>
                   )}
                 >
@@ -478,6 +483,8 @@ const Colors: React.FC = () => {
                     data-interactive=""
                     data-cursor="pointer"
                     data-ratio="1:1"
+                                        data-expand-react="radius"
+                    data-duration="1.25"
                     data-background={colors.value}
                   ></group>
                 </Popover>
@@ -527,7 +534,7 @@ const Colors: React.FC = () => {
                         </text>
                       </group>
 
-                      <group
+                      {/* <group
                         data-interactive=""
                         data-cursor="pointer"
                         data-over-color="neutral"
@@ -540,7 +547,7 @@ const Colors: React.FC = () => {
                         data-color={colors.value + "-dark"}
                       >
                         <text data-weight="700">Done</text>
-                      </group>
+                      </group> */}
                     </group>
                   )}
                 >
@@ -548,6 +555,8 @@ const Colors: React.FC = () => {
                     data-interactive=""
                     data-cursor="pointer"
                     data-ratio="1:1"
+                                        data-expand-react="radius"
+                    data-duration="1.25"
                     data-background={colors.value + "-dark"}
                   ></group>
                 </Popover>

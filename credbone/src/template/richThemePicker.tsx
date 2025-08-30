@@ -7,12 +7,16 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { getComplementaryColor } from "../styles/skin";
 
 
-interface RichThemePickerProps {
+// interface RichThemePickerProps {
+//   pickerType?: "primary" | "secondary";
+// }
+
+
+interface RichThemePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   pickerType?: "primary" | "secondary";
 }
 
-
-const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
+const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest }) => {
   const { addSnackbar } = useSnackbar();
   const themeContext = useContext(ThemeContext);
 
@@ -51,7 +55,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
   
 
 
-  const renderPrimaryPicker = () => {
+  const renderPrimaryPicker = (props: React.HTMLAttributes<HTMLDivElement>) => {
     return (
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll wheelEnabled={true}>
@@ -60,6 +64,11 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
             data-wrap="no"
             data-radius="10"
             data-width="auto"
+
+
+
+           {...props}
+
           >
             {colors.map((c, index) => (
               <Tooltip
@@ -186,9 +195,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
                     <group
                       data-justify="end"
                      
-
-
-                                            data-duration={theme.colorSecondary === c.code ? "4.75" : "2.25"}
+                      data-duration={theme.colorSecondary === c.code ? "4.75" : "2.25"}
                       data-transition-prop="width"
 
                       data-length={theme.colorSecondary === c.code ? "140" : "0"}
@@ -220,9 +227,14 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType }) => {
 
   return (
     < >
-      {(pickerType === "primary" || !pickerType) && renderPrimaryPicker()}
+      {(pickerType === "primary" || !pickerType) && renderPrimaryPicker(rest)}
       {(pickerType === "secondary" || !pickerType) && renderSecondaryPicker()}
     </>
+
+
+
+
+
   );
 };
 

@@ -24,7 +24,7 @@ function Settings() {
 
   return (
     <group
-      data-space="adaptive-30-50"
+      data-space-vertical="adaptive-30-50"
       data-gap="30"
       data-direction="column"
       data-max-length="1200"
@@ -43,12 +43,27 @@ function Settings() {
         </text>
       </group> */}
 
+
+
+
+      <group
+      
+       data-space-horizontal="adaptive-30-50"
+  data-direction="column"
+
+  data-gap="30"
+
+      >
+
+
       <group
         data-direction="column"
         data-gap="10"
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
         data-animation-duration="2.25"
+
+         
       >
         <text
           data-font-type="hero"
@@ -69,6 +84,7 @@ function Settings() {
       </group>
 
       <group
+       
         data-width="auto"
         data-weight="600"
         data-max-length="300"
@@ -108,13 +124,26 @@ function Settings() {
         </text>
       </group>
 
+
+      </group>
+
       <group
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
         data-animation-duration="1.25"
       >
- <RichThemePicker pickerType="primary" />
+ <RichThemePicker pickerType="primary"            data-space-horizontal="adaptive-30-50"  data-radius="0" />
       </group>
+
+
+      <group
+      
+      data-space-horizontal="adaptive-30-50"
+  data-direction="column"
+
+  data-gap="30"
+      
+      >
 
       <separator data-horizontal="" data-interval="10"></separator>
 
@@ -199,6 +228,10 @@ function Settings() {
           </group>
         </Ripple>
       </group>
+
+      </group>
+
+
 
       <group data-height="200"></group>
     </group>
