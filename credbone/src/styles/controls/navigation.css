@@ -210,8 +210,47 @@ nav[launcher][data-normal] .button.menu { height: 60px; width: 60px; }
     [data-sub-expanded="open"][data-expanded="open"][data-name="side_nav"] [data-name="side_nav-inner"]{width: 70px; }
 
 
-    [data-sub-expanded="close"][data-expanded="open"]  [data-name="side_nav-wrapper"]{padding: 25px;}
+    /* [data-sub-expanded="close"][data-expanded="open"]  [data-name="side_nav-wrapper"]{padding: 25px;} */
 }
+
+
+/* Base property */
+[data-space="nav-space-10-20"] {
+  padding: var(--space);
+  --space: 10px; /* default (nav closed) */
+}
+
+/* Nav open */
+[data-expanded="open"] [data-space="nav-space-10-20"] {
+  --space: 20px;
+}
+
+/* Sub nav override below 800px */
+@media (max-width: 800px) {
+  [data-expanded="open"][data-sub-expanded="open"] [data-space="nav-space-10-20"] {
+    --space: 10px;
+  }
+}
+
+
+
+
+[data-interval="nav-interval-5-15"] {
+  --interval: 5px; /* default */
+}
+
+/* Parent state override (like nav open) */
+[data-expanded="open"] [data-interval="nav-interval-5-15"] {
+  --interval: 15px;
+}
+
+/* Sub nav + breakpoint override */
+@media (max-width: 800px) {
+  [data-expanded="open"][data-sub-expanded="open"] [data-interval="nav-interval-5-15"] {
+    --interval: 5px;
+  }
+}
+
 
 
 

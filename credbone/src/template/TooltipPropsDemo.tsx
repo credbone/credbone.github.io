@@ -48,10 +48,7 @@ const TooltipPropsDemo: React.FC = () => {
 
   const [GapValue, setGapValue] = useState(10);
   const [RadiusValue, setRadiusValue] = useState(10);
-
-
-
-
+  const [DelayValue, setDelayValue] = useState(0);
 
   const [hasChanged, setHasChanged] = useState(false);
 
@@ -62,20 +59,21 @@ const TooltipPropsDemo: React.FC = () => {
       selectedColor.color !== "white" ||
       GapValue !== 10 ||
       RadiusValue !== 10 ||
+      DelayValue !== 0 ||
       selectedPlacement !== "auto"
     ) {
       setHasChanged(true);
     }
-  }, [selectedColor, GapValue, RadiusValue, selectedPlacement]);
+  }, [selectedColor, GapValue, RadiusValue, DelayValue, selectedPlacement]);
   
   const resetValues = () => {
     setSelectedColor({ background: "tooltip", color: "white" });
     setGapValue(10);
     setRadiusValue(10);
+    setDelayValue(0);
     setSelectedPlacement("auto");
     setHasChanged(false); // Hide the reset button after reset
   };
-
 
   return (
     <>
@@ -232,6 +230,47 @@ const TooltipPropsDemo: React.FC = () => {
                 />
               </group>
             </group>
+            <separator data-horizontal=""></separator>
+            <group data-align="center" data-gap="15" data-space="15">
+              <group
+                data-width="auto"
+                //data-min-length="80"
+              >
+                <group
+                  data-space-horizontal="15"
+                  data-space-vertical="10"
+                  data-background="text"
+                  data-width="auto"
+                  data-color="main-background"
+                  data-radius="30"
+                >
+                  <text>Delay</text>
+                </group>
+              </group>
+
+              <separator data-vertical=""></separator>
+
+              <group data-fit="1">
+                <CustomSlider
+                  handlerWidth={50}
+                  step={100}
+                  start={0}
+                  end={500}
+                  value={DelayValue}
+                  onValueChange={(value) => setDelayValue(value)}
+                  handlerProps={{
+                    "data-background": "none",
+                    "data-color": "text",
+                    "data-border": "inset",
+                    "data-radius": "10",
+                    "data-height": "initial",
+                    "data-space-vertical": "10",
+                  }}
+                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
+                  trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
+                />
+              </group>
+            </group>
           </group>
 
           <group data-space="20">
@@ -364,6 +403,7 @@ const TooltipPropsDemo: React.FC = () => {
 
         >
           <Tooltip
+            delay={DelayValue}
             distance={GapValue}
             content="I am a tooltip"
             placement={selectedPlacement}
@@ -445,6 +485,15 @@ data-direction="column"
               <span data-color="grey">=</span>
               <span data-color="peach">"{GapValue}"</span>
               <br />
+              {DelayValue !== 0 && (
+                <>
+                  <span>  </span>
+                  <span data-color="blue-light">delay</span>
+                  <span data-color="grey">=</span>
+                  <span data-color="peach">"{DelayValue}"</span>
+                  <br />
+                </>
+              )}
               {RadiusValue !== 10 && (
                 <>
                   <span>  </span>

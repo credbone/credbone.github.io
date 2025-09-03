@@ -234,7 +234,16 @@ const LeftNavigation: React.FC<{ isSubNavOpen: boolean; onToggle: () => void }> 
          key={index}
 
           >
-<separator data-interval="5" data-horizontal=""></separator>
+<separator 
+
+
+              data-interval="nav-interval-5-15"
+
+               data-duration="2.25"
+            data-transition-prop="margin"
+
+
+data-horizontal=""></separator>
         </group>
       )
       

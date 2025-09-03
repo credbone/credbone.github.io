@@ -133,9 +133,17 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
              data-name="side_nav-wrapper"
             data-height="autofit"
             data-weight="600"
-            data-space="10"
+           // data-space={isNavOpen && !isSubNavOpen ? "20" : "10"}
+
+            data-space="nav-space-10-20"
+           // data-special-space={isSubNavOpen ? "10" : undefined}
+
+
+
             data-direction="column"
             data-gap="5"
+            data-duration="2.25"
+            data-transition-prop="padding"
           >
             <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
               <group data-adaptive="desktop">
@@ -165,7 +173,11 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             </Tooltip>
             <separator
               data-horizontal=""
-              data-interval="5"
+              data-interval="nav-interval-5-15"
+
+               data-duration="2.25"
+            data-transition-prop="margin"
+
               data-adaptive="desktop"
             ></separator>
             <LeftNavigation isSubNavOpen={isSubNavOpen} onToggle={toggleNav} />
@@ -231,7 +243,10 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
             <separator
               data-horizontal=""
-              data-interval="5"
+                            data-interval="nav-interval-5-15"
+
+               data-duration="2.25"
+            data-transition-prop="margin"
         //      data-adaptive="desktop"
             ></separator>
             <Tooltip
