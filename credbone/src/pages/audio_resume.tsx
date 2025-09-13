@@ -323,10 +323,10 @@ const AudioPlayer: React.FC = () => {
 
             <group>
               <group
-                data-length="140"
+               // data-length="140"
                 data-cursor="pointer"
                 data-interactive=""
-                data-radius="10"
+                data-radius="30"
                 data-space="15"
                 data-background="text"
                 data-color="main-background"
@@ -337,7 +337,7 @@ const AudioPlayer: React.FC = () => {
                 <text data-weight="700">{isPlaying ? "Pause" : "Listen"}</text>
               </group>
               <group
-                data-height={isPlaying ? "45" : "0"}
+                data-height={isPlaying ? "30" : "0"}
     
                 data-duration=".125"
               ></group>

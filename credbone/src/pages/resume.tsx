@@ -53,8 +53,8 @@ function Resume() {
         >
           <group
             data-border=""
-            data-space="15"
-            data-radius="30"
+            data-space="5"
+            data-radius="40"
             data-sticky="top"
             data-top="30"
           >
@@ -481,7 +481,7 @@ for a complex digital video signage management system.
                     data-contain=""
                     data-width="auto"
                     data-height={isSticky ? "60" : "50"}
-                    data-radius={isSticky ? "30" : "10"}
+                    data-radius="30"
                     data-background="text"
                     data-color="main-background"
                     data-cursor="pointer"
@@ -490,7 +490,7 @@ for a complex digital video signage management system.
                     data-interactive=""
                     data-align="center"
                     data-wrap="no"
-                    data-space={isSticky ? "0" : "15"}
+                    data-space={isSticky ? "0" : "20"}
                     data-gap={isSticky ? "0" : "10"}
                   >
                     <group data-length={isSticky ? "60" : "20"}>
