@@ -3,6 +3,7 @@ import StuckReporter from "../components/StuckReporter";
 
 import { Printer } from "lucide-react";
 import AudioPlayer from "./audio_resume";
+import { SvgWood } from "../components/icon/svgRes";
 
 const handlePrint = () => {
   window.print();
@@ -65,12 +66,13 @@ function Resume() {
         <group data-max-length="700">
           <group data-gap="30" data-direction="column" data-user-select="text">
             <group></group>
-            <group data-direction="column" data-gap="10">
+
+            <group data-direction="column" >
               <text
                 data-user-select="text"
                 data-weight="700"
                 data-font-type="hero"
-                data-text-size="xx-large"
+                data-text-size="x-large"
                 data-wrap="wrap"
                 // data-opacity="20"
                 data-line="1"
@@ -79,16 +81,18 @@ function Resume() {
               </text>
               <text
                 data-user-select="text"
-                data-weight="700"
-                data-font-type="hero"
-                data-text-size="large"
+                // data-weight="700"
+                // data-font-type="hero"
+                // data-text-size="large"
                 data-wrap="wrap"
                 data-line="1"
               >
-                Product Designer
+                Product & UX Designer
               </text>
             </group>
-
+<group data-max-length="400" data-print="hide" data-direction="column">
+              <SvgWood></SvgWood>
+</group>
             <group>
               <text data-user-select="text" data-wrap="wrap" data-line="1.5">
                 As a Product Designer with over a decade of experience in UI and
@@ -172,6 +176,7 @@ function Resume() {
               >
                 Experience
               </text>
+
 
 
               <group data-gap="5" data-direction="column">
