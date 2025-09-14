@@ -63,11 +63,22 @@ function Resume() {
           </group>
         </group>
 
-        <group data-max-length="700">
-          <group data-gap="30" data-direction="column" data-user-select="text">
-            <group></group>
+        <group data-max-length="800">
+          <group
+         //   data-gap="30"
+            data-direction="column"
+            data-user-select="text"
+            data-align="start"
+            // data-space="30"
+             data-gap="30"
+          >
+          
+<group></group>
+<group data-print="hide"></group>
+{/* section */}
 
-            <group data-direction="column" >
+<group   data-direction="column"  data-gap="30" data-space-horizontal="30">
+              <group data-direction="column" >
               <text
                 data-user-select="text"
                 data-weight="700"
@@ -90,60 +101,85 @@ function Resume() {
                 Product & UX Designer
               </text>
             </group>
-<group data-max-length="400" data-print="hide" data-direction="column">
+
+            <group
+              data-max-length="300"
+              data-print="hide"
+              data-direction="column"
+            >
               <SvgWood></SvgWood>
-</group>
+            </group>
+
             <group>
-              <text data-user-select="text" data-wrap="wrap" data-line="1.5">
-                As a Product Designer with over a decade of experience in UI and
-                UX design, I've had leading talented design team. My focus on
-                user-centered solutions ensures that our work is both visually
-                compelling and technically sound. I'm passionate about crafting
-                designs that don't just look great—they're built to perform and
-                truly meet users needs.
+              <text data-user-select="text" data-wrap="wrap" data-line="1.5" data-max-length="500">
+Product Designer with 10+ years in UI/UX. I've led design teams and built user-centered solutions that are both visually refined and technically solid. My work balances clarity, performance, and real user needs.
               </text>
             </group>
 
-            <group data-gap="30">
-              <a
+
+</group>
+
+{/* section */}
+
+
+<group data-space-horizontal="30"
+ data-print="show"
+ >
+
+
+<group             
+
+data-gap="20"
+
+              data-width="auto"
+
+              
+              >
+
+                <a
                 href="https://credbone.com/Resume"
                 data-type="group"
-                data-width="auto"
-                data-background="white"
+              //  data-width="auto"
+                //   data-background="white"
                 data-drag="none"
-                data-print="show"
+                //   data-print="show"
+               // data-ratio="1:1"
+               data-width="auto"
+             
               >
                 <SvgResumeQR />
               </a>
+
+
+
+
               <group
                 data-direction="column"
                 data-width="auto"
-                data-gap="5"
                 data-align="start"
-               
+                data-wrap="no"
+                data-space-vertical="5"
+                
               >
                 <a
-                  data-print="show"
+                  //   data-print="show"
                   href="tel:+37493080648"
                   data-type="group"
                   data-width="auto"
-
                 >
                   <text
                     data-wrap="wrap"
                     data-weight="700"
                     data-cursor="pointer"
-                    data-text-size="medium"
-
                   >
-                    + 374 93 080 648
+                    +374 93 08 06 48
                   </text>
                 </a>
-
-<group   data-print="show">
-
-</group>
-                <a
+             
+             <group data-height="fit"></group>
+             
+<group  data-direction="column">
+                  <a
                   href="mailto:sargsyanrubens@gmail.com"
                   data-type="group"
                   data-width="auto"
@@ -151,321 +187,212 @@ function Resume() {
                   <text
                     data-user-select="text"
                     data-wrap="wrap"
-                    data-weight="600"
+                    //   data-weight="600"
                   >
                     <text data-cursor="pointer">sargsyanrubens@gmail.com</text>
                   </text>
                 </a>
 
-                <group>
-                  <text data-user-select="text">Armenia, Yerevan</text>
-                </group>
+                <text data-user-select="text" data-opacity="40">
+                  Armenia, Yerevan
+                </text>
+</group>
               </group>
             </group>
 
-            <group data-print="show">
-              <separator data-horizontal=""></separator>
-            </group>
 
-            <group data-gap="20" data-direction="column">
-              <text
-                data-user-select="text"
-                data-weight="700"
-                data-font-type="hero"
-                data-text-size="x-large"
+</group>
+
+
+<group data-space-horizontal="30" data-print="hide">
+
+
+<group               data-gap="30"
+              data-space="30"
+              data-radius="30"
+              data-width="auto"
+               data-background="text"
+               data-color="main-background"
+              
               >
-                Experience
-              </text>
 
-
-
-              <group data-gap="5" data-direction="column">
-                <text data-line="1.5">
-                  <text data-user-select="text" data-weight="700">
-                    SoftConstruct
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    Senior UX Designer
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap" data-weight="700">
-                    May 2025 - Present
-                  </text>
-                </text>
-
-                <group data-direction="column">
-                  <text
-                    data-user-select="text"
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    data-max-length="500"
-                  >
-                   Senior UX at SoftConstruct, working on large-scale projects with cross-functional teams, delivering user-centered web and mobile solutions.
-                  </text>
-                </group>
-              </group>
-
-                      <separator data-horizontal=""  data-max-length="500"></separator>
-
-              <group data-gap="5" data-direction="column">
-                <text data-line="1.5">
-                  <text data-user-select="text" data-weight="700">
-                    Ogma
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    Design Department Manager
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    February 2014 - November 2024
-                  </text>
-                </text>
-
-                <group data-direction="column">
-                  <text
-                    data-user-select="text"
-                    data-wrap="wrap"
-                    data-line="1.5"
-                  >
-                    Joined Ogma to lead design for content management software, web systems, and mobile apps. Focused on user-centered, impactful designs aligned with technical objectives.
-                  </text>
-                </group>
-              </group>
-
-   
-
-              <group data-gap="5" data-direction="column">
-                <text data-line="1.5">
-                  <text data-user-select="text" data-weight="700">
-                    Wovenmedia
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    User Interface Design Manager
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    2014 - 2024
-                  </text>
-                </text>
-
-                <group data-direction="column">
-                  <text
-                    data-user-select="text"
-                    data-wrap="wrap"
-                    data-line="1.5"
-                  >
-In parallel, led UI design at Wovenmedia 
-for a complex digital video signage management system.
-                  </text>
-                </group>
-              </group>
-
-                       
-
-              <group data-gap="5" data-direction="column">
-                <text data-line="1.5">
-                  <text data-user-select="text" data-weight="700">
-                    Altacode
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    UI Designer
-                  </text>
-                  <dot></dot>
-                  <text data-user-select="text" data-wrap="wrap">
-                    November 2011 - January 2014
-                  </text>
-                </text>
-
-                <group data-direction="column">
-                  <text
-                    data-user-select="text"
-                    data-wrap="wrap"
-                    data-line="1.5"
-                  >
-                   First role in a large company, gaining experience in project management,
-                   team collaboration, client communication, and working on diverse web and mobile products.
-                  </text>
-                </group>
-              </group>
-            </group>
-
-            <separator data-horizontal=""></separator>
-
-            <group data-gap="30">
-              <text
-                data-user-select="text"
-                data-weight="700"
-                data-text-size="x-large"
-                data-font-type="hero"
+                <a
+                href="https://credbone.com/Resume"
+                data-type="group"
+              //  data-width="auto"
+                //   data-background="white"
+                data-drag="none"
+                //   data-print="show"
+               // data-ratio="1:1"
+               data-width="auto"
+             
               >
-                Skills
-              </text>
-            </group>
+                <SvgResumeQR />
+              </a>
 
-            <group data-gap="10" data-direction="column">
-              <text data-line="1.5">
-                <text data-user-select="text" data-weight="700">
-                  Prototyping
-                </text>
 
-                <dot></dot>
-                <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
-                  From Paper & Rapid to High-fidelity Markups
-                </text>
-              </text>
 
-              <text data-line="1.5">
-                <text data-user-select="text" data-weight="700">
-                  Research
-                </text>
-                <dot></dot>
-                <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
-                  From User interviews to Creating and Managing Personas
-                </text>
-              </text>
 
-              <text data-line="1.5">
-                <text data-user-select="text" data-weight="700">
-                 Coding
-                </text>
-
-                <dot></dot>
-                <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
-                  From Prototype & Reusable Components to Complete UI
-                </text>
-              </text>
-            </group>
-
-            <group data-gap="30">
-              <text
-                data-user-select="text"
-                data-weight="700"
-                data-text-size="x-large"
-                data-font-type="hero"
+              <group
+                data-direction="column"
+                data-width="auto"
+                data-align="start"
+                data-wrap="no"
+                //data-space="10"
+                
               >
-                Tools
-              </text>
+                <a
+                  //   data-print="show"
+                  href="tel:+37493080648"
+                  data-type="group"
+                  data-width="auto"
+                >
+                  <text
+                    data-wrap="wrap"
+                    data-weight="700"
+                    data-cursor="pointer"
+                  >
+                    +374 93 08 06 48
+                  </text>
+                </a>
+             
+             <group data-height="fit"></group>
+             
+<group  data-direction="column">
+                  <a
+                  href="mailto:sargsyanrubens@gmail.com"
+                  data-type="group"
+                  data-width="auto"
+                >
+                  <text
+                    data-user-select="text"
+                    data-wrap="wrap"
+                    //   data-weight="600"
+                  >
+                    <text data-cursor="pointer">sargsyanrubens@gmail.com</text>
+                  </text>
+                </a>
+
+                <text data-user-select="text" data-opacity="40">
+                  Armenia, Yerevan
+                </text>
+</group>
+              </group>
             </group>
 
-            <group data-gap="10">
+
+</group>
+
+
+<group data-print="hide"></group>
+
+
+{/* section */}
+
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Experience </text> </group>
+
+
+
+            <group  data-direction="column" data-contain=""    >
+
+              <separator data-print="hide" data-vertical="" data-height="fit" data-position="absolute" data-left="50"></separator>
+
+
+<group data-space-horizontal="30" data-index="2"> <group data-align="start"> <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text"  data-weight="700"> SoftConstruct </text> <text data-opacity="60">May 2025 - Present</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5"  data-space-bottom="20"  data-background="main-background" > <text data-user-select="text" data-weight="700" data-wrap="wrap" > Senior UX Designer </text> <text data-user-select="text" data-wrap="wrap" data-line="1.3" > Senior UX at SoftConstruct, working on large-scale projects with cross-functional teams, delivering user-centered web and mobile solutions. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>       
+<group data-space-horizontal="30" data-index="2"><group data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Ogma Applications</text> <text data-opacity="60">2014 - 2024</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">Design Department Manager</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> Joined Ogma to lead design for content management software, web systems, and mobile apps. Focused on user-centered, impactful designs aligned with technical objectives. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>
+<group data-space-horizontal="30" data-index="2"><group  data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Wovenmedia</text> <text data-opacity="60">2014 - 2024</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">User Interface Design Manager</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> In parallel, led UI design at Wovenmedia for a complex digital video signage management system. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>
+<group data-space-horizontal="30" data-index="2" data-background="main-background"><group  data-print="hide" data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Altacode</text> <text data-opacity="60">2011 - 2014</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">UI Designer</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> First role in a large company, gaining experience in project management, team collaboration, client communication, and working on diverse web and mobile products. </text> </group> </group> </group>
+
+           
+            </group>
+
+{/* section */}
+
+    
+
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Skills </text> </group>
+
+
+<group >
+  <group data-contain="" data-type="grid" data-grid-template="200" data-gap="1"   >
+
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Research </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From User Interviews to Managing Personas </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Prototyping </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Paper & Rapid to High-fidelity Markups </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Interaction Design </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Micro-interactions to Complex User Flows </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Design Systems </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Tokens & Components to Scalable UI Patterns </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Coding </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Reusable Components to Complete UI </text> </group>
+
+</group>
+</group>
+
+
+
+
+
+{/* section */}
+
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Tools </text> </group>
+
+<group data-print="hide"></group>
+
+            <group data-gap="10" data-space-horizontal="30">
               <group data-gap="10">
-                <text data-user-select="text" data-weight="700">
-                 Figma
-                </text>
-                <dot></dot>
-                <text data-user-select="text" data-weight="700">
-                  Adobe Suite
-                </text>
-                <dot></dot>
-                <text>PS</text>
-                <dot></dot>
-                <text>AI</text>
+
+
+             
+              <group data-width="auto" data-background="text" data-color="main-background" data-space="15"data-radius="15" data-space-horizontal="20"  data-print="hide"> <text data-user-select="text" > Figma </text> </group>
+
+              <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" data-print="show"> <text data-user-select="text" data-weight="700"> Figma </text> </group>
+              <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text"> AI </text> <dot></dot> <text data-user-select="text"> LLMs </text> </group>
+              <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text"></text> <text>Adobe</text> <group data-length="15"></group> <text>Ps</text> <dot></dot> <text>Ai</text> </group>
+
+
+
+
               </group>
 
               <group data-gap="10">
-                <text data-user-select="text" data-weight="700">
-                  HTML
-                </text>
-                <dot></dot>
-                <text data-user-select="text" data-weight="700">
-                  CSS
-                </text>
-                <dot></dot>
-                <text data-user-select="text" data-weight="700">
-                  Javascript
-                </text>
+                <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text" data-weight="700"> HTML </text> <dot></dot> <text data-user-select="text" data-weight="700"> CSS </text> </group>
+                <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text">Javascript</text> <dot></dot> <text data-user-select="text">Typescript</text> </group>
+                <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text">React</text> </group>
+              </group>
+            </group>
+<group data-print="hide"></group>
+
+{/* section */}
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-print="hide"> Education </text> </group>
+
+<group data-print="hide">
+  
+            <group  data-direction="column" data-contain="" data-type="grid" data-grid-template="200" data-gap="1">
+              <group data-direction="column" data-gap="5" data-border="" data-space="30" > <text data-user-select="text" data-weight="700" data-wrap="wrap" data-ellipsis="" > WSIiZ - Rzeszowie </text> <text data-user-select="text" data-wrap="wrap" data-ellipsis="" data-line="1.3"> Computer Graphics and Multimedia Production. </text> </group>
+
+              <group data-direction="column" data-gap="5"  data-space="30"> <text data-user-select="text" data-weight="700" data-wrap="wrap" data-ellipsis="" > Russian - Armenian University </text> <text data-user-select="text" data-wrap="wrap" data-ellipsis="" data-line="1.3"> Department of Physics and Technology </text> </group>
+            </group>
+</group>
+
+          
+
+{/* section */}
+
+<group data-space-horizontal="30" data-print="hide"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Links </text> </group>
+
+            <group data-gap="10" data-space="30" data-print="hide">
+              <group data-gap="10" data-direction="column">
+
+
+                <a data-direction="column" data-type="group" href="https://www.linkedin.com/in/sargsyanruben" target="blank"  > <text  data-ellipsis="" data-decoration="underline"> linkedin.com/in/sargsyanruben </text> </a>
+                <a data-direction="column" data-type="group" href="https://www.behance.net/sargsyan" target="blank" > <text  data-ellipsis="" data-decoration="underline"> behance.net/sargsyan </text> </a>
+                <a data-direction="column" data-type="group" href="https://dribbble.com/sargsyan" target="blank" > <text data-ellipsis="" data-decoration="underline"> dribbble.com/sargsyan </text> </a>
+
+
               </group>
             </group>
 
-            <group data-gap="30">
-              <text
-                data-user-select="text"
-                data-weight="700"
-                data-text-size="x-large"
-                data-font-type="hero"
-              >
-                Education
-              </text>
-            </group>
+{/* end */}
 
-            <group data-gap="10" data-direction="column">
-              <text data-line="1.5">
-                <text
-                  data-user-select="text"
-                  data-weight="700"
-                  data-wrap="wrap"
-                  data-ellipsis=""
-                >
-                  WSIiZ - Rzeszowie
-                </text>
 
-                <dot></dot>
-                <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
-                  Grafika komputerowa i produkcja multimedialna
-                </text>
-              </text>
 
-              <text data-line="1.5">
-                <text
-                  data-user-select="text"
-                  data-weight="700"
-                  data-wrap="wrap"
-                  data-ellipsis=""
-                >
-                  Russian - Armenian University
-                </text>
-                <dot></dot>
-                <text data-user-select="text" data-wrap="wrap" data-ellipsis="">
-                  Department of Physics and Technology
-                </text>
-              </text>
-            </group>
-
-            <separator data-horizontal=""></separator>
-
-            <group data-gap="10">
-              <group data-gap="10" data-align="center">
-                <a
-                  data-type="link"
-                  //    data-color="main"
-                  data-decoration="underline"
-                  href="https://www.linkedin.com/in/sargsyanruben"
-                  target="blank"
-                >
-                  <text data-weight="600" data-ellipsis="">
-                    linkedin.com/in/sargsyanruben
-                  </text>
-                </a>
-                <dot></dot>
-                <a
-                  data-type="link"
-                  //     data-color="main"
-                  data-decoration="underline"
-                  href="https://www.behance.net/sargsyan"
-                  target="blank"
-                >
-                  <text data-weight="600" data-ellipsis="">
-                    behance.net/sargsyan
-                  </text>
-                </a>
-                <dot></dot>
-                <a
-                  data-type="link"
-                  //    data-color="main"
-                  data-decoration="underline"
-                  href="https://dribbble.com/sargsyan"
-                  target="blank"
-                >
-                  <text data-weight="600" data-ellipsis="">
-                    dribbble.com/sargsyan
-                  </text>
-                </a>
-              </group>
-            </group>
           </group>
 
           <StuckReporter>

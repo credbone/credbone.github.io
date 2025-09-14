@@ -239,6 +239,8 @@ text[data-width="auto"]{width: initial;}
 [data-left="20"] { left: 20px; }
 [data-left="25"] { left: 25px; }
 [data-left="30"] { left: 30px; }
+[data-left="50"] { left: 50px; }
+[data-left="60"] { left: 60px; }
 [data-left="full"] { left: 100%; }
 
 [data-left="100%"] { left: 100%; }
@@ -834,7 +836,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-bottom="15"] {padding-bottom:15px;}
 [data-space-bottom="20"] {padding-bottom:20px;}
 [data-space-bottom="30"] {padding-bottom:30px;}
-
+[data-space-bottom="50"] {padding-bottom:50px;}
 
 [data-space-top="0"] {padding-top:0px;}
 [data-space-top="5"] {padding-top:5px;}
