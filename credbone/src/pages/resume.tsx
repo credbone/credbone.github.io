@@ -101,7 +101,7 @@ function Resume() {
                 Product & UX Designer
               </text>
             </group>
-
+<group data-print="hide"></group>
             <group
               data-max-length="300"
               data-print="hide"
@@ -412,7 +412,7 @@ data-gap="20"
                     onClick={handlePrint}
                     data-contain=""
                     data-width="auto"
-                    data-height={isSticky ? "60" : "50"}
+                    data-height="60"
                     data-radius="30"
                     data-background="text"
                     data-color="main-background"
