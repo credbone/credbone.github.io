@@ -1,13 +1,13 @@
 import { SvgResumeQR } from "../components/svg";
 import StuckReporter from "../components/StuckReporter";
 
-import { Printer } from "lucide-react";
+import { ArrowDownToLine } from "lucide-react";
 import AudioPlayer from "./audio_resume";
 import { SvgWood } from "../components/icon/svgRes";
 
-const handlePrint = () => {
-  window.print();
-};
+// const handlePrint = () => {
+//   window.print();
+// };
 
 function Resume() {
   return (
@@ -72,12 +72,17 @@ function Resume() {
             // data-space="30"
              data-gap="30"
           >
-          
-<group></group>
+
 <group data-print="hide"></group>
+
+
+<group></group>
 {/* section */}
 
 <group   data-direction="column"  data-gap="30" data-space-horizontal="30">
+
+
+
               <group data-direction="column" >
               <text
                 data-user-select="text"
@@ -101,8 +106,9 @@ function Resume() {
                 Product & UX Designer
               </text>
             </group>
-<group data-print="hide"></group>
-            <group
+
+<group   data-print="hide"></group>
+                      <group 
               data-max-length="300"
               data-print="hide"
               data-direction="column"
@@ -118,6 +124,12 @@ Product Designer with 10+ years in UI/UX. I've led design teams and built user-c
 
 
 </group>
+
+
+
+
+
+
 
 {/* section */}
 
@@ -204,84 +216,48 @@ data-gap="20"
 </group>
 
 
-<group data-space-horizontal="30" data-print="hide">
+{/* <group data-space-horizontal="30" data-print="hide">
 
 
-<group               data-gap="30"
-              data-space="30"
-              data-radius="30"
-              data-width="auto"
-               data-background="text"
-               data-color="main-background"
-              
-              >
+<group data-gap="30" data-space="30" data-background="text" data-color="main-background">
 
-                <a
-                href="https://credbone.com/Resume"
-                data-type="group"
-              //  data-width="auto"
-                //   data-background="white"
-                data-drag="none"
-                //   data-print="show"
-               // data-ratio="1:1"
-               data-width="auto"
-             
-              >
-                <SvgResumeQR />
-              </a>
+  <a href="https://credbone.com/Resume" data-type="group" data-width="auto">
+    <SvgResumeQR />
+  </a>
 
+  <group data-direction="column" data-width="auto" data-align="start" data-wrap="no">
 
+    <a href="tel:+37493080648" data-type="group" data-width="auto">
+      <text data-wrap="wrap" data-weight="700" data-cursor="pointer">
+        +374 93 08 06 48
+      </text>
+    </a>
 
+    <group data-height="fit"></group>
 
-              <group
-                data-direction="column"
-                data-width="auto"
-                data-align="start"
-                data-wrap="no"
-                //data-space="10"
-                
-              >
-                <a
-                  //   data-print="show"
-                  href="tel:+37493080648"
-                  data-type="group"
-                  data-width="auto"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-weight="700"
-                    data-cursor="pointer"
-                  >
-                    +374 93 08 06 48
-                  </text>
-                </a>
-             
-             <group data-height="fit"></group>
-             
-<group  data-direction="column">
-                  <a
-                  href="mailto:sargsyanrubens@gmail.com"
-                  data-type="group"
-                  data-width="auto"
-                >
-                  <text
-                    data-user-select="text"
-                    data-wrap="wrap"
-                    //   data-weight="600"
-                  >
-                    <text data-cursor="pointer">sargsyanrubens@gmail.com</text>
-                  </text>
-                </a>
+    <group data-direction="column" data-gap="3">
 
-                <text data-user-select="text" data-opacity="40">
-                  Armenia, Yerevan
-                </text>
-</group>
-              </group>
-            </group>
+      <a href="mailto:sargsyanrubens@gmail.com" data-type="group" data-width="auto">
+        <text data-user-select="text" data-wrap="wrap">
+          <text data-cursor="pointer" data-decoration="underline">
+            sargsyanrubens@gmail.com
+          </text>
+        </text>
+      </a>
 
+      <text data-user-select="text" data-opacity="40">
+        Armenia, Yerevan
+      </text>
+
+    </group>
+
+  </group>
 
 </group>
+
+
+
+</group> */}
 
 
 <group data-print="hide"></group>
@@ -353,7 +329,7 @@ data-gap="20"
 
               <group data-gap="10">
                 <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text" data-weight="700"> HTML </text> <dot></dot> <text data-user-select="text" data-weight="700"> CSS </text> </group>
-                <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text">Javascript</text> <dot></dot> <text data-user-select="text">Typescript</text> </group>
+                <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text">JavaScript</text> <dot></dot> <text data-user-select="text">Typescript</text> </group>
                 <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text">React</text> </group>
               </group>
             </group>
@@ -408,8 +384,14 @@ data-gap="20"
               >
                 <group data-height="50"></group>
                 <group data-width="auto">
-                  <group
-                    onClick={handlePrint}
+                  <a
+                  //  onClick={handlePrint}
+
+                  data-type="group"
+target="_blank"
+                  href="/cv.pdf"
+                  download="Ruben_Sargsyan_CV.pdf"
+
                     data-contain=""
                     data-width="auto"
                     data-height="60"
@@ -427,7 +409,7 @@ data-gap="20"
                   >
                     <group data-length={isSticky ? "60" : "20"}>
                       <icon data-position="center">
-                        <Printer size={20} />{" "}
+                        <ArrowDownToLine size={20} />{" "}
                       </icon>
                     </group>
 
@@ -438,9 +420,9 @@ data-gap="20"
                       data-transition-prop="font-size"
                       data-text-size={isSticky ? "0" : ""}
                     >
-                      Save
+                      Download
                     </text>
-                  </group>
+                  </a>
                 </group>
               </group>
             )}
