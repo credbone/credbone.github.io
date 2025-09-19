@@ -15,7 +15,7 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ColorPalette>(() => getPalette(defaultPrimaryColor, defaultSecondaryColor));
   const [themeMode, setThemeMode] = useState<string>(() => {
     const savedMode = localStorage.getItem('themeMode');
-    return savedMode || 'light';
+    return savedMode || 'auto';
   });
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.removeItem('selectedColors');
     localStorage.removeItem('themeMode');
     setTheme(getPalette(defaultPrimaryColor, defaultSecondaryColor));
-    setThemeMode('light');
+    setThemeMode('auto');
   };
 
   return (
