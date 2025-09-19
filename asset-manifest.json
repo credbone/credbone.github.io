@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f1e71d89.css",
-    "main.js": "/static/js/main.49a0d309.js",
+    "main.css": "/static/css/main.9d686812.css",
+    "main.js": "/static/js/main.e3eeb443.js",
     "static/js/206.b75d2b8c.chunk.js": "/static/js/206.b75d2b8c.chunk.js",
     "static/media/resume_audio.mp3": "/static/media/resume_audio.564ef05d986ee2ffa983.mp3",
     "static/media/res_82.webp": "/static/media/res_82.fce5a0f5158c54e95e7b.webp",
@@ -27,13 +27,14 @@
     "static/media/wide_res_67.webp": "/static/media/wide_res_67.42f17e9f6b8246a01805.webp",
     "static/media/res_09.jpg": "/static/media/res_09.084fb7c89505ab20b3e6.jpg",
     "static/media/wide_res_63.webp": "/static/media/wide_res_63.900588c0f0e31133d416.webp",
+    "static/media/person-res.png": "/static/media/person-res.675586e6edb757f7b176.png",
     "static/media/res_05.jpg": "/static/media/res_05.342d41b9f8ea29f395ee.jpg",
     "static/media/res_04.jpg": "/static/media/res_04.a4e9a15a6a6457921da5.jpg",
     "static/media/CalSans-SemiBold.woff2": "/static/media/CalSans-SemiBold.82d4f62fb972e38abe4a.woff2",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.f1e71d89.css",
-    "static/js/main.49a0d309.js"
+    "static/css/main.9d686812.css",
+    "static/js/main.e3eeb443.js"
   ]
 }
