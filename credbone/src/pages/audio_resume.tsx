@@ -270,7 +270,7 @@ const AudioPlayer: React.FC = () => {
             preload="metadata"
           />
 
-          <group data-space-horizontal="15">
+          <group data-space-horizontal="15" data-gap="3">
             {timestamps.map(({ time, label }) => {
               const isActive = Math.abs(currentTime - time) <= HIGHLIGHT_RANGE;
 

@@ -710,6 +710,9 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-top="-60"] {margin-top:-60px}
 [data-margin-right="-30"]{margin-right:-30px}
 [data-margin-bottom="-30"]{margin-bottom:-30px}
+
+[data-margin-bottom="-120"]{margin-bottom:-120px}
+
 [data-margin-bottom="-20"]{margin-bottom:-20px}
 
 [data-margin-top="30"] {margin-top:30px}

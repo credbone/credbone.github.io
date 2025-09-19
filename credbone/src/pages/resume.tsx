@@ -4,6 +4,10 @@ import StuckReporter from "../components/StuckReporter";
 import { ArrowDownToLine } from "lucide-react";
 import AudioPlayer from "./audio_resume";
 import { SvgWood } from "../components/icon/svgRes";
+import { Link } from "react-router-dom";
+
+import person_image from "../styles/images/samples/person-res.png";
+import { IconPlane } from "../components/icon/credIcons";
 
 // const handlePrint = () => {
 //   window.print();
@@ -18,14 +22,23 @@ function Resume() {
         data-space="30"
         data-space-bottom="0"
       >
-        <group>
-          <group data-height="30" data-adaptive="desktop"></group>
+        <group data-direction="column">
+          <group data-height="30" ></group>
 
-          <group data-space="45" data-max-length="600">
+
+          <group data-length="400" data-margin-bottom="-120">
+                      <picture
+
+          >
+            <img src={person_image} alt="" />
+          </picture>
+          </group>
+
+          <group data-space="adaptive-30-50" data-max-length="600">
             <text
               data-wrap="wrap"
               data-font-type="hero"
-              data-ellipsis=""
+             // data-ellipsis=""
               data-line="1"
               data-text-size="64"
               data-text-clamp="64"
@@ -34,7 +47,7 @@ function Resume() {
             </text>
           </group>
 
-          <group data-height="30" data-adaptive="desktop"></group>
+
         </group>
       </group>
 
@@ -292,7 +305,7 @@ data-gap="20"
 <group >
   <group data-contain="" data-type="grid" data-grid-template="200" data-gap="1"   >
 
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Research </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From User Interviews to Managing Personas </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Research </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From User Interviews to Actionable Product Insights </text> </group>
   <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Prototyping </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Paper & Rapid to High-fidelity Markups </text> </group>
   <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Interaction Design </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Micro-interactions to Complex User Flows </text> </group>
   <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Design Systems </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Tokens & Components to Scalable UI Patterns </text> </group>
@@ -301,6 +314,38 @@ data-gap="20"
 </group>
 </group>
 
+
+{/* section */}
+
+<group data-space-horizontal="30"> 
+  <text data-user-select="text" data-weight="700" data-text-size="x-large"> Strategic <br></br>& Leadership </text> 
+</group>
+
+<group>
+  <group data-contain="" data-type="grid" data-grid-template="200" data-gap="1">
+
+    <group data-direction="column" data-gap="10" data-space="30" data-border="">
+      <text data-user-select="text" data-weight="700"> Product Strategy </text>
+      <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Raw Ideas to Structured Product Vision & Roadmap </text>
+    </group>
+
+    <group data-direction="column" data-gap="10" data-space="30" data-border="">
+      <text data-user-select="text" data-weight="700"> Cross-functional Collaboration </text>
+      <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Working with Individual Teams to Leading Multi-disciplinary Initiatives </text>
+    </group>
+
+    <group data-direction="column" data-gap="10" data-space="30" data-border="">
+      <text data-user-select="text" data-weight="700"> Decision Making </text>
+      <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Defining Product Direction to Evolving Strategy Based on Data & Insights </text>
+    </group>
+
+    <group data-direction="column" data-gap="10" data-space="30" data-border="">
+      <text data-user-select="text" data-weight="700"> Mentorship & Learning </text>
+      <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Teaching Best Practices to Fostering Continuous Team Growth </text>
+    </group>
+
+  </group>
+</group>
 
 
 
@@ -347,7 +392,70 @@ data-gap="20"
             </group>
 </group>
 
-          
+
+
+
+
+    {/**/}      
+
+
+          <StuckReporter>
+            {(isSticky) => (
+              <group
+                data-print="hide"
+                data-index="3"
+                data-bottom="30"
+                data-sticky="bottom"
+                data-width="auto"
+                data-space-vertical="50"
+                data-space-horizontal="20"
+                data-over-color="neutral"
+              >
+
+                <group data-width="auto">
+                  <a
+                  //  onClick={handlePrint}
+
+                  data-type="group"
+target="_blank"
+                  href="/cv.pdf"
+                  download="Ruben_Sargsyan_CV.pdf"
+
+                    data-contain=""
+                    data-width="auto"
+                    data-height="60"
+                    data-radius="30"
+                   data-background="yellow-light" data-color="brown-darker"
+                    data-cursor="pointer"
+                    data-shrink="no"
+                    //  data-elevation={isSticky ? "6" : "1"}
+                    data-interactive=""
+                    data-align="center"
+                    data-wrap="no"
+                    data-space={isSticky ? "0" : "20"}
+                    data-gap={isSticky ? "0" : "10"}
+                  >
+                    <group data-length={isSticky ? "60" : "20"}>
+                      <icon data-position="center">
+                        <ArrowDownToLine size={20} />{" "}
+                      </icon>
+                    </group>
+
+                    <text
+                      data-weight="700"
+                      data-duration=".225"
+                      data-opacity={isSticky ? "0" : ""}
+                      data-transition-prop="font-size"
+                      data-text-size={isSticky ? "0" : ""}
+                    >
+                      Download
+                    </text>
+                  </a>
+                </group>
+              </group>
+            )}
+          </StuckReporter>
+
 
 {/* section */}
 
@@ -365,69 +473,52 @@ data-gap="20"
               </group>
             </group>
 
+
+
+                      <Link                 data-drag="none"
+               // data-width="auto"
+                data-type="group"
+                data-interactive=""
+                data-over-color="neutral"
+
+                to="https://t.me/sargsyanruben"
+                target="_blank" data-space="40"  data-print="hide"  data-gap="40" data-background="yellow-light" data-color="brown-darker" data-radius="40">
+
+
+
+
+<group data-direction="column"   data-gap="20" data-width="auto" data-position="left">
+              <text
+              data-wrap="wrap"
+              data-font-type="hero"
+              data-ellipsis=""
+              data-line="1"
+              data-text-size="64"
+              data-text-clamp="64"
+            >
+             let’s chat
+            </text>
+            <text data-line="1.3" data-wrap="wrap" data-max-length="300">Ready to talk through your project and figure out the next steps together?</text>
+</group>
+
+
+
+
+<IconPlane size={128}/>
+
+          </Link>
+
 {/* end */}
 
 
 
           </group>
 
-          <StuckReporter>
-            {(isSticky) => (
-              <group
-                data-print="hide"
-                data-index="3"
-                data-bottom="30"
-                data-sticky="bottom"
-                data-width="auto"
-                data-space-vertical="30"
-                data-over-color="neutral"
-              >
-                <group data-height="50"></group>
-                <group data-width="auto">
-                  <a
-                  //  onClick={handlePrint}
 
-                  data-type="group"
-target="_blank"
-                  href="/cv.pdf"
-                  download="Ruben_Sargsyan_CV.pdf"
-
-                    data-contain=""
-                    data-width="auto"
-                    data-height="60"
-                    data-radius="30"
-                    data-background="text"
-                    data-color="main-background"
-                    data-cursor="pointer"
-                    data-shrink="no"
-                    //  data-elevation={isSticky ? "6" : "1"}
-                    data-interactive=""
-                    data-align="center"
-                    data-wrap="no"
-                    data-space={isSticky ? "0" : "20"}
-                    data-gap={isSticky ? "0" : "10"}
-                  >
-                    <group data-length={isSticky ? "60" : "20"}>
-                      <icon data-position="center">
-                        <ArrowDownToLine size={20} />{" "}
-                      </icon>
-                    </group>
-
-                    <text
-                      data-weight="600"
-                      data-duration=".225"
-                      data-opacity={isSticky ? "0" : ""}
-                      data-transition-prop="font-size"
-                      data-text-size={isSticky ? "0" : ""}
-                    >
-                      Download
-                    </text>
-                  </a>
-                </group>
-              </group>
-            )}
-          </StuckReporter>
           <group data-height="100" data-print="hide"></group>
+
+
+
         </group>
       </group>
     </view>

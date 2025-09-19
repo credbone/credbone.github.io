@@ -233,6 +233,22 @@ export const IconViewColumn: React.FC<IconProps> = ({ fill = false, ...restProps
 };
 
 
+export const IconPlane: React.FC<IconProps> = ({ fill = false, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      
+      <path  stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="2" fill={fill ? 'currentColor' : 'none'} d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+      
+          </Icon>
+  );
+};
+
+
+
+
+
+
+
 
 
 // export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
