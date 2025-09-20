@@ -15,6 +15,17 @@ import { FontSizeProvider } from "./components/FontSizeProvider";
 isMobile && document.documentElement.classList.add("mobile");
 isDesktop && document.documentElement.classList.add("desktop");
 
+
+// Universal PWA detection
+const isPWA = (): boolean => {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches || // Android & modern browsers
+    (window.navigator as any).standalone === true // iOS Safari
+  );
+};
+
+isPWA() && document.documentElement.classList.add("pwa");
+
 const TooltipContainer = () => (
   <div id="tooltip-container" data-max-length="fit" />
 );

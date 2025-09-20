@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
 
 <group data-gap="10" data-align="center"       data-wrap="no">
 
-<group  ref={buttonRef}  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
+<group  ref={buttonRef} data-shrink="no"  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
 <group>
 <icon data-length="30"  >
 <SvgHamburger />
@@ -49,7 +49,7 @@ const Navigation: React.FC = () => {
 
 <separator data-vertical=""></separator>
 
-  <NavLink data-type="group"  data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain=""  to="/">
+  <NavLink   data-shrink="no" data-type="group"  data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain=""  to="/">
 <group  data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <House size={20} />
 </group>
@@ -77,7 +77,7 @@ const Navigation: React.FC = () => {
 
 
 
-  <NavLink  data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
+  <NavLink  data-shrink="no"  data-position="right" data-align="center" data-type="group" data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item" to="/Search">
   {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Search</text> */}
 <group data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <Search size={20} />

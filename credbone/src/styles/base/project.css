@@ -171,7 +171,7 @@ transition: background-color 5000s 0s, color 5000s 0s;
 {
 
   .mobile [data-bottom="30/90"] {bottom: 90px;}
-  .mobile [data-adaptive-order="2"]{order:2}
+  .pwa [data-adaptive-order="2"]{order:2}
   .mobile [data-sticky="adaptive-top-bottom"] {position:sticky;bottom: 0;}
 
 }

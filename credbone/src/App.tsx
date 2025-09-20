@@ -51,7 +51,7 @@ function App() {
         <NavProvider> 
         <ModalProvider>
 <HorizontalNav data-print="hide"/>
-          <view data-vertical="">
+          <view data-vertical="" data-border="no">
           <VerticalNav  data-print="hide" /> 
             <Routes>
               <Route path="/*" element={<Navigate replace to="/" />} />
