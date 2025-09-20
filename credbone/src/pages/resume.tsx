@@ -305,11 +305,11 @@ data-gap="20"
 <group >
   <group data-contain="" data-type="grid" data-grid-template="200" data-gap="1"   >
 
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Research </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From User Interviews to Actionable Product Insights </text> </group>
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Prototyping </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Paper & Rapid to High-fidelity Markups </text> </group>
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Interaction Design </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Micro-interactions to Complex User Flows </text> </group>
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Design Systems </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Tokens & Components to Scalable UI Patterns </text> </group>
-  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text" data-weight="700" > Coding </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Reusable Components to Complete UI </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text"  data-wrap="wrap" data-ellipsis="" data-weight="700" > Research </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From User Interviews to Actionable Product Insights </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text"  data-wrap="wrap" data-ellipsis="" data-weight="700" > Prototyping </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Paper & Rapid to High-fidelity Markups </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text"  data-wrap="wrap" data-ellipsis="" data-weight="700" > Interaction Design </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Micro-interactions to Complex User Flows </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text"  data-wrap="wrap" data-ellipsis="" data-weight="700" > Design Systems </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3" > From Tokens & Components to Scalable UI Patterns </text> </group>
+  <group data-direction="column" data-gap="10" data-space="30" data-border=""> <text data-user-select="text"  data-wrap="wrap" data-ellipsis="" data-weight="700" > Coding </text> <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Reusable Components to Complete UI </text> </group>
 
 </group>
 </group>
@@ -317,30 +317,30 @@ data-gap="20"
 
 {/* section */}
 
-<group data-space-horizontal="30"> 
+<group data-space-horizontal="30" data-print="hide"> 
   <text data-user-select="text" data-weight="700" data-text-size="x-large"> Strategic <br></br>& Leadership </text> 
 </group>
 
-<group>
+<group data-print="hide">
   <group data-contain="" data-type="grid" data-grid-template="200" data-gap="1">
 
     <group data-direction="column" data-gap="10" data-space="30" data-border="">
-      <text data-user-select="text" data-weight="700"> Product Strategy </text>
+      <text data-wrap="wrap" data-ellipsis="" data-user-select="text" data-weight="700"> Product Strategy </text>
       <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Raw Ideas to Structured Product Vision & Roadmap </text>
     </group>
 
     <group data-direction="column" data-gap="10" data-space="30" data-border="">
-      <text data-user-select="text" data-weight="700"> Cross-functional Collaboration </text>
+      <text data-wrap="wrap" data-ellipsis="" data-user-select="text" data-weight="700"> Cross-functional Collaboration </text>
       <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Working with Individual Teams to Leading Multi-disciplinary Initiatives </text>
     </group>
 
     <group data-direction="column" data-gap="10" data-space="30" data-border="">
-      <text data-user-select="text" data-weight="700"> Decision Making </text>
+      <text data-wrap="wrap" data-ellipsis="" data-user-select="text" data-weight="700"> Decision Making </text>
       <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Defining Product Direction to Evolving Strategy Based on Data & Insights </text>
     </group>
 
     <group data-direction="column" data-gap="10" data-space="30" data-border="">
-      <text data-user-select="text" data-weight="700"> Mentorship & Learning </text>
+      <text data-wrap="wrap" data-ellipsis="" data-user-select="text" data-weight="700"> Mentorship & Learning </text>
       <text data-wrap="wrap" data-ellipsis="" data-line="1.3"> From Teaching Best Practices to Fostering Continuous Team Growth </text>
     </group>
 
