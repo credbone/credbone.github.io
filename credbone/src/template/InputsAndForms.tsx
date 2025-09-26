@@ -60,6 +60,7 @@ const InputsAndForms: React.FC = () => {
 
           <group data-direction="column" data-gap="10">
             <Input
+             name="demo"
               icon={<IconSearch size={20} />}
               size="large"
               type="text"
@@ -111,6 +112,7 @@ const InputsAndForms: React.FC = () => {
         >
           <group data-direction="column" data-gap="10">
             <Input
+            name="demo"
               icon={<IconHome size={20} />}
               size="large"
               type="text"
@@ -222,11 +224,11 @@ const InputsAndForms: React.FC = () => {
                   hidden={true}
                   dataLength="autofit"
                   name="username"
-                  autoComplete=""
+                  autoComplete="additional-name"
                 />
               </group>
 
-              <group data-direction="column" data-gap="30">
+              <group data-direction="column" data-gap="30" >
                 <Password
                   size="large"
                   icon={<Key size={20} />}
@@ -235,6 +237,7 @@ const InputsAndForms: React.FC = () => {
                   name="password_1"
                   //  autocomplete="current-password"
                   autoComplete="off"
+id="demopass"
                 />
 
                 <separator data-horizontal="" ></separator>
@@ -248,6 +251,7 @@ const InputsAndForms: React.FC = () => {
                   dataLength="autofit"
                   name="password_1"
                   autoComplete="new-password"
+                 
                 />
                 <Input
                   type="password"
@@ -257,6 +261,7 @@ const InputsAndForms: React.FC = () => {
                   dataLength="autofit"
                   name="password_1"
                   autoComplete="new-password"
+                  
                 />
 </group>
               </group>
@@ -300,6 +305,8 @@ const InputsAndForms: React.FC = () => {
               label="Name"
               placeholder="Enter Your Full Name"
               dataLength="fit"
+              name="name"
+              autoComplete="additional-name"
             ></Input>
 
             <Input
@@ -308,6 +315,8 @@ const InputsAndForms: React.FC = () => {
               label="E-Mail"
               dataLength="fit"
               placeholder="Enter Your Email Address"
+              name="email"
+              autoComplete="home email"
             ></Input>
 
             <Input
@@ -317,6 +326,7 @@ const InputsAndForms: React.FC = () => {
               dataLength="fit"
               placeholder="Write Your Message"
               data-min-height="120"
+              name="message"
             ></Input>
 
             <group data-type="group">

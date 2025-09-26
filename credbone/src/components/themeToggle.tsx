@@ -46,6 +46,7 @@ const ThemeToggle: React.FC = () => {
     
       {radioOptions.map((option, index) => (
         <Radio
+        id={option.radioValue}
         labelProps={{ "data-background": "" }}
         iconProps={{ "data-length": "30" }}
         key={index}
