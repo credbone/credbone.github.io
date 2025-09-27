@@ -917,6 +917,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 {
   [data-radius="15-desktop"]{border-radius: 15px;}
+    [data-radius="25-desktop"]{border-radius: 25px;}
 }
 
 
@@ -1176,6 +1177,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="width"]{transition-property: width;}
 [data-transition-prop="max-width"]{transition-property: max-width;}
 [data-transition-prop="height"]{transition-property: height;}
+[data-transition-prop="padding"]{transition-property: padding;}
 [data-transition-prop="padding"]{transition-property: padding;}
 [data-transition-prop="border-radius"]{transition-property: border-radius;}
 [data-transition-prop="border-radius-margin"]{transition-property: border-radius, margin;}

@@ -97,11 +97,12 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-adaptive="mobile"
       ></group>
       <group
+      
         ref={navRef}
         data-placement="left"
         data-shrink="no"
         data-name="side_nav"
-        data-radius="15-desktop"
+        data-radius={isNavOpen ? "25-desktop" : "15-desktop"}
         data-float="30-desktop"
         data-margin-right="0"
         data-background="main-background"
@@ -117,9 +118,12 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
         data-wrap="no"
         //data-direction="column"
         data-contain=""
+        
+       // data-transition-prop="border-radius"
         {...props}
       >
         <group
+        
           // data-length={isSubNavOpen ? "70" : "fit"}
           data-name="side_nav-inner"
           data-height="fit"
@@ -130,6 +134,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-index="2"
         >
           <group
+         // data-delay={isNavOpen ? "2.25" : "0"}
              data-name="side_nav-wrapper"
             data-height="autofit"
             data-weight="600"
@@ -143,6 +148,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
             data-direction="column"
             data-gap="5"
             data-duration="2.25"
+            
             data-transition-prop="padding"
           >
             <Tooltip content={isNavOpen ? "" : "Open"} placement="right">

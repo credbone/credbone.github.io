@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 
+
+
+
 import {
   IconHeart,
   IconHome,
@@ -16,18 +19,21 @@ import {
   Proportions,
   Bird,
   BookMarked,
-  Box,
   CakeSlice,
   Videotape,
   Feather,
-  Package,
   Paintbrush,
   PencilRuler,
   Pizza,
   Snail,
   Wallet,
   X,
+  WandSparkles,
+  Salad,
 } from "lucide-react";
+
+
+
 
 // import sectionImage_2 from "../styles/images/samples/wide_res_74.jpg";
 import sectionImage_2 from "../styles/images/samples/wide_res_66.webp";
@@ -38,9 +44,9 @@ import TemplatePageHeader from "./TemplatePageHeader";
 
 const lucideIcons = [
   { Component: Snail, title: "Snail" },
-  { Component: Package, title: "Package" },
+  { Component: Salad, title: "Salad" },
   { Component: PencilRuler, title: "Pencil Ruler" },
-  { Component: Box, title: "Box" },
+  { Component: WandSparkles, title: "Wand Sparkles" },
   { Component: CakeSlice, title: "Cake Slice" },
   { Component: Videotape, title: "Videotape" },
   { Component: Feather, title: "Feather" },
@@ -49,7 +55,7 @@ const lucideIcons = [
   { Component: Bird, title: "Bird" },
   { Component: Wallet, title: "Wallet" },
   { Component: BookMarked, title: "BookMarked" },
-  { Component: Paintbrush, title: "Paint Brush" },
+  { Component: Paintbrush, title: "Paint brush" },
 ];
 
 const CustomIcons = [
@@ -249,6 +255,7 @@ const resetValues = () => {
                             placeholder="Search..."
                             onChange={handleSearch}
                             value={searchValue}
+                            name="search"
                           />
                           {searchValue && (
                             <Tooltip content="Clear">
@@ -363,8 +370,15 @@ const resetValues = () => {
                           data-align="center"
                           data-gap="20"
                           data-direction="column"
+                          
                         >
-                          <icon.Component size={20} />
+
+
+
+                         <group data-interact=""   data-length="30"
+                            data-height="30"
+                            data-align="center"
+                            data-justify="center" > <icon.Component size={20} /></group>
                           <text data-light="" data-ellipsis="">
                             {icon.title}
                           </text>
