@@ -7,7 +7,7 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 
 
-import sampleImage_2 from "../styles/images/samples/wide_res_86.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_68.webp";
 import sampleImage_3 from "../styles/images/samples/res_82.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 
