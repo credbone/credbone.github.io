@@ -15,32 +15,34 @@ interface Circle {
 export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
   const [circles, setCircles] = useState<Circle[]>([]);
 
-  const effectStart: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
-    ? (e) => {
-        const current = ref?.current;
-        if (current) {
-          const clientRect = current.getBoundingClientRect();
-          const mouseX = e.clientX - clientRect.left;
-          const mouseY = e.clientY - clientRect.top;
-          const radius = Math.sqrt(
-            current.offsetWidth ** 2 + current.offsetHeight ** 2
-          );
+const effectStart: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
+  ? (e) => {
+      const current = ref?.current;
+      if (current) {
+        const clientRect = current.getBoundingClientRect();
+        const mouseX = e.clientX - clientRect.left;
+        const mouseY = e.clientY - clientRect.top;
+        const radius = Math.sqrt(
+          current.offsetWidth ** 2 + current.offsetHeight ** 2
+        );
 
-          const newCircle: Circle = {
-            key: Date.now(),
-            classNames: [],
-            element: (
-              <circle
-                r={radius}
-                cx={mouseX}
-                cy={mouseY}
-                style={{
-                  transformOrigin: `${mouseX}px ${mouseY}px`,
-                }}
-              ></circle>
-            ),
-          };
+        const newCircle: Circle = {
+          key: Date.now(),
+          classNames: [],
+          element: (
+            <circle
+              r={radius}
+              cx={mouseX}
+              cy={mouseY}
+              style={{
+                transformOrigin: `${mouseX}px ${mouseY}px`,
+              }}
+            ></circle>
+          ),
+        };
 
+        // Defer state update to not block navigation
+        requestAnimationFrame(() => {
           setCircles((prevCircles) => [...prevCircles, newCircle]);
 
           setTimeout(() => {
@@ -52,12 +54,15 @@ export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
               )
             );
           }, 300);
-        }
+        });
       }
-    : undefined;
+    }
+  : undefined;
 
-  const onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
-    ? () => {
+const onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
+  ? () => {
+      // Defer to not block navigation
+      requestAnimationFrame(() => {
         const currentCircles = circles;
 
         setCircles((prevCircles) =>
@@ -77,8 +82,9 @@ export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
             )
           );
         }, 1000);
-      }
-    : undefined;
+      });
+    }
+  : undefined;
 
   return {
     onPointerDown: effectStart,

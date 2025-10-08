@@ -40,6 +40,7 @@
     animation-timing-function: linear;
     fill: var(--ink-color);
     will-change: transorm, opacity;
+    pointer-events: none;
 }
 
 

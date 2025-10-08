@@ -34,12 +34,19 @@ const GaugeZoom: React.FC<GaugeZoomProps> = ({ value, max, size, strokecolor, })
         fill="currentColor"
         transform-origin="center center"
         transform={"rotate(" + (-((value / max || 0) * 360) - 90) + ")"}
+
+          style={{
+    transform: `rotate(${-(value / max) * 360 - 90}deg)`,
+    transformOrigin: '50% 50%',
+    transition: 'transform 0.725s ease'
+  }}
+
         data-duration=".725"
          data-transition-prop="transform"
       >
         
 
-        <path data-opacity="60" d="M110,70.25v-0.5h10v0.5H110Zm-5.484-20.467,8.66-5,0.25,0.433-8.66,5ZM89.784,104.766l0.433-.25,5,8.66-0.433.25Zm0-69.532,5-8.66,0.433,0.25-5,8.66ZM69.75,110h0.5v10h-0.5V110Zm0-90h0.5V30h-0.5V20ZM44.784,113.176l5-8.66,0.433,0.25-5,8.66Zm0-86.352,0.433-.25,5,8.66-0.433.25Zm-18.21,67.96,8.66-5,0.25,0.433-8.66,5Zm0-49.567,0.25-.433,8.66,5-0.25.433ZM30,70.25H20v-0.5H30v0.5Zm83.426,24.534-0.25.433-8.66-5,0.25-.433Z"/>
+        <path  data-opacity="60" d="M110,70.25v-0.5h10v0.5H110Zm-5.484-20.467,8.66-5,0.25,0.433-8.66,5ZM89.784,104.766l0.433-.25,5,8.66-0.433.25Zm0-69.532,5-8.66,0.433,0.25-5,8.66ZM69.75,110h0.5v10h-0.5V110Zm0-90h0.5V30h-0.5V20ZM44.784,113.176l5-8.66,0.433,0.25-5,8.66Zm0-86.352,0.433-.25,5,8.66-0.433.25Zm-18.21,67.96,8.66-5,0.25,0.433-8.66,5Zm0-49.567,0.25-.433,8.66,5-0.25.433ZM30,70.25H20v-0.5H30v0.5Zm83.426,24.534-0.25.433-8.66-5,0.25-.433Z"/>
 
         
 
@@ -47,6 +54,7 @@ const GaugeZoom: React.FC<GaugeZoomProps> = ({ value, max, size, strokecolor, })
 
 
         <circle
+        //fill="red"
           //      data-opacity="0"
           cx="50%"
           cy="50%"
@@ -81,6 +89,14 @@ data-duration=".325"
 
 transform-origin="center center"
 transform={"rotate(" + (-((value / max || 0) * 360)) + ")"}
+
+          style={{
+    transform: `rotate(${-(value / max) * 360 - 90}deg)`,
+    transformOrigin: '50% 50%',
+    transition: 'transform 0.325s ease'
+  }}
+
+
  data-transition-prop="transform"
 data-opacity="10"
 

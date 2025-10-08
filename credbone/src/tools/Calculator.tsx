@@ -73,6 +73,7 @@ const Calculator: React.FC = () => {
 >
       <group data-direction="column"  data-height="120" data-text-align="right"  data-justify="center">
         <input
+        name="calc-input"
           type="text"
           data-length="fit"
           value={input}

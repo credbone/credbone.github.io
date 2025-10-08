@@ -271,6 +271,9 @@ const UnitConverter: React.FC = () => {
     );
   };
 
+  
+
+  
   return (
     <group data-direction="column" data-gap="10">
       {/* Select conversion type */}
@@ -364,6 +367,7 @@ const UnitConverter: React.FC = () => {
           <group data-direction="column" data-space="5">
             <group>
               <input
+              name="convert-from"
                 data-name="input-reset"
                 data-weight="300"
                 data-text-size="xx-large"
@@ -438,7 +442,7 @@ const UnitConverter: React.FC = () => {
 
           <group data-direction="column" data-space="5">
             <group>
-              <input
+              <input  name="convert-to"
                 data-name="input-reset"
                 data-weight="300"
                 data-text-size="xx-large"
