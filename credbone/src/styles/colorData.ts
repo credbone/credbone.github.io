@@ -4,16 +4,24 @@ export const colors = [
   { code: "#544f9a", name: "Indigo", description: "A deep blueish-purple color." },
   { code: "#0066ff", name: "Blue", description: "A vibrant blue color." },
   { code: "#598b7f", name: "Teal", description: "A greenish-blue shade." },
+  { code: "#8fa17b", name: "Sage", description: "A soft gray-green that bridges teal and green." },
   { code: "#adbb88", name: "Green", description: "A classic green color." },
+  { code: "#7a7b53", name: "Moss", description: "A muted earthy tone leading toward olive." },
+  { code: "#5f6040", name: "Olive", description: "A grounded, natural greenish-brown." },
+  { code: "#b7a15c", name: "Sand", description: "A warm tan tone between olive and yellow." },
   { code: "#ebd187", name: "Yellow", description: "A bright yellow hue." },
-  { code: "#e7a35f", name: "Amber", description: "A warm golden-orange bridging yellow and copper." },
-  { code: "#c35731", name: "Copper", description: "A warm reddish-brown tone with metallic depth." },
-  { code: "#d96a45", name: "Terracotta", description: "A soft clay-like orange that eases transition to coral." },
-  { code: "#ff8c6a", name: "Coral", description: "A warm orange-pink shade." },
+  { code: "#e7a35f", name: "Amber", description: "A golden-orange bridging yellow and copper." },
+  // { code: "#cf6a37", name: "Rust", description: "A darker orange-brown blending amber and copper." },
+  // { code: "#c35731", name: "Copper", description: "A warm reddish-brown tone with metallic depth." },
+  { code: "#d46a3d", name: "Clay", description: "A soft earthy orange easing transition from copper." },
+  { code: "#e97a56", name: "Terracotta", description: "A clay-red shade connecting copper and coral." },
+  // { code: "#ff8c6a", name: "Coral", description: "A warm orange-pink shade." },
+  // { code: "#ffa88a", name: "Salmon", description: "A soft pinkish-orange bridging coral and peach." },
   { code: "#ffb497", name: "Peach", description: "A soft, pastel peach shade.", separator: "true" },
   { code: "#03dac5", name: "Mint", description: "A refreshing greenish-blue color." },
   { code: "#e0e721", name: "Neon Yellow", description: "A bright, high-energy yellow hue." },
 ];
+
 
 
 

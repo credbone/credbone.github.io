@@ -7,7 +7,7 @@ import Count from "../components/Coutner";
 
 import Calculator from "../tools/Calculator";
 
-import sampleImage from "../styles/images/samples/wide_res_66.webp";
+import sampleImage from "../styles/images/samples/wide_res_68.webp";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TooltipPropsDemo from "./TooltipPropsDemo";
 import TemplatePageHeader from "./TemplatePageHeader";
