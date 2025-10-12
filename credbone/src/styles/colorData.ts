@@ -6,12 +6,16 @@ export const colors = [
   { code: "#598b7f", name: "Teal", description: "A greenish-blue shade." },
   { code: "#adbb88", name: "Green", description: "A classic green color." },
   { code: "#ebd187", name: "Yellow", description: "A bright yellow hue." },
-  { code: "#ff8f6b", name: "Orange", description: "A warm orange shade." },
-  { code: "#ff705e", name: "Pink", description: "A soft pink shade." },
-  { code: "#ffb997", name: "Peach", description: "A soft, pastel peach shade.",separator:"true"  },
+  { code: "#e7a35f", name: "Amber", description: "A warm golden-orange bridging yellow and copper." },
+  { code: "#c35731", name: "Copper", description: "A warm reddish-brown tone with metallic depth." },
+  { code: "#d96a45", name: "Terracotta", description: "A soft clay-like orange that eases transition to coral." },
+  { code: "#ff8c6a", name: "Coral", description: "A warm orange-pink shade." },
+  { code: "#ffb497", name: "Peach", description: "A soft, pastel peach shade.", separator: "true" },
   { code: "#03dac5", name: "Mint", description: "A refreshing greenish-blue color." },
-  { code: "#e0e721", name: "Yellow", description: "A bright, neon yellow hue." },
+  { code: "#e0e721", name: "Neon Yellow", description: "A bright, high-energy yellow hue." },
 ];
+
+
 
 export const seccolors = [
 
