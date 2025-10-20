@@ -127,6 +127,7 @@
 
 
 [data-opacity="0"]{opacity:0;}
+[data-opacity="5"]{opacity:5%;}
 [data-opacity="10"]{opacity:10%;}
 [data-opacity="20"]{opacity:20%;}
 [data-opacity="30"]{opacity:30%;}

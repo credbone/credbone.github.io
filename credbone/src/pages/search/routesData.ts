@@ -33,7 +33,7 @@ export const routesData: RouteData[] = [
   },
   { 
     path: "../Components/Colors", 
-    tags: ["colors", "design", "palette", "theme", "light", "dark", "shades", "hues", "tints", "swatches", "token"], 
+    tags: ["colors", "design", "palette", "theme", "light", "dark", "shades", "hues", "tints", "swatches", "token","export","figma", "tools"], 
     description: "Color design, palettes, and tools for theme building.", 
     title: "Colors" 
   },

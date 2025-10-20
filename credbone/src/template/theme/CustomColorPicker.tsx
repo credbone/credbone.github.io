@@ -262,7 +262,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           data-react="background"
           data-over-color="neutral"
           data-space="15"
-          data-radius="10"
+          data-radius="15"
         >
           <text data-weight="700">Custom</text>
           <text data-opacity="30">Design your own</text>

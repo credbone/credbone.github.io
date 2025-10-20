@@ -731,6 +731,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-horizontal="5"] {margin-left:5px; margin-right: 5px;}
 [data-margin-horizontal="-10"] {margin-left:-10px; margin-right: -10px;}
 
+[data-margin-horizontal="10"] {margin-left:10px; margin-right: 10px;}
+
 [data-margin-horizontal="-15"] {margin-left:-15px; margin-right: -15px;}
 [data-margin-horizontal="-20"] {margin-left:-20px; margin-right: -20px;}
 

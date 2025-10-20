@@ -6,6 +6,9 @@ import RichThemePicker from "./richThemePicker";
 
 import CustomColorPicker from "./theme/CustomColorPicker";
 import TemplatePageHeader from "./TemplatePageHeader";
+import { usePaletteActions } from "../styles/paletteUtils";
+import { useTheme } from "../components/ThemeProvider";
+import { Copy, Download } from "lucide-react";
 
 export const ColorPalette = [
   { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
@@ -20,6 +23,11 @@ export const ColorPalette = [
 ];
 
 const Colors: React.FC = () => {
+
+    const { theme } = useTheme();
+const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
+
+
   return (
     <group
       data-space="30"
@@ -37,6 +45,17 @@ const Colors: React.FC = () => {
         type="Token"
         descriptionProps={{ "data-length": "600" }}
       />
+
+
+
+
+
+
+
+
+
+
+
 
       <group data-gap="30">
         <group data-gap="15" data-align="center" data-space="30">
@@ -95,7 +114,7 @@ const Colors: React.FC = () => {
                   data-react="background"
                   data-over-color="neutral"
                   data-space="15"
-                  data-radius="10"
+                  data-radius="15"
 
                 >
                   <text data-weight="700">Swatches</text>
@@ -105,6 +124,110 @@ const Colors: React.FC = () => {
             </Popover>
             <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="primary" />
+
+ <separator data-vertical="adaptive" data-height=""></separator>
+
+
+            <Popover
+              data-space="5"
+              data-radius="15"
+              content={(closePopover) => (
+                <group
+                  //data-gap="5"
+                  data-direction="column"
+                  data-length="240"
+                  onClick={closePopover}
+                >
+                  <group
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="2.75"
+                    data-name="autoseparation"
+                  >
+                    <group
+                      data-space="15"
+                      data-align="center"
+                      data-gap="15"
+                      //   data-width="auto"
+                      data-interactive=""
+                      data-radius="10"
+                      data-cursor="pointer"
+                      onClick={() => downloadPaletteSVG(theme)}
+                    >
+                      {/* <group data-length="30" data-justify="center">
+                        <icon>
+                          <Download size="20" />
+                        </icon>
+                      </group> */}
+                      <group data-direction="column" data-width="auto">
+                        <text data-weight="700">Download</text>
+                        <text data-opacity="30">Save palette for later</text>
+                      </group>
+                    </group>
+                  </group>
+
+
+
+
+
+                  <group
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="3.25"
+                    data-name="autoseparation"
+                  >
+  <separator data-horizontal="" data-margin-horizontal="10" data-opacity="5"></separator>
+                    <group
+                      data-space="15"
+                      data-align="center"
+                      data-gap="15"
+                      // data-width="auto"
+                      data-interactive=""
+                      data-radius="10"
+                      data-cursor="pointer"
+                      onClick={() => copyPaletteSVG(theme)}
+                    >
+                      {/* <group data-length="30" data-justify="center">
+                        <icon>
+                          <Copy size="20" />
+                        </icon>
+                      </group> */}
+                      <group data-direction="column" data-width="auto">
+                        <text data-weight="700">Copy</text>
+                        <text data-opacity="30">Paste in Figma or code ...</text>
+                      </group>
+                    </group>
+                  </group>
+                </group>
+              )}
+            >
+              <group
+                data-width="auto"
+                data-over-color="none"
+                data-interactive=""
+                data-cursor="pointer"
+                data-align="center"
+                data-wrap="no"
+                data-gap="5"
+                data-autofit="1-800"
+              >
+                <group
+                  data-interact=""
+                  data-direction="column"
+                  data-react="background"
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-radius="15"
+                >
+
+
+
+                  <text data-weight="700">Export</text>
+                  <text data-opacity="30">Grab palette files</text>
+                </group>
+              </group>
+            </Popover>
+
           </group>
         </group>
 
@@ -188,6 +311,7 @@ const Colors: React.FC = () => {
                 data-wrap="no"
                 data-gap="5"
                 data-autofit="1-800"
+                 
               >
 
 
@@ -199,7 +323,7 @@ const Colors: React.FC = () => {
                   data-react="background"
                   data-over-color="neutral"
                   data-space="15"
-                  data-radius="10"
+                  data-radius="15"
                 >
                   <text data-weight="700">Swatches</text>
                   <text data-opacity="30">Select from presets</text>
@@ -208,6 +332,10 @@ const Colors: React.FC = () => {
             </Popover>
             <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="secondary" />
+
+
+
+
           </group>
         </group>
 
