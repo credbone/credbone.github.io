@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CustomSlider from "../../components/inputs/slider";
-import Ripple from "../../components/Ripple";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
 
@@ -145,94 +144,19 @@ const BlobGenerator: React.FC = () => {
   return (
     <group
       data-type="grid"
-      data-grid-template="300"
+      data-grid-template="240"
       data-gap="30"
       data-align="start"
     >
-      <group data-direcion="column" data-gap="20">
-        <group data-border="" data-radius="15" data-contain="">
-          <group data-align="center" data-gap="15" data-space="20">
-            <group data-width="auto">
-              <group data-width="auto">
-                <text>Edges</text>
-              </group>
-            </group>
 
-            <separator data-vertical=""></separator>
-
-            <group data-fit="1">
-              <CustomSlider
-                start={3}
-                end={12}
-                value={points}
-                onValueChange={(value) => setPoints(value)}
-                trackLeftProps={{ "data-margin-right": "0" }}
-                trackRightProps={{ "data-opacity": "10" }}
-              />
-            </group>
-          </group>
-          <separator data-horizontal=""></separator>
-          <group data-align="center" data-gap="15" data-space="20">
-            <group
-              data-width="auto"
-              //data-min-length="80"
-            >
-              <group>
-                <text>Smoothness</text>
-              </group>
-            </group>
-
-            <separator data-vertical=""></separator>
-
-            <group data-fit="1">
-              <CustomSlider
-                start={2}
-                end={9}
-                value={growth}
-                onValueChange={(value) => setGrowth(value)}
-                trackLeftProps={{ "data-margin-right": "0" }}
-                trackRightProps={{ "data-opacity": "10" }}
-              />
-            </group>
-          </group>
-        </group>
-
-        <group>
-          <text
-            data-wrap="wrap"
-            data-space="20"
-            data-line="1.5"
-            data-length="300"
-          >
-            Keep pressing the button until you find a blob you like and download
-            it.
-          </text>
-        </group>
-
-        <Ripple>
-          <group
-            data-space="15"
-            data-align="center"
-            data-justify="center"
-            data-background="adaptive-gray"
-            data-color="adaptive-gray"
-            data-contain=""
-            data-interactive=""
-            data-over-color="neutral"
-            data-radius="10"
-            data-cursor="pointer"
-            onClick={regenerateBlob}
-          >
-            <text>Randomize</text>
-          </group>
-        </Ripple>
-      </group>
 
       <group
         data-border=""
         data-direction="column"
-        data-radius="20"
+        data-radius="30"
+        data-space="10"
         data-contain=""
+        data-background="adaptive-gray"
       >
         <group data-space="30" data-justify="center">
           <svg width="256" height="256" viewBox="0 0 100 100">
@@ -240,7 +164,43 @@ const BlobGenerator: React.FC = () => {
           </svg>
         </group>
 
-        <group data-space="10" data-gap="10">
+
+
+        <group>
+          <text
+            data-wrap="wrap"
+            data-space="20"
+            data-line="1.3"
+            data-length="280"
+            data-opacity="70"
+          >
+            Keep pressing the button until you find a blob you like and export
+            it.
+          </text>
+        </group>
+
+
+
+        <group data-background="main-background" data-radius="20" data-space="10" data-gap="10" data-wrap="no">
+
+
+          <group
+            data-space="15"
+            data-align="center"
+            data-justify="center"
+            data-background="main"
+            data-color="main-text"
+            data-contain=""
+            data-interactive=""
+         //   data-over-color="neutral"
+            data-radius="10"
+            data-cursor="pointer"
+            onClick={regenerateBlob}
+          >
+            <text>Randomize</text>
+          </group>
+
+
           <Popover
             data-space="5"
             content={(closePopover) => (
@@ -290,7 +250,68 @@ const BlobGenerator: React.FC = () => {
             </group>
           </Popover>
         </group>
+
+
+
+
+
       </group>
+
+
+      <group data-direcion="column" data-gap="20">
+        <group data-border=""  data-radius="20" data-contain="">
+          <group data-align="center" data-gap="15" data-space="20">
+            <group data-width="auto">
+              <group data-width="auto">
+                <text>Edges</text>
+              </group>
+            </group>
+
+            <separator data-vertical=""></separator>
+
+            <group data-fit="1">
+              <CustomSlider
+                start={3}
+                end={12}
+                value={points}
+                onValueChange={(value) => setPoints(value)}
+                trackLeftProps={{ "data-margin-right": "0" }}
+                trackRightProps={{ "data-opacity": "10" }}
+              />
+            </group>
+          </group>
+          <separator data-horizontal=""></separator>
+          <group data-align="center" data-gap="15" data-space="20">
+            <group
+              data-width="auto"
+              //data-min-length="80"
+            >
+              <group>
+                <text>Smoothness</text>
+              </group>
+            </group>
+
+            <separator data-vertical=""></separator>
+
+            <group data-fit="1">
+              <CustomSlider
+                start={2}
+                end={9}
+                value={growth}
+                onValueChange={(value) => setGrowth(value)}
+                trackLeftProps={{ "data-margin-right": "0" }}
+                trackRightProps={{ "data-opacity": "10" }}
+              />
+            </group>
+          </group>
+        </group>
+
+
+
+
+      </group>
+
+
     </group>
   );
 };

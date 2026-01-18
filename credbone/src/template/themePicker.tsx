@@ -4,6 +4,7 @@ import { ThemeContext } from "../components/ThemeProvider";
 import { democolors } from "../styles/colorData";
 import { getPalette } from "../styles/skin";
 import Ripple from "../components/Ripple";
+import Tooltip from "../components/tooltip";
 
 
 const ThemePicker: React.FC = () => {
@@ -25,7 +26,8 @@ const ThemePicker: React.FC = () => {
   return (
     <group data-align="center" data-type="grid"  data-grid-template-columns="5" data-radius="20" data-contain="" >
     {democolors.map((color, index) => (
-      <group
+<Tooltip content={color.name} delay={500}  key={color.code}>
+        <group
         data-ratio="1:1"
        // data-interactive=""
         data-over-color="none"
@@ -55,6 +57,7 @@ data-contain=""
         </group>
 </Ripple>
       </group>
+</Tooltip>
     ))}
   </group>
   );

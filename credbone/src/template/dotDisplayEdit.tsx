@@ -189,9 +189,85 @@ useEffect(() => {
 
   return (
     <>
-      <group data-border="" data-width="auto" data-radius="20" data-contain="">
-        <group data-direction="column">
-          <group data-space="10" data-gap="10" data-align="center">
+      <group data-border="" data-width="auto" data-radius="30" data-contain="">
+        <group data-direction="column" data-background="adaptive-gray" data-space="10">
+
+
+         
+
+          <group
+            data-space="30"
+            
+            data-justify="center"
+          >
+            {/* <group
+             data-disabled="true"
+            data-opacity="30"
+             data-position="absolute"
+
+              data-height="fit"
+              data-wrap="no"
+              data-top="0"
+              data-justify="center"
+            >
+              <group
+                data-length="1"
+                data-height="fit"
+                data-background="red"
+              ></group>
+
+            </group>
+
+            <group
+            data-disabled="true"
+            data-opacity="30"
+             data-top="0"
+             data-position="absolute"
+                          data-justify="center"
+              data-height="fit"
+              data-wrap="no"
+              data-direction="column"
+            >
+              <group
+                data-height="1"
+                data-length="fit"
+                data-background="red"
+              ></group>
+
+            </group> */}
+
+            <svg
+            
+              ref={svgRef}
+              width="256"
+              //height="256"
+              viewBox="0 0 160 160"
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
+              style={{ touchAction: "none" }}
+            >
+              {Array.from({ length: rows * cols }).map((_, index) => {
+                const x = (index % cols) * 10 + 5;
+                const y = Math.floor(index / cols) * 10 + 5;
+
+                return (
+                  <Dot
+                    key={index}
+                    x={x}
+                    y={y}
+                    active={currentActiveIndexes.has(index)}
+                    onClick={() => handleCircleClick(index)}
+                    onMouseMove={() => handleMouseMove(index)}
+                  />
+                );
+              })}
+            </svg>
+          </group>
+
+                    <group data-space="10" data-gap="10" data-align="center" data-background="main-background" data-radius="20" >
             <group
               data-space="15"
               data-align="center"
@@ -289,80 +365,6 @@ useEffect(() => {
                 <text>Export</text>
               </group>
             </Popover>
-          </group>
-
-          <separator data-horizontal=""></separator>
-
-          <group
-            data-space="30"
-            data-background="adaptive-gray"
-            data-justify="center"
-          >
-            {/* <group
-             data-disabled="true"
-            data-opacity="30"
-             data-position="absolute"
-
-              data-height="fit"
-              data-wrap="no"
-              data-top="0"
-              data-justify="center"
-            >
-              <group
-                data-length="1"
-                data-height="fit"
-                data-background="red"
-              ></group>
-
-            </group>
-
-            <group
-            data-disabled="true"
-            data-opacity="30"
-             data-top="0"
-             data-position="absolute"
-                          data-justify="center"
-              data-height="fit"
-              data-wrap="no"
-              data-direction="column"
-            >
-              <group
-                data-height="1"
-                data-length="fit"
-                data-background="red"
-              ></group>
-
-            </group> */}
-
-            <svg
-            
-              ref={svgRef}
-              width="256"
-              //height="256"
-              viewBox="0 0 160 160"
-              onMouseDown={handleMouseDown}
-              onMouseUp={handleMouseUp}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-              onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
-              style={{ touchAction: "none" }}
-            >
-              {Array.from({ length: rows * cols }).map((_, index) => {
-                const x = (index % cols) * 10 + 5;
-                const y = Math.floor(index / cols) * 10 + 5;
-
-                return (
-                  <Dot
-                    key={index}
-                    x={x}
-                    y={y}
-                    active={currentActiveIndexes.has(index)}
-                    onClick={() => handleCircleClick(index)}
-                    onMouseMove={() => handleMouseMove(index)}
-                  />
-                );
-              })}
-            </svg>
           </group>
         </group>
       </group>

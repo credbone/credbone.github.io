@@ -77,7 +77,7 @@ interface ColorPickerProps {
 const SystemColorPicker: React.FC<ColorPickerProps> = ({ selectedColor, handleColorSelect }) => (
     <Popover
     placement="mouse"
-    data-radius="20"
+    data-radius="25"
     data-scroll=""
     data-space="20"
     content={(closePopover) => (
