@@ -269,7 +269,7 @@ useEffect(() => {
             </svg>
           </group>
 
-                    <group data-space="10" data-gap="10" data-align="center"  data-radius="20" >
+                    <group data-space="10" data-gap="10" data-align="center"  data-radius="20" data-wrap="no" >
             <group
               data-space="15"
               data-align="center"
@@ -281,8 +281,10 @@ useEffect(() => {
               data-radius="10"
               data-cursor="pointer"
               onClick={handleClear}
+              data-contain=""
+              
             >
-              <text>Clear Canvas</text>
+              <text data-ellipsis="">Clear Canvas</text>
             </group>
 
             <separator data-vertical="" data-height="20"></separator>

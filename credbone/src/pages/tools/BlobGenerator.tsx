@@ -270,7 +270,7 @@ data-radius="15"
 
 
       <group data-direcion="column" data-gap="20">
-        <group data-border=""  data-radius="20" data-contain="">
+        <group data-border="outline"  data-radius="20" data-contain="">
           <group data-align="center" data-gap="15" data-space="20">
             <group data-width="auto">
               <group data-width="auto">
