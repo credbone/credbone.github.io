@@ -157,8 +157,9 @@ const BlobGenerator: React.FC = () => {
         data-space="10"
         data-contain=""
         data-background="adaptive-gray"
+        
       >
-        <group data-space="30" data-justify="center">
+        <group data-space="30" data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2" >
           <svg width="256" height="256" viewBox="0 0 100 100">
             <path data-duration="2.25" d={path} fill="currentColor" />
           </svg>
@@ -166,7 +167,7 @@ const BlobGenerator: React.FC = () => {
 
 
 
-        <group>
+        <group data-animation-name="appear-top-small" data-fill-mode="backwards" data-animation-duration="4">
           <text
             data-wrap="wrap"
             data-space="20"
@@ -181,7 +182,7 @@ const BlobGenerator: React.FC = () => {
 
 
 
-        <group data-background="main-background" data-radius="20" data-space="10" data-gap="10" data-wrap="no">
+        <group data-background="main-background" data-radius="20" data-space="10" data-gap="10" data-wrap="no" data-animation-name="appear-top-small"  data-animation-duration="2">
 
 
           <group
@@ -196,6 +197,8 @@ const BlobGenerator: React.FC = () => {
             data-radius="10"
             data-cursor="pointer"
             onClick={regenerateBlob}
+
+            data-animation-name="appear-top-small"  data-animation-duration="3"
           >
             <text>Randomize</text>
           </group>
@@ -208,6 +211,7 @@ const BlobGenerator: React.FC = () => {
                 data-direction="column"
                 data-length="180"
                 onClick={closePopover}
+                
               >
                 <group
                   data-space="15"
@@ -216,6 +220,7 @@ const BlobGenerator: React.FC = () => {
                   data-radius="5"
                   data-cursor="pointer"
                   onClick={exportSVG}
+                  
                 >
                   <text>Download</text>
                 </group>
@@ -244,6 +249,7 @@ const BlobGenerator: React.FC = () => {
               data-over-color="neutral"
               data-radius="10"
               data-cursor="pointer"
+              data-animation-name="appear-top-small"  data-animation-duration="4"
             //  data-position="right"
             >
               <text>Export</text>
