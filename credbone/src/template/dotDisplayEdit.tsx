@@ -284,7 +284,7 @@ useEffect(() => {
               data-contain=""
               
             >
-              <text data-ellipsis="">Clear Canvas</text>
+              <text data-ellipsis="">Clear</text>
             </group>
 
             <separator data-vertical="" data-height="20"></separator>
