@@ -156,7 +156,8 @@ const BlobGenerator: React.FC = () => {
         data-radius="30"
         data-space="10"
         data-contain=""
-        data-background="adaptive-gray"
+        data-elevation="2"
+      //  data-background="adaptive-gray"
         
       >
         <group data-space="30" data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2" >
@@ -206,20 +207,24 @@ const BlobGenerator: React.FC = () => {
 
           <Popover
             data-space="5"
+data-radius="15"
             content={(closePopover) => (
               <group
                 data-direction="column"
-                data-length="180"
+                data-length="240"
                 onClick={closePopover}
+                
+
                 
               >
                 <group
                   data-space="15"
                   data-width="auto"
                   data-interactive=""
-                  data-radius="5"
+                  data-radius="10"
                   data-cursor="pointer"
                   onClick={exportSVG}
+                  data-weight="700"
                   
                 >
                   <text>Download</text>
@@ -229,7 +234,7 @@ const BlobGenerator: React.FC = () => {
                   data-space="15"
                   data-width="auto"
                   data-interactive=""
-                  data-radius="5"
+                  data-radius="10"
                   data-cursor="pointer"
                   onClick={copySVGToClipboard}
                 >

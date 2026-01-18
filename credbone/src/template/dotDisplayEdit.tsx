@@ -189,8 +189,10 @@ useEffect(() => {
 
   return (
     <>
-      <group data-border="" data-width="auto" data-radius="30" data-contain="">
-        <group data-direction="column" data-background="adaptive-gray" data-space="10">
+      <group data-border="" data-width="auto" data-radius="30" data-contain="" data-elevation="2">
+        <group data-direction="column" 
+        
+          data-space="10">
 
 
          
@@ -267,7 +269,7 @@ useEffect(() => {
             </svg>
           </group>
 
-                    <group data-space="10" data-gap="10" data-align="center" data-background="main-background" data-radius="20" >
+                    <group data-space="10" data-gap="10" data-align="center"  data-radius="20" >
             <group
               data-space="15"
               data-align="center"
@@ -280,7 +282,7 @@ useEffect(() => {
               data-cursor="pointer"
               onClick={handleClear}
             >
-              <text>Clear</text>
+              <text>Clear Canvas</text>
             </group>
 
             <separator data-vertical="" data-height="20"></separator>
@@ -306,10 +308,11 @@ useEffect(() => {
 
             <Popover
                data-space="5"
+               data-radius="15"
               content={(closePopover) => (
                 <group
                   data-direction="column"
-                  data-length="210"
+                  data-length="240"
                   onClick={closePopover}
 
                 >
@@ -317,9 +320,10 @@ useEffect(() => {
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
- data-radius="5"
+ data-radius="10"
                     data-cursor="pointer"
                     onClick={exportSVG}
+                    data-weight="700"
                   >
                     <text>Download</text>
                   </group>
@@ -328,7 +332,7 @@ useEffect(() => {
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
- data-radius="5"
+ data-radius="10"
                     data-cursor="pointer"
                     onClick={copySVGToClipboard}
                   >
@@ -340,11 +344,11 @@ useEffect(() => {
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
- data-radius="5"
+ data-radius="10"
                     data-cursor="pointer"
                     onClick={copyRawData}
                   >
-                    <text>Copy Raw Data</text>
+                    <text>Grab Raw Data</text>
                   </group>
                 </group>
               )}
