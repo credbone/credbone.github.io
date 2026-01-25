@@ -71,17 +71,18 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number>,onNewIcon
 
   // Touch event handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault(); // Prevent scrolling
+   // e.preventDefault(); // Prevent scrolling
     setIsTouchActive(true);
   };
   
   const handleTouchEnd = (e: React.TouchEvent) => {
-    e.preventDefault();
+ //   e.preventDefault();
     setIsTouchActive(false);
   };
   
   const handleTouchMove = (e: React.TouchEvent, svgElement: SVGSVGElement) => {
-    e.preventDefault();
+    onStartEdit?.();
+   // e.preventDefault();
     if (!isTouchActive || !svgElement) return;
     
     // Get touch position relative to SVG

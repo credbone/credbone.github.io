@@ -25,7 +25,7 @@ function ToolsCollection() {
           data-border=""
           data-space="10"
           data-gap="10"
-          data-radius="15"
+          data-radius="20"
           data-background="main-background"
           data-width="auto"
           data-align="center"
