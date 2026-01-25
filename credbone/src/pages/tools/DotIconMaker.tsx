@@ -27,7 +27,7 @@ function DotIconMaker() {
     <group data-gap="30" data-max-length="1200">
       <group data-gap="5" data-type="grid" data-grid-template="80"  data-align="start">
         {buttonData.map((button, index) => (
-          <Tooltip content={button.label} distance={-5} key={index}>
+          <Tooltip content={button.label} distance={-5} key={index} delay={300}>
             <group
               key={index} // Using index as the key
              // data-width="auto"

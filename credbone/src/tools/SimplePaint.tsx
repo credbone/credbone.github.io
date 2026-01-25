@@ -210,51 +210,13 @@ const SimplePaint: React.FC = () => {
       data-height="fit"
       data-contain=""
     >
-      <group
-        //  data-space="10"
-        // data-gap="10"
-        data-border="overprint"
-        data-index="2"
-      >
-        <group data-snap-button="15">
-          <Scroll>
-            <group data-wrap="no" data-space="10">
-              {colors.map((color, index) => (
-                <group key={index} data-height="40" data-length="40">
-                  <Tooltip content={color.name}>
-                    <group
-                      data-animation-name="appear-left"
-                      data-fill-mode="backwards"
-                      data-animation-duration={2 + index * 0.25}
-                      data-radius="10"
-                      data-align="center"
-                      data-justify="center"
-                      data-direction="column"
-                      data-cursor="pointer"
-                      data-interactive=""
-                      data-background={
-                        brushColor === color.value ? "highlight" : ""
-                      }
-                      data-space="10"
-                      onClick={() => setBrushColor(color.value)}
-                    >
-                      <group
-                        data-interact=""
-                        data-radius="30"
-                        data-height="fit"
-                        style={{
-                          backgroundColor: color.value,
-                        }}
-                      ></group>
-                    </group>
-                  </Tooltip>
-                </group>
-              ))}
-            </group>
-          </Scroll>
-        </group>
-        <separator data-horizontal=""></separator>
-        <group data-contain="" data-gap="10" data-space="10" data-shrink="no">
+
+
+
+<group  data-space="30" data-space-bottom="0" data-align="start" data-gap="10" data-background="adaptive-gray">
+
+
+        <group data-contain="" data-gap="10" data-space="5" data-shrink="no" data-background="adaptive-gray"  data-width="auto" data-radius="15">
           <group data-gap="5">
             <group data-gap="5" data-width="auto" data-align="center">
               <group
@@ -262,10 +224,12 @@ const SimplePaint: React.FC = () => {
                 data-cursor="pointer"
                 data-radius="10"
                 data-width="auto"
-                data-background="highlight"
+              //  data-background="text"
+               // data-color="main-background"
                 data-contain=""
                 data-interactive=""
-                data-space="15"
+                data-height="40"
+                data-space-horizontal="20"
                 data-wrap="no"
                 data-align="center"
                 data-gap="15"
@@ -275,13 +239,15 @@ const SimplePaint: React.FC = () => {
                 </text>
               </group>
 
+<separator data-vertical="" data-height="20"></separator>
               <Popover
                 data-space="5"
+                data-radius="15"
                 content={(closePopover) => (
                   <group data-direction="column" onClick={closePopover}>
                     {brushSizes.map((size, index) => (
                       <group
-                        data-radius="5"
+                        data-radius="10"
                         data-cursor="pointer"
                         data-interactive=""
                         data-space="15"
@@ -318,11 +284,13 @@ const SimplePaint: React.FC = () => {
                   data-cursor="pointer"
                   data-radius="10"
                   data-width="auto"
-                  // data-background="highlight"
-                  data-border="outline"
+                //   data-background="text"
+                 //  data-color="main-background"
+                  // data-border="outline"
                   data-contain=""
                   data-interactive=""
-                  data-space="15"
+                  data-space-horizontal="15"
+                  data-height="40"
                   data-wrap="no"
                   data-align="center"
                   data-gap="15"
@@ -352,7 +320,53 @@ const SimplePaint: React.FC = () => {
             </group>
           </group>
         </group>
-      </group>
+
+
+  <group data-contain="" data-gap="10"  data-shrink="no"   data-width="auto" data-background="adaptive-gray" data-radius="15" >
+          <group data-snap-button="10">
+          <Scroll>
+            <group data-wrap="no" data-space="5">
+              {colors.map((color, index) => (
+                <group key={index} data-height="40" data-length="40">
+                  <Tooltip content={color.name} delay={300}>
+                    <group
+                      data-animation-name="appear-left"
+                      data-fill-mode="backwards"
+                      data-animation-duration={2 + index * 0.25}
+                      data-radius="10"
+                      data-align="center"
+                      data-justify="center"
+                      data-direction="column"
+                      data-cursor="pointer"
+                      data-interactive=""
+                      data-background={
+                        brushColor === color.value ? "highlight" : ""
+                      }
+                      data-space="10"
+                      onClick={() => setBrushColor(color.value)}
+                    >
+                      <group
+                        data-interact=""
+                        data-radius="30"
+                        data-height="fit"
+                        style={{
+                          backgroundColor: color.value,
+                        }}
+                      ></group>
+                    </group>
+                  </Tooltip>
+                </group>
+              ))}
+            </group>
+          </Scroll>
+        </group>
+</group>
+
+
+
+</group>
+
+
 
       <group
         data-scroll=""
@@ -361,7 +375,14 @@ const SimplePaint: React.FC = () => {
         data-height="fit"
         data-space="30"
         ref={wrapperRef}
+        data-wrap="no"
+        data-direction="column"
+        data-align="start"
+        data-gap="30"
       >
+
+
+
         <group
           data-border=""
           data-type="group"
@@ -371,6 +392,7 @@ const SimplePaint: React.FC = () => {
           data-position="center"
           data-width="auto"
           data-background="white"
+          
           ref={containerRef}
           style={{
             width: `${width}px`,
