@@ -71,7 +71,7 @@ const Calculator: React.FC = () => {
     
     <group data-direction="column"       
 >
-      <group data-direction="column"  data-height="120" data-text-align="right"  data-justify="center">
+      <group data-direction="column" data-space-horizontal="15"  data-height="120" data-text-align="right"  data-justify="center">
         <input
         name="calc-input"
           type="text"
@@ -96,7 +96,7 @@ const Calculator: React.FC = () => {
         data-grid-template-columns="4"
 
 data-contain=""
-data-radius="10"
+data-radius="15"
       >
         {buttons.map((button) => (
           <group

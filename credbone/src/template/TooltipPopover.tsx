@@ -350,8 +350,11 @@ const TooltipPopover: React.FC = () => {
                 placement="right"
                 content={<Calculator />}
                 data-length="260"
-                data-radius="20"
+                data-radius="25"
                 data-elevation="2"
+                data-space="10"
+                data-space-top="0"
+               
               >
                 <group
                   data-interactive=""

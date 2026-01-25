@@ -46,7 +46,7 @@ const QuickDemos: React.FC = () => {
 
 data-height="auto"
 data-max-height="fit"
-data-radius="20"
+data-radius="25"
 
 data-contain=""
 data-border="outline"
@@ -60,13 +60,15 @@ data-gap="20"
 
 
         <group
+        
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="25"
          data-border=""
           data-contain=""
           data-space="10"
           data-gap="20"
+          
         >
           <group data-gap="10" data-space="20">
             <text
@@ -94,7 +96,7 @@ data-gap="20"
           data-index="2"
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="25"
          data-border=""
           data-contain=""
           data-space="10"
@@ -128,7 +130,7 @@ data-gap="20"
         <group
           data-height="auto"
           data-max-height="fit"
-          data-radius="20"
+          data-radius="25"
          data-border=""
           data-contain=""
           data-space="30"

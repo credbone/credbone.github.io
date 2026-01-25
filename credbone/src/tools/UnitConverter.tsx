@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Popover from "../components/popover";
 import Ripple from "../components/Ripple";
 
-
 const UnitConverter: React.FC = () => {
   const [fromValue, setFromValue] = useState<number>(1); // Default to 1 for conversions
   const [toValue, setToValue] = useState<number>(0);
-  const [conversionType, setConversionType] = useState< "mass" | "length" | "pressure" | "volume" | "time" | "digitalStorage" >("mass");
+  const [conversionType, setConversionType] = useState<
+    "mass" | "length" | "pressure" | "volume" | "time" | "digitalStorage"
+  >("mass");
   const [fromUnit, setFromUnit] = useState<string>("kg");
   const [toUnit, setToUnit] = useState<string>("g");
 
@@ -38,11 +39,26 @@ const UnitConverter: React.FC = () => {
       { unit: "mL", name: "ml", full: "Milliliter" },
       { unit: "L", name: "liter", full: "Liter" },
       { unit: "gal", name: "gallon", full: "Gallon" },
-      { unit: (<text>m<sup>3</sup></text>), name: "cubic_meter", full: "Cubic Meter", },
-      { unit: (<text>in<sup>3</sup></text>), name: "cubic_inch", full: "Cubic Inch", },
+      {
+        unit: (
+          <text>
+            m<sup>3</sup>
+          </text>
+        ),
+        name: "cubic_meter",
+        full: "Cubic Meter",
+      },
+      {
+        unit: (
+          <text>
+            in<sup>3</sup>
+          </text>
+        ),
+        name: "cubic_inch",
+        full: "Cubic Inch",
+      },
     ],
     time: [
-
       { unit: "sec", name: "second", full: "Second" },
       { unit: "min", name: "minute", full: "Minute" },
       { unit: "hr", name: "hour", full: "Hour" },
@@ -101,7 +117,8 @@ const UnitConverter: React.FC = () => {
     },
     volume: {
       name: "Volume",
-      description: "Units for measuring the amount of space an object occupies.",
+      description:
+        "Units for measuring the amount of space an object occupies.",
       units: {
         liter: 1,
         ml: 1000,
@@ -132,28 +149,24 @@ const UnitConverter: React.FC = () => {
       },
     },
   };
-  
 
   const convertValue = (
     value: number,
     from: string,
     to: string,
-    type: string
+    type: string,
   ): number => {
-   
-    
-    const converted = (value * conversions[type].units[to]) / conversions[type].units[from];
+    const converted =
+      (value * conversions[type].units[to]) / conversions[type].units[from];
     switch (type) {
+      case "time":
+        return converted < 0.00001
+          ? 0
+          : Math.round(converted * 100000) / 100000;
 
-      case 'time':
-        return converted < 0.00001 ? 0 : Math.round(converted * 100000) / 100000;
-
-  
       default:
-        return converted; 
+        return converted;
     }
-
-
   };
 
   useEffect(() => {
@@ -161,7 +174,7 @@ const UnitConverter: React.FC = () => {
       fromValue,
       fromUnit,
       toUnit,
-      conversionType
+      conversionType,
     );
     setToValue(convertedValue);
   }, [fromValue, fromUnit, toUnit, conversionType]);
@@ -172,7 +185,7 @@ const UnitConverter: React.FC = () => {
       value,
       fromUnit,
       toUnit,
-      conversionType
+      conversionType,
     );
     setToValue(convertedValue);
   };
@@ -183,12 +196,15 @@ const UnitConverter: React.FC = () => {
       value,
       toUnit,
       fromUnit,
-      conversionType
+      conversionType,
     );
     setFromValue(convertedValue);
   };
 
-  const handleConversionTypeChange = ( type: "mass" | "length" | "pressure" | "volume" | "time" | "digitalStorage" ) => { setConversionType(type);
+  const handleConversionTypeChange = (
+    type: "mass" | "length" | "pressure" | "volume" | "time" | "digitalStorage",
+  ) => {
+    setConversionType(type);
 
     // Update from and to units to the first items in the list for the selected type
     const newFromUnit = units[type][1].name;
@@ -203,7 +219,7 @@ const UnitConverter: React.FC = () => {
       fromValue,
       newFromUnit,
       newToUnit,
-      type
+      type,
     );
     setToValue(convertedValue);
   };
@@ -214,7 +230,7 @@ const UnitConverter: React.FC = () => {
       fromValue,
       unitName,
       toUnit,
-      conversionType
+      conversionType,
     );
     setToValue(convertedValue);
   };
@@ -225,7 +241,7 @@ const UnitConverter: React.FC = () => {
       fromValue,
       fromUnit,
       unitName,
-      conversionType
+      conversionType,
     );
     setToValue(convertedValue);
   };
@@ -245,48 +261,43 @@ const UnitConverter: React.FC = () => {
       conversions[conversionType].units[toUnit] /
       conversions[conversionType].units[fromUnit];
 
+    let displayConversionFactor = conversionFactor;
 
-      let displayConversionFactor = conversionFactor;
+    switch (conversionType) {
+      case "time":
+        // Round for mass and length
 
-      switch (conversionType) {
+        displayConversionFactor =
+          Math.round(conversionFactor * 100000) / 100000;
+        break;
 
-        case 'time':
-          // Round for mass and length
-         
-          displayConversionFactor = Math.round(conversionFactor * 100000) / 100000;
-          break;
-    
-    
-        default:
-          // Default case, no rounding needed
-          break;
-      }
-      
-  
+      default:
+        // Default case, no rounding needed
+        break;
+    }
 
     return (
       <>
-        Multiply the {getFullUnitName(fromUnit)} value by <b>{displayConversionFactor}</b> to get the {getFullUnitName(toUnit)} value.
+        Multiply the {getFullUnitName(fromUnit)} value by{" "}
+        <b>{displayConversionFactor}</b> to get the {getFullUnitName(toUnit)}{" "}
+        value.
       </>
     );
   };
 
-  
-
-  
   return (
     <group data-direction="column" data-gap="10">
       {/* Select conversion type */}
-
 
       <group data-direction="column" data-gap="10">
         <group data-background="highlight" data-contain="" data-radius="10">
           <Popover
             placement="middle"
             data-space="5"
+             data-radius="15"
             content={(closePopover) => (
               <group
-             //   data-length="200"
+                //   data-length="200"
                 data-direction="column"
                 data-contain=""
                 onClick={closePopover}
@@ -299,15 +310,15 @@ const UnitConverter: React.FC = () => {
                   "time",
                   "digitalStorage",
                 ].map((type) => (
-
                   <group
-                    data-radius="5"
+                    data-radius="10"
                     key={type}
                     data-cursor="pointer"
                     data-interactive=""
                     data-space="15"
                     data-background={conversionType === type ? "main" : ""}
                     data-color={conversionType === type ? "main-text" : ""}
+                    
                     onClick={() =>
                       handleConversionTypeChange(
                         type as
@@ -316,18 +327,14 @@ const UnitConverter: React.FC = () => {
                           | "pressure"
                           | "volume"
                           | "time"
-                          | "digitalStorage"
+                          | "digitalStorage",
                       )
                     }
                   >
-
-<text data-weight="600" data-ellipsis="">
-                    {conversions[type].name}
+                    <text data-weight="600" data-ellipsis="">
+                      {conversions[type].name}
                     </text>
-
-                    
                   </group>
-
                 ))}
               </group>
             )}
@@ -339,16 +346,14 @@ const UnitConverter: React.FC = () => {
                   data-contain=""
                   data-interactive=""
                   data-space="15"
-                 // data-space-horizontal="15"
+                  // data-space-horizontal="15"
                   data-wrap="no"
                   data-align="center"
                   data-gap="15"
                 >
-
                   <text data-ellipsis="" data-weight="600">
-                  {conversions[conversionType].name}
+                    {conversions[conversionType].name}
                   </text>
-
                 </group>
               </Ripple>
             </group>
@@ -356,24 +361,22 @@ const UnitConverter: React.FC = () => {
         </group>
 
         <group
-        //  data-elevation="2"
-          data-border=""
           data-contain=""
-          data-radius="10"
           data-direction="column"
           data-index="2"
-        //  data-background="context"
+          data-gap="10"
         >
-          <group data-direction="column" data-space="5">
+          <group data-direction="column">
             <group>
               <input
-              name="convert-from"
+                name="convert-from"
                 data-name="input-reset"
                 data-weight="300"
                 data-text-size="xx-large"
                 placeholder="0"
                 data-length="fit"
-                data-space="10"
+                      data-space="5"
+                data-space-horizontal="15"
                 type="number"
                 value={fromValue}
                 onChange={(e) =>
@@ -383,11 +386,12 @@ const UnitConverter: React.FC = () => {
             </group>
 
             <Popover
-            placement="middle"
+              placement="middle"
               data-space="5"
+               data-radius="15"
               content={(closePopover) => (
                 <group
-            //      data-length="200"
+                  //      data-length="200"
                   data-direction="column"
                   onClick={closePopover}
                 >
@@ -395,7 +399,7 @@ const UnitConverter: React.FC = () => {
                     <group
                       key={name}
                       onClick={() => handleFromUnitChange(name)}
-                      data-radius="5"
+                      data-radius="10"
                       data-cursor="pointer"
                       data-interactive=""
                       data-space="15"
@@ -420,9 +424,11 @@ const UnitConverter: React.FC = () => {
                   <group
                     data-cursor="pointer"
                     data-contain=""
+                    
+       
                     data-interactive=""
-                    data-space="10"
-                    data-radius="5"
+                    data-space="15"
+                    data-radius="10"
                     data-wrap="no"
                     data-align="center"
                     data-gap="5"
@@ -434,21 +440,23 @@ const UnitConverter: React.FC = () => {
             </Popover>
           </group>
 
-          <group 
-        //  data-space-horizontal="15"
-           >
+          <group
+          //  data-space-horizontal="10"
+          >
             <separator data-opacity="30" data-horizontal="dotted"></separator>
           </group>
 
-          <group data-direction="column" data-space="5">
+          <group data-direction="column">
             <group>
-              <input  name="convert-to"
+              <input
+                name="convert-to"
                 data-name="input-reset"
                 data-weight="300"
                 data-text-size="xx-large"
                 placeholder="0"
                 data-length="fit"
-                data-space="10"
+                data-space="5"
+                data-space-horizontal="15"
                 type="number"
                 value={toValue}
                 onChange={(e) =>
@@ -459,11 +467,12 @@ const UnitConverter: React.FC = () => {
 
             {/* To Unit Select using Popover */}
             <Popover
-             placement="middle"
+              placement="middle"
               data-space="5"
+              data-radius="15"
               content={(closePopover) => (
                 <group
-           //       data-length="200"
+                  //       data-length="200"
                   data-direction="column"
                   onClick={closePopover}
                 >
@@ -471,7 +480,7 @@ const UnitConverter: React.FC = () => {
                     <group
                       key={name}
                       onClick={() => handleToUnitChange(name)}
-                      data-radius="5"
+                      data-radius="10"
                       data-cursor="pointer"
                       data-interactive=""
                       data-space="15"
@@ -498,11 +507,11 @@ const UnitConverter: React.FC = () => {
                     data-cursor="pointer"
                     data-contain=""
                     data-interactive=""
-                    data-space="10"
+                    data-space="15"
                     data-wrap="no"
                     data-align="center"
                     data-gap="5"
-                    data-radius="5"
+                    data-radius="10"
                   >
                     <text data-ellipsis="">{getFullUnitName(toUnit)}</text>
                   </group>
@@ -514,9 +523,16 @@ const UnitConverter: React.FC = () => {
       </group>
 
       {getFormula() && (
-        <group   data-background="yellow-light"
-        data-color="yellow-darker" data-radius="10" data-gap="10" data-space="15" data-direction="column" data-align="start" >
- <text data-weight="700">Formula</text>
+        <group
+          data-background="yellow-light"
+          data-color="yellow-darker"
+          data-radius="15"
+          data-gap="10"
+          data-space="15"
+          data-direction="column"
+          data-align="start"
+        >
+          <text data-weight="700">Formula</text>
           <text data-wrap="wrap" data-line="1.5">
             {getFormula()}
           </text>

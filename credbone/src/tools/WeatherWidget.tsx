@@ -356,7 +356,7 @@ data-name="weather-widget"
 <separator data-horizontal=""></separator>
           <Popover
             data-radius="15"
-            data-space="20"
+            data-space="15"
             placement="top"
             content={(closePopover) => (
               <group data-direction="column" data-gap="15" data-align="start">
