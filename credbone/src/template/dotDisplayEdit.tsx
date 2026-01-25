@@ -1,11 +1,18 @@
-import { Eraser } from "lucide-react";
+import { Eraser, Pencil } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import DotDisplay from "./dotDisplay";
+import Ripple from "../components/Ripple";
 
-const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
+const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number>,onNewIcon?: () => void;
+  onStartEdit?: () => void;
+ }> = ({
   predefinedActiveIndexes,
+  onNewIcon,
+  onStartEdit,
+
+  
 }) => {
   const [currentActiveIndexes, setCurrentActiveIndexes] = useState<Set<number>>(
     predefinedActiveIndexes || new Set()
@@ -17,6 +24,9 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   const cols = 16;
 
   const handleCircleClick = (index: number) => {
+
+    onStartEdit?.();
+
     const newActiveIndexes = new Set(currentActiveIndexes);
     if (isEraserActive) {
       // Remove dot if eraser is active
@@ -32,12 +42,21 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
     setCurrentActiveIndexes(newActiveIndexes);
   };
 
+
+    const [isshowoverlay, setshowoverlay] = useState(true);
+  
+    const toggleoverlay = () => {
+      setshowoverlay((prev) => !prev);
+    };
+
   // Mouse event handlers
   const handleMouseDown = () => setIsMouseDown(true);
   const handleMouseUp = () => setIsMouseDown(false);
 
   const handleMouseMove = (index: number) => {
     if (isMouseDown) {
+      onStartEdit?.();
+
       const newActiveIndexes = new Set(currentActiveIndexes);
       if (isEraserActive) {
         // Erase dot on mouse move
@@ -92,6 +111,7 @@ const DotDisplayEdit: React.FC<{ predefinedActiveIndexes?: Set<number> }> = ({
   const handleClear = () => {
     setCurrentActiveIndexes(new Set());
     setIsEraserActive(false);
+    onNewIcon?.();
   };
   const { addSnackbar } = useSnackbar();
 
@@ -182,61 +202,156 @@ useEffect(() => {
 
   const getRawData = () => Array.from(currentActiveIndexes).join(", ");
 
-  const toggleEraser = () => setIsEraserActive(!isEraserActive);
+  const togglePencil = () => setIsEraserActive(false);
+  const toggleEraser = () => setIsEraserActive(true);
 
   // SVG reference for touch events
   const svgRef = React.useRef<SVGSVGElement>(null);
 
   return (
     <>
-      <group data-border="" data-width="auto" data-radius="30" data-contain="" data-elevation="2">
+      <group data-border="" data-width="auto" data-radius="40" data-contain="" data-elevation="2">
         <group data-direction="column" 
         
-          data-space="10">
+          data-space="20" data-gap="20" data-align="center">
 
 
          
+                    <group data-gap="10" data-align="center"  data-radius="20" data-wrap="no"  >
+<Ripple>
+              <group
+              data-space="15"
+              data-space-horizontal="20"
+              data-align="center"
+              data-justify="center"
+              data-background="adaptive-gray"
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="15"
+              data-cursor="pointer"
+              onClick={handleClear}
+              data-contain=""
+              
+            >
+              <text >New Icon</text>
+            </group>
+</Ripple>
+
+ <separator data-vertical="" data-height="20"></separator>
+
+                <group
+                  data-align="center"
+                  data-gap="10"
+                //  data-space="15"
+                  data-wrap="no"
+
+                
+                  data-width="auto"
+ data-contain=""
+                >
+                  <group
+                    data-width="auto"
+                    //data-min-length="80"
+                    data-contain=""
+                  >
+                    <group data-space="10" data-width="auto">
+                      <text data-ellipsis="" data-opacity="40">Guides</text>
+                    </group>
+                  </group>
+
+                 
+
+                  <group
+                    data-fit="1"
+                    data-gap="5"
+                    data-wrap="no"
+                  
+                  >
+                    <group
+                      onClick={toggleoverlay}
+                      data-align="center"
+                      data-justify="center"
+                      data-background="text"
+                      data-color="main-background"
+                      data-width="auto"
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-radius="15"
+                      data-cursor="pointer"
+                    data-space="15"
+              data-space-horizontal="20"  
+                      data-contain=""
+                    >
+                      <text data-ellipsis="">
+                        {isshowoverlay ? "Hide" : "Show"}
+                      </text>
+                    </group>
+
+
+                  </group>
+                </group>
+
+
+</group>
 
           <group
+
+          
             data-space="30"
-            
+            data-width="auto"
             data-justify="center"
           >
-            {/* <group
-             data-disabled="true"
-            data-opacity="30"
+
+
+
+
+<group              data-disabled="true"
+           
              data-position="absolute"
+             
+             data-ratio="1:1"
+             data-width="auto"
+             data-height="fit"
+              data-top="0"
+              data-opacity= {isshowoverlay ? "20" : "0"}
+
+              
+             >
+              <group
+
+ data-position="absolute"
 
               data-height="fit"
               data-wrap="no"
               data-top="0"
-              data-justify="center"
+              data-justify="space-evenly"
+              data-align="space"
             >
-              <group
-                data-length="1"
-                data-height="fit"
-                data-background="red"
-              ></group>
+              <group data-length="1" data-height="fit" data-background="text" ></group>
+                            <group data-length="1" data-height="fit" data-background="text" ></group>
+              <group data-length="1" data-height="fit" data-background="text" ></group>
+              
 
             </group>
 
-            <group
-            data-disabled="true"
-            data-opacity="30"
-             data-top="0"
-             data-position="absolute"
-                          data-justify="center"
-              data-height="fit"
-              data-wrap="no"
-              data-direction="column"
-            >
-              <group
-                data-height="1"
-                data-length="fit"
-                data-background="red"
-              ></group>
+            <group data-top="0" data-position="absolute" data-justify="space-evenly" data-height="fit" data-wrap="no" data-direction="column" >
+              <group data-height="1" data-length="fit" data-background="text" ></group>
 
-            </group> */}
+                            <group data-height="1" data-length="fit" data-background="text" ></group>
+
+                            <group data-height="1" data-length="fit" data-background="text" ></group>
+
+              
+
+            </group>
+
+
+            <group data-top="0" data-position="absolute" data-height="fit" data-wrap="no" data-direction="column" > <group data-radius="full" data-border="text" data-height="fit" > </group> </group>
+              <group data-top="0" data-position="absolute" data-height="fit" data-wrap="no" data-direction="column" data-space="25%" > <group data-radius="full" data-border="text" data-height="fit" > </group> </group>
+
+
+</group>
 
             <svg
             
@@ -269,37 +384,49 @@ useEffect(() => {
             </svg>
           </group>
 
-                    <group data-space="10" data-gap="10" data-align="center"  data-radius="20" data-wrap="no" >
-            <group
-              data-space="15"
+                    <group data-gap="10" data-align="center"  data-radius="20" data-wrap="no" >
+
+
+            {/* <separator data-vertical="" data-height="20"></separator> */}
+
+<group data-width="auto" data-background="text" data-color="main-background"   data-radius="30" data-wrap="no" data-space="2">
+              <group
+              data-space-vertical="15"
               data-align="center"
               data-justify="center"
-              data-background="adaptive-gray"
+              data-background={!isEraserActive ? "main-background" : ""}
+              data-color={!isEraserActive ? "text" : ""}
+             data-space-horizontal={!isEraserActive ? "25" : "15"}
+             data-duration=".225"
+             data-transition-prop="padding"
+              data-sp
               data-width="auto"
               data-interactive=""
               data-over-color="neutral"
-              data-radius="10"
+             data-radius="30"
               data-cursor="pointer"
-              onClick={handleClear}
-              data-contain=""
-              
+              onClick={togglePencil}
             >
-              <text data-ellipsis="">Clear</text>
+              <group data-interact="">
+                <Pencil size={20} />
+              </group>
             </group>
 
-            <separator data-vertical="" data-height="20"></separator>
-
             <group
-              data-space-horizontal="15"
+              data-space-vertical="15"
               data-align="center"
               data-justify="center"
-              data-background={isEraserActive ? "main" : "adaptive-gray"}
-              data-color={isEraserActive ? "main-text" : ""}
-              data-height="45"
+              data-background={isEraserActive ? "main-background" : ""}
+              data-color={isEraserActive ? "text" : ""}
+            
+                           data-space-horizontal={isEraserActive ? "25" : "15"}
+             data-duration=".225"
+             data-transition-prop="padding"
+
               data-width="auto"
               data-interactive=""
               data-over-color="neutral"
-              data-radius="10"
+             data-radius="30"
               data-cursor="pointer"
               onClick={toggleEraser}
             >
@@ -307,6 +434,7 @@ useEffect(() => {
                 <Eraser size={20} />
               </group>
             </group>
+</group>
 
             <Popover
                data-space="5"
@@ -356,7 +484,8 @@ useEffect(() => {
               )}
             >
               <group
-                data-space="15"
+                data-space-vertical="15"
+                data-space-horizontal="20"
                 data-align="center"
                 data-justify="center"
                 data-background="adaptive-gray"
@@ -364,7 +493,7 @@ useEffect(() => {
                 data-width="auto"
                 data-interactive=""
                 data-over-color="neutral"
-                data-radius="10"
+                data-radius="15"
                 data-cursor="pointer"
                 data-position="right"
               >
@@ -377,7 +506,7 @@ useEffect(() => {
 
       <group
         data-width="auto"
-        data-radius="30"
+        data-radius="40"
         data-space="adaptive-30-50"
         data-background="text"
         data-color="main-background"
@@ -385,9 +514,10 @@ useEffect(() => {
         data-direction="column"
         data-justify="center"
         data-gap="20"
+        data-max-height="fit-content"
       >
         <group data-position="center" data-justify="center">
-          <DotDisplay activeIndexes={currentActiveIndexes} />
+          <DotDisplay activeIndexes={currentActiveIndexes}/>
         </group>
         <text data-opacity="30">Preview</text>
       </group>

@@ -92,7 +92,7 @@ const Layout: React.FC = () => {
               <group
                 data-backdrop="20"
                 data-contain=""
-                data-radius="15"
+                data-radius="20"
                 data-width="auto"
                 data-top={isSticky ? "30" : undefined}
               >

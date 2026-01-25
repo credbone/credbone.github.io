@@ -16,12 +16,29 @@ function DotIconMaker() {
 
   const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'
   const [selected, setSelected] = useState<number>(0); // Default selected is the first button (index 0)
+  // const [isModified, setIsModified] = useState(false);
+
+  const handleNewIcon = () => {
+  setSelected(-1);
+  //setIsModified(true);
+ // setActiveDots(new Set());
+};
+
+const handleStartEdit = () => {
+  setSelected(-1);
+ // setIsModified(true);
+ // setActiveDots(new Set());
+};
 
   const handleClick = (index: number, set: Set<number>) => {
     setSelected(index); // Update selected button by index
-    setActiveDots(set); // Update active dots
+    setActiveDots(new Set(set));
+    
     // console.log(`Updated active dots for button at index ${index}:`, set);
+ //   setIsModified(false);
   };
+
+
 
   return (
     <group data-gap="30" data-max-length="1200">
@@ -58,13 +75,14 @@ function DotIconMaker() {
       </group>
 
       <group
-        data-gap="30"
+        data-gap="20"
         data-direction="column-600"
         data-width="auto"
         data-autofit="1-600"
         data-wrap="no"
       >
-        <DotDisplayEdit predefinedActiveIndexes={activeDots} />
+        <DotDisplayEdit predefinedActiveIndexes={activeDots} onNewIcon={handleNewIcon}
+  onStartEdit={handleStartEdit} />
       </group>
     </group>
   );
