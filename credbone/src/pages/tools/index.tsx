@@ -20,15 +20,18 @@ function ToolsCollection() {
       data-align="start"
       data-min-height="fit"
     >
+      
       <group data-sticky="top" data-width="auto">
         <group
-          data-border=""
+          data-elevation="2"
           data-space="10"
           data-gap="10"
           data-radius="20"
-          data-background="main-background"
+          data-background="context"
+          
           data-width="auto"
           data-align="center"
+
         >
           <Link
             data-type="group"

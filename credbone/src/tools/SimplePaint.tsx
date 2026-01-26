@@ -59,6 +59,9 @@ const SimplePaint: React.FC = () => {
     
     setIsResizing(true);
   };
+
+
+
   
   const stopResize = () => {
     setIsResizing(false);
@@ -331,6 +334,7 @@ const SimplePaint: React.FC = () => {
                   <Tooltip content={color.name} delay={300}>
                     <group
                       data-animation-name="appear-left"
+                      data-over-color="neutral"
                       data-fill-mode="backwards"
                       data-animation-duration={2 + index * 0.25}
                       data-radius="10"
@@ -339,10 +343,14 @@ const SimplePaint: React.FC = () => {
                       data-direction="column"
                       data-cursor="pointer"
                       data-interactive=""
+                      data-transition-prop="padding"
+                      data-duration=".125"
                       data-background={
-                        brushColor === color.value ? "highlight" : ""
+                        brushColor === color.value ? "context" : ""
                       }
-                      data-space="10"
+                     
+                      data-index={brushColor === color.value ? "1" : ""}
+                      data-space={brushColor === color.value ? "15" : "10"}
                       onClick={() => setBrushColor(color.value)}
                     >
                       <group
@@ -415,23 +423,19 @@ const SimplePaint: React.FC = () => {
               touchAction: "none",
             }}
           />
-          <group
-            data-position="absolute"
-            data-height="30"
-            data-length="30"
-            data-bottom="-30"
-            data-right="-30"
-            style={{
-              cursor: "nwse-resize",
-            }}
-            onPointerDown={startResize}
-          >
-            <group
-              data-height="5"
-              data-length="5"
-              data-background="text"
-            ></group>
-          </group>
+          
+
+
+
+         <group data-position="absolute" data-height="30" data-length="30" data-bottom="-30" data-right="-30" style={{ cursor: "nwse-resize", }} onPointerDown={startResize} > <group data-height="5" data-length="5" data-background="text" ></group> </group>
+{/* 
+          <group data-position="absolute" data-height="30" data-length="30" data-bottom="-30" data-left="-30"  data-justify="end" style={{ cursor: "nesw-resize", }} > <group data-height="5" data-length="5" data-background="text" ></group> </group>
+
+          <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-right="-30" data-align="end" data-justify="start" style={{ cursor: "nesw-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group>
+
+          <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-left="-30" data-align="end" data-justify="end" style={{ cursor: "nwse-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group> */}
+
+          
         </group>
       </group>
 

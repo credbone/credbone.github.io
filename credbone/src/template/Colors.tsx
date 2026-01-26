@@ -253,6 +253,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               data-background={"main" + color.code}
               data-color={"main" + color.textcolor}
               data-wrap="no"
+              data-radius="10"
             >
               <text data-ellipsis="" data-light="">
                 {color.description}
@@ -360,6 +361,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               data-background={"secondary" + color.code}
               data-color={"secondary" + color.textcolor}
               data-wrap="no"
+              data-radius="10"
             >
               <text data-ellipsis="" data-light="">
                 {color.description}
@@ -414,6 +416,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               data-background={"neutral" + color.code}
               data-color={"neutral" + color.textcolor}
               data-wrap="no"
+              data-radius="10"
             >
               <text data-ellipsis="" data-light="" data-color="reset">
                 {color.description}
@@ -537,6 +540,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                     data-ratio="1:1"
                     data-expand-react="radius"
                     data-duration="1.25"
+                    data-radius="10"
                     data-background={colors.value + "-light"}
                   ></group>
                 </Popover>
@@ -613,6 +617,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                     data-ratio="1:1"
                                         data-expand-react="radius"
                     data-duration="1.25"
+                    data-radius="10"
                     data-background={colors.value}
                   ></group>
                 </Popover>
@@ -685,6 +690,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                     data-ratio="1:1"
                                         data-expand-react="radius"
                     data-duration="1.25"
+                    data-radius="10"
                     data-background={colors.value + "-dark"}
                   ></group>
                 </Popover>

@@ -310,6 +310,7 @@ const SystemColorPicker: React.FC<ColorPickerProps> = ({ selectedColor, handleCo
               data-radius="10"
               data-space-vertical="10"
               data-space-horizontal="15"
+              data-contain=""
             >
               <text data-ellipsis="">{selectedColor}</text>
             </group>
@@ -318,14 +319,16 @@ const SystemColorPicker: React.FC<ColorPickerProps> = ({ selectedColor, handleCo
             Pick
           </text> */}
 
-            <group
-              data-position="right"
+<group data-position="right" data-align="center" data-width="auto" data-height="fit" data-space="5" data-interact="" >
+              <group
+              
               data-length="20"
               data-height="20"
               data-border="outline"
               data-background={selectedColor}
               data-radius="30"
             ></group>
+</group>
           </group>
         </group>
       </Ripple>
