@@ -10,6 +10,8 @@ import Ripple from "../components/Ripple";
 import sampleImage from "../styles/images/samples/wide_res_63.webp";
 import TemplatePageHeader from "./TemplatePageHeader";
 import { X } from "lucide-react";
+// import UnitConverter from "../tools/UnitConverter";
+// import Calculator from "../tools/Calculator";
 
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
@@ -20,22 +22,21 @@ const Modal: React.FC = () => {
 
   const sampleContent = (
     <group
-      data-space="30"
+      data-space="40"
       data-max-length="400"
       data-max-height="fit"
       data-scroll=""
-      data-gap="10"
+      data-gap="20"
     >
       <text
-        data-line="20"
-        data-color="main"
-        data-text-size="medium"
-        data-wrap="wrap"
-        data-weight="600"
+        data-ellipsis="" data-font-type="hero" data-text-size="large" data-wrap="preline" data-line="1"
       >
-        This is a Modal Component
+        Example of {"\n"}  a Modal Component
       </text>
-      <text data-line="20" data-wrap="wrap">
+
+
+
+      <text data-line="20" data-wrap="wrap" data-opacity="70">
         It uses context to manage multiple modals and ensures only the topmost
         modal can be interacted with when multiple are open.
       </text>
@@ -194,8 +195,8 @@ const Modal: React.FC = () => {
               data-interactive=""
              data-over-color="neutral"
               data-space="15"
-              data-space-horizontal="25"
-              data-radius="15"
+              data-space-horizontal="40"
+              data-radius="30"
               data-cursor="pointer"
               data-background="text"
               data-color="main-background"
@@ -205,47 +206,52 @@ const Modal: React.FC = () => {
                         title: "Sample Basic Popup",
                         fullscreenbutton: true,
                         customAttributes: {
-                          "data-animation-name": "appear-top",
+                          "data-animation-name": "appear-bottom",
                           "data-animation-duration": "1.75",
                           "data-fill-mode": "backwards",
                         },
                         content: (
                           <group
-                            data-space="30"
+                          //  data-space="30"
                             data-direction="column"
                             data-align="start"
                             data-scroll=""
                             data-wrap="no"
                             //data-shrink="no"
+                            data-margin="auto"
                           >
                             <group
                               data-direction="column"
                               data-align="start"
-                              data-gap="30"
+                         //     data-gap="30"
                               data-width="auto"
+                               data-margin="auto"
                             >
                               <group
                                 data-direction="column"
-                                data-gap="30"
+                               data-space="40"
                                 data-align="start"
+                                 data-length="400"
                               >
-                                <group data-gap="10" data-direction="column">
+                                <group data-gap="20" data-direction="column">
+                                  
                                   <text
-                                    data-weight="700"
-                                    data-text-size="medium"
-                                    data-animation-name="appear-top"
+                                   data-font-type="hero" data-text-size="large" data-wrap="preline" data-line="1"
+                                    data-animation-name="appear-bottom"
                                     data-fill-mode="backwards"
                                     data-animation-duration="1.75"
+                                    
                                   >
-                                    Example Modal
+                                    Basic Example {"\n"}  of a Modal Component
                                   </text>
                                   <text
                                     data-wrap="wrap"
                                     data-line="1.5"
-                                    data-length="400"
-                                    data-animation-name="appear-top"
+                                   
+                                    data-animation-name="appear-bottom"
                                     data-fill-mode="backwards"
                                     data-animation-duration="2"
+                                    data-opacity="80"
                                   >
                                     This is a sample modal to demonstrate how
                                     content is displayed. Click the button below
@@ -257,32 +263,72 @@ const Modal: React.FC = () => {
 
 
                                 </group>
-                                <separator data-horizontal=""></separator>
+                               
                               </group>
 
-                              <Ripple>
+
+<separator data-horizontal=""></separator>
+<group data-wrap="no" data-contain="">
+           <Ripple>
                                 <group
-                                  data-ink-color="main-deep"
+                               
+                                  data-ink-color="neutral"
                                   data-contain=""
-                                  data-width="auto"
+                                  data-align="center"
+                                  data-justify="center"
+                               //   data-width="auto"
                                   data-interactive=""
-                                  data-interact="popover"
-                                  data-space="15"
-                                  data-radius="5"
+                                  
+                                  data-space="20"
+                                  data-space-horizontal="40"
+                                //  data-radius="30"
                                   data-cursor="pointer"
-                                  data-background="main"
-                                  data-color="main-text"
+                               //   data-background="main"
+                                 // data-color="main-text"
                                   onClick={() => closeModal("modal-01")}
                                   data-containt=""
-                                  data-animation-name="appear-top"
+                                  data-animation-name="appear-bottom"
                                   data-fill-mode="backwards"
                                   data-animation-duration="2.25"
+                                  data-over-color="neutral"
                                 >
                                   <text data-weight="700" data-ellipsis="">
-                                    Confirm and Close
+                                    Cancel
                                   </text>
                                 </group>
                               </Ripple>
+
+                                         <Ripple>
+                                <group
+                               
+                                  data-ink-color="main-deep"
+                                  data-contain=""
+                               //   data-border=""
+        
+                                  data-align="center"
+                                  data-justify="center"
+                               //   data-width="auto"
+                                  data-interactive=""
+                                  data-interact="popover"
+                                  data-space="25"
+                                  data-space-horizontal="40"
+                                //  data-radius="30"
+                                  data-cursor="pointer"
+                                 data-background="main"
+                                 data-color="main-text"
+                                  onClick={() => closeModal("modal-01")}
+                                  data-containt=""
+                                  data-animation-name="appear-bottom"
+                                  data-fill-mode="backwards"
+                                  data-animation-duration="3"
+                                >
+                                  <text data-weight="700" data-ellipsis="">
+                                    OK
+                                  </text>
+                                </group>
+                              </Ripple>
+  </group>
+
                             </group>
                           </group>
                         ),
@@ -316,6 +362,92 @@ const Modal: React.FC = () => {
         >
           {demoModals}
         </group>
+
+
+{/* 
+        <group
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="30"
+          data-border=""
+          data-contain=""
+        >
+                    <group
+            data-space="20"
+            data-gap="15"
+            data-weight="600"
+            data-background="context"
+          >
+
+                      <group data-gap="15" data-name="separation">
+              <separator data-horizontal=""></separator>
+              <group>
+                <group
+                  data-width="auto"
+                  data-interactive=""
+                  data-space="15"
+                  data-radius="10"
+                  data-cursor="pointer"
+                  onClick={() =>
+                    openModal({
+                      id: "modal-2",
+                      title: "Unit Converter",
+                      content: (
+                        <group data-space="5" data-length="300">
+
+
+<UnitConverter/>
+                        </group>
+                      ),
+                     // hasHeader: false,
+                     // hasToolbar: true,
+
+                    })
+                  }
+                >
+                  <text data-ellipsis="">Open Sample App</text>
+                </group>
+              </group>
+            </group>
+
+                                  <group data-gap="15" data-name="separation">
+              <separator data-horizontal=""></separator>
+              <group>
+                <group
+                  data-width="auto"
+                  data-interactive=""
+                  data-space="15"
+                  data-radius="10"
+                  data-cursor="pointer"
+                  onClick={() =>
+                    openModal({
+                      id: "modal-2",
+                      title: "Simple Calculator",
+                      content: (
+                        <group data-space="5" data-length="280">
+
+
+<Calculator></Calculator>                        </group>
+                      ),
+                     // hasHeader: false,
+                     // hasToolbar: true,
+
+                    })
+                  }
+                >
+                  <text data-ellipsis="">Open Sample App</text>
+                </group>
+              </group>
+            </group>
+
+          </group>
+
+
+          
+
+        </group> */}
+
+
 
         <group
           data-size="medium"
@@ -442,7 +574,7 @@ const Modal: React.FC = () => {
 
                             <group
                               data-contain=""
-                              data-radius="15"
+                              data-radius="25"
                               data-elevation="2"
                               data-animation-name="appear-bottom"
                               data-fill-mode="backwards"

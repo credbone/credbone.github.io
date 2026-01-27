@@ -10,6 +10,7 @@ import Button from "./button";
 import { useLocation } from "react-router-dom";
 import { ArrowDownLeft, ArrowUpRight, X } from "lucide-react";
 import Tooltip from "./tooltip";
+import Ripple from "./Ripple";
 
 // Modal Component
 interface ModalProps {
@@ -90,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({
         {...dimAttributes}
       ></group>
       <group
-        data-radius="15"
+        data-radius="20"
         data-direction="column"
         data-width={isFullscreen ? "fit" : "auto"}
         data-height={isFullscreen ? "fit" : ""}
@@ -164,18 +165,40 @@ const Modal: React.FC<ModalProps> = ({
             </group>
             <group
               data-name="modal-toolbar"
-              data-space="30"
+             // data-space="30"
               data-gap="20"
               data-background="light-gray"
             >
-              <group data-gap="10" data-type="grid" data-grid-template="120">
-                <group
+              <group  data-wrap="no">
+                <Ripple>
+                    <group
                   onClick={onClose}
+                   data-ink-color="neutral"
+                   data-over-color="neutral"
                   data-contain=""
-                  data-space="15"
+                  data-space="25"
                   data-interactive=""
                   data-cursor="pointer"
-                  data-radius="5"
+                 
+                  data-align="center"
+                  data-direction="column"
+                 // data-background="main"
+               //   data-color="main-text"
+                >
+                  <text data-weight="700">Cancel</text>
+                </group>
+                </Ripple>
+              
+
+<Ripple>
+    <group
+      data-ink-color="main-deep"
+                  onClick={onClose}
+                  data-contain=""
+                  data-space="25"
+                  data-interactive=""
+                  data-cursor="pointer"
+                 
                   data-align="center"
                   data-direction="column"
                   data-background="main"
@@ -183,6 +206,9 @@ const Modal: React.FC<ModalProps> = ({
                 >
                   <text data-weight="700">OK</text>
                 </group>
+</Ripple>
+              
+
               </group>
             </group>
           </>

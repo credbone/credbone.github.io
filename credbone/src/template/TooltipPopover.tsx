@@ -7,7 +7,7 @@ import Count from "../components/Coutner";
 
 import Calculator from "../tools/Calculator";
 
-import sampleImage from "../styles/images/samples/wide_res_68.webp";
+import sampleImage from "../styles/images/samples/wide_res_71.webp";
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TooltipPropsDemo from "./TooltipPropsDemo";
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -69,7 +69,7 @@ const SemiSimplePopover = ({ closePopover }: { closePopover: () => void }) => (
           //  data-color="main-text"
             data-interactive=""
             data-space="15"
-            data-radius="10"
+            data-radius="30"
             // data-height="80"
             data-gap="20"
             onClick={closePopover}
@@ -87,7 +87,7 @@ const ShowPopover = (
     placement="auto"
     data-length="200"
     data-space="15"
-    data-radius="20"
+    data-radius="30"
     content={(closePopover) => (
 <SemiSimplePopover closePopover={closePopover} />
     )}
@@ -99,8 +99,8 @@ data-contain=""
               data-interactive=""
              data-over-color="neutral"
               data-space="15"
-              data-space-horizontal="25"
-              data-radius="15"
+              data-space-horizontal="40"
+              data-radius="30"
               data-cursor="pointer"
               data-background="text"
               data-color="main-background"
@@ -118,33 +118,30 @@ const showinsidepopover = (
     placement="auto"
     data-length="200"
     data-space="15"
-    data-radius="20"
+    data-radius="30"
     content={(closePopover) => (
 <SemiSimplePopover closePopover={closePopover} />
     )}
   >
-    <group>
-      <Ripple>
         <group
        
           data-wrap="no"
-          data-ink-color="main-deep"
+
           data-align="center"
           data-cursor="pointer"
           data-contain=""
-          data-background="main"
-          data-color="main-text"
+          data-over-color="neutral"
+          data-background="text"
+          data-color="main-background"
           data-interactive=""
           data-space="15"
-          data-radius="15"
+          data-radius="30"
           // data-height="80"
           data-gap="20"
           data-justify="center"
         >
            <text data-weight="700">Show Popover</text>
         </group>
-      </Ripple>
-    </group>
   </Popover>
 );
 
@@ -158,26 +155,29 @@ const SampleData = (
     data-border=""
     data-contain=""
   >
-    <group data-space="10">
+    <group data-space="5">
       <picture
+
+      data-radius-top="30"
      data-object-position="left"
         data-contain=""
         data-brightness="adaptive"
         //  data-position="absolute"
         data-background="grey-light"
-        data-radius="20"
+        
         data-height="160"
+        data-mask="bottom"
       >
         <img src={sampleImage} alt="" />  
       </picture>
     </group>
 
-    <group data-direction="column" data-space="30" data-gap="15">
+    <group data-direction="column" data-space="30" data-space-top="0" data-gap="15">
       <text
         data-weight="700"
       
        
-        data-color="main"
+     //   data-color="main"
         data-ellipsis=""
 
 
@@ -186,16 +186,26 @@ const SampleData = (
                       data-wrap="preline"
                       data-line="1"
       >
+
+        Sample
         Rich
-       {"\n"}
-        Content
+       {"\n"} 
+        Content 
       </text>
+
+
+
       <text data-wrap="wrap"  data-line="1.5" data-opacity="60">
         Tooltips display informative text when users hover over, focus on, or
         tap an element, while a popover is a floating card that appears when
         users click or hover over an element.
       </text>
     </group>
+
+
+<group data-space-horizontal="15">
+  <separator data-horizontal=""></separator>
+</group>
 
     <group
       //  data-background="main"
@@ -222,7 +232,7 @@ const SampleTooltipData = (
       data-wrap="wrap"
       data-ellipsis=""
     >
-      Rich Contect
+      Rich Content
     </text>
     <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
       Tooltips display informative text when users hover over, focus on, or tap
@@ -320,7 +330,7 @@ const TooltipPopover: React.FC = () => {
             <group>
               <Popover
                 placement="right"
-                data-radius="30"
+                data-radius="35"
                 data-space="0"
                 data-elevation="2"
                 content={SampleData}
@@ -411,7 +421,7 @@ const TooltipPopover: React.FC = () => {
               <Tooltip
                 // delay={0}
                 placement="auto"
-                data-radius="20"
+                data-radius="30"
                 data-space="30"
 
                // data-elevation="2"

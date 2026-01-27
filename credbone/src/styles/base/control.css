@@ -922,6 +922,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius="20"]{border-radius: 20px;}
 [data-radius="25"]{border-radius: 25px;}
 [data-radius="30"]{border-radius: 30px;}
+[data-radius="35"]{border-radius: 35px;}
 [data-radius="40"]{border-radius: 40px;}
 [data-radius="50"]{border-radius: 50px;}
 [data-radius="full"]{border-radius: 100%;}
@@ -948,6 +949,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius-top="5"]{border-top-left-radius:5px;border-top-right-radius: 5px;}
 [data-radius-top="10"]{border-top-left-radius:10px;border-top-right-radius: 10px;}
 [data-radius-top="15"]{border-top-left-radius:15px;border-top-right-radius: 15px;}
+[data-radius-top="25"]{border-top-left-radius:25px;border-top-right-radius: 25px;}
 [data-radius-top="30"]{border-top-left-radius:30px;border-top-right-radius: 30px;}
 
 
