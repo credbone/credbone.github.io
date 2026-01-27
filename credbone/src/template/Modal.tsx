@@ -279,8 +279,8 @@ const Modal: React.FC = () => {
                                //   data-width="auto"
                                   data-interactive=""
                                   
-                                  data-space="20"
-                                  data-space-horizontal="40"
+                                   data-space="20"
+                                  data-height="60"
                                 //  data-radius="30"
                                   data-cursor="pointer"
                                //   data-background="main"
@@ -310,8 +310,10 @@ const Modal: React.FC = () => {
                                //   data-width="auto"
                                   data-interactive=""
                                   data-interact="popover"
-                                  data-space="25"
-                                  data-space-horizontal="40"
+                                  data-space="20"
+                                  data-height="60"
+                                  
+                                  
                                 //  data-radius="30"
                                   data-cursor="pointer"
                                  data-background="main"

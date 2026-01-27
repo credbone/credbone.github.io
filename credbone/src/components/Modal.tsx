@@ -176,10 +176,11 @@ const Modal: React.FC<ModalProps> = ({
                    data-ink-color="neutral"
                    data-over-color="neutral"
                   data-contain=""
-                  data-space="25"
+                  data-space="20"
+                  data-height="60"
                   data-interactive=""
                   data-cursor="pointer"
-                 
+                 data-justify="center"
                   data-align="center"
                   data-direction="column"
                  // data-background="main"
@@ -195,7 +196,9 @@ const Modal: React.FC<ModalProps> = ({
       data-ink-color="main-deep"
                   onClick={onClose}
                   data-contain=""
-                  data-space="25"
+                  data-space="20"
+                   data-height="60"
+                    data-justify="center"
                   data-interactive=""
                   data-cursor="pointer"
                  
