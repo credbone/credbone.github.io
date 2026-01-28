@@ -439,7 +439,7 @@ useEffect(() => {
 
             <Popover
                data-space="5"
-               data-radius="15"
+               data-radius="20"
               content={(closePopover) => (
                 <group
                   data-direction="column"
@@ -447,7 +447,7 @@ useEffect(() => {
                   onClick={closePopover}
 
                 >
-                  <group
+                  {/* <group
                     data-space="15"
                     data-width="auto"
                     data-interactive=""
@@ -468,20 +468,109 @@ useEffect(() => {
                     onClick={copySVGToClipboard}
                   >
                     <text>Copy</text>
-                  </group>
+                  </group> */}
 
+
+
+
+
+
+
+
+                 <group
+                   onClick={exportSVG}
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="2.75"
+                    data-name="autoseparation"
+                  >
+                    <group
+                      data-space="15"
+                      data-align="center"
+                      data-gap="15"
+                      data-interactive=""
+                      data-radius="15"
+                      data-cursor="pointer"
+                    >
+                      <group data-direction="column" data-width="auto">
+                        <text data-weight="700">Download</text>
+                        <text data-opacity="30">Save icon for later</text>
+                      </group>
+                    </group>
+                  </group>
+                  <group
+                   onClick={copySVGToClipboard}
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="3.25"
+                    data-name="autoseparation"
+                  >
+                    <separator
+                      data-horizontal=""
+                      data-margin-horizontal="10"
+                      data-opacity="5"
+                    ></separator>
+                    <group
+                      data-space="15"
+                      data-align="center"
+                      data-gap="15"
+                      data-interactive=""
+                      data-radius="15"
+                      data-cursor="pointer"
+                    >
+                      <group data-direction="column" data-width="auto">
+                        <text data-weight="700">Copy</text>
+                        <text data-opacity="30">
+                          Paste in Figma or code ...
+                        </text>
+                      </group>
+                    </group>
+                  </group>
 
                   <group
-                    data-space="15"
-                    data-width="auto"
-                    data-interactive=""
- data-radius="10"
-                    data-cursor="pointer"
-                    onClick={copyRawData}
+                  onClick={copyRawData}
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="3.75"
+                    data-name="autoseparation"
                   >
-                    <text>Grab Raw Data</text>
+                    <separator
+                      data-horizontal=""
+                      data-margin-horizontal="10"
+                      data-opacity="5"
+                    ></separator>
+                    <group
+                      data-space="15"
+                      data-align="center"
+                      data-gap="15"
+                      data-interactive=""
+                      data-radius="15"
+                      data-cursor="pointer"
+                    >
+                      <group data-direction="column" data-width="auto">
+                        <text data-weight="700">Matrix</text>
+                        <text data-opacity="30">
+                          Grab Raw Data
+                        </text>
+                      </group>
+                    </group>
                   </group>
+
+
+
+
+
                 </group>
+
+
+
+
+
+
+
+
+
+
               )}
             >
               <group

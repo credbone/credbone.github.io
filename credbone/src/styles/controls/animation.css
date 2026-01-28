@@ -14,6 +14,8 @@
 @keyframes zoom-out {to{opacity: 0;transform: scale(.5);}}
 
 
+@keyframes background-48 {to{background-position: 48px 48px;}}
+
 
 
 
@@ -39,7 +41,7 @@
 }
 
 
-
+[data-animation-name="background-48"] {animation:background-48;}
 
 [data-animation-name="demo"]{animation-name: demo;}
 
@@ -127,7 +129,7 @@
 [data-animation-duration="7.75"] {animation-duration: 0.775s;} /* Added for 7.75 */
 [data-animation-duration="8"] {animation-duration: 0.8s;} /* Added for 8 */
 
-
+[data-animation-duration="16"] {animation-duration: 1.6s;} /* Added for 8 */
 
 
 [data-duration="1"] {transition-duration: 0.1s;}
@@ -161,7 +163,7 @@
 [data-duration="7.75"] {transition-duration: 0.775s;} /* Added for 7.75 */
 [data-duration="8"] {transition-duration: 0.8s;} /* Added for 8 */
 
-
+[data-duration="16"] {transition-duration: 1.6s;} /* Added for 8 */
 
 
 

@@ -50,6 +50,7 @@
 
 [data-sticky-level="10"]{top:10px;}
 [data-sticky-level="40"]{top:40px;}
+[data-sticky-level="30"]{top:30px;}
 [data-sticky-level="50"]{top:50px;}
 [data-sticky-level="60"]{top:60px;}
 [data-sticky-level="80"]{top:80px;}
@@ -1186,6 +1187,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-bottom="10-sab"]{padding-bottom:max(var(--sab), 10px);}
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
+[data-transition-prop="position"]{transition-property: top,left, right, bottom}
 [data-transition-prop="font-size-line-height"]{transition-property: font-size, line-height;}
 [data-transition-prop="stroke-dashoffset"]{transition-property: stroke-dashoffset;}
 [data-transition-prop="stroke-dasharray"]{transition-property: stroke-dasharray;}
@@ -1194,7 +1196,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="max-width"]{transition-property: max-width;}
 [data-transition-prop="height"]{transition-property: height;}
 [data-transition-prop="padding"]{transition-property: padding;}
-[data-transition-prop="padding"]{transition-property: padding;}
+
 [data-transition-prop="border-radius"]{transition-property: border-radius;}
 [data-transition-prop="border-radius-margin"]{transition-property: border-radius, margin;}
 [data-transition-prop="r"]{transition-property: r;}

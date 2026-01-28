@@ -3,9 +3,11 @@ import { Link, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import DotIconMaker from "./DotIconMaker";
 
 import { links } from "./toolData";
-import { Grip } from "lucide-react";
+import { ArrowLeft, ChevronLeft, Grip } from "lucide-react";
 import Popover from "../../components/popover";
 import BlobGenerator from "./BlobGenerator";
+import PatternMaker from "./PatternMaker";
+import StuckReporter from "../../components/StuckReporter";
 
 
 function ToolsCollection() {
@@ -16,21 +18,35 @@ function ToolsCollection() {
       data-scroll=""
       data-index="1"
       data-space="adaptive-30-50"
-      data-gap="30"
+     // data-gap="30"
       data-align="start"
       data-min-height="fit"
+      data-space-top="0"
     >
       
-      <group data-sticky="top" data-width="auto">
+
+<group data-height="30"  data-shrink="no"></group>
+<group data-height="20"  data-shrink="no" data-adaptive="600"></group>
+
+
+
+        <StuckReporter>
+          {(isSticky) => (
+      <group data-sticky="top"   data-width="auto" >
         <group
+        data-top={isSticky ? "adaptive-30-50" : "0"} 
+       // data-left={isSticky ? "0" : ""}
           data-elevation="2"
-          data-space="10"
+           data-space="10"
           data-gap="10"
           data-radius="20"
           data-background="context"
           
           data-width="auto"
           data-align="center"
+
+          data-duration="2.25"
+data-transition-prop="position"
 
         >
           <Link
@@ -43,8 +59,13 @@ function ToolsCollection() {
             data-height="fit"
             data-align="center"
             to="./"
+            data-wrap="no"
+           
           >
-            <text>Tools & Resources</text>
+             <group   data-interact="" data-hidden={isSticky ? "true" : ""}>
+                <ChevronLeft size={20} />
+              </group>
+            <text data-hidden={isSticky ? "" : "true"} data-opacity={isSticky ? "0" : ""}>Tools & Resources</text>
           </Link>
           <separator data-vertical=""></separator>
           <Popover
@@ -98,12 +119,22 @@ function ToolsCollection() {
           </Popover>
         </group>
       </group>
+          )}
+        </StuckReporter>
 
+
+
+
+
+
+
+<group data-height="30"  data-shrink="no"></group>
 <group data-max-length="1200">
 <Routes>
         <Route path="/*" element={<Navigate replace to="./" />} />
         <Route path="DotIconMaker" element={<DotIconMaker />} />
         <Route path="BlobGenerator" element={<BlobGenerator />} />
+        <Route path="Patternmaker" element={<PatternMaker />} />
       </Routes>
 
 </group>
