@@ -496,7 +496,22 @@ export const SVG_TILES: SVGTile[] = [
         <path fillRule="evenodd" clipRule="evenodd" d="M24 23H23V24H24V23ZM24 47H23V48H24V47ZM47 23H48V24H47V23ZM48 47H47V48H48V47Z" fill="currentColor"></path>
       </g>
     )
-  }
+  },
+
+//     {
+//     id: 'cross',
+//     name: 'Cross',
+//     content: () => (
+//   <g xmlns="http://www.w3.org/2000/svg" opacity="0.25">
+// <path fill-rule="evenodd" clip-rule="evenodd" d="M27.0355 20.6716L26.3284 19.9645L23.5 22.7929L20.6716 19.9645L19.9645 20.6716L22.7929 23.5L19.9645 26.3284L20.6716 27.0355L23.5 24.2071L26.3284 27.0355L27.0355 26.3284L24.2071 23.5L27.0355 20.6716Z" fill="currentColor"/>
+// </g>
+//     )
+//   },
+
+
+
+
+
 ];
 
 

@@ -157,7 +157,7 @@ export const routesData: RouteData[] = [
   {
     path: "../Tools/PatternMaker",
     tags: ["pattern", "seamless", "repeatable", "generator","tools", "maker", "svg", "vector", "texture"],
-    description: "Perfect for designing repeatable backgrounds.",
+    description: "Ideal for creating seamless, repeatable backgrounds.",
     title: "Pattern Maker"
   }
 

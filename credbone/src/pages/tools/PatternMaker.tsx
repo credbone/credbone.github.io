@@ -50,16 +50,14 @@ const PatternMaker: React.FC = () => {
     setPatternKey((prev) => prev + 1);
   };
 
-
   const selectRandomTiles = () => {
-  const randomTiles = [...SVG_TILES]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3)
-    .map((tile) => tile.id);
-  setSelectedTiles(new Set(randomTiles));
-  setPatternKey((prev) => prev + 1);
-};
-
+    const randomTiles = [...SVG_TILES]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map((tile) => tile.id);
+    setSelectedTiles(new Set(randomTiles));
+    setPatternKey((prev) => prev + 1);
+  };
 
   const getSelectedTiles = () => {
     return SVG_TILES.filter((tile) => selectedTiles.has(tile.id));
@@ -207,7 +205,7 @@ const PatternMaker: React.FC = () => {
 
       <group
         data-autofit="1-800"
-        data-length="400"
+        data-length="395"
         data-gap="30"
         data-direction="column"
         data-align="start"
@@ -232,26 +230,21 @@ const PatternMaker: React.FC = () => {
                 Preview<br></br> Your Pattern
               </text>
 
-  <group
-
-  data-adaptive="mobile"
-  data-position="right"
-  data-cursor="pointer"
-  data-interactive=""
-  data-space-vertical="15"
-  data-radius="15"
-  data-space-horizontal="20"
-  data-background="adaptive-gray"
-  onClick={selectRandomTiles}
-  data-width="auto"
->
-  <text>Random</text>
-</group>
-
-
+              <group
+                data-adaptive="mobile"
+                data-position="right"
+                data-cursor="pointer"
+                data-interactive=""
+                data-space-vertical="15"
+                data-radius="15"
+                data-space-horizontal="20"
+                data-background="adaptive-gray"
+                onClick={selectRandomTiles}
+                data-width="auto"
+              >
+                <text>Random</text>
+              </group>
             </group>
-
-
 
             <group
               data-direction="column"
@@ -260,8 +253,6 @@ const PatternMaker: React.FC = () => {
               data-gap="30"
               data-align="start"
             >
-
-
               <group
                 data-hidden={selectedTiles.size === 0 ? "true" : ""}
                 data-animation-name="appear-top"
@@ -283,7 +274,7 @@ const PatternMaker: React.FC = () => {
                 width="100%"
                 height="100%"
                 data-position="absolute"
-          //      data-mask="top"
+                //      data-mask="top"
               >
                 <rect
                   width="100%"
@@ -295,7 +286,7 @@ const PatternMaker: React.FC = () => {
               <group
                 data-adaptive="mobile"
                 data-width="auto"
-                    data-position="absolute"
+                data-position="absolute"
                 data-index="2"
                 data-bottom="0"
                 data-right="0"
@@ -366,7 +357,6 @@ const PatternMaker: React.FC = () => {
                   <group data-width="auto">
                     <Ripple>
                       <group
-                      
                         data-contain=""
                         data-ink-color="main-dark"
                         data-cursor="pointer"
@@ -379,7 +369,7 @@ const PatternMaker: React.FC = () => {
                         data-wrap="no"
                         data-align="center"
                         data-gap="15"
-                      //  data-height="45"
+                        //  data-height="45"
                       >
                         <group data-interact="" data-width="auto">
                           <Plus size={20} />
@@ -397,7 +387,6 @@ const PatternMaker: React.FC = () => {
                   </group>
                 </Popover>
               </group>
-
             </group>
 
             <group data-gap="10" data-wrap="no">
@@ -410,6 +399,8 @@ const PatternMaker: React.FC = () => {
                 data-background="adaptive-gray"
                 onClick={resetSelection}
                 data-width="auto"
+                data-animation-name="appear-top-small"
+                data-animation-duration="4"
               >
                 <text>New</text>
               </group>
@@ -528,6 +519,8 @@ const PatternMaker: React.FC = () => {
                   data-position="right"
                   data-wrap="no"
                   data-gap="15"
+                  data-animation-name="appear-top-small"
+                  data-animation-duration="3"
                 >
                   <text data-opacity={selectedTiles.size === 0 ? "30" : ""}>
                     Export Pattern
@@ -540,33 +533,29 @@ const PatternMaker: React.FC = () => {
       </group>
 
       <group data-fit="1" data-adaptive="desktop">
+        <group  data-align="center" data-gap="15" data-space-vertical="30">
+          <group
+          //  data-position="right"
+            data-cursor="pointer"
+            data-interactive=""
+            data-space-vertical="15"
+            data-radius="15"
+            data-space-horizontal="20"
+            data-background="adaptive-gray"
+            onClick={selectRandomTiles}
+            data-width="auto"
+          >
+            <text>Random</text>
+          </group>
 
-<group data-wrap="no" data-align="center" data-gap="15">
-
-  <group
-
-  
-  data-position="right"
-  data-cursor="pointer"
-  data-interactive=""
-  data-space-vertical="15"
-  data-radius="15"
-  data-space-horizontal="20"
-  data-background="adaptive-gray"
-  onClick={selectRandomTiles}
-  data-width="auto"
->
-  <text>Random</text>
-</group>
-
-<separator data-vertical=""></separator>
-        <group data-space-vertical="30" data-direction="column" data-gap="10">
-          {/* <text data-weight="700" data-wrap="preline" data-text-size="large" data-ellipsis="" data-font-type="hero" data-line="1">Select Tiles Here</text> */}
-          <text data-opacity="50" data-length="240" data-wrap="wrap">
-          Choose any tiles you like—they'll layer together into one pattern.
-          </text>
+          <separator data-vertical="adaptive"></separator>
+          <group data-width="auto"  data-direction="column" data-gap="10">
+            {/* <text data-weight="700" data-wrap="preline" data-text-size="large" data-ellipsis="" data-font-type="hero" data-line="1">Select Tiles Here</text> */}
+            <text data-opacity="50" data-max-length="240" data-wrap="wrap">
+              Choose any tiles you like—they'll layer together into one pattern.
+            </text>
+          </group>
         </group>
-</group>
 
         <group data-gap="15" data-type="grid" data-grid-template="80">
           {tileGrid}
