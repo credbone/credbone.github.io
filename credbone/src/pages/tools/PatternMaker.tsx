@@ -231,13 +231,74 @@ const PatternMaker: React.FC = () => {
               >
                 Preview<br></br> Your Pattern
               </text>
+
+  <group
+
+  data-adaptive="mobile"
+  data-position="right"
+  data-cursor="pointer"
+  data-interactive=""
+  data-space-vertical="15"
+  data-radius="15"
+  data-space-horizontal="20"
+  data-background="adaptive-gray"
+  onClick={selectRandomTiles}
+  data-width="auto"
+>
+  <text>Random</text>
+</group>
+
+
             </group>
+
+
+
+            <group
+              data-direction="column"
+              data-ratio="1:1"
+              data-contain=""
+              data-gap="30"
+              data-align="start"
+            >
+
+
+              <group
+                data-hidden={selectedTiles.size === 0 ? "true" : ""}
+                data-animation-name="appear-top"
+                data-fill-mode="backwards"
+                data-animation-duration="3"
+                data-width="auto"
+                data-gap="30"
+                data-direcion="column"
+              >
+                <separator data-horizontal=""></separator>
+
+                <text data-opacity="50" data-length="240" data-wrap="wrap">
+                  Choose two or more tiles to combine and generate a new
+                  pattern.
+                </text>
+              </group>
+
+              <svg
+                width="100%"
+                height="100%"
+                data-position="absolute"
+          //      data-mask="top"
+              >
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill={`url(#combined-svg-${patternKey})`}
+                />
+              </svg>
 
               <group
                 data-adaptive="mobile"
                 data-width="auto"
-                //     data-position="absolute"
+                    data-position="absolute"
                 data-index="2"
+                data-bottom="0"
+                data-right="0"
               >
                 <Popover
                   placement="top"
@@ -305,75 +366,38 @@ const PatternMaker: React.FC = () => {
                   <group data-width="auto">
                     <Ripple>
                       <group
+                      
                         data-contain=""
                         data-ink-color="main-dark"
                         data-cursor="pointer"
                         data-interactive=""
-                        data-space="15"
-                        data-radius="15"
+                        data-space="20"
+                        data-radius="30"
                         data-background="main"
                         data-color="main-text"
                         data-width="auto"
                         data-wrap="no"
                         data-align="center"
                         data-gap="15"
-                        data-height="45"
+                      //  data-height="45"
                       >
-                        <group data-interact="">
+                        <group data-interact="" data-width="auto">
                           <Plus size={20} />
                         </group>
 
-                        <text
+                        {/* <text
                           // data-text-size={selectedTiles.size === 0 ? "" : "0"}
                           // data-duration="1.25"
                           // data-transition-prop="font-size"
                         >
                           Add Tiles
-                        </text>
+                        </text> */}
                       </group>
                     </Ripple>
                   </group>
                 </Popover>
               </group>
 
-            <group
-              data-direction="column"
-              data-ratio="1:1"
-              data-contain=""
-              data-gap="30"
-              data-align="start"
-            >
-
-
-              <group
-                data-hidden={selectedTiles.size === 0 ? "true" : ""}
-                data-animation-name="appear-top"
-                data-fill-mode="backwards"
-                data-animation-duration="3"
-                data-width="auto"
-                data-gap="30"
-                data-direcion="column"
-              >
-                <separator data-horizontal=""></separator>
-
-                <text data-opacity="50" data-length="240" data-wrap="wrap">
-                  Choose two or more tiles to combine and generate a new
-                  pattern.
-                </text>
-              </group>
-
-              <svg
-                width="100%"
-                height="100%"
-                data-position="absolute"
-          //      data-mask="top"
-              >
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill={`url(#combined-svg-${patternKey})`}
-                />
-              </svg>
             </group>
 
             <group data-gap="10" data-wrap="no">
@@ -518,7 +542,11 @@ const PatternMaker: React.FC = () => {
       <group data-fit="1" data-adaptive="desktop">
 
 <group data-wrap="no" data-align="center" data-gap="15">
+
   <group
+
+  
+  data-position="right"
   data-cursor="pointer"
   data-interactive=""
   data-space-vertical="15"

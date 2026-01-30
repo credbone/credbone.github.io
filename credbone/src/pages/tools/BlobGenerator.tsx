@@ -144,7 +144,7 @@ const BlobGenerator: React.FC = () => {
   return (
     <group
       data-type="grid"
-      data-grid-template="240"
+      data-grid-template="280"
       data-gap="30"
       data-align="start"
     >
@@ -153,14 +153,29 @@ const BlobGenerator: React.FC = () => {
       <group
         data-border=""
         data-direction="column"
-        data-radius="30"
-        data-space="10"
+        data-radius="40"
+      //  data-space="10"
         data-contain=""
         data-elevation="2"
       //  data-background="adaptive-gray"
-        
+        data-space="30"
+        data-gap="30"
       >
-        <group data-space="30" data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2" >
+
+            <group >
+              <text
+                data-weight="700"
+                data-wrap="preline"
+                data-text-size="large"
+                data-ellipsis=""
+                data-font-type="hero"
+                data-line="1"
+              >
+                Don't skip your<br></br> soul-blob.
+              </text>
+            </group>
+
+        <group  data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2" >
           <svg width="256" height="256" viewBox="0 0 100 100">
             <path data-duration="2.25" d={path} fill="currentColor" />
           </svg>
@@ -171,7 +186,7 @@ const BlobGenerator: React.FC = () => {
         <group data-animation-name="appear-top-small" data-fill-mode="backwards" data-animation-duration="4">
           <text
             data-wrap="wrap"
-            data-space="20"
+            //data-space="20"
             data-line="1.3"
             data-length="280"
             data-opacity="70"
@@ -183,7 +198,7 @@ const BlobGenerator: React.FC = () => {
 
 
 
-        <group data-background="main-background" data-radius="20" data-space="10" data-gap="10" data-wrap="no" data-animation-name="appear-top-small"  data-animation-duration="2">
+        <group data-background="main-background" data-radius="20"  data-gap="10" data-wrap="no" data-animation-name="appear-top-small"  data-animation-duration="2">
 
 
           <group
@@ -195,7 +210,7 @@ const BlobGenerator: React.FC = () => {
             data-contain=""
             data-interactive=""
          //   data-over-color="neutral"
-            data-radius="10"
+            data-radius="15"
             data-cursor="pointer"
             onClick={regenerateBlob}
 
@@ -307,7 +322,7 @@ data-radius="20"
               data-width="auto"
               data-interactive=""
               data-over-color="neutral"
-              data-radius="10"
+              data-radius="15"
               data-cursor="pointer"
               data-animation-name="appear-top-small"  data-animation-duration="4"
             //  data-position="right"

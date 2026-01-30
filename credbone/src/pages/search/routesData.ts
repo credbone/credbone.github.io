@@ -153,6 +153,13 @@ export const routesData: RouteData[] = [
     description: "Yet another blob generator—because the world clearly needs more blobs.",
     title: "Blob Generator"
   }
+,
+  {
+    path: "../Tools/PatternMaker",
+    tags: ["pattern", "seamless", "repeatable", "generator","tools", "maker", "svg", "vector", "texture"],
+    description: "Perfect for designing repeatable backgrounds.",
+    title: "Pattern Maker"
+  }
 
 ];
 

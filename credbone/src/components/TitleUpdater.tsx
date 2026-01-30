@@ -26,6 +26,11 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
 
   'Tools': { title: 'Tools & Resources', header: "Tools & Resources" },
 
+  'PatternMaker': { title: 'Pattern Maker', header: null },
+    'BlobGenerator': { title: 'Blob Generator', header: null },
+      'DotIconMaker': { title: 'Dot Icon Maker', header: null },
+
+
   'Resume': { title: 'Ruben Sargsyan', header: 'Ruben Sargsyan' },
   'Dashboard': { title: 'Dashboard', header: 'Dashboard' },
   'QuickDemos': { title: 'Quick Demos', header: 'Quick Demos' },
