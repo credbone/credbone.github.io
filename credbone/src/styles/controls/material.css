@@ -11,6 +11,8 @@
 
 
 
+[data-ink-color="gray-shade-20"] { --ink-color: var(--gray-shade-20);}
+
 [data-ink-color="main"] { --ink-color: var(--main-color);}
 [data-ink-color="main-deep"] { --ink-color: var(--main-color-deep);}
 [data-ink-color="main-dark"] { --ink-color: var(--main-color-dark);}

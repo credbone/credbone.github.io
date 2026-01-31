@@ -243,50 +243,65 @@ const DotDisplayEdit: React.FC<{
               </group>
             </Ripple>
 
-
-
-            <group
-           //   data-align="center"
-              data-gap="15"
-              //  data-space="15"
-              data-wrap="no"
-              data-width="auto"
-              data-contain=""
-              data-space="15"
-              
-              data-radius="15"
-              data-background="adaptive-gray"
-              onClick={toggleoverlay}
-              data-interactive=""
-              data-over-color="neutral"
-              data-cursor="pointer"
-            >
+            <Ripple>
+              <group
+                //   data-align="center"
+                data-gap="15"
+                //  data-space="15"
+                data-wrap="no"
+                data-width="auto"
+                data-contain=""
+                data-space="15"
+                data-radius="15"
+                data-background="adaptive-gray"
+                onClick={toggleoverlay}
+                data-interactive=""
+                data-over-color="neutral"
+                data-cursor="pointer"
+              >
                 <group data-width="auto">
                   <text data-ellipsis="" data-opacity="40">
                     Guides
                   </text>
                 </group>
-            <separator data-vertical="" data-height="autofit"></separator>
-              <group
-                data-align="center"
-                data-justify="center"
-                // data-background="text"
-                // data-color="main-background"
-                data-width="auto"
-                data-weight="600"
-                data-contain=""
-              >
-                <text data-ellipsis="">{isshowoverlay ? "Hide" : "Show"}</text>
+                <separator data-vertical="" data-height="autofit"></separator>
+                <group
+                  data-align="center"
+                  data-justify="center"
+                  // data-background="text"
+                  // data-color="main-background"
+                  data-width="auto"
+                  //data-weight="600"
+                  data-contain=""
+                >
+                  <text
+                    data-ellipsis=""
+                    data-transition-prop="font-size"
+                    data-duration="2"
+                    data-text-size={isshowoverlay ? "" : "0"}
+                  >
+                    Hide
+                  </text>
+                  <text
+                    data-ellipsis=""
+                    data-transition-prop="font-size"
+                    data-duration="2"
+                    data-text-size={!isshowoverlay ? "" : "0"}
+                  >
+                    Show
+                  </text>
+                </group>
               </group>
-            </group>
+            </Ripple>
           </group>
 
-          <group data-space="30" data-width="auto" data-justify="center" 
-          
-                            data-animation-name="appear-top-small"
-                    data-fill-mode="backwards"
-                    data-animation-duration="2"
-
+          <group
+            data-space="30"
+            data-width="auto"
+            data-justify="center"
+            data-animation-name="appear-top-small"
+            data-fill-mode="backwards"
+            data-animation-duration="2"
           >
             <group
               data-disabled="true"
@@ -411,7 +426,6 @@ const DotDisplayEdit: React.FC<{
             data-align="center"
             data-radius="20"
             data-wrap="no"
-            
           >
             {/* <separator data-vertical="" data-height="20"></separator> */}
 
@@ -422,11 +436,9 @@ const DotDisplayEdit: React.FC<{
               data-radius="30"
               data-wrap="no"
               data-space="2"
-
-                                          data-animation-name="appear-top-small"
-                    data-fill-mode="backwards"
-                    data-animation-duration="4"
-
+              data-animation-name="appear-top-small"
+              data-fill-mode="backwards"
+              data-animation-duration="4"
             >
               <group
                 data-space-vertical="15"
@@ -465,9 +477,6 @@ const DotDisplayEdit: React.FC<{
                 data-radius="30"
                 data-cursor="pointer"
                 onClick={toggleEraser}
-
-
-                
               >
                 <group data-interact="">
                   <Eraser size={20} />
@@ -586,12 +595,13 @@ const DotDisplayEdit: React.FC<{
                 </group>
               )}
             >
-              <group
-
-                            data-animation-name="appear-top-small"
-                    data-fill-mode="backwards"
-                    data-animation-duration="2"
-
+<group data-width="auto" data-position="right">
+  <Ripple>
+                  <group
+                  data-contain=""
+                data-animation-name="appear-top-small"
+                data-fill-mode="backwards"
+                data-animation-duration="2"
                 data-space-vertical="15"
                 data-space-horizontal="20"
                 data-align="center"
@@ -603,10 +613,12 @@ const DotDisplayEdit: React.FC<{
                 data-over-color="neutral"
                 data-radius="15"
                 data-cursor="pointer"
-                data-position="right"
+                
               >
                 <text>Export</text>
               </group>
+  </Ripple>
+</group>
             </Popover>
           </group>
         </group>
@@ -639,12 +651,14 @@ const DotDisplayEdit: React.FC<{
             Your edits and icons update here live.
           </text>
         </group>
-        <group data-position="center" data-justify="center" data-space="30" 
-        
-                    //         data-animation-name="appear-top-small"
-                    // data-fill-mode="backwards"
-                    // data-animation-duration="4"
+        <group
+          data-position="center"
+          data-justify="center"
+          data-space="30"
 
+          //         data-animation-name="appear-top-small"
+          // data-fill-mode="backwards"
+          // data-animation-duration="4"
         >
           <DotDisplay size={130} activeIndexes={currentActiveIndexes} />
         </group>

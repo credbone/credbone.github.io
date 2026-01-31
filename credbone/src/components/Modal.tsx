@@ -160,15 +160,18 @@ const Modal: React.FC<ModalProps> = ({
         {content}
         {hasToolbar && (
           <>
-            <group>
-              <separator data-horizontal=""></separator>
-            </group>
+
             <group
               data-name="modal-toolbar"
              // data-space="30"
               data-gap="20"
               data-background="light-gray"
             >
+
+            <group data-position="absolute" data-left="0" data-top="0">
+              <separator data-horizontal=""></separator>
+            </group>
+
               <group  data-wrap="no">
                 <Ripple>
                     <group

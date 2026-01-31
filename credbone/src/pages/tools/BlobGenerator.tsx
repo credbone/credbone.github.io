@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
+import Ripple from "../../components/Ripple";
 
 const generator = ({ size = 100, growth = 6, edges = 6, seed = null } = {}) => {
   var { destPoints, seedValue } = _createPoints(size, growth, edges, seed);
@@ -200,8 +201,9 @@ const BlobGenerator: React.FC = () => {
 
         <group data-background="main-background" data-radius="20"  data-gap="10" data-wrap="no" data-animation-name="appear-top-small"  data-animation-duration="2">
 
-
-          <group
+<Ripple>
+ <group
+data-ink-color="main-dark"
             data-space="15"
             data-align="center"
             data-justify="center"
@@ -219,6 +221,8 @@ const BlobGenerator: React.FC = () => {
             <text>Randomize</text>
           </group>
 
+</Ripple>
+         
 
           <Popover
             data-space="5"
@@ -313,7 +317,10 @@ data-radius="20"
               </group>
             )}
           >
-            <group
+<group data-width="auto">
+  <Ripple>
+                <group
+                data-contain=""
               data-space="15"
               data-align="center"
               data-justify="center"
@@ -329,6 +336,8 @@ data-radius="20"
             >
               <text>Export</text>
             </group>
+  </Ripple>
+</group>
           </Popover>
         </group>
 

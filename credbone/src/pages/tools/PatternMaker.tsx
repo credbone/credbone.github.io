@@ -230,7 +230,9 @@ const PatternMaker: React.FC = () => {
                 Preview<br></br> Your Pattern
               </text>
 
+<Ripple>
               <group
+              data-contain=""
                 data-adaptive="mobile"
                 data-position="right"
                 data-cursor="pointer"
@@ -244,6 +246,8 @@ const PatternMaker: React.FC = () => {
               >
                 <text>Random</text>
               </group>
+</Ripple>
+
             </group>
 
             <group
@@ -255,16 +259,16 @@ const PatternMaker: React.FC = () => {
             >
               <group
                 data-hidden={selectedTiles.size === 0 ? "true" : ""}
-                data-animation-name="appear-top"
-                data-fill-mode="backwards"
-                data-animation-duration="3"
+              
                 data-width="auto"
                 data-gap="30"
                 data-direcion="column"
               >
                 <separator data-horizontal=""></separator>
 
-                <text data-opacity="50" data-length="240" data-wrap="wrap">
+                <text data-opacity="50" data-length="240" data-wrap="wrap"   data-animation-name="appear-top"
+                data-fill-mode="backwards"
+                data-animation-duration="3">
                   Choose two or more tiles to combine and generate a new
                   pattern.
                 </text>
@@ -390,7 +394,11 @@ const PatternMaker: React.FC = () => {
             </group>
 
             <group data-gap="10" data-wrap="no">
+
+<Ripple>
               <group
+              data-contain=""
+              data-shrink="no"
                 data-cursor="pointer"
                 data-interactive=""
                 data-space-vertical="15"
@@ -404,32 +412,40 @@ const PatternMaker: React.FC = () => {
               >
                 <text>New</text>
               </group>
+</Ripple>
+
+
 
               <Popover
+
+
                 data-space="5"
                 data-radius="20"
                 content={(closePopover) => (
                   <group
                     data-direction="column"
-                    data-length="200"
+                    data-length="220"
                     onClick={closePopover}
                   >
                     <group data-direction="column" data-length="240">
+
+
                       <group
                         data-align="center"
                         data-justify="center"
-                        data-ratio="1:1"
+                       // data-ratio="1:1"
                       >
                         <group
                           data-space="15"
                           data-radius="15"
-                          data-width="auto"
-                          data-border=""
-                          data-background="context"
-                          data-elevation="2"
+                         // data-width="auto"
+                          data-height="fit"
+                       //   data-border=""
+                        //  data-background="adaptive-gray"
+                         // data-elevation="2"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
-                          data-animation-duration="4"
+                          data-animation-duration="2.5"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +453,7 @@ const PatternMaker: React.FC = () => {
                             width="48"
                             height="48"
                             viewBox="0 0 48 48"
-                            //       style={{ border: '1px solid #ccc' }}
+                           
                           >
                             {getSelectedTiles().map((tile) => {
                               const Content = tile.content;
@@ -447,6 +463,7 @@ const PatternMaker: React.FC = () => {
                         </group>
                       </group>
 
+
                       <group
                         onClick={downloadSVG}
                         data-animation-name="appear-bottom"
@@ -454,6 +471,11 @@ const PatternMaker: React.FC = () => {
                         data-animation-duration="2.75"
                         data-name="autoseparation"
                       >
+                                                <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
                         <group
                           data-space="15"
                           data-align="center"
@@ -502,8 +524,14 @@ const PatternMaker: React.FC = () => {
                   </group>
                 )}
               >
+                <group  data-disabled={selectedTiles.size === 0}>
+                  <Ripple>
                 <group
-                  data-disabled={selectedTiles.size === 0}
+                data-ink-color="gray-shade-20"
+                data-contain=""
+                 
+
+                  
                   data-space-vertical="15"
                   data-space-horizontal="20"
                   data-align="center"
@@ -521,11 +549,15 @@ const PatternMaker: React.FC = () => {
                   data-gap="15"
                   data-animation-name="appear-top-small"
                   data-animation-duration="3"
+                  
                 >
                   <text data-opacity={selectedTiles.size === 0 ? "30" : ""}>
                     Export Pattern
                   </text>
                 </group>
+                  </Ripple>
+                </group>
+
               </Popover>
             </group>
           </group>
@@ -534,8 +566,11 @@ const PatternMaker: React.FC = () => {
 
       <group data-fit="1" data-adaptive="desktop">
         <group  data-align="center" data-gap="15" data-space-vertical="30">
+          <Ripple>
+
           <group
           //  data-position="right"
+          data-contain=""
             data-cursor="pointer"
             data-interactive=""
             data-space-vertical="15"
@@ -547,6 +582,9 @@ const PatternMaker: React.FC = () => {
           >
             <text>Random</text>
           </group>
+
+          </Ripple>
+
 
           <separator data-vertical="adaptive"></separator>
           <group data-width="auto"  data-direction="column" data-gap="10">
