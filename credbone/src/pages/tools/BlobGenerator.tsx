@@ -57,7 +57,7 @@ const _createPoints = (
   size: number,
   minGrowth: number,
   edgesCount: number,
-  seed: number | null
+  seed: number | null,
 ) => {
   let outerRad = size / 2;
   let innerRad = minGrowth * (outerRad / 10);
@@ -117,7 +117,7 @@ const BlobGenerator: React.FC = () => {
         <path d='${path}' fill='currentColor'/>
       </svg>`,
       ],
-      { type: "image/svg+xml" }
+      { type: "image/svg+xml" },
     );
     const link = document.createElement("a");
     link.href = URL.createObjectURL(svgBlob);
@@ -149,92 +149,99 @@ const BlobGenerator: React.FC = () => {
       data-gap="30"
       data-align="start"
     >
-
-
       <group
         data-border=""
         data-direction="column"
         data-radius="40"
-      //  data-space="10"
+        //  data-space="10"
         data-contain=""
         data-elevation="2"
-      //  data-background="adaptive-gray"
+        //  data-background="adaptive-gray"
         data-space="30"
         data-gap="30"
       >
+        <group>
+          <text
+            data-weight="700"
+            data-wrap="preline"
+            data-text-size="large"
+            data-ellipsis=""
+            data-font-type="hero"
+            data-line="1"
+          >
+            Don't skip your<br></br> soul-blob.
+          </text>
+        </group>
 
-            <group >
-              <text
-                data-weight="700"
-                data-wrap="preline"
-                data-text-size="large"
-                data-ellipsis=""
-                data-font-type="hero"
-                data-line="1"
-              >
-                Don't skip your<br></br> soul-blob.
-              </text>
-            </group>
-
-        <group  data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2"  >
+        <group
+          data-justify="center"
+          data-animation-name="appear-top-small"
+          data-animation-duration="2"
+        >
           <svg width="256" height="256" viewBox="0 0 100 100">
-            <path data-duration="2.25" d={path} fill="currentColor" />
+            <path
+              data-duration="2.25"
+              data-transition-prop="d"
+              d={path}
+              fill="currentColor"
+            />
           </svg>
         </group>
 
-
-
-        <group data-animation-name="appear-top-small" data-fill-mode="backwards" data-animation-duration="4">
+        <group
+          data-animation-name="appear-top-small"
+          data-fill-mode="backwards"
+          data-animation-duration="4"
+        >
           <text
             data-wrap="wrap"
             //data-space="20"
             data-line="1.3"
             data-length="280"
-            data-opacity="70"
+            data-opacity="50"
           >
             Keep pressing the button until you find a blob you like and export
             it.
           </text>
         </group>
 
-
-
-        <group data-background="main-background" data-radius="20"  data-gap="10" data-wrap="no" data-animation-name="appear-top-small"  data-animation-duration="2">
-
-<Ripple>
- <group
-data-ink-color="main-dark"
-            data-space="15"
-            data-align="center"
-            data-justify="center"
-            data-background="main"
-            data-color="main-text"
-            data-contain=""
-            data-interactive=""
-         //   data-over-color="neutral"
-            data-radius="15"
-            data-cursor="pointer"
-            onClick={regenerateBlob}
-
-            data-animation-name="appear-top-small"  data-animation-duration="3"
-          >
-            <text>Randomize</text>
-          </group>
-
-</Ripple>
-         
+        <group
+          data-background="main-background"
+          data-radius="20"
+          data-gap="10"
+          data-wrap="no"
+          data-animation-name="appear-top-small"
+          data-animation-duration="2"
+        >
+          <Ripple>
+            <group
+              data-ink-color="main-dark"
+              data-space="15"
+              data-align="center"
+              data-justify="center"
+              data-background="main"
+              data-color="main-text"
+              data-contain=""
+              data-interactive=""
+              //   data-over-color="neutral"
+              data-radius="15"
+              data-cursor="pointer"
+              onClick={regenerateBlob}
+              data-animation-name="appear-top-small"
+              data-animation-duration="3"
+            >
+              <text>Randomize</text>
+            </group>
+          </Ripple>
 
           <Popover
             data-space="5"
-data-radius="20"
+            data-radius="20"
             content={(closePopover) => (
               <group
                 data-direction="column"
                 data-length="240"
                 onClick={closePopover}
-                
-
-                
               >
                 {/* <group
                   data-space="15"
@@ -260,148 +267,187 @@ data-radius="20"
                   <text>Copy</text>
                 </group> */}
 
-
-
-         <group
-                   onClick={exportSVG}
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="2.75"
-                    data-name="autoseparation"
-                  >
-                    <group
-                      data-space="15"
-                      data-align="center"
-                      data-gap="15"
-                      data-interactive=""
-                      data-radius="15"
-                      data-cursor="pointer"
-                    >
-                      <group data-direction="column" data-width="auto">
-                        <text data-weight="700">Download</text>
-                        <text data-opacity="30">Save blob for later</text>
-                      </group>
-                    </group>
-                  </group>
+                <group
+                  onClick={exportSVG}
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="2.75"
+                  data-name="autoseparation"
+                >
                   <group
-                   onClick={copySVGToClipboard}
-                    data-animation-name="appear-bottom"
-                    data-fill-mode="backwards"
-                    data-animation-duration="3.25"
-                    data-name="autoseparation"
+                    data-space="15"
+                    data-align="center"
+                    data-gap="15"
+                    data-interactive=""
+                    data-radius="15"
+                    data-cursor="pointer"
                   >
-                    <separator
-                      data-horizontal=""
-                      data-margin-horizontal="10"
-                      data-opacity="5"
-                    ></separator>
-                    <group
-                      data-space="15"
-                      data-align="center"
-                      data-gap="15"
-                      data-interactive=""
-                      data-radius="15"
-                      data-cursor="pointer"
-                    >
-                      <group data-direction="column" data-width="auto">
-                        <text data-weight="700">Copy</text>
-                        <text data-opacity="30">
-                          Paste in Figma or code ...
-                        </text>
-                      </group>
+                    <group data-direction="column" data-width="auto">
+                      <text data-weight="700">Download</text>
+                      <text data-opacity="30">Save blob for later</text>
                     </group>
                   </group>
-
-
-
+                </group>
+                <group
+                  onClick={copySVGToClipboard}
+                  data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3.25"
+                  data-name="autoseparation"
+                >
+                  <separator
+                    data-horizontal=""
+                    data-margin-horizontal="10"
+                    data-opacity="5"
+                  ></separator>
+                  <group
+                    data-space="15"
+                    data-align="center"
+                    data-gap="15"
+                    data-interactive=""
+                    data-radius="15"
+                    data-cursor="pointer"
+                  >
+                    <group data-direction="column" data-width="auto">
+                      <text data-weight="700">Copy</text>
+                      <text data-opacity="30">Paste in Figma or code ...</text>
+                    </group>
+                  </group>
+                </group>
               </group>
             )}
           >
-<group data-width="auto">
-  <Ripple>
+            <group data-width="auto">
+              <Ripple>
                 <group
-                data-contain=""
-              data-space="15"
-              data-align="center"
-              data-justify="center"
-              data-background="adaptive-gray"
-              data-color="adaptive-gray"
-              data-width="auto"
-              data-interactive=""
-              data-over-color="neutral"
-              data-radius="15"
-              data-cursor="pointer"
-              data-animation-name="appear-top-small"  data-animation-duration="4"
-            //  data-position="right"
-            >
-              <text>Export</text>
+                  data-contain=""
+                  data-space="15"
+                  data-align="center"
+                  data-justify="center"
+                  data-background="adaptive-gray"
+                  data-color="adaptive-gray"
+                  data-width="auto"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="15"
+                  data-cursor="pointer"
+                  data-animation-name="appear-top-small"
+                  data-animation-duration="4"
+                  //  data-position="right"
+                >
+                  <text>Export</text>
+                </group>
+              </Ripple>
             </group>
-  </Ripple>
-</group>
           </Popover>
         </group>
-
-
-
-
-
       </group>
 
+      <group data-direcion="column" >
+        <group data-space-vertical="30" data-direction="column" data-gap="10">
+          <text
+            data-weight="700"
+            data-wrap="preline"
+            data-text-size="large"
+            data-ellipsis=""
+            data-font-type="hero"
+            data-line="1"
+          >
+            Customize
+          </text>
 
-      <group data-direcion="column" data-gap="20">
-        <group data-border="outline"  data-radius="20" data-contain="">
-          <group data-align="center" data-gap="15" data-space="20">
-            <group data-width="auto">
+          <text
+            data-wrap="wrap"
+
+            data-length="200"
+            data-opacity="40"
+          >
+           Configure shape smoothness and edge count.
+          </text>
+        </group>
+
+        <group data-gap="15">
+          <group
+            data-border="outline"
+            data-elevation="2"
+            data-radius="25"
+            data-contain=""
+
+
+          >
+            <group data-align="center" data-gap="15" data-space="25">
               <group data-width="auto">
-                <text>Edges</text>
+                <group data-width="auto">
+                  <text>Edges</text>
+                </group>
               </group>
-            </group>
 
-            <separator data-vertical=""></separator>
+              <separator data-vertical=""></separator>
 
-            <group data-fit="1">
-              <CustomSlider
-                start={3}
-                end={12}
-                value={points}
-                onValueChange={(value) => setPoints(value)}
-                trackLeftProps={{ "data-margin-right": "0" }}
-                trackRightProps={{ "data-opacity": "10" }}
-              />
+              <group data-fit="1">
+                <CustomSlider
+                  start={3}
+                  end={12}
+                  value={points}
+                  onValueChange={(value) => setPoints(value)}
+
+                  trackLeftProps={{
+                    "data-margin-right": "0",
+                    "data-height": "1",
+                  }}
+                  trackRightProps={{
+                    "data-opacity": "10",
+                    "data-margin-left": "5",
+                    "data-height": "1",
+                  }}
+                />
+              </group>
             </group>
           </group>
-          <separator data-horizontal=""></separator>
-          <group data-align="center" data-gap="15" data-space="20">
-            <group
-              data-width="auto"
-              //data-min-length="80"
-            >
-              <group>
-                <text>Smoothness</text>
+
+          <group
+            data-border="outline"
+            data-elevation="2"
+            data-radius="25"
+            data-contain=""
+
+
+
+
+          >
+            <group data-align="center" data-gap="15" data-space="25">
+              <group
+                data-width="auto"
+                //data-min-length="80"
+              >
+                <group>
+                  <text>Smoothness</text>
+                </group>
               </group>
-            </group>
 
-            <separator data-vertical=""></separator>
+              <separator data-vertical=""></separator>
 
-            <group data-fit="1">
-              <CustomSlider
-                start={2}
-                end={9}
-                value={growth}
-                onValueChange={(value) => setGrowth(value)}
-                trackLeftProps={{ "data-margin-right": "0" }}
-                trackRightProps={{ "data-opacity": "10" }}
-              />
+              <group data-fit="1">
+                <CustomSlider
+                  start={2}
+                  end={9}
+                  value={growth}
+                  onValueChange={(value) => setGrowth(value)}
+                  trackLeftProps={{
+                    "data-margin-right": "0",
+                    "data-height": "1",
+                  }}
+                  trackRightProps={{
+                    "data-opacity": "10",
+                    "data-margin-left": "5",
+                    "data-height": "1",
+                  }}
+                />
+              </group>
             </group>
           </group>
         </group>
-
-
-
-
       </group>
-
-
     </group>
   );
 };
