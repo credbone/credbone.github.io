@@ -106,15 +106,15 @@ function DotIconMaker() {
                   data-cursor="pointer"
                   onClick={() => handleClick(index, button.set)}
                   data-direction="column"
-                  data-animation-name="appear-top-small"
-                  data-fill-mode="backwards"
-                  data-animation-duration={2 + index * 0.25}
+                  // data-animation-name="appear-top-small"
+                  // data-fill-mode="backwards"
+                  // data-animation-duration={2 + index * 0.25}
                 >
                   <group
                     data-interact=""
-                    data-animation-name="appear-top-small"
-                    data-fill-mode="backwards"
-                    data-animation-duration={4 + index * 0.25}
+                    // data-animation-name="appear-top-small"
+                    // data-fill-mode="backwards"
+                    // data-animation-duration={4 + index * 0.25}
                   >
                     <DotDisplay size={"fit"} activeIndexes={button.set} />
                   </group>

@@ -175,7 +175,7 @@ const BlobGenerator: React.FC = () => {
               </text>
             </group>
 
-        <group  data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2" >
+        <group  data-justify="center"  data-animation-name="appear-top-small"  data-animation-duration="2"  >
           <svg width="256" height="256" viewBox="0 0 100 100">
             <path data-duration="2.25" d={path} fill="currentColor" />
           </svg>

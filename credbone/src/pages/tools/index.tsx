@@ -9,7 +9,6 @@ import BlobGenerator from "./BlobGenerator";
 import PatternMaker from "./PatternMaker";
 import StuckReporter from "../../components/StuckReporter";
 
-
 function ToolsCollection() {
   return (
     <group
@@ -18,128 +17,121 @@ function ToolsCollection() {
       data-scroll=""
       data-index="1"
       data-space="adaptive-30-50"
-     // data-gap="30"
+      // data-gap="30"
       data-align="start"
       data-min-height="fit"
       data-space-top="0"
     >
-      
+      <group data-height="30" data-shrink="no"></group>
+      <group data-height="20" data-shrink="no" data-adaptive="600"></group>
 
-<group data-height="30"  data-shrink="no"></group>
-<group data-height="20"  data-shrink="no" data-adaptive="600"></group>
-
-
-
-        <StuckReporter>
-          {(isSticky) => (
-      <group data-sticky="top"   data-width="auto" >
-        <group
-        data-top={isSticky ? "adaptive-30-50" : "0"} 
-       // data-left={isSticky ? "0" : ""}
-          data-elevation="2"
-           data-space="10"
-          data-gap="10"
-          data-radius="20"
-          data-background="context"
-          
-          data-width="auto"
-          data-align="center"
-
-          data-duration="2.25"
-data-transition-prop="position"
-
-        >
-          <Link
-            data-type="group"
-            data-space="15"
-            data-radius="10"
-            data-width="auto"
-            //  data-background="adaptive-gray"
-            data-interactive=""
-            data-height="fit"
-            data-align="center"
-            to="./"
-            data-wrap="no"
-           
-          >
-             <group   data-interact="" data-hidden={isSticky ? "true" : ""}>
-                <ChevronLeft size={20} />
-              </group>
-            <text data-hidden={isSticky ? "" : "true"} data-opacity={isSticky ? "0" : ""}>Tools & Resources</text>
-          </Link>
-          <separator data-vertical=""></separator>
-          <Popover
-            data-radius="25"
-            data-space="10"
-            placement="bottom"
-            data-elevation="2"
-            content={(closePopover) => (
-              <group
-                onClick={closePopover}
-                data-type="grid"
-                data-grid-template="90"
-                data-gap="10"
-                data-length="320"
-              >
-                {links.map((link, index) => (
-                  <NavLink
-                    data-type="group"
-                    data-space="15"
-                    data-radius="15"
-                    data-width="auto"
-                    data-interactive=""
-                   // data-background="adaptive-gray"
-                    key={index}
-                    to={link.url}
-                    data-name="nav-item"
-          
-                    data-direction="column"
-                    data-gap="10"
-                  >
-                    <group data-ratio="1:1" data-interact="">
-                      {link.content}
-                    </group>
-                    <text data-wrap="wrap" data-text-align="center">{link.title}</text>
-                  </NavLink>
-                ))}
-              </group>
-            )}
-          >
+      <StuckReporter>
+        {(isSticky) => (
+          <group data-sticky="top" data-width="auto">
             <group
-              data-interactive=""
-              data-cursor="pointer"
-              data-space="15"
-              data-radius="10"
+              data-top={isSticky ? "adaptive-30-50" : "0"}
+              // data-left={isSticky ? "0" : ""}
+              data-elevation="2"
+              data-space="10"
+              data-gap="10"
+              data-radius="20"
+              data-background="context"
               data-width="auto"
+              data-align="center"
+              data-duration="2.25"
+              data-transition-prop="position"
             >
-              <group data-interact="">
-                <Grip size={20} />
-              </group>
+              <Link
+                data-type="group"
+                data-space="15"
+                data-radius="10"
+                data-width="auto"
+                //  data-background="adaptive-gray"
+                data-interactive=""
+                data-height="fit"
+                data-align="center"
+                to="./"
+                data-wrap="no"
+              >
+                <group data-interact="" data-hidden={isSticky ? "true" : ""}>
+                  <ChevronLeft size={20} />
+                </group>
+                <text
+                  data-hidden={isSticky ? "" : "true"}
+                  data-opacity={isSticky ? "0" : ""}
+                >
+                  Tools & Resources
+                </text>
+              </Link>
+              <separator data-vertical=""></separator>
+              <Popover
+                data-radius="25"
+                data-space="10"
+                placement="bottom"
+                data-elevation="2"
+
+
+
+                content={(closePopover) => (
+                  <group
+                    onClick={closePopover}
+                    data-type="grid"
+                    data-grid-template="90"
+                    data-gap="10"
+                    data-length="320"
+                  >
+                    {links.map((link, index) => (
+                      <NavLink
+                        data-type="group"
+                        data-space="15"
+                        data-radius="15"
+                        data-width="auto"
+                        data-interactive=""
+                        // data-background="adaptive-gray"
+                        key={index}
+                        to={link.url}
+                        data-name="nav-item"
+                        data-direction="column"
+                        data-gap="10"
+                      >
+                        <group data-ratio="1:1" data-interact="">
+                          {link.content}
+                        </group>
+                        <text data-wrap="wrap" data-text-align="center">
+                          {link.title}
+                        </text>
+                      </NavLink>
+                    ))}
+                  </group>
+                )}
+              >
+                <group
+                  data-interactive=""
+                  data-cursor="pointer"
+                  data-space="15"
+                  data-radius="10"
+                  data-width="auto"
+                >
+                  <group data-interact="">
+                    <Grip size={20} />
+                  </group>
+                </group>
+              </Popover>
             </group>
-          </Popover>
-        </group>
+          </group>
+        )}
+      </StuckReporter>
+
+      <group data-height="30" data-shrink="no"></group>
+      <group data-max-length="1200">
+        <Routes>
+          <Route path="/*" element={<Navigate replace to="./" />} />
+          <Route path="DotIconMaker" element={<DotIconMaker />} />
+          <Route path="BlobGenerator" element={<BlobGenerator />} />
+          <Route path="Patternmaker" element={<PatternMaker />} />
+        </Routes>
       </group>
-          )}
-        </StuckReporter>
-
-
-
-
-
-
-
-<group data-height="30"  data-shrink="no"></group>
-<group data-max-length="1200">
-<Routes>
-        <Route path="/*" element={<Navigate replace to="./" />} />
-        <Route path="DotIconMaker" element={<DotIconMaker />} />
-        <Route path="BlobGenerator" element={<BlobGenerator />} />
-        <Route path="Patternmaker" element={<PatternMaker />} />
-      </Routes>
-
-</group>
       <group data-position="bottom" data-height="200" data-shrink="no"></group>
-
     </group>
   );
 }

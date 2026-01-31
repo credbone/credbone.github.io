@@ -191,6 +191,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                     data-text-transform="capitalize"
                     data-ellipsis=""
                     data-weight="600"
+                    
                   >
                     {tag}
                   </text>
@@ -205,35 +206,50 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
         <group data-direction="column"  data-max-length="600" data-align="start">
           {results.map((result, index) => (
             <Link
-          //  data-drag="none"
+              //  data-drag="none"
               autoFocus={true}
               data-contain=""
               data-type="group"
               key={index}
               to={`${result.path}`}
-              data-space="20"
-              
               data-direction="column"
-              data-gap="3"
+              data-name="autoseparation"
+              data-space-horizontal="20"
               data-radius="15"
               data-interactive=""
               data-animation-name="appear-top"
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
-             // data-border=""
+              // data-border=""
             >
-              <text data-weight="700" data-color="main"  >
-                {result.title}
-              </text>
-              <text
-                data-opacity="50"
-                data-line="1.2"
-                data-wrap="wrap"
-                data-ellipsis=""
+              <separator data-horizontal="dotted"></separator>
+              <group
+                data-space-vertical="20"
+                data-direction="column"
+                data-gap="5"
               >
-                {result.description}
-              </text>
+                <text
+                  data-weight="700"
+                  data-color="main"
+                  data-wrap="preline"
+                  data-text-size="medium"
+                  data-ellipsis=""
+                  data-font-type="hero"
+                  data-line="1"
+                >
+                  {result.title}
+                </text>
+                <text
+                  data-opacity="50"
+                  data-line="1.2"
+                  data-wrap="balance"
+                  data-ellipsis=""
+                  data-length="300"
+                >
+                  {result.description}
+                </text>
+              </group>
             </Link>
           ))}
         </group>

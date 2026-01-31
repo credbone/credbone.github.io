@@ -28,7 +28,7 @@ export const routesData: RouteData[] = [
   { 
     path: "../Components/CheckboxSwitchers", 
     tags: ["checkbox", "switchers", "radio", "button", "forms", "toggle", "input", "selection"], 
-    description: "Checkbox, switchers, and toggle input controls.", 
+    description: "Highly configurable checkboxes, switches, and toggle controls.", 
     title: "Checkbox & Switchers" 
   },
   { 
@@ -76,13 +76,13 @@ export const routesData: RouteData[] = [
   { 
     path: "../Components/TooltipAndPopover", 
     tags: ["tooltip", "popover","user interface", "hover", "hint", "overlay"], 
-    description: "Tooltip, popover, toast, and snackbar overlay tools.", 
+    description: "Contextual overlay components for hints and lightweight interactions.", 
     title: "Tooltip & Popover" 
   },
   { 
     path: "../Components/Snackbar", 
-    tags: ["toast", "snackbar", "user interface", "hint", "overlay"], 
-    description: "Toast, and snackbar overlay tools.", 
+    tags: ["toast", "snackbar", "user interface", "hint", "notification"], 
+    description: "Notification components for feedback, alerts, and system messages.", 
     title: "Snackbar" 
   },
   { 

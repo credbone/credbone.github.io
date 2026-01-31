@@ -50,7 +50,7 @@ function SearchFloating({
       if (searchTerms.length > 0) {
         const filteredResults = routesData.filter((route) => {
           const matches = searchTerms.some((term) =>
-            route.tags.some((tag) => tag.toLowerCase().includes(term))
+            route.tags.some((tag) => tag.toLowerCase().includes(term)),
           );
           return matches;
         });
@@ -89,13 +89,11 @@ function SearchFloating({
   };
 
   return (
-    <
-
-    >
-      <group data-width="auto" data-gap="20"          data-sticky="top">
+    <>
+      <group data-width="auto" data-gap="20" data-sticky="top">
         <group
           data-length="500"
-          data-border=""
+          // data-border=""
           data-align="center"
           data-background="text"
           data-color="main-background"
@@ -103,7 +101,6 @@ function SearchFloating({
           data-radius="20"
           data-contain=""
           data-shrink="no"
-
         >
           <label
             data-align="center"
@@ -207,7 +204,7 @@ function SearchFloating({
         <group
           data-direction="column"
           data-background="main-background"
-          data-radius="20"
+          data-radius="25"
           data-elevation="2"
           data-space="10"
           data-max-length="500"
@@ -221,10 +218,10 @@ function SearchFloating({
               data-type="group"
               key={index}
               to={`${result.path}`}
-              data-space="20"
               data-direction="column"
-              data-gap="3"
-              data-radius="10"
+              data-name="autoseparation"
+              data-space-horizontal="20"
+              data-radius="15"
               data-interactive=""
               data-animation-name="appear-top"
               data-fill-mode="backwards"
@@ -232,21 +229,33 @@ function SearchFloating({
               tabIndex={index}
               // data-border=""
             >
-              <text data-weight="700" data-color="main">
-                {result.title}
-              </text>
-              <text
-                data-opacity="50"
-                data-line="1.2"
-                data-wrap="wrap"
-                data-ellipsis=""
+              <separator data-horizontal="dotted"></separator>
+              <group
+                data-space-vertical="20"
+                data-direction="column"
+                data-gap="5"
               >
-                {result.description}
-              </text>
-
-
-
-
+                <text
+                  data-weight="700"
+                  data-color="main"
+                  data-wrap="preline"
+                  data-text-size="medium"
+                  data-ellipsis=""
+                  data-font-type="hero"
+                  data-line="1"
+                >
+                  {result.title}
+                </text>
+                <text
+                  data-opacity="50"
+                  data-line="1.2"
+                  data-wrap="balance"
+                  data-ellipsis=""
+                  data-length="300"
+                >
+                  {result.description}
+                </text>
+              </group>
             </Link>
           ))}
         </group>

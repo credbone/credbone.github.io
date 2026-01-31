@@ -281,7 +281,13 @@ const DotDisplayEdit: React.FC<{
             </group>
           </group>
 
-          <group data-space="30" data-width="auto" data-justify="center">
+          <group data-space="30" data-width="auto" data-justify="center" 
+          
+                            data-animation-name="appear-top-small"
+                    data-fill-mode="backwards"
+                    data-animation-duration="2"
+
+          >
             <group
               data-disabled="true"
               data-position="absolute"
@@ -405,6 +411,7 @@ const DotDisplayEdit: React.FC<{
             data-align="center"
             data-radius="20"
             data-wrap="no"
+            
           >
             {/* <separator data-vertical="" data-height="20"></separator> */}
 
@@ -415,6 +422,11 @@ const DotDisplayEdit: React.FC<{
               data-radius="30"
               data-wrap="no"
               data-space="2"
+
+                                          data-animation-name="appear-top-small"
+                    data-fill-mode="backwards"
+                    data-animation-duration="4"
+
             >
               <group
                 data-space-vertical="15"
@@ -453,6 +465,9 @@ const DotDisplayEdit: React.FC<{
                 data-radius="30"
                 data-cursor="pointer"
                 onClick={toggleEraser}
+
+
+                
               >
                 <group data-interact="">
                   <Eraser size={20} />
@@ -572,6 +587,11 @@ const DotDisplayEdit: React.FC<{
               )}
             >
               <group
+
+                            data-animation-name="appear-top-small"
+                    data-fill-mode="backwards"
+                    data-animation-duration="2"
+
                 data-space-vertical="15"
                 data-space-horizontal="20"
                 data-align="center"
@@ -619,7 +639,13 @@ const DotDisplayEdit: React.FC<{
             Your edits and icons update here live.
           </text>
         </group>
-        <group data-position="center" data-justify="center" data-space="30">
+        <group data-position="center" data-justify="center" data-space="30" 
+        
+                    //         data-animation-name="appear-top-small"
+                    // data-fill-mode="backwards"
+                    // data-animation-duration="4"
+
+        >
           <DotDisplay size={130} activeIndexes={currentActiveIndexes} />
         </group>
       </group>
