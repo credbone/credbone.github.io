@@ -306,6 +306,7 @@ text[data-width="auto"]{width: initial;}
 
 [data-text-clamp="128"] {font-size: clamp(var(--text), 15vw, 128px);}
 [data-text-clamp="96"] {font-size: clamp(var(--text), 13vw, 96px);}
+[data-text-clamp="72"] {font-size: clamp(var(--text), 13vw, 72px);}
 [data-text-clamp="64"] {font-size: clamp(var(--text), 10vw, 64px);}
 [data-text-clamp="48"] {font-size: clamp(var(--text), 8vw, 48px);}
 

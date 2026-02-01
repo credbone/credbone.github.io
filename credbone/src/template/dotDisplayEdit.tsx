@@ -301,7 +301,7 @@ const DotDisplayEdit: React.FC<{
             data-justify="center"
             data-animation-name="appear-top-small"
             data-fill-mode="backwards"
-            data-animation-duration="2"
+            data-animation-duration="4"
           >
             <group
               data-disabled="true"
@@ -438,7 +438,7 @@ const DotDisplayEdit: React.FC<{
               data-space="2"
               data-animation-name="appear-top-small"
               data-fill-mode="backwards"
-              data-animation-duration="4"
+              data-animation-duration="2"
             >
               <group
                 data-space-vertical="15"
@@ -601,7 +601,7 @@ const DotDisplayEdit: React.FC<{
                   data-contain=""
                 data-animation-name="appear-top-small"
                 data-fill-mode="backwards"
-                data-animation-duration="2"
+                data-animation-duration="3"
                 data-space-vertical="15"
                 data-space-horizontal="20"
                 data-align="center"
@@ -674,16 +674,33 @@ const Dot: React.FC<{
   onClick: () => void;
   onMouseMove: () => void;
 }> = ({ x, y, active, onClick, onMouseMove }) => {
+  
+
+   const rectX = x - 5;
+  const rectY = y - 5;
+  
   return (
+    <g>
+        <rect
+        x={rectX}
+        y={rectY}
+        width="10"
+        height="10"
+        fill="transparent"
+        onClick={onClick}
+        onMouseMove={onMouseMove}
+       
+      />
     <circle
       opacity={active ? "1" : ".1"}
       cx={x}
       cy={y}
       r="4"
       fill="currentcolor"
-      onClick={onClick}
-      onMouseMove={onMouseMove}
+     pointerEvents="none"
     />
+    </g>
+
   );
 };
 

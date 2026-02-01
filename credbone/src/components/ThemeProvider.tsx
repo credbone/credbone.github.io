@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from "react";
-import { defaultPrimaryColor, defaultSecondaryColor, getPalette, ColorPalette, getCSSByPalette } from "../styles/skin";
+import { defaultPrimaryColor, defaultSecondaryColor, getPalette, ColorPalette, getCSSByPalette, isColorLight } from "../styles/skin";
 
 type ThemeContextType = {
   theme: ColorPalette;
@@ -37,6 +37,13 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     styleElement.textContent = cssContent;
+
+    // Update luminance data attributes
+    const primaryLuminance = isColorLight(theme.colorPrimary) ? 'light' : 'dark';
+    const secondaryLuminance = isColorLight(theme.colorSecondary) ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-main-color-luminance', primaryLuminance);
+    document.documentElement.setAttribute('data-secondary-color-luminance', secondaryLuminance);
   }, [theme]);
 
   useEffect(() => {

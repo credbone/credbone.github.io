@@ -3,7 +3,7 @@ import DotDisplay from "../../template/dotDisplay";
 import DotDisplayEdit from "../../template/dotDisplayEdit";
 import Tooltip from "../../components/tooltip";
 
-import { arrow, cursor, gear, mail, moon, sun } from "../tools/dotIcon";
+import { arrow, gear, mail, moon, sun } from "../tools/dotIcon";
 
 function DotIconMaker() {
   const buttonData = [
@@ -12,7 +12,7 @@ function DotIconMaker() {
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
-    // { label: "Cursor", set: cursor },
+  //  { label: "Close", set: close },
   ];
 
   const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'

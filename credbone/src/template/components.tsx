@@ -90,7 +90,7 @@ const Components: React.FC = () => {
 
             data-line="1"
           //  data-text-size="96"
-            data-text-clamp="96"
+            data-text-clamp="72"
             data-max-length="800"
             data-font-type="hero"
             data-wrap="wrap"

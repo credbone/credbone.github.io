@@ -76,6 +76,8 @@ export const getCSSByPalette = (palette: ColorPalette) => {
             --main-color-alpha-15: ${colorPrimary}26;
             --main-color-alpha-50: ${colorPrimary}80;
 
+
+
             --main-color-ultra-light: ${colorPrimaryUltraLight || getColorShade(colorPrimary, "10")};
             --main-color-lightest: ${colorPrimaryLightest || getColorShade(colorPrimary, "20")};
             --main-color-lighter: ${colorPrimaryLighter || getColorShade(colorPrimary, "40")};
@@ -153,7 +155,7 @@ const getColorShade = (color: string, shade: Shade): string => {
     return ShadeGenerator.hue(color).shade(shade).hex();
 };
 
-function isColorLight(color: string): boolean {
+export function isColorLight(color: string): boolean {
     const hex = color.replace("#", "");
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);

@@ -99,7 +99,7 @@ const VerticalSubNav: React.FC<VerticalSubNavProps> = ({ isOpen, onClose }) => {
           <group
             data-name="vertical-indicator"
             data-position="absolute"
-            data-background="main"
+            data-background="main-color-font"
             style={{
               transform: `translateY(${indicatorTop}px)`,
               height: `${indicatorHeight}px`,

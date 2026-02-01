@@ -298,7 +298,7 @@ data-horizontal=""></separator>
         //data-timing="fancy"
         data-name="vertical-indicator"
         data-position="absolute"
-        data-background="main"
+        data-background="main-color-font"
         style={{
           transform: `translateY(${indicatorTop}px)`,
           height: `${indicatorHeight}px`,

@@ -132,8 +132,9 @@ function SearchFloating({
                 />
 
                 {searchQuery && (
-                  <Tooltip content="Clear">
+                  <Tooltip content="Clear" delay={500}>
                     <group
+                    data-over-color="neutral"
                       data-contain=""
                       data-space="5"
                       data-shrink="no"
@@ -248,7 +249,7 @@ function SearchFloating({
                 </text>
                 <text
                   data-opacity="50"
-                  data-line="1.2"
+              //    data-line="1.2"
                   data-wrap="balance"
                   data-ellipsis=""
                   data-length="300"
