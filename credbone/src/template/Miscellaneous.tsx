@@ -125,12 +125,14 @@ const Miscellaneous: React.FC = () => {
         </group>
 
         <group data-gap="10">
-          <group
+<Ripple>
+            <group
             data-contain=""
-            data-space="15"
+            data-space-vertical="15"
+            data-space-horizontal="20"
             data-interactive=""
             data-cursor="pointer"
-            data-radius="10"
+            data-radius="15"
             data-width="auto"
             // data-length="180"
             data-align="center"
@@ -140,25 +142,60 @@ const Miscellaneous: React.FC = () => {
           >
             <text data-weight="600">Toggle Direction </text>
           </group>
+</Ripple>
 
-          <group
+<Ripple>
+            <group
             data-contain=""
-            data-space="15"
+       //   data-space-vertical="15"
+            data-space-horizontal="20"
+            data-height="45"
             data-interactive=""
             data-cursor="pointer"
-            data-radius="10"
+            data-radius="15"
             data-width="auto"
+            data-wrap="no"
             //   data-length="180"
             data-align="center"
-            data-direction="column"
+           data-gap="15"
             onClick={toggleAutoMode}
             data-background={isAutoMode ? "main" : "highlight"}
             data-color={isAutoMode ? "main-text" : ""}
+            data-ink-color={isAutoMode ? "main-dark" : ""}
           >
+            <text>Automode</text>
+                <separator data-vertical="" data-height="20"></separator>
             <text data-weight="600">
-              {isAutoMode ? "Disable Auto Mode" : "Enable Auto Mode"}
+              {isAutoMode ? "Enabled" : "Disabled"}
             </text>
+
+
+
+{/* <group data-wrap="no">
+                    <text
+                  data-weight="600"
+                    data-ellipsis=""
+                    data-transition-prop="font-size"
+                    data-duration="2"
+                    data-text-size={isAutoMode ? "" : "0"}
+                  >
+                    Enabled
+                  </text>
+                  <text
+                  data-weight="600"
+                    data-ellipsis=""
+                    data-transition-prop="font-size"
+                    data-duration="2"
+                    data-text-size={!isAutoMode ? "" : "0"}
+                  >
+                    Disabled
+                  </text>
+</group> */}
+
+
+        
           </group>
+</Ripple>
         </group>
 
         <separator data-horizontal="" data-interval="30"></separator>
@@ -281,12 +318,14 @@ const Miscellaneous: React.FC = () => {
         </group>
 
         <group>
-          <group
+<Ripple>
+            <group
             data-contain=""
-            data-space="15"
+                      data-space-vertical="15"
+            data-space-horizontal="20"
             data-interactive=""
             data-cursor="pointer"
-            data-radius="10"
+            data-radius="15"
             data-width="auto"
             data-align="center"
             data-direction="column"
@@ -296,7 +335,8 @@ const Miscellaneous: React.FC = () => {
             <text data-ellipsis="" data-weight="600">
               Restart Counters
             </text>
-          </group>
+          </group>   
+</Ripple>
         </group>
 
         <separator data-horizontal="" data-interval="30"></separator>
@@ -349,8 +389,8 @@ const Miscellaneous: React.FC = () => {
               data-direction="column"
               data-ink-color="neutral"
               data-cursor="pointer"
-              data-border=""
-              data-radius="20"
+              data-border="outline"
+              data-radius="30"
               data-contain=""
               data-space="30"
               data-length="forcefit"
@@ -383,7 +423,7 @@ const Miscellaneous: React.FC = () => {
               data-direction="column"
               data-cursor="pointer"
               data-background="highlight"
-              data-radius="20"
+              data-radius="30"
               data-contain=""
               data-space="30"
             >
@@ -401,7 +441,7 @@ const Miscellaneous: React.FC = () => {
               data-cursor="pointer"
               data-background="main"
               data-color="main-text"
-              data-radius="20"
+              data-radius="30"
               data-contain=""
               data-space="30"
             >
