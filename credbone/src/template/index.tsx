@@ -70,8 +70,8 @@ const Template: React.FC = () => {
     if (viewRef.current) {
       viewRef.current.scrollTo({
         top: 0,
-        // behavior: isDesktop ? "smooth" : "auto",
-        behavior: "smooth",
+         behavior: isDesktop ? "smooth" : "auto",
+      //  behavior: "smooth",
       });
     }
   }, [location]);
