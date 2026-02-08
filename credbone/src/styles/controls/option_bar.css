@@ -62,7 +62,7 @@
 
 /**/
 
-.option_bar { display: flex; height: 30px; position: relative; overflow: hidden;  --radius:5px }
+.option_bar { display: flex; height: 30px; position: relative; overflow: hidden;  --radius:10px }
 
 
 

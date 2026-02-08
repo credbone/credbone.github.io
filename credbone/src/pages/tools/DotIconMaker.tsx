@@ -12,7 +12,7 @@ function DotIconMaker() {
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
-  //  { label: "Close", set: close },
+    //  { label: "Close", set: close },
   ];
 
   const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'
@@ -34,9 +34,6 @@ function DotIconMaker() {
   const handleClick = (index: number, set: Set<number>) => {
     setSelected(index); // Update selected button by index
     setActiveDots(new Set(set));
-
-    // console.log(`Updated active dots for button at index ${index}:`, set);
-    //   setIsModified(false);
   };
 
   return (
@@ -46,7 +43,6 @@ function DotIconMaker() {
         data-direction="column-600"
         data-width="auto"
         data-autofit="1-600"
-    //    data-wrap="no"
       >
         <DotDisplayEdit
           predefinedActiveIndexes={activeDots}
@@ -55,7 +51,7 @@ function DotIconMaker() {
         />
 
         <group
-        data-autofit="1-600"
+          data-autofit="1-600"
           data-space="30"
           data-align="start"
           data-length="320"
@@ -80,47 +76,54 @@ function DotIconMaker() {
             </text>
           </group>
 
-          <group
-            data-gap="1"
-            data-type="grid"
-            data-grid-template="70"
-            data-align="start"
-            data-contain=""
-          >
-            {buttonData.map((button, index) => (
-              <Tooltip
-                content={button.label}
-                distance={-5}
-                key={index}
-                delay={500}
-              >
-                <group
-                  data-border=""
-                  key={index} // Using index as the key
-                  // data-width="auto"
-                  data-space="10"
-                  // data-radius="15"
-                  data-interactive=""
-                  data-background={selected === index ? "adaptive-gray" : ""} // Highlight selected button
-                  //   data-color={selected === index ? "main-text" : ""} // Highlight selected button
-                  data-cursor="pointer"
-                  onClick={() => handleClick(index, button.set)}
-                  data-direction="column"
-                  // data-animation-name="appear-top-small"
-                  // data-fill-mode="backwards"
-                  // data-animation-duration={2 + index * 0.25}
+          <group>
+            <group
+
+              data-gap="1"
+              data-type="grid"
+              data-grid-template="70"
+              data-align="start"
+              data-contain=""
+              data-position="absolute"
+            >
+              {buttonData.map((button, index) => (
+                <group key={index} data-border="" data-ratio="1:1"></group>
+              ))}
+            </group>
+
+            <group
+              data-gap="1"
+              data-type="grid"
+              data-grid-template="70"
+              data-align="start"
+            >
+              {buttonData.map((button, index) => (
+                <Tooltip
+                  content={button.label}
+                  distance={-5}
+                  key={index}
+                  delay={500}
                 >
                   <group
-                    data-interact=""
-                    // data-animation-name="appear-top-small"
-                    // data-fill-mode="backwards"
-                    // data-animation-duration={4 + index * 0.25}
+                    data-border={selected === index ? "" : "none"}
+                    data-index={selected === index ? "2" : ""}
+                    key={index}
+                    data-space="10"
+                    data-interactive="border"
+                   // data-interactive-index="1"
+                    data-over-color="neutral"
+                    data-background={selected === index ? "adaptive-gray" : ""}
+                    data-cursor="pointer"
+                    onClick={() => handleClick(index, button.set)}
+                    data-direction="column"
                   >
-                    <DotDisplay size={"fit"} activeIndexes={button.set} />
+                    <group data-interact="">
+                      <DotDisplay size={"fit"} activeIndexes={button.set} />
+                    </group>
                   </group>
-                </group>
-              </Tooltip>
-            ))}
+                </Tooltip>
+              ))}
+            </group>
           </group>
         </group>
       </group>

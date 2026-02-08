@@ -55,7 +55,7 @@ const BottomNav: React.FC = () => {
 
                  
               >
-                <ChevronLeft strokeWidth={1} />
+                <ChevronLeft strokeWidth={1.5} />
               </group>
 
               {isLastItem && (
@@ -109,7 +109,7 @@ const BottomNav: React.FC = () => {
                 data-interact=""
                 data-length="30"
               >
-                <ChevronRight strokeWidth={1} />
+                <ChevronRight strokeWidth={1.5} />
               </group>
             </Link>
           </Ripple>

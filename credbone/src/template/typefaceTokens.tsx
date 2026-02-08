@@ -6,6 +6,8 @@ import Ripple from "../components/Ripple";
 import CustomSlider from "../components/inputs/slider";
 import SystemColorPicker from "./systemColorPicker";
 import TemplatePageHeader from "./TemplatePageHeader";
+import { AArrowUp,AlignCenter, AlignLeft, AlignRight } from "lucide-react";
+import Tooltip from "../components/tooltip";
 
 const TypefaceTokens: React.FC = () => {
   const [selectedWeight, setSelectedWeight] = useState<string>("400");
@@ -72,9 +74,9 @@ const resetValues = () => {
 
 
   const alignmentOptions = [
-    { value: "left", title: "Left" },
-    { value: "center", title: "Center" },
-    { value: "right", title: "Right" },
+    { value: "left", title: "Left", icon: <AlignLeft size={20}/> },
+    { value: "center", title: "Center", icon:<AlignCenter size={20}/> },
+    { value: "right", title: "Right", icon:<AlignRight size={20}/> },
   ];
 
 
@@ -154,7 +156,7 @@ const resetValues = () => {
           //  data-min-length="300"
           data-gap="15"
         >
-          <group data-border="" data-radius="15" data-contain="">
+          <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
             <Popover
               placement="middle"
               data-radius="10"
@@ -194,7 +196,7 @@ const resetValues = () => {
                     data-align="center"
                     data-gap="15"
                     data-wrap="no"
-                    data-space="15"
+                    data-space="20"
                     data-interactive=""
                     data-over-color="neutral"
                     data-cursor="pointer"
@@ -319,7 +321,7 @@ const resetValues = () => {
                     data-align="center"
                     data-gap="15"
                     data-wrap="no"
-                    data-space="15"
+                    data-space="20"
                     data-interactive=""
                     data-over-color="neutral"
                     data-cursor="pointer"
@@ -388,8 +390,9 @@ const resetValues = () => {
           <group
             data-elevation="2"
             data-index="2"
-            data-radius="15"
+            data-radius="20"
             data-contain=""
+            data-background="context"
           >
             <SystemColorPicker
               selectedColor={selectedColor}
@@ -409,8 +412,8 @@ const resetValues = () => {
             </text>
           </group>
 
-          <group data-border="" data-radius="15" data-contain="">
-            <group data-align="center" data-gap="15" data-space="15">
+          <group data-elevation="2" data-radius="20" data-background="context" data-contain="" data-index="1">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -427,36 +430,48 @@ const resetValues = () => {
                 </group>
               </group>
 
-              <separator data-vertical="adaptive"></separator>
+              <separator data-vertical=""></separator>
 
-              <group data-gap="5" data-width="auto" data-wrap="no">
-                {alignmentOptions.map(({ value, title }) => (
-                  <group
-                    key={value}
+              <group data-gap="1" data-width="auto"  data-wrap="no" data-contain="" data-radius="10" data-border="">
+                {alignmentOptions.map(({ value, title, icon }) => (
+<group  key={value}>
+  <Tooltip content={title} delay={300}>
+                      <group
+                   
                     onClick={() => handleAlignmentSelect(value)}
                     data-align="center"
                     data-justify="center"
                     data-background={
-                      selectedAlignment === value ? "highlight" : ""
+                      selectedAlignment === value ? "text" : ""
                     }
-                    data-border={
-                      selectedAlignment === value ? "none" : "outline"
+
+                    data-color={
+                      selectedAlignment === value ? "main-background" : ""
                     }
-                    data-width="auto"
+                    data-border=""
+                   // data-width="auto"
                     data-interactive=""
                     data-over-color="neutral"
-                    data-radius="10"
+                    
                     data-cursor="pointer"
-                    data-space-vertical="10"
-                    data-space-horizontal="15"
+                    data-space-horizontal="10"
+             data-height="36"
+                   
                   >
-                    <text>{value}</text>
+                    {/* <text>{value}</text> */}
+                   <group data-interact="" data-width="auto"> {icon}</group>
                   </group>
+  </Tooltip>
+  </group>
                 ))}
               </group>
+
+
+
+
             </group>
             <separator data-horizontal=""></separator>
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -498,7 +513,7 @@ const resetValues = () => {
             </group>
           </group>
 
-          <group data-border="" data-radius="15" data-contain="">
+          <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
             <Popover
               placement="middle"
               data-radius="10"
@@ -552,7 +567,7 @@ const resetValues = () => {
                     data-align="center"
                     data-gap="15"
                     data-wrap="no"
-                    data-space="15"
+                    data-space="20"
                     data-interactive=""
                     data-over-color="neutral"
                     data-cursor="pointer"
@@ -612,8 +627,8 @@ const resetValues = () => {
           data-direction="column"
           data-align="start"
           data-fit="2"
-          data-border=""
-          data-radius="20"
+          data-elevation="2"
+          data-radius="40"
           data-background={ isbackground ? "text" : istextmain ? "main" : istextsecondary ? "secondary" : ""}
           data-color={ isbackground ? "main-background" : istextmain ? "main-text" : istextsecondary ? "secondary-text" : "" }
         >
@@ -635,7 +650,7 @@ const resetValues = () => {
             alignment {selectedAlignment}
           </text>
 
-<group data-space="30" data-space-top="0" data-gap="30" data-direction="column" data-align="start">
+<group data-space="30" data-space-top="0" data-gap="30" data-direction="column" data-align="start" data-width="auto">
 <separator data-horizontal=""></separator>
 {isbackground ? (
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
@@ -658,6 +673,7 @@ const resetValues = () => {
               data-line="1.5"
               data-max-length="200"
               data-opacity="60"
+              data-space-right="30"
             >
               Adjust the values to explore how they affect the text
             </text>
@@ -665,7 +681,8 @@ const resetValues = () => {
 
           {hasChanged && (
             <group
-              data-space="15"
+              data-space-vertical="15"
+              data-space-horizontal="20"
               data-align="center"
               data-justify="center"
               data-background={
@@ -674,7 +691,7 @@ const resetValues = () => {
                   : selectedColor === "secondary-text"
                   ? "secondary-text"
                   : selectedColor === "main-background"
-                  ? "main-background"
+                  ? "main-background" 
                   : "adaptive-gray"
               }
               data-color={
@@ -689,11 +706,11 @@ const resetValues = () => {
               data-width="auto"
               data-interactive=""
               data-over-color="neutral"
-              data-radius="10"
+              data-radius="15"
               data-cursor="pointer"
               data-animation-name="appear-top"
-              data-fill-mode="backwards"
-              data-animation-duration="1.25"
+              data-fill-mode="forwards"
+              data-animation-duration="2.25"
               onClick={resetValues}
             >
               <text>Reset</text>

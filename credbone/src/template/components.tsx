@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import Ripple from "../components/Ripple";
 
@@ -7,7 +7,7 @@ import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 
 
-import sampleImage_2 from "../styles/images/samples/wide_res_68.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 import sampleImage_3 from "../styles/images/samples/res_82.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 
@@ -18,11 +18,16 @@ import DemoThemeToggle from "../components/DemoThemeToggle";
 import SearchFloating from "../pages/search/searchFloating";
 
 
+
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
   { name: "About The Project", url: "/About" },
   { name: "Search", url: "/Search" },
 ];
+
+
+
+
 
 const currentYear: number = new Date().getFullYear();
 
@@ -36,6 +41,21 @@ const currentYear: number = new Date().getFullYear();
 // ];
 
 const Components: React.FC = () => {
+
+
+  const location = useLocation();
+  const viewRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (viewRef.current) {
+      viewRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [location]);
+
+
   const { openModal, closeModal } = useModal();
   // const [message, setMessage] = useState<string>("");
 
@@ -57,7 +77,7 @@ const Components: React.FC = () => {
   // }, []);
 
   return (
-    <group data-scroll="" data-index="1">
+    <group data-scroll="" data-index="1" ref={viewRef}>
       <group
         data-space="adaptive-30-50"
         data-gap="50"
@@ -101,7 +121,7 @@ const Components: React.FC = () => {
 
 
 
-          <group data-width="auto" data-gap="10" data-align="center">
+          <group data-width="auto" data-gap="5" data-align="center">
             <Ripple>
               <group
                 data-contain=""
@@ -112,7 +132,7 @@ const Components: React.FC = () => {
                 data-width="auto"
                 data-background="highlight"
                 data-space="15"
-                data-radius="15"
+                data-radius="30"
                 onClick={() =>
                   openModal({
                     id: "modal-2",
@@ -178,9 +198,9 @@ const Components: React.FC = () => {
                 data-background="main"
                 data-color="main-text"
                 data-ink-color="main-dark"
-                data-space-horizontal="40"
+                data-space-horizontal="50"
                 data-space-vertical="20"
-                data-radius="15"
+                data-radius="30"
                 data-direction="column"
                 data-length="autofit-600"
                 data-align="center"
@@ -200,7 +220,7 @@ const Components: React.FC = () => {
 
         <group >
             <picture
-              data-radius="50"
+              data-radius="60"
               data-brightness="adaptive"
               data-position="absolute"
               data-background="grey-light"
@@ -211,6 +231,12 @@ const Components: React.FC = () => {
             </picture>
 
             <group data-space="30" data-gap="10" data-contain="" data-type="grid" data-grid-template="240">
+
+
+
+
+
+
               <group
               data-contain=""
                 data-width="auto"
@@ -242,7 +268,17 @@ const Components: React.FC = () => {
 
                 </group> */}
               </group>
+
+
+
+
+
+
+
               <DemoThemeToggle/>
+
+
+   
             </group>
           </group>
 
@@ -296,7 +332,7 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-contain=""
                 data-min-height="300"
-                data-radius="30"
+                data-radius="40"
                 data-direction="column"
                 data-wrap="no"
                 data-background={link.color ? "main" : "adaptive-gray"}
@@ -442,8 +478,9 @@ const Components: React.FC = () => {
                   data-type="group"
                   data-interactive=""
                   data-over-color="neutral"
-                  data-space="15"
-                  data-radius="10"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
                   data-weight="600"
                   to={link.url}
                   key={index}
@@ -460,8 +497,9 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-interactive=""
                 data-over-color="neutral"
-                data-space="15"
-                data-radius="10"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
                 data-weight="600"
                 to="https://calendly.com/sargsyanrubens/15-minute-chat"
                 target="_blank"
@@ -474,8 +512,9 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-interactive=""
                 data-over-color="neutral"
-                data-space="15"
-                data-radius="10"
+                           data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
                 data-weight="600"
                 to="https://t.me/sargsyanruben"
                 target="_blank"
@@ -499,6 +538,9 @@ const Components: React.FC = () => {
         </group>
 
       </group>
+          <group data-adaptive="mobile" data-height="95">
+
+</group>
     </group>
   );
 };

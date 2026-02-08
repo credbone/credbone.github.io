@@ -215,7 +215,7 @@ function Settings() {
             data-interactive=""
             // data-width="auto"
             data-cursor="pointer"
-            data-radius="10"
+            data-radius="15"
             // data-border="outline"
             data-length="180"
             data-align="center"

@@ -13,7 +13,7 @@ const Overview: React.FC = () => {
       <TemplatePageHeader
         title="Overview"
         description="Explore how interactive elements come together to shape the user experience. This section organizes them into categories, making it easier to navigate and understand their roles."
-        version="3.0.2"
+        version="3.5.2"
         type="System"
         descriptionProps={{"data-length":"500"}}
       />
@@ -39,7 +39,7 @@ const Overview: React.FC = () => {
             <group
               data-direction="column"
               data-align="start"
-              data-radius="40"
+              data-radius="50"
               data-contain=""
             >
               <picture
@@ -77,8 +77,9 @@ const Overview: React.FC = () => {
                 <group
                   data-space="30"
                   data-width="auto"
-                  data-radius="15"
-                  data-background="context"
+                  data-radius="20"
+                 // data-background="context"
+                  data-backdrop="20-adaptive"
                   data-gap="15"
                   data-direction="column"
                   data-align="start"

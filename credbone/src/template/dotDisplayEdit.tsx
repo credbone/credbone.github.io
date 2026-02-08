@@ -125,12 +125,12 @@ const DotDisplayEdit: React.FC<{
       .replace(/[^\w]/g, "")
       .slice(0, 15);
     const svgContent = `
-      <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
         ${Array.from(currentActiveIndexes)
           .map((index) => {
             const x = (index % cols) * 10 + 5;
             const y = Math.floor(index / cols) * 10 + 5;
-            return `<circle cx="${x}" cy="${y}" r="4" fill="black"/>`;
+            return `<circle cx="${x}" cy="${y}" r="4"/>`;
           })
           .join("\n")}
       </svg>
@@ -148,12 +148,12 @@ const DotDisplayEdit: React.FC<{
 
   const copySVGToClipboard = async () => {
     const svgContent = `
-      <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
         ${Array.from(currentActiveIndexes)
           .map((index) => {
             const x = (index % cols) * 10 + 5;
             const y = Math.floor(index / cols) * 10 + 5;
-            return `<circle cx="${x}" cy="${y}" r="4" fill="black"/>`;
+            return `<circle cx="${x}" cy="${y}" r="4" />`;
           })
           .join("\n")}
       </svg>

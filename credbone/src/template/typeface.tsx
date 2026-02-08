@@ -79,7 +79,7 @@ const Typeface: React.FC = () => {
       data-type="column"
     >
       <group
-        data-radius="20"
+        data-radius="30"
         data-background="main"
         data-color="main-text"
         data-break="break-word"
@@ -126,16 +126,16 @@ const Typeface: React.FC = () => {
         <StuckReporter>
           {(isSticky) => (
               <group
-              data-space={isSticky ? "15" : ""}
+              data-space={isSticky ? "25" : ""}
               data-index="3"
               data-sticky="top"
                  data-duration=".125"
             >
               <group
-                data-backdrop={isSticky ? "10" : ""}
+                data-backdrop={isSticky ? "20" : ""}
                data-space="20"
-                data-elevation={isSticky ? "2" : ""}
-                data-radius={isSticky ? "10" : ""}
+           //     data-elevation={isSticky ? "2" : ""}
+                data-radius="15"
              //   data-duration=".125"
                 data-align="center"
 
@@ -150,6 +150,7 @@ const Typeface: React.FC = () => {
               end={3.5}
               value={sliderValue}
 step={0.05}
+trackRightProps={{"data-opacity":"10"}}
               onValueChange={(value) => setSliderValue(value)}
            //   unit="rem"
             />
@@ -206,7 +207,7 @@ step={0.05}
       
 <group data-height="20"></group>
 
-        <group data-radius="20"  data-border="" data-contain="">
+        <group data-radius="30"  data-border="" data-contain="">
           {initialFontData.map((font, index) => (
             <group
               key={index}
@@ -295,21 +296,20 @@ Character
             {glyphs.map((glyphs, index) => (
               <group
                 key={index}
-                data-border=""
+                data-border={ glyphs.primary ? "1-primary" : "" }
+                data-index={ glyphs.primary ? "1" : "" }
                 data-ratio="1:1"
                 data-background={
                   glyphs.primary ? "main" : ""
                 }
-                data-color={
-                  glyphs.primary
-                    ? "main-text" : ""
-                }
+                data-color={ glyphs.primary ? "main-text" : "" }
                 data-glyph-size={glyphs.large ? "double" : ""}
                 data-text-size={glyphs.large ? "display-sm" : ""}
                 data-align="center"
                 data-justify="center"
                 data-interactive=""
                 //data-radius="10"
+                data-over-color="neutral"
               >
                 <text>{glyphs.content}</text>
               </group>

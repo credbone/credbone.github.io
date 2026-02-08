@@ -3,7 +3,7 @@ import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import Popover from "../components/popover";
 import CustomSlider from "../components/inputs/slider";
-import { RotateCcw } from "lucide-react";
+
 
 type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
@@ -91,7 +91,7 @@ const TooltipPropsDemo: React.FC = () => {
         // data-align="start"
       >
         <group data-gap="15">
-          <group data-border="" data-radius="15" data-contain="" data-background="main-background">
+          <group data-elevation="2" data-background="context" data-radius="20" data-contain="" data-index="2">
             <Popover
               placement="middle"
               data-radius="10"
@@ -138,7 +138,7 @@ const TooltipPropsDemo: React.FC = () => {
                     data-align="center"
                     data-gap="15"
                     data-wrap="no"
-                    data-space="15"
+                    data-space="20"
                     data-interactive=""
                     data-over-color="neutral"
                     data-cursor="pointer"
@@ -190,7 +190,7 @@ const TooltipPropsDemo: React.FC = () => {
               </group>
             </Popover>
             <separator data-horizontal=""></separator>
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -231,7 +231,7 @@ const TooltipPropsDemo: React.FC = () => {
               </group>
             </group>
             <separator data-horizontal=""></separator>
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -282,8 +282,8 @@ const TooltipPropsDemo: React.FC = () => {
             </text>
           </group>
 
-          <group data-border="" data-radius="15" data-contain="" data-background="main-background">
-            <group data-align="center" data-gap="15" data-space="15">
+          <group data-elevation="2" data-background="context" data-radius="20" data-index="1">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -326,7 +326,7 @@ const TooltipPropsDemo: React.FC = () => {
 
 <separator data-horizontal=""></separator>
 
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -347,7 +347,7 @@ const TooltipPropsDemo: React.FC = () => {
 
               <group data-fit="1">
                 <group
-                  data-width="auto"
+                //  data-width="auto"
                   data-wrap="no"
                   data-type="grid"
                   data-grid-template="30"
@@ -391,17 +391,62 @@ const TooltipPropsDemo: React.FC = () => {
         </group>
 
         <group
-        data-background="main-background"
+       
 
-       data-border=""
+       data-elevation="2"
 
-          data-radius="20"
+          data-radius="40"
           data-align="center"
         
           data-gap="30"
           data-space="30"
 
+          data-direction="column"
+
         >
+
+
+{/* <group data-position="absolute" data-height="fit" data-top="0" data-disabled="" data-space="20"> 
+
+<group>
+
+
+
+
+            <svg viewBox="0 0 48 48" data-height="0" data-length="0" data-position="absolute">
+                             <defs>
+                  <pattern
+                    id="combined-svg-15"
+                    width="48"
+                    height="48"
+                    patternUnits="userSpaceOnUse"
+                    patternContentUnits="userSpaceOnUse"
+                  >
+                    <g opacity="0.1">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M-0.64647 24.3536L24.3535 -0.646439L23.6464 -1.35355L-1.35358 23.6465L-0.64647 24.3536ZM-0.64647 36.3536L36.3535 -0.646439L35.6464 -1.35355L-1.35358 35.6464L-0.64647 36.3536ZM48.3535 -0.646439L-0.64647 48.3536L-1.35358 47.6465L47.6464 -1.35355L48.3535 -0.646439ZM10.3535 49.3536L49.3535 10.3536L48.6464 9.64645L9.64642 48.6464L10.3535 49.3536ZM49.3535 22.3535L22.3535 49.3535L21.6464 48.6464L48.6464 21.6464L49.3535 22.3535ZM34.3535 49.3536L49.3535 34.3536L48.6464 33.6465L33.6464 48.6464L34.3535 49.3536ZM49.3535 46.3536L46.3535 49.3536L45.6464 48.6465L48.6464 45.6465L49.3535 46.3536ZM-0.64647 12.3536L12.3535 -0.646439L11.6464 -1.35355L-1.35358 11.6465L-0.64647 12.3536Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </pattern>
+                </defs>
+            </svg>
+            <svg width="100%" height="100%" >
+              <rect
+                width="100%"
+                height="100%"
+                fill="url(#combined-svg-15)"
+              ></rect>
+            </svg>
+          </group>
+
+</group> */}
+
+
+<group data-height="45"></group>
+
           <Tooltip
             delay={DelayValue}
             distance={GapValue}
@@ -412,21 +457,22 @@ const TooltipPropsDemo: React.FC = () => {
             data-color={selectedColor.color}
             
           >
-            <button data-index="1" data-position="center" data-background="adaptive-gray" data-color="default" data-interactive="" data-space="15" data-radius="10">
-              Hover or Touch
+            <button  data-index="1" data-type="group" data-width="auto" data-cursor="pointer" data-position="center" data-background="adaptive-gray" data-color="default" data-interactive="" data-space-vertical="15" data-space-horizontal="20" data-radius="15">
+              <text>Hover or Touch</text>
             </button>
           </Tooltip>
 
-
+<group data-height="45">
 
           {hasChanged  && (
 
-<group data-gap="30" data-position="absolute" data-bottom="0" data-width="auto" data-right="0" data-space="30">
+  <group data-gap="30" data-width="auto">
 
 
                 <group
-                  data-space="10"
-                  data-space-horizontal="15"
+                 data-space-vertical="15" data-space-horizontal="20"
+                 
+                 data-radius="15"
                   data-align="center"
                   data-justify="center"
              
@@ -439,26 +485,30 @@ data-direction="column"
                   data-width="auto" 
                   data-interactive=""
                   data-over-color="neutral"
-                  data-radius="10"
+                  
                   data-cursor="pointer"
 
 
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
-                  data-animation-duration="1.25"
+                  data-animation-duration="2.25"
 
                   onClick={resetValues}
                 >
-                  <group data-adaptive="mobile" data-interact=""><RotateCcw size={20} /></group>
-                  <text data-adaptive="desktop">Reset</text>
+              
+                  <text>Reset</text>
                 </group>
 </group>
               )}
 
+</group>
+
+
+
         </group>
 
         <group
-          data-radius="20"
+          data-radius="40"
           data-background="context"
           data-border=""
           data-theme="dark"

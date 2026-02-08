@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import OptionBar from "../components/inputs/optionBar";
+
 import Radio, { RadioType } from "../components/inputs/radio";
 import { FieldValues, useForm, Controller } from "react-hook-form";
 import { ContentData } from "./utils/ContentData";
@@ -438,8 +438,8 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             </group>
           </group>
 
-          <group data-gap="10" data-direction="column">
-            <text data-weight="700"  data-wrap="wrap">
+          <group data-gap="5" data-direction="column">
+            <text data-weight="700" data-font-type="hero" data-text-size="medium"  data-wrap="wrap">
               {item.title}
             </text>
             <text data-opacity="60" data-wrap="wrap" data-line="1.5">
@@ -462,7 +462,7 @@ const ViewTemplates: Record<
 > = {
   CardView: { component: CardTemplate, gridTemplate: "200", gridGap: "5" },
   ListView: { component: ListTemplate, gridTemplate: "fit", gridGap: "5",  },
-  GridView: { component: GridTemplate, gridTemplate: "240", gridGap: "1",  wrapperProps: { "data-radius": "20", "data-contain":"", "data-border":"" }  },
+  GridView: { component: GridTemplate, gridTemplate: "240", gridGap: "1",  wrapperProps: { "data-radius": "30", "data-contain":"", "data-border":"" }  },
 };
 
 // Define a type for the props that the template components will receive
@@ -526,19 +526,13 @@ const Cards: React.FC = () => {
       data-space-horizontal={isSticky? "30" :""}
       data-duration=".125"
     >
-      <group
-        data-gap="10"
-        data-space={isSticky ? "5" : ""}
-        data-background={isSticky ? "context" : ""}
-        data-elevation={isSticky ? "1" : ""}
-        data-radius={isSticky ? "10" : ""}
-        
-      >
-        <OptionBar
-          compact
-          dynamic
-          data-height="40"
-          data-radius="5"
+        <group
+        data-background="main-background"
+        data-elevation={isSticky? "1" :""}
+        data-backdrop={isSticky? "20-adaptive" :""}
+    
+          data-height="60"
+          data-name="option-group" data-width="auto" data-space="5" data-border="" data-radius="15" data-contain=""
           data-weight="600"
         >
           {ViewSwitch.map((radio) => (
@@ -554,6 +548,8 @@ const Cards: React.FC = () => {
                   tooltip={
                     field.value === radio.value ? null : radio.label
                   }
+                  tooltipProps={{distance:5}}
+                   labelProps={{ "data-background": "none" }}
                   // labelProps={{
                   //   "data-background": "none",
 
@@ -567,8 +563,7 @@ const Cards: React.FC = () => {
               )}
             />
           ))}
-        </OptionBar>
-      </group>
+        </group>
     </group>
   )}
 </StuckReporter>

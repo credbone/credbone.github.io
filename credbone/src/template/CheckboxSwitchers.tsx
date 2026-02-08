@@ -15,6 +15,7 @@ import {
 
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TemplatePageHeader from "./TemplatePageHeader";
+import Ripple from "../components/Ripple";
 // import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
 
 const CheckboxAndSwitchers: React.FC = () => {
@@ -108,7 +109,7 @@ const CheckboxAndSwitchers: React.FC = () => {
           <group>
             <picture
             data-object-position="right"
-              data-radius="40"
+              data-radius="50"
               data-contain=""
               data-brightness="adaptive"
               data-background="grey-light"
@@ -524,13 +525,14 @@ descriptionProps={{"data-length":"300"}}
                 data-gap="30"
               >
                 <separator data-horizontal=""></separator>
-                <group
+<Ripple>
+                  <group
                   data-contain=""
-                  data-space="15"
+                  data-space-vertical="15"
                   data-space-horizontal="30"
                   data-interactive=""
                   data-cursor="pointer"
-                  data-radius="10"
+                  data-radius="15"
                   data-width="auto"
                   data-align="center"
                   data-direction="column"
@@ -540,6 +542,7 @@ descriptionProps={{"data-length":"300"}}
                 >
                   <text>Reset Form</text>
                 </group>
+</Ripple>
               </group>
             </group>
 

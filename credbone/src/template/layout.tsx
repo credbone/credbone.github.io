@@ -190,12 +190,11 @@ const Layout: React.FC = () => {
 
         <group data-gap="15" data-type="grid" data-grid-template="300">
           <group
-            data-border=""
-            data-background="main-background"
+data-elevation="2" data-background="context" data-radius="20" data-index="2"
             data-contain=""
-            data-radius="15"
+
           >
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -238,12 +237,10 @@ const Layout: React.FC = () => {
           </group>
 
           <group
-            data-border=""
-            data-background="main-background"
+        data-elevation="2" data-background="context" data-radius="20" data-index="1"
             data-contain=""
-            data-radius="15"
           >
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -286,12 +283,10 @@ const Layout: React.FC = () => {
           </group>
 
           <group
-            data-border=""
-            data-background="main-background"
+data-elevation="2" data-background="context" data-radius="20" 
             data-contain=""
-            data-radius="15"
           >
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"

@@ -11,12 +11,16 @@ import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
 import { useCurrentHeader } from "./TitleUpdater";
 
 
+
+
+
+
 const navItems = [
   { to: "", icon: <House size={20}/> , label: "Home",type:"link"  },
   { to: "/Components", icon: <Box size={20}/>, label: "Components",vertical: "true", adaptive:"desktop",type:"link" },
   { to: "/Components/Typography", icon: <Box size={20}/>, label: "Components",adaptive:"mobile",  type:"toggle" },
   { to:"/Components", type:"separator"},
-  { to: "/Tools", icon: <PencilRuler size={20}/> , label: "Tools",type:"link"  },
+  { to: "/Tools", icon: <PencilRuler size={20}/> , label: "Tools & Resources",type:"link"  },
   { to: "/About", icon: <BookOpen size={20}/>, label: "About",type:"link" },
 
   { to: "/Settings", icon: <Bolt size={20} />, label: "Settings",type:"link" },
@@ -34,12 +38,14 @@ const Navigation: React.FC = () => {
     setIsNavOpen(!isNavOpen);
   };
   const header = useCurrentHeader();
+
+  
   return (
     <>
 
 <group data-gap="10" data-align="center"       data-wrap="no">
 
-<group  ref={buttonRef} data-shrink="no"  className={isNavOpen ? "open" : ""}   onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
+<group  ref={buttonRef} data-shrink="no" data-over-color="neutral"  className={isNavOpen ? "open" : ""} data-background={isNavOpen ? "main-background" : ""} data-color={isNavOpen ? "text" : ""}  onClick={handleNavToggle} data-cursor="pointer"  data-width="auto" data-space="10" data-interactive="" data-radius="30" data-contain="" data-name="nav-item">
 <group>
 <icon data-length="30"  >
 <SvgHamburger />
@@ -49,7 +55,12 @@ const Navigation: React.FC = () => {
 
 <separator data-vertical=""></separator>
 
-  <NavLink   data-shrink="no" data-type="group"  data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain=""  to="/">
+  <NavLink   data-shrink="no" data-type="group"  data-width="auto" data-space="10" data-align="center" data-interactive="" data-radius="30" data-contain=""  to="/"
+  
+  
+
+  
+  >
 <group  data-interact="" data-length="30" data-height="30" data-align="center" data-justify="center">
 <House size={20} />
 </group>
@@ -64,7 +75,7 @@ const Navigation: React.FC = () => {
   
   <separator data-vertical=""></separator>
 
-<group  data-width="auto" data-space="10" data-align="center" data-contain="">
+<group  data-width="auto"  data-space="10" data-align="center" data-contain="">
 <text data-opacity="40" data-ellipsis="">
 {header}
 </text>

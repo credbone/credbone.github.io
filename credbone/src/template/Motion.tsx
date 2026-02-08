@@ -309,9 +309,9 @@ const Motion: React.FC = () => {
         </group>
       </group>
 
-      <group data-type="grid" data-grid-template="300" data-gap="30">
+      <group data-type="grid" data-grid-template="300" data-gap="20">
         <group data-gap="15">
-          <group data-border="" data-radius="15" data-contain="">
+          <group data-elevation="2" data-background="context" data-radius="20" data-contain="" data-index="1">
             <Popover
               placement="middle"
               data-radius="10"
@@ -353,7 +353,7 @@ const Motion: React.FC = () => {
                     data-align="center"
                     data-gap="15"
                     data-wrap="no"
-                    data-space="15"
+                    data-space="20"
                     data-interactive=""
                     data-over-color="neutral"
                     data-cursor="pointer"
@@ -403,7 +403,7 @@ const Motion: React.FC = () => {
 
             <separator data-horizontal=""></separator>
 
-            <group data-align="center" data-gap="15" data-space="15">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -447,8 +447,8 @@ const Motion: React.FC = () => {
             </group>
           </group>
 
-          <group data-border="" data-radius="15" data-contain="">
-            <group data-align="center" data-gap="15" data-space="15">
+          <group data-elevation="2" data-background="context" data-radius="20" data-contain="">
+            <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
                 //data-min-length="80"
@@ -465,7 +465,7 @@ const Motion: React.FC = () => {
                 </group>
               </group>
 
-              <separator data-vertical="adaptive"></separator>
+              <separator data-vertical=""></separator>
 
               <group data-gap="5" data-width="auto" data-wrap="no">
                 {stateOptions.map(({ value, title }) => (
@@ -498,11 +498,12 @@ const Motion: React.FC = () => {
           data-direction="column"
           data-align="start"
           data-border=""
-          data-radius="20"
+          data-radius="30"
           data-justify="center"
+          data-elevation="2"
         >
           <group
-            data-space="30"
+            data-space="50"
             data-align="center"
             data-direction="column"
             data-contain=""

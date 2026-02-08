@@ -20,17 +20,20 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
       data-direction="column"
       data-gap="30"
       data-background="adaptive-gray"
+      
       data-radius="40"
       data-justify="end"
       data-space="30"
       data-contain=""
+       data-align="start"
     >
       {(version || type) && (
         <>
-          <group data-direction="column">
-            <group data-gap="20" data-align="center" data-wrap="no">
+          <group data-direction="column" data-gap="30" data-align="start"  data-width="auto" >
+            <group data-gap="20" data-align="center"  data-wrap="no" data-width="auto" >
               {type && (
                 <group
+                
                   data-space-horizontal="20"
                   data-space-vertical="10"
                   data-background="text"
@@ -45,8 +48,10 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
               {version && <separator data-vertical=""></separator>}
               {version && <text>Version {version}</text>}
             </group>
+
+                      <separator data-horizontal="" ></separator>
           </group>
-          <separator data-horizontal=""></separator>
+
         </>
       )}
       <group data-height="100" data-adaptive="desktop"></group>

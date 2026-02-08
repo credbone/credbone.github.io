@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
 
       <group>
         <picture
-          data-radius="40"
+          data-radius="50"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -161,7 +161,7 @@ const Dashboard: React.FC = () => {
             data-space="30"
             data-width="auto"
             data-direction="column"
-            data-radius="15"
+            data-radius="20"
             data-background="context"
             //data-color="main-text"
           >
@@ -278,13 +278,13 @@ const Dashboard: React.FC = () => {
                   data-direction="column"
                   data-gap="5"
                 >
-                  <group data-gap="5" data-wrap="no" data-width="auto">
-                    <text data-weight="600">{item.title}</text>
+                  <group data-gap="5"  data-wrap="no" data-width="auto">
+                    <text data-weight="700">{item.title}</text>
 
                     {item.titleunit && (
                       <>
-                        <dot></dot>
-                        <text data-ellipsis="">{item.titleunit}</text>
+                        {/* <dot></dot> */}
+                        <text data-opacity="60" data-ellipsis="">{item.titleunit}</text>
                       </>
                     )}
                   </group>

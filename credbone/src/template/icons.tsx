@@ -393,7 +393,7 @@ const resetValues = () => {
             <group data-name="icon-group" data-gap="50">
               <group>
                 <picture
-                  data-radius="40"
+                  data-radius="50"
                   data-contain=""
                   data-brightness="adaptive"
                   data-background="grey-light"
@@ -411,7 +411,7 @@ const resetValues = () => {
                     data-background="main-background"
                     data-space="30"
                     data-width="auto"
-                    data-radius="15"
+                    data-radius="20"
                     data-direction="column"
                     data-gap="15"
                     data-align="start"
@@ -527,10 +527,12 @@ const resetValues = () => {
             //   data-direction="column"
 
             data-border=""
-            data-radius="20"
+            data-radius="40"
             data-align="center"
             data-gap="30"
             data-space="30"
+            data-elevation="2"
+            data-index="2"
           >
             <group
               data-height="120"
@@ -579,14 +581,15 @@ const resetValues = () => {
                 </group>
               ) : (
                 <group
-                  data-space="15"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
                   data-align="center"
                   data-justify="center"
                   data-background="adaptive-gray"
                   data-width="auto"
                   data-interactive=""
                   data-over-color="neutral"
-                  data-radius="10"
+                  data-radius="15"
                   data-cursor="pointer"
                   onClick={toggleInvert}
                 >
@@ -598,7 +601,8 @@ const resetValues = () => {
 
 {hasChanged && (
                 <group
-                  data-space="15"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
                   data-align="center"
                   data-justify="center"
                data-background={selectedColor === "main-text" ? "main-text": selectedColor === "secondary-text" ? "secondary-text" : "adaptive-gray"}
@@ -607,13 +611,13 @@ const resetValues = () => {
                   data-width="auto"
                   data-interactive=""
                   data-over-color="neutral"
-                  data-radius="10"
+                  data-radius="15"
                   data-cursor="pointer"
 
 
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
-                  data-animation-duration="1.25"
+                  data-animation-duration="2.25"
 
                   onClick={resetValues}
                 >
@@ -628,11 +632,12 @@ const resetValues = () => {
 
           <group data-gap="15" data-direction="column">
             <group
-              data-border=""
-              data-radius="15"
+               data-background="context"
+              data-radius="20"
+              data-elevation="2"
               data-align="center"
               data-gap="15"
-              data-space="15"
+              data-space="20"
               // data-disabled={selectedLucideIcon ? "true" : ""}
               // data-opacity={selectedLucideIcon ? "50" : ""}
               // data-background={selectedLucideIcon ? "highlight" : ""}
@@ -704,8 +709,8 @@ const resetValues = () => {
               </text>
             </group>
 
-            <group data-border="" data-radius="15">
-              <group data-align="center" data-gap="15" data-space="15">
+            <group data-elevation="2" data-radius="20" data-background="context" data-contain="" data-index="2">
+              <group data-align="center" data-gap="15" data-space="20">
                 <group
                   data-width="auto"
                   //data-min-length="80"
@@ -751,7 +756,7 @@ const resetValues = () => {
 
               <separator data-horizontal=""></separator>
 
-              <group data-align="center" data-gap="15" data-space="15">
+              <group data-align="center" data-gap="15" data-space="20">
                 <group
                   data-width="auto"
                   //data-min-length="80"
@@ -796,7 +801,7 @@ const resetValues = () => {
               </group>
             </group>
 
-            <group data-border="" data-radius="15" data-contain="">
+            <group data-elevation="2"  data-background="context"  data-radius="20" data-contain="">
               <SystemColorPicker
                 selectedColor={selectedColor}
                 handleColorSelect={handleColorSelect}

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
   Outlet,
+  useLocation,
 } from "react-router-dom";
 
 
@@ -31,15 +32,37 @@ import Tools from "./pages/tools/tools";
 import ToolsCollection from "./pages/tools";
 
 const MainLayout = () => {
+
+
+    const location = useLocation();
+    const viewRef = useRef<HTMLDivElement>(null);
+  
+    useEffect(() => {
+      if (viewRef.current) {
+        viewRef.current.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }, [location]);
+
+
   return (
-    <view
+    <group
    //   data-space="30"
+   data-index="1"
       data-scroll=""
       data-border="no"
       data-background="none"
+      ref={viewRef}
+
+
     >
       <Outlet />
-    </view>
+                <group data-shrink="no" data-adaptive="mobile" data-height="95">
+
+</group>
+    </group>
   );
 };
 
@@ -62,11 +85,11 @@ function App() {
 
 
               <Route path="/*" element={<MainLayout />}>
+               
                 <Route path="About" element={<About />} />
                 <Route path="Settings" element={<Settings />} />
                 <Route path="Search" element={<Search />} />
                 <Route path="Components" element={<Template />} />
-
               </Route>
               
               <Route path="/Resume" element={<Resume />} />

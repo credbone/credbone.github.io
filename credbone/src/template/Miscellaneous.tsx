@@ -56,7 +56,7 @@ const Miscellaneous: React.FC = () => {
           //      data-max-length="500"
           data-height="auto"
           data-max-height="fit"
-          data-radius="40"
+          data-radius="50"
           data-contain=""
         >
           <group data-direction="column" data-justify="end">
@@ -77,7 +77,7 @@ const Miscellaneous: React.FC = () => {
                 data-direction="column"
                 data-space="30"
                 data-gap="10"
-                data-radius="15"
+                data-radius="20"
               >
                 <text
                   data-font-type="hero"
@@ -200,7 +200,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="40" data-contain="">
+        <group data-radius="50" data-contain="">
           <group data-direction="column" data-justify="end">
             <picture
               data-contain=""
@@ -219,7 +219,7 @@ const Miscellaneous: React.FC = () => {
                 data-direction="column"
                 data-space="30"
                 data-gap="10"
-                data-radius="15"
+                data-radius="20"
               >
                 <text
                   data-font-type="hero"
@@ -341,8 +341,8 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="" data-interval="30"></separator>
 
-        <group data-radius="40" data-contain="">
-          <group data-radius="15" data-contain="">
+        <group data-radius="50" data-contain="">
+          <group  data-contain="">
             <group data-direction="column" data-justify="end">
               <picture
                 data-contain=""
@@ -360,7 +360,7 @@ const Miscellaneous: React.FC = () => {
                   data-direction="column"
                   data-space="30"
                   data-gap="10"
-                  data-radius="15"
+                  data-radius="20"
                 >
                   <text
                     data-font-type="hero"

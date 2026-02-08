@@ -41,7 +41,7 @@ const RangeSlider: React.FC = () => {
 
       <group>
         <picture
-          data-radius="40"
+          data-radius="50"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -54,7 +54,7 @@ const RangeSlider: React.FC = () => {
         <group data-space="30" data-width="auto">
           <group
             data-direction="column"
-            data-radius="15"
+            data-radius="20"
             data-background="main-background"
             data-contain=""
             data-align="start"
