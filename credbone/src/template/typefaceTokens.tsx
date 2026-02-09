@@ -432,7 +432,7 @@ const resetValues = () => {
 
               <separator data-vertical=""></separator>
 
-              <group data-gap="1" data-width="auto"  data-wrap="no" data-contain="" data-radius="10" data-border="">
+              <group data-gap="1" data-width="auto"  data-wrap="no" data-contain="" data-radius="5" data-border="">
                 {alignmentOptions.map(({ value, title, icon }) => (
 <group  key={value}>
   <Tooltip content={title} delay={300}>
@@ -442,12 +442,10 @@ const resetValues = () => {
                     data-align="center"
                     data-justify="center"
                     data-background={
-                      selectedAlignment === value ? "text" : ""
+                      selectedAlignment === value ? "adaptive-gray" : ""
                     }
 
-                    data-color={
-                      selectedAlignment === value ? "main-background" : ""
-                    }
+   
                     data-border=""
                    // data-width="auto"
                     data-interactive=""

@@ -111,8 +111,9 @@ const Typeface: React.FC = () => {
 
 
       <group >
-
-      <group data-direction="column" data-gap="10" data-space="20">
+<group data-height="20"></group>
+      <group data-direction="column" data-gap="10" data-space-horizontal="20">
+        
 <text  data-font-type="hero" data-text-size="large">
                   Preview
                 </text>
@@ -126,7 +127,8 @@ const Typeface: React.FC = () => {
         <StuckReporter>
           {(isSticky) => (
               <group
-              data-space={isSticky ? "25" : ""}
+              data-space-vertical="20"
+           data-space-horizontal={isSticky ? "20" : ""}
               data-index="3"
               data-sticky="top"
                  data-duration=".125"
@@ -205,7 +207,7 @@ trackRightProps={{"data-opacity":"10"}}
           )}
         </StuckReporter>
       
-<group data-height="20"></group>
+
 
         <group data-radius="30"  data-border="" data-contain="">
           {initialFontData.map((font, index) => (

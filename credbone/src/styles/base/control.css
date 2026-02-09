@@ -833,7 +833,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-vertical="10"] {padding-top:10px; padding-bottom: 10px;}
 [data-space-vertical="15"] {padding-top:15px; padding-bottom: 15px;}
 [data-space-vertical="20"] {padding-top:20px; padding-bottom: 20px;}
-[data-space-vertical="30"] {padding-top:30px; padding-bottom: 30px;}
+[data-space-vertical="25"] {padding-top:25px; padding-bottom: 25px;}
+[data-space-vertical="30"] {padding-top:30px; padding-bottom: 30px;}s
 [data-space-vertical="40"] {padding-top:40px; padding-bottom: 40px;}
 [data-space-vertical="50"] {padding-top:50px; padding-bottom: 50px;}
 
