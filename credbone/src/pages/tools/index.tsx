@@ -3,11 +3,12 @@ import { Link, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import DotIconMaker from "./DotIconMaker";
 
 import { links } from "./toolData";
-import { ArrowLeft, ChevronLeft, Grip } from "lucide-react";
+import { ChevronLeft, Grip } from "lucide-react";
 import Popover from "../../components/popover";
 import BlobGenerator from "./BlobGenerator";
 import PatternMaker from "./PatternMaker";
 import StuckReporter from "../../components/StuckReporter";
+import ColorMixer from "./ColorMixer";
 
 function ToolsCollection() {
   return (
@@ -128,7 +129,8 @@ function ToolsCollection() {
           <Route path="/*" element={<Navigate replace to="./" />} />
           <Route path="DotIconMaker" element={<DotIconMaker />} />
           <Route path="BlobGenerator" element={<BlobGenerator />} />
-          <Route path="Patternmaker" element={<PatternMaker />} />
+          <Route path="PatternMaker" element={<PatternMaker />} />
+          <Route path="ColorMixer" element={<ColorMixer />} />
         </Routes>
       </group>
       <group data-position="bottom" data-height="200" data-shrink="no"></group>

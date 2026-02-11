@@ -130,7 +130,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
 
             <Popover
               data-space="5"
-              data-radius="15"
+              data-radius="20"
               content={(closePopover) => (
                 <group
                   //data-gap="5"
@@ -150,7 +150,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       data-gap="15"
                       //   data-width="auto"
                       data-interactive=""
-                      data-radius="10"
+                      data-radius="15"
                       data-cursor="pointer"
                       onClick={() => downloadPaletteSVG(theme)}
                     >
@@ -183,7 +183,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       data-gap="15"
                       // data-width="auto"
                       data-interactive=""
-                      data-radius="10"
+                      data-radius="15"
                       data-cursor="pointer"
                       onClick={() => copyPaletteSVG(theme)}
                     >

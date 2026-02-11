@@ -12,6 +12,20 @@ interface CustomColorPickerProps {
   target: "primary" | "secondary";
 }
 
+const normalizeHexColor = (color: string): string => {
+  if (!color.startsWith("#")) color = "#" + color;
+
+  // Expand 3-digit hex to 6-digit
+  if (color.length === 4) {
+    const r = color[1];
+    const g = color[2];
+    const b = color[3];
+    return `#${r}${r}${g}${g}${b}${b}`;
+  }
+
+  return color;
+};
+
 // Function to check for unsupported colors
 const isColorUnsupported = (color: string): boolean => {
   const hex = color.replace("#", "");
@@ -38,7 +52,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
       setCustomColor(
         target === "primary"
           ? themeContext.theme.colorPrimary
-          : themeContext.theme.colorSecondary
+          : themeContext.theme.colorSecondary,
       );
     }
   }, [themeContext?.theme, target]);
@@ -103,7 +117,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
       </text>,
       3000,
       "theme-picker",
-      true
+      true,
     );
 
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
@@ -118,7 +132,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
           <text data-weight="700">{customColor.toUpperCase()}</text>{" "}
           <text data-opacity="60">Color copied</text>
         </text>,
-        1000
+        1000,
       );
     } catch (err) {
       addSnackbar("Failed to copy", 1000);
@@ -127,53 +141,83 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
 
   return (
     <Popover
-      data-space="5"
-      data-radius="15"
-      data-elevation="2"
+      data-space="0"
+      data-radius="0"
+      data-elevation="0"
       data-contain="visible"
+      data-background="none"
       content={(closePopover) => (
-        <group
-          data-direction="column"
-          data-name="cred-react-colorful"
-          data-width="auto"
-          data-gap="5"
-        >
-          <HexColorPicker color={customColor} onChange={setCustomColor} />
+        <group data-width="auto" data-direction="column" data-gap="5">
+          <group
 
-          <group data-direction="column" data-align="center" data-gap="5">
+
+              data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration="2.25"
+
+            data-elevation="2"
+            data-index="2"
+            data-background="context"
+            data-space="5"
+            data-radius="20"
+            data-direction="column"
+            data-name="cred-react-colorful"
+            data-width="auto"
+            data-gap="5"
+          >
+            <HexColorPicker color={customColor} onChange={setCustomColor} />
+          </group>
+
+          <group
+
+
+              data-animation-name="appear-top"
+                    data-fill-mode="backwards"
+                    data-animation-duration="3.75"
+           
+
+            data-space="5"
+            data-radius="20"
+            data-elevation="2"
+            data-background="context"
+            data-direction="column"
+            data-align="center"
+            //  data-gap="5"
+          >
             {!isMobile && (
+              <>
+                <group data-name="autoseparation">
+                  <group
+                    data-wrap="no"
+                    data-radius="15"
+                    data-contain=""
+                    data-direction="column"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-font-feature="tnum"
+                    // data-width="auto"
+                    data-max-length="160"
+                    // data-length="80"
+                  >
+                    <HexColorInput
+                      data-text-transform="uppercase"
+                      data-length="content"
+                      color={customColor}
+                      onChange={setCustomColor}
+                      onBlur={(e) => {
+                        const normalized = normalizeHexColor(e.target.value);
+                        setCustomColor(normalized);
+                      }}
+                      data-name="input-reset"
+                      data-space="15"
+                      data-text-align="center"
+                      //   data-font-feature="tnum"
+                      // data-background="adaptive-gray"
+                      name="theme-color-hex"
+                      // data-weight="700"
+                    />
 
-<>
-
-              <group
-                
-                data-wrap="no"
-                data-radius="10"
-                data-contain=""
-                data-direction="column"
-                data-interactive=""
-                data-over-color="neutral"
-                data-font-feature="tnum"
-               data-width="auto"
-               data-max-length="160"
-                // data-length="80"
-              >
-                <HexColorInput
-                data-length="content"
-                  color={customColor}
-                  onChange={setCustomColor}
-                  data-name="input-reset"
-                  data-space="15"
-                  data-text-align="center"
-                 
-                  data-font-feature="tnum"
-                  // data-background="adaptive-gray"
-                  name="theme-color-hex"
-                  data-weight="700"
-                />
-
-              
-                {/* <Ripple>
+                    {/* <Ripple>
                 <group
                   data-contain=""
                   data-ink-color="neutral"
@@ -192,47 +236,52 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                   </group>
                 </group>
               </Ripple> */}
-              </group>
-
-
-<group data-length="80">
-    <separator data-horizontal=""></separator>
-</group>
-
-</>
-
-
+                  </group>
+                </group>
+              </>
             )}
 
-            <Ripple>
-              <group
-                onClick={() => {
-                  if (!isDisabled) {
-                    handleColorSelection(customColor);
-                    closePopover();
-                  }
-                }}
-                data-space="15"
-                data-interactive=""
-                data-over-color="neutral"
-                data-cursor={isDisabled ? "" : "pointer"}
-                data-radius="10"
-                data-align="center"
-                data-direction="column"
-                data-contain=""
-                data-ink-color="neutral"
-                data-disabled={isDisabled ? "true" : ""}
-                 data-max-length="160"
-              >
-                <text>
-                  {isDisabled
-                    ? "Unsupported Color"
-                    : `Set as ${
-                        target === "primary" ? "Primary" : "Secondary"
-                      }`}
-                </text>
-              </group>
-            </Ripple>
+            <group
+              data-align="center"
+              data-direction="column"
+              data-name="autoseparation"
+            >
+              <separator
+                data-horizontal=""
+                data-max-length="100"
+                data-hide={isMobile ? "true" : ""}
+              ></separator>
+
+              <Ripple>
+                <group
+                  onClick={() => {
+                    if (!isDisabled) {
+                      handleColorSelection(customColor);
+                      closePopover();
+                    }
+                  }}
+                  data-space="15"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-cursor={isDisabled ? "" : "pointer"}
+                  data-radius="15"
+                  data-align="center"
+                  data-direction="column"
+                  data-contain=""
+                  data-ink-color="neutral"
+                  data-disabled={isDisabled ? "true" : ""}
+                  //  data-max-length="160"
+                >
+                  <text>
+                    {isDisabled
+                      ? "Unsupported Color"
+                      : `Set as ${
+                          target === "primary" ? "Primary" : "Secondary"
+                        }`}
+                  </text>
+                </group>
+              </Ripple>
+            </group>
           </group>
         </group>
       )}

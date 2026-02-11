@@ -1119,15 +1119,22 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
+ /* [data-name="autoseparation"] > separator {transition-duration: .125s; transition-property: opacity;} */
+
+
     [data-name="separation"]:first-of-type > separator,
     [data-name="autoseparation"]:first-of-type > separator
     
     {display: none;}
 
     [data-name="autoseparation"]:hover > separator,
-    [data-name="autoseparation"]:hover + [data-name="autoseparation"] > separator
+    [data-name="autoseparation"]:hover + [data-name="autoseparation"] > separator,
+
+
+    [data-selected="true"][data-name="autoseparation"] > separator,
+    [data-selected="true"][data-name="autoseparation"] + [data-name="autoseparation"] > separator
   
-    {opacity: 0;}
+    {opacity: 0; }
 
     /* stylelint-enable */
 
