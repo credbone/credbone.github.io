@@ -8,11 +8,13 @@ import { Minus, Plus, Trash, X } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 
 type InterpolationMethod = "rgb" | "lrgb" | "lab" | "via";
+type DisplayMode = "gradient" | "steps";
 
 const ColorMixer: React.FC = () => {
   const [colors, setColors] = useState<string[]>(["#401cce", "#ffbb00"]);
   const [steps, setSteps] = useState(8);
   const [method, setMethod] = useState<InterpolationMethod>("lab");
+  const [displayMode, setDisplayMode] = useState<DisplayMode>("steps");
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -222,6 +224,35 @@ const ColorMixer: React.FC = () => {
     return allColors.slice(0, steps);
   };
 
+  const getCssGradient = (): string => {
+    if (colors.length < 2) return "";
+    
+    // Use the same steps value from the slider
+    const segments = colors.length - 1;
+    const stepsPerSegment = Math.floor(steps / segments);
+    const remainder = steps % segments;
+
+    const allColors: string[] = [];
+
+    for (let i = 0; i < segments; i++) {
+      const segmentSteps = stepsPerSegment + (i < remainder ? 1 : 0);
+      const segmentColors = interpolatePair(
+        colors[i],
+        colors[i + 1],
+        segmentSteps + 1,
+      );
+
+      if (i === 0) {
+        allColors.push(...segmentColors);
+      } else {
+        allColors.push(...segmentColors.slice(1));
+      }
+    }
+
+    const gradientColors = allColors.slice(0, steps);
+    return `linear-gradient(to right, ${gradientColors.join(", ")})`;
+  };
+
   const addColor = () => {
     if (colors.length < 4) {
       const lastColor = colors[colors.length - 1];
@@ -270,7 +301,6 @@ const ColorMixer: React.FC = () => {
       <group
         data-elevation="2"
         data-radius="40"
-        // data-width="auto"
         data-direction="column"
         data-contain=""
         data-length="600"
@@ -303,11 +333,6 @@ const ColorMixer: React.FC = () => {
 
           <group
             data-width="auto"
-            //    data-background="adaptive-gray"
-            // data-color="main-background"
-            // data-space="5"
-            // data-radius="20"
-            // data-wrap="no"
             data-gap="5"
           >
             {(["rgb", "lrgb", "lab", "via"] as InterpolationMethod[]).map(
@@ -319,13 +344,7 @@ const ColorMixer: React.FC = () => {
                   data-align="center"
                   data-wrap="no"
                   data-selected={method === m ? "true" : ""}
-                  //  data-gap="5"
                 >
-                  {/* <separator
-                    data-vertical=""
-                    data-height="15"
-
-                  ></separator> */}
                   <group
                     data-width="auto"
                     data-interactive=""
@@ -418,7 +437,6 @@ const ColorMixer: React.FC = () => {
                             <group
                               data-contain=""
                               data-ink-color="neutral"
-                              //data-width="auto"
                               data-space="15"
                               data-interactive=""
                               data-over-color="neutral"
@@ -428,10 +446,6 @@ const ColorMixer: React.FC = () => {
                               data-wrap="no"
                               data-justify="center"
                               data-gap="10"
-                              // data-background="text"
-                              // data-color="main-background"
-
-                              // data-direction="column"
                               onClick={() => {
                                 removeColor(index);
                                 closePopover();
@@ -498,7 +512,8 @@ const ColorMixer: React.FC = () => {
           data-direction="column"
           data-align="start"
         >
-          <group data-wrap="no">
+
+
             <group>
               <text
                 data-weight="700"
@@ -513,72 +528,43 @@ const ColorMixer: React.FC = () => {
               </text>
             </group>
 
-            {/* <group data-wrap="no">
+          <group data-wrap="no">
 
 
             <group
-              data-wrap="no"
-              data-width="auto"
-              data-border=""
-              data-radius="10"
-              data-contain=""
-              data-shrink="no"
-            >
-              <group
-                data-border=""
-                data-over-color="neutral"
-                data-width="auto"
-                data-space="10"
-                data-interactive=""
-                data-cursor="pointer"
-                onClick={decrementSteps}
-              >
-                <group
-                  data-interact=""
-                  data-width="auto"
-                  data-opacity={steps <= 3 ? "20" : ""}
-                >
-                  <Minus size={18} />
-                </group>
-              </group>
-
-              <group
-                data-space="10"
-                data-ratio="1:1"
-                data-height="fit"
-                data-align="center"
-                data-justify="center"
-              >
-                {steps}
-              </group>
-
-              <group
-                data-border=""
-                data-over-color="neutral"
-                data-width="auto"
-                data-space="10"
-                data-interactive=""
-                data-cursor="pointer"
-                onClick={incrementSteps}
-              >
-                <group
-                  data-interact=""
-                  data-width="auto"
-                  data-opacity={steps >= 12 ? "20" : ""}
-                >
-                  <Plus size={18} />
-                </group>
-              </group>
-            </group>
-          </group> */}
-
-            <group
-              data-width="auto"
-              data-position="right"
+            //  data-width="auto"
+            
               data-wrap="no"
               data-gap="10"
               data-align="start"
             >
+
+
+<Tooltip content={"Comming Soon"}>
+              <group
+                data-contain=""
+
+               
+               
+                // data-animation-name="appear-top-small"
+                // data-fill-mode="backwards"
+                // data-animation-duration="3"
+                data-space-vertical="15"
+                data-space-horizontal="20"
+                data-align="center"
+                data-justify="center"
+                data-background="adaptive-gray"
+                data-color="adaptive-gray"
+                data-width="auto"
+                data-interactive=""
+                data-over-color="neutral"
+                data-radius="15"
+               // data-cursor="pointer"
+              >
+                <text data-opacity="30">Export</text>
+              </group>
+</Tooltip>
+
               <group
                 data-gap="15"
                 data-wrap="no"
@@ -590,6 +576,7 @@ const ColorMixer: React.FC = () => {
                 data-interactive=""
                 data-over-color="neutral"
                 data-cursor="pointer"
+                onClick={() => setDisplayMode(displayMode === "steps" ? "gradient" : "steps")}
               >
                 <group data-width="auto">
                   <text data-ellipsis="" data-opacity="40">
@@ -607,7 +594,7 @@ const ColorMixer: React.FC = () => {
                     data-ellipsis=""
                     data-transition-prop="font-size"
                     data-duration="2"
-                    data-text-size="0"
+                    data-text-size={displayMode === "gradient" ? "" : "0"}
                   >
                     Gradient
                   </text>
@@ -615,74 +602,60 @@ const ColorMixer: React.FC = () => {
                     data-ellipsis=""
                     data-transition-prop="font-size"
                     data-duration="2"
-                    data-text-size=""
+                    data-text-size={displayMode === "steps" ? "" : "0"}
                   >
                     Steps
                   </text>
                 </group>
               </group>
 
-              <group
-                data-contain=""
-                data-animation-name="appear-top-small"
-                data-fill-mode="backwards"
-                data-animation-duration="3"
-                data-space-vertical="15"
-                data-space-horizontal="20"
-                data-align="center"
-                data-justify="center"
-                data-background="adaptive-gray"
-                data-color="adaptive-gray"
-                data-width="auto"
-                data-interactive=""
-                data-over-color="neutral"
-                data-radius="15"
-                data-cursor="pointer"
-              >
-                <text>Export</text>
-              </group>
+  
             </group>
           </group>
 
-          <group
-            data-wrap="no"
-            data-radius="15"
-            data-contain=""
-            data-width="auto"
-          >
-            {gradient.map((color, index) => (
-              <group key={index} data-length="45" data-fit="1">
-                <Tooltip distance={-10} delay={300} content={color}>
-                  <group
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-contain=""
-                    data-height="100"
-                    data-shrink="no"
-                    data-direction="column"
-                    data-justify="end"
-                    data-wrap="no"
-                    data-origin="left"
-                    //  data-animation-name="appear-left"
-                    //   data-fill-mode="backwards"
-                    //   data-animation-duration={1 + index * 0.25}
-                    style={{
-                      backgroundColor: color,
-                    }}
-                  />
-                </Tooltip>
-              </group>
-            ))}
-          </group>
-
-          <group>
-            gradient here
-          </group>
+          {displayMode === "steps" ? (
+            <group
+              data-wrap="no"
+              data-radius="15"
+              data-contain=""
+              data-width="auto"
+            >
+              {gradient.map((color, index) => (
+                <group key={index} data-length="45" data-fit="1">
+                  <Tooltip distance={-10} delay={300} content={color}>
+                    <group
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-contain=""
+                      data-height="100"
+                      data-shrink="no"
+                      data-direction="column"
+                      data-justify="end"
+                      data-wrap="no"
+                      data-origin="left"
+                      style={{
+                        backgroundColor: color,
+                      }}
+                    />
+                  </Tooltip>
+                </group>
+              ))}
+            </group>
+          ) : (
+            <group
+              data-radius="15"
+              data-contain=""
+              data-height="100"
+              style={{
+                background: getCssGradient(),
+              }}
+            />
+          )}
 
           <group data-align="center" data-gap="15">
             <group data-width="auto">
               <group data-width="auto">
-                <text>Steps</text>
+                <text>Step Count</text>
               </group>
             </group>
 
