@@ -35,17 +35,19 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+      <SnackbarContainer>
     <ThemeProvider>
       
   <MetaThemeColorUpdater />
-  <SnackbarContainer>
+
 <FontSizeProvider>
       <App />
       </FontSizeProvider>
       <TooltipContainer />
 
-      </SnackbarContainer>
+      
     </ThemeProvider>
+    </SnackbarContainer>
   </React.StrictMode>
 );
 

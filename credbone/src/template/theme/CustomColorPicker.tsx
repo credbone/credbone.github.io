@@ -12,19 +12,19 @@ interface CustomColorPickerProps {
   target: "primary" | "secondary";
 }
 
-const normalizeHexColor = (color: string): string => {
-  if (!color.startsWith("#")) color = "#" + color;
+// const normalizeHexColor = (color: string): string => {
+//   if (!color.startsWith("#")) color = "#" + color;
 
-  // Expand 3-digit hex to 6-digit
-  if (color.length === 4) {
-    const r = color[1];
-    const g = color[2];
-    const b = color[3];
-    return `#${r}${r}${g}${g}${b}${b}`;
-  }
+//   // Expand 3-digit hex to 6-digit
+//   if (color.length === 4) {
+//     const r = color[1];
+//     const g = color[2];
+//     const b = color[3];
+//     return `#${r}${r}${g}${g}${b}${b}`;
+//   }
 
-  return color;
-};
+//   return color;
+// };
 
 // Function to check for unsupported colors
 const isColorUnsupported = (color: string): boolean => {
@@ -45,7 +45,8 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
   const themeContext = useContext(ThemeContext);
 
   const [customColor, setCustomColor] = useState("");
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isValidHex, setIsValidHex] = useState(true);
+  const [isUnsupported, setIsUnsupported] = useState(false);
 
   useEffect(() => {
     if (themeContext) {
@@ -58,7 +59,17 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
   }, [themeContext?.theme, target]);
 
   useEffect(() => {
-    setIsDisabled(isColorUnsupported(customColor));
+    // Validate hex format (must be 6 characters)
+    const hex = customColor.replace("#", "");
+    const isValid = /^[0-9A-Fa-f]{6}$/.test(hex);
+    setIsValidHex(isValid);
+    
+    // Check if color is unsupported (only if valid hex)
+    if (isValid) {
+      setIsUnsupported(isColorUnsupported(customColor));
+    } else {
+      setIsUnsupported(false);
+    }
   }, [customColor]);
 
   if (!themeContext) {
@@ -139,6 +150,18 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
     }
   };
 
+  const isDisabled = !isValidHex || isUnsupported;
+  
+  const getButtonText = () => {
+    if (!isValidHex) {
+      return "Invalid Color";
+    }
+    if (isUnsupported) {
+      return "Unsupported Color";
+    }
+    return `Set as ${target === "primary" ? "Primary" : "Secondary"}`;
+  };
+
   return (
     <Popover
       data-space="0"
@@ -200,14 +223,16 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                     // data-length="80"
                   >
                     <HexColorInput
+
+                //   data-opacity={isValidHex ? "" : "30"}
                       data-text-transform="uppercase"
                       data-length="content"
                       color={customColor}
                       onChange={setCustomColor}
-                      onBlur={(e) => {
-                        const normalized = normalizeHexColor(e.target.value);
-                        setCustomColor(normalized);
-                      }}
+                      // onBlur={(e) => {
+                      //   const normalized = normalizeHexColor(e.target.value);
+                      //   setCustomColor(normalized);
+                      // }}
                       data-name="input-reset"
                       data-space="15"
                       data-text-align="center"
@@ -272,13 +297,7 @@ const CustomColorPicker: React.FC<CustomColorPickerProps> = ({ target }) => {
                   data-disabled={isDisabled ? "true" : ""}
                   //  data-max-length="160"
                 >
-                  <text>
-                    {isDisabled
-                      ? "Unsupported Color"
-                      : `Set as ${
-                          target === "primary" ? "Primary" : "Secondary"
-                        }`}
-                  </text>
+                  <text>{getButtonText()}</text>
                 </group>
               </Ripple>
             </group>

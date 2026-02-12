@@ -6,17 +6,18 @@ import Tooltip from "../components/tooltip";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { getComplementaryColor } from "../styles/skin";
 
-
 // interface RichThemePickerProps {
 //   pickerType?: "primary" | "secondary";
 // }
-
 
 interface RichThemePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   pickerType?: "primary" | "secondary";
 }
 
-const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest }) => {
+const RichThemePicker: React.FC<RichThemePickerProps> = ({
+  pickerType,
+  ...rest
+}) => {
   const { addSnackbar } = useSnackbar();
   const themeContext = useContext(ThemeContext);
 
@@ -27,9 +28,13 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
 
   const { theme, setTheme } = themeContext;
 
-  const handleColorSelection = (color: string, colorName: string, isPrimary: boolean) => {
+  const handleColorSelection = (
+    color: string,
+    colorName: string,
+    isPrimary: boolean,
+  ) => {
     let newTheme;
-  
+
     if (isPrimary) {
       // If primary is being changed, update primary and set complementary secondary color
       newTheme = {
@@ -43,17 +48,20 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
         colorSecondary: color,
       };
     }
-  
+
     setTheme(newTheme);
-    const colorType = isPrimary ? 'Primary' : 'Secondary';
-    addSnackbar(<text><text data-opacity="60">{colorType} color set to</text> <text data-weight="700">{colorName}</text></text>, 3000, 'theme-picker', true);
+    const colorType = isPrimary ? "Primary" : "Secondary";
+    addSnackbar(
+      <text>
+        <text data-opacity="60">{colorType} color set to</text>{" "}
+        <text data-weight="700">{colorName}</text>
+      </text>,
+      3000,
+      "theme-picker",
+      true,
+    );
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
-
-
-
-  
-
 
   const renderPrimaryPicker = (props: React.HTMLAttributes<HTMLDivElement>) => {
     return (
@@ -64,16 +72,12 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
             data-wrap="no"
             data-radius="10"
             data-width="auto"
-
-
-
-           {...props}
-
+            {...props}
           >
             {colors.map((c, index) => (
               <Tooltip
-              delay={500}
-              distance={-10}
+                delay={500}
+                distance={-10}
                 data-space="15"
                 key={index}
                 content={
@@ -88,7 +92,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                 }
               >
                 <group
-                 data-group-end={c.separator ? "true":""}
+                  data-group-end={c.separator ? "true" : ""}
                   key={index}
                   data-shrink="no"
                   data-interactive=""
@@ -96,8 +100,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                   data-cursor="pointer"
                   className={theme.colorPrimary === c.code ? "selected" : ""}
                   data-color={theme.colorPrimary === c.code ? "main-text" : ""}
-                //  data-height="60"
-                
+                  //  data-height="60"
+
                   data-wrap="no"
                   data-contain=""
                   data-name="theme-item"
@@ -108,26 +112,26 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                 >
                   <group style={{ backgroundColor: c.code }} data-space="15">
                     <group
-                    data-name="marquee_cont"
+                      data-name="marquee_cont"
                       data-justify="end"
                       data-contain=""
-                      data-duration={theme.colorPrimary === c.code ? "4.75" : "2.25"}
+                      data-duration={
+                        theme.colorPrimary === c.code ? "4.75" : "2.25"
+                      }
                       data-transition-prop="width"
-
                       data-length={theme.colorPrimary === c.code ? "140" : "0"}
                       data-opacity={theme.colorPrimary === c.code ? "" : "0"}
-                      data-space-horizontal={theme.colorPrimary === c.code ? "5" : "0"}
-
+                      data-space-horizontal={
+                        theme.colorPrimary === c.code ? "5" : "0"
+                      }
                       key={c.code}
                       data-direction="column"
                     >
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                     
-                      <text  data-opacity="50">
-                        {c.description}
-                      </text>
+
+                      <text data-opacity="50">{c.description}</text>
                     </group>
                   </group>
                 </group>
@@ -141,19 +145,19 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
 
   const renderSecondaryPicker = () => {
     return (
-      <group data-scroll-mask="false" data-snap-button="15" data-width="auto" >
+      <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
         <Scroll wheelEnabled={true}>
           <group
-             data-position="left"
-             data-wrap="no"
-             data-radius="10"
-             data-width="auto"
+            data-position="left"
+            data-wrap="no"
+            data-radius="10"
+            data-width="auto"
           >
             {seccolors.map((c, index) => (
               <Tooltip
-                            delay={500}
-              distance={-10}
-              data-space="15"
+                delay={500}
+                distance={-10}
+                data-space="15"
                 key={index}
                 content={
                   theme.colorSecondary === c.code ? (
@@ -169,7 +173,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                 <group
                   key={index}
                   data-name="theme-item"
-                  data-group-end={c.separator ? "true":""}
+                  data-group-end={c.separator ? "true" : ""}
                   data-shrink="no"
                   data-interactive=""
                   data-width="auto"
@@ -178,7 +182,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                   data-color={
                     theme.colorSecondary === c.code ? "secondary-text" : ""
                   }
-               //   data-height="60"
+                  //   data-height="60"
 
                   data-wrap="no"
                   data-contain=""
@@ -194,26 +198,26 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
                   >
                     <group
                       data-justify="end"
-                     
-                      data-duration={theme.colorSecondary === c.code ? "4.75" : "2.25"}
+                      data-duration={
+                        theme.colorSecondary === c.code ? "4.75" : "2.25"
+                      }
                       data-transition-prop="width"
-
-                      data-length={theme.colorSecondary === c.code ? "140" : "0"}
+                      data-length={
+                        theme.colorSecondary === c.code ? "140" : "0"
+                      }
                       data-opacity={theme.colorSecondary === c.code ? "" : "0"}
-
-                      data-space-horizontal={theme.colorSecondary === c.code ? "5" : "0"}
-
+                      data-space-horizontal={
+                        theme.colorSecondary === c.code ? "5" : "0"
+                      }
                       data-contain=""
                       key={c.code}
                       data-direction="column"
-                       data-name="marquee_cont"
+                      data-name="marquee_cont"
                     >
                       <text data-ellipsis="" data-weight="700">
                         {c.name}
                       </text>
-                      <text data-light="">
-                        {c.description}
-                      </text>
+                      <text data-light="">{c.description}</text>
                     </group>
                   </group>
                 </group>
@@ -226,20 +230,11 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({ pickerType,...rest })
   };
 
   return (
-    < >
+    <>
       {(pickerType === "primary" || !pickerType) && renderPrimaryPicker(rest)}
       {(pickerType === "secondary" || !pickerType) && renderSecondaryPicker()}
     </>
-
-
-
-
-
   );
 };
-
-
-
-
 
 export default RichThemePicker;
