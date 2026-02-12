@@ -326,8 +326,8 @@ const ColorMixer: React.FC = () => {
               </text>
             </group>
 
-            <text data-wrap="wrap" data-length="200" data-opacity="40">
-              Configure shape smoothness and edge count.
+            <text data-wrap="wrap" data-length="240" data-opacity="40">
+            Choose a method to control how colors blend between points.
             </text>
           </group>
 
@@ -485,7 +485,12 @@ const ColorMixer: React.FC = () => {
             </group>
           ))}
           {colors.length < 4 && (
-            <group
+<>
+
+<Ripple>
+              <group
+              data-ink-color="neutral"
+              data-contain=""
               data-width="auto"
               data-over-color="neutral"
               data-space="15"
@@ -500,6 +505,8 @@ const ColorMixer: React.FC = () => {
                 <Plus size={20} />
               </group>
             </group>
+</Ripple>
+</>
           )}
         </group>
 
@@ -540,8 +547,9 @@ const ColorMixer: React.FC = () => {
             >
 
 
-<Tooltip content={"Comming Soon"}>
-              <group
+
+<Ripple>
+                <group
                 data-contain=""
 
                
@@ -563,9 +571,11 @@ const ColorMixer: React.FC = () => {
               >
                 <text data-opacity="30">Export</text>
               </group>
-</Tooltip>
+</Ripple>
 
-              <group
+
+          <Ripple>
+                <group
                 data-gap="15"
                 data-wrap="no"
                 data-width="auto"
@@ -608,6 +618,7 @@ const ColorMixer: React.FC = () => {
                   </text>
                 </group>
               </group>
+          </Ripple>
 
   
             </group>
@@ -616,14 +627,17 @@ const ColorMixer: React.FC = () => {
           {displayMode === "steps" ? (
             <group
               data-wrap="no"
-              data-radius="15"
+             
               data-contain=""
               data-width="auto"
+            
+               data-radius="15"
             >
               {gradient.map((color, index) => (
                 <group key={index} data-length="45" data-fit="1">
                   <Tooltip distance={-10} delay={300} content={color}>
                     <group
+                  
                       data-interactive=""
                       data-over-color="neutral"
                       data-contain=""

@@ -159,6 +159,13 @@ export const routesData: RouteData[] = [
     tags: ["pattern", "seamless", "repeatable", "generator","tools", "maker", "svg", "vector", "texture"],
     description: "Ideal for creating seamless, repeatable backgrounds.",
     title: "Pattern Maker"
+  },
+
+    {
+    path: "../Tools/ColorMixer",
+    tags: ["color", "mixer", "gradient", "LAB","RGB","swatches", "token","export", "tools"],
+    description: "Tool for blending and experimenting with custom colors.",
+    title: "Color Mixer"
   }
 
 ];

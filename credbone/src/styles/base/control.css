@@ -755,7 +755,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-right="5"]{margin-right:5px;}
 
 [data-margin-left="0"]{margin-left:0px;}
-
+[data-margin-left="-1"]{margin-left:-1px;}
 
 [data-margin="0"]{margin:0px;}
 

@@ -9,6 +9,7 @@ import BlobGenerator from "./BlobGenerator";
 import PatternMaker from "./PatternMaker";
 import StuckReporter from "../../components/StuckReporter";
 import ColorMixer from "./ColorMixer";
+import Ripple from "../../components/Ripple";
 
 function ToolsCollection() {
   return (
@@ -79,17 +80,20 @@ function ToolsCollection() {
                     data-type="grid"
                     data-grid-template="90"
                     data-gap="10"
-                    data-length="320"
+                    data-length="400"
                   >
                     {links.map((link, index) => (
-                      <NavLink
+<group  key={index}>
+  <Ripple>
+                          <NavLink
+                          data-contain=""
                         data-type="group"
                         data-space="15"
                         data-radius="15"
                         data-width="auto"
                         data-interactive=""
                         // data-background="adaptive-gray"
-                        key={index}
+                       
                         to={link.url}
                         data-name="nav-item"
                         data-direction="column"
@@ -102,6 +106,8 @@ function ToolsCollection() {
                           {link.title}
                         </text>
                       </NavLink>
+  </Ripple>
+  </group>
                     ))}
                   </group>
                 )}
