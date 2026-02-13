@@ -7,8 +7,11 @@ import { blobcontent, iconcontent, patternmaker, ColorMixer } from "./toolThumbs
 
 export const links =
 [
- { title: "Icon Creator", content: iconcontent, description: "A simple tool for creating dotted icons.", url: "DotIconMaker", new:""},
- { title: "Blob Generator", content: blobcontent, description: "Blink and you'll miss your perfect blob.", url: "BlobGenerator",new:"" },
- { title: "Pattern Maker", content: patternmaker, description: "Ideal for creating seamless backgrounds.", url: "PatternMaker",new:"true" },
- { title: "Color Mixer", content: ColorMixer, description: "Blend and experiment with custom colors.", url: "ColorMixer",new:"true" },
+{ title: "Icon Creator", content: iconcontent, description: "Create dotted icons fast.", url: "DotIconMaker", new:"" },
+
+{ title: "Blob Generator", content: blobcontent, description: "Generate unique organic blobs.", url: "BlobGenerator", new:"" },
+
+{ title: "Pattern Maker", content: patternmaker, description: "Create seamless patterns.", url: "PatternMaker", new:"true" },
+
+{ title: "Color Mixer", content: ColorMixer, description: "Mix and tweak colors.", url: "ColorMixer", new:"true" },
 ];

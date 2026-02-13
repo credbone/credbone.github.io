@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Tooltip from "../../components/tooltip";
-import { HexColorPicker } from "react-colorful";
+import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import { isMobile } from "react-device-detect";
 import Ripple from "../../components/Ripple";
 import { Minus, Plus, Trash, X } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
+import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 
 type InterpolationMethod = "rgb" | "lrgb" | "lab" | "via";
 type DisplayMode = "gradient" | "steps";
-
-
 
 const defaultColors = ["#401cce", "#ffbb00"];
 const defaultSteps = 8;
 const defaultMethod = "lab";
 const defaultDisplayMode = "steps";
 
-
-
-
-
 const ColorMixer: React.FC = () => {
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [steps, setSteps] = useState(defaultSteps);
   const [method, setMethod] = useState<InterpolationMethod>(defaultMethod);
-  const [displayMode, setDisplayMode] = useState<DisplayMode>(defaultDisplayMode);
+  const [displayMode, setDisplayMode] =
+    useState<DisplayMode>(defaultDisplayMode);
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -185,28 +181,34 @@ const ColorMixer: React.FC = () => {
     return colors;
   };
 
+  const [hasChanged, setHasChanged] = useState(false);
 
-  const [hasInteracted, setHasInteracted] = useState(false);
-
+  // Check if any value has changed from the initial state
   useEffect(() => {
-  setHasInteracted(true);
-}, [colors, steps, method, displayMode]);
+    if (
+      JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
+      steps !== defaultSteps ||
+      method !== defaultMethod ||
+      displayMode !== defaultDisplayMode
+    ) {
+      setHasChanged(true);
+    }
+  }, [colors, steps, method, displayMode]);
 
-  const hasChanged = 
-  JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
-  steps !== defaultSteps ||
-  method !== defaultMethod ||
-  displayMode !== defaultDisplayMode;
+  // const hasChanged =
+  //   JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
+  //   steps !== defaultSteps ||
+  //   method !== defaultMethod ||
+  //   displayMode !== defaultDisplayMode;
 
+  const resetValues = () => {
+    setColors(defaultColors);
+    setSteps(defaultSteps);
+    setDisplayMode(defaultDisplayMode);
+    setMethod(defaultMethod);
 
-const resetValues = () => {
-  setColors(defaultColors);
-  setSteps(defaultSteps);
-  setDisplayMode(defaultDisplayMode);
-  setMethod(defaultMethod);
-};
-
-
+    setHasChanged(false); // Hide the reset button after reset
+  };
 
   const interpolateVia = (c1: string, c2: string, steps: number): string[] => {
     const midColor = "#808080";
@@ -260,7 +262,7 @@ const resetValues = () => {
 
   const getCssGradient = (): string => {
     if (colors.length < 2) return "";
-    
+
     // Use the same steps value from the slider
     const segments = colors.length - 1;
     const stepsPerSegment = Math.floor(steps / segments);
@@ -316,26 +318,86 @@ const resetValues = () => {
     setColors(newColors);
   };
 
-  const incrementSteps = () => {
-    if (steps < 12) {
-      setSteps(steps + 1);
-    }
-  };
+  // const incrementSteps = () => {
+  //   if (steps < 12) {
+  //     setSteps(steps + 1);
+  //   }
+  // };
 
-  const decrementSteps = () => {
-    if (steps > 3) {
-      setSteps(steps - 1);
-    }
-  };
+  // const decrementSteps = () => {
+  //   if (steps > 3) {
+  //     setSteps(steps - 1);
+  //   }
+  // };
 
   const gradient = getGradient();
 
+  const { addSnackbar } = useSnackbar();
+
+  const generateSVG = (): string => {
+    const width = 45;
+    const height = 100;
+    const rectWidth = width;
+
+    let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${width * gradient.length}" height="${height}" viewBox="0 0 ${width * gradient.length} ${height}">\n`;
+
+    gradient.forEach((color, index) => {
+      svgContent += `  <rect x="${index * width}" y="0" width="${rectWidth}" height="${height}" fill="${color}"/>\n`;
+    });
+
+    svgContent += `</svg>`;
+    return svgContent;
+  };
+
+  const copyToClipboard = async () => {
+    const svg = generateSVG();
+    try {
+      await navigator.clipboard.writeText(svg);
+      // Could add a toast notification here
+      addSnackbar("SVG copied to clipboard", 1000);
+    } catch (err) {
+      // console.error('Failed to copy:', err);
+
+      addSnackbar("Failed to copy", 1000);
+    }
+  };
+
+  const downloadSVG = () => {
+    const currentDateTime = new Date()
+      .toISOString()
+      .replace(/[^\w]/g, "")
+      .slice(0, 15);
+
+    const svg = generateSVG();
+    const blob = new Blob([svg], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `mix-${gradient.length}-steps-${currentDateTime}.svg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const copyCSSGradient = async () => {
+    const rgbColors = gradient.map((hex) => {
+      const [r, g, b] = hexToRgb(hex);
+      return `rgb(${r}, ${g}, ${b})`;
+    });
+    const cssGradient = `background: linear-gradient(to right, ${rgbColors.join(", ")});`;
+
+    try {
+      await navigator.clipboard.writeText(cssGradient);
+      addSnackbar("CSS copied to clipboard", 1000);
+    } catch (err) {
+      //console.error('Failed to copy:', err);
+      addSnackbar("Failed to copy", 1000);
+    }
+  };
+
   return (
-    <group data-gap="20" data-align="start" data-direction="column">
-
-
-
-
+    <group data-gap="30" data-align="start" data-direction="column">
       <group
         data-elevation="2"
         data-radius="40"
@@ -350,51 +412,28 @@ const resetValues = () => {
           data-direction="column"
           data-align="start"
         >
-<group data-align="start" data-wrap="no">
+          <group data-align="start" data-wrap="no">
+            <group data-gap="10">
+              <group>
+                <text
+                  data-weight="700"
+                  data-wrap="preline"
+                  data-text-size="large"
+                  data-ellipsis=""
+                  data-font-type="hero"
+                  data-line="1"
+                >
+                  Interpolation Method
+                </text>
+              </group>
 
-
-          <group data-gap="10" >
-            <group>
-              <text
-                data-weight="700"
-                data-wrap="preline"
-                data-text-size="large"
-                data-ellipsis=""
-                data-font-type="hero"
-                data-line="1"
-              >
-                Interpolation Method
+              <text data-wrap="wrap" data-length="240" data-opacity="40">
+                Choose a method to control how colors blend between points.
               </text>
             </group>
-
-            <text data-wrap="wrap" data-length="240" data-opacity="40">
-            Choose a method to control how colors blend between points.
-            </text>
           </group>
 
-          {hasChanged && (
-  <group 
-  data-space="15"
-    data-width="auto"
-    data-interactive=""
-    data-over-color="neutral"
-    data-radius="15"
-    data-cursor="pointer"
-    data-animation-name="appear-top"
-    data-fill-mode="forwards"
-    data-animation-duration="2.25"
-    onClick={resetValues}
-  >
-    <text>Reset</text>
-  </group>
-)}
-
-</group>
-
-          <group
-            data-width="auto"
-            data-gap="5"
-          >
+          <group data-width="auto" data-gap="5">
             {(["rgb", "lrgb", "lab", "via"] as InterpolationMethod[]).map(
               (m) => (
                 <group
@@ -468,12 +507,13 @@ const resetValues = () => {
                         data-fill-mode="backwards"
                         data-animation-duration="2.25"
                         data-elevation="2"
-                        data-index="2"
+                        data-index="3"
                         data-background="context"
                         data-space="5"
                         data-radius="20"
                         data-direction="column"
                         data-name="cred-react-colorful"
+                        // data-picker-size="compact"
                         data-width="auto"
                         data-gap="5"
                       >
@@ -482,6 +522,55 @@ const resetValues = () => {
                           onChange={(newColor) => updateColor(index, newColor)}
                         />
                       </group>
+
+                      {/* {!isMobile && (
+                        <group
+                          data-animation-name="appear-top"
+                          data-fill-mode="backwards"
+                          data-animation-duration="2.25"
+                          data-elevation="2"
+                          data-index="2"
+                          data-background="context"
+                          //    data-space="5"
+                          data-radius="15"
+                          data-direction="column"
+                          data-width="auto"
+                        >
+                          <group
+                            data-wrap="no"
+                            data-radius="15"
+                            data-contain=""
+                            data-direction="column"
+                            data-interactive=""
+                            data-over-color="neutral"
+                            data-font-feature="tnum"
+                            // data-width="auto"
+                            data-max-length="160"
+                            // data-length="80"
+                          >
+                            <HexColorInput
+                              //   data-opacity={isValidHex ? "" : "30"}
+                              data-text-transform="uppercase"
+                              data-length="content"
+                              color={color}
+                              onChange={(newColor) =>
+                                updateColor(index, newColor)
+                              }
+                              // onBlur={(e) => {
+                              //   const normalized = normalizeHexColor(e.target.value);
+                              //   setCustomColor(normalized);
+                              // }}
+                              data-name="input-reset"
+                              data-space="15"
+                              data-text-align="center"
+                              //   data-font-feature="tnum"
+                              // data-background="adaptive-gray"
+                              name="theme-color-hex"
+                              // data-weight="700"
+                            />
+                          </group>
+                        </group>
+                      )} */}
 
                       {colors.length > 2 && (
                         <group
@@ -492,6 +581,7 @@ const resetValues = () => {
                           data-animation-name="appear-top"
                           data-fill-mode="backwards"
                           data-animation-duration="3.25"
+                          data-index="1"
                         >
                           <Ripple>
                             <group
@@ -521,58 +611,57 @@ const resetValues = () => {
                     </group>
                   )}
                 >
-<group>
-  <Ripple>
+                  <group>
+                    <Ripple>
                       <group
-                      data-ink-color="neutral"
-                      data-contain=""
-                    data-width="auto"
-                    data-over-color="neutral"
-                    data-space="10"
-                    data-interactive=""
-                    data-cursor="pointer"
-                    data-align="center"
-                    data-wrap="no"
-                    data-radius="30"
-                  >
-                    <group
-                      data-interact=""
-                      data-length="30"
-                      data-height="30"
-                      data-radius="30"
-                      data-border="outline-soft"
-                      style={{ backgroundColor: color }}
-                    ></group>
+                        data-ink-color="neutral"
+                        data-contain=""
+                        data-width="auto"
+                        data-over-color="neutral"
+                        data-space="10"
+                        data-interactive=""
+                        data-cursor="pointer"
+                        data-align="center"
+                        data-wrap="no"
+                        data-radius="30"
+                      >
+                        <group
+                          data-interact=""
+                          data-length="30"
+                          data-height="30"
+                          data-radius="30"
+                          data-border="outline-soft"
+                          style={{ backgroundColor: color }}
+                        ></group>
+                      </group>
+                    </Ripple>
                   </group>
-  </Ripple>
-</group>
                 </Popover>
               </group>
             </group>
           ))}
           {colors.length < 4 && (
-<>
-
-<Ripple>
-              <group
-              data-ink-color="neutral"
-              data-contain=""
-              data-width="auto"
-              data-over-color="neutral"
-              data-space="15"
-              data-interactive=""
-              data-cursor="pointer"
-              data-radius="30"
-              onClick={addColor}
-              data-animation-name="zoom-in"
-              data-animation-duration="3"
-            >
-              <group data-interact="" data-width="auto">
-                <Plus size={20} />
-              </group>
-            </group>
-</Ripple>
-</>
+            <>
+              <Ripple>
+                <group
+                  data-ink-color="neutral"
+                  data-contain=""
+                  data-width="auto"
+                  data-over-color="neutral"
+                  data-space="15"
+                  data-interactive=""
+                  data-cursor="pointer"
+                  data-radius="30"
+                  onClick={addColor}
+                  data-animation-name="zoom-in"
+                  data-animation-duration="3"
+                >
+                  <group data-interact="" data-width="auto">
+                    <Plus size={20} />
+                  </group>
+                </group>
+              </Ripple>
+            </>
           )}
         </group>
 
@@ -585,125 +674,204 @@ const resetValues = () => {
           data-direction="column"
           data-align="start"
         >
-
-
-            <group>
-              <text
-                data-weight="700"
-                data-wrap="preline"
-                data-text-size="large"
-                data-ellipsis=""
-                data-font-type="hero"
-                data-line="1"
-              >
-                Preview your
-                <br /> perfect mix
-              </text>
-            </group>
+          <group>
+            <text
+              data-weight="700"
+              data-wrap="preline"
+              data-text-size="large"
+              data-ellipsis=""
+              data-font-type="hero"
+              data-line="1"
+            >
+              Preview your
+              <br /> perfect mix
+            </text>
+          </group>
 
           <group data-wrap="no">
-
-
             <group
-            //  data-width="auto"
-            
+              //  data-width="auto"
+
               data-wrap="no"
               data-gap="10"
               data-align="start"
             >
-
-
-
-<Ripple>
-                <group
-                data-contain=""
-
-               
-               
-                // data-animation-name="appear-top-small"
-                // data-fill-mode="backwards"
-                // data-animation-duration="3"
-                data-space-vertical="15"
-                data-space-horizontal="20"
-                data-align="center"
-                data-justify="center"
-                data-background="adaptive-gray"
-                data-color="adaptive-gray"
-                data-width="auto"
-                data-interactive=""
-                data-over-color="neutral"
-                data-radius="15"
-               // data-cursor="pointer"
-              >
-                <text data-opacity="30">Export</text>
-              </group>
-</Ripple>
-
-
-          <Ripple>
-                <group
-                data-gap="15"
-                data-wrap="no"
-                data-width="auto"
-                data-contain=""
-                data-space="15"
-                data-radius="15"
-                data-background="adaptive-gray"
-                data-interactive=""
-                data-over-color="neutral"
-                data-cursor="pointer"
-                onClick={() => setDisplayMode(displayMode === "steps" ? "gradient" : "steps")}
+              <Popover
+                data-space="5"
+                data-radius="20"
+                // placement=""
+                content={(closePopover) => (
+                  <group
+                    data-direction="column"
+                    data-length="240"
+                    onClick={closePopover}
+                  >
+                    <group
+                      onClick={downloadSVG}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="2.75"
+                      data-name="autoseparation"
+                    >
+                      <group
+                        data-space="15"
+                        data-align="center"
+                        data-gap="15"
+                        data-interactive=""
+                        data-radius="15"
+                        data-cursor="pointer"
+                      >
+                        <group data-direction="column" data-width="auto">
+                          <text data-weight="700">Download</text>
+                          <text data-opacity="30">Save gradient for later</text>
+                        </group>
+                      </group>
+                    </group>
+                    <group
+                      onClick={copyToClipboard}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="3.25"
+                      data-name="autoseparation"
+                    >
+                      <separator
+                        data-horizontal=""
+                        data-margin-horizontal="10"
+                        data-opacity="5"
+                      ></separator>
+                      <group
+                        data-space="15"
+                        data-align="center"
+                        data-gap="15"
+                        data-interactive=""
+                        data-radius="15"
+                        data-cursor="pointer"
+                      >
+                        <group data-direction="column" data-width="auto">
+                          <text data-weight="700">Copy</text>
+                          <text data-opacity="30">
+                            Paste in Figma or code ...
+                          </text>
+                        </group>
+                      </group>
+                    </group>
+                    <group
+                      onClick={copyCSSGradient}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="3.75"
+                      data-name="autoseparation"
+                    >
+                      <separator
+                        data-horizontal=""
+                        data-margin-horizontal="10"
+                        data-opacity="5"
+                      ></separator>
+                      <group
+                        data-space="15"
+                        data-align="center"
+                        data-gap="15"
+                        data-interactive=""
+                        data-radius="15"
+                        data-cursor="pointer"
+                      >
+                        <group data-direction="column" data-width="auto">
+                          <text data-weight="700">CSS</text>
+                          <text data-opacity="30">
+                            Paste into your stylesheet
+                          </text>
+                        </group>
+                      </group>
+                    </group>
+                  </group>
+                )}
               >
                 <group data-width="auto">
-                  <text data-ellipsis="" data-opacity="40">
-                    Mode
-                  </text>
+                  <Ripple>
+                    <group
+                      data-contain=""
+                      data-space="15"
+                      data-align="center"
+                      data-justify="center"
+                      data-background="adaptive-gray"
+                      data-color="adaptive-gray"
+                      data-width="auto"
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-radius="15"
+                      data-cursor="pointer"
+
+                      //  data-position="right"
+                    >
+                      <text>Export</text>
+                    </group>
+                  </Ripple>
                 </group>
-                <separator data-vertical="" data-height="autofit"></separator>
+              </Popover>
+
+              <Ripple>
                 <group
-                  data-align="center"
-                  data-justify="center"
+                  data-gap="15"
+                  data-wrap="no"
                   data-width="auto"
                   data-contain=""
+                  data-space="15"
+                  data-radius="15"
+                  data-background="adaptive-gray"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  onClick={() =>
+                    setDisplayMode(
+                      displayMode === "steps" ? "gradient" : "steps",
+                    )
+                  }
                 >
-                  <text
-                    data-ellipsis=""
-                    data-transition-prop="font-size"
-                    data-duration="2"
-                    data-text-size={displayMode === "gradient" ? "" : "0"}
+                  <group data-width="auto">
+                    <text data-ellipsis="" data-opacity="40">
+                      Mode
+                    </text>
+                  </group>
+                  <separator data-vertical="" data-height="autofit"></separator>
+                  <group
+                    data-align="center"
+                    data-justify="center"
+                    data-width="auto"
+                    data-contain=""
                   >
-                    Gradient
-                  </text>
-                  <text
-                    data-ellipsis=""
-                    data-transition-prop="font-size"
-                    data-duration="2"
-                    data-text-size={displayMode === "steps" ? "" : "0"}
-                  >
-                    Steps
-                  </text>
+                    <text
+                      data-ellipsis=""
+                      data-transition-prop="font-size"
+                      data-duration="2"
+                      data-text-size={displayMode === "gradient" ? "" : "0"}
+                    >
+                      Gradient
+                    </text>
+                    <text
+                      data-ellipsis=""
+                      data-transition-prop="font-size"
+                      data-duration="2"
+                      data-text-size={displayMode === "steps" ? "" : "0"}
+                    >
+                      Steps
+                    </text>
+                  </group>
                 </group>
-              </group>
-          </Ripple>
-
-  
+              </Ripple>
             </group>
           </group>
 
           {displayMode === "steps" ? (
             <group
               data-wrap="no"
-             
               data-contain=""
               data-width="auto"
-            
-               data-radius="15"
+              data-radius="15"
             >
               {gradient.map((color, index) => (
                 <group key={index} data-length="45" data-fit="1">
                   <Tooltip distance={-10} delay={300} content={color}>
                     <group
-                  
                       data-interactive=""
                       data-over-color="neutral"
                       data-contain=""
@@ -761,6 +929,43 @@ const resetValues = () => {
           </group>
         </group>
       </group>
+
+      {hasChanged && (
+
+<group data-width="auto" data-gap="30"> 
+
+
+ <separator data-horizontal=""></separator>
+
+        <group data-width="auto" data-space-horizontal="30" data-gap="30" data-wrap="no" data-direction="column" data-align="start">
+         
+<group               data-animation-name="appear-top"
+              data-fill-mode="forwards"
+              data-animation-duration="2.25">
+            <text data-wrap="wrap" data-length="200" data-opacity="40">Reset all your adjustments to begin again.</text>
+  </group>
+<Ripple>
+              <group
+              data-contain=""
+              data-space="15"
+              data-space-horizontal="25"
+              data-width="auto"
+              data-interactive=""
+              data-over-color="neutral"
+              data-background="adaptive-gray"
+              data-radius="15"
+              data-cursor="pointer"
+              data-animation-name="appear-top"
+              data-fill-mode="forwards"
+              data-animation-duration="2.75"
+              onClick={resetValues}
+            >
+              <text>Reset</text>
+            </group>
+</Ripple>
+        </group>
+</group>
+      )}
     </group>
   );
 };

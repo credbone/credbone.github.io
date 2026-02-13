@@ -95,7 +95,7 @@ function Tools() {
 
 
 
-        <group data-type="grid" data-grid-template="180/140" data-gap="10" >
+        <group data-type="grid" data-grid-template="140" data-gap="15" >
           {links.map((link, index) => (
             <Link
               key={index}
@@ -142,10 +142,10 @@ function Tools() {
                 </group>
               </Ripple>
               <group data-gap="10" data-space="20">
-                <text data-weight="700" data-wrap="preline" data-text-size="large" data-ellipsis="" data-font-type="hero" data-line="1">
+                <text data-weight="700" data-wrap="preline" data-text-size="medium" data-ellipsis="" data-font-type="hero" data-line="1">
                   {link.title}
                 </text>
-                <text data-wrap="wrap" data-line="1.5">
+                <text data-wrap="wrap" data-line="1.5" data-opacity="40" data-length="110">
                   {link.description}
                 </text>
               </group>

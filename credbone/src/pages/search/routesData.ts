@@ -134,7 +134,7 @@ export const routesData: RouteData[] = [
 
   {
     path: "../Tools",
-    tags: ["design", "editor", "creation","generator", "tools", "icon", "blob"],
+    tags: ["design", "editor", "creation","generator", "tools", "icon", "blob","CSS"],
     description: "A collection of tools for designing, editing, and generating visuals.",
     title: "Tools & Resources"
   },
@@ -163,7 +163,7 @@ export const routesData: RouteData[] = [
 
     {
     path: "../Tools/ColorMixer",
-    tags: ["color", "mixer", "gradient", "LAB","RGB","swatches", "token","export", "tools"],
+    tags: ["color", "mixer", "gradient","LAB","RGB","swatches", "token","export", "tools","svg", "CSS"],
     description: "Tool for blending and experimenting with custom colors.",
     title: "Color Mixer"
   }
