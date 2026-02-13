@@ -42,6 +42,7 @@ function ToolsCollection() {
               data-align="center"
               data-duration="2.25"
               data-transition-prop="position"
+              data-wrap="no"
             >
               <Link
                 data-type="group"
@@ -54,6 +55,7 @@ function ToolsCollection() {
                 data-align="center"
                 to="./"
                 data-wrap="no"
+                data-contain=""
               >
                 <group data-interact="" data-hidden={isSticky ? "true" : ""}>
                   <ChevronLeft size={20} />
@@ -61,6 +63,7 @@ function ToolsCollection() {
                 <text
                   data-hidden={isSticky ? "" : "true"}
                   data-opacity={isSticky ? "0" : ""}
+                  data-ellipsis=""
                 >
                   Tools & Resources
                 </text>
@@ -71,9 +74,6 @@ function ToolsCollection() {
                 data-space="10"
                 placement="bottom"
                 data-elevation="2"
-
-
-
                 content={(closePopover) => (
                   <group
                     onClick={closePopover}
@@ -83,31 +83,31 @@ function ToolsCollection() {
                     data-length="400"
                   >
                     {links.map((link, index) => (
-<group  key={index}>
-  <Ripple>
+                      <group key={index}>
+                        <Ripple>
                           <NavLink
-                          data-contain=""
-                        data-type="group"
-                        data-space="15"
-                        data-radius="15"
-                        data-width="auto"
-                        data-interactive=""
-                        // data-background="adaptive-gray"
-                       
-                        to={link.url}
-                        data-name="nav-item"
-                        data-direction="column"
-                        data-gap="10"
-                      >
-                        <group data-ratio="1:1" data-interact="">
-                          {link.content}
-                        </group>
-                        <text data-wrap="wrap" data-text-align="center">
-                          {link.title}
-                        </text>
-                      </NavLink>
-  </Ripple>
-  </group>
+                            data-contain=""
+                            data-type="group"
+                            data-space="15"
+                            data-radius="15"
+                            data-width="auto"
+                            data-interactive=""
+                            // data-background="adaptive-gray"
+
+                            to={link.url}
+                            data-name="nav-item"
+                            data-direction="column"
+                            data-gap="10"
+                          >
+                            <group data-ratio="1:1" data-interact="">
+                              {link.content}
+                            </group>
+                            <text data-wrap="wrap" data-text-align="center">
+                              {link.title}
+                            </text>
+                          </NavLink>
+                        </Ripple>
+                      </group>
                     ))}
                   </group>
                 )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "../../components/tooltip";
 import { HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
@@ -10,11 +10,22 @@ import CustomSlider from "../../components/inputs/slider";
 type InterpolationMethod = "rgb" | "lrgb" | "lab" | "via";
 type DisplayMode = "gradient" | "steps";
 
+
+
+const defaultColors = ["#401cce", "#ffbb00"];
+const defaultSteps = 8;
+const defaultMethod = "lab";
+const defaultDisplayMode = "steps";
+
+
+
+
+
 const ColorMixer: React.FC = () => {
-  const [colors, setColors] = useState<string[]>(["#401cce", "#ffbb00"]);
-  const [steps, setSteps] = useState(8);
-  const [method, setMethod] = useState<InterpolationMethod>("lab");
-  const [displayMode, setDisplayMode] = useState<DisplayMode>("steps");
+  const [colors, setColors] = useState<string[]>(defaultColors);
+  const [steps, setSteps] = useState(defaultSteps);
+  const [method, setMethod] = useState<InterpolationMethod>(defaultMethod);
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(defaultDisplayMode);
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -174,6 +185,29 @@ const ColorMixer: React.FC = () => {
     return colors;
   };
 
+
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  useEffect(() => {
+  setHasInteracted(true);
+}, [colors, steps, method, displayMode]);
+
+  const hasChanged = 
+  JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
+  steps !== defaultSteps ||
+  method !== defaultMethod ||
+  displayMode !== defaultDisplayMode;
+
+
+const resetValues = () => {
+  setColors(defaultColors);
+  setSteps(defaultSteps);
+  setDisplayMode(defaultDisplayMode);
+  setMethod(defaultMethod);
+};
+
+
+
   const interpolateVia = (c1: string, c2: string, steps: number): string[] => {
     const midColor = "#808080";
     const half = Math.ceil(steps / 2);
@@ -298,6 +332,10 @@ const ColorMixer: React.FC = () => {
 
   return (
     <group data-gap="20" data-align="start" data-direction="column">
+
+
+
+
       <group
         data-elevation="2"
         data-radius="40"
@@ -312,7 +350,10 @@ const ColorMixer: React.FC = () => {
           data-direction="column"
           data-align="start"
         >
-          <group data-gap="10" data-width="auto">
+<group data-align="start" data-wrap="no">
+
+
+          <group data-gap="10" >
             <group>
               <text
                 data-weight="700"
@@ -330,6 +371,25 @@ const ColorMixer: React.FC = () => {
             Choose a method to control how colors blend between points.
             </text>
           </group>
+
+          {hasChanged && (
+  <group 
+  data-space="15"
+    data-width="auto"
+    data-interactive=""
+    data-over-color="neutral"
+    data-radius="15"
+    data-cursor="pointer"
+    data-animation-name="appear-top"
+    data-fill-mode="forwards"
+    data-animation-duration="2.25"
+    onClick={resetValues}
+  >
+    <text>Reset</text>
+  </group>
+)}
+
+</group>
 
           <group
             data-width="auto"
@@ -461,7 +521,11 @@ const ColorMixer: React.FC = () => {
                     </group>
                   )}
                 >
-                  <group
+<group>
+  <Ripple>
+                      <group
+                      data-ink-color="neutral"
+                      data-contain=""
                     data-width="auto"
                     data-over-color="neutral"
                     data-space="10"
@@ -480,6 +544,8 @@ const ColorMixer: React.FC = () => {
                       style={{ backgroundColor: color }}
                     ></group>
                   </group>
+  </Ripple>
+</group>
                 </Popover>
               </group>
             </group>
