@@ -315,9 +315,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
 
 
 
-<group data-adaptive="mobile" data-duration="2.25" data-height={isSubNavOpen ? "100" : "90"}>
 
-</group>
 
 
           </group>

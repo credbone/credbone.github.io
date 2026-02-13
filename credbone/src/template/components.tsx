@@ -538,9 +538,7 @@ const Components: React.FC = () => {
         </group>
 
       </group>
-          <group data-adaptive="mobile" data-height="95">
 
-</group>
     </group>
   );
 };

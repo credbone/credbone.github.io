@@ -183,9 +183,7 @@ data-cursor="pointer"
 
 <ThemePickerNav/>
 
-          <group data-adaptive="mobile" data-height="95">
 
-</group>
 
         </group>
       </group>
