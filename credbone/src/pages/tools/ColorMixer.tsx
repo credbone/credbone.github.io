@@ -15,6 +15,7 @@ const defaultColors = ["#401cce", "#ffbb00"];
 const defaultSteps = 8;
 const defaultMethod = "lab";
 const defaultDisplayMode = "steps";
+const defaultGamma = 1.0;
 
 const ColorMixer: React.FC = () => {
   const [colors, setColors] = useState<string[]>(defaultColors);
@@ -22,6 +23,7 @@ const ColorMixer: React.FC = () => {
   const [method, setMethod] = useState<InterpolationMethod>(defaultMethod);
   const [displayMode, setDisplayMode] =
     useState<DisplayMode>(defaultDisplayMode);
+  const [gamma, setGamma] = useState(defaultGamma);
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -39,6 +41,10 @@ const ColorMixer: React.FC = () => {
       "#" +
       [r, g, b].map((x) => Math.round(x).toString(16).padStart(2, "0")).join("")
     );
+  };
+
+  const applyGamma = (value: number, gamma: number): number => {
+    return Math.pow(value, gamma);
   };
 
   const srgbToLinear = (c: number): number => {
@@ -119,7 +125,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = i / (steps - 1);
+      const t = applyGamma(i / (steps - 1), gamma);
       const r = r1 + (r2 - r1) * t;
       const g = g1 + (g2 - g1) * t;
       const b = b1 + (b2 - b1) * t;
@@ -144,7 +150,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = i / (steps - 1);
+      const t = applyGamma(i / (steps - 1), gamma);
       const lr = lr1 + (lr2 - lr1) * t;
       const lg = lg1 + (lg2 - lg1) * t;
       const lb = lb1 + (lb2 - lb1) * t;
@@ -169,7 +175,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = i / (steps - 1);
+      const t = applyGamma(i / (steps - 1), gamma);
       const L = L1 + (L2 - L1) * t;
       const a = a1 + (a2 - a1) * t;
       const bLab = b1Lab + (b2Lab - b1Lab) * t;
@@ -189,11 +195,12 @@ const ColorMixer: React.FC = () => {
       JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
       steps !== defaultSteps ||
       method !== defaultMethod ||
-      displayMode !== defaultDisplayMode
+      displayMode !== defaultDisplayMode ||
+      gamma !== defaultGamma
     ) {
       setHasChanged(true);
     }
-  }, [colors, steps, method, displayMode]);
+  }, [colors, steps, method, displayMode, gamma]);
 
   // const hasChanged =
   //   JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
@@ -206,6 +213,7 @@ const ColorMixer: React.FC = () => {
     setSteps(defaultSteps);
     setDisplayMode(defaultDisplayMode);
     setMethod(defaultMethod);
+    setGamma(defaultGamma);
 
     setHasChanged(false); // Hide the reset button after reset
   };
@@ -869,7 +877,12 @@ const ColorMixer: React.FC = () => {
               data-radius="15"
             >
               {gradient.map((color, index) => (
-                <group key={index} data-length="45" data-fit="1">
+                <group
+                  key={index}
+                  data-length="45"
+                  data-margin-left={index === 0 ? undefined : "-1"}
+                  data-fit="1"
+                >
                   <Tooltip distance={-10} delay={300} content={color}>
                     <group
                       data-interactive=""
@@ -927,44 +940,86 @@ const ColorMixer: React.FC = () => {
               />
             </group>
           </group>
+
+          <group data-align="center" data-gap="15">
+            <group data-width="auto">
+              <group data-width="auto">
+                <text>Gamma</text>
+              </group>
+            </group>
+
+            <separator data-vertical=""></separator>
+
+            <group data-fit="1">
+              <CustomSlider
+                start={0.5}
+                end={2.5}
+                step={0.1}
+                value={gamma}
+                onValueChange={(value) => setGamma(value)}
+                trackLeftProps={{
+                  "data-margin-right": "0",
+                  "data-height": "1",
+                }}
+                trackRightProps={{
+                  "data-opacity": "10",
+                  "data-margin-left": "5",
+                  "data-height": "1",
+                }}
+              />
+            </group>
+{/* 
+            <group data-width="auto">
+              <text data-opacity="40" data-font-feature="tnum">
+                {gamma.toFixed(1)}
+              </text>
+            </group> */}
+          </group>
         </group>
       </group>
 
       {hasChanged && (
+        <group data-width="auto" data-gap="30">
+          <separator data-horizontal=""></separator>
 
-<group data-width="auto" data-gap="30"> 
-
-
- <separator data-horizontal=""></separator>
-
-        <group data-width="auto" data-space-horizontal="30" data-gap="30" data-wrap="no" data-direction="column" data-align="start">
-         
-<group               data-animation-name="appear-top"
-              data-fill-mode="forwards"
-              data-animation-duration="2.25">
-            <text data-wrap="wrap" data-length="200" data-opacity="40">Reset all your adjustments to begin again.</text>
-  </group>
-<Ripple>
-              <group
-              data-contain=""
-              data-space="15"
-              data-space-horizontal="25"
-              data-width="auto"
-              data-interactive=""
-              data-over-color="neutral"
-              data-background="adaptive-gray"
-              data-radius="15"
-              data-cursor="pointer"
+          <group
+            data-width="auto"
+            data-space-horizontal="30"
+            data-gap="30"
+            data-wrap="no"
+            data-direction="column"
+            data-align="start"
+          >
+            <group
               data-animation-name="appear-top"
               data-fill-mode="forwards"
-              data-animation-duration="2.75"
-              onClick={resetValues}
+              data-animation-duration="2.25"
             >
-              <text>Reset</text>
+              <text data-wrap="wrap" data-length="200" data-opacity="40">
+                Reset all your adjustments to begin again.
+              </text>
             </group>
-</Ripple>
+            <Ripple>
+              <group
+                data-contain=""
+                data-space="15"
+                data-space-horizontal="25"
+                data-width="auto"
+                data-interactive=""
+                data-over-color="neutral"
+                data-background="adaptive-gray"
+                data-radius="15"
+                data-cursor="pointer"
+                data-animation-name="appear-top"
+                data-fill-mode="forwards"
+                data-animation-duration="2.75"
+                onClick={resetValues}
+              >
+                <text>Reset</text>
+              </group>
+            </Ripple>
+          </group>
         </group>
-</group>
       )}
     </group>
   );

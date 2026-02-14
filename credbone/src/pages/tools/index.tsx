@@ -10,6 +10,7 @@ import PatternMaker from "./PatternMaker";
 import StuckReporter from "../../components/StuckReporter";
 import ColorMixer from "./ColorMixer";
 import Ripple from "../../components/Ripple";
+import ColorSpaceConverter from "./ColorSpaceConverter";
 
 function ToolsCollection() {
   return (
@@ -137,6 +138,7 @@ function ToolsCollection() {
           <Route path="BlobGenerator" element={<BlobGenerator />} />
           <Route path="PatternMaker" element={<PatternMaker />} />
           <Route path="ColorMixer" element={<ColorMixer />} />
+          <Route path="ColorSpaceConverter" element={<ColorSpaceConverter />} />
         </Routes>
       </group>
       <group data-position="bottom" data-height="200" data-shrink="no"></group>
