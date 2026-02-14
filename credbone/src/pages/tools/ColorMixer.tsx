@@ -102,6 +102,10 @@ const ColorMixer: React.FC = () => {
   const [method, setMethod] = useState<InterpolationMethod>(initialState.method);
   const [displayMode, setDisplayMode] = useState<DisplayMode>(initialState.displayMode);
   const [gamma, setGamma] = useState(initialState.gamma);
+  
+  // Temporary state for slider dragging (doesn't trigger URL updates)
+  const [tempSteps, setTempSteps] = useState(initialState.steps);
+  const [tempGamma, setTempGamma] = useState(initialState.gamma);
 
   // Update URL whenever state changes
   useEffect(() => {
@@ -236,7 +240,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = applyGamma(i / (steps - 1), gamma);
+      const t = applyGamma(i / (steps - 1), tempGamma);
       const r = r1 + (r2 - r1) * t;
       const g = g1 + (g2 - g1) * t;
       const b = b1 + (b2 - b1) * t;
@@ -261,7 +265,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = applyGamma(i / (steps - 1), gamma);
+      const t = applyGamma(i / (steps - 1), tempGamma);
       const lr = lr1 + (lr2 - lr1) * t;
       const lg = lg1 + (lg2 - lg1) * t;
       const lb = lb1 + (lb2 - lb1) * t;
@@ -286,7 +290,7 @@ const ColorMixer: React.FC = () => {
     const colors: string[] = [];
 
     for (let i = 0; i < steps; i++) {
-      const t = applyGamma(i / (steps - 1), gamma);
+      const t = applyGamma(i / (steps - 1), tempGamma);
       const L = L1 + (L2 - L1) * t;
       const a = a1 + (a2 - a1) * t;
       const bLab = b1Lab + (b2Lab - b1Lab) * t;
@@ -299,6 +303,30 @@ const ColorMixer: React.FC = () => {
   };
 
   const [hasChanged, setHasChanged] = useState(false);
+
+  // Debounce the actual state updates (which trigger URL updates)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSteps(tempSteps);
+    }, 150); // Small delay to batch updates after drag ends
+    return () => clearTimeout(timer);
+  }, [tempSteps]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setGamma(tempGamma);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [tempGamma]);
+
+  // Sync temp values when actual values change from external sources (URL load, reset)
+  useEffect(() => {
+    setTempSteps(steps);
+  }, [steps]);
+
+  useEffect(() => {
+    setTempGamma(gamma);
+  }, [gamma]);
 
   // Check if any value has changed from the initial state
   useEffect(() => {
@@ -319,6 +347,8 @@ const ColorMixer: React.FC = () => {
     setDisplayMode(defaultDisplayMode);
     setMethod(defaultMethod);
     setGamma(defaultGamma);
+    setTempSteps(defaultSteps);
+    setTempGamma(defaultGamma);
 
     setHasChanged(false);
   };
@@ -350,8 +380,8 @@ const ColorMixer: React.FC = () => {
     if (colors.length < 2) return [];
 
     const segments = colors.length - 1;
-    const stepsPerSegment = Math.floor(steps / segments);
-    const remainder = steps % segments;
+    const stepsPerSegment = Math.floor(tempSteps / segments);
+    const remainder = tempSteps % segments;
 
     const allColors: string[] = [];
 
@@ -370,15 +400,15 @@ const ColorMixer: React.FC = () => {
       }
     }
 
-    return allColors.slice(0, steps);
+    return allColors.slice(0, tempSteps);
   };
 
   const getCssGradient = (): string => {
     if (colors.length < 2) return "";
 
     const segments = colors.length - 1;
-    const stepsPerSegment = Math.floor(steps / segments);
-    const remainder = steps % segments;
+    const stepsPerSegment = Math.floor(tempSteps / segments);
+    const remainder = tempSteps % segments;
 
     const allColors: string[] = [];
 
@@ -397,7 +427,7 @@ const ColorMixer: React.FC = () => {
       }
     }
 
-    const gradientColors = allColors.slice(0, steps);
+    const gradientColors = allColors.slice(0, tempSteps);
     return `linear-gradient(to right, ${gradientColors.join(", ")})`;
   };
 
@@ -968,8 +998,8 @@ const ColorMixer: React.FC = () => {
               <CustomSlider
                 start={3}
                 end={12}
-                value={steps}
-                onValueChange={(value) => setSteps(value)}
+                value={tempSteps}
+                onValueChange={(value) => setTempSteps(value)}
                 trackLeftProps={{
                   "data-margin-right": "0",
                   "data-height": "1",
@@ -997,8 +1027,8 @@ const ColorMixer: React.FC = () => {
                 start={0.5}
                 end={2.5}
                 step={0.1}
-                value={gamma}
-                onValueChange={(value) => setGamma(value)}
+                value={tempGamma}
+                onValueChange={(value) => setTempGamma(value)}
                 trackLeftProps={{
                   "data-margin-right": "0",
                   "data-height": "1",
@@ -1039,7 +1069,6 @@ const ColorMixer: React.FC = () => {
 
 <group data-gap="10">
 
-
             <Ripple>
               <group
                 data-contain=""
@@ -1061,7 +1090,6 @@ const ColorMixer: React.FC = () => {
             </Ripple>
 
 
-
               <Ripple>
                 <group
                   data-contain=""
@@ -1075,13 +1103,13 @@ const ColorMixer: React.FC = () => {
                   data-over-color="neutral"
                   data-radius="15"
                   data-cursor="pointer"
-                             data-animation-name="appear-top"
+                               data-animation-name="appear-top"
                 data-fill-mode="forwards"
                 data-animation-duration="3.25"
                   onClick={copyShareLink}
                 >
                   <group data-width="auto" data-gap="10" data-align="center" data-wrap="no">
-                    
+                   
                     <text>Copy Link</text>
                   </group>
                 </group>
