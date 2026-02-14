@@ -233,7 +233,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
 
         <group
           data-type="grid"
-          data-grid-template="110/80"
+         data-grid-template="110/columns-3"
           data-gap="5"
           data-contain=""
           data-radius="20"
@@ -342,7 +342,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
 
         <group
           data-type="grid"
-          data-grid-template="110/80"
+         data-grid-template="110/columns-3"
           data-gap="5"
           data-contain=""
           data-radius="20"
@@ -397,7 +397,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
 
         <group
           data-type="grid"
-         data-grid-template="110/80"
+        data-grid-template="110/columns-3"
           data-gap="5"
           data-contain=""
           data-radius="20"

@@ -1,30 +1,93 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import { RouteData, routesData } from "./routesData";
 import Ripple from "../../components/Ripple";
 import { IconSearch } from "../../components/icon/credIcons";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Tooltip from "../../components/tooltip";
 import { X } from "lucide-react";
 
 interface SearchComponentProps {
-  showRandomTagsByDefault?: boolean; // Add a prop to control random tags
+  showRandomTagsByDefault?: boolean;
 }
 
 function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [results, setResults] = useState<RouteData[]>([]);
   const [randomTags, setRandomTags] = useState<string[]>([]);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastUrlQueryRef = useRef<string>(""); // Track last URL update to avoid duplicate history
 
+  // Initialize search from URL parameter on mount
   useEffect(() => {
-    if (showRandomTagsByDefault) {
+    const queryFromUrl = searchParams.get("q");
+    if (queryFromUrl) {
+      const MAX_URL_LENGTH = 50;
+      const MIN_SEARCH_LENGTH = 2;
+      const trimmedQuery = queryFromUrl.slice(0, MAX_URL_LENGTH);
+      
+      setSearchQuery(trimmedQuery);
+      
+      // Only perform search if query is long enough
+      if (trimmedQuery.length >= MIN_SEARCH_LENGTH) {
+        performSearch(trimmedQuery);
+        lastUrlQueryRef.current = trimmedQuery; // Track initial URL query
+      } else if (showRandomTagsByDefault) {
+        showRandomTags();
+      }
+      
+      // Update URL if it was truncated or too short
+      if (trimmedQuery !== queryFromUrl || trimmedQuery.length < MIN_SEARCH_LENGTH) {
+        if (trimmedQuery.length >= MIN_SEARCH_LENGTH) {
+          setSearchParams({ q: trimmedQuery }, { replace: true });
+          lastUrlQueryRef.current = trimmedQuery;
+        } else {
+          setSearchParams({}, { replace: true });
+          lastUrlQueryRef.current = "";
+        }
+      }
+    } else if (showRandomTagsByDefault) {
       showRandomTags();
+      lastUrlQueryRef.current = "";
     }
-  }, [showRandomTagsByDefault]);
+  }, []); // Run only on mount
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.toLowerCase(); // Convert the query to lowercase
-    setSearchQuery(query);
+  // Debounced URL update
+  useEffect(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
 
+    debounceTimerRef.current = setTimeout(() => {
+      const MAX_URL_LENGTH = 50;
+      const MIN_URL_LENGTH = 2;
+      
+      // Determine what the URL query should be
+      let targetUrlQuery = "";
+      if (searchQuery.length >= MIN_URL_LENGTH && searchQuery.length <= MAX_URL_LENGTH) {
+        targetUrlQuery = searchQuery;
+      }
+      
+      // Only update URL if it's different from last update
+      if (targetUrlQuery !== lastUrlQueryRef.current) {
+        if (targetUrlQuery) {
+          setSearchParams({ q: targetUrlQuery }, { replace: true }); // Use replace to avoid history spam
+        } else {
+          setSearchParams({}, { replace: true });
+        }
+        lastUrlQueryRef.current = targetUrlQuery;
+      }
+    }, 500); // 500ms debounce
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [searchQuery]);
+
+  const performSearch = (query: string) => {
+    const lowerQuery = query.toLowerCase();
     const stopWords = [
       "and",
       "or",
@@ -38,10 +101,10 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       "by",
       "for",
       "to",
-    ]; // Define common stop words
+    ];
 
-    if (query.length > 1 && query.length <= 100) {
-      const searchTerms = query
+    if (lowerQuery.length > 1 && lowerQuery.length <= 100) {
+      const searchTerms = lowerQuery
         .split(/\s+/)
         .filter((term) => term.trim() !== "" && !stopWords.includes(term));
 
@@ -53,6 +116,11 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
           return matches;
         });
         setResults(filteredResults);
+        
+        // Generate random tags only once when first getting no results
+        if (filteredResults.length === 0 && showRandomTagsByDefault && randomTags.length === 0) {
+          showRandomTags();
+        }
       } else {
         setResults([]);
       }
@@ -61,11 +129,19 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
     }
   };
 
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    performSearch(query);
+  };
+
   const clearSearch = () => {
     setSearchQuery("");
     setResults([]);
+    setSearchParams({}, { replace: true });
+    lastUrlQueryRef.current = "";
     if (showRandomTagsByDefault) {
-      showRandomTags(); // Show new random tags after clearing the search
+      showRandomTags();
     }
   };
 
@@ -76,14 +152,14 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
     for (let i = 0; i < 3; i++) {
       const randomIndex = Math.floor(Math.random() * uniqueTags.length);
       randomTags.push(uniqueTags[randomIndex].toLowerCase());
-      uniqueTags.splice(randomIndex, 1); // Remove the selected tag to avoid duplicates
+      uniqueTags.splice(randomIndex, 1);
     }
     setRandomTags(randomTags);
   };
 
   const searchByTag = (tag: string) => {
     setSearchQuery(tag);
-    handleSearch({ target: { value: tag } } as ChangeEvent<HTMLInputElement>);
+    performSearch(tag);
   };
 
   return (
@@ -128,7 +204,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                     value={searchQuery}
                     onChange={handleSearch}
                     autoFocus={!showRandomTagsByDefault}
-                   name="searchinput"
+                    name="searchinput"
                   />
 
                   {searchQuery && (
@@ -191,7 +267,6 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                     data-text-transform="capitalize"
                     data-ellipsis=""
                     data-weight="600"
-                    
                   >
                     {tag}
                   </text>
@@ -202,11 +277,64 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
         )}
       </group>
 
+      {searchQuery && results.length === 0 && (
+        <group data-direction="column" data-gap="30" data-max-length="600">
+
+<group data-gap="5">
+            <group
+            data-animation-name="appear-bottom"
+            data-fill-mode="backwards"
+            data-animation-duration="2.25"
+          >
+            <text  data-text-size="medium" data-font-type="hero" data-wrap="preline" data-ellipsis="" data-line="1" >No results found.</text>
+          </group>
+
+          <group
+            data-animation-name="appear-bottom"
+            data-fill-mode="backwards"
+            data-animation-duration="2"
+          >
+            <text data-opacity="60" data-wrap="wrap" data-length="300" data-line="1.2">Try one of the suggested tags below or adjust your keywords.</text>
+          </group>
+</group>
+
+          <group data-gap="5">
+            {randomTags.map((tag, index) => (
+              <group
+                data-contain=""
+                data-space="10"
+                data-space-horizontal="20"
+                data-shrink="no"
+                data-interactive=""
+                data-width="auto"
+                data-cursor="pointer"
+                data-radius="15"
+                data-align="center"
+                data-direction="column"
+                data-background="highlight"
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration={2 + index * 0.25}
+                key={index}
+                onClick={() => searchByTag(tag)}
+              >
+                <text
+                  data-text-transform="capitalize"
+                  data-ellipsis=""
+                  data-weight="600"
+                >
+                  {tag}
+                </text>
+              </group>
+            ))}
+          </group>
+        </group>
+      )}
+
       {results.length > 0 && (
-        <group data-direction="column"  data-max-length="600" data-align="start">
+        <group data-direction="column" data-max-length="600" data-align="start">
           {results.map((result, index) => (
             <Link
-              //  data-drag="none"
               autoFocus={true}
               data-contain=""
               data-type="group"
@@ -221,7 +349,6 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
-              // data-border=""
             >
               <separator data-horizontal="dotted"></separator>
               <group
