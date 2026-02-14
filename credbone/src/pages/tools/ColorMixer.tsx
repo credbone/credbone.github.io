@@ -4,7 +4,7 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import { isMobile } from "react-device-detect";
 import Ripple from "../../components/Ripple";
-import { Minus, Plus, Trash, X } from "lucide-react";
+import { Minus, Plus, Trash, X, Link } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 
@@ -18,12 +18,123 @@ const defaultDisplayMode = "steps";
 const defaultGamma = 1.0;
 
 const ColorMixer: React.FC = () => {
-  const [colors, setColors] = useState<string[]>(defaultColors);
-  const [steps, setSteps] = useState(defaultSteps);
-  const [method, setMethod] = useState<InterpolationMethod>(defaultMethod);
-  const [displayMode, setDisplayMode] =
-    useState<DisplayMode>(defaultDisplayMode);
-  const [gamma, setGamma] = useState(defaultGamma);
+  const { addSnackbar } = useSnackbar();
+
+  // Helper function to validate hex color
+  const isValidHexColor = (color: string): boolean => {
+    return /^#?([a-f\d]{6})$/i.test(color);
+  };
+
+  // Helper function to parse URL parameters
+  const parseUrlParams = () => {
+    const params = new URLSearchParams(window.location.search);
+    
+    const colorsParam = params.get('colors');
+    const stepsParam = params.get('steps');
+    const methodParam = params.get('method');
+    const displayModeParam = params.get('mode');
+    const gammaParam = params.get('gamma');
+
+    // Validate colors - if any are invalid, return null for all
+    let colors: string[] | null = null;
+    if (colorsParam) {
+      const colorArray = colorsParam.split(',').map(c => c.startsWith('#') ? c : `#${c}`);
+      const allValid = colorArray.every(c => isValidHexColor(c));
+      if (allValid && colorArray.length >= 2 && colorArray.length <= 4) {
+        colors = colorArray;
+      }
+    }
+
+    // Clamp steps between 3 and 12
+    let steps: number | null = null;
+    if (stepsParam) {
+      const parsed = parseInt(stepsParam, 10);
+      if (!isNaN(parsed)) {
+        steps = Math.max(3, Math.min(12, parsed));
+      }
+    }
+
+    // Validate method
+    const validMethods: InterpolationMethod[] = ['rgb', 'lrgb', 'lab', 'via'];
+    const method = validMethods.includes(methodParam as InterpolationMethod) 
+      ? (methodParam as InterpolationMethod) 
+      : null;
+
+    // Validate display mode
+    const validModes: DisplayMode[] = ['gradient', 'steps'];
+    const displayMode = validModes.includes(displayModeParam as DisplayMode)
+      ? (displayModeParam as DisplayMode)
+      : null;
+
+    // Clamp gamma between 0.5 and 2.5
+    let gamma: number | null = null;
+    if (gammaParam) {
+      const parsed = parseFloat(gammaParam);
+      if (!isNaN(parsed)) {
+        gamma = Math.max(0.5, Math.min(2.5, parsed));
+      }
+    }
+
+    return {
+      colors,
+      steps,
+      method,
+      displayMode,
+      gamma,
+    };
+  };
+
+  // Initialize state from URL params or defaults
+  const initializeState = () => {
+    const urlParams = parseUrlParams();
+    return {
+      colors: urlParams.colors || defaultColors,
+      steps: urlParams.steps || defaultSteps,
+      method: urlParams.method || defaultMethod,
+      displayMode: urlParams.displayMode || defaultDisplayMode,
+      gamma: urlParams.gamma || defaultGamma,
+    };
+  };
+
+  const initialState = initializeState();
+  const [colors, setColors] = useState<string[]>(initialState.colors);
+  const [steps, setSteps] = useState(initialState.steps);
+  const [method, setMethod] = useState<InterpolationMethod>(initialState.method);
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(initialState.displayMode);
+  const [gamma, setGamma] = useState(initialState.gamma);
+
+  // Update URL whenever state changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    // Only add non-default values to keep URL clean
+    const colorsString = colors.map(c => c.replace('#', '')).join(',');
+    if (JSON.stringify(colors) !== JSON.stringify(defaultColors)) {
+      params.set('colors', colorsString);
+    }
+    
+    if (steps !== defaultSteps) {
+      params.set('steps', steps.toString());
+    }
+    
+    if (method !== defaultMethod) {
+      params.set('method', method);
+    }
+    
+    if (displayMode !== defaultDisplayMode) {
+      params.set('mode', displayMode);
+    }
+    
+    if (gamma !== defaultGamma) {
+      params.set('gamma', gamma.toFixed(1));
+    }
+
+    const newUrl = params.toString() 
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    
+    window.history.replaceState({}, '', newUrl);
+  }, [colors, steps, method, displayMode, gamma]);
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -202,12 +313,6 @@ const ColorMixer: React.FC = () => {
     }
   }, [colors, steps, method, displayMode, gamma]);
 
-  // const hasChanged =
-  //   JSON.stringify(colors) !== JSON.stringify(defaultColors) ||
-  //   steps !== defaultSteps ||
-  //   method !== defaultMethod ||
-  //   displayMode !== defaultDisplayMode;
-
   const resetValues = () => {
     setColors(defaultColors);
     setSteps(defaultSteps);
@@ -215,7 +320,7 @@ const ColorMixer: React.FC = () => {
     setMethod(defaultMethod);
     setGamma(defaultGamma);
 
-    setHasChanged(false); // Hide the reset button after reset
+    setHasChanged(false);
   };
 
   const interpolateVia = (c1: string, c2: string, steps: number): string[] => {
@@ -271,7 +376,6 @@ const ColorMixer: React.FC = () => {
   const getCssGradient = (): string => {
     if (colors.length < 2) return "";
 
-    // Use the same steps value from the slider
     const segments = colors.length - 1;
     const stepsPerSegment = Math.floor(steps / segments);
     const remainder = steps % segments;
@@ -326,21 +430,7 @@ const ColorMixer: React.FC = () => {
     setColors(newColors);
   };
 
-  // const incrementSteps = () => {
-  //   if (steps < 12) {
-  //     setSteps(steps + 1);
-  //   }
-  // };
-
-  // const decrementSteps = () => {
-  //   if (steps > 3) {
-  //     setSteps(steps - 1);
-  //   }
-  // };
-
   const gradient = getGradient();
-
-  const { addSnackbar } = useSnackbar();
 
   const generateSVG = (): string => {
     const width = 45;
@@ -361,11 +451,8 @@ const ColorMixer: React.FC = () => {
     const svg = generateSVG();
     try {
       await navigator.clipboard.writeText(svg);
-      // Could add a toast notification here
       addSnackbar("SVG copied to clipboard", 1000);
     } catch (err) {
-      // console.error('Failed to copy:', err);
-
       addSnackbar("Failed to copy", 1000);
     }
   };
@@ -399,8 +486,16 @@ const ColorMixer: React.FC = () => {
       await navigator.clipboard.writeText(cssGradient);
       addSnackbar("CSS copied to clipboard", 1000);
     } catch (err) {
-      //console.error('Failed to copy:', err);
       addSnackbar("Failed to copy", 1000);
+    }
+  };
+
+  const copyShareLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      addSnackbar("Link copied to clipboard", 1000);
+    } catch (err) {
+      addSnackbar("Failed to copy link", 1000);
     }
   };
 
@@ -521,7 +616,6 @@ const ColorMixer: React.FC = () => {
                         data-radius="20"
                         data-direction="column"
                         data-name="cred-react-colorful"
-                        // data-picker-size="compact"
                         data-width="auto"
                         data-gap="5"
                       >
@@ -530,55 +624,6 @@ const ColorMixer: React.FC = () => {
                           onChange={(newColor) => updateColor(index, newColor)}
                         />
                       </group>
-
-                      {/* {!isMobile && (
-                        <group
-                          data-animation-name="appear-top"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.25"
-                          data-elevation="2"
-                          data-index="2"
-                          data-background="context"
-                          //    data-space="5"
-                          data-radius="15"
-                          data-direction="column"
-                          data-width="auto"
-                        >
-                          <group
-                            data-wrap="no"
-                            data-radius="15"
-                            data-contain=""
-                            data-direction="column"
-                            data-interactive=""
-                            data-over-color="neutral"
-                            data-font-feature="tnum"
-                            // data-width="auto"
-                            data-max-length="160"
-                            // data-length="80"
-                          >
-                            <HexColorInput
-                              //   data-opacity={isValidHex ? "" : "30"}
-                              data-text-transform="uppercase"
-                              data-length="content"
-                              color={color}
-                              onChange={(newColor) =>
-                                updateColor(index, newColor)
-                              }
-                              // onBlur={(e) => {
-                              //   const normalized = normalizeHexColor(e.target.value);
-                              //   setCustomColor(normalized);
-                              // }}
-                              data-name="input-reset"
-                              data-space="15"
-                              data-text-align="center"
-                              //   data-font-feature="tnum"
-                              // data-background="adaptive-gray"
-                              name="theme-color-hex"
-                              // data-weight="700"
-                            />
-                          </group>
-                        </group>
-                      )} */}
 
                       {colors.length > 2 && (
                         <group
@@ -698,8 +743,6 @@ const ColorMixer: React.FC = () => {
 
           <group data-wrap="no">
             <group
-              //  data-width="auto"
-
               data-wrap="no"
               data-gap="10"
               data-align="start"
@@ -707,7 +750,6 @@ const ColorMixer: React.FC = () => {
               <Popover
                 data-space="5"
                 data-radius="20"
-                // placement=""
                 content={(closePopover) => (
                   <group
                     data-direction="column"
@@ -808,14 +850,14 @@ const ColorMixer: React.FC = () => {
                       data-over-color="neutral"
                       data-radius="15"
                       data-cursor="pointer"
-
-                      //  data-position="right"
                     >
                       <text>Export</text>
                     </group>
                   </Ripple>
                 </group>
               </Popover>
+
+
 
               <Ripple>
                 <group
@@ -968,12 +1010,6 @@ const ColorMixer: React.FC = () => {
                 }}
               />
             </group>
-{/* 
-            <group data-width="auto">
-              <text data-opacity="40" data-font-feature="tnum">
-                {gamma.toFixed(1)}
-              </text>
-            </group> */}
           </group>
         </group>
       </group>
@@ -999,6 +1035,11 @@ const ColorMixer: React.FC = () => {
                 Reset all your adjustments to begin again.
               </text>
             </group>
+
+
+<group data-gap="10">
+
+
             <Ripple>
               <group
                 data-contain=""
@@ -1018,6 +1059,37 @@ const ColorMixer: React.FC = () => {
                 <text>Reset</text>
               </group>
             </Ripple>
+
+
+
+              <Ripple>
+                <group
+                  data-contain=""
+                  data-space="15"
+                   data-space-horizontal="25"
+                  data-align="center"
+                  data-justify="center"
+                  data-background="adaptive-gray"
+                  data-width="auto"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-radius="15"
+                  data-cursor="pointer"
+                             data-animation-name="appear-top"
+                data-fill-mode="forwards"
+                data-animation-duration="3.25"
+                  onClick={copyShareLink}
+                >
+                  <group data-width="auto" data-gap="10" data-align="center" data-wrap="no">
+                    
+                    <text>Copy Link</text>
+                  </group>
+                </group>
+              </Ripple>
+
+  </group>
+
+
           </group>
         </group>
       )}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { SVG_TILES } from "./Tiles";
 
 import Tooltip from "../../components/tooltip";
@@ -8,36 +8,50 @@ import { Plus } from "lucide-react";
 import Ripple from "../../components/Ripple";
 
 const PatternMaker: React.FC = () => {
-  // const [isrunning, setisrunning] = useState(false);
-  // const togglerun = () => {
-  //   setisrunning((prev) => !prev);
-  // };
-
-  const [selectedTiles, setSelectedTiles] = useState<Set<string>>(() => {
+  // Initialize from URL parameters or 3 random tiles
+  const getInitialSelection = useCallback((): Set<string> => {
+    const params = new URLSearchParams(window.location.search);
+    const tilesParam = params.get('tiles');
+    
+    if (tilesParam) {
+      const tileIds = tilesParam.split(',').filter(id => id.trim());
+      // Validate that all tile IDs exist
+      const validTileIds = tileIds.filter(id => 
+        SVG_TILES.some(tile => tile.id === id)
+      );
+      
+      if (validTileIds.length > 0) {
+        return new Set(validTileIds);
+      }
+    }
+    
+    // Default to 3 random tiles if no valid parameters
     const randomTiles = [...SVG_TILES]
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)
       .map((tile) => tile.id);
     return new Set(randomTiles);
-  });
-  //const [backgroundImage, setBackgroundImage] = useState<string>("none");
+  }, []);
+
+  const [selectedTiles, setSelectedTiles] = useState<Set<string>>(getInitialSelection);
   const svgRef = useRef<SVGSVGElement>(null);
-
-  // React.useEffect(() => {
-  //   if (!svgRef.current || selectedTiles.size === 0) {
-  //     setBackgroundImage("none");
-  //     return;
-  //   }
-
-  //   const svgElement = svgRef.current.cloneNode(true) as SVGSVGElement;
-  //   svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-
-  //   const svgString = new XMLSerializer().serializeToString(svgElement);
-  //   const encoded = encodeURIComponent(svgString);
-  //   setBackgroundImage(`url("data:image/svg+xml,${encoded}")`);
-  // }, [selectedTiles]);
-
   const [patternKey, setPatternKey] = useState(0);
+
+  // Update URL whenever selection changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    if (selectedTiles.size > 0) {
+      const tileIds = Array.from(selectedTiles).sort().join(',');
+      params.set('tiles', tileIds);
+    }
+    
+    const newUrl = selectedTiles.size > 0 
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    
+    window.history.replaceState({}, '', newUrl);
+  }, [selectedTiles]);
 
   const toggleTile = (tileId: string) => {
     const newSelected = new Set(selectedTiles);
@@ -65,7 +79,6 @@ const PatternMaker: React.FC = () => {
 
   const resetSelection = () => {
     setSelectedTiles(new Set());
-    // setisrunning(false);
   };
 
   const { addSnackbar } = useSnackbar();
@@ -87,10 +100,18 @@ const PatternMaker: React.FC = () => {
     }
   };
 
+  const copyShareLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      addSnackbar("Link copied to clipboard", 1000);
+    } catch (err) {
+      addSnackbar("Failed to copy link", 1000);
+    }
+  };
+
   const downloadSVG = () => {
     if (!svgRef.current) return;
 
-    // Clone the SVG element
     const svgElement = svgRef.current.cloneNode(true) as SVGSVGElement;
     svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
@@ -99,7 +120,6 @@ const PatternMaker: React.FC = () => {
       .replace(/[^\w]/g, "")
       .slice(0, 15);
 
-    // Serialize with XML declaration
     const svgString = new XMLSerializer().serializeToString(svgElement);
     const svgWithDeclaration = `<?xml version="1.0" encoding="UTF-8"?>\n${svgString}`;
 
@@ -126,31 +146,21 @@ const PatternMaker: React.FC = () => {
               data-over-color="neutral"
               data-cursor="pointer"
               data-background="context"
-              // data-background={selectedTiles.has(tile.id) ? "text" : "main-background"}
-              // data-color={selectedTiles.has(tile.id) ? "main-background" : "text"}
               data-shrink="no"
               data-border={selectedTiles.has(tile.id) ? "2" : ""}
               data-space="15"
               data-radius="15"
               key={tile.id}
               data-width="auto"
-              // data-animation-name="appear-top-small"
-              // data-fill-mode="backwards"
-              // data-animation-duration={2 + index * 0.25}
-
               data-ratio="1:1"
               data-align="center"
               data-justify="center"
               data-direction="column"
             >
-              {/* <div>{tile.name}</div> */}
               <group
                 data-width="auto"
                 data-background="adaptive-gray"
                 data-interact=""
-                // data-animation-name="appear-top-small"
-                // data-fill-mode="backwards"
-                // data-animation-duration={4 + index * 0.25}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -187,14 +197,6 @@ const PatternMaker: React.FC = () => {
             patternUnits="userSpaceOnUse"
             patternContentUnits="userSpaceOnUse"
           >
-            {/* <animateTransform
-              attributeName="patternTransform"
-              type="translate"
-              by="48 48"
-              dur="2s"
-              repeatCount="indefinite"
-            ></animateTransform> */}
-
             {getSelectedTiles().map((tile) => {
               const Content = tile.content;
               return <Content key={tile.id} />;
@@ -230,24 +232,23 @@ const PatternMaker: React.FC = () => {
                 Preview<br></br> Your Pattern
               </text>
 
-<Ripple>
-              <group
-              data-contain=""
-                data-adaptive="mobile"
-                data-position="right"
-                data-cursor="pointer"
-                data-interactive=""
-                data-space-vertical="15"
-                data-radius="15"
-                data-space-horizontal="20"
-                data-background="adaptive-gray"
-                onClick={selectRandomTiles}
-                data-width="auto"
-              >
-                <text>Random</text>
-              </group>
-</Ripple>
-
+              <Ripple>
+                <group
+                  data-contain=""
+                  data-adaptive="mobile"
+                  data-position="right"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-space-vertical="15"
+                  data-radius="15"
+                  data-space-horizontal="20"
+                  data-background="adaptive-gray"
+                  onClick={selectRandomTiles}
+                  data-width="auto"
+                >
+                  <text>Random</text>
+                </group>
+              </Ripple>
             </group>
 
             <group
@@ -259,16 +260,15 @@ const PatternMaker: React.FC = () => {
             >
               <group
                 data-hidden={selectedTiles.size === 0 ? "true" : ""}
-              
                 data-width="auto"
                 data-gap="30"
                 data-direcion="column"
               >
                 <separator data-horizontal=""></separator>
 
-                <text data-opacity="50" data-length="240" data-wrap="wrap"   data-animation-name="appear-top"
-                data-fill-mode="backwards"
-                data-animation-duration="3">
+                <text data-opacity="50" data-length="240" data-wrap="wrap" data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3">
                   Choose two or more tiles to combine and generate a new
                   pattern.
                 </text>
@@ -278,7 +278,6 @@ const PatternMaker: React.FC = () => {
                 width="100%"
                 height="100%"
                 data-position="absolute"
-                //      data-mask="top"
               >
                 <rect
                   width="100%"
@@ -348,7 +347,6 @@ const PatternMaker: React.FC = () => {
                           data-background="text"
                           data-color="main-background"
                           onClick={closePopover}
-                          //data-width="auto"
                           data-align="center"
                           data-justify="center"
                         >
@@ -373,19 +371,10 @@ const PatternMaker: React.FC = () => {
                         data-wrap="no"
                         data-align="center"
                         data-gap="15"
-                        //  data-height="45"
                       >
                         <group data-interact="" data-width="auto">
                           <Plus size={20} />
                         </group>
-
-                        {/* <text
-                          // data-text-size={selectedTiles.size === 0 ? "" : "0"}
-                          // data-duration="1.25"
-                          // data-transition-prop="font-size"
-                        >
-                          Add Tiles
-                        </text> */}
                       </group>
                     </Ripple>
                   </group>
@@ -394,31 +383,26 @@ const PatternMaker: React.FC = () => {
             </group>
 
             <group data-gap="10" data-wrap="no">
-
-<Ripple>
-              <group
-              data-contain=""
-              data-shrink="no"
-                data-cursor="pointer"
-                data-interactive=""
-                data-space-vertical="15"
-                data-radius="15"
-                data-space-horizontal="20"
-                data-background="adaptive-gray"
-                onClick={resetSelection}
-                data-width="auto"
-                data-animation-name="appear-top-small"
-                data-animation-duration="4"
-              >
-                <text>New</text>
-              </group>
-</Ripple>
-
-
+              <Ripple>
+                <group
+                  data-contain=""
+                  data-shrink="no"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-space-vertical="15"
+                  data-radius="15"
+                  data-space-horizontal="20"
+                  data-background="adaptive-gray"
+                  onClick={resetSelection}
+                  data-width="auto"
+                  data-animation-name="appear-top-small"
+                  data-animation-duration="4"
+                >
+                  <text>New</text>
+                </group>
+              </Ripple>
 
               <Popover
-
-
                 data-space="5"
                 data-radius="20"
                 content={(closePopover) => (
@@ -428,21 +412,14 @@ const PatternMaker: React.FC = () => {
                     onClick={closePopover}
                   >
                     <group data-direction="column" data-length="240">
-
-
                       <group
                         data-align="center"
                         data-justify="center"
-                       // data-ratio="1:1"
                       >
                         <group
                           data-space="15"
                           data-radius="15"
-                         // data-width="auto"
                           data-height="fit"
-                       //   data-border=""
-                        //  data-background="adaptive-gray"
-                         // data-elevation="2"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.5"
@@ -453,7 +430,6 @@ const PatternMaker: React.FC = () => {
                             width="48"
                             height="48"
                             viewBox="0 0 48 48"
-                           
                           >
                             {getSelectedTiles().map((tile) => {
                               const Content = tile.content;
@@ -463,7 +439,6 @@ const PatternMaker: React.FC = () => {
                         </group>
                       </group>
 
-
                       <group
                         onClick={downloadSVG}
                         data-animation-name="appear-bottom"
@@ -471,7 +446,7 @@ const PatternMaker: React.FC = () => {
                         data-animation-duration="2.75"
                         data-name="autoseparation"
                       >
-                                                <separator
+                        <separator
                           data-horizontal=""
                           data-margin-horizontal="10"
                           data-opacity="5"
@@ -492,8 +467,38 @@ const PatternMaker: React.FC = () => {
                           </group>
                         </group>
                       </group>
+
                       <group
                         onClick={copySVGToClipboard}
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="3"
+                        data-name="autoseparation"
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+                        <group
+                          data-space="15"
+                          data-align="center"
+                          data-gap="15"
+                          data-interactive=""
+                          data-radius="15"
+                          data-cursor="pointer"
+                        >
+                          <group data-direction="column" data-width="auto">
+                            <text data-weight="700">Copy SVG</text>
+                            <text data-opacity="30">
+                              Paste in Figma or code
+                            </text>
+                          </group>
+                        </group>
+                      </group>
+
+                      <group
+                        onClick={copyShareLink}
                         data-animation-name="appear-bottom"
                         data-fill-mode="backwards"
                         data-animation-duration="3.25"
@@ -513,9 +518,9 @@ const PatternMaker: React.FC = () => {
                           data-cursor="pointer"
                         >
                           <group data-direction="column" data-width="auto">
-                            <text data-weight="700">Copy</text>
+                            <text data-weight="700">Share Link</text>
                             <text data-opacity="30">
-                              Paste in Figma or code ...
+                              Copy URL to share pattern
                             </text>
                           </group>
                         </group>
@@ -524,40 +529,33 @@ const PatternMaker: React.FC = () => {
                   </group>
                 )}
               >
-                <group  data-disabled={selectedTiles.size === 0}>
+                <group data-disabled={selectedTiles.size === 0}>
                   <Ripple>
-                <group
-                data-ink-color="gray-shade-20"
-                data-contain=""
-                 
-
-                  
-                  data-space-vertical="15"
-                  data-space-horizontal="20"
-                  data-align="center"
-                  data-justify="center"
-                  data-background="text"
-                  data-color="main-background"
-                  // data-color="adaptive-gray"
-                  //  data-width="auto"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-radius="15"
-                  data-cursor="pointer"
-                  data-position="right"
-                  data-wrap="no"
-                  data-gap="15"
-                  data-animation-name="appear-top-small"
-                  data-animation-duration="3"
-                  
-                >
-                  <text data-opacity={selectedTiles.size === 0 ? "30" : ""}>
-                    Export Pattern
-                  </text>
-                </group>
+                    <group
+                      data-ink-color="gray-shade-20"
+                      data-contain=""
+                      data-space-vertical="15"
+                      data-space-horizontal="20"
+                      data-align="center"
+                      data-justify="center"
+                      data-background="text"
+                      data-color="main-background"
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-radius="15"
+                      data-cursor="pointer"
+                      data-position="right"
+                      data-wrap="no"
+                      data-gap="15"
+                      data-animation-name="appear-top-small"
+                      data-animation-duration="3"
+                    >
+                      <text data-opacity={selectedTiles.size === 0 ? "30" : ""}>
+                        Export Pattern
+                      </text>
+                    </group>
                   </Ripple>
                 </group>
-
               </Popover>
             </group>
           </group>
@@ -565,30 +563,25 @@ const PatternMaker: React.FC = () => {
       </group>
 
       <group data-fit="1" data-adaptive="desktop">
-        <group  data-align="center" data-gap="15" data-space-vertical="30">
+        <group data-align="center" data-gap="15" data-space-vertical="30">
           <Ripple>
-
-          <group
-          //  data-position="right"
-          data-contain=""
-            data-cursor="pointer"
-            data-interactive=""
-            data-space-vertical="15"
-            data-radius="15"
-            data-space-horizontal="20"
-            data-background="adaptive-gray"
-            onClick={selectRandomTiles}
-            data-width="auto"
-          >
-            <text>Random</text>
-          </group>
-
+            <group
+              data-contain=""
+              data-cursor="pointer"
+              data-interactive=""
+              data-space-vertical="15"
+              data-radius="15"
+              data-space-horizontal="20"
+              data-background="adaptive-gray"
+              onClick={selectRandomTiles}
+              data-width="auto"
+            >
+              <text>Random</text>
+            </group>
           </Ripple>
 
-
           <separator data-vertical="adaptive"></separator>
-          <group data-width="auto"  data-direction="column" data-gap="10">
-            {/* <text data-weight="700" data-wrap="preline" data-text-size="large" data-ellipsis="" data-font-type="hero" data-line="1">Select Tiles Here</text> */}
+          <group data-width="auto" data-direction="column" data-gap="10">
             <text data-opacity="50" data-max-length="240" data-wrap="wrap">
               Choose any tiles you like—they'll layer together into one pattern.
             </text>
