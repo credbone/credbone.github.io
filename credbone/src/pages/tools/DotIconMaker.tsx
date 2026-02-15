@@ -12,7 +12,7 @@ function DotIconMaker() {
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
-     { label: "Close", set: colorspace },
+    //  { label: "Close", set: colorspace },
   ];
 
   const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'
