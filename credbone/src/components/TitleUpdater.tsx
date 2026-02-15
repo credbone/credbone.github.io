@@ -30,7 +30,7 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
     'BlobGenerator': { title: 'Blob Generator', header: null },
       'DotIconMaker': { title: 'Dot Icon Maker', header: null },
       'ColorMixer': { title: 'Color Mixer', header: null },
-
+      'ColorSpaceConverter': { title: 'Color Converter', header: null },
 
   'Resume': { title: 'Ruben Sargsyan', header: 'Ruben Sargsyan' },
   'Dashboard': { title: 'Dashboard', header: 'Dashboard' },

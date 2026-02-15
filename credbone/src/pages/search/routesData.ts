@@ -167,6 +167,14 @@ export const routesData: RouteData[] = [
     description: "Tool for blending and experimenting with custom colors.",
     title: "Color Mixer"
   }
+,
+
+{
+  path: "../Tools/ColorSpaceConverter",
+  tags: ["color", "converter", "color-theory", "harmony", "LAB", "RGB", "HSL", "HEX", "swatches", "token", "export", "tools", "svg", "CSS"],
+  description: "Convert colors across spaces and explore theory-based combinations.",
+  title: "Color Converter"
+}
 
 ];
 

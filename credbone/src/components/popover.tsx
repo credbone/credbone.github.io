@@ -8,6 +8,7 @@ interface PopoverProps {
   hideOnScroll?: boolean;
   containerId?: string; // Optional custom container ID
   trigger?: "click" | "contextmenu";
+  onOpenChange?: (isOpen: boolean) => void; // Callback when popover opens/closes
 }
 
 const Popover: React.FC<PopoverProps> = ({
@@ -17,6 +18,7 @@ const Popover: React.FC<PopoverProps> = ({
   hideOnScroll = true,
   containerId = "popover-container", // Default to "popover-container" if not specified
   trigger = "click", // Default to "click"
+  onOpenChange, // New callback prop
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,8 +37,12 @@ const Popover: React.FC<PopoverProps> = ({
     }
   }, [containerId]);
 
-
-  
+  // Call onOpenChange whenever isVisible changes
+  useEffect(() => {
+    if (onOpenChange) {
+      onOpenChange(isVisible);
+    }
+  }, [isVisible]);
 
   let isInteractionInside = false;
 
@@ -71,8 +77,6 @@ const Popover: React.FC<PopoverProps> = ({
       document.removeEventListener("click", handleDocumentClick);
     };
   }, []);
-
-
 
   const handleDocumentContextMenu = (event: MouseEvent) => {
     if (

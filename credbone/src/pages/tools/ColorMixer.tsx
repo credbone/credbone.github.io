@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Tooltip from "../../components/tooltip";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
@@ -19,7 +19,12 @@ const defaultGamma = 1.0;
 
 const ColorMixer: React.FC = () => {
   const { addSnackbar } = useSnackbar();
+  const isPickerOpenRef = useRef(false);
 
+
+  
+
+  
   // Helper function to validate hex color
   const isValidHexColor = (color: string): boolean => {
     return /^#?([a-f\d]{6})$/i.test(color);
@@ -98,6 +103,9 @@ const ColorMixer: React.FC = () => {
 
   const initialState = initializeState();
   const [colors, setColors] = useState<string[]>(initialState.colors);
+
+const colorsRef = useRef<string[]>(colors);
+  
   const [steps, setSteps] = useState(initialState.steps);
   const [method, setMethod] = useState<InterpolationMethod>(initialState.method);
   const [displayMode, setDisplayMode] = useState<DisplayMode>(initialState.displayMode);
@@ -107,15 +115,19 @@ const ColorMixer: React.FC = () => {
   const [tempSteps, setTempSteps] = useState(initialState.steps);
   const [tempGamma, setTempGamma] = useState(initialState.gamma);
 
-  // Update URL whenever state changes
-  useEffect(() => {
+  // Manual URL update function
+  const updateURL = () => {
     const params = new URLSearchParams();
     
+
+    
+
     // Only add non-default values to keep URL clean
-    const colorsString = colors.map(c => c.replace('#', '')).join(',');
-    if (JSON.stringify(colors) !== JSON.stringify(defaultColors)) {
-      params.set('colors', colorsString);
-    }
+  const colorsString = colorsRef.current.map(c => c.replace('#', '')).join(',');
+  if (JSON.stringify(colorsRef.current) !== JSON.stringify(defaultColors)) {
+    params.set('colors', colorsString);
+  }
+    
     
     if (steps !== defaultSteps) {
       params.set('steps', steps.toString());
@@ -138,7 +150,17 @@ const ColorMixer: React.FC = () => {
       : window.location.pathname;
     
     window.history.replaceState({}, '', newUrl);
-  }, [colors, steps, method, displayMode, gamma]);
+  };
+
+
+  useEffect(() => {
+  colorsRef.current = colors;
+}, [colors]);
+
+  // Update URL whenever non-color state changes
+  useEffect(() => {
+    updateURL();
+  }, [steps, method, displayMode, gamma]);
 
   const hexToRgb = (hex: string): [number, number, number] => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -304,6 +326,9 @@ const ColorMixer: React.FC = () => {
 
   const [hasChanged, setHasChanged] = useState(false);
 
+
+  
+
   // Debounce the actual state updates (which trigger URL updates)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -341,17 +366,20 @@ const ColorMixer: React.FC = () => {
     }
   }, [colors, steps, method, displayMode, gamma]);
 
-  const resetValues = () => {
-    setColors(defaultColors);
-    setSteps(defaultSteps);
-    setDisplayMode(defaultDisplayMode);
-    setMethod(defaultMethod);
-    setGamma(defaultGamma);
-    setTempSteps(defaultSteps);
-    setTempGamma(defaultGamma);
-
-    setHasChanged(false);
-  };
+const resetValues = () => {
+  setColors(defaultColors);
+  setSteps(defaultSteps);
+  setDisplayMode(defaultDisplayMode);
+  setMethod(defaultMethod);
+  setGamma(defaultGamma);
+  setTempSteps(defaultSteps);
+  setTempGamma(defaultGamma);
+  setHasChanged(false);
+  
+  // Update ref immediately before URL update
+  colorsRef.current = defaultColors;
+  updateURL();
+};
 
   const interpolateVia = (c1: string, c2: string, steps: number): string[] => {
     const midColor = "#808080";
@@ -431,28 +459,35 @@ const ColorMixer: React.FC = () => {
     return `linear-gradient(to right, ${gradientColors.join(", ")})`;
   };
 
-  const addColor = () => {
-    if (colors.length < 4) {
-      const lastColor = colors[colors.length - 1];
-      const [r, g, b] = hexToRgb(lastColor);
-      const [L, a, bLab] = rgbToLab(r, g, b);
-
-      // Rotate hue by ~30 degrees in LAB space
-      const angle = Math.PI / 4; // 30 degrees
-      const aNew = a * Math.cos(angle) - bLab * Math.sin(angle);
-      const bLabNew = a * Math.sin(angle) + bLab * Math.cos(angle);
-
-      const [rNew, gNew, bNewRgb] = labToRgb(L, aNew, bLabNew);
-      const newColor = rgbToHex(rNew, gNew, bNewRgb);
-      setColors([...colors, newColor]);
-    }
-  };
-
-  const removeColor = (index: number) => {
-    if (colors.length > 2) {
-      setColors(colors.filter((_, i) => i !== index));
-    }
-  };
+const addColor = () => {
+  if (colors.length < 4) {
+    const lastColor = colors[colors.length - 1];
+    const [r, g, b] = hexToRgb(lastColor);
+    const [L, a, bLab] = rgbToLab(r, g, b);
+    const angle = Math.PI / 4;
+    const aNew = a * Math.cos(angle) - bLab * Math.sin(angle);
+    const bLabNew = a * Math.sin(angle) + bLab * Math.cos(angle);
+    const [rNew, gNew, bNewRgb] = labToRgb(L, aNew, bLabNew);
+    const newColor = rgbToHex(rNew, gNew, bNewRgb);
+    
+    const newColors = [...colors, newColor];
+    setColors(newColors);
+    
+    // Update ref immediately before URL update
+    colorsRef.current = newColors;
+       updateURL()
+  }
+};
+const removeColor = (index: number) => {
+  if (colors.length > 2) {
+    const newColors = colors.filter((_, i) => i !== index);
+    setColors(newColors);
+    
+    // Update ref immediately before URL update
+    colorsRef.current = newColors;
+    updateURL();
+  }
+};
 
   const updateColor = (index: number, value: string) => {
     const newColors = [...colors];
@@ -612,6 +647,7 @@ const ColorMixer: React.FC = () => {
           data-gap="10"
           data-align="center"
         >
+          
           {colors.map((color, index) => (
             <group
               key={index}
@@ -624,6 +660,7 @@ const ColorMixer: React.FC = () => {
             >
               <group data-width="auto" data-align="center">
                 <Popover
+               
                   data-space="5"
                   data-radius="0"
                   data-elevation="0"
@@ -652,8 +689,20 @@ const ColorMixer: React.FC = () => {
                         <HexColorPicker
                           color={color}
                           onChange={(newColor) => updateColor(index, newColor)}
+                          onMouseUp={() => {
+                            // Update URL when user releases mouse
+                            updateURL();
+                          }}
+                          onTouchEnd={() => {
+                            // Update URL when user releases touch
+                            updateURL();
+                          }}
                         />
                       </group>
+
+
+
+
 
                       {colors.length > 2 && (
                         <group
@@ -693,10 +742,22 @@ const ColorMixer: React.FC = () => {
                       )}
                     </group>
                   )}
+
+                                  onOpenChange={(isOpen) => {
+                  isPickerOpenRef.current = isOpen;
+                  if (!isOpen) {
+                    // Update URL when picker closes
+                   updateURL();
+               //    console.log( isPickerOpenRef.current)
+                  }
+                }}
+                  
+
                 >
                   <group>
-                    <Ripple>
-                      <group
+                  
+<Ripple>
+                        <group
                         data-ink-color="neutral"
                         data-contain=""
                         data-width="auto"
@@ -717,7 +778,8 @@ const ColorMixer: React.FC = () => {
                           style={{ backgroundColor: color }}
                         ></group>
                       </group>
-                    </Ripple>
+</Ripple>
+                
                   </group>
                 </Popover>
               </group>

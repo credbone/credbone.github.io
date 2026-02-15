@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
@@ -6,9 +6,125 @@ import { Copy, Download, MousePointerClick } from "lucide-react";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 
 const ColorSpaceConverter: React.FC = () => {
-  const [color, setColor] = useState("#401cce");
+  // Generate a pleasant random color
+  const generatePleasantColor = (): string => {
+    // Generate colors with good saturation and lightness for visual appeal
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = 0.6 + Math.random() * 0.3; // 60-90%
+    const lightness = 0.4 + Math.random() * 0.3; // 40-70%
+    
+    const [r, g, b] = hslToRgb(hue, saturation, lightness);
+    return rgbToHex(r, g, b);
+  };
+
+  // Helper functions needed for initialization
+  const hslToRgb = (
+    h: number,
+    s: number,
+    l: number,
+  ): [number, number, number] => {
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    const m = l - c / 2;
+
+    let r = 0,
+      g = 0,
+      b = 0;
+
+    if (h >= 0 && h < 60) {
+      r = c;
+      g = x;
+      b = 0;
+    } else if (h >= 60 && h < 120) {
+      r = x;
+      g = c;
+      b = 0;
+    } else if (h >= 120 && h < 180) {
+      r = 0;
+      g = c;
+      b = x;
+    } else if (h >= 180 && h < 240) {
+      r = 0;
+      g = x;
+      b = c;
+    } else if (h >= 240 && h < 300) {
+      r = x;
+      g = 0;
+      b = c;
+    } else if (h >= 300 && h < 360) {
+      r = c;
+      g = 0;
+      b = x;
+    }
+
+    return [
+      Math.round((r + m) * 255),
+      Math.round((g + m) * 255),
+      Math.round((b + m) * 255),
+    ];
+  };
+
+  const rgbToHex = (r: number, g: number, b: number): string => {
+    return (
+      "#" +
+      [r, g, b].map((x) => Math.round(x).toString(16).padStart(2, "0")).join("")
+    );
+  };
+
+  // Get initial color from URL or generate random
+  const getInitialColor = (): string => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlColor = params.get("color");
+      if (urlColor) {
+        // Validate hex color
+        const hexPattern = /^[0-9A-Fa-f]{6}$/;
+        if (hexPattern.test(urlColor)) {
+          return `#${urlColor}`;
+        }
+      }
+    }
+    return generatePleasantColor();
+  };
+
+  const [color, setColor] = useState(getInitialColor());
   const [activeTab, setActiveTab] = useState<"spaces" | "css">("spaces");
   const { addSnackbar } = useSnackbar();
+  const isPickerOpenRef = useRef(false);
+
+  // Update URL when color changes (but only when picker is closed)
+  const updateURL = (newColor: string) => {
+    if (typeof window !== "undefined") {
+      const colorValue = newColor.replace("#", "");
+      const newURL = `${window.location.pathname}?color=${colorValue}`;
+      window.history.replaceState({}, "", newURL);
+    }
+  };
+
+  // Handle color change from picker
+  const handlePickerColorChange = (newColor: string) => {
+    setColor(newColor);
+    // Don't update URL during drag
+  };
+
+  const [inputValue, setInputValue] = useState(color);
+
+  // Sync inputValue with color when color changes from picker
+  useEffect(() => {
+    setInputValue(color);
+  }, [color]);
+
+  // Handle color change from hex input
+  const handleHexInputChange = (newColor: string) => {
+    // Always update the input display
+    setInputValue(newColor);
+    
+    // Only update state and URL if it's a valid 6-character hex code
+    if (/^#[0-9A-Fa-f]{6}$/.test(newColor)) {
+      setColor(newColor);
+      updateURL(newColor);
+    }
+  };
 
   // Conversion functions
   const hexToRgb = (hex: string): [number, number, number] => {
@@ -189,59 +305,6 @@ const ColorSpaceConverter: React.FC = () => {
     } catch (err) {
       addSnackbar("Failed to copy", 1000);
     }
-  };
-
-  const hslToRgb = (
-    h: number,
-    s: number,
-    l: number,
-  ): [number, number, number] => {
-    const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-    const m = l - c / 2;
-
-    let r = 0,
-      g = 0,
-      b = 0;
-
-    if (h >= 0 && h < 60) {
-      r = c;
-      g = x;
-      b = 0;
-    } else if (h >= 60 && h < 120) {
-      r = x;
-      g = c;
-      b = 0;
-    } else if (h >= 120 && h < 180) {
-      r = 0;
-      g = c;
-      b = x;
-    } else if (h >= 180 && h < 240) {
-      r = 0;
-      g = x;
-      b = c;
-    } else if (h >= 240 && h < 300) {
-      r = x;
-      g = 0;
-      b = c;
-    } else if (h >= 300 && h < 360) {
-      r = c;
-      g = 0;
-      b = x;
-    }
-
-    return [
-      Math.round((r + m) * 255),
-      Math.round((g + m) * 255),
-      Math.round((b + m) * 255),
-    ];
-  };
-
-  const rgbToHex = (r: number, g: number, b: number): string => {
-    return (
-      "#" +
-      [r, g, b].map((x) => Math.round(x).toString(16).padStart(2, "0")).join("")
-    );
   };
 
   const generateAnalogous = (baseColor: string): string[] => {
@@ -549,10 +612,29 @@ const ColorSpaceConverter: React.FC = () => {
                       data-width="auto"
                       data-gap="5"
                     >
-                      <HexColorPicker color={color} onChange={setColor} />
+                      <HexColorPicker 
+                        color={color} 
+                        onChange={handlePickerColorChange}
+                        onMouseUp={() => {
+                          // Update URL when user releases mouse
+                          updateURL(color);
+                        }}
+                        onTouchEnd={() => {
+                          // Update URL when user releases touch
+                          updateURL(color);
+                        }}
+                      />
                     </group>
                   </group>
                 )}
+                onOpenChange={(isOpen) => {
+                  isPickerOpenRef.current = isOpen;
+                  if (!isOpen) {
+                    // Update URL when picker closes
+                    updateURL(color);
+                   
+                  }
+                }}
               >
                 <group
                   data-position="absolute"
@@ -575,7 +657,7 @@ const ColorSpaceConverter: React.FC = () => {
                     <separator data-horizontal=""></separator>
                   </group>
 
-                  <group data-gap="10">
+                  <group data-gap="10" data-wrap="no" data-direction="column">
                     <text
                       data-weight="700"
                       data-text-size="large"
@@ -604,17 +686,15 @@ const ColorSpaceConverter: React.FC = () => {
                     }}
                     data-text-transform="uppercase"
                     data-length="content"
-                    color={color}
-                    onChange={setColor}
+                    color={inputValue}
+                    onChange={handleHexInputChange}
+                    alpha={false}
                     data-name="input-reset"
-                    //data-space="15"
-                    // data-radius="15"
                     data-text-size="xx-large"
                     data-weight="300"
                     data-text-align="center"
                     name="hex-color-input"
                     data-select-color="dynamic"
-                    //  data-background="adaptive-gray"
                   />
                 </group>
               </group>
@@ -647,13 +727,6 @@ const ColorSpaceConverter: React.FC = () => {
                 { name: "Analogous", colors: generateAnalogous(color) },
                 { name: "Monochromatic", colors: generateMonochromatic(color) },
                 { name: "Polyad", colors: generatePolyad(color) },
-
-                // {
-                //   name: "Splitcomponent",
-                //   colors: generateSplitComplementary(color),
-                // },
-                // { name: "Triad", colors: generateTriad(color) },
-                // { name: "Tetrad", colors: generateTetrad(color) },
               ].map((harmony, harmonyIndex) => (
                 <group
                   key={harmony.name}
@@ -741,21 +814,7 @@ const ColorSpaceConverter: React.FC = () => {
         </group>
 
         <group>
-          <group
-            // data-background="adaptive-gray"
-            // data-radius-top="30"
-            data-contain=""
-          >
-            {/* <group
-              data-mask="bottom"
-              data-height="fit"
-              data-position="absolute"
-              data-opacity="10"
-              style={{
-                backgroundColor: color,
-                color: getAdaptiveTextColor(color),
-              }}
-            ></group> */}
+          <group data-contain="">
             <group
               data-space="30"
               data-gap="10"
@@ -785,7 +844,6 @@ const ColorSpaceConverter: React.FC = () => {
                   data-align="center"
                   data-gap="15"
                   data-space-vertical="15"
-                  //  data-space-horizontal="30"
                   data-width="auto"
                   data-space-horizontal="30"
                   data-background={
