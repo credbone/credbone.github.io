@@ -141,6 +141,9 @@
 [data-opacity="90"]{opacity:90%;}
 [data-opacity="100"]{opacity:100%;}
 
+[data-opacity="0-hover-30"]{opacity: 0;}
+:hover > [data-opacity="0-hover-30"] {opacity: 30%;}
+
 
 
 [data-background="text"] { background-color: var(--text-color) }

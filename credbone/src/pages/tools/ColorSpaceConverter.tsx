@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
-import { Copy, Download } from "lucide-react";
+import { Copy, Download, MousePointerClick } from "lucide-react";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 
 const ColorSpaceConverter: React.FC = () => {
   const [color, setColor] = useState("#401cce");
+  const [activeTab, setActiveTab] = useState<"spaces" | "css">("spaces");
   const { addSnackbar } = useSnackbar();
 
   // Conversion functions
@@ -260,15 +261,23 @@ const ColorSpaceConverter: React.FC = () => {
     const [r, g, b] = hexToRgb(baseColor);
     const [h, s, l] = rgbToHsl(r, g, b);
 
-    const colors = [];
-    const satVariations = [s, s * 0.7, s * 0.4, s * 0.2, s * 0.5, s * 0.9];
+    const lightnessCurve = [0.08, 0.18, 0.32, 0.5, 0.7, 0.88];
+    const satCurve = [
+      s * 1.1,
+      s * 1.05,
+      s * 1.0,
+      s * 0.95,
+      s * 0.85,
+      s * 0.7,
+    ].map((v) => Math.min(1, v));
 
-    for (let i = 0; i < 6; i++) {
-      const newL = 0.2 + i * 0.15;
-      const [newR, newG, newB] = hslToRgb(h, satVariations[i], newL);
-      colors.push(rgbToHex(newR, newG, newB));
-    }
-    return colors;
+    const hueShift = [-4, -2, 0, 2, 3, 5];
+
+    return lightnessCurve.map((newL, i) => {
+      const newH = (h + hueShift[i] + 360) % 360;
+      const [newR, newG, newB] = hslToRgb(newH, satCurve[i], newL);
+      return rgbToHex(newR, newG, newB);
+    });
   };
 
   const generateSplitComplementary = (baseColor: string): string[] => {
@@ -324,12 +333,33 @@ const ColorSpaceConverter: React.FC = () => {
 
     const colors = [];
     for (let i = 0; i < 6; i++) {
-      const newH = (h + i * 60) % 360;
+      const newH = (h + i * 40) % 360;
       const newL = 0.3 + i * 0.1;
       const [newR, newG, newB] = hslToRgb(newH, s, newL);
       colors.push(rgbToHex(newR, newG, newB));
     }
     return colors;
+  };
+
+  const copySVGToClipboard = async (harmonyName: string, colors: string[]) => {
+    const width = 100;
+    const height = 100;
+    const rectWidth = width;
+
+    let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${width * colors.length}" height="${height}" viewBox="0 0 ${width * colors.length} ${height}">\n`;
+
+    colors.forEach((color, index) => {
+      svgContent += `  <rect x="${index * width}" y="0" width="${rectWidth}" height="${height}" fill="${color}"/>\n`;
+    });
+
+    svgContent += `</svg>`;
+
+    try {
+      await navigator.clipboard.writeText(svgContent);
+      addSnackbar(`${harmonyName} SVG copied`, 1000);
+    } catch (err) {
+      addSnackbar("Failed to copy SVG", 1000);
+    }
   };
 
   const exportHarmonySVG = (harmonyName: string, colors: string[]) => {
@@ -401,18 +431,18 @@ const ColorSpaceConverter: React.FC = () => {
     },
     {
       label: "HSL",
-      value: `${h.toFixed(2)}, ${(s * 100).toFixed(0)}, ${(l * 100).toFixed(2)}, ${(l * 100).toFixed(0)}`,
-      copyValue: `${h.toFixed(2)}, ${(s * 100).toFixed(0)}, ${(l * 100).toFixed(2)}, ${(l * 100).toFixed(0)}`,
+      value: `${h.toFixed(2)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%`,
+      copyValue: `${h.toFixed(2)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%`,
     },
     {
       label: "HSV",
-      value: `${hHsv.toFixed(2)}, ${(sHsv * 100).toFixed(0)}, ${(v * 100).toFixed(2)}, ${(v * 100).toFixed(0)}`,
-      copyValue: `${hHsv.toFixed(2)}, ${(sHsv * 100).toFixed(0)}, ${(v * 100).toFixed(2)}, ${(v * 100).toFixed(0)}`,
+      value: `${hHsv.toFixed(2)}, ${(sHsv * 100).toFixed(0)}%, ${(v * 100).toFixed(0)}%`,
+      copyValue: `${hHsv.toFixed(2)}, ${(sHsv * 100).toFixed(0)}%, ${(v * 100).toFixed(0)}%`,
     },
     {
       label: "HSI",
-      value: `${hHsi.toFixed(2)}, ${(sHsi * 100).toFixed(0)}, ${(i * 100).toFixed(2)}`,
-      copyValue: `${hHsi.toFixed(2)}, ${(sHsi * 100).toFixed(0)}, ${(i * 100).toFixed(2)}`,
+      value: `${hHsi.toFixed(2)}, ${(sHsi * 100).toFixed(0)}%, ${(i * 100).toFixed(2)}%`,
+      copyValue: `${hHsi.toFixed(2)}, ${(sHsi * 100).toFixed(0)}%, ${(i * 100).toFixed(2)}%`,
     },
     {
       label: "LCH",
@@ -431,11 +461,11 @@ const ColorSpaceConverter: React.FC = () => {
     },
     {
       label: "Temperature",
-      value: Math.round(temp).toString(),
+      value: `${Math.round(temp)}K`,
       copyValue: Math.round(temp).toString(),
     },
     {
-      label: "GL",
+      label: "OpenGL",
       value: `${gl_r.toFixed(2)}, ${gl_g.toFixed(2)}, ${gl_b.toFixed(2)}, ${gl_a.toFixed(2)}`,
       copyValue: `${gl_r.toFixed(2)}, ${gl_g.toFixed(2)}, ${gl_b.toFixed(2)}, ${gl_a.toFixed(2)}`,
     },
@@ -443,24 +473,36 @@ const ColorSpaceConverter: React.FC = () => {
 
   const cssValues = [
     {
-      label: "RGB",
-      value: `rgb(${r}, ${g}, ${b})`,
+      label: "HEX",
+      value: color.toUpperCase(),
+      copyValue: color.toUpperCase(),
     },
     {
-      label: "Percent RGB",
+      label: "RGB",
+      value: `rgb(${r}, ${g}, ${b})`,
+      copyValue: `rgb(${r}, ${g}, ${b})`,
+    },
+    {
+      label: "RGB %",
       value: `rgb(${((r / 255) * 100).toFixed(0)}%, ${((g / 255) * 100).toFixed(0)}%, ${((b / 255) * 100).toFixed(0)}%)`,
+      copyValue: `rgb(${((r / 255) * 100).toFixed(0)}%, ${((g / 255) * 100).toFixed(0)}%, ${((b / 255) * 100).toFixed(0)}%)`,
     },
     {
       label: "HSL",
       value: `hsl(${h.toFixed(0)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%)`,
+      copyValue: `hsl(${h.toFixed(0)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%)`,
     },
     {
-      label: "HSV",
-      value: `hsv(${hHsv.toFixed(0)}, ${(sHsv * 100).toFixed(0)}%, ${(v * 100).toFixed(0)}%)`,
+      label: "RGBA",
+      value: `rgba(${r}, ${g}, ${b}, 1)`,
+      copyValue: `rgba(${r}, ${g}, ${b}, 1)`,
+    },
+    {
+      label: "HSLA",
+      value: `hsla(${h.toFixed(0)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%, 1)`,
+      copyValue: `hsla(${h.toFixed(0)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%, 1)`,
     },
   ];
-
-  // Determine text contrast
 
   return (
     <group data-gap="30" data-align="start" data-direction="column">
@@ -472,13 +514,12 @@ const ColorSpaceConverter: React.FC = () => {
       >
         {/* Color Preview Card */}
 
-        <group>
+        <group data-index="3">
           <group
             data-radius="30"
             data-interactive=""
             data-contain=""
-            data-border=""
-            data-elevation="2"
+            data-border="outline-soft"
             data-direction="column"
             style={{
               backgroundColor: color,
@@ -523,38 +564,57 @@ const ColorSpaceConverter: React.FC = () => {
               </Popover>
 
               <group data-space="30" data-gap="30" data-interactive="">
-                <group data-gap="10">
-                  <text
-                    data-weight="700"
-                    data-text-size="large"
-                    data-font-type="hero"
-                  >
-                    Select your color
-                  </text>
+                <group
+                  data-gap="20"
+                  data-wrap="no"
+                  data-direction="column"
+                  data-align="start"
+                >
+                  <group data-width="auto" data-gap="20" data-interact="">
+                    <MousePointerClick size={32} />
+                    <separator data-horizontal=""></separator>
+                  </group>
 
-                  <text data-wrap="wrap" data-length="240" data-opacity="40">
-                    Choose a method to control how colors blend between points.
-                  </text>
+                  <group data-gap="10">
+                    <text
+                      data-weight="700"
+                      data-text-size="large"
+                      data-font-type="hero"
+                    >
+                      Select your color
+                    </text>
+
+                    <text data-wrap="wrap" data-length="240" data-opacity="40">
+                      Pick a color using the picker or enter a hex code to see
+                      all conversion formats.
+                    </text>
+                  </group>
                 </group>
 
                 <group>
                   <HexColorInput
+                    data-interact=""
                     data-index="2"
                     data-font-feature="tnum"
                     style={{
-                      color: color,
-                      backgroundColor: getAdaptiveTextColor(color),
+                      ["--select-color" as any]: color,
+                      ["--select-background" as any]:
+                        getAdaptiveTextColor(color),
+                      color: getAdaptiveTextColor(color),
                     }}
                     data-text-transform="uppercase"
                     data-length="content"
                     color={color}
                     onChange={setColor}
                     data-name="input-reset"
-                    data-space="15"
-                    data-radius="15"
+                    //data-space="15"
+                    // data-radius="15"
+                    data-text-size="xx-large"
+                    data-weight="300"
                     data-text-align="center"
                     name="hex-color-input"
-                    data-background="adaptive-gray"
+                    data-select-color="dynamic"
+                    //  data-background="adaptive-gray"
                   />
                 </group>
               </group>
@@ -562,49 +622,96 @@ const ColorSpaceConverter: React.FC = () => {
           </group>
 
           {/* Color Combinations Section */}
-          <group data-direction="column" >
-            <group data-space="30" data-gap="10">
+          <group data-direction="column">
+            <group
+              data-space="30"
+              data-gap="10"
+              data-wrap="no"
+              data-direction="column"
+            >
               <text
                 data-weight="700"
                 data-text-size="large"
                 data-font-type="hero"
               >
-                Color Combinations
+                Color Harmonies
               </text>
-              <text data-wrap="wrap" data-length="240" data-opacity="40">Choose a method to control how colors blend between points.</text>
+              <text data-wrap="wrap" data-length="240" data-opacity="40">
+                Explore color combinations based on color theory relationships.
+              </text>
             </group>
 
-            <group data-direction="column" data-gap="20">
+            <group data-direction="column">
+              <group data-height="20"></group>
               {[
                 { name: "Analogous", colors: generateAnalogous(color) },
                 { name: "Monochromatic", colors: generateMonochromatic(color) },
-                {
-                  name: "Splitcomponent",
-                  colors: generateSplitComplementary(color),
-                },
-                { name: "Triad", colors: generateTriad(color) },
-                { name: "Tetrad", colors: generateTetrad(color) },
                 { name: "Polyad", colors: generatePolyad(color) },
+
+                // {
+                //   name: "Splitcomponent",
+                //   colors: generateSplitComplementary(color),
+                // },
+                // { name: "Triad", colors: generateTriad(color) },
+                // { name: "Tetrad", colors: generateTetrad(color) },
               ].map((harmony, harmonyIndex) => (
                 <group
                   key={harmony.name}
                   data-direction="column"
-                  data-gap="10"
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration={`${2 + harmonyIndex * 0.5}`}
-                 
+                  data-margin-top="-20"
                 >
-          
+                  <group data-space-horizontal="20" data-width="auto">
+                    <Ripple>
+                      <group
+                        data-interactive=""
+                        data-over-color="neutral"
+                        data-cursor="pointer"
+                        data-contain=""
+                        data-align="center"
+                        data-gap="15"
+                        data-space-vertical="15"
+                        data-space-horizontal="30"
+                        data-width="auto"
+                        data-background="adaptive-gray"
+                        data-backdrop="20"
+                        data-clip="tab-top"
+                        onClick={() =>
+                          copySVGToClipboard(harmony.name, harmony.colors)
+                        }
+                        data-wrap="no"
+                      >
+                        <group data-width="auto" data-contain="">
+                          <text data-opacity="60" data-ellipsis="">
+                            {harmony.name}
+                          </text>
+                        </group>
+                        <separator
+                          data-vertical=""
+                          data-height="fit"
+                        ></separator>
+                        <group data-width="auto">
+                          <group data-width="auto">
+                            <text>Copy</text>
+                          </group>
+                        </group>
+                      </group>
+                    </Ripple>
+                  </group>
 
-                  <group data-space="5" data-elevation="2" data-background="context" data-radius="20">
+                  <group
+                    data-space="5"
+                    data-elevation="2"
+                    data-background="context"
+                    data-radius="20"
+                    data-direction="column"
+                    data-wrap="no"
+                  >
                     <group
                       data-wrap="no"
                       data-type="grid"
-                      data-grid-template="60"
+                      data-grid-template-columns="6"
                       data-contain=""
                       data-radius="15"
-
                     >
                       {harmony.colors.map((harmonyColor, colorIndex) => (
                         <group key={colorIndex} data-ratio="1:1">
@@ -612,8 +719,6 @@ const ColorSpaceConverter: React.FC = () => {
                             <group
                               data-contain=""
                               data-ink-color="neutral"
-                              //    data-height="50"
-                              // data-radius="15"
                               data-interactive=""
                               data-cursor="pointer"
                               onClick={() =>
@@ -629,162 +734,267 @@ const ColorSpaceConverter: React.FC = () => {
                       ))}
                     </group>
                   </group>
-
-
-        <group data-align="center" data-gap="10" data-space-horizontal="30">
-                    <group data-width="auto">
-                      <text data-opacity="60">{harmony.name}</text>
-                    </group>
-
-                    <group data-width="auto">
-                      <Ripple>
-                        <group
-                          data-contain=""
-                          data-ink-color="neutral"
-                          data-width="auto"
-                          data-space="10"
-                          data-interactive=""
-                          data-over-color="neutral"
-                          data-cursor="pointer"
-                          data-radius="10"
-                          onClick={() =>
-                            exportHarmonySVG(harmony.name, harmony.colors)
-                          }
-                        >
-                         <text>Export</text>
-                        </group>
-                      </Ripple>
-                    </group>
-                  </group>
-
-
                 </group>
               ))}
             </group>
           </group>
         </group>
 
-        {/* Color Spaces Section */}
-        <group
-          data-space="30"
-          data-direction="column"
-          data-gap="20"
-          data-border=""
-        >
-          <group>
-            <text
-              data-weight="700"
-              data-text-size="large"
-              data-font-type="hero"
+        <group>
+          <group
+            // data-background="adaptive-gray"
+            // data-radius-top="30"
+            data-contain=""
+          >
+            {/* <group
+              data-mask="bottom"
+              data-height="fit"
+              data-position="absolute"
+              data-opacity="10"
+              style={{
+                backgroundColor: color,
+                color: getAdaptiveTextColor(color),
+              }}
+            ></group> */}
+            <group
+              data-space="30"
+              data-gap="10"
+              data-wrap="no"
+              data-direction="column"
             >
-              Color Spaces
-            </text>
-          </group>
-
-          <group data-direction="column" data-gap="5">
-            {colorSpaces.map((space, index) => (
-              <group
-                key={index}
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                data-animation-duration={`${2 + index * 0.5}`}
+              <text
+                data-weight="700"
+                data-text-size="large"
+                data-font-type="hero"
               >
-                <Ripple>
-                  <group
-                    data-contain=""
-                    data-ink-color="neutral"
-                    data-space="15"
-                    data-space-horizontal="20"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-radius="15"
-                    data-cursor="pointer"
-                    data-align="center"
-                    data-gap="15"
-                    onClick={() =>
-                      copyToClipboard(space.copyValue, space.label)
-                    }
-                  >
-                    <group data-width="auto" data-length="120">
-                      <text data-weight="700" data-opacity="60">
-                        {space.label}
-                      </text>
-                    </group>
+                Color Formats
+              </text>
+              <text data-wrap="wrap" data-length="240" data-opacity="40">
+                View and copy color values in different formats for design and
+                development.
+              </text>
+            </group>
 
-                    <group data-fit="1">
-                      <text data-font-feature="tnum" data-ellipsis="">
-                        {space.value}
-                      </text>
-                    </group>
-
-                    <group data-width="auto">
-                      <Copy size={16} opacity={0.4} />
-                    </group>
+            <group data-space-horizontal="20" data-width="auto" data-wrap="no">
+              <Ripple>
+                <group
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  data-contain=""
+                  data-align="center"
+                  data-gap="15"
+                  data-space-vertical="15"
+                  //  data-space-horizontal="30"
+                  data-width="auto"
+                  data-space-horizontal="30"
+                  data-background={
+                    activeTab === "spaces" ? "text" : "adaptive-gray"
+                  }
+                  data-color={activeTab === "spaces" ? "main-background" : ""}
+                  data-index={activeTab === "spaces" ? "2" : ""}
+                  data-clip="tab-top"
+                  onClick={() => setActiveTab("spaces")}
+                >
+                  <group data-width="auto" data-contain="">
+                    <text
+                      data-ellipsis=""
+                      data-opacity={activeTab === "spaces" ? "100" : "40"}
+                    >
+                      Color Spaces
+                    </text>
                   </group>
-                </Ripple>
-              </group>
-            ))}
-          </group>
-        </group>
+                </group>
+              </Ripple>
 
-        {/* CSS Values Section */}
-        <group
-          data-space="30"
-          data-direction="column"
-          data-gap="20"
-          data-border=""
-        >
-          <group>
-            <text
-              data-weight="700"
-              data-text-size="large"
-              data-font-type="hero"
-            >
-              CSS Values
-            </text>
-          </group>
-
-          <group data-direction="column" data-gap="5">
-            {cssValues.map((css, index) => (
-              <group
-                key={index}
-                data-animation-name="appear-bottom"
-                data-fill-mode="backwards"
-                data-animation-duration={`${2 + index * 0.5}`}
-              >
-                <Ripple>
-                  <group
-                    data-contain=""
-                    data-ink-color="neutral"
-                    data-space="15"
-                    data-space-horizontal="20"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-radius="15"
-                    data-cursor="pointer"
-                    data-align="center"
-                    data-gap="15"
-                    onClick={() => copyToClipboard(css.value, css.label)}
-                  >
-                    <group data-width="auto" data-length="120">
-                      <text data-weight="700" data-opacity="60">
-                        {css.label}
-                      </text>
-                    </group>
-
-                    <group data-fit="1">
-                      <text data-font-feature="tnum" data-ellipsis="">
-                        {css.value}
-                      </text>
-                    </group>
-
-                    <group data-width="auto">
-                      <Copy size={16} opacity={0.4} />
-                    </group>
+              <Ripple>
+                <group
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  data-contain=""
+                  data-align="center"
+                  data-gap="15"
+                  data-space-vertical="15"
+                  data-space-horizontal="30"
+                  data-width="auto"
+                  data-background={
+                    activeTab === "css" ? "text" : "adaptive-gray"
+                  }
+                  data-color={activeTab === "css" ? "main-background" : ""}
+                  data-index={activeTab === "css" ? "2" : ""}
+                  data-clip="tab-top"
+                  data-margin-left="-20"
+                  onClick={() => setActiveTab("css")}
+                >
+                  <group data-width="auto" data-contain="">
+                    <text
+                      data-ellipsis=""
+                      data-opacity={activeTab === "css" ? "100" : "40"}
+                    >
+                      CSS Values
+                    </text>
                   </group>
-                </Ripple>
-              </group>
-            ))}
+                </group>
+              </Ripple>
+            </group>
+
+            <group data-height="2" data-background="text"></group>
+          </group>
+
+          <group
+            data-elevation="2"
+            data-radius-bottom="30"
+            data-space="20"
+            data-direction="column"
+            data-gap="20"
+            data-contain=""
+          >
+            {activeTab === "spaces" && (
+              <>
+                <group data-space="15">
+                  <group data-gap="20" data-wrap="no">
+                    <group
+                      data-length="30"
+                      data-height="30"
+                      data-radius="30"
+                      data-border="outline-soft"
+                      style={{
+                        backgroundColor: color,
+                      }}
+                    ></group>
+
+                    <separator data-vertical="" data-height="fit"></separator>
+
+                    <text data-wrap="wrap" data-opacity="40">
+                      Mathematical color space representations
+                    </text>
+                  </group>
+                </group>
+
+                <group data-direction="column">
+                  {colorSpaces.map((space, index) => (
+                    <group
+                      key={index}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration={`${2 + index * 0.5}`}
+                      data-name="autoseparation"
+                    >
+                      <separator data-horizontal="dotted"></separator>
+                      <Ripple>
+                        <group
+                          data-contain=""
+                          data-ink-color="neutral"
+                          data-space="15"
+                          data-interactive=""
+                          data-over-color="neutral"
+                          data-radius="15"
+                          data-cursor="pointer"
+                          data-align="center"
+                          data-gap="15"
+                          onClick={() =>
+                            copyToClipboard(space.copyValue, space.label)
+                          }
+                          data-wrap="no"
+                        >
+                          <group data-width="auto">
+                            <text data-opacity="40">{space.label}</text>
+                          </group>
+
+                          <group data-width="auto" data-contain="">
+                            <text data-font-feature="tnum" data-ellipsis="">
+                              {space.value}
+                            </text>
+                          </group>
+
+                          <group
+                            data-width="auto"
+                            data-position="right"
+                            data-opacity="0-hover-30"
+                          >
+                            <text>Copy</text>
+                          </group>
+                        </group>
+                      </Ripple>
+                    </group>
+                  ))}
+                </group>
+              </>
+            )}
+
+            {activeTab === "css" && (
+              <>
+                <group data-space="15">
+                  <group data-gap="20" data-wrap="no">
+                    <group
+                      data-length="30"
+                      data-height="30"
+                      data-radius="30"
+                      data-border="outline-soft"
+                      style={{
+                        backgroundColor: color,
+                      }}
+                    ></group>
+
+                    <separator data-vertical="" data-height="fit"></separator>
+
+                    <text data-wrap="wrap" data-opacity="40">
+                      CSS-ready color values for web development
+                    </text>
+                  </group>
+                </group>
+
+                <group data-direction="column">
+                  {cssValues.map((css, index) => (
+                    <group
+                      key={index}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration={`${2 + index * 0.5}`}
+                      data-name="autoseparation"
+                    >
+                      <separator data-horizontal="dotted"></separator>
+                      <Ripple>
+                        <group
+                          data-contain=""
+                          data-ink-color="neutral"
+                          data-space="15"
+                          data-interactive=""
+                          data-over-color="neutral"
+                          data-radius="15"
+                          data-cursor="pointer"
+                          data-align="center"
+                          data-gap="15"
+                          onClick={() =>
+                            copyToClipboard(css.copyValue, css.label)
+                          }
+                          data-wrap="no"
+                        >
+                          <group data-width="auto">
+                            <text data-opacity="40">{css.label}</text>
+                          </group>
+
+                          <group data-width="auto" data-contain="">
+                            <text data-font-feature="tnum" data-ellipsis="">
+                              {css.value}
+                            </text>
+                          </group>
+
+                          <group
+                            data-width="auto"
+                            data-position="right"
+                            data-opacity="0-hover-30"
+                          >
+                            <text>Copy</text>
+                          </group>
+                        </group>
+                      </Ripple>
+                    </group>
+                  ))}
+                </group>
+              </>
+            )}
           </group>
         </group>
       </group>

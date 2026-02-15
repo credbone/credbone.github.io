@@ -750,6 +750,10 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
+[data-margin-left="-20"]{margin-left:-20px;}
+[data-margin-left="-25"]{margin-left:-25px;}
+[data-margin-left="-30"]{margin-left:-30px;}
+
 [data-margin-left="-15"]{margin-left:-15px;}
 [data-margin-left="5"]{margin-left:5px;}
 [data-margin-right="5"]{margin-right:5px;}
@@ -1093,6 +1097,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-index="103"] {z-index: 103;}
 [data-index="102"] {z-index: 102;}
 [data-index="101"] {z-index: 101;}
+[data-index="6"] {z-index: 6;}
 [data-index="5"] {z-index: 5;}
 [data-index="4"] {z-index: 4;}
 [data-index="3"] {z-index: 3;}
@@ -1267,3 +1272,10 @@ view[data-scroll],
 [data-align-center="x"]{transform: translateX(-50%);left:50%}
 
 
+
+
+
+[data-clip="tab-top"]{clip-path: shape(from 0 100%, arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr), vline to var(--tbr), arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr) cw, hline to calc(100% - 2 * var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr) cw, vline to calc(100% - var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr));--tbr: 10px;}
+
+
+[data-space-horizontal="tab"]{padding-left:calc(var(--tbr) * 2);padding-right:calc(var(--tbr) * 2);}

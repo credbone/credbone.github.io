@@ -274,3 +274,18 @@ input[type=number][data-name="input-reset"] {
     opacity: 0;
     cursor: pointer;
 }
+
+
+[data-select-color="dynamic"]
+
+
+[data-select-color="dynamic"]::-moz-selection {
+    /* Code for Firefox */
+    color: var(--select-color);
+    background: var(--select-background);
+}
+
+[data-select-color="dynamic"]::selection {
+    color: var(--select-color);
+    background: var(--select-background);
+}

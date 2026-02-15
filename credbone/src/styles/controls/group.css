@@ -56,6 +56,7 @@ group[data-type="grid"][data-grid-template="110/80"]{grid-template-columns: repe
 group[data-type="grid"][data-grid-template="110/columns-3"]{grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));} 
 
 
+group[data-type="grid"][data-grid-template-columns="6"]{grid-template-columns:repeat(6, 1fr)}
 group[data-type="grid"][data-grid-template-columns="5"]{grid-template-columns:repeat(5, 1fr)}
 group[data-type="grid"][data-grid-template-columns="4"]{grid-template-columns:repeat(4, 1fr)}
 group[data-type="grid"][data-grid-template-columns="3"]{grid-template-columns:repeat(3, 1fr)}

@@ -33,7 +33,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
     <group
       className={`snackbar ${isExiting ? "snackbar-exit" : ""}`}
       data-space="15"
-      data-radius="10"
+      data-radius="15"
       data-background="snackbar"
       data-color="white"
       data-length="auto"
