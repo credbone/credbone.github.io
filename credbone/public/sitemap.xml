@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Tools hub page -->
+  <url>
+    <loc>https://credbone.com/Tools/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blob Generator -->
+  <url>
+    <loc>https://credbone.com/Tools/BlobGenerator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Color Space Converter -->
+  <url>
+    <loc>https://credbone.com/Tools/ColorSpaceConverter/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Pattern Maker -->
+  <url>
+    <loc>https://credbone.com/Tools/PatternMaker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Icon Creator -->
+  <url>
+    <loc>https://credbone.com/Tools/DotIconMaker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+ <!-- Color Mixer -->
+
+  <url>
+    <loc>https://credbone.com/Tools/ColorMixer/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Add other canonical tools here -->
+  
+</urlset>
