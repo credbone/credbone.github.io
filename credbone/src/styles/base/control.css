@@ -1186,8 +1186,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
     [data-translate-vertical="400"] {transform: translateY(-400px);}
 
     [data-translate-vertical="50%"] {transform: translateY(-50%);}
-
-
+  [data-translate-vertical="100%"] {transform: translateY(100%);}
+  [data-translate-vertical="-100%"] {transform: translateY(-100%);}
 
     [data-backface-visibility="hidden"]{backface-visibility: hidden;}
     [data-rotate-x="180"]{transform: rotateX( 180deg ) ;}
@@ -1222,8 +1222,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
-[data-space-bottom="15-sab"]{padding-bottom:max(var(--sab), 15px);}
-[data-space-bottom="10-sab"]{padding-bottom:max(var(--sab), 10px);}
+.pwa [data-space-bottom="15-sab"]{padding-bottom:max(var(--sab), 15px);}
+.pwa [data-space-bottom="10-sab"]{padding-bottom:max(var(--sab), 10px);}
 
 [data-transition-prop="font-size"]{transition-property: font-size;}
 [data-transition-prop="position"]{transition-property: top,left, right, bottom}
@@ -1276,6 +1276,7 @@ view[data-scroll],
 
 
 [data-clip="tab-top"]{clip-path: shape(from 0 100%, arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr), vline to var(--tbr), arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr) cw, hline to calc(100% - 2 * var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr) cw, vline to calc(100% - var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr));--tbr: 10px;}
+
 
 
 [data-space-horizontal="tab"]{padding-left:calc(var(--tbr) * 2);padding-right:calc(var(--tbr) * 2);}

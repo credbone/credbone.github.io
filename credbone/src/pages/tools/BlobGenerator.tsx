@@ -156,7 +156,7 @@ const BlobGenerator: React.FC = () => {
         //  data-space="10"
         data-contain=""
         data-elevation="2"
-        //  data-background="adaptive-gray"
+    
         data-space="30"
         data-gap="30"
       >
@@ -206,7 +206,7 @@ const BlobGenerator: React.FC = () => {
         </group>
 
         <group
-          data-background="main-background"
+        //  data-background="main-background"
           data-radius="20"
           data-gap="10"
           data-wrap="no"
@@ -431,6 +431,7 @@ const BlobGenerator: React.FC = () => {
                 <CustomSlider
                   start={2}
                   end={9}
+         
                   value={growth}
                   onValueChange={(value) => setGrowth(value)}
                   trackLeftProps={{

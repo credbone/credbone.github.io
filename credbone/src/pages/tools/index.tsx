@@ -25,12 +25,12 @@ function ToolsCollection() {
       data-min-height="fit"
       data-space-top="0"
     >
-      <group data-height="30" data-shrink="no"></group>
+      <group data-height="30" data-shrink="no" data-adaptive="desktop"></group>
       <group data-height="20" data-shrink="no" data-adaptive="600"></group>
 
       <StuckReporter>
         {(isSticky) => (
-          <group data-sticky="top" data-width="auto">
+          <group data-sticky="top" data-width="auto" data-adaptive="desktop">
             <group
               data-top={isSticky ? "adaptive-30-50" : "0"}
               // data-left={isSticky ? "0" : ""}

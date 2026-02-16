@@ -244,6 +244,28 @@ export const IconPlane: React.FC<IconProps> = ({ fill = false, ...restProps }) =
 };
 
 
+export const IconClick: React.FC<IconProps> = ({ fill = false, stroke = 2, ...restProps }) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+
+
+
+  <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth={stroke}>
+  <path  d="M3 12l3 0" />
+  <path  d="M12 3l0 3" />
+  <path  d="M7.8 7.8l-2.2 -2.2" />
+  <path  d="M16.2 7.8l2.2 -2.2" />
+  <path  d="M7.8 16.2l-2.2 2.2" />
+  <path fill={fill ? 'currentColor' : 'none'} d="M12 12l9 3l-4 2l-2 4l-3 -9" />
+</g>
+      
+    </Icon>
+  );
+};
+
+
+
+
 
 
 

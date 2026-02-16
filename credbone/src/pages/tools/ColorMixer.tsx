@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Tooltip from "../../components/tooltip";
-import { HexColorInput, HexColorPicker } from "react-colorful";
+import { HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
-import { isMobile } from "react-device-detect";
+
 import Ripple from "../../components/Ripple";
-import { Minus, Plus, Trash, X, Link } from "lucide-react";
+import { Plus } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 
@@ -641,7 +641,7 @@ const removeColor = (index: number) => {
 
         <separator data-horizontal="dotted"></separator>
         <group
-          data-space="30"
+          data-space="20"
           data-width="auto"
           data-wrap="no"
           data-gap="10"
@@ -1088,7 +1088,7 @@ const removeColor = (index: number) => {
               <CustomSlider
                 start={0.5}
                 end={2.5}
-                step={0.1}
+                step={0.01}
                 value={tempGamma}
                 onValueChange={(value) => setTempGamma(value)}
                 trackLeftProps={{

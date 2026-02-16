@@ -26,11 +26,11 @@ const routeTitles: { [key: string]: { title: string | null, header: string | nul
 
   'Tools': { title: 'Tools & Resources', header: "Tools & Resources" },
 
-  'PatternMaker': { title: 'Pattern Maker', header: null },
-    'BlobGenerator': { title: 'Blob Generator', header: null },
-      'DotIconMaker': { title: 'Dot Icon Maker', header: null },
-      'ColorMixer': { title: 'Color Mixer', header: null },
-      'ColorSpaceConverter': { title: 'Color Converter', header: null },
+  'PatternMaker': { title: 'Pattern Maker', header: "Pattern Maker" },
+    'BlobGenerator': { title: 'Blob Generator', header: "Blob Generator" },
+      'DotIconMaker': { title: 'Dot Icon Maker', header: 'Icon Maker' },
+      'ColorMixer': { title: 'Color Mixer', header: 'Color Mixer' },
+      'ColorSpaceConverter': { title: 'Color Converter', header: 'Color Converter' },
 
   'Resume': { title: 'Ruben Sargsyan', header: 'Ruben Sargsyan' },
   'Dashboard': { title: 'Dashboard', header: 'Dashboard' },

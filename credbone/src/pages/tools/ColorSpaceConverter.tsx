@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
-import { Copy, Download, MousePointerClick } from "lucide-react";
+
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
+import { IconClick } from "../../components/icon/credIcons";
 
 const ColorSpaceConverter: React.FC = () => {
   // Generate a pleasant random color
@@ -653,7 +654,7 @@ const ColorSpaceConverter: React.FC = () => {
                   data-align="start"
                 >
                   <group data-width="auto" data-gap="20" data-interact="">
-                    <MousePointerClick size={32} />
+                    <IconClick size={32}/>
                     <separator data-horizontal=""></separator>
                   </group>
 
@@ -692,7 +693,7 @@ const ColorSpaceConverter: React.FC = () => {
                     data-name="input-reset"
                     data-text-size="xx-large"
                     data-weight="300"
-                    data-text-align="center"
+                 //   data-text-align="center"
                     name="hex-color-input"
                     data-select-color="dynamic"
                   />
@@ -748,6 +749,7 @@ const ColorSpaceConverter: React.FC = () => {
                         data-background="adaptive-gray"
                         data-backdrop="20"
                         data-clip="tab-top"
+    
                         onClick={() =>
                           copySVGToClipboard(harmony.name, harmony.colors)
                         }
@@ -781,13 +783,13 @@ const ColorSpaceConverter: React.FC = () => {
                   >
                     <group
                       data-wrap="no"
-                      data-type="grid"
-                      data-grid-template-columns="6"
+                      // data-type="grid"
+                      // data-grid-template-columns="6"
                       data-contain=""
                       data-radius="15"
                     >
                       {harmony.colors.map((harmonyColor, colorIndex) => (
-                        <group key={colorIndex} data-ratio="1:1">
+                        <group key={colorIndex} data-ratio="1:1" data-margin-left={colorIndex === 0 ? undefined : "-1"}>
                           <Ripple>
                             <group
                               data-contain=""
@@ -834,7 +836,7 @@ const ColorSpaceConverter: React.FC = () => {
               </text>
             </group>
 
-            <group data-space-horizontal="20" data-width="auto" data-wrap="no">
+            <group data-space-horizontal="20" data-width="auto" data-wrap="no" data-align="end">
               <Ripple>
                 <group
                   data-interactive=""
@@ -843,12 +845,11 @@ const ColorSpaceConverter: React.FC = () => {
                   data-contain=""
                   data-align="center"
                   data-gap="15"
-                  data-space-vertical="15"
+
+                  data-space-vertical={ activeTab === "spaces" ? "20" : "15" }
                   data-width="auto"
                   data-space-horizontal="30"
-                  data-background={
-                    activeTab === "spaces" ? "text" : "adaptive-gray"
-                  }
+                  data-background={ activeTab === "spaces" ? "text" : "adaptive-gray" }
                   data-color={activeTab === "spaces" ? "main-background" : ""}
                   data-index={activeTab === "spaces" ? "2" : ""}
                   data-clip="tab-top"
@@ -873,12 +874,11 @@ const ColorSpaceConverter: React.FC = () => {
                   data-contain=""
                   data-align="center"
                   data-gap="15"
-                  data-space-vertical="15"
+
+                  data-space-vertical={ activeTab === "css" ? "20" : "15" }
                   data-space-horizontal="30"
                   data-width="auto"
-                  data-background={
-                    activeTab === "css" ? "text" : "adaptive-gray"
-                  }
+                  data-background={ activeTab === "css" ? "text" : "adaptive-gray" }
                   data-color={activeTab === "css" ? "main-background" : ""}
                   data-index={activeTab === "css" ? "2" : ""}
                   data-clip="tab-top"
