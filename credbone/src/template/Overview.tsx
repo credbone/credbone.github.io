@@ -83,6 +83,7 @@ const Overview: React.FC = () => {
                   data-gap="15"
                   data-direction="column"
                   data-align="start"
+                  data-contain=""
                 >
                   <text
                     
@@ -151,7 +152,7 @@ const Overview: React.FC = () => {
                       data-text-size="medium"
                       data-font-type="hero"
                       data-wrap="preline"
-                      data-ellipsis=""
+                    //  data-ellipsis=""
                       data-line="1"
                     >
                       {item.title}

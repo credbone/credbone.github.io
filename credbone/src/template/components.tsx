@@ -351,7 +351,7 @@ const Components: React.FC = () => {
                     data-font-type="hero"
                     data-line="1"
                     data-wrap="preline"
-                    data-ellipsis=""
+                   // data-ellipsis=""
                   >
                     {link.title}
                   </text>
@@ -391,6 +391,7 @@ const Components: React.FC = () => {
           data-direction="column"
           // data-text-align="center"
           // data-align="center"
+          
         >
           <text
             data-wrap="wrap"
@@ -435,7 +436,7 @@ const Components: React.FC = () => {
               data-width="auto"
               data-radius="20"
             >
-              <group data-gap="30">
+              <group data-gap="30" data-contain="">
                 <text
                   data-wrap="wrap"
                   data-font-type="hero"
@@ -526,10 +527,10 @@ const Components: React.FC = () => {
         </group>
 
         <separator data-horizontal=""></separator>
-        <group data-space="15" data-direction="column">
+        <group data-space="15" data-direction="column" data-contain="">
           <group data-direction="column" data-gap="5">
-            <text data-weight="700">Copyright {currentYear}, Credbone.</text>
-            <text data-opacity="60">
+            <text data-wrap="wrap" data-weight="700">Copyright {currentYear}, Credbone.</text>
+            <text data-wrap="wrap" data-opacity="60">
               Last updated on {buildInfo.buildDateTime}
             </text>
 

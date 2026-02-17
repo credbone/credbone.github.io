@@ -106,6 +106,15 @@ const BlobGenerator: React.FC = () => {
     setPath(generator({ edges: points, growth }).path);
   };
 
+// const regenerateBlob = () => {
+//   const newPoints = Math.floor(Math.random() * (12 - 3 + 1)) + 3;
+//   const newGrowth = Math.floor(Math.random() * (9 - 2 + 1)) + 2;
+//   setPoints(newPoints);
+//   setGrowth(newGrowth);
+//   setPath(generator({ edges: newPoints, growth: newGrowth }).path);
+// };
+
+
   const exportSVG = () => {
     const currentDateTime = new Date()
       .toISOString()

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface SliderProps {
   start: number;
   end: number;
   step?: number;
-  value: number; // Use `value` as a prop for controlled component
-  onValueChange: (value: number) => void; // Ensure this prop is required
-  handlerWidth?: number; // Configurable handlerWidth with default
-  unit?: string; // Optional unit
-  handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }; // Allows extra props
+  value: number;
+  onValueChange: (value: number) => void;
+  handlerWidth?: number;
+  unit?: string;
+  handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   showvalue?: boolean;
@@ -20,35 +20,66 @@ const CustomSlider: React.FC<SliderProps> = ({
   step,
   value,
   onValueChange,
-  handlerWidth = 60, // Default value for handlerWidth
+  handlerWidth = 60,
   unit,
   handlerProps,
   trackLeftProps,
   trackRightProps,
   showvalue = true,
 }) => {
-  // Handle input change
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    const handleDragStart = () => setIsDragging(true);
+    const handleDragEnd = () => setIsDragging(false);
+
+    input.addEventListener('input', handleDragStart);
+    input.addEventListener('change', handleDragEnd);
+    input.addEventListener('touchend', handleDragEnd);
+    input.addEventListener('mouseup', handleDragEnd);
+
+    return () => {
+      input.removeEventListener('input', handleDragStart);
+      input.removeEventListener('change', handleDragEnd);
+      input.removeEventListener('touchend', handleDragEnd);
+      input.removeEventListener('mouseup', handleDragEnd);
+    };
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(event.target.value);
-    onValueChange(newValue); // Pass the value up to the parent component
+    onValueChange(newValue);
   };
 
-  // Calculate the percentage for positioning
   const percentage = ((value - start) / (end - start)) * 100;
 
   return (
-    <group data-name="range-slider" data-wrap="no" data-contain="">
+    <group 
+      data-name="range-slider" 
+      data-wrap="no" 
+      data-contain=""
+      
+      
+    >
       <input
+        ref={inputRef}
         type="range"
         min={start}
         max={end}
-        value={value} // Controlled by parent
+        value={value}
         onChange={handleChange}
         data-height="fit"
         step={step}
       />
 
       <group
+      data-duration={isDragging ? undefined : "2.25"}
+data-transition-prop="position"
+
         data-name="range-slider-handle"
         data-background="text"
         data-color="main-background"

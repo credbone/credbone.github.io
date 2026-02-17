@@ -8,6 +8,7 @@ import { useNavContext } from "../components/NavProvider";
 import { SvgHamburger, SvgPlus } from "./svg";
 import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
 import { useCurrentHeader } from "./TitleUpdater";
+import { useFontSize } from "./FontSizeProvider";
 
 const navItems = [
   { to: "", icon: <House size={20} />, label: "Home", type: "link" },
@@ -90,10 +91,13 @@ const Navigation: React.FC = () => {
             data-radius="30"
             data-height="50"
             data-contain=""
+        
           >
             <NavLink
+               data-drag="none"
               data-position="absolute"
               data-translate-vertical={isInTools ? "-100%" : ""}
+              data-transition-prop="transform"
               data-duration="3"
               data-shrink="no"
               data-type="group"
@@ -116,9 +120,11 @@ const Navigation: React.FC = () => {
             </NavLink>
 
             <NavLink
+               data-drag="none"
               data-position="absolute"
               data-top="0"
               data-translate-vertical={isInTools ? "" : "100%"}
+              data-transition-prop="transform"
               data-duration="3"
               data-shrink="no"
               data-type="group"
@@ -204,6 +210,8 @@ const LeftNavigation: React.FC<{
   const [indicatorHeight, setIndicatorHeight] = useState(0);
   const navRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
+  const { fontSize } = useFontSize();
+
   useEffect(() => {
     const updateIndicator = () => {
       const currentIndex = navItems.findIndex((item) => {
@@ -256,7 +264,7 @@ const LeftNavigation: React.FC<{
         resizeObserver.unobserve(parentElement);
       }
     };
-  }, [location.pathname]);
+  }, [location.pathname, fontSize]);
 
   const handleItemClick = () => {
     setIsNavOpen(false);
