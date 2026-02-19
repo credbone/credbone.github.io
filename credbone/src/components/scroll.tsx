@@ -3,13 +3,16 @@ import classNames from "classnames";
 import Button from "./button";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 
-// ButtonTemplate component
+
+
+  // ButtonTemplate component
 const ButtonTemplate: React.FC<{
   vertical: boolean;
   direction: "prev" | "next";
   show: boolean;
+  buttonProps?: React.HTMLAttributes<HTMLButtonElement> & Record<string, unknown>;
   onClick: () => void;
-}> = ({ vertical, direction, show, onClick }) => {
+}> = ({ vertical, direction, show, onClick, buttonProps }) => {
   const icon = vertical
     ? direction === "prev"
       ? <ChevronUp size={20}/>
@@ -20,22 +23,27 @@ const ButtonTemplate: React.FC<{
 
   return (
     <Button
+    data-over-color="neutral"
+    data-ink-color="neutral"
       data-contain="visible"
       micro
 data-backdrop="10"
       className={classNames("slide-button", direction, { show })}
       icon={icon}
+       {...buttonProps}
       onClick={onClick}
     />
   );
 };
+
 
 const Scroll: React.FC<{
   children: React.ReactNode; // Updated from React.ReactChild to React.ReactNode
   className?: string;
   vertical?: boolean;
   wheelEnabled?: boolean;
-}> = ({ children, className, vertical, wheelEnabled = false }) => {
+  buttonProps?: React.HTMLAttributes<HTMLButtonElement> & Record<string, unknown>;
+}> = ({ children, className, vertical, wheelEnabled = false, buttonProps  }) => {
   const [{ showLB, showRB }, setShowButtons] = useState<{
     showB: boolean;
     showLB: boolean;
@@ -45,6 +53,11 @@ const Scroll: React.FC<{
     showLB: false,
     showRB: false,
   });
+
+
+
+  
+
 
   const [element, setElement] = useState<HTMLElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -210,6 +223,12 @@ const Scroll: React.FC<{
       }
     };
   }, [element, horizontal, wheelEnabled]);
+
+
+
+
+
+
   return (
     <div
       className={classNames("snapcont", {
@@ -231,12 +250,14 @@ const Scroll: React.FC<{
         vertical={vertical ?? false}
         direction="prev"
         show={showLB}
+buttonProps={buttonProps}
         onClick={() => scrollHandler(false)}
       />
       <ButtonTemplate
         vertical={vertical ?? false}
         direction="next"
         show={showRB}
+buttonProps={buttonProps}
         onClick={() => scrollHandler(true)}
       />
     </div>

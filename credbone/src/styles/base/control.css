@@ -996,8 +996,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-shadow]{filter: drop-shadow(0 15px 10px rgba(0, 0, 0, 0.1)) drop-shadow(0 0px 1px rgba(0, 0, 0, 0.2))}
 
 
-
-
+[data-pointer-event="none"] {pointer-events: none;}
+[data-pointer-event="initial"] {pointer-events: initial;}
 
 
 

@@ -30,7 +30,7 @@ export const seccolors = [
   { "code": "#2D3E75", "name": "Midnight Blue", "description": "A very dark, muted blue." },
   { "code": "#4568B3", "name": "Steel Blue", "description": "A soft grayish blue." },
   // { "code": "#6A8EAE", "name": "Steel Blue", "description": "A muted blue with gray." },
-  { "code": "#709CD0", "name": "Sky Blue", "description": "A light, muted blue.", "separator": "true" },
+  { "code": "#709CD0", "name": "Sky Blue", "description": "A light, muted blue." },
   { "code": "#9BD1E5", "name": "Aqua Breeze", "description": "A fresh blue-green tone." },
   { "code": "#49c5b6", "name": "Turquoise", "description": "A vibrant turquoise shade." },
 

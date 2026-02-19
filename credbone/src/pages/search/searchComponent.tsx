@@ -10,7 +10,9 @@ interface SearchComponentProps {
   showRandomTagsByDefault?: boolean;
 }
 
-function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProps) {
+function SearchComponent({
+  showRandomTagsByDefault = true,
+}: SearchComponentProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [results, setResults] = useState<RouteData[]>([]);
@@ -25,9 +27,9 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       const MAX_URL_LENGTH = 50;
       const MIN_SEARCH_LENGTH = 2;
       const trimmedQuery = queryFromUrl.slice(0, MAX_URL_LENGTH);
-      
+
       setSearchQuery(trimmedQuery);
-      
+
       // Only perform search if query is long enough
       if (trimmedQuery.length >= MIN_SEARCH_LENGTH) {
         performSearch(trimmedQuery);
@@ -35,9 +37,12 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       } else if (showRandomTagsByDefault) {
         showRandomTags();
       }
-      
+
       // Update URL if it was truncated or too short
-      if (trimmedQuery !== queryFromUrl || trimmedQuery.length < MIN_SEARCH_LENGTH) {
+      if (
+        trimmedQuery !== queryFromUrl ||
+        trimmedQuery.length < MIN_SEARCH_LENGTH
+      ) {
         if (trimmedQuery.length >= MIN_SEARCH_LENGTH) {
           setSearchParams({ q: trimmedQuery }, { replace: true });
           lastUrlQueryRef.current = trimmedQuery;
@@ -61,13 +66,16 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
     debounceTimerRef.current = setTimeout(() => {
       const MAX_URL_LENGTH = 50;
       const MIN_URL_LENGTH = 2;
-      
+
       // Determine what the URL query should be
       let targetUrlQuery = "";
-      if (searchQuery.length >= MIN_URL_LENGTH && searchQuery.length <= MAX_URL_LENGTH) {
+      if (
+        searchQuery.length >= MIN_URL_LENGTH &&
+        searchQuery.length <= MAX_URL_LENGTH
+      ) {
         targetUrlQuery = searchQuery;
       }
-      
+
       // Only update URL if it's different from last update
       if (targetUrlQuery !== lastUrlQueryRef.current) {
         if (targetUrlQuery) {
@@ -111,14 +119,18 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
       if (searchTerms.length > 0) {
         const filteredResults = routesData.filter((route) => {
           const matches = searchTerms.some((term) =>
-            route.tags.some((tag) => tag.toLowerCase().includes(term))
+            route.tags.some((tag) => tag.toLowerCase().includes(term)),
           );
           return matches;
         });
         setResults(filteredResults);
-        
+
         // Generate random tags only once when first getting no results
-        if (filteredResults.length === 0 && showRandomTagsByDefault && randomTags.length === 0) {
+        if (
+          filteredResults.length === 0 &&
+          showRandomTagsByDefault &&
+          randomTags.length === 0
+        ) {
           showRandomTags();
         }
       } else {
@@ -164,7 +176,12 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
 
   return (
     <>
-      <group data-sticky="top" data-top="adaptive-30-50" data-width="auto" data-gap="20">
+      <group
+        data-sticky="top"
+        data-top="adaptive-30-50"
+        data-width="auto"
+        data-gap="20"
+      >
         <group
           data-length="600"
           data-radius="15"
@@ -208,7 +225,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                   />
 
                   {searchQuery && (
-                    <Tooltip content="Clear">
+                    <Tooltip content="Clear" delay={300}>
                       <group
                         data-contain=""
                         data-space="5"
@@ -224,7 +241,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                         data-fill-mode="backwards"
                         data-animation-duration="2"
                       >
-                        <icon data-height="auto">{<X size={20}/>}</icon>
+                        <icon data-height="auto">{<X size={20} />}</icon>
                       </group>
                     </Tooltip>
                   )}
@@ -279,24 +296,58 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
 
       {searchQuery && results.length === 0 && (
         <group data-direction="column" data-gap="30" data-max-length="600">
-
-<group data-gap="5">
-            <group
-            data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration="2.25"
-          >
-            <text  data-text-size="medium" data-font-type="hero" data-wrap="preline" data-ellipsis="" data-line="1" >No results found.</text>
-          </group>
-
           <group
+            data-gap="15"
+            data-space-vertical="20"
+
+
+            data-radius="20"
+            data-wrap="no"
+            data-align="center"
+          >
+           <group data-width="auto"
+           
+                       data-animation-name="appear-bottom"
+            data-fill-mode="backwards"
+            data-animation-duration="3.25"
+
+           >
+             <IconSearch size={72} stroke={2}/>
+           </group>
+
+
+
+<group data-direction="column" data-gap="5"
+
             data-animation-name="appear-bottom"
             data-fill-mode="backwards"
-            data-animation-duration="2"
-          >
-            <text data-opacity="60" data-wrap="wrap" data-length="300" data-line="1.2">Try one of the suggested tags below or adjust your keywords.</text>
-          </group>
+            data-animation-duration="2.75"
+
+>
+              <group>
+              <text
+                data-text-size="medium"
+                data-font-type="hero"
+                data-wrap="preline"
+                data-ellipsis=""
+                data-line="1"
+              >
+                No results found
+              </text>
+            </group>
+
+            <group>
+              <text
+                data-opacity="50"
+                data-wrap="wrap"
+                data-length="260"
+                data-line="1.2"
+              >
+                Try one of the suggested tags below or adjust your keywords.
+              </text>
+            </group>
 </group>
+          </group>
 
           <group data-gap="5">
             {randomTags.map((tag, index) => (
@@ -361,7 +412,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                   data-color="main"
                   data-wrap="preline"
                   data-text-size="medium"
-                  data-ellipsis=""
+                  // data-ellipsis=""
                   data-font-type="hero"
                   data-line="1"
                 >

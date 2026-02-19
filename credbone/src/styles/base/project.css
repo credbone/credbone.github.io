@@ -196,7 +196,7 @@ transition: background-color 5000s 0s, color 5000s 0s;
 
 [data-name="theme-item"][data-group-end="true"]{margin-right:5px;border-bottom-right-radius: var(--base-size);border-top-right-radius: var(--base-size);}
 
-[data-name="theme-item"].selected {margin-left:5px; margin-right:5px; border-radius: var(--base-size);  transition: margin 0.425s 0.125s ease, border-radius 0.425s 0s ease;}
+[data-name="theme-item"].selected {margin-left:5px; margin-right:5px; border-radius: var(--base-size);  transition: margin 0.3s ease, border-radius 0.425s 0s ease;}
 
 
 

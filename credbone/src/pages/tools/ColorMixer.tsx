@@ -565,14 +565,10 @@ const removeColor = (index: number) => {
   };
 
   return (
-    <group data-gap="30" data-align="start" data-direction="column">
-      <group
-        data-elevation="2"
-        data-radius="40"
-        data-direction="column"
-        data-contain=""
-        data-length="600"
-      >
+    <group  data-align="start" data-direction="column">
+
+
+
         <group
           data-space="30"
           data-width="auto"
@@ -639,7 +635,21 @@ const removeColor = (index: number) => {
           </group>
         </group>
 
-        <separator data-horizontal="dotted"></separator>
+
+
+<group data-direction="column" data-gap="30" data-width="auto">
+  
+      <group
+     
+        data-elevation="2"
+        data-radius="40"
+        data-direction="column"
+        data-contain=""
+        data-length="600"
+      >
+
+
+
         <group
           data-space="20"
           data-width="auto"
@@ -1088,7 +1098,7 @@ const removeColor = (index: number) => {
               <CustomSlider
                 start={0.5}
                 end={2.5}
-                step={0.01}
+                step={0.1}
                 value={tempGamma}
                 onValueChange={(value) => setTempGamma(value)}
                 trackLeftProps={{
@@ -1183,6 +1193,8 @@ const removeColor = (index: number) => {
           </group>
         </group>
       )}
+</group>
+
     </group>
   );
 };

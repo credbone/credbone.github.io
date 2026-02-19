@@ -241,7 +241,7 @@ function SearchFloating({
                   data-color="main"
                   data-wrap="preline"
                   data-text-size="medium"
-                  data-ellipsis=""
+               //   data-ellipsis=""
                   data-font-type="hero"
                   data-line="1"
                 >

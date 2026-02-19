@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
 import { colors, seccolors } from "../styles/colorData";
 import Scroll from "../components/scroll";
-import Tooltip from "../components/tooltip";
+//import Tooltip from "../components/tooltip";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import { getComplementaryColor } from "../styles/skin";
 
@@ -63,35 +63,66 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
 
+  const scrollToSelected = (node: HTMLDivElement | null, index: number) => {
+    if (!node) return;
+    const container = node.closest("[data-scroll-wrap]") as HTMLElement;
+    if (!container) return;
+
+    const style = getComputedStyle(container);
+    const paddingLeft = parseFloat(style.paddingLeft);
+    container.scrollTo({
+      left:
+        paddingLeft +
+        index * 30 +
+        90 -
+        container.getBoundingClientRect().width / 2,
+      behavior: "smooth",
+    });
+    // console.log(index,paddingLeft)
+  };
+
   const renderPrimaryPicker = (props: React.HTMLAttributes<HTMLDivElement>) => {
     return (
       <group data-scroll-mask="false" data-snap-button="15" data-width="auto">
-        <Scroll wheelEnabled={true}>
+        <Scroll
+          wheelEnabled={true}
+          // buttonProps={{ "data-background": "text", "data-backdrop": "0","data-color":"main-background" }}
+        >
           <group
             data-position="left"
             data-wrap="no"
             data-radius="10"
-            data-width="auto"
+            data-scroll-wrap=""
             {...props}
           >
-            {colors.map((c, index) => (
-              <Tooltip
-                delay={500}
-                distance={-10}
-                data-space="15"
-                key={index}
-                content={
-                  theme.colorPrimary === c.code ? (
-                    ""
-                  ) : (
-                    <group data-direction="column">
-                      <text data-weight="700">{c.name}</text>
-                      <text data-opacity="50">{c.description}</text>
-                    </group>
-                  )
-                }
-              >
+            <group data-wrap="no" data-width="auto" data-max-length="auto">
+              {colors.map((c, index) => (
+                // <Tooltip
+                //   delay={500}
+                //   distance={-10}
+                //   data-space="15"
+                //   key={index}
+                //   content={
+                //     theme.colorPrimary === c.code ? (
+                //       ""
+                //     ) : (
+                //       <group data-direction="column">
+                //         <text data-weight="700">{c.name}</text>
+                //         <text data-opacity="50">{c.description}</text>
+                //       </group>
+                //     )
+                //   }
+                // >
+
+                // </Tooltip>
+
                 <group
+                  ref={
+                    theme.colorPrimary === c.code
+                      ? (node: HTMLDivElement | null) =>
+                          scrollToSelected(node, index)
+                      : undefined
+                  }
                   data-group-end={c.separator ? "true" : ""}
                   key={index}
                   data-shrink="no"
@@ -116,7 +147,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
                       data-justify="end"
                       data-contain=""
                       data-duration={
-                        theme.colorPrimary === c.code ? "4.75" : "2.25"
+                        theme.colorPrimary === c.code ? "2.25" : "2.25"
                       }
                       data-transition-prop="width"
                       data-length={theme.colorPrimary === c.code ? "140" : "0"}
@@ -135,8 +166,8 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
                     </group>
                   </group>
                 </group>
-              </Tooltip>
-            ))}
+              ))}
+            </group>
           </group>
         </Scroll>
       </group>
@@ -152,76 +183,84 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
             data-wrap="no"
             data-radius="10"
             data-width="auto"
+            data-scroll-wrap=""
           >
             {seccolors.map((c, index) => (
-              <Tooltip
-                delay={500}
-                distance={-10}
-                data-space="15"
-                key={index}
-                content={
-                  theme.colorSecondary === c.code ? (
-                    ""
-                  ) : (
-                    <group data-direction="column">
-                      <text data-weight="700">{c.name}</text>
-                      <text data-opacity="50">{c.description}</text>
-                    </group>
-                  )
+              // <Tooltip
+              //   delay={500}
+              //   distance={-10}
+              //   data-space="15"
+              //   key={index}
+              //   content={
+              //     theme.colorSecondary === c.code ? (
+              //       ""
+              //     ) : (
+              //       <group data-direction="column">
+              //         <text data-weight="700">{c.name}</text>
+              //         <text data-opacity="50">{c.description}</text>
+              //       </group>
+              //     )
+              //   }
+              // >
+
+              // </Tooltip>
+
+              <group
+                ref={
+                  theme.colorSecondary === c.code
+                    ? (node: HTMLDivElement | null) =>
+                        scrollToSelected(node, index)
+                    : undefined
                 }
+                key={index}
+                data-name="theme-item"
+                data-group-end={c.separator ? "true" : ""}
+                data-shrink="no"
+                data-interactive=""
+                data-width="auto"
+                data-cursor="pointer"
+                className={theme.colorSecondary === c.code ? "selected" : ""}
+                data-color={
+                  theme.colorSecondary === c.code ? "secondary-text" : ""
+                }
+                //   data-height="60"
+
+                data-wrap="no"
+                data-contain=""
+                onClick={() => handleColorSelection(c.code, c.name, false)}
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration={2 + index * 0.25}
               >
                 <group
-                  key={index}
-                  data-name="theme-item"
-                  data-group-end={c.separator ? "true" : ""}
                   data-shrink="no"
-                  data-interactive=""
-                  data-width="auto"
-                  data-cursor="pointer"
-                  className={theme.colorSecondary === c.code ? "selected" : ""}
-                  data-color={
-                    theme.colorSecondary === c.code ? "secondary-text" : ""
-                  }
-                  //   data-height="60"
-
-                  data-wrap="no"
-                  data-contain=""
-                  onClick={() => handleColorSelection(c.code, c.name, false)}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration={2 + index * 0.25}
+                  style={{ backgroundColor: c.code }}
+                  data-space="15"
                 >
                   <group
-                    data-shrink="no"
-                    style={{ backgroundColor: c.code }}
-                    data-space="15"
+                    data-justify="end"
+                    data-duration={
+                      //   theme.colorSecondary === c.code ? "4.75" : "2.25"
+                      theme.colorPrimary === c.code ? "2.25" : "2.25"
+                    }
+                    data-transition-prop="width"
+                    data-length={theme.colorSecondary === c.code ? "140" : "0"}
+                    data-opacity={theme.colorSecondary === c.code ? "" : "0"}
+                    data-space-horizontal={
+                      theme.colorSecondary === c.code ? "5" : "0"
+                    }
+                    data-contain=""
+                    key={c.code}
+                    data-direction="column"
+                    data-name="marquee_cont"
                   >
-                    <group
-                      data-justify="end"
-                      data-duration={
-                        theme.colorSecondary === c.code ? "4.75" : "2.25"
-                      }
-                      data-transition-prop="width"
-                      data-length={
-                        theme.colorSecondary === c.code ? "140" : "0"
-                      }
-                      data-opacity={theme.colorSecondary === c.code ? "" : "0"}
-                      data-space-horizontal={
-                        theme.colorSecondary === c.code ? "5" : "0"
-                      }
-                      data-contain=""
-                      key={c.code}
-                      data-direction="column"
-                      data-name="marquee_cont"
-                    >
-                      <text data-ellipsis="" data-weight="700">
-                        {c.name}
-                      </text>
-                      <text data-light="">{c.description}</text>
-                    </group>
+                    <text data-ellipsis="" data-weight="700">
+                      {c.name}
+                    </text>
+                    <text data-light="">{c.description}</text>
                   </group>
                 </group>
-              </Tooltip>
+              </group>
             ))}
           </group>
         </Scroll>

@@ -8,7 +8,7 @@ function FontSizeControl() {
   return (
 
     
-      <group data-wrap="no" data-gap="20" data-align="center" data-length="400">
+      <group data-wrap="no" data-gap="20" data-align="center" data-length="300">
         <group data-gap="20" data-width="auto" data-wrap="no" data-align="center">
           <text data-text-size="x-large" data-weight="700" data-space-right="10">Aa</text>
         </group>
