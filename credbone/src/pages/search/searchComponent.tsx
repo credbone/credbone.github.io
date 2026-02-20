@@ -222,6 +222,13 @@ function SearchComponent({
                     onChange={handleSearch}
                     autoFocus={!showRandomTagsByDefault}
                     name="searchinput"
+
+                    onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      e.currentTarget.blur(); // closes mobile keyboard
+    }
+  }}
+
                   />
 
                   {searchQuery && (
@@ -298,14 +305,14 @@ function SearchComponent({
         <group data-direction="column" data-gap="30" data-max-length="600">
           <group
             data-gap="15"
-            data-space-vertical="20"
+           // data-space-vertical="20"
 
 
             data-radius="20"
             data-wrap="no"
             data-align="center"
           >
-           <group data-width="auto"
+           {/* <group data-width="auto"
            
                        data-animation-name="appear-bottom"
             data-fill-mode="backwards"
@@ -313,7 +320,7 @@ function SearchComponent({
 
            >
              <IconSearch size={72} stroke={2}/>
-           </group>
+           </group> */}
 
 
 
@@ -340,7 +347,7 @@ function SearchComponent({
               <text
                 data-opacity="50"
                 data-wrap="wrap"
-                data-length="260"
+                data-max-length="260"
                 data-line="1.2"
               >
                 Try one of the suggested tags below or adjust your keywords.

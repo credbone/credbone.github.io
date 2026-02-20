@@ -129,6 +129,14 @@ function SearchFloating({
                   onChange={handleSearch}
                   autoFocus={!showRandomTagsByDefault}
                   name="floatingsearch"
+
+
+                  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      e.currentTarget.blur(); // closes mobile keyboard
+    }
+  }}
+
                 />
 
                 {searchQuery && (
