@@ -59,14 +59,14 @@ const fillPath = `${smoothPath}
       xmlns="http://www.w3.org/2000/svg"
     >
       <mask id={maskid}>
-        <path  d={fillPath} fill="#fff" />
+        <path  d={fillPath} fill="#fff" data-duration="1" data-timing="linear" data-transition-prop="d" />
       </mask>
 
       <text x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" data-text-size="x-large">
             {value}
           </text>
 
-      <path d={fillPath} data-fill="main" />
+      <path d={fillPath} data-fill="main" data-duration="1" data-timing="linear" data-transition-prop="d"  />
 
       
       <text  x="50%" y="50%" data-weight="800" dominantBaseline="middle" textAnchor="middle" mask={`url(#${maskid})`} data-color="main-text" data-fill="main-text" data-text-size="x-large">

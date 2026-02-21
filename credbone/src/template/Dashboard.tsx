@@ -51,12 +51,12 @@ interface MonitorCardType {
 // Function to generate the MonitorCard data
 const generateMonitorCardData = (): MonitorCardType[] => [
   { title: "Temperature", shortname:"CPU", value: getRandomValue(29, 35, 0), chart: "gaugesimple", titleunit: "Celsius", max: 100,  },
-  { title: "Panel Tilt", value: getRandomStepValue(10, 25, 5), unit: "°", max: 360, chart: "gaugezoom",},
+  { title: "Panel Tilt", value: getRandomStepValue(10, 25, 5), unit: "°", max: 360, chart: "gaugezoom"},
   //  { title: "CPU Load", value: getRandomValue(10, 20, 0), unit: "", chart: "none", titleunit: "", max: 100, showmax: true, },
   { title: "GPU", value: getRandomValue(65, 75, 0), unit: "°",titleunit: "Celsius", chart: "gauge", max: 100, showmax: true, },
   { title: "Memory", value: getRandomValue(12, 13.7, 1),unit: "", titleunit: "GB", chart: "gauge", max: 32, showmax: true,},
-  { title: "Network", value: getRandomValue(90, 160, 0),  titleunit: "Kbps", max: 240, chart: "line", },
-  { title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",   },
+  { title: "Network", value: getRandomValue(110, 150, 0),  titleunit: "Kbps", max: 240, chart: "line", },
+  //{ title: "FPS", value: getRandomValue(200, 240, 0), max: 240, chart: "none",   },
   // { title:"",value:"",chart:"none",},
  // { title: "Blade Angle", value: getRandomStepValue(90, 160, 5), unit: "°", max: 360, chart: "gaugezoom", wide:true},
 
@@ -111,72 +111,6 @@ const Dashboard: React.FC = () => {
         type="Demo"
         descriptionProps={{"data-length":"400"}}
       />
-
-      <group>
-        <picture
-          data-radius="50"
-          data-contain=""
-          data-brightness="adaptive"
-          data-background="grey-light"
-          data-position="absolute"
-          data-object-position="right"
-        >
-          <img src={sampleImage} alt="" />
-        </picture>
-
-        <group data-space="30" data-gap="10">
-          {/* <group
-            data-space="30"
-            data-width="auto"
-           // data-align="center"
-            data-justify="center"
-            data-radius="15"
-            data-backdrop="20"
-            data-color="white"
-           
-            data-direction="column"
-          >
-            <group    data-text-size="36" data-weight="300">
-            <text data-contain=""  data-line="1">
-               <Count
-                
-                from={11}
-                to={23}
-                duration={1700}
-              ></Count></text>
-            <text  data-line="1">°</text>
-            </group>
-
-            <text
-              data-text-size="large"
-              data-weight="700"
-              data-wrap="preline"
-              data-ellipsis=""
-            >
-           {getGreeting()}
-            </text>
-          </group> */}
-
-          <group
-            data-space="30"
-            data-width="auto"
-            data-direction="column"
-            data-radius="20"
-            data-background="context"
-            //data-color="main-text"
-          >
-            <text
-              data-wrap="wrap"
-              data-max-length="200"
-              data-line="1.5"
-              data-weight="600"
-            >
- All widgets are independent components, easily configurable for flexibility.
-            </text>
-          </group>
-        </group>
-      </group>
-
       <group
         data-type="grid"
         data-grid-template="140/120"
@@ -209,7 +143,8 @@ const Dashboard: React.FC = () => {
           data-space="20"
           data-gap="15"
           data-height="fit"
-         data-background="adaptive-gray"
+         data-background="context"
+         data-elevation="2"
           data-align="center"
           data-justify="center"
           data-ratio="1:2"
@@ -276,7 +211,7 @@ const Dashboard: React.FC = () => {
                   data-wrap="no"
                   data-width="auto"
                   data-direction="column"
-                  data-gap="5"
+                  data-gap="10"
                 >
                   <group data-gap="5"  data-wrap="no" data-width="auto">
                     <text data-weight="700">{item.title}</text>
@@ -292,7 +227,7 @@ const Dashboard: React.FC = () => {
                   {item.showmax && (
                     <>
                       <separator data-horizontal=""></separator>
-                      <text data-opacity="30">Available {item.max} </text>
+                      <text data-opacity="30">Max {item.max} </text>
                     </>
                   )}
                 </group>
@@ -338,7 +273,7 @@ const Dashboard: React.FC = () => {
                   data-wrap="no"
                   data-width="auto"
                   data-direction="column"
-                  data-gap="5"
+                  data-gap="10"
                 >
                   <text data-ellipsis="" data-weight="600">
                     {item.title}
@@ -385,7 +320,7 @@ const Dashboard: React.FC = () => {
                 <group data-weight="700" data-width="auto"></group>
                 <group
                   data-align="center"
-                  data-gap="5"
+                  data-gap="10"
                   data-wrap="no"
                   data-width="auto"
                   data-direction="column"
@@ -457,7 +392,7 @@ const Dashboard: React.FC = () => {
                 </group>
                 <group
                   data-align="center"
-                  data-gap="5"
+                  data-gap="10"
                   data-wrap="no"
                   data-width="auto"
                 >
@@ -511,7 +446,7 @@ const Dashboard: React.FC = () => {
                 </group>
                 <group
                   data-align="center"
-                  data-gap="5"
+                  data-gap="10"
                   data-wrap="no"
                   data-width="auto"
                 >
@@ -529,6 +464,72 @@ const Dashboard: React.FC = () => {
           )
         )}
       </group>
+      <group>
+        <picture
+          data-radius="50"
+          data-contain=""
+          data-brightness="adaptive"
+          data-background="grey-light"
+          data-position="absolute"
+          data-object-position="right"
+        >
+          <img src={sampleImage} alt="" />
+        </picture>
+
+        <group data-space="30" data-gap="10">
+          {/* <group
+            data-space="30"
+            data-width="auto"
+           // data-align="center"
+            data-justify="center"
+            data-radius="15"
+            data-backdrop="20"
+            data-color="white"
+           
+            data-direction="column"
+          >
+            <group    data-text-size="36" data-weight="300">
+            <text data-contain=""  data-line="1">
+               <Count
+                
+                from={11}
+                to={23}
+                duration={1700}
+              ></Count></text>
+            <text  data-line="1">°</text>
+            </group>
+
+            <text
+              data-text-size="large"
+              data-weight="700"
+              data-wrap="preline"
+              data-ellipsis=""
+            >
+           {getGreeting()}
+            </text>
+          </group> */}
+
+          <group
+            data-space="30"
+            data-width="auto"
+            data-direction="column"
+            data-radius="20"
+            data-background="context"
+            //data-color="main-text"
+          >
+            <text
+              data-wrap="wrap"
+              data-max-length="200"
+              data-line="1.5"
+              data-weight="600"
+            >
+ All widgets are independent components, easily configurable for flexibility.
+            </text>
+          </group>
+        </group>
+      </group>
+
+
     </group>
   );
 };

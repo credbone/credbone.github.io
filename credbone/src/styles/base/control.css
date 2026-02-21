@@ -1158,6 +1158,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
     [data-timing="fancy"]{transition-timing-function: cubic-bezier(0,1.3,.7,1);}
+       [data-timing="linear"]{transition-timing-function:linear}
     [data-duration="1"]{transition-duration: 1s;}
     [data-duration=".725"]{transition-duration: .725s;}
     [data-duration=".525"]{transition-duration: .525s;}

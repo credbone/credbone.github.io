@@ -5,7 +5,6 @@ interface GaugeProps {
   max: number;
   size: number;
   unit?: string;
-
 }
 
 const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
@@ -16,29 +15,17 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
   const maskid = useId();
 
   return (
-    <svg
-      width="100%"
-      viewBox="0 0 120 120"
-      xmlns="http://www.w3.org/2000/svg"
-
-    >
-
-<defs>
+    <svg width="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
         <mask id={maskid}>
-        <rect width="100%" height="100%" fill="white"></rect>
-        <circle         cx="50%"
-        cy="50%"
-        r="6" fill="black"></circle>
-      </mask>
-{/* 
+          <rect width="100%" height="100%" fill="white"></rect>
+          <circle cx="50%" cy="50%" r="6" fill="black"></circle>
+        </mask>
+        {/* 
       <path id="circlePath" d="M20,60a40,40 0 1,0 80,0a40,40 0 1,0 -80,0"></path> */}
+      </defs>
 
-    </defs>
-
-
-
-
-{/* <g
+      {/* <g
         data-opacity="10"
         fill="currentColor"
 
@@ -64,8 +51,8 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
     <path d="m59,101.97v3c.33,0,.66.03,1,.03s.67-.02,1-.03v-3c-.33,0-.66.03-1,.03s-.67-.02-1-.03Z"/>
     <path d="m69.9,100.82l.78,2.9c.65-.16,1.29-.33,1.93-.52l-.78-2.9c-.64.19-1.28.36-1.93.52Z"/>
 </g> */}
-      
-{/* <circle
+
+      {/* <circle
         //      data-opacity="0"
         cx="50%"
         cy="50%"
@@ -84,95 +71,85 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
         data-transition-prop="stroke-dasharray"
       /> */}
 
-
-{/* <g>
+      {/* <g>
         <use xlinkHref="#circlePath" fill="none"/>
         <text fill="#000"  data-opacity="10" >
             <textPath startOffset="120" xlinkHref="#circlePath">Memory Max 32BG</textPath>
         </text>
     </g> */}
 
+      <g>
+        <text
+          x="50%"
+          y="115"
+          fill="currentColor"
+          data-fill="currentColor"
+          data-weight="700"
+          dominantBaseline="auto"
+          textAnchor="middle"
+          fontSize={25}
+        >
+          {unit && <tspan opacity={0}>{unit}</tspan>}
+          {value}
+          {unit && <tspan>{unit}</tspan>}
+        </text>
+      </g>
 
-  
-<g>
-  <text x="50%" y="115" fill="currentColor" data-fill="currentColor" data-weight="700" dominantBaseline="auto" textAnchor="middle"  fontSize={25}>
-
-
-  {unit && <tspan opacity={0}>{unit}</tspan>}{value}{unit && <tspan>{unit}</tspan>}
-
-
-
-          </text>
-
-</g>
-
-
-<g
-
-x="0"
-width="120"
-height="120"
-y="0"
-data-rotate="-225"
-transform-origin="center center"
-
->
-
-<g
-mask={`url(#${maskid})`}
+      <g
         x="0"
         width="120"
         height="120"
         y="0"
-        fill="currentColor"
-        data-transition-prop="transform"
-        
-        data-duration=".325"
-        transform-origin="center"
-        transform={"rotate(" + (value / max || 0) * 270 + ")"}
+        data-rotate="-225"
+        transform-origin="center center"
       >
-        {/* <path d="M57,57l39,2v2L57,63V57Z" /> */}
-        <rect x="60" y="58" width="30" height="4" rx="2" ry="2"/>
-        {/* <rect width="30" height="2" x="75" y="59"></rect> */}
+        <g
+          mask={`url(#${maskid})`}
+          x="0"
+          width="120"
+          height="120"
+          y="0"
+          fill="currentColor"
+          data-transition-prop="transform"
+          data-duration=".325"
+          transform-origin="center"
+          transform={"rotate(" + (value / max || 0) * 270 + ")"}
+        >
+          {/* <path d="M57,57l39,2v2L57,63V57Z" /> */}
+          <rect x="60" y="58" width="30" height="4" rx="2" ry="2" />
+          {/* <rect width="30" height="2" x="75" y="59"></rect> */}
+        </g>
+
+        <circle
+          cx="50%"
+          cy="50%"
+          r="55"
+          stroke="currentcolor"
+          strokeWidth="4"
+          fill="none"
+          data-opacity="10"
+          strokeDasharray={` ${(value / max) * 100 - 2.5} 5 ${Math.max(0, 100 - (value / max) * 100 - 2.5)} 133.333`}
+          pathLength="133.333"
+          strokeLinecap="round"
+          data-duration=".725"
+          data-transition-prop="stroke-dasharray"
+        />
+
+        <circle
+          cx="50%"
+          cy="50%"
+          r="55"
+          stroke="currentcolor"
+          data-stroke="main"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+          pathLength="133.333"
+          strokeDasharray={`${(value / max) * 100 - 2.5} 133.333`}
+          data-duration=".725"
+          data-transition-prop="stroke-dasharray"
+        />
       </g>
-
-<circle
-        cx="50%"
-        cy="50%"
-        r="55"
-        stroke="currentcolor"
-        strokeWidth="10"
-        fill="none"
-        data-opacity="10"
-        strokeDasharray={` ${(value / max) * 100 - 3.5} 7 ${Math.max(0, 100 - (value / max) * 100 - 3.5)} 133.333`}
-        pathLength="133.333"
-        strokeLinecap="round"
-        data-duration=".725"
-        data-transition-prop="stroke-dasharray"
-      />
-
-
-      
-
-      <circle
-
-        cx="50%"
-        cy="50%"
-        r="55"
-
-        stroke="currentcolor"
-        data-stroke="main"
-        strokeWidth="10"
-        fill="none"
-        strokeLinecap="round"
-        pathLength="133.333"
-        strokeDasharray={`${(value / max) * 100 - 3.5} 133.333`}
-        data-duration=".725"
-        data-transition-prop="stroke-dasharray"
-      />
-
-
-</g>
 
       <circle
         cx="50%"
@@ -182,8 +159,6 @@ mask={`url(#${maskid})`}
         fill="none"
         stroke="currentColor"
       ></circle>
-
-
     </svg>
   );
 };
