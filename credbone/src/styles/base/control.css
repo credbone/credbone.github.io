@@ -213,7 +213,7 @@ text[data-width="auto"]{width: initial;}
 [data-top="50"] { top: 50px; }
 [data-top="60"] { top: 60px; }
 [data-top="90"] { top: 90px; }
-
+[data-top="100%"] { top: 100%; }
 
 [data-top="adaptive-30-50"] { top: 50px; }
 
@@ -981,6 +981,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-radius-bottom="30"]{border-bottom-left-radius:30px;border-bottom-right-radius: 30px;}
+[data-radius-bottom="40"]{border-bottom-left-radius:40px;border-bottom-right-radius: 40px;}
+
 
 [data-radius-bottom-left="0"]{border-bottom-left-radius: 0px;}
 [data-radius-top-left="0"]{border-top-left-radius: 0px;}

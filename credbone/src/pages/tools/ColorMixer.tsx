@@ -21,10 +21,6 @@ const ColorMixer: React.FC = () => {
   const { addSnackbar } = useSnackbar();
   const isPickerOpenRef = useRef(false);
 
-
-  
-
-  
   // Helper function to validate hex color
   const isValidHexColor = (color: string): boolean => {
     return /^#?([a-f\d]{6})$/i.test(color);
@@ -33,18 +29,20 @@ const ColorMixer: React.FC = () => {
   // Helper function to parse URL parameters
   const parseUrlParams = () => {
     const params = new URLSearchParams(window.location.search);
-    
-    const colorsParam = params.get('colors');
-    const stepsParam = params.get('steps');
-    const methodParam = params.get('method');
-    const displayModeParam = params.get('mode');
-    const gammaParam = params.get('gamma');
+
+    const colorsParam = params.get("colors");
+    const stepsParam = params.get("steps");
+    const methodParam = params.get("method");
+    const displayModeParam = params.get("mode");
+    const gammaParam = params.get("gamma");
 
     // Validate colors - if any are invalid, return null for all
     let colors: string[] | null = null;
     if (colorsParam) {
-      const colorArray = colorsParam.split(',').map(c => c.startsWith('#') ? c : `#${c}`);
-      const allValid = colorArray.every(c => isValidHexColor(c));
+      const colorArray = colorsParam
+        .split(",")
+        .map((c) => (c.startsWith("#") ? c : `#${c}`));
+      const allValid = colorArray.every((c) => isValidHexColor(c));
       if (allValid && colorArray.length >= 2 && colorArray.length <= 4) {
         colors = colorArray;
       }
@@ -60,13 +58,13 @@ const ColorMixer: React.FC = () => {
     }
 
     // Validate method
-    const validMethods: InterpolationMethod[] = ['rgb', 'lrgb', 'lab', 'via'];
-    const method = validMethods.includes(methodParam as InterpolationMethod) 
-      ? (methodParam as InterpolationMethod) 
+    const validMethods: InterpolationMethod[] = ["rgb", "lrgb", "lab", "via"];
+    const method = validMethods.includes(methodParam as InterpolationMethod)
+      ? (methodParam as InterpolationMethod)
       : null;
 
     // Validate display mode
-    const validModes: DisplayMode[] = ['gradient', 'steps'];
+    const validModes: DisplayMode[] = ["gradient", "steps"];
     const displayMode = validModes.includes(displayModeParam as DisplayMode)
       ? (displayModeParam as DisplayMode)
       : null;
@@ -104,13 +102,17 @@ const ColorMixer: React.FC = () => {
   const initialState = initializeState();
   const [colors, setColors] = useState<string[]>(initialState.colors);
 
-const colorsRef = useRef<string[]>(colors);
-  
+  const colorsRef = useRef<string[]>(colors);
+
   const [steps, setSteps] = useState(initialState.steps);
-  const [method, setMethod] = useState<InterpolationMethod>(initialState.method);
-  const [displayMode, setDisplayMode] = useState<DisplayMode>(initialState.displayMode);
+  const [method, setMethod] = useState<InterpolationMethod>(
+    initialState.method,
+  );
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(
+    initialState.displayMode,
+  );
   const [gamma, setGamma] = useState(initialState.gamma);
-  
+
   // Temporary state for slider dragging (doesn't trigger URL updates)
   const [tempSteps, setTempSteps] = useState(initialState.steps);
   const [tempGamma, setTempGamma] = useState(initialState.gamma);
@@ -118,44 +120,41 @@ const colorsRef = useRef<string[]>(colors);
   // Manual URL update function
   const updateURL = () => {
     const params = new URLSearchParams();
-    
-
-    
 
     // Only add non-default values to keep URL clean
-  const colorsString = colorsRef.current.map(c => c.replace('#', '')).join(',');
-  if (JSON.stringify(colorsRef.current) !== JSON.stringify(defaultColors)) {
-    params.set('colors', colorsString);
-  }
-    
-    
-    if (steps !== defaultSteps) {
-      params.set('steps', steps.toString());
-    }
-    
-    if (method !== defaultMethod) {
-      params.set('method', method);
-    }
-    
-    if (displayMode !== defaultDisplayMode) {
-      params.set('mode', displayMode);
-    }
-    
-    if (gamma !== defaultGamma) {
-      params.set('gamma', gamma.toFixed(1));
+    const colorsString = colorsRef.current
+      .map((c) => c.replace("#", ""))
+      .join(",");
+    if (JSON.stringify(colorsRef.current) !== JSON.stringify(defaultColors)) {
+      params.set("colors", colorsString);
     }
 
-    const newUrl = params.toString() 
+    if (steps !== defaultSteps) {
+      params.set("steps", steps.toString());
+    }
+
+    if (method !== defaultMethod) {
+      params.set("method", method);
+    }
+
+    if (displayMode !== defaultDisplayMode) {
+      params.set("mode", displayMode);
+    }
+
+    if (gamma !== defaultGamma) {
+      params.set("gamma", gamma.toFixed(1));
+    }
+
+    const newUrl = params.toString()
       ? `${window.location.pathname}?${params.toString()}`
       : window.location.pathname;
-    
-    window.history.replaceState({}, '', newUrl);
+
+    window.history.replaceState({}, "", newUrl);
   };
 
-
   useEffect(() => {
-  colorsRef.current = colors;
-}, [colors]);
+    colorsRef.current = colors;
+  }, [colors]);
 
   // Update URL whenever non-color state changes
   useEffect(() => {
@@ -326,9 +325,6 @@ const colorsRef = useRef<string[]>(colors);
 
   const [hasChanged, setHasChanged] = useState(false);
 
-
-  
-
   // Debounce the actual state updates (which trigger URL updates)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -366,20 +362,20 @@ const colorsRef = useRef<string[]>(colors);
     }
   }, [colors, steps, method, displayMode, gamma]);
 
-const resetValues = () => {
-  setColors(defaultColors);
-  setSteps(defaultSteps);
-  setDisplayMode(defaultDisplayMode);
-  setMethod(defaultMethod);
-  setGamma(defaultGamma);
-  setTempSteps(defaultSteps);
-  setTempGamma(defaultGamma);
-  setHasChanged(false);
-  
-  // Update ref immediately before URL update
-  colorsRef.current = defaultColors;
-  updateURL();
-};
+  const resetValues = () => {
+    setColors(defaultColors);
+    setSteps(defaultSteps);
+    setDisplayMode(defaultDisplayMode);
+    setMethod(defaultMethod);
+    setGamma(defaultGamma);
+    setTempSteps(defaultSteps);
+    setTempGamma(defaultGamma);
+    setHasChanged(false);
+
+    // Update ref immediately before URL update
+    colorsRef.current = defaultColors;
+    updateURL();
+  };
 
   const interpolateVia = (c1: string, c2: string, steps: number): string[] => {
     const midColor = "#808080";
@@ -459,35 +455,35 @@ const resetValues = () => {
     return `linear-gradient(to right, ${gradientColors.join(", ")})`;
   };
 
-const addColor = () => {
-  if (colors.length < 4) {
-    const lastColor = colors[colors.length - 1];
-    const [r, g, b] = hexToRgb(lastColor);
-    const [L, a, bLab] = rgbToLab(r, g, b);
-    const angle = Math.PI / 4;
-    const aNew = a * Math.cos(angle) - bLab * Math.sin(angle);
-    const bLabNew = a * Math.sin(angle) + bLab * Math.cos(angle);
-    const [rNew, gNew, bNewRgb] = labToRgb(L, aNew, bLabNew);
-    const newColor = rgbToHex(rNew, gNew, bNewRgb);
-    
-    const newColors = [...colors, newColor];
-    setColors(newColors);
-    
-    // Update ref immediately before URL update
-    colorsRef.current = newColors;
-       updateURL()
-  }
-};
-const removeColor = (index: number) => {
-  if (colors.length > 2) {
-    const newColors = colors.filter((_, i) => i !== index);
-    setColors(newColors);
-    
-    // Update ref immediately before URL update
-    colorsRef.current = newColors;
-    updateURL();
-  }
-};
+  const addColor = () => {
+    if (colors.length < 4) {
+      const lastColor = colors[colors.length - 1];
+      const [r, g, b] = hexToRgb(lastColor);
+      const [L, a, bLab] = rgbToLab(r, g, b);
+      const angle = Math.PI / 4;
+      const aNew = a * Math.cos(angle) - bLab * Math.sin(angle);
+      const bLabNew = a * Math.sin(angle) + bLab * Math.cos(angle);
+      const [rNew, gNew, bNewRgb] = labToRgb(L, aNew, bLabNew);
+      const newColor = rgbToHex(rNew, gNew, bNewRgb);
+
+      const newColors = [...colors, newColor];
+      setColors(newColors);
+
+      // Update ref immediately before URL update
+      colorsRef.current = newColors;
+      updateURL();
+    }
+  };
+  const removeColor = (index: number) => {
+    if (colors.length > 2) {
+      const newColors = colors.filter((_, i) => i !== index);
+      setColors(newColors);
+
+      // Update ref immediately before URL update
+      colorsRef.current = newColors;
+      updateURL();
+    }
+  };
 
   const updateColor = (index: number, value: string) => {
     const newColors = [...colors];
@@ -565,290 +561,233 @@ const removeColor = (index: number) => {
   };
 
   return (
-    <group  data-align="start" data-direction="column">
-
-
-
-        <group
-          data-space="30"
-          data-width="auto"
-          data-gap="30"
-          data-direction="column"
-          data-align="start"
-        >
-          <group data-align="start" data-wrap="no">
-            <group data-gap="10">
-              <group>
-                <text
-                  data-weight="700"
-                  data-wrap="preline"
-                  data-text-size="large"
-                  data-ellipsis=""
-                  data-font-type="hero"
-                  data-line="1"
-                >
-                  Interpolation Method
-                </text>
-              </group>
-
-              <text data-wrap="wrap" data-length="240" data-opacity="40">
-                Choose a method to control how colors blend between points.
+    <group data-align="start" data-direction="column">
+      <group
+        data-space="30"
+        data-width="auto"
+        data-gap="30"
+        data-direction="column"
+        data-align="start"
+      >
+        <group data-align="start" data-wrap="no">
+          <group data-gap="10">
+            <group>
+              <text
+                data-weight="700"
+                data-wrap="preline"
+                data-text-size="large"
+                data-ellipsis=""
+                data-font-type="hero"
+                data-line="1"
+              >
+                Mix Colors & Create Gradients
               </text>
             </group>
-          </group>
-
-          <group data-width="auto" data-gap="5">
-            {(["rgb", "lrgb", "lab", "via"] as InterpolationMethod[]).map(
-              (m) => (
-                <group
-                  key={m}
-                  data-width="auto"
-                  data-name="autoseparation"
-                  data-align="center"
-                  data-wrap="no"
-                  data-selected={method === m ? "true" : ""}
-                >
-                  <group
-                    data-width="auto"
-                    data-interactive=""
-                    data-radius="15"
-                    data-space="15"
-                    data-duration=".225"
-                    data-transition-prop="padding"
-                    data-space-horizontal={method === m ? "30" : "20"}
-                    data-cursor="pointer"
-                    data-over-color="neutral"
-                    onClick={() => setMethod(m)}
-                    data-background={method === m ? "text" : "adaptive-gray"}
-                    data-color={method === m ? "main-background" : ""}
-                  >
-                    <text
-                      data-text-transform="uppercase"
-                      data-opacity={method === m ? "100" : "60"}
-                    >
-                      {m}
-                    </text>
-                  </group>
-                </group>
-              ),
-            )}
+            <text data-wrap="wrap" data-max-length="240" data-opacity="40">
+              Richer gradients and precise blends across mixing methods.
+            </text>
           </group>
         </group>
+      </group>
 
-
-
-<group data-direction="column" data-gap="30" data-width="auto">
-  
       <group
-     
-        data-elevation="2"
-        data-radius="40"
         data-direction="column"
-        data-contain=""
-        data-length="600"
+        data-gap="30"
+        data-width="auto"
+        data-align="start"
       >
-
-
-
         <group
-          data-space="20"
-          data-width="auto"
-          data-wrap="no"
-          data-gap="10"
-          data-align="center"
+          data-elevation="2"
+          data-radius="40"
+          data-direction="column"
+          data-contain=""
+          data-length="600"
         >
-          
-          {colors.map((color, index) => (
-            <group
-              key={index}
-              data-align="center"
-              data-width="auto"
-              data-wrap="no"
-              data-gap="5"
-              data-animation-name="zoom-in"
-              data-animation-duration="2"
-            >
-              <group data-width="auto" data-align="center">
-                <Popover
-               
-                  data-space="5"
-                  data-radius="0"
-                  data-elevation="0"
-                  data-contain="visible"
-                  data-background="none"
-                  content={(closePopover) => (
-                    <group
-                      data-width="auto"
-                      data-direction="column"
-                      data-gap="5"
-                    >
+          <group
+            data-space="20"
+            data-width="auto"
+            data-wrap="no"
+            data-gap="10"
+            data-align="center"
+          >
+            {colors.map((color, index) => (
+              <group
+                key={index}
+                data-align="center"
+                data-width="auto"
+                data-wrap="no"
+                data-gap="5"
+                data-animation-name="zoom-in"
+                data-animation-duration="2"
+              >
+                <group data-width="auto" data-align="center">
+                  <Popover
+                    data-space="5"
+                    data-radius="0"
+                    data-elevation="0"
+                    data-contain="visible"
+                    data-background="none"
+                    content={(closePopover) => (
                       <group
-                        data-animation-name="appear-bottom"
-                        data-fill-mode="backwards"
-                        data-animation-duration="2.25"
-                        data-elevation="2"
-                        data-index="3"
-                        data-background="context"
-                        data-space="5"
-                        data-radius="20"
-                        data-direction="column"
-                        data-name="cred-react-colorful"
                         data-width="auto"
+                        data-direction="column"
                         data-gap="5"
                       >
-                        <HexColorPicker
-                          color={color}
-                          onChange={(newColor) => updateColor(index, newColor)}
-                          onMouseUp={() => {
-                            // Update URL when user releases mouse
-                            updateURL();
-                          }}
-                          onTouchEnd={() => {
-                            // Update URL when user releases touch
-                            updateURL();
-                          }}
-                        />
-                      </group>
-
-
-
-
-
-                      {colors.length > 2 && (
                         <group
+                          data-animation-name="appear-bottom"
+                          data-fill-mode="backwards"
+                          data-animation-duration="2.25"
                           data-elevation="2"
+                          data-index="3"
                           data-background="context"
                           data-space="5"
                           data-radius="20"
-                          data-animation-name="appear-top"
-                          data-fill-mode="backwards"
-                          data-animation-duration="3.25"
-                          data-index="1"
+                          data-direction="column"
+                          data-name="cred-react-colorful"
+                          data-width="auto"
+                          data-gap="5"
                         >
-                          <Ripple>
-                            <group
-                              data-contain=""
-                              data-ink-color="neutral"
-                              data-space="15"
-                              data-interactive=""
-                              data-over-color="neutral"
-                              data-cursor="pointer"
-                              data-radius="15"
-                              data-align="center"
-                              data-wrap="no"
-                              data-justify="center"
-                              data-gap="10"
-                              onClick={() => {
-                                removeColor(index);
-                                closePopover();
-                              }}
-                            >
-                              <group data-width="auto">
-                                <text>Remove</text>
-                              </group>
-                            </group>
-                          </Ripple>
+                          <HexColorPicker
+                            color={color}
+                            onChange={(newColor) =>
+                              updateColor(index, newColor)
+                            }
+                            onMouseUp={() => {
+                              // Update URL when user releases mouse
+                              updateURL();
+                            }}
+                            onTouchEnd={() => {
+                              // Update URL when user releases touch
+                              updateURL();
+                            }}
+                          />
                         </group>
-                      )}
-                    </group>
-                  )}
 
-                                  onOpenChange={(isOpen) => {
-                  isPickerOpenRef.current = isOpen;
-                  if (!isOpen) {
-                    // Update URL when picker closes
-                   updateURL();
-               //    console.log( isPickerOpenRef.current)
-                  }
-                }}
-                  
-
-                >
-                  <group>
-                  
-<Ripple>
-                        <group
-                        data-ink-color="neutral"
-                        data-contain=""
-                        data-width="auto"
-                        data-over-color="neutral"
-                        data-space="10"
-                        data-interactive=""
-                        data-cursor="pointer"
-                        data-align="center"
-                        data-wrap="no"
-                        data-radius="30"
-                      >
-                        <group
-                          data-interact=""
-                          data-length="30"
-                          data-height="30"
-                          data-radius="30"
-                          data-border="outline-soft"
-                          style={{ backgroundColor: color }}
-                        ></group>
+                        {colors.length > 2 && (
+                          <group
+                            data-elevation="2"
+                            data-background="context"
+                            data-space="5"
+                            data-radius="20"
+                            data-animation-name="appear-top"
+                            data-fill-mode="backwards"
+                            data-animation-duration="3.25"
+                            data-index="1"
+                          >
+                            <Ripple>
+                              <group
+                                data-contain=""
+                                data-ink-color="neutral"
+                                data-space="15"
+                                data-interactive=""
+                                data-over-color="neutral"
+                                data-cursor="pointer"
+                                data-radius="15"
+                                data-align="center"
+                                data-wrap="no"
+                                data-justify="center"
+                                data-gap="10"
+                                onClick={() => {
+                                  removeColor(index);
+                                  closePopover();
+                                }}
+                              >
+                                <group data-width="auto">
+                                  <text>Remove</text>
+                                </group>
+                              </group>
+                            </Ripple>
+                          </group>
+                        )}
                       </group>
-</Ripple>
-                
-                  </group>
-                </Popover>
-              </group>
-            </group>
-          ))}
-          {colors.length < 4 && (
-            <>
-              <Ripple>
-                <group
-                  data-ink-color="neutral"
-                  data-contain=""
-                  data-width="auto"
-                  data-over-color="neutral"
-                  data-space="15"
-                  data-interactive=""
-                  data-cursor="pointer"
-                  data-radius="30"
-                  onClick={addColor}
-                  data-animation-name="zoom-in"
-                  data-animation-duration="3"
-                >
-                  <group data-interact="" data-width="auto">
-                    <Plus size={20} />
-                  </group>
+                    )}
+                    onOpenChange={(isOpen) => {
+                      isPickerOpenRef.current = isOpen;
+                      if (!isOpen) {
+                        // Update URL when picker closes
+                        updateURL();
+                        //    console.log( isPickerOpenRef.current)
+                      }
+                    }}
+                  >
+                    <group>
+                      <Ripple>
+                        <group
+                          data-ink-color="neutral"
+                          data-contain=""
+                          data-width="auto"
+                          data-over-color="neutral"
+                          data-space="10"
+                          data-interactive=""
+                          data-cursor="pointer"
+                          data-align="center"
+                          data-wrap="no"
+                          data-radius="30"
+                        >
+                          <group
+                            data-interact=""
+                            data-length="30"
+                            data-height="30"
+                            data-radius="30"
+                            data-border="outline-soft"
+                            style={{ backgroundColor: color }}
+                          ></group>
+                        </group>
+                      </Ripple>
+                    </group>
+                  </Popover>
                 </group>
-              </Ripple>
-            </>
-          )}
-        </group>
-
-        <separator data-horizontal="dotted"></separator>
-        <group
-          data-background="context"
-          data-width="auto"
-          data-space="30"
-          data-gap="30"
-          data-direction="column"
-          data-align="start"
-        >
-          <group>
-            <text
-              data-weight="700"
-              data-wrap="preline"
-              data-text-size="large"
-              data-ellipsis=""
-              data-font-type="hero"
-              data-line="1"
-            >
-              Preview your
-              <br /> perfect mix
-            </text>
+              </group>
+            ))}
+            {colors.length < 4 && (
+              <>
+                <Ripple>
+                  <group
+                    data-ink-color="neutral"
+                    data-contain=""
+                    data-width="auto"
+                    data-over-color="neutral"
+                    data-space="15"
+                    data-interactive=""
+                    data-cursor="pointer"
+                    data-radius="30"
+                    onClick={addColor}
+                    data-animation-name="zoom-in"
+                    data-animation-duration="3"
+                  >
+                    <group data-interact="" data-width="auto">
+                      <Plus size={20} />
+                    </group>
+                  </group>
+                </Ripple>
+              </>
+            )}
           </group>
 
-          <group data-wrap="no">
-            <group
-              data-wrap="no"
-              data-gap="10"
-              data-align="start"
-            >
+          <separator data-horizontal="dotted"></separator>
+          <group
+            data-background="context"
+            data-width="auto"
+            data-space="30"
+            data-gap="30"
+            data-direction="column"
+            data-align="start"
+          >
+            <group>
+              <text
+                data-weight="700"
+                data-wrap="preline"
+                data-text-size="large"
+                data-ellipsis=""
+                data-font-type="hero"
+                data-line="1"
+              >
+                Preview your
+                <br /> perfect mix
+              </text>
+            </group>
+
+            <group data-gap="10">
               <Popover
                 data-space="5"
                 data-radius="20"
@@ -959,8 +898,6 @@ const removeColor = (index: number) => {
                 </group>
               </Popover>
 
-
-
               <Ripple>
                 <group
                   data-gap="15"
@@ -1010,191 +947,280 @@ const removeColor = (index: number) => {
                   </group>
                 </group>
               </Ripple>
-            </group>
-          </group>
 
-          {displayMode === "steps" ? (
-            <group
-              data-wrap="no"
-              data-contain=""
-              data-width="auto"
-              data-radius="15"
-            >
-              {gradient.map((color, index) => (
-                <group
-                  key={index}
-                  data-length="45"
-                  data-margin-left={index === 0 ? undefined : "-1"}
-                  data-fit="1"
-                >
-                  <Tooltip distance={-10} delay={300} content={color}>
-                    <group
-                      data-interactive=""
-                      data-over-color="neutral"
-                      data-contain=""
-                      data-height="100"
-                      data-shrink="no"
-                      data-direction="column"
-                      data-justify="end"
-                      data-wrap="no"
-                      data-origin="left"
-                      style={{
-                        backgroundColor: color,
-                      }}
-                    />
+              <Popover
+                placement="middle"
+                data-space="5"
+                data-radius="15"
+                content={(closePopover) => (
+                  <group
+                    //   data-length="200"
+                    data-direction="column"
+                    data-contain=""
+                    onClick={closePopover}
+                  >
+                    {(
+                      ["rgb", "lrgb", "lab", "via"] as InterpolationMethod[]
+                    ).map((m, index) => (
+                      <group
+                        data-width="auto"
+                        // data-direction="column"
+                        data-interactive=""
+                        data-radius="10"
+                        data-space="15"
+                        data-space-horizontal="20"
+                        key={m}
+                        data-cursor="pointer"
+                        data-over-color="neutral"
+                        onClick={() => setMethod(m)}
+                        data-background={method === m ? "adaptive-gray" : ""}
+                        data-color={method === m ? "" : ""}
+                        //   data-align="center"
+                        data-wrap="no"
+                        data-gap="15"
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
+                      >
+                        {method === m && (
+                          <>
+                            <text data-opacity="30">Interpolation</text>
+                            <separator
+                              data-position="right"
+                              data-vertical=""
+                              data-height="fit"
+                            ></separator>
+                          </>
+                        )}
+
+                        <text
+                          data-text-transform="uppercase"
+                          data-opacity={method === m ? "100" : "60"}
+                        >
+                          {m}
+                        </text>
+                      </group>
+                    ))}
+                  </group>
+                )}
+              >
+                <group data-width="auto">
+                  <Tooltip
+                    data-space="15"
+                    data-radius="15"
+                    placement="bottom"
+                    delay={500}
+                    content={"Control how colors blend between points."}
+                  >
+                    <group data-width="auto">
+                      <Ripple>
+                        <group
+                          data-over-color="neutral"
+                          data-align="center"
+                          data-contain=""
+                          data-interactive=""
+                          data-cursor="pointer"
+                          data-space="15"
+                          data-space-horizontal="20"
+                          data-gap="15"
+                          data-background="adaptive-gray"
+                          data-width="auto"
+                          data-radius="15"
+                          data-wrap="no"
+                        >
+                          <text data-opacity="40">Interpolation Method</text>
+                          <separator
+                            data-vertical=""
+                            data-height="fit"
+                          ></separator>
+                          <text data-text-transform="uppercase">{method}</text>
+                        </group>
+                      </Ripple>
+                    </group>
                   </Tooltip>
                 </group>
-              ))}
+              </Popover>
             </group>
-          ) : (
-            <group
-              data-radius="15"
-              data-contain=""
-              data-height="100"
-              style={{
-                background: getCssGradient(),
-              }}
-            />
-          )}
 
-          <group data-align="center" data-gap="15">
-            <group data-width="auto">
+            {displayMode === "steps" ? (
+              <group
+                data-wrap="no"
+                data-contain=""
+                data-width="auto"
+                data-radius="15"
+              >
+                {gradient.map((color, index) => (
+                  <group
+                    key={index}
+                    data-length="45"
+                    data-margin-left={index === 0 ? undefined : "-1"}
+                    data-fit="1"
+                  >
+                    <Tooltip distance={-10} delay={300} content={color}>
+                      <group
+                        data-interactive=""
+                        data-over-color="neutral"
+                        data-contain=""
+                        data-height="100"
+                        data-shrink="no"
+                        data-direction="column"
+                        data-justify="end"
+                        data-wrap="no"
+                        data-origin="left"
+                        style={{
+                          backgroundColor: color,
+                        }}
+                      />
+                    </Tooltip>
+                  </group>
+                ))}
+              </group>
+            ) : (
+              <group
+                data-radius="15"
+                data-contain=""
+                data-height="100"
+                style={{
+                  background: getCssGradient(),
+                }}
+              />
+            )}
+
+            <group data-align="center" data-gap="15">
               <group data-width="auto">
-                <text>Step Count</text>
+                <group data-width="auto">
+                  <text>Step Count</text>
+                </group>
+              </group>
+
+              <separator data-vertical=""></separator>
+
+              <group data-fit="1">
+                <CustomSlider
+                  start={3}
+                  end={12}
+                  value={tempSteps}
+                  onValueChange={(value) => setTempSteps(value)}
+                  trackLeftProps={{
+                    "data-margin-right": "0",
+                    "data-height": "1",
+                  }}
+                  trackRightProps={{
+                    "data-opacity": "10",
+                    "data-margin-left": "5",
+                    "data-height": "1",
+                  }}
+                />
               </group>
             </group>
 
-            <separator data-vertical=""></separator>
-
-            <group data-fit="1">
-              <CustomSlider
-                start={3}
-                end={12}
-                value={tempSteps}
-                onValueChange={(value) => setTempSteps(value)}
-                trackLeftProps={{
-                  "data-margin-right": "0",
-                  "data-height": "1",
-                }}
-                trackRightProps={{
-                  "data-opacity": "10",
-                  "data-margin-left": "5",
-                  "data-height": "1",
-                }}
-              />
-            </group>
-          </group>
-
-          <group data-align="center" data-gap="15">
-            <group data-width="auto">
+            <group data-align="center" data-gap="15">
               <group data-width="auto">
-                <text>Gamma</text>
+                <group data-width="auto">
+                  <text>Gamma</text>
+                </group>
               </group>
-            </group>
 
-            <separator data-vertical=""></separator>
+              <separator data-vertical=""></separator>
 
-            <group data-fit="1">
-              <CustomSlider
-                start={0.5}
-                end={2.5}
-                step={0.1}
-                value={tempGamma}
-                onValueChange={(value) => setTempGamma(value)}
-                trackLeftProps={{
-                  "data-margin-right": "0",
-                  "data-height": "1",
-                }}
-                trackRightProps={{
-                  "data-opacity": "10",
-                  "data-margin-left": "5",
-                  "data-height": "1",
-                }}
-              />
+              <group data-fit="1">
+                <CustomSlider
+                  start={0.5}
+                  end={2.5}
+                  step={0.1}
+                  value={tempGamma}
+                  onValueChange={(value) => setTempGamma(value)}
+                  trackLeftProps={{
+                    "data-margin-right": "0",
+                    "data-height": "1",
+                  }}
+                  trackRightProps={{
+                    "data-opacity": "10",
+                    "data-margin-left": "5",
+                    "data-height": "1",
+                  }}
+                />
+              </group>
             </group>
           </group>
         </group>
-      </group>
 
-      {hasChanged && (
-        <group data-width="auto" data-gap="30">
-          <separator data-horizontal=""></separator>
+        {hasChanged && (
+          <group data-width="auto" data-gap="30">
+            <separator data-horizontal=""></separator>
 
-          <group
-            data-width="auto"
-            data-space-horizontal="30"
-            data-gap="30"
-            data-wrap="no"
-            data-direction="column"
-            data-align="start"
-          >
             <group
-              data-animation-name="appear-top"
-              data-fill-mode="forwards"
-              data-animation-duration="2.25"
+              data-width="auto"
+              data-space-horizontal="30"
+              data-gap="30"
+              data-wrap="no"
+              data-direction="column"
+              data-align="start"
             >
-              <text data-wrap="wrap" data-length="200" data-opacity="40">
-                Reset all your adjustments to begin again.
-              </text>
-            </group>
-
-
-<group data-gap="10">
-
-            <Ripple>
               <group
-                data-contain=""
-                data-space="15"
-                data-space-horizontal="25"
-                data-width="auto"
-                data-interactive=""
-                data-over-color="neutral"
-                data-background="adaptive-gray"
-                data-radius="15"
-                data-cursor="pointer"
                 data-animation-name="appear-top"
                 data-fill-mode="forwards"
-                data-animation-duration="2.75"
-                onClick={resetValues}
+                data-animation-duration="2.25"
               >
-                <text>Reset</text>
+                <text data-wrap="wrap" data-length="200" data-opacity="40">
+                  Reset all your adjustments to begin again.
+                </text>
               </group>
-            </Ripple>
 
-
-              <Ripple>
-                <group
-                  data-contain=""
-                  data-space="15"
-                   data-space-horizontal="25"
-                  data-align="center"
-                  data-justify="center"
-                  data-background="adaptive-gray"
-                  data-width="auto"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-radius="15"
-                  data-cursor="pointer"
-                               data-animation-name="appear-top"
-                data-fill-mode="forwards"
-                data-animation-duration="3.25"
-                  onClick={copyShareLink}
-                >
-                  <group data-width="auto" data-gap="10" data-align="center" data-wrap="no">
-                   
-                    <text>Copy Link</text>
+              <group data-gap="10">
+                <Ripple>
+                  <group
+                    data-contain=""
+                    data-space="15"
+                    data-space-horizontal="25"
+                    data-width="auto"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-background="adaptive-gray"
+                    data-radius="15"
+                    data-cursor="pointer"
+                    data-animation-name="appear-top"
+                    data-fill-mode="forwards"
+                    data-animation-duration="2.75"
+                    onClick={resetValues}
+                  >
+                    <text>Reset</text>
                   </group>
-                </group>
-              </Ripple>
+                </Ripple>
 
-  </group>
-
-
+                <Ripple>
+                  <group
+                    data-contain=""
+                    data-space="15"
+                    data-space-horizontal="25"
+                    data-align="center"
+                    data-justify="center"
+                    data-background="adaptive-gray"
+                    data-width="auto"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-radius="15"
+                    data-cursor="pointer"
+                    data-animation-name="appear-top"
+                    data-fill-mode="forwards"
+                    data-animation-duration="3.25"
+                    onClick={copyShareLink}
+                  >
+                    <group
+                      data-width="auto"
+                      data-gap="10"
+                      data-align="center"
+                      data-wrap="no"
+                    >
+                      <text>Copy Link</text>
+                    </group>
+                  </group>
+                </Ripple>
+              </group>
+            </group>
           </group>
-        </group>
-      )}
-</group>
-
+        )}
+      </group>
     </group>
   );
 };

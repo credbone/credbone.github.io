@@ -286,85 +286,99 @@ const UnitConverter: React.FC = () => {
   };
 
   return (
-    <group data-direction="column" data-gap="10">
+    <group data-direction="column" >
       {/* Select conversion type */}
 
-      <group data-direction="column" data-gap="10">
-        <group data-background="highlight" data-contain="" data-radius="10">
-          <Popover
-            placement="middle"
-            data-space="5"
-             data-radius="15"
-            content={(closePopover) => (
-              <group
-                //   data-length="200"
-                data-direction="column"
-                data-contain=""
-                onClick={closePopover}
-              >
-                {[
-                  "mass",
-                  "length",
-                  "pressure",
-                  "volume",
-                  "time",
-                  "digitalStorage",
-                ].map((type) => (
+      <group data-direction="column">
+        <group data-space="10">
+          <group
+           // data-background="adaptive-gray"
+            data-contain=""
+            data-radius="15"
+          >
+            <Popover
+              placement="middle"
+              data-space="5"
+              data-radius="15"
+              content={(closePopover) => (
+                <group
+                  //   data-length="200"
+                  data-direction="column"
+                  data-contain=""
+                  onClick={closePopover}
+                >
+                  {[
+                    "mass",
+                    "length",
+                    "pressure",
+                    "volume",
+                    "time",
+                    "digitalStorage",
+                  ].map((type,index) => (
+                    <group
+                      data-radius="10"
+                      key={type}
+                      data-cursor="pointer"
+                      data-interactive=""
+                      data-space="15"
+                      data-background={conversionType === type ? "main" : ""}
+                      data-color={conversionType === type ? "main-text" : ""}
+                                                              data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration={2 + index * 0.5}
+                      onClick={() =>
+                        handleConversionTypeChange(
+                          type as
+                            | "mass"
+                            | "length"
+                            | "pressure"
+                            | "volume"
+                            | "time"
+                            | "digitalStorage",
+                        )
+                      }
+                    >
+                      <text data-weight="600" data-ellipsis="">
+                        {conversions[type].name}
+                      </text>
+                    </group>
+                  ))}
+                </group>
+              )}
+            >
+              <group>
+                <Ripple>
                   <group
-                    data-radius="10"
-                    key={type}
                     data-cursor="pointer"
+                    data-contain=""
                     data-interactive=""
                     data-space="15"
-                    data-background={conversionType === type ? "main" : ""}
-                    data-color={conversionType === type ? "main-text" : ""}
-                    
-                    onClick={() =>
-                      handleConversionTypeChange(
-                        type as
-                          | "mass"
-                          | "length"
-                          | "pressure"
-                          | "volume"
-                          | "time"
-                          | "digitalStorage",
-                      )
-                    }
+                    // data-space-horizontal="15"
+                    data-wrap="no"
+                    data-align="center"
+                    data-gap="15"
                   >
-                    <text data-weight="600" data-ellipsis="">
-                      {conversions[type].name}
+                    <text data-ellipsis="" data-weight="700">
+                      {conversions[conversionType].name}
                     </text>
+                    <separator data-vertical="" data-position="right" data-height="fit"></separator>
+                    <text  data-opacity="30">Select</text>
                   </group>
-                ))}
+                </Ripple>
               </group>
-            )}
-          >
-            <group>
-              <Ripple>
-                <group
-                  data-cursor="pointer"
-                  data-contain=""
-                  data-interactive=""
-                  data-space="15"
-                  // data-space-horizontal="15"
-                  data-wrap="no"
-                  data-align="center"
-                  data-gap="15"
-                >
-                  <text data-ellipsis="" data-weight="600">
-                    {conversions[conversionType].name}
-                  </text>
-                </group>
-              </Ripple>
-            </group>
-          </Popover>
+            </Popover>
+          </group>
         </group>
 
-        <group
+<separator data-horizontal="dotted" data-opacity="20"></separator>
+
+<group >
+          <group
           data-contain=""
           data-direction="column"
           data-index="2"
           data-gap="10"
+          data-space="10"
         >
           <group data-direction="column">
             <group>
@@ -375,7 +389,7 @@ const UnitConverter: React.FC = () => {
                 data-text-size="xx-large"
                 placeholder="0"
                 data-length="fit"
-                      data-space="5"
+                data-space="5"
                 data-space-horizontal="15"
                 type="number"
                 value={fromValue}
@@ -388,14 +402,14 @@ const UnitConverter: React.FC = () => {
             <Popover
               placement="middle"
               data-space="5"
-               data-radius="15"
+              data-radius="15"
               content={(closePopover) => (
                 <group
                   //      data-length="200"
                   data-direction="column"
                   onClick={closePopover}
                 >
-                  {units[conversionType].map(({ name, full, unit }) => (
+                  {units[conversionType].map(({ name, full, unit },index) => (
                     <group
                       key={name}
                       onClick={() => handleFromUnitChange(name)}
@@ -405,6 +419,11 @@ const UnitConverter: React.FC = () => {
                       data-space="15"
                       data-background={fromUnit === name ? "main" : ""}
                       data-color={fromUnit === name ? "main-text" : ""}
+
+                                        data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration={2 + index * 0.5}
+
                     >
                       <text
                         data-ellipsis=""
@@ -424,11 +443,9 @@ const UnitConverter: React.FC = () => {
                   <group
                     data-cursor="pointer"
                     data-contain=""
-                    
-       
                     data-interactive=""
                     data-space="15"
-                    data-radius="10"
+                    data-radius="15"
                     data-wrap="no"
                     data-align="center"
                     data-gap="5"
@@ -440,12 +457,16 @@ const UnitConverter: React.FC = () => {
             </Popover>
           </group>
 
-          <group
-          //  data-space-horizontal="10"
-          >
-            <separator data-opacity="30" data-horizontal="dotted"></separator>
+
+        </group>
+
+
+          <group>
+            <separator data-opacity="20" data-horizontal="dotted"></separator>
           </group>
 
+
+        <group data-space="10" data-gap="10">
           <group data-direction="column">
             <group>
               <input
@@ -476,7 +497,7 @@ const UnitConverter: React.FC = () => {
                   data-direction="column"
                   onClick={closePopover}
                 >
-                  {units[conversionType].map(({ name, full, unit }) => (
+                  {units[conversionType].map(({ name, full, unit },index) => (
                     <group
                       key={name}
                       onClick={() => handleToUnitChange(name)}
@@ -486,6 +507,9 @@ const UnitConverter: React.FC = () => {
                       data-space="15"
                       data-background={toUnit === name ? "main" : ""}
                       data-color={toUnit === name ? "main-text" : ""}
+                                                              data-animation-name="appear-bottom"
+                  data-fill-mode="backwards"
+                  data-animation-duration={2 + index * 0.5}
                     >
                       <text
                         data-ellipsis=""
@@ -511,7 +535,7 @@ const UnitConverter: React.FC = () => {
                     data-wrap="no"
                     data-align="center"
                     data-gap="5"
-                    data-radius="10"
+                    data-radius="15"
                   >
                     <text data-ellipsis="">{getFullUnitName(toUnit)}</text>
                   </group>
@@ -519,25 +543,28 @@ const UnitConverter: React.FC = () => {
               </group>
             </Popover>
           </group>
-        </group>
-      </group>
 
-      {getFormula() && (
-        <group
-          data-background="yellow-light"
-          data-color="yellow-darker"
-          data-radius="15"
-          data-gap="10"
-          data-space="15"
-          data-direction="column"
-          data-align="start"
-        >
-          <text data-weight="700">Formula</text>
-          <text data-wrap="wrap" data-line="1.5">
-            {getFormula()}
-          </text>
+          {getFormula() && (
+            <group
+              data-background="yellow-light"
+              data-color="yellow-darker"
+              data-radius="15"
+              data-gap="10"
+              data-space="15"
+              data-direction="column"
+              data-align="start"
+            >
+              <text data-weight="700">Formula</text>
+              <text data-wrap="wrap" data-line="1.5">
+                {getFormula()}
+              </text>
+            </group>
+          )}
         </group>
-      )}
+</group>
+
+
+      </group>
     </group>
   );
 };

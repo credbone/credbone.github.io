@@ -209,7 +209,7 @@ const resetValues = () => {
               <group
                 data-sticky="top"
                 data-space-vertical="30"
-                data-space-horizontal={isSticky ? "30" : ""}
+                data-space-horizontal={isSticky ? "15" : ""}
                 data-duration=".125"
               >
                 <group
@@ -256,6 +256,13 @@ const resetValues = () => {
                             onChange={handleSearch}
                             value={searchValue}
                             name="search"
+
+                                                onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      e.currentTarget.blur(); // closes mobile keyboard
+    }
+  }}
+
                           />
                           {searchValue && (
                             <Tooltip content="Clear">
@@ -295,9 +302,9 @@ const resetValues = () => {
                 <group data-space="30">
                   <group
                     data-background="main-background"
-                    data-space="30"
+                    data-space="10"
                     data-width="auto"
-                    data-radius="15"
+                   // data-radius="15"
                     data-direction="column"
                     data-gap="15"
                     data-align="start"
