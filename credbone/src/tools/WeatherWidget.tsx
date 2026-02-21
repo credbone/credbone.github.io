@@ -290,7 +290,7 @@ const WeatherWidget: React.FC = () => {
               </group>
             </group>
 
-            <group data-align="center" data-gap="10">
+            <group data-align="center" data-gap="15">
               <group
                 data-direction="column"
                 data-align="center"
@@ -356,11 +356,11 @@ const WeatherWidget: React.FC = () => {
           <separator data-horizontal="dotted" data-opacity="20"></separator>
           <Popover
             data-radius="25"
-            data-space="15"
+            data-space="10"
             placement="top"
             data-length="320"
             content={(closePopover) => (
-              <group data-direction="column" data-gap="15" data-align="start">
+              <group data-direction="column" data-gap="10" data-align="start">
                 <group
                   data-interactive=""
                   data-cursor="pointer"
@@ -440,7 +440,7 @@ const WeatherWidget: React.FC = () => {
               </group>
             )}
           >
-            <group data-space="15">
+            <group data-space="10">
               <Ripple>
                 <group
                   data-interactive=""

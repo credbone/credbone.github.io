@@ -314,7 +314,7 @@ const UnitConverter: React.FC = () => {
                     "volume",
                     "time",
                     "digitalStorage",
-                  ].map((type,index) => (
+                  ].map((type) => (
                     <group
                       data-radius="10"
                       key={type}
@@ -323,9 +323,9 @@ const UnitConverter: React.FC = () => {
                       data-space="15"
                       data-background={conversionType === type ? "main" : ""}
                       data-color={conversionType === type ? "main-text" : ""}
-                                                              data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration={2 + index * 0.5}
+                  //                                             data-animation-name="appear-bottom"
+                  // data-fill-mode="backwards"
+                  // data-animation-duration={2 + index * 0.5}
                       onClick={() =>
                         handleConversionTypeChange(
                           type as
@@ -409,7 +409,7 @@ const UnitConverter: React.FC = () => {
                   data-direction="column"
                   onClick={closePopover}
                 >
-                  {units[conversionType].map(({ name, full, unit },index) => (
+                  {units[conversionType].map(({ name, full, unit }) => (
                     <group
                       key={name}
                       onClick={() => handleFromUnitChange(name)}
@@ -420,9 +420,9 @@ const UnitConverter: React.FC = () => {
                       data-background={fromUnit === name ? "main" : ""}
                       data-color={fromUnit === name ? "main-text" : ""}
 
-                                        data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration={2 + index * 0.5}
+                  //                       data-animation-name="appear-bottom"
+                  // data-fill-mode="backwards"
+                  // data-animation-duration={2 + index * 0.5}
 
                     >
                       <text
@@ -497,7 +497,7 @@ const UnitConverter: React.FC = () => {
                   data-direction="column"
                   onClick={closePopover}
                 >
-                  {units[conversionType].map(({ name, full, unit },index) => (
+                  {units[conversionType].map(({ name, full, unit }) => (
                     <group
                       key={name}
                       onClick={() => handleToUnitChange(name)}
@@ -507,9 +507,9 @@ const UnitConverter: React.FC = () => {
                       data-space="15"
                       data-background={toUnit === name ? "main" : ""}
                       data-color={toUnit === name ? "main-text" : ""}
-                                                              data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration={2 + index * 0.5}
+                  //                                             data-animation-name="appear-bottom"
+                  // data-fill-mode="backwards"
+                  // data-animation-duration={2 + index * 0.5}
                     >
                       <text
                         data-ellipsis=""

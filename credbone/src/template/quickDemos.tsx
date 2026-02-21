@@ -38,7 +38,7 @@ const QuickDemos: React.FC = () => {
         <group
           data-height="auto"
           data-max-height="fit"
-          data-radius="30"
+          data-radius="25"
           data-contain=""
           data-border=""
           data-gap="20"
@@ -124,14 +124,14 @@ const QuickDemos: React.FC = () => {
         <group
           data-height="auto"
           data-max-height="fit"
-          data-radius="30"
+          data-radius="25"
           data-border=""
           data-contain=""
-          data-space="15"
-          data-gap="15"
+          data-space="10"
+          data-gap="10"
           data-length="500"
         >
-          <group data-gap="10"  data-space="15">
+          <group data-gap="10"  data-space="20">
             <text
               data-weight="700"
               data-wrap="wrap"
@@ -151,7 +151,7 @@ const QuickDemos: React.FC = () => {
             </text>
           </group>
 
-<group data-gap="15">
+<group data-gap="10">
             <separator data-horizontal="dotted" data-opacity="20"></separator>
 
           <Ripple>
