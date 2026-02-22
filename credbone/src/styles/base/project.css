@@ -70,7 +70,7 @@
 
     --elevation_1: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
     --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgb(255 255 255 / 5%);
-
+ --contrast-backdrop:rgba(55, 55, 55, 0.7)
   
 
 }
@@ -102,7 +102,7 @@
 
     --elevation_1: 0 0 50px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
     --elevation_2: 0 50px 70px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgb(255 255 255 / 5%);
-
+ --contrast-backdrop:rgba(55, 55, 55, 0.7)
 }
     
   }

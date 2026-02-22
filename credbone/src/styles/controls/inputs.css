@@ -250,6 +250,10 @@ input[type=number][data-name="input-reset"] {
  { transition-duration: .225s;} */
 
 
+@keyframes slider-smooth {from{left:0}}
+
+[data-animation-name="slider-smooth"]{animation:slider-smooth .225s;}
+
 
 
 [data-name="range-slider"]:active [data-name="range-slider-handle"] text {transform: translateY(1px);}
