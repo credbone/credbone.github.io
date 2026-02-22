@@ -898,11 +898,11 @@ const SimplePaint: React.FC = () => {
             style={{ cursor: buildCursorSvg(), touchAction: "none" }}
           />
 
-<group data-hidden={isBrushOpen? "true":""} data-hide="over" data-position="absolute" data-pointer-event="none"  data-direction="column" data-align="center" data-justify="center" data-height="fit" data-top="0" > 
+{/* <group data-hidden={isBrushOpen? "true":""} data-hide="over" data-position="absolute" data-pointer-event="none"  data-direction="column" data-align="center" data-justify="center" data-height="fit" data-top="0" > 
 <svg width="100" height="100" data-animation-name="zoom-in" data-animation-duration="2" >
   <circle cx="50" cy="50" r={brushSize / 2}  fill="#000" />
 </svg>
-</group>
+</group> */}
 
 
           <group
