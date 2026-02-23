@@ -395,7 +395,7 @@ const PatternMaker: React.FC = () => {
                   data-background="adaptive-gray"
                   onClick={resetSelection}
                   data-width="auto"
-                  data-animation-name="appear-top-small"
+                  data-animation-name="appear-bottom"
                   data-animation-duration="4"
                 >
                   <text>New</text>
@@ -547,7 +547,7 @@ const PatternMaker: React.FC = () => {
                       data-position="right"
                       data-wrap="no"
                       data-gap="15"
-                      data-animation-name="appear-top-small"
+                      data-animation-name="appear-bottom"
                       data-animation-duration="3"
                     >
                       <text data-opacity={selectedTiles.size === 0 ? "30" : ""}>

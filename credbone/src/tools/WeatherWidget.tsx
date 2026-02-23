@@ -242,7 +242,7 @@ const WeatherWidget: React.FC = () => {
             data-direction="column"
             data-align="start"
             data-width="auto"
-            data-gap="20"
+            data-gap="30"
             data-space="30"
           >
             <group

@@ -4,6 +4,12 @@ import DotDisplayEdit from "../../template/dotDisplayEdit";
 import Tooltip from "../../components/tooltip";
 
 import { arrow, colorspace, gear, mail, moon, sun } from "../tools/dotIcon";
+import { Smooth } from "../tools/dotIcon"; // adjust import path as needed
+
+// Convert a float-encoded Set<number> to the raw string format ("115.2, 131.2, 71, ...")
+// so the editor can decode sizes correctly via predefinedEncodedDots
+const encodeSet = (set: Set<number>): string =>
+  Array.from(set).join(", ");
 
 function DotIconMaker() {
   const buttonData = [
@@ -12,29 +18,28 @@ function DotIconMaker() {
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
-    //  { label: "Close", set: colorspace },
+    { label: "Smooth Circle", set: Smooth },
   ];
 
-  const [activeDots, setActiveDots] = useState<Set<number>>(buttonData[0].set); // Default to 'Sun'
+  const [encodedDots, setEncodedDots] = useState<string>(encodeSet(buttonData[0].set));
   const [selected, setSelected] = useState<number>(0); // Default selected is the first button (index 0)
   // const [isModified, setIsModified] = useState(false);
 
   const handleNewIcon = () => {
     setSelected(-1);
     //setIsModified(true);
-    // setActiveDots(new Set());
   };
 
   const handleStartEdit = () => {
     setSelected(-1);
     // setIsModified(true);
-    // setActiveDots(new Set());
   };
 
-  const handleClick = (index: number, set: Set<number>) => {
-    setSelected(index); // Update selected button by index
-    setActiveDots(new Set(set));
-  };
+const handleClick = (index: number, set: Set<number>) => {
+  setSelected(index);
+  setEncodedDots(""); // force reset so same icon re-triggers useEffect
+  setTimeout(() => setEncodedDots(encodeSet(set)), 0);
+};
 
   return (
     <group data-gap="30" data-max-length="1200">
@@ -45,7 +50,7 @@ function DotIconMaker() {
         data-autofit="1-600"
       >
         <DotDisplayEdit
-          predefinedActiveIndexes={activeDots}
+          predefinedEncodedDots={encodedDots}
           onNewIcon={handleNewIcon}
           onStartEdit={handleStartEdit}
         />
@@ -78,7 +83,6 @@ function DotIconMaker() {
 
           <group>
             <group
-
               data-gap="1"
               data-type="grid"
               data-grid-template="70"
@@ -110,7 +114,6 @@ function DotIconMaker() {
                     key={index}
                     data-space="10"
                     data-interactive="border"
-                   // data-interactive-index="1"
                     data-over-color="neutral"
                     data-background={selected === index ? "adaptive-gray" : ""}
                     data-cursor="pointer"

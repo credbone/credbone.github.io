@@ -35,6 +35,96 @@ const QuickDemos: React.FC = () => {
         data-type="column"
         data-column-size="240"
       >
+  
+
+        <group
+          data-height="auto"
+          data-max-height="fit"
+          data-radius="25"
+          data-border=""
+          data-contain=""
+          data-space="10"
+          data-gap="10"
+          data-length="500"
+
+            data-elevation="2"
+          data-index='2'
+
+        >
+          <group data-gap="10"  data-space="20">
+            <text
+              data-weight="700"
+              data-wrap="wrap"
+              data-text-size="large"
+              data-ellipsis=""
+              //  data-opacity="70"
+              data-font-type="hero"
+              data-line="1"
+            >
+              Simple
+              <br></br> Paint
+            </text>
+
+            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+              Designed with minimal functionality to demonstrate the usability
+              of a UI system
+            </text>
+          </group>
+
+<group data-gap="10">
+            <separator data-horizontal="dotted" data-opacity="20"></separator>
+
+          <Ripple>
+            <group
+              data-contain=""
+              data-space="15"
+              data-interactive=""
+              data-cursor="pointer"
+              data-radius="15"
+              // data-width="auto"
+              data-align="center"
+              data-direction="column"
+              //data-background="adaptive-gray"
+              onClick={() =>
+                openModal({
+                  id: "paint-modal",
+                  title: "Simple Paint",
+                  content: (
+                    <group
+                      data-min-length="600"
+                      data-max-height="fit"
+                      data-height="fit"
+                      data-contain=""
+                      data-shrink="initial"
+                    >
+                      <SimplePaint />
+                    </group>
+                  ),
+                  hasHeader: true,
+
+                  fullscreenbutton: true,
+                //  fullscreen: isMobile,
+
+                  hasToolbar: false,
+                  customAttributes: {
+                    "data-background": "main-background",
+                    "data-animation-name": "zoom-in-9",
+                    "data-animation-duration": "2.75",
+                    "data-fill-mode": "backwards",
+                  },
+                  //   dimAttributes: {"data-background" : "dark-shade-70"},
+                  // spacing: 0,
+                })
+              }
+            >
+              <text data-ellipsis="" data-weight="700">
+                Launch
+              </text>
+            </group>
+          </Ripple>
+</group>
+        </group>
+
         <group
           data-height="auto"
           data-max-height="fit"
@@ -42,8 +132,7 @@ const QuickDemos: React.FC = () => {
           data-contain=""
           data-border=""
           data-gap="20"
-          data-elevation="2"
-          data-index='2'
+        
         >
           <WeatherWidget />
         </group>
@@ -121,89 +210,7 @@ const QuickDemos: React.FC = () => {
           </group>
         </group>
 
-        <group
-          data-height="auto"
-          data-max-height="fit"
-          data-radius="25"
-          data-border=""
-          data-contain=""
-          data-space="10"
-          data-gap="10"
-          data-length="500"
-        >
-          <group data-gap="10"  data-space="20">
-            <text
-              data-weight="700"
-              data-wrap="wrap"
-              data-text-size="large"
-              data-ellipsis=""
-              //  data-opacity="70"
-              data-font-type="hero"
-              data-line="1"
-            >
-              Simple
-              <br></br> Paint
-            </text>
 
-            <text data-wrap="wrap" data-line="1.5" data-opacity="40">
-              Designed with minimal functionality to demonstrate the usability
-              of a UI system
-            </text>
-          </group>
-
-<group data-gap="10">
-            <separator data-horizontal="dotted" data-opacity="20"></separator>
-
-          <Ripple>
-            <group
-              data-contain=""
-              data-space="15"
-              data-interactive=""
-              data-cursor="pointer"
-              data-radius="15"
-              // data-width="auto"
-              data-align="center"
-              data-direction="column"
-              //data-background="adaptive-gray"
-              onClick={() =>
-                openModal({
-                  id: "paint-modal",
-                  title: "Simple Paint",
-                  content: (
-                    <group
-                      data-min-length="600"
-                      data-max-height="fit"
-                      data-height="fit"
-                      data-contain=""
-                      data-shrink="initial"
-                    >
-                      <SimplePaint />
-                    </group>
-                  ),
-                  hasHeader: true,
-
-                  fullscreenbutton: true,
-                //  fullscreen: isMobile,
-
-                  hasToolbar: false,
-                  customAttributes: {
-                    "data-background": "main-background",
-                    "data-animation-name": "zoom-in-9",
-                    "data-animation-duration": "2.75",
-                    "data-fill-mode": "backwards",
-                  },
-                  //   dimAttributes: {"data-background" : "dark-shade-70"},
-                  // spacing: 0,
-                })
-              }
-            >
-              <text data-ellipsis="" data-weight="700">
-                Launch
-              </text>
-            </group>
-          </Ripple>
-</group>
-        </group>
       </group>
     </group>
   );

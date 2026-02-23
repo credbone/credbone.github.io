@@ -184,7 +184,7 @@ const BlobGenerator: React.FC = () => {
 
         <group
           data-justify="center"
-          data-animation-name="appear-top-small"
+          data-animation-name="appear-bottom"
           data-animation-duration="2"
         >
           <svg width="256" height="256" viewBox="0 0 100 100">
@@ -198,7 +198,7 @@ const BlobGenerator: React.FC = () => {
         </group>
 
         <group
-          data-animation-name="appear-top-small"
+          data-animation-name="appear-bottom"
           data-fill-mode="backwards"
           data-animation-duration="4"
         >
@@ -219,7 +219,7 @@ const BlobGenerator: React.FC = () => {
           data-radius="20"
           data-gap="10"
           data-wrap="no"
-          data-animation-name="appear-top-small"
+          data-animation-name="appear-bottom"
           data-animation-duration="2"
         >
           <Ripple>
@@ -236,7 +236,7 @@ const BlobGenerator: React.FC = () => {
               data-radius="15"
               data-cursor="pointer"
               onClick={regenerateBlob}
-              data-animation-name="appear-top-small"
+              data-animation-name="appear-bottom"
               data-animation-duration="3"
             >
               <text>Randomize</text>
@@ -340,7 +340,7 @@ const BlobGenerator: React.FC = () => {
                   data-over-color="neutral"
                   data-radius="15"
                   data-cursor="pointer"
-                  data-animation-name="appear-top-small"
+                  data-animation-name="appear-bottom"
                   data-animation-duration="4"
                   //  data-position="right"
                 >

@@ -1101,6 +1101,7 @@ const ColorMixer: React.FC = () => {
                   end={12}
                   value={tempSteps}
                   onValueChange={(value) => setTempSteps(value)}
+                                    handlerProps={{ "data-animation-name": "slider-smooth" }}
                   trackLeftProps={{
                     "data-margin-right": "0",
                     "data-height": "1",
@@ -1130,6 +1131,7 @@ const ColorMixer: React.FC = () => {
                   step={0.1}
                   value={tempGamma}
                   onValueChange={(value) => setTempGamma(value)}
+                                    handlerProps={{ "data-animation-name": "slider-smooth" }}
                   trackLeftProps={{
                     "data-margin-right": "0",
                     "data-height": "1",
