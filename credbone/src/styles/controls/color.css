@@ -276,6 +276,10 @@
 
 
 
+
+[data-stroke="outline"] { stroke: var(--outline) }
+
+[data-stroke="main-background"] { stroke: var(--background) }
 [data-stroke="main"] { stroke: var(--main-color) }
 [data-stroke="main-light"] { stroke: var(--main-color-light) }
 [data-stroke="main-alpha-50"] { stroke: var(--main-color-alpha-50) }

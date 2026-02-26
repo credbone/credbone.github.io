@@ -16,6 +16,7 @@ import ThemePicker from "./themePicker";
 import { linksArray } from "./utils/OverviewData";
 import DemoThemeToggle from "../components/DemoThemeToggle";
 import SearchFloating from "../pages/search/searchFloating";
+import Content from "./content";
 
 
 
@@ -218,7 +219,12 @@ const Components: React.FC = () => {
           </group>
         </group>
 
-        <group >
+
+
+<Content/>
+
+
+        <group data-hide="true">
             <picture
               data-radius="60"
               data-brightness="adaptive"

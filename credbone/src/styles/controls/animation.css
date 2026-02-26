@@ -3,6 +3,10 @@
 
 
 
+
+
+@keyframes to-position {from{transform: translateX(0);}}
+
 @keyframes appear-left {from{opacity: 0;transform: translateX(-50px);}to{}}
 @keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
@@ -40,6 +44,9 @@
 60%{transform: scale(1.1);}
 }
 
+
+
+[data-animation-name="to-position"] {animation:to-position;}
 
 [data-animation-name="background-48"] {animation:background-48;}
 

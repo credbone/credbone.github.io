@@ -111,6 +111,13 @@ function Tools() {
               data-direction="column"
               data-wrap="no"
               data-justify="start"
+
+                          data-animation-name="zoom-in"
+            data-fill-mode="backwards"
+            data-animation-duration={2 + index * 0.5}
+            data-animation-timing="fancy"
+            data-ink-color="dark-shade-10"
+
             >
               <Ripple>
                 <group

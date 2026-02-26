@@ -4,7 +4,7 @@ import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import DotDisplay from "./dotDisplay";
 import Ripple from "../components/Ripple";
-import { cursorTo } from "node:readline";
+
 import { IconMoreHoriz } from "../components/icon/credIcons";
 
 // Cursor size definitions
@@ -421,12 +421,13 @@ const DotDisplayEdit: React.FC<{
               placement="bottom"
               data-radius="20"
               data-space="5"
-              content={
-                <Ripple>
+              content={(closePopover) => (
+    <group  data-length="200" onClick={closePopover}>
+                  <Ripple>
                   <group
                     data-gap="15"
                     data-wrap="no"
-                    data-length="200"
+                   
                     data-contain=""
                     data-space="15"
                     data-radius="15"
@@ -466,7 +467,8 @@ const DotDisplayEdit: React.FC<{
                     </group>
                   </group>
                 </Ripple>
-              }
+    </group>
+            )  }
             >
               <group data-width="auto" data-position="right">
                 <Ripple>

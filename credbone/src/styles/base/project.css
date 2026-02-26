@@ -325,3 +325,22 @@ html{zoom: .85;}
 
 
 [data-name="dot-display"] circle {transition-property: r, transform;}
+
+
+
+
+@media screen and (min-width: 800px) and (max-width: 1100px)
+
+
+{
+
+  [data-adaptive-section="800-1000"]{
+
+    order: 5;
+    grid-column-end: span 4;
+    flex-wrap: nowrap;
+    flex-direction: initial;
+
+  }
+
+}

@@ -89,10 +89,14 @@ export const democolors = [
   { code: "#AFB247", name: "Moss Yellow" },
   { code: "#5f6040", name: "Muted Olive" },
   { code: "#235842", name: "Forest Green" },
+
+
+    { code: "#717896", name: "Steel Lavender" },
+  { code: "#6995a0", name: "Cool Teal" },
+
   { code: "#56311a", name: "Dark Umber" },
   { code: "#213349", name: "Midnight Blue" },
-  { code: "#717896", name: "Steel Lavender" },
-  { code: "#6995a0", name: "Cool Teal" },
+
   { code: "#bdc7a8", name: "Sage Mist" },
   { code: "#90bec7", name: "Soft Cyan" },
   { code: "#9DC3BE", name: "Calm Aqua" },
