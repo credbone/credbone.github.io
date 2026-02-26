@@ -6,29 +6,22 @@ import Ripple from "../components/Ripple";
 import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 
-
-import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
-import sampleImage_3 from "../styles/images/samples/res_82.webp";
+// import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
+// import sampleImage_3 from "../styles/images/samples/res_82.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 
 import buildInfo from "../buildInfo.json";
-import ThemePicker from "./themePicker";
+// import ThemePicker from "./themePicker";
 import { linksArray } from "./utils/OverviewData";
-import DemoThemeToggle from "../components/DemoThemeToggle";
+// import DemoThemeToggle from "../components/DemoThemeToggle";
 import SearchFloating from "../pages/search/searchFloating";
 import Content from "./content";
-
-
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
   { name: "About The Project", url: "/About" },
   { name: "Search", url: "/Search" },
 ];
-
-
-
-
 
 const currentYear: number = new Date().getFullYear();
 
@@ -42,8 +35,6 @@ const currentYear: number = new Date().getFullYear();
 // ];
 
 const Components: React.FC = () => {
-
-
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +46,6 @@ const Components: React.FC = () => {
       });
     }
   }, [location]);
-
 
   const { openModal, closeModal } = useModal();
   // const [message, setMessage] = useState<string>("");
@@ -93,8 +83,7 @@ const Components: React.FC = () => {
           data-index="3"
           data-wrap="no"
         >
-
-<text
+          <text
             data-wrap="wrap"
             data-max-length="400"
             data-line="1.5"
@@ -110,7 +99,7 @@ const Components: React.FC = () => {
             // data-ellipsis=""
 
             data-line="1"
-          //  data-text-size="96"
+            //  data-text-size="96"
             data-text-clamp="72"
             data-max-length="800"
             data-font-type="hero"
@@ -119,8 +108,6 @@ const Components: React.FC = () => {
             <text data-wrap="no">Designed to</text>
             <br></br> evolve and adapt.
           </text>
-
-
 
           <group data-width="auto" data-gap="5" data-align="center">
             <Ripple>
@@ -154,22 +141,19 @@ const Components: React.FC = () => {
                         ></group>
 
                         <group
-                        
-
-                                  data-animation-name="appear-top"
-          data-fill-mode="backwards"
-          data-animation-duration="2.75"
-
+                          data-animation-name="appear-top"
+                          data-fill-mode="backwards"
+                          data-animation-duration="2.75"
                           data-max-length="500"
-                        //  data-border=""
-                         // data-background="context"
-                         // data-radius="25"
+                          //  data-border=""
+                          // data-background="context"
+                          // data-radius="25"
                           data-space="10"
                           data-gap="20"
-                         // data-elevation="2"
-                      //    data-animation-name="appear-top"
-                      //    data-fill-mode="backwards"
-                     //     data-animation-duration="2"
+                          // data-elevation="2"
+                          //    data-animation-name="appear-top"
+                          //    data-fill-mode="backwards"
+                          //     data-animation-duration="2"
                         >
                           <SearchFloating showRandomTagsByDefault={false} />
                         </group>
@@ -219,74 +203,44 @@ const Components: React.FC = () => {
           </group>
         </group>
 
+        <Content />
 
+        {/* <group data-hide="true">
+          <picture
+            data-radius="60"
+            data-brightness="adaptive"
+            data-position="absolute"
+            data-background="grey-light"
+          >
+            <img src={sampleImage_3} data-adaptive="mobile" alt=""></img>
+            <img src={sampleImage_2} data-adaptive="desktop" alt="" />
+          </picture>
 
-<Content/>
-
-
-        <group data-hide="true">
-            <picture
-              data-radius="60"
-              data-brightness="adaptive"
-              data-position="absolute"
-              data-background="grey-light"
-            >
-              {/* <source media="(max-width: 700px)" srcSet={sampleImage_3}></source> */}
-              <img src={sampleImage_3} data-adaptive="mobile" alt=""></img>
-              <img src={sampleImage_2} data-adaptive="desktop" alt="" />
-            </picture>
-
-            <group data-space="30" data-gap="10" data-contain="" data-type="grid" data-grid-template="240">
-
-
-
-
-
-
-              <group
+          <group
+            data-space="30"
+            data-gap="10"
+            data-contain=""
+            data-type="grid"
+            data-grid-template="240"
+          >
+            <group
               data-contain=""
-                data-width="auto"
-                data-backdrop="20-adaptive"
-                // data-elevation="2-main-color"
-                data-gap="30"
-                data-space="10"
-                data-radius="30"
-                data-align="start"
-                data-wrap="no"
-                data-direction="column"
-              >
-                  <ThemePicker />
-                {/* <separator
-                  data-horizontal=""
-              
-                ></separator>
-                <group
-                  data-gap="20"
-                  data-autofit="1-800"
-                  data-length="200"
-                  data-fit="1"
-                >
-                  <text data-wrap="wrap" data-line="1.5" data-text-size="medium-small">
-                    Shape the system theme with flexible customization, bringing
-                    a unified look across all elements
-                  </text>
-
-
-                </group> */}
-              </group>
-
-
-
-
-
-
-
-              <DemoThemeToggle/>
-
-
-   
+              data-width="auto"
+              data-backdrop="20-adaptive"
+              // data-elevation="2-main-color"
+              data-gap="30"
+              data-space="10"
+              data-radius="30"
+              data-align="start"
+              data-wrap="no"
+              data-direction="column"
+            >
+              <ThemePicker />
             </group>
+
+            <DemoThemeToggle />
           </group>
+        </group> */}
 
         <group
           data-space="adaptive-30-50"
@@ -357,7 +311,7 @@ const Components: React.FC = () => {
                     data-font-type="hero"
                     data-line="1"
                     data-wrap="preline"
-                   // data-ellipsis=""
+                    // data-ellipsis=""
                   >
                     {link.title}
                   </text>
@@ -370,8 +324,8 @@ const Components: React.FC = () => {
                     //  data-height="50"
                     data-contain=""
                     //   data-weight="700"
-                   // data-opacity="30"
-                             data-font-feature="tnum"
+                    // data-opacity="30"
+                    data-font-feature="tnum"
                   >
                     0{index + 1}
                   </text>
@@ -397,7 +351,6 @@ const Components: React.FC = () => {
           data-direction="column"
           // data-text-align="center"
           // data-align="center"
-          
         >
           <text
             data-wrap="wrap"
@@ -429,7 +382,6 @@ const Components: React.FC = () => {
             data-brightness="adaptive"
             data-position="absolute"
             data-background="grey-light"
-
           >
             <img src={sampleImage_4} alt="" />
           </picture>
@@ -504,9 +456,9 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-interactive=""
                 data-over-color="neutral"
-                  data-space-vertical="15"
-                  data-space-horizontal="20"
-                  data-radius="15"
+                data-space-vertical="15"
+                data-space-horizontal="20"
+                data-radius="15"
                 data-weight="600"
                 to="https://calendly.com/sargsyanrubens/15-minute-chat"
                 target="_blank"
@@ -519,9 +471,9 @@ const Components: React.FC = () => {
                 data-type="group"
                 data-interactive=""
                 data-over-color="neutral"
-                           data-space-vertical="15"
-                  data-space-horizontal="20"
-                  data-radius="15"
+                data-space-vertical="15"
+                data-space-horizontal="20"
+                data-radius="15"
                 data-weight="600"
                 to="https://t.me/sargsyanruben"
                 target="_blank"
@@ -535,17 +487,16 @@ const Components: React.FC = () => {
         <separator data-horizontal=""></separator>
         <group data-space="15" data-direction="column" data-contain="">
           <group data-direction="column" data-gap="5">
-            <text data-wrap="wrap" data-weight="700">Copyright {currentYear}, Credbone.</text>
+            <text data-wrap="wrap" data-weight="700">
+              Copyright {currentYear}, Credbone.
+            </text>
             <text data-wrap="wrap" data-opacity="60">
               Last updated on {buildInfo.buildDateTime}
             </text>
-
           </group>
           <group data-height="20" data-adaptive="mobile-600"></group>
         </group>
-
       </group>
-
     </group>
   );
 };
