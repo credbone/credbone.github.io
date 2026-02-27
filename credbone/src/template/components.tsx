@@ -74,6 +74,7 @@ const Components: React.FC = () => {
         data-gap="50"
         data-direction="column"
         data-max-length="1200"
+        data-contain=""
       >
         <group
           data-width="auto"

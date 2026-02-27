@@ -177,7 +177,7 @@ const Content: React.FC = () => {
                   data-react="scale"
                   data-over-color="neutral"
                   data-ink-color="neutral"
-                  data-ratio="2:1"
+                //  data-ratio="2:1"
                   //       data-length="200"
                   data-radius="100"
                   //  data-background="context"
@@ -262,8 +262,10 @@ const Content: React.FC = () => {
               data-direction="column"
               data-adaptive="desktop-500"
               data-adaptive-section="800-1000"
+              data-contain=""
+              data-align="start"
             >
-              <group data-wrap="no">
+              <group data-wrap="no" data-ratio="2:1" data-align="start">
                 <group
                   data-ratio="1:1"
                   //          data-length="200"
@@ -278,6 +280,8 @@ const Content: React.FC = () => {
                   data-radius="full"
                   data-background="context"
                   data-space="20"
+                  data-contain=""
+                  data-direction="column"
                 >
                   <svg
                     width="100%"
@@ -344,11 +348,12 @@ const Content: React.FC = () => {
                 </group>
               </group>
 
-              <group data-ratio="2:1">
+              <group data-ratio="2:1" data-align="start">
                 <group
                   data-radius="100"
                   data-background="context"
                   data-opacity="50"
+                  data-height="fit"
                 >
                   
                 </group>
@@ -359,6 +364,8 @@ const Content: React.FC = () => {
               data-direction="row-600"
               data-column-end="2-500"
               data-wrap="no-500"
+              data-align="start"
+            //  data-contain=""
             >
               {/* Circles Section */}
 
@@ -399,6 +406,9 @@ const Content: React.FC = () => {
                   data-translate="50%,-50%"
                   data-align="center"
                   data-justify="center"
+
+                  data-adaptive="desktop-500"
+
                 >
                   <group
                     data-ratio="1:1"

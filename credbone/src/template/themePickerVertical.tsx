@@ -37,12 +37,16 @@ const ThemePickerVertical: React.FC = () => {
 
     //  data-radius="20"
      // data-contain=""
-    data-space='5'
-      data-gap="5"
+   //  data-space="2"
+ 
     >
       {democolors.slice(0, 18).map((color, index) => (
-        <Tooltip data-radius="30" data-space="15" data-backdrop="20-dark"  distance={-15} content={color.name} delay={500} key={color.code}>
-          <group
+        // <Tooltip data-radius="30" data-space="15" data-backdrop="20-dark"  distance={-10} content={color.name} delay={500} key={color.code}>
+
+        // </Tooltip>
+
+                  <group
+
             data-ratio="1:1"
              data-interactive=""
             data-over-color="none"
@@ -57,9 +61,10 @@ const ThemePickerVertical: React.FC = () => {
           >
             <Ripple>
               <group
+              
            //   data-border="outline-soft"
-                data-radius="30"
-                data-margin={theme.colorPrimary === color.code ? "10" : ""}
+                data-radius="50"
+                data-margin={theme.colorPrimary === color.code ? "10" : undefined}
                 data-duration=".125"
                 data-transition-prop="border-radius-margin"
                  data-interact=""
@@ -71,7 +76,7 @@ const ThemePickerVertical: React.FC = () => {
               ></group>
             </Ripple>
           </group>
-        </Tooltip>
+
       ))}
     </group>
   );

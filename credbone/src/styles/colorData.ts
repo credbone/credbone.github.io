@@ -73,35 +73,62 @@ export const democolors = [
 
 
 
-  { code: "#5c1f2e", name: "Crimson Wine" },
-  { code: "#896170", name: "Dusty Plum" },
-  { code: "#c77782", name: "Muted Rose" },
-  { code: "#d5aeb6", name: "Soft Blush" },
-  { code: "#f7d3d0", name: "Pale Petal" },
-  { code: "#F5745E", name: "Coral Heat" },
-  { code: "#EF7843", name: "Burnt Apricot" },
-  { code: "#c35731", name: "Rust Clay" },
-  { code: "#d38733", name: "Amber Spice" },
-  { code: "#F39555", name: "Warm Tangerine" },
-  { code: "#fbcc89", name: "Honey Glow" },
-  { code: "#eaba6e", name: "Golden Sand" },
-  { code: "#CBC24B", name: "Olive Light" },
-  { code: "#AFB247", name: "Moss Yellow" },
-  { code: "#5f6040", name: "Muted Olive" },
-  { code: "#235842", name: "Forest Green" },
+  { code: "#6A2333", name: "Garnet Earth" },
+{ code: "#8E4A57", name: "Clay Plum" },
+{ code: "#B96A6E", name: "Desert Rose" },
+{ code: "#D89A8F", name: "Sunbaked Blush" },
+{ code: "#F2C6B8", name: "Warm Petal" },
+
+{ code: "#E96A4E", name: "Terracotta Flame" },
+{ code: "#D97A3A", name: "Copper Clay" },
+{ code: "#C46A2E", name: "Burnt Sienna" },
+{ code: "#D89A3C", name: "Amber Grain" },
+{ code: "#F2B35C", name: "Golden Ochre" },
+{ code: "#F6CF8A", name: "Honey Dune" },
+{ code: "#E6B96B", name: "Harvest Sand" },
+
+{ code: "#B7B24A", name: "Olive Bloom" },
+{ code: "#8FA046", name: "Moss Field" },
+{ code: "#5E6A3D", name: "Deep Olive" },
+{ code: "#3E5A2F", name: "Forest Moss" },
+{ code: "#2F4A28", name: "Woodland Green" },
+{ code: "#1F3A22", name: "Evergreen Shade" }
 
 
-    { code: "#717896", name: "Steel Lavender" },
-  { code: "#6995a0", name: "Cool Teal" },
 
-  { code: "#56311a", name: "Dark Umber" },
-  { code: "#213349", name: "Midnight Blue" },
+// { code: "#4C6F8F", name: "Slate Blue" },
+// { code: "#3A5672", name: "Storm Basin" },
 
-  { code: "#bdc7a8", name: "Sage Mist" },
-  { code: "#90bec7", name: "Soft Cyan" },
-  { code: "#9DC3BE", name: "Calm Aqua" },
-  { code: "#84CEC0", name: "Fresh Mint" },
-  { code: "#c0e6ea", name: "Ice Blue" }
+
+  // { code: "#5c1f2e", name: "Crimson Wine" },
+  // { code: "#896170", name: "Dusty Plum" },
+  // { code: "#c77782", name: "Muted Rose" },
+  // { code: "#d5aeb6", name: "Soft Blush" },
+  // { code: "#f7d3d0", name: "Pale Petal" },
+  // { code: "#F5745E", name: "Coral Heat" },
+  // { code: "#EF7843", name: "Burnt Apricot" },
+  // { code: "#c35731", name: "Rust Clay" },
+  // { code: "#d38733", name: "Amber Spice" },
+  // { code: "#F39555", name: "Warm Tangerine" },
+  // { code: "#fbcc89", name: "Honey Glow" },
+  // { code: "#eaba6e", name: "Golden Sand" },
+  // { code: "#CBC24B", name: "Olive Light" },
+  // { code: "#AFB247", name: "Moss Yellow" },
+  // { code: "#5f6040", name: "Muted Olive" },
+  // { code: "#235842", name: "Forest Green" },
+
+
+  //   { code: "#717896", name: "Steel Lavender" },
+  // { code: "#6995a0", name: "Cool Teal" },
+
+  // { code: "#56311a", name: "Dark Umber" },
+  // { code: "#213349", name: "Midnight Blue" },
+
+  // { code: "#bdc7a8", name: "Sage Mist" },
+  // { code: "#90bec7", name: "Soft Cyan" },
+  // { code: "#9DC3BE", name: "Calm Aqua" },
+  // { code: "#84CEC0", name: "Fresh Mint" },
+  // { code: "#c0e6ea", name: "Ice Blue" }
 
 
 
