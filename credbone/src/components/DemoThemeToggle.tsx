@@ -66,10 +66,17 @@ const DemoThemeToggle: React.FC = () => {
       data-radius="30"
       data-gap="30"
       data-interactive=""
-      data-over-color="neutral"
+      data-over-color="none"
       data-justify="center"
       data-align="center"
       data-ratio="1:1"
+
+
+      data-animation-name="appear-bottom"
+      data-animation-duration="3.25"
+    //  data-animation-timing="fancy"
+
+
     >
       <group data-interact=""  data-width="auto">
         <DotDisplay size="fit" activeIndexes={activeDots} />

@@ -3,7 +3,7 @@ import DotDisplay from "../../template/dotDisplay";
 import DotDisplayEdit from "../../template/dotDisplayEdit";
 import Tooltip from "../../components/tooltip";
 
-import { arrow, colorspace, gear, mail, moon, sun } from "../tools/dotIcon";
+import { arrow, colorspace, cursor, gear, mail, moon, spray, sun } from "../tools/dotIcon";
 import { Smooth } from "../tools/dotIcon"; // adjust import path as needed
 
 // Convert a float-encoded Set<number> to the raw string format ("115.2, 131.2, 71, ...")
@@ -18,7 +18,8 @@ function DotIconMaker() {
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
-    { label: "Smooth Circle", set: Smooth },
+    // { label: "Smooth Circle", set: Smooth },
+    // { label: "Smooth Circle", set: spray },
   ];
 
   const [encodedDots, setEncodedDots] = useState<string>(encodeSet(buttonData[0].set));

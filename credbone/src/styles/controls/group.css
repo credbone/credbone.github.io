@@ -82,7 +82,7 @@ group[data-type="grid"][data-grid-template-columns="dynamic"]{grid-template-colu
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 799px) {
 
     group[data-type="grid"][data-grid-template-columns="dynamic"]{grid-template-columns:repeat(3, 1fr)}
 }

@@ -222,3 +222,19 @@
 
 [data-animation-play-state="paused"]{animation-play-state: paused;}
 [data-animation-play-state="running"]{animation-play-state: running;}
+
+
+
+
+
+@keyframes to-hide {from {transform: translateY(0);}to {transform: translateY(-100%);}}
+@keyframes to-visible {to {transform: translateY(0);}}
+
+
+[data-appear="hover-bottom"] { transform: translateY(100%);  animation: to-hide   .425s;}
+
+:hover > [data-appear="hover-bottom"],
+:active > [data-appear="hover-bottom"]
+
+{ animation:  to-visible forwards .425s;}
+

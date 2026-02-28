@@ -122,7 +122,7 @@ function Tools() {
               <Ripple>
                 <group
                   data-interact=""
-                  data-space="30"
+                  data-space="20"
                   data-background="adaptive-gray"
                   data-radius="40"
                   data-contain=""

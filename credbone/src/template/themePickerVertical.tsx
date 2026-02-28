@@ -31,9 +31,12 @@ const ThemePickerVertical: React.FC = () => {
 
   return (
     <group
-      data-align="center"
+
       data-type="grid"
       data-grid-template-columns="3-6-600"
+
+      data-height="fit"
+data-contain="" data-align="start"
 
     //  data-radius="20"
      // data-contain=""
@@ -52,8 +55,9 @@ const ThemePickerVertical: React.FC = () => {
             data-over-color="none"
             key={color.code}
             onClick={() => handleColorSelection(color.code)}
-            data-animation-name="appear-top"
-            data-fill-mode="backwards"
+            data-animation-name="zoom-in"
+            //data-fill-mode="backwards"
+            
             data-animation-duration={2 + index * 0.25}
             data-animation-timing="fancy"
             data-ink-color="dark-shade-10"
