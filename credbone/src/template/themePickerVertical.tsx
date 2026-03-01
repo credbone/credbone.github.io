@@ -59,8 +59,9 @@ data-contain="" data-align="start"
             //data-fill-mode="backwards"
             
             data-animation-duration={2 + index * 0.25}
-            data-animation-timing="fancy"
+           // data-animation-timing="fancy"
             data-ink-color="dark-shade-10"
+           
 
           >
             <Ripple>

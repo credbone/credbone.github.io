@@ -278,6 +278,7 @@
 
 
 [data-stroke="outline"] { stroke: var(--outline) }
+[data-stroke="context"] { stroke: var(--context) }
 
 [data-stroke="main-background"] { stroke: var(--background) }
 [data-stroke="main"] { stroke: var(--main-color) }

@@ -68,13 +68,13 @@
 [data-backdrop="10"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background:var(--backdrop) }
 [data-backdrop="20-light"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(255, 255, 255, 0.1) }
 [data-backdrop="20"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(136, 136, 136, 0.1) }
-[data-backdrop="20-dark"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(12, 12, 12, 0.5) }
+[data-backdrop="20-dark"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:rgba(36, 36, 36, 0.5) }
 
 
 [data-backdrop="20-adaptive"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:var(--adaptive-backdrop) }
 [data-backdrop="20-contrast"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:var(--contrast-backdrop)}
 
-[data-backdrop="10-dark"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background:rgba(43, 43, 43, 0.75) }
+[data-backdrop="10-dark"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background:rgba(53, 53, 53, 0.75) }
 [data-backdrop="3"]{-webkit-backdrop-filter: blur(3px);backdrop-filter: blur(3px); }
 [data-backdrop="gradient-top"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background-color:var(--backdrop); background-image: linear-gradient(var(--background), transparent); }
 
@@ -193,6 +193,8 @@ text[data-width="auto"]{width: initial;}
 [data-right="20"] { right: 20px; }
 [data-right="25"] { right: 25px; }
 [data-right="30"] { right: 30px; }
+[data-right="40"] { right: 40px; }
+[data-right="50"] { right: 50px; }
 [data-right="-30"] { right: -30px; }
 [data-right="100%"] { right: 100%; }
 [data-right="75%"] { right: 75%; }
@@ -216,6 +218,7 @@ text[data-width="auto"]{width: initial;}
 [data-top="20"] { top: 20px; }
 [data-top="25"] { top: 25px; }
 [data-top="30"] { top: 30px; }
+[data-top="40"] { top: 40px; }
 [data-top="50"] { top: 50px; }
 [data-top="60"] { top: 60px; }
 [data-top="90"] { top: 90px; }
@@ -822,7 +825,9 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-margin-left="-15"]{margin-left:-15px;}
 [data-margin-left="5"]{margin-left:5px;}
-[data-margin-right="5"]{margin-right:5px;}
+[data-margin-right="5"]{margin-right:-5px;}
+
+[data-margin-left="-10"]{margin-left:-10px;}
 
 [data-margin-left="0"]{margin-left:0px;}
 [data-margin-left="-1"]{margin-left:-1px;}

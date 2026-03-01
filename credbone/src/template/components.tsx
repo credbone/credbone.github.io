@@ -25,14 +25,7 @@ const links = [
 
 const currentYear: number = new Date().getFullYear();
 
-// const phrases = [
-//   "Hi",
-//   "Hello",
-//   "Hey",
-//   "What's new?",
-//   "Hey there",
-//   "What's up?",
-// ];
+
 
 const Components: React.FC = () => {
   const location = useLocation();
@@ -48,7 +41,7 @@ const Components: React.FC = () => {
   }, [location]);
 
   const { openModal, closeModal } = useModal();
-  // const [message, setMessage] = useState<string>("");
+
 
   const modalConfig = {
     "data-radius": "none",
@@ -62,10 +55,7 @@ const Components: React.FC = () => {
     "data-modal-backdrop": "dark",
   };
 
-  // useEffect(() => {
-  //   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-  //   setMessage(randomPhrase);
-  // }, []);
+ 
 
   return (
     <group data-scroll="" data-index="1" ref={viewRef}>
@@ -299,6 +289,20 @@ const Components: React.FC = () => {
                 data-background={link.color ? "main" : "adaptive-gray"}
                 data-color={link.color ? "main-text" : ""}
               >
+
+                  {link.new === "true" && (
+                    <group
+                      data-background="red"
+                      data-space="5"
+                      data-position="absolute"
+                      data-width="auto"
+                      data-radius="5"
+                      data-right="30"
+                      data-top="30"
+                      data-index="2"
+                    ></group>
+                  )}
+
                 <group
                   data-index="1"
                   data-direction="column"

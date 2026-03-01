@@ -9,6 +9,8 @@ import sampleImage_3 from "../styles/images/samples/wide_res_70.webp";
 import { Link } from "react-router-dom";
 
 import { isMobile } from "react-device-detect";
+// import TextReveal from "../components/TextReveal";
+// import Count from "../components/Coutner";
 
 const Content: React.FC = () => {
   const [hidden, setHidden] = useState(true);
@@ -20,6 +22,14 @@ const Content: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // const [message, setMessage] = useState<string>("");
+  // const phrases = ["control", "speed", "flexibility"];
+
+  // useEffect(() => {
+  //   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  //   setMessage(randomPhrase);
+  // }, []);
 
   return (
     <>
@@ -116,84 +126,112 @@ const Content: React.FC = () => {
                   data-background="context-right"
                 ></group>
 
-                <group
-                  data-ratio="1:1"
-                  data-radius="full"
-                  data-background="text"
-                  data-color="main-background"
-                  data-contain=""
+                <Tooltip
+                  //  distance={-30}
+
+                  placement="cursor"
+                  data-contain="visible"
+                  //data-color="text"
+                  data-backdrop="20-dark"
+                  data-space-vertical="20"
+                  data-space-horizontal="25"
+                  data-radius="20"
+                  content={
+                    isMobile ? undefined : (
+                      <text data-wrap="preline">
+                        Switch apperance.
+                        <br></br>
+                        Applicable tokens auto-handled.
+                      </text>
+                    )
+                  }
                 >
-                  <DemoThemeToggle />
-                </group>
+                  <group
+                    data-ratio="1:1"
+                    data-radius="full"
+                    data-background="text"
+                    data-color="main-background"
+                    data-contain=""
+                  >
+                    <DemoThemeToggle />
+                  </group>
+                </Tooltip>
               </group>
 
-              <group
-                data-ratio="1:2/2:1-600"
-                data-contain=""
-                data-align="start"
-              >
+
                 <group
-                  data-height="fit"
+                  data-ratio="1:2/2:1-600"
                   data-contain=""
                   data-align="start"
-                  //    data-background="context"
                 >
-                  <ThemePickerVertical />
-                </group>
-              </group>
-            </group>
-
-            <group data-column-end="2-500">
-              <Ripple>
-                <group
-                  data-interactive=""
-                  data-react="scale"
-                  data-over-color="none"
-                  data-ink-color="neutral"
-
-                  data-radius="100"
-
-                  data-align="end"
-                  data-wrap="no"
-                  data-contain=""
-                  data-direction="row-500"
-                  data-cursor="pointer"
-                >
-                  <picture
-                    data-mask="top"
-                    data-radius="60"
-                    data-brightness="adaptive"
-                    data-position="absolute"
-                //    data-background="grey-light"
-                  >
-
-                    <img src={sampleImage_3} alt=""></img>
-                  </picture>
                   <group
-                    data-order="2-500"
-                    data-ratio="1:1"
-                    data-align="center"
-                    data-justify="center"
-                  ></group>
-                  <Tooltip
-                    distance={-30}
-                    placement="right"
-                    data-contain="visible"
-                    data-color="text"
-                    data-backdrop="20"
-                    data-space-vertical="20"
-                    data-space-horizontal="25"
-                    data-radius="20"
-                    content={
-                      isMobile ? undefined : (
-                        <text data-wrap="preline">
-                        Define & Structure.
-                        <br></br>
-Explore tokens and patterns.
-                        </text>
-                      )
-                    }
+                    data-height="fit"
+                    data-contain=""
+                    data-align="start"
+                    //    data-background="context"
                   >
+                    <ThemePickerVertical />
+                  </group>
+                </group>
+
+            </group>
+            <Tooltip
+              //  distance={-30}
+
+              placement="cursor"
+              data-contain="visible"
+              data-color="text"
+              data-backdrop="20"
+              data-space-vertical="20"
+              data-space-horizontal="25"
+              data-radius="20"
+              content={
+                isMobile ? undefined : (
+                  <text data-wrap="preline">
+                    Define & Structure.
+                    <br></br>
+                    Explore tokens and patterns.
+                  </text>
+                )
+              }
+            >
+              <Link
+                data-drag="none"
+                to={"/Components/Overview"}
+                data-type="group"
+                data-column-end="2-500"
+              >
+                <Ripple>
+                  <group
+                    data-interactive=""
+                    data-react="scale"
+                    data-over-color="none"
+                    data-ink-color="neutral"
+                    data-radius="100"
+                    data-align="end"
+                    data-wrap="no"
+                    data-contain=""
+                    data-direction="row-500"
+                    data-cursor="pointer"
+                  >
+                    <picture
+                      data-mask="top"
+                      // data-radius="60"
+                      data-brightness="adaptive"
+                      data-position="absolute"
+                      //    data-background="grey-light"
+                    >
+                      <img src={sampleImage_3} alt=""></img>
+                    </picture>
+                    <group
+                      data-order="2-500"
+                      data-ratio="1:1"
+                      data-align="center"
+                      data-justify="center"
+                    >
+                      
+                    </group>
+
                     <group
                       data-interact=""
                       //         data-position="absolute"
@@ -202,10 +240,7 @@ Explore tokens and patterns.
                       data-align="center"
                       data-justify="center"
                     >
-                      <Link
-                        data-drag="none"
-                        to={"/Components/Overview"}
-                        data-type="group"
+                      <group
                         data-theme="dark"
                         data-ratio="1:1"
                         //  data-background="text"
@@ -221,13 +256,12 @@ Explore tokens and patterns.
                           data-radius="20"
                           //    data-background="neutral-lighter"
                         ></group>
-                      </Link>
+                      </group>
                     </group>
-                  </Tooltip>
-                </group>
-              </Ripple>
-            </group>
-
+                  </group>
+                </Ripple>
+              </Link>
+            </Tooltip>
             <group
               data-column-end="2"
               data-direction="column"
@@ -256,7 +290,7 @@ Explore tokens and patterns.
                 >
                   <Tooltip
                     //    delay={200}
-                    placement="left"
+                    placement="cursor"
                     data-contain="visible"
                     data-color="text"
                     data-background="none"
@@ -265,7 +299,7 @@ Explore tokens and patterns.
                     data-space-horizontal="25"
                     distance={-30}
                     data-radius="20"
-                    data-text-align="right"
+                    //  data-text-align="right"
                     content={
                       isMobile ? undefined : (
                         <text data-wrap="wprelinerap">
@@ -284,23 +318,22 @@ Explore tokens and patterns.
                       data-ink-color="neutral"
                     >
                       <Ripple>
-                        <group
+                        <Link
+                          data-drag="none"
+                          data-type="group"
+                          to={"/Components/QuickDemos"}
                           data-height="fit"
                           data-contain=""
-                          data-radius="100"
+                          //  data-radius="100"
                           data-interactive=""
                           data-over-color="none"
                           data-align="start"
                           data-direction="column"
                         >
-                          <Link
-                            data-drag="none"
-                            to={"/Components/QuickDemos"}
-                            data-type="group"
+                          <group
                             data-animation-name="appear-bottom"
                             data-appear={isMobile ? undefined : "hover-bottom"}
                             data-opacity={!isMobile && hidden ? "0" : undefined}
-                            data-interact=""
                             data-cursor="pointer"
                             data-ratio="1:1"
                             data-position="center"
@@ -319,55 +352,61 @@ Explore tokens and patterns.
                             data-background="context"
                           ></group> */}
 
-                            <svg
-                              width="100%"
-                              height="100%"
-                              viewBox="0 0 160 160"
-                              fill="currentcolor"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <group
+                              data-height="fit"
+                              data-contain=""
+                              data-interact=""
                             >
-                              <circle cx="55" cy="105" r="4" />
-                              <circle cx="65" cy="95" r="4" />
-                              <circle cx="75" cy="85" r="4" />
-                              <circle cx="85" cy="85" r="4" />
-                              <circle cx="85" cy="75" r="4" />
-                              <circle cx="95" cy="75" r="4" />
-                              <circle cx="95" cy="65" r="4" />
-                              <circle cx="75" cy="95" r="4" />
-                              <circle cx="65" cy="105" r="4" />
-                              <circle cx="55" cy="115" r="4" />
-                              <circle cx="105" cy="55" r="4" />
-                              <circle cx="115" cy="55" r="4" />
-                              <circle cx="115" cy="65" r="4" />
-                              <circle cx="115" cy="75" r="4" />
-                              <circle cx="115" cy="85" r="4" />
-                              <circle cx="115" cy="105" r="4" />
-                              <circle cx="115" cy="95" r="4" />
-                              <circle cx="105" cy="45" r="4" />
-                              <circle cx="95" cy="45" r="4" />
-                              <circle cx="85" cy="45" r="4" />
-                              <circle cx="75" cy="45" r="4" />
-                              <circle cx="55" cy="45" r="4" />
-                              <circle cx="65" cy="45" r="4" />
-                              <circle cx="115" cy="45" r="4" />
-                              <circle cx="95" cy="55" r="4" />
-                              <circle cx="85" cy="65" r="4" />
-                              <circle cx="75" cy="75" r="4" />
-                              <circle cx="65" cy="85" r="4" />
-                              <circle cx="55" cy="95" r="4" />
-                              <circle cx="45" cy="105" r="4" />
-                              <circle cx="105" cy="65" r="4" />
-                              <circle cx="105" cy="75" r="4" />
-                              <circle cx="105" cy="85" r="4" />
-                              <circle cx="105" cy="95" r="4" />
-                              <circle cx="105" cy="105" r="4" />
-                              <circle cx="85" cy="55" r="4" />
-                              <circle cx="75" cy="55" r="4" />
-                              <circle cx="65" cy="55" r="4" />
-                              <circle cx="55" cy="55" r="4" />
-                            </svg>
-                          </Link>
-                        </group>
+                              <svg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 160 160"
+                                fill="currentcolor"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle cx="55" cy="105" r="4" />
+                                <circle cx="65" cy="95" r="4" />
+                                <circle cx="75" cy="85" r="4" />
+                                <circle cx="85" cy="85" r="4" />
+                                <circle cx="85" cy="75" r="4" />
+                                <circle cx="95" cy="75" r="4" />
+                                <circle cx="95" cy="65" r="4" />
+                                <circle cx="75" cy="95" r="4" />
+                                <circle cx="65" cy="105" r="4" />
+                                <circle cx="55" cy="115" r="4" />
+                                <circle cx="105" cy="55" r="4" />
+                                <circle cx="115" cy="55" r="4" />
+                                <circle cx="115" cy="65" r="4" />
+                                <circle cx="115" cy="75" r="4" />
+                                <circle cx="115" cy="85" r="4" />
+                                <circle cx="115" cy="105" r="4" />
+                                <circle cx="115" cy="95" r="4" />
+                                <circle cx="105" cy="45" r="4" />
+                                <circle cx="95" cy="45" r="4" />
+                                <circle cx="85" cy="45" r="4" />
+                                <circle cx="75" cy="45" r="4" />
+                                <circle cx="55" cy="45" r="4" />
+                                <circle cx="65" cy="45" r="4" />
+                                <circle cx="115" cy="45" r="4" />
+                                <circle cx="95" cy="55" r="4" />
+                                <circle cx="85" cy="65" r="4" />
+                                <circle cx="75" cy="75" r="4" />
+                                <circle cx="65" cy="85" r="4" />
+                                <circle cx="55" cy="95" r="4" />
+                                <circle cx="45" cy="105" r="4" />
+                                <circle cx="105" cy="65" r="4" />
+                                <circle cx="105" cy="75" r="4" />
+                                <circle cx="105" cy="85" r="4" />
+                                <circle cx="105" cy="95" r="4" />
+                                <circle cx="105" cy="105" r="4" />
+                                <circle cx="85" cy="55" r="4" />
+                                <circle cx="75" cy="55" r="4" />
+                                <circle cx="65" cy="55" r="4" />
+                                <circle cx="55" cy="55" r="4" />
+                              </svg>
+                            </group>
+                          </group>
+                        </Link>
                       </Ripple>
                     </group>
                   </Tooltip>
@@ -377,10 +416,20 @@ Explore tokens and patterns.
               <group data-ratio="2:1" data-align="start">
                 <group
                   data-radius="100"
-                  data-background="context-left"
+                  data-background="context"
                   data-opacity="50"
                   data-height="fit"
-                ></group>
+                  data-align="center"
+                  data-justify="center"
+                  data-space="20"
+                  data-direction="column"
+                >
+                  {/* <text data-wrap="wrap"  data-weight="300"  data-line="1" data-text-size="xx-large" data-length="120" data-text-align="center">
+  
+     <TextReveal text={message} duration={600} />
+
+</text> */}
+                </group>
               </group>
             </group>
 
@@ -417,7 +466,7 @@ Explore tokens and patterns.
                     y2="50"
                     //  stroke="black"
                     strokeWidth="1"
-                    data-stroke="outline"
+                    data-stroke="context"
                   />
                 </svg>
 
@@ -561,7 +610,7 @@ Explore tokens and patterns.
 
                   <Tooltip
                     //     delay={200}
-                    placement="left"
+                    placement="cursor"
                     data-contain="visible"
                     data-color="text"
                     data-backdrop="20"
@@ -569,7 +618,7 @@ Explore tokens and patterns.
                     data-space-vertical="20"
                     data-space-horizontal="25"
                     data-radius="20"
-                    data-text-align="right"
+                    // data-text-align="right"
                     content={
                       isMobile ? undefined : (
                         <text data-wrap="preline">
@@ -585,21 +634,22 @@ Explore tokens and patterns.
                       data-align="start"
                       data-direction="column"
                       data-contain=""
+                      data-radius="100"
                     >
                       <Ripple>
-                        <group
+                        <Link
+                          data-drag="none"
+                          to={"/Tools"}
+                          data-type="group"
                           data-height="fit"
                           data-contain=""
-                          data-radius="100"
+                          // data-radius="100"
                           data-interactive=""
                           data-over-color="none"
                           data-align="start"
                           data-direction="column"
                         >
-                          <Link
-                            data-drag="none"
-                            to={"/Tools"}
-                            data-type="group"
+                          <group
                             data-appear={isMobile ? undefined : "hover-bottom"}
                             data-opacity={!isMobile && hidden ? "0" : undefined}
                             data-interact=""
@@ -610,58 +660,64 @@ Explore tokens and patterns.
                             data-contain=""
                             data-space="20"
                           >
-                            <svg
-                              width="100%"
-                              height="100%"
-                              viewBox="0 0 160 160"
-                              fill="currentcolor"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <group
+                              data-interact=""
+                              data-height="fit"
+                              data-contain=""
                             >
-                              <circle cx="55" cy="55" r="2" />
-                              <circle cx="65" cy="65" r="4" />
-                              <circle cx="75" cy="75" r="6" />
-                              <circle cx="85" cy="85" r="6" />
-                              <circle cx="95" cy="95" r="4" />
-                              <circle cx="55" cy="105" r="2" />
-                              <circle cx="65" cy="95" r="4" />
-                              <circle cx="75" cy="95" r="4" />
-                              <circle cx="85" cy="95" r="4" />
-                              <circle cx="55" cy="95" r="2" />
-                              <circle cx="75" cy="85" r="6" />
-                              <circle cx="65" cy="75" r="4" />
-                              <circle cx="55" cy="65" r="2" />
-                              <circle cx="55" cy="75" r="2" />
-                              <circle cx="55" cy="85" r="2" />
-                              <circle cx="65" cy="85" r="4" />
-                              <circle cx="55" cy="45" r="2" />
-                              <circle cx="65" cy="55" r="4" />
-                              <circle cx="75" cy="65" r="6" />
-                              <circle cx="85" cy="75" r="6" />
-                              <circle cx="95" cy="85" r="6" />
-                              <circle cx="105" cy="95" r="4" />
-                              <circle cx="55" cy="35" r="2" />
-                              <circle cx="65" cy="45" r="4" />
-                              <circle cx="75" cy="55" r="6" />
-                              <circle cx="85" cy="65" r="6" />
-                              <circle cx="95" cy="75" r="6" />
-                              <circle cx="105" cy="85" r="6" />
-                              <circle cx="115" cy="95" r="4" />
-                              <circle cx="55" cy="125" r="2" />
-                              <circle cx="55" cy="115" r="2" />
-                              <circle cx="65" cy="105" r="4" />
-                              <circle cx="75" cy="105" r="2" />
-                              <circle cx="65" cy="115" r="2" />
-                              <circle cx="55" cy="25" r="2" />
-                              <circle cx="65" cy="35" r="4" />
-                              <circle cx="75" cy="45" r="4" />
-                              <circle cx="85" cy="55" r="4" />
-                              <circle cx="105" cy="75" r="4" />
-                              <circle cx="115" cy="85" r="4" />
-                              <circle cx="125" cy="95" r="4" />
-                              <circle cx="95" cy="65" r="4" />
-                            </svg>
-                          </Link>
-                        </group>
+                              <svg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 160 160"
+                                fill="currentcolor"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle cx="55" cy="55" r="2" />
+                                <circle cx="65" cy="65" r="4" />
+                                <circle cx="75" cy="75" r="6" />
+                                <circle cx="85" cy="85" r="6" />
+                                <circle cx="95" cy="95" r="4" />
+                                <circle cx="55" cy="105" r="2" />
+                                <circle cx="65" cy="95" r="4" />
+                                <circle cx="75" cy="95" r="4" />
+                                <circle cx="85" cy="95" r="4" />
+                                <circle cx="55" cy="95" r="2" />
+                                <circle cx="75" cy="85" r="6" />
+                                <circle cx="65" cy="75" r="4" />
+                                <circle cx="55" cy="65" r="2" />
+                                <circle cx="55" cy="75" r="2" />
+                                <circle cx="55" cy="85" r="2" />
+                                <circle cx="65" cy="85" r="4" />
+                                <circle cx="55" cy="45" r="2" />
+                                <circle cx="65" cy="55" r="4" />
+                                <circle cx="75" cy="65" r="6" />
+                                <circle cx="85" cy="75" r="6" />
+                                <circle cx="95" cy="85" r="6" />
+                                <circle cx="105" cy="95" r="4" />
+                                <circle cx="55" cy="35" r="2" />
+                                <circle cx="65" cy="45" r="4" />
+                                <circle cx="75" cy="55" r="6" />
+                                <circle cx="85" cy="65" r="6" />
+                                <circle cx="95" cy="75" r="6" />
+                                <circle cx="105" cy="85" r="6" />
+                                <circle cx="115" cy="95" r="4" />
+                                <circle cx="55" cy="125" r="2" />
+                                <circle cx="55" cy="115" r="2" />
+                                <circle cx="65" cy="105" r="4" />
+                                <circle cx="75" cy="105" r="2" />
+                                <circle cx="65" cy="115" r="2" />
+                                <circle cx="55" cy="25" r="2" />
+                                <circle cx="65" cy="35" r="4" />
+                                <circle cx="75" cy="45" r="4" />
+                                <circle cx="85" cy="55" r="4" />
+                                <circle cx="105" cy="75" r="4" />
+                                <circle cx="115" cy="85" r="4" />
+                                <circle cx="125" cy="95" r="4" />
+                                <circle cx="95" cy="65" r="4" />
+                              </svg>
+                            </group>
+                          </group>
+                        </Link>
                       </Ripple>
                     </group>
                   </Tooltip>

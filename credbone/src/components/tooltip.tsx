@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 interface TooltipProps {
   content: any;
   children: React.ReactNode;
-  placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'cursor';
   distance?: number;
   delay?: number;
 }
@@ -23,6 +23,22 @@ const Tooltip: React.FC<TooltipProps> = ({
   const childRef = useRef<HTMLElement>(null);
   const touchTimeout = useRef<NodeJS.Timeout | null>(null);
   const showTimeout = useRef<NodeJS.Timeout | null>(null);
+  const cursorPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const CURSOR_OFFSET_X = 12;
+  const CURSOR_OFFSET_Y = -8; // slightly above cursor
+
+  const calculateCursorPosition = (x: number, y: number): CSSProperties => {
+    if (!tooltipRef.current) return { top: y, left: x };
+
+    const rect = tooltipRef.current.getBoundingClientRect();
+    const minDistance = 10;
+
+    const left = Math.min(x + CURSOR_OFFSET_X, window.innerWidth - rect.width - minDistance);
+    const top = Math.max(minDistance, y + CURSOR_OFFSET_Y - rect.height);
+
+    return { top, left };
+  };
 
   const calculatePosition = () => {
     if (!childRef.current || !tooltipRef.current) return {};
@@ -37,9 +53,9 @@ const Tooltip: React.FC<TooltipProps> = ({
     const fitTop = spaceAbove >= popoverRect.height + distance;
     const fitBottom = spaceBelow >= popoverRect.height + distance;
 
-const determinePosition = (placement: string) => {
-      const minDistance = Math.max(10, Math.abs(distance)); // Minimum 5px from viewport edges
-      
+    const determinePosition = (placement: string) => {
+      const minDistance = Math.max(10, Math.abs(distance));
+
       switch (placement) {
         case 'top':
           position.top = Math.max(minDistance, targetRect.top - popoverRect.height - distance);
@@ -87,7 +103,6 @@ const determinePosition = (placement: string) => {
             targetRect.right + distance
           );
           break;
-
         default:
           break;
       }
@@ -100,7 +115,6 @@ const determinePosition = (placement: string) => {
         } else if (fitBottom) {
           determinePosition('bottom');
         } else {
-          // Default to bottom if neither fit perfectly
           determinePosition('bottom');
         }
         break;
@@ -112,10 +126,29 @@ const determinePosition = (placement: string) => {
     return position;
   };
 
+  // Track mouse position globally when cursor placement is active
+  useEffect(() => {
+    if (placement !== 'cursor') return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorPos.current = { x: e.clientX, y: e.clientY };
+      if (isVisible) {
+        setTooltipPosition(calculateCursorPosition(e.clientX, e.clientY));
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [placement, isVisible]);
+
   useEffect(() => {
     if (isVisible) {
-      const position = calculatePosition();
-      setTooltipPosition(position);
+      if (placement === 'cursor') {
+        setTooltipPosition(calculateCursorPosition(cursorPos.current.x, cursorPos.current.y));
+      } else {
+        const position = calculatePosition();
+        setTooltipPosition(position);
+      }
     }
   }, [isVisible]);
 
@@ -127,15 +160,12 @@ const determinePosition = (placement: string) => {
         childRef.current &&
         !childRef.current.contains(event.target as Node)
       ) {
-        setIsVisible(false); // Close tooltip if the click or mousedown is outside
+        setIsVisible(false);
       }
     };
 
     document.addEventListener('pointerdown', handleOutsideClickOrMouseDown);
-
-    return () => {
-      document.removeEventListener('pointerdown', handleOutsideClickOrMouseDown);
-    };
+    return () => document.removeEventListener('pointerdown', handleOutsideClickOrMouseDown);
   }, []);
 
   useEffect(() => {
@@ -160,21 +190,20 @@ const determinePosition = (placement: string) => {
         setIsVisible(false);
       }
     };
-  
+
     if (isVisible) {
-      document.addEventListener("click", handleDocumentClick);
-      window.addEventListener("scroll", handleScroll, true); // Capture scroll events
+      document.addEventListener('click', handleDocumentClick);
+      window.addEventListener('scroll', handleScroll, true);
     } else {
-      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener('scroll', handleScroll, true);
     }
-  
+
     return () => {
-      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener('scroll', handleScroll, true);
     };
   }, [isVisible]);
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
-    // Clear any existing timeouts
     if (showTimeout.current) {
       clearTimeout(showTimeout.current);
       showTimeout.current = null;
@@ -182,9 +211,7 @@ const determinePosition = (placement: string) => {
 
     if (showTooltip) {
       if (delay > 0) {
-        showTimeout.current = setTimeout(() => {
-          setIsVisible(true);
-        }, delay);
+        showTimeout.current = setTimeout(() => setIsVisible(true), delay);
       } else {
         setIsVisible(true);
       }
@@ -194,22 +221,21 @@ const determinePosition = (placement: string) => {
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    // Start a timer for long-press detection
     touchTimeout.current = setTimeout(() => {
-      handleTooltipTrigger(true); // Show tooltip for long press
-    }, 300); // Adjust duration as needed
+      handleTooltipTrigger(true);
+    }, 300);
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
-    if (e.pointerType === "touch" && touchTimeout.current) {
-      clearTimeout(touchTimeout.current); // Cancel long-press detection
+    if (e.pointerType === 'touch' && touchTimeout.current) {
+      clearTimeout(touchTimeout.current);
     }
-    handleTooltipTrigger(false); // Hide tooltip on touch/mouse release
+    handleTooltipTrigger(false);
   };
 
   const handlePointerLeave = (e: React.PointerEvent) => {
-    if (e.pointerType === "touch" && touchTimeout.current) {
-      clearTimeout(touchTimeout.current); // Cancel long-press detection
+    if (e.pointerType === 'touch' && touchTimeout.current) {
+      clearTimeout(touchTimeout.current);
     }
     handleTooltipTrigger(false);
   };
@@ -219,13 +245,16 @@ const determinePosition = (placement: string) => {
       {React.cloneElement(children as React.ReactElement, {
         ref: childRef,
         onPointerDown: (e: React.PointerEvent) => {
-          if (e.pointerType === "touch") {
+          if (e.pointerType === 'touch' && placement !== 'cursor') {
             handlePointerDown(e);
           }
         },
         onPointerEnter: (e: React.PointerEvent) => {
-          if (e.pointerType === "mouse") {
-            handleTooltipTrigger(true); // Show tooltip on mouse hover
+          if (e.pointerType === 'mouse') {
+            if (placement === 'cursor') {
+              cursorPos.current = { x: e.clientX, y: e.clientY };
+            }
+            handleTooltipTrigger(true);
           }
         },
         onPointerLeave: handlePointerLeave,
@@ -243,7 +272,11 @@ const determinePosition = (placement: string) => {
             data-space="12"
             ref={tooltipRef}
             className={`tooltip ${placement}`}
-            style={tooltipPosition}
+            style={{
+              ...tooltipPosition,
+              // position: 'fixed',
+              // pointerEvents: 'none', // cursor-following tooltips shouldn't block mouse events
+            }}
             {...rest}
           >
             {content}
