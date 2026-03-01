@@ -208,13 +208,13 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
           ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
           data-space="5"
           //data-gap="5"
-          data-radius="25"
+          data-radius="30"
           data-direction="column"
          // data-border="outline"
-          data-name="card"
+        //  data-name="card"
           data-index={selectedKey === item.key ? "2" : ""}
           data-elevation={selectedKey === item.key ? "2" : ""}
-       //   className={selectedKey === item.key ? "selected" : ""}
+          className={selectedKey === item.key ? "selected" : ""}
           onClick={() => onSelect(item.key)}
           data-interactive=""
           data-over-color="neutral"
@@ -227,15 +227,16 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
 
         >
           <group
-            data-ratio="4:7/4:5"
+            data-ratio="4:7"
             data-contain=""
             data-direction="column"
             data-wrap="no"
             data-gap="5"
-            data-radius="20"
+            data-radius="25"
             
           >
             <picture
+            
                         style={{
     backgroundColor: item.dominantDark
   }}
