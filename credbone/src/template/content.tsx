@@ -158,22 +158,20 @@ const Content: React.FC = () => {
                 </Tooltip>
               </group>
 
-
+              <group
+                data-ratio="1:2/2:1-600"
+                data-contain=""
+                data-align="start"
+              >
                 <group
-                  data-ratio="1:2/2:1-600"
+                  data-height="fit"
                   data-contain=""
                   data-align="start"
+                  //    data-background="context"
                 >
-                  <group
-                    data-height="fit"
-                    data-contain=""
-                    data-align="start"
-                    //    data-background="context"
-                  >
-                    <ThemePickerVertical />
-                  </group>
+                  <ThemePickerVertical />
                 </group>
-
+              </group>
             </group>
             <Tooltip
               //  distance={-30}
@@ -228,9 +226,7 @@ const Content: React.FC = () => {
                       data-ratio="1:1"
                       data-align="center"
                       data-justify="center"
-                    >
-                      
-                    </group>
+                    ></group>
 
                     <group
                       data-interact=""
@@ -417,18 +413,25 @@ const Content: React.FC = () => {
                 <group
                   data-radius="100"
                   data-background="context"
-                  data-opacity="50"
                   data-height="fit"
                   data-align="center"
                   data-justify="center"
                   data-space="20"
                   data-direction="column"
                 >
-                  {/* <text data-wrap="wrap"  data-weight="300"  data-line="1" data-text-size="xx-large" data-length="120" data-text-align="center">
-  
-     <TextReveal text={message} duration={600} />
-
-</text> */}
+                  <text
+                    data-wrap="preline"
+data-weight="600"
+data-line="1.3"
+                   
+                    data-text-align="center"
+                  >
+                   Explore the system.
+                   <br></br>
+Browse demos and tools.
+<br></br>
+See what's possible.
+                  </text>
                 </group>
               </group>
             </group>
@@ -568,7 +571,11 @@ const Content: React.FC = () => {
                 data-background="context"
                 data-ink-color="neutral"
               >
-                <group data-border="outline" data-height="fit">
+                <group
+                  data-border="outline"
+                  data-height="fit"
+                  data-radius-bottom-right="10"
+                >
                   <group
                     data-position="absolute"
                     data-radius="10"

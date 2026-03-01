@@ -85,7 +85,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
       data-width="auto"
       data-index="1"
       data-align="center"
-      data-gap="5"
+      //data-gap="5"
     >
       <Tooltip content="Share">
         <group
@@ -93,14 +93,14 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-space="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="1.25"
+          data-animation-duration="2.25"
           data-interactive=""
           data-radius="10"
           data-align="center"
           data-gap="10"
           data-cursor="pointer"
         >
-          <IconShare />
+          <IconShare size={20}/>
         </group>
       </Tooltip>
 
@@ -109,7 +109,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-width="auto"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="2"
+          data-animation-duration="3.25"
           data-align="center"
           data-gap="10"
           data-space="10"
@@ -124,7 +124,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
             data-fill-mode="backwards"
             data-animation-name={isFavorite ? "bounce" : ""}
           >
-            <IconHeart fill={isFavorite} />
+            <IconHeart size={20} fill={isFavorite} />
           </group>
 
           <text data-weight="700">
@@ -203,17 +203,21 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
     <>
       {ContentData.map((item,index) => (
         <group
+        data-background={selectedKey === item.key ? "context" :"main-background" }
           key={item.key}
           ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
           data-space="5"
           //data-gap="5"
-          data-radius="20"
+          data-radius="25"
           data-direction="column"
-          data-border="outline"
+         // data-border="outline"
           data-name="card"
-          className={selectedKey === item.key ? "selected" : ""}
+          data-index={selectedKey === item.key ? "2" : ""}
+          data-elevation={selectedKey === item.key ? "2" : ""}
+       //   className={selectedKey === item.key ? "selected" : ""}
           onClick={() => onSelect(item.key)}
           data-interactive=""
+          data-over-color="neutral"
           data-react="scale"
           data-cursor="pointer"
           onDoubleClick={() => openCustomModal(item)}
@@ -228,21 +232,23 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             data-direction="column"
             data-wrap="no"
             data-gap="5"
-            data-radius="15"
+            data-radius="20"
             
           >
             <picture
-              
+                        style={{
+    backgroundColor: item.dominantDark
+  }}
               //  data-position="absolute"
               data-brightness="adaptive"
               //    data-mask={selectedKey === item.key ? "bottom" : ""}
             >
               <img src={item.image_1x} srcSet={`${item.image} 2x`}  alt={item.title} />
             </picture>
-          </group>
+
 
           <group
-            data-space="15"
+          //  data-space="5"
             data-direction="column"
             data-position="absolute"
             data-bottom="0"
@@ -250,56 +256,76 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             
           >
             <group
-              data-backdrop="20"
+             // data-backdrop="20-adaptive"
               data-contain=""
-              data-radius="10"
+             // data-radius="20"
               data-color="white"
+          //  data-gradient="transparent-black"
+          style={{
+    background: `linear-gradient(
+      to bottom,
+      transparent,
+      ${item.dominantDark}
+      
+    )`
+  }}
             >
-              {selectedKey === item.key && (
-                <>
-                  <group
-                    //    data-background="context"
-                    //   data-radius="15"
-                    data-space="5"
-                    //   data-index="2"
-                    //  data-width="auto"
-                  >
-                    <ContentToolbar count={item.count} />
-                  </group>
-                  <group data-opacity="30">
-                    <separator data-horizontal=""></separator>
-                  </group>
-                </>
-              )}
+
 
               <group
-                data-space-vertical="15"
-                data-gap="2"
+              data-space-top="40"
+                data-space-vertical="20"
                 data-direction="column"
               >
                 <text
-                  data-space-horizontal="15"
-                  data-weight="700"
+                  data-space-horizontal="20"
+                  data-text-size="medium-small"
                   data-ellipsis=""
+                  data-font-type="hero"
                 >
                   {item.title}
                 </text>
                 <Marquee
-                  data-space-horizontal="15"
+                  data-space-horizontal="20"
                   data-disabled="true"
                   auto={selectedKey === item.key ? true : false}
                 >
                   <text
-                    data-opacity="60"
+                    data-opacity={selectedKey === item.key ? "100" : "40"}
                     //  data-wrap="wrap"
                     data-ellipsis=""
                   >
                     {item.description}
                   </text>
                 </Marquee>
+
               </group>
+
+
+              {selectedKey === item.key && (
+                <group data-width="auto"> 
+                                  <group data-space-horizontal="15">
+                    <separator data-horizontal=""></separator>
+                  </group>
+                  <group
+                    //    data-background="context"
+                    //   data-radius="15"
+                    data-space="10"
+                    //   data-index="2"
+                    //  data-width="auto"
+                  >
+                    <ContentToolbar count={item.count} />
+                  </group>
+
+                </group>
+              )}
+
             </group>
           </group>
+
+          </group>
+
+
         </group>
       ))}
     </>
