@@ -9,11 +9,13 @@ import sampleImage_3 from "../styles/images/samples/wide_res_70.webp";
 import { Link } from "react-router-dom";
 
 import { isMobile } from "react-device-detect";
-// import TextReveal from "../components/TextReveal";
-// import Count from "../components/Coutner";
+
+
 
 const Content: React.FC = () => {
   const [hidden, setHidden] = useState(true);
+
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,7 +26,7 @@ const Content: React.FC = () => {
   }, []);
 
   // const [message, setMessage] = useState<string>("");
-  // const phrases = ["control", "speed", "flexibility"];
+  // const phrases = ["welcome", "hello", "hi"];
 
   // useEffect(() => {
   //   const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
@@ -39,6 +41,7 @@ const Content: React.FC = () => {
           data-type="grid"
           data-grid-template-columns="dynamic"
           data-space="30"
+          data-align="start"
         >
           <group
             data-radius="full-top-left"
@@ -106,20 +109,27 @@ const Content: React.FC = () => {
           ></group>
         </group>
 
-        <group>
+        <group data-align="start">
           <group
             data-type="grid"
             data-grid-template-columns="dynamic"
             data-radius="130"
             data-background="neutral-lighter"
             data-space="30"
+            data-align="start"
           >
             <group
               data-column-end="2"
               data-direction="column-600"
               data-wrap="no"
+              data-align="start"
             >
-              <group data-direction="row-600" data-contain="" data-wrap="no">
+              <group
+                data-direction="row-600"
+                data-contain=""
+                data-wrap="no"
+                data-align="start"
+              >
                 <group
                   data-ratio="1:1"
                   data-radius="full"
@@ -163,12 +173,7 @@ const Content: React.FC = () => {
                 data-contain=""
                 data-align="start"
               >
-                <group
-                  data-height="fit"
-                  data-contain=""
-                  data-align="start"
-                  //    data-background="context"
-                >
+                <group data-height="fit" data-contain="" data-align="start">
                   <ThemePickerVertical />
                 </group>
               </group>
@@ -198,6 +203,8 @@ const Content: React.FC = () => {
                 to={"/Components/Overview"}
                 data-type="group"
                 data-column-end="2-500"
+                data-align="start"
+                data-contain=""
               >
                 <Ripple>
                   <group
@@ -206,7 +213,7 @@ const Content: React.FC = () => {
                     data-over-color="none"
                     data-ink-color="neutral"
                     data-radius="100"
-                    data-align="end"
+                    data-align="start"
                     data-wrap="no"
                     data-contain=""
                     data-direction="row-500"
@@ -417,21 +424,11 @@ const Content: React.FC = () => {
                   data-align="center"
                   data-justify="center"
                   data-space="20"
-                  data-direction="column"
+                  data-direction="column"data-contain=""
                 >
-                  <text
-                    data-wrap="preline"
-data-weight="600"
-data-line="1.3"
-                   
-                    data-text-align="center"
-                  >
-                   Explore the system.
-                   <br></br>
-Browse demos and tools.
-<br></br>
-See what's possible.
-                  </text>
+
+<text data-wrap="preline" data-weight="600" data-length="160" data-line="1.3" data-text-align="center" data-ellipsis="">Explore the system. Browse demos and tools. See what's possible.</text>
+
                 </group>
               </group>
             </group>
