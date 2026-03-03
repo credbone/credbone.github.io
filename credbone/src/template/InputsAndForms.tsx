@@ -2,43 +2,33 @@ import React from "react";
 
 import Input, { Password } from "../components/inputs/input";
 import Button from "../components/button";
-import {
-  IconHome,
-  IconMore,
-  IconSearch,
-} from "../components/icon/credIcons";
+import { IconHome, IconMore, IconSearch } from "../components/icon/credIcons";
 import Ripple from "../components/Ripple";
 import Tooltip from "../components/tooltip";
 import { Key } from "lucide-react";
 import TemplatePageHeader from "./TemplatePageHeader";
 
-
 const InputsAndForms: React.FC = () => {
-
-
-
   return (
     <group data-space="30" data-gap="30" data-align="start">
-
-
-
-
       <TemplatePageHeader
         title="Input & Forms"
         description="Explore input fields and form-related UI elements in this demo,
           featuring validation, error handling, and responsive design."
         version="1.8.0"
         type="Component"
-        descriptionProps={{"data-length":"500"}}
+        descriptionProps={{ "data-length": "500" }}
       />
 
 
+
+      
 
       <group data-gap="30">
         <group
           data-space="adaptive-30-50"
           data-background="adaptive-gray"
-          data-radius="30"
+          data-radius="40"
           data-width="auto"
           data-fit="1"
           data-min-length="300"
@@ -60,7 +50,7 @@ const InputsAndForms: React.FC = () => {
 
           <group data-direction="column" data-gap="10">
             <Input
-             name="demo"
+              name="demo"
               icon={<IconSearch size={20} />}
               size="large"
               type="text"
@@ -82,6 +72,7 @@ const InputsAndForms: React.FC = () => {
                       <group
                         data-width="auto"
                         data-space="10"
+                        data-space-horizontal="15"
                         data-align="center"
                         data-height="fit"
                         data-cursor="pointer"
@@ -105,14 +96,14 @@ const InputsAndForms: React.FC = () => {
           data-fit="1"
           data-space="adaptive-30-50"
           data-background="adaptive-gray"
-          data-radius="30"
+          data-radius="40"
           data-gap="30"
           data-width="auto"
           data-align="end"
         >
           <group data-direction="column" data-gap="10">
             <Input
-            name="demo"
+              name="demo"
               icon={<IconHome size={20} />}
               size="large"
               type="text"
@@ -170,8 +161,6 @@ const InputsAndForms: React.FC = () => {
         </group>
       </group>
 
-
-
       <group data-column-gap="15" data-type="column" data-align="start">
         <group>
           <group
@@ -190,9 +179,7 @@ const InputsAndForms: React.FC = () => {
               //  data-color="main-text"
             >
               {/* <icon data-icon-size="x-large" data-icon-weight="700" data-cast-shadow="1">key</icon> */}
-              <text           data-font-type="hero"
-
-          data-text-size="large">
+              <text data-font-type="hero" data-text-size="large">
                 Password
                 <br />
                 Change
@@ -208,6 +195,7 @@ const InputsAndForms: React.FC = () => {
             data-radius="30"
             data-contain=""
             data-background="context"
+            data-elevation="2"
             data-shrink="no"
             data-border=""
             data-index="2"
@@ -228,7 +216,7 @@ const InputsAndForms: React.FC = () => {
                 />
               </group>
 
-              <group data-direction="column" data-gap="30" >
+              <group data-direction="column" data-gap="30">
                 <Password
                   size="large"
                   icon={<Key size={20} />}
@@ -237,47 +225,42 @@ const InputsAndForms: React.FC = () => {
                   name="password_1"
                   //  autocomplete="current-password"
                   autoComplete="off"
-id="demopass"
+                  id="demopass"
                 />
 
-                <separator data-horizontal="" ></separator>
+                <separator data-horizontal=""></separator>
 
-<group data-gap="10"  data-direction="column" >
+                <group data-gap="10" data-direction="column">
                   <Input
-                  type="password"
-                  size="large"
-                  // icon="key"
-                  placeholder="Create Password"
-                  dataLength="autofit"
-                  name="password_1"
-                  autoComplete="new-password"
-                 
-                />
-                <Input
-                  type="password"
-                  size="large"
-                  //    icon="key"
-                  placeholder="Repeat Password"
-                  dataLength="autofit"
-                  name="password_1"
-                  autoComplete="new-password"
-                  
-                />
-</group>
+                    type="password"
+                    size="large"
+                    // icon="key"
+                    placeholder="Create Password"
+                    dataLength="autofit"
+                    name="password_1"
+                    autoComplete="new-password"
+                  />
+                  <Input
+                    type="password"
+                    size="large"
+                    //    icon="key"
+                    placeholder="Repeat Password"
+                    dataLength="autofit"
+                    name="password_1"
+                    autoComplete="new-password"
+                  />
+                </group>
               </group>
 
-             
               <separator data-horizontal="" data-interval="10"></separator>
-            
 
-              <group data-gap="10"  data-direction="column" >
-                                <Button data-radius="30" large primary fit>
+              <group data-gap="10" data-direction="column">
+                <Button large primary fit>
                   <text>Update Password</text>
                 </Button>
-                <Button data-radius="30" large highlight  >
+                <Button large>
                   <text>Cancel</text>
                 </Button>
-
               </group>
             </form>
           </group>
@@ -286,9 +269,12 @@ id="demopass"
         <group data-radius="15" data-contain="" data-shrink="no">
           <group data-space="30">
             <group data-direction="column" data-align="start" data-gap="10">
-              <text           data-font-type="hero"
-          //    data-color="main"
-          data-text-size="large" data-wrap="wrap">
+              <text
+                data-font-type="hero"
+                //    data-color="main"
+                data-text-size="large"
+                data-wrap="wrap"
+              >
                 Customer Feedback
               </text>
               <text data-wrap="wrap" data-line="1.5" data-opacity="60">
@@ -330,13 +316,7 @@ id="demopass"
             ></Input>
 
             <group data-type="group">
-              <Button
-                data-radius="30"
-                wide
-                large
-                primary
-                text="Submit Feedback"
-              ></Button>
+              <Button wide large primary text="Submit Feedback"></Button>
             </group>
           </group>
         </group>

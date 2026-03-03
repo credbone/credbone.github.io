@@ -3,7 +3,7 @@ import { useTheme } from "../components/ThemeProvider";
 import { useSnackbar } from "./snackbar/SnackbarContainer";
 
 import DotDisplay from "../template/dotDisplay";
-import { moon, sun } from "../pages/tools/dotIcon";
+import { moon_half_tone, sun } from "../pages/tools/dotIcon";
 
 const DemoThemeToggle: React.FC = () => {
   const [prefersDarkMode, setPrefersDarkMode] = useState(
@@ -28,7 +28,7 @@ const DemoThemeToggle: React.FC = () => {
   const activeDots =
     themeMode === "dark" || (themeMode === "auto" && prefersDarkMode)
       ? sun // Active dots for dark mode
-      : moon;
+      : moon_half_tone;
 
   const handleModeChange = () => {
     const newMode =

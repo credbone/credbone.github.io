@@ -360,53 +360,61 @@ const Content: React.FC = () => {
                               data-contain=""
                               data-interact=""
                             >
-                              <svg
-                                width="100%"
-                                height="100%"
-                                viewBox="0 0 160 160"
-                                fill="currentcolor"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <circle cx="55" cy="105" r="4" />
-                                <circle cx="65" cy="95" r="4" />
-                                <circle cx="75" cy="85" r="4" />
-                                <circle cx="85" cy="85" r="4" />
-                                <circle cx="85" cy="75" r="4" />
-                                <circle cx="95" cy="75" r="4" />
-                                <circle cx="95" cy="65" r="4" />
-                                <circle cx="75" cy="95" r="4" />
-                                <circle cx="65" cy="105" r="4" />
-                                <circle cx="55" cy="115" r="4" />
-                                <circle cx="105" cy="55" r="4" />
-                                <circle cx="115" cy="55" r="4" />
-                                <circle cx="115" cy="65" r="4" />
-                                <circle cx="115" cy="75" r="4" />
-                                <circle cx="115" cy="85" r="4" />
-                                <circle cx="115" cy="105" r="4" />
-                                <circle cx="115" cy="95" r="4" />
-                                <circle cx="105" cy="45" r="4" />
-                                <circle cx="95" cy="45" r="4" />
-                                <circle cx="85" cy="45" r="4" />
-                                <circle cx="75" cy="45" r="4" />
-                                <circle cx="55" cy="45" r="4" />
-                                <circle cx="65" cy="45" r="4" />
-                                <circle cx="115" cy="45" r="4" />
-                                <circle cx="95" cy="55" r="4" />
-                                <circle cx="85" cy="65" r="4" />
-                                <circle cx="75" cy="75" r="4" />
-                                <circle cx="65" cy="85" r="4" />
-                                <circle cx="55" cy="95" r="4" />
-                                <circle cx="45" cy="105" r="4" />
-                                <circle cx="105" cy="65" r="4" />
-                                <circle cx="105" cy="75" r="4" />
-                                <circle cx="105" cy="85" r="4" />
-                                <circle cx="105" cy="95" r="4" />
-                                <circle cx="105" cy="105" r="4" />
-                                <circle cx="85" cy="55" r="4" />
-                                <circle cx="75" cy="55" r="4" />
-                                <circle cx="65" cy="55" r="4" />
-                                <circle cx="55" cy="55" r="4" />
-                              </svg>
+                
+
+ 
+    <svg width="100%" height="100%" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="75" cy="125" r="2"/>
+<circle cx="75" cy="115" r="4"/>
+<circle cx="75" cy="105" r="4"/>
+<circle cx="75" cy="95" r="6"/>
+<circle cx="45" cy="75" r="2"/>
+<circle cx="55" cy="75" r="4"/>
+<circle cx="75" cy="75" r="6"/>
+<circle cx="55" cy="65" r="2"/>
+<circle cx="75" cy="55" r="4"/>
+<circle cx="75" cy="45" r="2"/>
+<circle cx="75" cy="65" r="4"/>
+<circle cx="65" cy="65" r="4"/>
+<circle cx="105" cy="85" r="4"/>
+<circle cx="105" cy="95" r="2"/>
+<circle cx="95" cy="95" r="4"/>
+<circle cx="95" cy="105" r="2"/>
+<circle cx="85" cy="105" r="4"/>
+<circle cx="85" cy="115" r="2"/>
+<circle cx="85" cy="95" r="4"/>
+<circle cx="85" cy="85" r="6"/>
+<circle cx="85" cy="75" r="6"/>
+<circle cx="85" cy="65" r="6"/>
+<circle cx="85" cy="35" r="2"/>
+<circle cx="65" cy="55" r="2"/>
+<circle cx="65" cy="85" r="6"/>
+<circle cx="95" cy="75" r="4"/>
+<circle cx="55" cy="85" r="4"/>
+<circle cx="105" cy="75" r="4"/>
+<circle cx="95" cy="65" r="4"/>
+<circle cx="95" cy="55" r="4"/>
+<circle cx="95" cy="45" r="4"/>
+<circle cx="95" cy="35" r="2"/>
+<circle cx="65" cy="95" r="4"/>
+<circle cx="85" cy="45" r="4"/>
+<circle cx="85" cy="55" r="4"/>
+<circle cx="95" cy="25" r="2"/>
+<circle cx="65" cy="135" r="2"/>
+<circle cx="65" cy="125" r="2"/>
+<circle cx="65" cy="115" r="4"/>
+<circle cx="65" cy="105" r="4"/>
+<circle cx="115" cy="85" r="2"/>
+<circle cx="75" cy="85" r="6"/>
+<circle cx="35" cy="85" r="2"/>
+<circle cx="45" cy="85" r="4"/>
+<circle cx="115" cy="75" r="2"/>
+<circle cx="125" cy="75" r="2"/>
+<circle cx="65" cy="75" r="4"/>
+<circle cx="95" cy="85" r="4"/>
+    </svg>
+  
+  
                             </group>
                           </group>
                         </Link>
@@ -425,9 +433,11 @@ const Content: React.FC = () => {
                   data-justify="center"
                   data-space="20"
                   data-direction="column"data-contain=""
+                  data-gap="5"
+                  data-wrap="no"
                 >
 
-<text data-wrap="preline" data-weight="600" data-length="160" data-line="1.3" data-text-align="center" data-ellipsis="">Explore the system. Browse demos and tools. See what's possible.</text>
+<text data-wrap="preline"  data-line="1.3" data-length="180"  data-text-align="center" data-ellipsis=""> Browse demos and tools. See what's possible.</text>
 
                 </group>
               </group>
