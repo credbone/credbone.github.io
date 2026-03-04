@@ -142,21 +142,21 @@ const ViewSwitch = [
     key: "1",
     name: "ViewSwitch",
     value: "CardView",
-    label: "Card Layout",
+    label: "Cards",
     icon:<IconViewWindow size={20}/> ,
   },
   {
     key: "2",
     name: "ViewSwitch",
     value: "ListView",
-    label: "List Layout",
+    label: "List",
     icon: <IconTableRows size={20}/>,
   },
   {
     key: "3",
     name: "ViewSwitch",
     value: "GridView",
-    label: "Grid Layout",
+    label: "Grid",
     icon: <IconViewStream size={20}/>,
   },
 ];
@@ -376,7 +376,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
                 data-space="10"
                 data-direction="column"
                 data-index="1"
-                data-gap="5"
+                //data-gap="5"
               >
                 <text
                   data-weight="700"
@@ -410,7 +410,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
           key={item.key}
           ref={selectedKey === item.key ? selectedRef : index === 0 ? selectedRef : null}
           data-space="20"
-          data-gap="20"
+          data-gap="15"
        //   data-radius="20"
           // data-direction="column"
           data-border=""
@@ -430,7 +430,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             <group
               data-height="60"
               data-length="60"
-              data-radius="10"
+              data-radius="30"
               data-contain=""
               data-interact=""
             >
@@ -466,10 +466,10 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
           </group>
 
           <group data-gap="5" data-direction="column">
-            <text data-weight="700" data-font-type="hero" data-text-size="medium"  data-wrap="wrap">
+            <text data-weight="700" data-font-type="hero" data-text-size="medium-small"  data-wrap="wrap">
               {item.title}
             </text>
-            <text data-opacity="60" data-wrap="wrap" data-line="1.5">
+            <text data-opacity="60" data-wrap="wrap" data-line="1.4">
               {item.description}
             </text>
           </group>

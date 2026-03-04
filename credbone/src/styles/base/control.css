@@ -998,6 +998,9 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-border="30-neutral-lighter"]{box-shadow: 0 0 0 30px var(--neutral-color-lighter)}
 
 
+
+
+
 [data-border="1-primary"]{box-shadow: 0 0 0 1px var(--main-color)}
 
 
