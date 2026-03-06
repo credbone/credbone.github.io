@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d38c658.css",
-    "main.js": "/static/js/main.53ad15b4.js",
+    "main.css": "/static/css/main.4a651a9e.css",
+    "main.js": "/static/js/main.620a1054.js",
     "static/js/206.eca87e7a.chunk.js": "/static/js/206.eca87e7a.chunk.js",
     "static/media/resume_audio.mp3": "/static/media/resume_audio.564ef05d986ee2ffa983.mp3",
     "static/media/res_02.jpg": "/static/media/res_02.a048008c218fb2ae3705.jpg",
     "static/media/res_09.jpg": "/static/media/res_09.fcfc462ff2ddefdc6a7b.jpg",
     "static/media/res_04.jpg": "/static/media/res_04.1483eaa483c5afd05f0b.jpg",
     "static/media/res_07.jpg": "/static/media/res_07.735e11b14bd7ea5b1bdd.jpg",
+    "static/media/res_11.jpg": "/static/media/res_11.667ff757b69aad67d0b6.jpg",
     "static/media/res_01.jpg": "/static/media/res_01.463bad239aac3435bc7e.jpg",
-    "static/media/res_03.jpg": "/static/media/res_03.0422c90b61c440244c9d.jpg",
     "static/media/res_05.jpg": "/static/media/res_05.e9f901f571d1d4869e24.jpg",
     "static/media/wide_res_70.webp": "/static/media/wide_res_70.3dd2ed54b480a9eb7a9f.webp",
     "static/media/Gilroy-UltraLight.ttf": "/static/media/Gilroy-UltraLight.6c356bf421a0b34d2b76.ttf",
@@ -32,7 +32,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.6d38c658.css",
-    "static/js/main.53ad15b4.js"
+    "static/css/main.4a651a9e.css",
+    "static/js/main.620a1054.js"
   ]
 }
