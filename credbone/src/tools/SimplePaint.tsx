@@ -97,6 +97,8 @@ const SimplePaint: React.FC = () => {
       if (tempCtx) tempCtx.drawImage(canvasRef.current, 0, 0);
     }
     setIsResizing(true);
+      setIsBrushOpen(false);
+  setIsColorsOpen(false);
   };
 
   const stopResize = () => setIsResizing(false);
@@ -132,6 +134,9 @@ const SimplePaint: React.FC = () => {
     };
   }, [handleResize]);
 
+
+
+  // ─── ────
   useEffect(() => {
     if (appRef.current) setWidth(appRef.current.offsetWidth - 60);
   }, []);
@@ -913,6 +918,7 @@ const SimplePaint: React.FC = () => {
             data-right="-30"
             style={{ cursor: "nwse-resize" }}
             onPointerDown={startResize}
+            
           >
             <group
               data-height="5"

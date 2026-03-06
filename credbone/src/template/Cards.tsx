@@ -93,7 +93,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-space="10"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="2.25"
+          data-animation-duration="2.75"
           data-interactive=""
           data-radius="10"
           data-align="center"
@@ -109,7 +109,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-width="auto"
           data-animation-name="appear-bottom"
           data-fill-mode="backwards"
-          data-animation-duration="3.25"
+          data-animation-duration="3.75"
           data-align="center"
           data-gap="10"
           data-space="10"
@@ -303,8 +303,8 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
               </group>
 
 
-              {selectedKey === item.key && (
-                <group data-width="auto"> 
+              
+                <group data-width="auto" data-height={selectedKey === item.key ? "60" : "0"} data-transition-prop="height" data-duration=".125"> 
                                   <group data-space-horizontal="15">
                     <separator data-horizontal=""></separator>
                   </group>
@@ -315,11 +315,13 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
                     //   data-index="2"
                     //  data-width="auto"
                   >
+                    {selectedKey === item.key && (
                     <ContentToolbar count={item.count} />
+                     )}
                   </group>
 
                 </group>
-              )}
+             
 
             </group>
           </group>
