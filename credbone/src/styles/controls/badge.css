@@ -1,5 +1,5 @@
 /* CredBone UI Framefork Component / Layout / Version 3.0.0 */
-/* Copyright 2024. Design Department. All rights reserved */
+
 
 badge{ --badge-color:var(--main-color); white-space: nowrap; border-radius: 30px; padding: 6px 10px;;  z-index: 2; line-height:1; position: relative; text-align: center;   max-width: 100%; overflow: hidden; text-overflow: ellipsis;  flex-shrink: 0 }
 

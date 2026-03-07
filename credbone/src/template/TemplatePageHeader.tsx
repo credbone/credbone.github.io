@@ -29,7 +29,7 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
     >
       {(version || type) && (
         <>
-          <group data-direction="column" data-gap="30" data-align="start"  data-width="auto" >
+          <group data-direction="column" data-gap="30" data-align="start"  data-width="auto"  >
             <group data-gap="20" data-align="center"  data-wrap="no" data-width="auto" >
               {type && (
                 <group

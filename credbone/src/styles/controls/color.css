@@ -299,6 +299,8 @@
 [data-fill="main-darker"] { fill: var(--main-color-darker) }
 
 [data-fill="main-text"] { fill: var(--main-color-text) }
+[data-fill="text"] { fill: var(--text-color) }
+
 
 [data-fill="secondary"] { fill: var(--secondary-color) }
 [data-fill="secondary-light"] { fill: var(--secondary-color-light) }

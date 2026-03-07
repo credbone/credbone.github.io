@@ -27,6 +27,33 @@ const AudioPlayer: React.FC = () => {
 
   const [progress, setProgress] = useState(0);
 
+
+const containerRef = useRef<HTMLElement>(null);
+    const [indicatorTop, setIndicatorTop] = useState(0);
+
+    const hasActive = timestamps.some(
+  ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE
+);
+
+    useEffect(() => {
+  const activeIndex = timestamps.findIndex(
+    ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE
+  );
+
+  if (activeIndex === -1) return;
+
+  const container = containerRef.current;
+  const activeItem = container?.children[activeIndex + 1] as HTMLElement;
+
+  
+
+  if (activeItem) {
+    setIndicatorTop(activeItem.offsetTop);
+  }
+}, [currentTime, timestamps]);
+
+
+
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -248,7 +275,7 @@ const AudioPlayer: React.FC = () => {
   };
 
   return (
-    <group data-gap="15" data-space-vertical="30">
+    <group data-gap="15" data-space-vertical="30" >
       <group data-space-horizontal="30">
         <text
           data-wrap="wrap"
@@ -270,7 +297,31 @@ const AudioPlayer: React.FC = () => {
             preload="metadata"
           />
 
-          <group data-space-horizontal="15" data-gap="3">
+
+
+
+
+
+          <group data-space-horizontal="15" data-gap="3" ref={containerRef}>
+
+
+<group data-left="0" data-height="45" data-duration="2.25" data-transition-prop="transform" data-opacity={hasActive ? "" : "50"} data-space-horizontal="15" data-position="absolute"
+
+
+         style={{
+    transform: `translateY(${indicatorTop}px)`,
+    
+  }}
+
+
+>
+  <group data-radius="10" data-background="highlight" data-hight="fit" >
+
+  </group>
+
+</group>
+
+
             {timestamps.map(({ time, label }) => {
               const isActive = Math.abs(currentTime - time) <= HIGHLIGHT_RANGE;
 
@@ -283,11 +334,13 @@ const AudioPlayer: React.FC = () => {
                 >
                   <Ripple>
                     <group
-                      data-background={isActive ? "highlight" : ""}
+                 //     data-background={isActive ? "highlight" : ""}
                       data-contain=""
                       data-ink-color="neutral"
                       data-radius="10"
-                      data-space="15"
+                      data-space-horizontal="15"
+                      data-align="center"
+                      data-height="45"
                       data-gap="10"
                       data-wrap="no"
                       data-interactive=""
@@ -300,6 +353,11 @@ const AudioPlayer: React.FC = () => {
                 </group>
               );
             })}
+
+
+
+
+
           </group>
 
           <group data-space-horizontal="30" data-gap="30">
@@ -381,6 +439,9 @@ const AudioPlayer: React.FC = () => {
               </group>
             </group>
           </group>
+
+
+
         </>
       ) : (
         <group data-space="30">
@@ -392,5 +453,7 @@ const AudioPlayer: React.FC = () => {
     </group>
   );
 };
+
+
 
 export default AudioPlayer;
