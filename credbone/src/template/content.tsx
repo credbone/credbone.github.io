@@ -5,17 +5,19 @@ import ThemePickerVertical from "./themePickerVertical";
 import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 
-import sampleImage_3 from "../styles/images/samples/wide_res_70.webp";
+import sampleImage_3 from "../styles/images/samples/wide_res_72.webp";
 import { Link } from "react-router-dom";
 
 import { isMobile } from "react-device-detect";
-
+import DotDisplay from "./dotDisplay";
+import { useCyclingDots } from "../pages/tools/DotCycler";
 
 
 const Content: React.FC = () => {
   const [hidden, setHidden] = useState(true);
 
 
+const activeDots = useCyclingDots();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,7 +38,7 @@ const Content: React.FC = () => {
   return (
     <>
       <group data-max-length="1080">
-        <group
+        {/* <group
           data-position="absolute"
           data-type="grid"
           data-grid-template-columns="dynamic"
@@ -107,15 +109,15 @@ const Content: React.FC = () => {
             data-ratio="1:1"
             data-border="30-neutral-lighter"
           ></group>
-        </group>
+        </group> */}
 
         <group data-align="start">
           <group
             data-type="grid"
             data-grid-template-columns="dynamic"
-            data-radius="130"
-            data-background="neutral-lighter"
-            data-space="30"
+        //    data-radius="130"
+        //    data-background="neutral-lighter"
+         //   data-space="30"
             data-align="start"
           >
             <group
@@ -133,7 +135,7 @@ const Content: React.FC = () => {
                 <group
                   data-ratio="1:1"
                   data-radius="full"
-                  data-background="context-right"
+                  data-background="adaptive-gray"
                 ></group>
 
                 <Tooltip
@@ -233,7 +235,14 @@ const Content: React.FC = () => {
                       data-ratio="1:1"
                       data-align="center"
                       data-justify="center"
-                    ></group>
+                    >
+
+
+<group data-interact="" data-width="auto" data-space="20" data-contain="" >
+
+</group>
+
+                    </group>
 
                     <group
                       data-interact=""
@@ -242,8 +251,12 @@ const Content: React.FC = () => {
                       data-ratio="1:1"
                       data-align="center"
                       data-justify="center"
+                      data-space="20"
+                      data-theme="dark"
+                      data-contain=""
+                      data-shadow="crips"
                     >
-                      <group
+                      {/* <group
                         data-theme="dark"
                         data-ratio="1:1"
                         //  data-background="text"
@@ -259,7 +272,10 @@ const Content: React.FC = () => {
                           data-radius="20"
                           //    data-background="neutral-lighter"
                         ></group>
-                      </group>
+                      </group> */}
+
+  <DotDisplay size="fit" activeIndexes={activeDots} />
+
                     </group>
                   </group>
                 </Ripple>
@@ -278,7 +294,7 @@ const Content: React.FC = () => {
                   data-ratio="1:1"
                   //          data-length="200"
                   data-radius="full"
-                  data-background="context-right"
+                  data-background="adaptive-gray"
                 ></group>
 
                 <group
@@ -286,7 +302,7 @@ const Content: React.FC = () => {
                   data-ratio="1:1"
                   //     data-length="200"
                   data-radius="full"
-                  data-background="context"
+                  data-background="adaptive-gray"
                   //   data-space="20"
                   data-contain=""
                   data-direction="column"
@@ -359,6 +375,7 @@ const Content: React.FC = () => {
                               data-height="fit"
                               data-contain=""
                               data-interact=""
+                              
                             >
                 
 
@@ -427,7 +444,7 @@ const Content: React.FC = () => {
               <group data-ratio="2:1" data-align="start">
                 <group
                   data-radius="100"
-                  data-background="context"
+                data-background="adaptive-gray"
                   data-height="fit"
                   data-align="center"
                   data-justify="center"
@@ -476,7 +493,7 @@ const Content: React.FC = () => {
                     y2="50"
                     //  stroke="black"
                     strokeWidth="1"
-                    data-stroke="context"
+                    data-stroke="outline"
                   />
                 </svg>
 
@@ -563,7 +580,7 @@ const Content: React.FC = () => {
 
                 <group
                   data-ratio="1:1"
-                  data-background="context"
+                  data-backdrop="20"
                   data-radius="100"
                   data-length="1/3"
                 ></group>
@@ -575,7 +592,7 @@ const Content: React.FC = () => {
                 data-index="2"
                 data-ratio="1:1"
                 data-radius="full"
-                data-background="context"
+            data-border=""
                 data-ink-color="neutral"
               >
                 <group

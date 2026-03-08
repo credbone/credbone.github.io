@@ -3,8 +3,8 @@ import DotDisplay from "../../template/dotDisplay";
 import DotDisplayEdit from "../../template/dotDisplayEdit";
 import Tooltip from "../../components/tooltip";
 
-import { arrow, colorspace, cursor, gear, mail, moon, spray, sun } from "../tools/dotIcon";
-import { Smooth } from "../tools/dotIcon"; // adjust import path as needed
+import { arrow,  gear, mail, moon,  sun } from "../tools/dotIcon";
+
 
 // Convert a float-encoded Set<number> to the raw string format ("115.2, 131.2, 71, ...")
 // so the editor can decode sizes correctly via predefinedEncodedDots
