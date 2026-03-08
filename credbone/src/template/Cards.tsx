@@ -560,7 +560,7 @@ const Cards: React.FC = () => {
         data-elevation={isSticky? "1" :""}
         data-backdrop={isSticky? "20-adaptive" :""}
     
-          data-height="60"
+          data-height="55"
           data-name="option-group" data-width="auto" data-space="5" data-border="" data-radius="15" data-contain=""
           data-weight="600"
         >

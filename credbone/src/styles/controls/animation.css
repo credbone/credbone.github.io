@@ -3,6 +3,8 @@
 
 
 
+@keyframes object-position {from{object-position: 0% 0% } to {object-position: 100% 100%;}}
+
 
 
 @keyframes to-position {from{transform: translateX(0);}}
@@ -238,3 +240,11 @@
 
 { animation:  to-visible forwards .425s;}
 
+
+[data-timeline-name="main-scroll"] {scroll-timeline-name: --main-scroll;}
+[data-animation-range="0-50"] {animation-range: 0 30%;}
+[data-animation-timeline="main-scroll"] {animation-timeline: --main-scroll;}
+
+
+
+[data-animate="parallax"] {animation-name: object-position;  animation-timeline: --main-scroll;}

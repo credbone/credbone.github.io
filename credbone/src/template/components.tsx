@@ -58,7 +58,7 @@ const Components: React.FC = () => {
  
 
   return (
-    <group data-scroll="" data-index="1" ref={viewRef}>
+    <group data-scroll="" data-timeline-name="main-scroll" data-index="1" ref={viewRef}>
       <group
         data-space="adaptive-30-50"
         data-gap="50"

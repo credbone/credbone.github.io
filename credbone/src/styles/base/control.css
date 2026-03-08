@@ -735,6 +735,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height="45"] { height:45px; }
 [data-height="50"] { height:50px; }
 
+[data-height="55"] { height:55px; }
+
 [data-height="3.846rem"] { height:3.846rem; }
 [data-height="60-to-rem"] { height:4.6154rem; }
 
@@ -784,6 +786,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-top="-20"] {margin-top:-20px}
 [data-margin-top="-30"] {margin-top:-30px}
 [data-margin-top="-60"] {margin-top:-60px}
+[data-margin-right="-10"]{margin-right:-10px}
+[data-margin-right="-5"]{margin-right:-5px}
 [data-margin-right="-30"]{margin-right:-30px}
 [data-margin-bottom="-30"]{margin-bottom:-30px}
 
@@ -1069,6 +1073,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius-top="5"]{border-top-left-radius:5px;border-top-right-radius: 5px;}
 [data-radius-top="10"]{border-top-left-radius:10px;border-top-right-radius: 10px;}
 [data-radius-top="15"]{border-top-left-radius:15px;border-top-right-radius: 15px;}
+[data-radius-top="20"]{border-top-left-radius:20px;border-top-right-radius: 20px;}
 [data-radius-top="25"]{border-top-left-radius:25px;border-top-right-radius: 25px;}
 [data-radius-top="30"]{border-top-left-radius:30px;border-top-right-radius: 30px;}
 
@@ -1284,6 +1289,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
     [data-scale="2"]{transform: scale(2);}
     [data-scale="3"]{transform: scale(3);}
+
 
     [data-origin="left"]{transform-origin: left;}
 

@@ -290,7 +290,7 @@ data-width="auto"
 <separator data-vertical="" data-height=""></separator>
  <group data-contain="" data-direction="column" data-gap="10" data-space="30">
   <text data-text-size="large" data-font-type="hero">Sidebar</text>
-  <text data-wrap="wrap" data-length="200" data-line="1.5" data-opacity="50">Example Sidebar Navigation, customizable to display advanced UI for specific requirements.</text>
+  <text data-wrap="wrap" data-length="200" data-line="1.3" data-opacity="50">Example Sidebar Navigation, customizable to display advanced UI for specific requirements.</text>
   </group>
 </group>
 

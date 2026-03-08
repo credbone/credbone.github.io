@@ -70,10 +70,11 @@ const BottomNav: React.FC = () => {
                     data-contain=""
                     data-space-right="10"
                   >
+                                        <text data-opacity="30">Previous</text>
                     <text data-weight="700" data-ellipsis="">
                       {prevItem.label}
                     </text>
-                    <text data-opacity="30">Previous</text>
+
                   </group>
                 )}
               </Link>
@@ -123,10 +124,11 @@ const BottomNav: React.FC = () => {
                 data-width="auto"
                 data-contain=""
               >
+                                <text data-opacity="30">Next</text>
                 <text data-weight="700" data-ellipsis="">
                   {nextItem.label}
                 </text>
-                <text data-opacity="30">Next</text>
+
               </group>
 
               <group
