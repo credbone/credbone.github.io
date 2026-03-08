@@ -1,30 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import Ripple from "../../components/Ripple";
 
 import Scroll from "../../components/scroll";
-import Button from "../../components/button";
-import { SvgHamburger } from "../../components/svg";
+
 import Tabstrip from "../../components/tabstrip";
 import Tab from "../../components/tabstrip/tab";
 import {
-  Armchair,
   Bird,
-  BookMarked,
-  CircleUser,
-  Cloud,
-  Coffee,
   Feather,
   PencilRuler,
   PenTool,
-  Pizza,
-  Presentation,
   Salad,
-  Shirt,
-  ShoppingBag,
-  Spline,
-  SplineIcon,
-  Tickets,
   Trees,
   WandSparkles,
   Wheat,
@@ -43,7 +30,7 @@ const tabsData = [
 const navData = [
   { key: 1, badge: true, icon: <PencilRuler size={20} />, title: "Design" },
   { key: 2, badge: "", icon: <Trees size={20} />, title: "Nature Park" },
-  { key: 3, badge: "", icon: <Feather size={20} />, title: "Creative Writing" },
+  { key: 3, badge: "", icon: <Feather size={20} />, title: "Writing" },
   { key: 4, badge: "", icon: <Salad size={20} />, title: "Fresh Salads" },
   { key: 6, badge: "", icon: <WandSparkles size={20} />, title: "Magic Tools" },
   { key: 12, badge: "", icon: <PenTool size={20} />, title: "Vector Tools" },
@@ -52,9 +39,42 @@ const navData = [
 ];
 
 const RegularNavItems: React.FC = () => {
+  const scrollInnerRef = useRef<HTMLElement>(null);
+
   const [selectedItemKey, setSelectedItemKey] = useState<number | null>(2);
   const [selectedItem2Key, setSelectedItem2Key] = useState<number | null>(3);
   const [selectedItem3Key, setSelectedItem3Key] = useState<number | null>(3);
+
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+
+  const updateIndicator = useCallback(() => {
+    if (!scrollInnerRef.current) return;
+
+    const container = scrollInnerRef.current;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-selected="true"]',
+    );
+    if (!selected) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    const left = selectedRect.left - containerRect.left + container.scrollLeft;
+
+    setIndicatorStyle({ left, width: selectedRect.width });
+  }, []);
+
+  // Fire on selection change
+  useEffect(() => {
+    updateIndicator();
+  }, [selectedItem3Key, updateIndicator]);
+
+  // Fire on resize
+  useEffect(() => {
+    const ro = new ResizeObserver(() => updateIndicator());
+    if (scrollInnerRef.current) ro.observe(scrollInnerRef.current);
+    return () => ro.disconnect();
+  }, [updateIndicator]);
 
   const handleItemClick = (key: number) => {
     setSelectedItemKey(key);
@@ -89,7 +109,8 @@ const RegularNavItems: React.FC = () => {
             data-opacity="60"
             data-max-length="300"
           >
-         Grid-based navigation with icons and labels for quick scanning and section access.
+            Grid-based navigation with icons and labels for quick scanning and
+            section access.
           </text>
         </group>
 
@@ -166,7 +187,7 @@ const RegularNavItems: React.FC = () => {
 
         <group data-direction="column" data-gap="10" data-space="30">
           <text data-font-type="hero" data-text-size="large" data-ellipsis="">
-           Pill Navigation
+            Pill Navigation
           </text>
 
           <text
@@ -175,7 +196,8 @@ const RegularNavItems: React.FC = () => {
             data-opacity="60"
             data-max-length="300"
           >
-          Compact rounded items for filters, categories, or quick context switching.
+            Compact rounded items for filters, categories, or quick context
+            switching.
           </text>
         </group>
 
@@ -266,7 +288,7 @@ const RegularNavItems: React.FC = () => {
             data-space="30"
           >
             <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
-             Horizontal Section Navigation
+              Horizontal Section Navigation
             </text>
             <text
               data-wrap="wrap"
@@ -274,7 +296,8 @@ const RegularNavItems: React.FC = () => {
               data-line="1.3"
               data-opacity="60"
             >
-             Left-aligned sections inside a scroll container with wheel interaction.
+              Left-aligned sections inside a scroll container with wheel
+              interaction.
             </text>
           </group>
           <group
@@ -288,7 +311,7 @@ const RegularNavItems: React.FC = () => {
             data-snap-button="15"
           >
             <Scroll wheelEnabled={true}>
-              <group data-wrap="no" data-space="10">
+              <group data-wrap="no" data-space="10" ref={scrollInnerRef}>
                 {navData.map((item3) => (
                   <group
                     key={item3.key}
@@ -315,8 +338,6 @@ const RegularNavItems: React.FC = () => {
                         data-background={
                           item3.key === selectedItem3Key ? "main-alpha-15" : ""
                         }
-
-
                         data-height="fit"
                         data-width="auto"
                         data-interactive=""
@@ -328,7 +349,6 @@ const RegularNavItems: React.FC = () => {
                         data-radius="10"
                         data-contain=""
                       >
-
                         <text>{item3.title}</text>
                         {item3.badge ? (
                           <group
@@ -339,7 +359,7 @@ const RegularNavItems: React.FC = () => {
                             data-background="red"
                             data-color="white"
                             data-radius="20"
-                                          data-margin-right="-5"
+                            data-margin-right="-5"
                           >
                             <text data-weight="700">3</text>
                           </group>
@@ -348,6 +368,18 @@ const RegularNavItems: React.FC = () => {
                     </Ripple>
                   </group>
                 ))}
+
+                <group
+                  style={{
+                    width: indicatorStyle.width,
+                    transform: `translateX(${indicatorStyle.left}px)`,
+                  }}
+                  data-name="horizontal-indicator"
+                  data-position="absolute"
+                  data-height="2"
+                  data-background="main"
+                  data-bottom="0"
+                ></group>
               </group>
             </Scroll>
           </group>
@@ -457,25 +489,24 @@ const RegularNavItems: React.FC = () => {
         <separator data-horizontal="dotted" data-opacity="20"></separator>
  */}
 
-       <group
-            data-direction="column"
-            data-width="auto"
-            data-gap="10"
-            data-space="30"
+        <group
+          data-direction="column"
+          data-width="auto"
+          data-gap="10"
+          data-space="30"
+        >
+          <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
+            Tabbed Navigation
+          </text>
+          <text
+            data-wrap="wrap"
+            data-max-length="260"
+            data-line="1.3"
+            data-opacity="60"
           >
-            <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
-             Tabbed Navigation
-            </text>
-            <text
-              data-wrap="wrap"
-              data-max-length="260"
-              data-line="1.3"
-              data-opacity="60"
-            >
-              Tabs for switching between related views within the same context.
-            </text>
-          </group>
-
+            Tabs for switching between related views within the same context.
+          </text>
+        </group>
 
         <group>
           <Tabstrip
