@@ -68,7 +68,7 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
         <text
           data-wrap="wrap"
           data-length="400"
-          data-line="1.5"
+       data-line="1.5385rem"
           {...descriptionProps}
         >
           {description}

@@ -40,14 +40,46 @@ const navData = [
 
 const RegularNavItems: React.FC = () => {
   const scrollInnerRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
-  const [selectedItemKey, setSelectedItemKey] = useState<number | null>(2);
+  const [selectedItemKey, setSelectedItemKey] = useState<number | null>(1);
   const [selectedItem2Key, setSelectedItem2Key] = useState<number | null>(3);
-  const [selectedItem3Key, setSelectedItem3Key] = useState<number | null>(3);
+  const [selectedItem3Key, setSelectedItem3Key] = useState<number | null>(2);
 
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  });
+  const [scrollIndicatorStyle, setScrollIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+  });
 
-  const updateIndicator = useCallback(() => {
+  // Grid indicator: tracks full tile position relative to the grid container
+  const updateGridIndicator = useCallback(() => {
+    if (!gridRef.current) return;
+
+    const container = gridRef.current;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-grid-selected="true"]',
+    );
+    if (!selected) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    setIndicatorStyle({
+      left: selectedRect.left - containerRect.left,
+      top: selectedRect.top - containerRect.top,
+      width: selectedRect.width,
+      height: selectedRect.height,
+    });
+  }, []);
+
+  // Scroll indicator: tracks selected item in horizontal scroll nav
+  const updateScrollIndicator = useCallback(() => {
     if (!scrollInnerRef.current) return;
 
     const container = scrollInnerRef.current;
@@ -61,20 +93,29 @@ const RegularNavItems: React.FC = () => {
 
     const left = selectedRect.left - containerRect.left + container.scrollLeft;
 
-    setIndicatorStyle({ left, width: selectedRect.width });
+    setScrollIndicatorStyle({ left, width: selectedRect.width });
   }, []);
 
-  // Fire on selection change
+  // Fire grid indicator on selection change
   useEffect(() => {
-    updateIndicator();
-  }, [selectedItem3Key, updateIndicator]);
+    updateGridIndicator();
+  }, [selectedItemKey, updateGridIndicator]);
+
+  // Fire scroll indicator on selection change
+  useEffect(() => {
+    updateScrollIndicator();
+  }, [selectedItem3Key, updateScrollIndicator]);
 
   // Fire on resize
   useEffect(() => {
-    const ro = new ResizeObserver(() => updateIndicator());
+    const ro = new ResizeObserver(() => {
+      updateGridIndicator();
+      updateScrollIndicator();
+    });
+    if (gridRef.current) ro.observe(gridRef.current);
     if (scrollInnerRef.current) ro.observe(scrollInnerRef.current);
     return () => ro.disconnect();
-  }, [updateIndicator]);
+  }, [updateGridIndicator, updateScrollIndicator]);
 
   const handleItemClick = (key: number) => {
     setSelectedItemKey(key);
@@ -89,11 +130,9 @@ const RegularNavItems: React.FC = () => {
   return (
     <>
       <group
-        //   data-space="30"
         data-gap="30"
         data-direction="column"
         data-shrink="0"
-        //  data-contain=""
         data-wrap="no"
         data-fit="1"
         data-align="start"
@@ -119,31 +158,55 @@ const RegularNavItems: React.FC = () => {
           data-radius="25"
           data-border=""
           data-background="context"
-          data-max-length="400"
+          data-length="400"
+          data-autofit="1-600"
+          data-contain=""
         >
+          {/* Grid container — position:relative so the indicator can overlay tiles */}
           <group
+            ref={gridRef}
             data-type="grid"
             data-grid-template="120"
             data-gap="1"
             data-contain=""
+            data-position="relative"
           >
+            <group
+              data-name="grid-indicator"
+              data-position="absolute"
+              data-space="10"
+              data-pointer-events="none"
+              style={{
+                width: indicatorStyle.width,
+                height: indicatorStyle.height,
+
+                transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
+              }}
+            >
+              <group
+                data-radius="15"
+                data-background="main-alpha-15"
+                data-height="fit"
+              ></group>
+            </group>
+
             {navData.slice(0, 5).map((item) => (
               <group
                 data-border=""
                 data-space="10"
                 key={item.key}
+                data-grid-selected={
+                  item.key === selectedItemKey ? "true" : undefined
+                }
+                //      data-color={item.key === selectedItemKey ? "main-text" : undefined}
+                //   data-ink-color={item.key === selectedItemKey ? "main-dark" : undefined}
                 onClick={() => handleItemClick(item.key)}
               >
-                <Ripple>
                   <group
-                    data-background={item.key === selectedItemKey ? "main" : ""}
-                    data-color={item.key === selectedItemKey ? "main-text" : ""}
-                    data-ink-color={
-                      item.key === selectedItemKey ? "main-dark" : ""
-                    }
                     data-contain=""
                     data-radius="15"
                     data-interactive=""
+                    data-over-color="neutral"
                     data-cursor="pointer"
                   >
                     <group
@@ -154,9 +217,7 @@ const RegularNavItems: React.FC = () => {
                     >
                       {item.badge ? (
                         <group
-                          data-background={
-                            item.key === selectedItemKey ? "main-text" : "red"
-                          }
+                          data-background="red"
                           data-space="3"
                           data-position="absolute"
                           data-width="auto"
@@ -177,7 +238,6 @@ const RegularNavItems: React.FC = () => {
                       </text>
                     </group>
                   </group>
-                </Ripple>
               </group>
             ))}
           </group>
@@ -371,8 +431,9 @@ const RegularNavItems: React.FC = () => {
 
                 <group
                   style={{
-                    width: indicatorStyle.width,
-                    transform: `translateX(${indicatorStyle.left}px)`,
+                    width: scrollIndicatorStyle.width,
+                    transform: `translateX(${scrollIndicatorStyle.left}px)`,
+                    //    transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1), width 300ms cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                   data-name="horizontal-indicator"
                   data-position="absolute"
@@ -385,109 +446,6 @@ const RegularNavItems: React.FC = () => {
           </group>
         </group>
         <separator data-horizontal="dotted" data-opacity="20"></separator>
-
-        {/* <group data-width="auto" data-gap="20">
-          <group
-            data-direction="column"
-            data-width="auto"
-            data-gap="10"
-            data-space="30"
-          >
-            <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
-              Horizontal Navigation
-            </text>
-            <text
-              data-wrap="wrap"
-              data-length="200"
-              data-line="1.3"
-              data-opacity="60"
-            >
-              Right Aligned Navigation with Fixed Menu Button
-            </text>
-          </group>
-          <group
-            data-background="context"
-            data-radius="15"
-            data-contain=""
-            data-elevation="2"
-          >
-            <group>
-              <nav data-type="group" data-wrap="no" data-justify="end">
-                <group data-width="auto" data-contain="">
-                  <Scroll>
-                    <group data-wrap="no">
-                      <group data-wrap="no" data-width="auto">
-                        <separator
-                          data-vertical=""
-                          data-height="fit"
-                        ></separator>
-                        <Ripple>
-                          <group
-                            data-cursor="pointer"
-                            data-space="10"
-                            data-space-horizontal="15"
-                            data-gap="10"
-                            data-wrap="no"
-                            data-align="center"
-                            data-interactive=""
-                          >
-     
-                            <text data-adaptive="desktop">Cart</text>
-                         
-                            <group
-                              data-length="25"
-                              data-ratio="1:1"
-                              data-radius="20"
-                              data-color="white"
-                              data-justify="center"
-                              data-align="center"
-                              data-background="red"
-                            >
-                              <text data-weight="700">5</text>
-                            </group>
-                          </group>
-                        </Ripple>
-                      </group>
-                      <group data-wrap="no" data-width="auto">
-                        <separator
-                          data-vertical=""
-                          data-height="fit"
-                        ></separator>
-                        <Ripple>
-                          <group
-                            data-cursor="pointer"
-                            data-space="10"
-                            data-space-horizontal="15"
-                            data-gap="10"
-                            data-wrap="no"
-                            data-align="center"
-                            data-interactive=""
-                          >
-                
-                            <text data-weight="700">
-                              Charlote Thompson
-                            </text>
-                          </group>
-                        </Ripple>
-                      </group>
-                    </group>
-                  </Scroll>
-                </group>
-
-                <group data-wrap="no" data-length="60" data-height="60">
-                  <separator data-vertical="" data-height="fit"></separator>
-                  <Button className="primary extra" toggleClassName="open">
-                    <icon>
-                      <SvgHamburger />
-                    </icon>
-                  </Button>
-                </group>
-              </nav>
-            </group>
-          </group>
-        </group>
-        <separator data-horizontal="dotted" data-opacity="20"></separator>
- */}
 
         <group
           data-direction="column"
@@ -510,12 +468,8 @@ const RegularNavItems: React.FC = () => {
 
         <group>
           <Tabstrip
-            // separator={false}
             bottom
-            // classic={false}
-            // invert={false}
-            // modern={true}
-            selectedIndex={1}
+            selectedIndex={0}
             tabStripProps={{ "data-contain": "visible" }}
             tabStripContentProps={{
               "data-space": "30",

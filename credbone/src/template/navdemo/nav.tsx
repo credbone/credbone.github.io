@@ -48,6 +48,8 @@ const Landing: React.FC = () => {
                 data-space-vertical="15"
                 data-space-horizontal="30"
                 to="./BarsAndTiles"
+                data-align="center"
+                data-direction="column"
               >
                 <text data-weight="600" data-ellipsis="">
                   Bars & Tiles
@@ -63,6 +65,8 @@ const Landing: React.FC = () => {
                 data-margin-left="-20"
                 data-space-horizontal="30"
                 to="./SideBar"
+                data-align="center"
+                 data-direction="column"
               >
                 <text data-weight="600" data-ellipsis="">
                   Sidebar
