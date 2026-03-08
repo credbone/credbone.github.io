@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.86bf16a9.css",
-    "main.js": "/static/js/main.11c10a48.js",
+    "main.css": "/static/css/main.08bc6c9c.css",
+    "main.js": "/static/js/main.fd33c41d.js",
     "static/js/206.eca87e7a.chunk.js": "/static/js/206.eca87e7a.chunk.js",
     "static/media/resume_audio.mp3": "/static/media/resume_audio.564ef05d986ee2ffa983.mp3",
     "static/media/res_02.jpg": "/static/media/res_02.a048008c218fb2ae3705.jpg",
@@ -32,7 +32,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.86bf16a9.css",
-    "static/js/main.11c10a48.js"
+    "static/css/main.08bc6c9c.css",
+    "static/js/main.fd33c41d.js"
   ]
 }
