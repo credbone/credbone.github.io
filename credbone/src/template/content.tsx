@@ -214,7 +214,7 @@ const activeDots = useCyclingDots();
                     data-react="scale"
                     data-over-color="none"
                     data-ink-color="neutral"
-                    data-radius="100"
+                    data-radius="130"
                     data-align="start"
                     data-wrap="no"
                     data-contain=""
@@ -260,7 +260,7 @@ const activeDots = useCyclingDots();
                         data-theme="dark"
                         data-ratio="1:1"
                         //  data-background="text"
-                        data-radius="100"
+                        data-radius="130"
                         data-length="1/3"
                         data-contain=""
                       >
@@ -343,7 +343,7 @@ const activeDots = useCyclingDots();
                           to={"/Components/QuickDemos"}
                           data-height="fit"
                           data-contain=""
-                          //  data-radius="100"
+                          //  data-radius="130"
                           data-interactive=""
                           data-over-color="none"
                           data-align="start"
@@ -356,7 +356,7 @@ const activeDots = useCyclingDots();
                             data-cursor="pointer"
                             data-ratio="1:1"
                             data-position="center"
-                            data-radius="100"
+                            data-radius="130"
                             //   data-length="60"
                             //  data-background="adaptive-gray"
                             data-contain=""
@@ -443,7 +443,7 @@ const activeDots = useCyclingDots();
 
               <group data-ratio="2:1" data-align="start">
                 <group
-                  data-radius="100"
+                  data-radius="130"
                 data-background="adaptive-gray"
                   data-height="fit"
                   data-align="center"
@@ -511,7 +511,7 @@ const activeDots = useCyclingDots();
                   <group
                     data-ratio="1:1"
                     data-background="text"
-                    data-radius="100"
+                    data-radius="130"
                     data-length="1/3"
                   ></group>
                 </group>
@@ -528,7 +528,7 @@ const activeDots = useCyclingDots();
                   <group
                     data-ratio="1:1"
                     data-background="adaptive-gray"
-                    data-radius="100"
+                    data-radius="130"
                     data-length="1/3"
                     data-direction="column"
                   >
@@ -555,7 +555,7 @@ const activeDots = useCyclingDots();
                   <group
                     data-ratio="1:1"
                     data-background="adaptive-gray"
-                    data-radius="100"
+                    data-radius="130"
                     data-length="1/3"
                   ></group>
                 </group>
@@ -573,7 +573,7 @@ const activeDots = useCyclingDots();
                   <group
                     data-ratio="1:1"
                     data-background="adaptive-gray"
-                    data-radius="100"
+                    data-radius="130"
                     data-length="1/3"
                   ></group>
                 </group>
@@ -581,7 +581,7 @@ const activeDots = useCyclingDots();
                 <group
                   data-ratio="1:1"
                   data-backdrop="20"
-                  data-radius="100"
+                  data-radius="130"
                   data-length="1/3"
                 ></group>
               </group>
@@ -665,7 +665,7 @@ const activeDots = useCyclingDots();
                       data-align="start"
                       data-direction="column"
                       data-contain=""
-                      data-radius="100"
+                      data-radius="130"
                     >
                       <Ripple>
                         <Link
@@ -674,7 +674,7 @@ const activeDots = useCyclingDots();
                           data-type="group"
                           data-height="fit"
                           data-contain=""
-                          // data-radius="100"
+                          // data-radius="130"
                           data-interactive=""
                           data-over-color="none"
                           data-align="start"
@@ -687,7 +687,7 @@ const activeDots = useCyclingDots();
                             data-cursor="pointer"
                             data-ratio="1:1"
                             data-position="center"
-                            data-radius="100"
+                            data-radius="130"
                             data-contain=""
                             data-space="20"
                           >

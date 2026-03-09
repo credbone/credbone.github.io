@@ -171,24 +171,7 @@ const RegularNavItems: React.FC = () => {
             data-contain=""
             data-position="relative"
           >
-            <group
-              data-name="grid-indicator"
-              data-position="absolute"
-              data-space="10"
-              data-pointer-events="none"
-              style={{
-                width: indicatorStyle.width,
-                height: indicatorStyle.height,
 
-                transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
-              }}
-            >
-              <group
-                data-radius="15"
-                data-background="main-alpha-15"
-                data-height="fit"
-              ></group>
-            </group>
 
             {navData.slice(0, 5).map((item) => (
               <group
@@ -240,6 +223,25 @@ const RegularNavItems: React.FC = () => {
                   </group>
               </group>
             ))}
+                        <group
+                        data-pointer-event="none"
+              data-name="grid-indicator"
+              data-position="absolute"
+              data-space="10"
+              data-pointer-events="none"
+              style={{
+                width: indicatorStyle.width,
+                height: indicatorStyle.height,
+
+                transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
+              }}
+            >
+              <group
+                data-radius="15"
+                data-background="main-alpha-15"
+                data-height="fit"
+              ></group>
+            </group>
           </group>
         </group>
 
@@ -304,6 +306,7 @@ const RegularNavItems: React.FC = () => {
                           data-ratio="1:1"
                           data-length="30"
                           data-space="2"
+                          data-height="fit"
                         >
                           <group
                             data-justify="center"

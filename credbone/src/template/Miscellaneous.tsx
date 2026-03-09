@@ -27,7 +27,7 @@ const Miscellaneous: React.FC = () => {
     setDir((prevDir) => (prevDir === "rtl" ? "ltr" : "rtl"));
   };
 
-  const [isAutoMode, setIsAutoMode] = useState(false);
+  const [isAutoMode, setIsAutoMode] = useState(true);
 
   const toggleAutoMode = () => {
     setIsAutoMode((prevMode) => !prevMode);
@@ -198,7 +198,7 @@ const Miscellaneous: React.FC = () => {
 </Ripple>
         </group>
 
-        <separator data-horizontal="" data-interval="30"></separator>
+        <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
         <group data-radius="50" data-contain="">
           <group data-direction="column" data-justify="end">
@@ -339,7 +339,7 @@ const Miscellaneous: React.FC = () => {
 </Ripple>
         </group>
 
-        <separator data-horizontal="" data-interval="30"></separator>
+        <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
         <group data-radius="50" data-contain="">
           <group  data-contain="">
