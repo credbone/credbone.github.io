@@ -254,7 +254,7 @@ const activeDots = useCyclingDots();
                       data-space="20"
                       data-theme="dark"
                       data-contain=""
-                      data-shadow="crips"
+                    //  data-shadow="crips"
                     >
                       {/* <group
                         data-theme="dark"
@@ -294,7 +294,7 @@ const activeDots = useCyclingDots();
                   data-ratio="1:1"
                   //          data-length="200"
                   data-radius="full"
-                  data-background="adaptive-gray"
+                 data-border="outline"
                 ></group>
 
                 <group
