@@ -250,6 +250,16 @@ const DotDisplayEdit: React.FC<{
 
   const svgRef = React.useRef<SVGSVGElement>(null);
 
+
+     const [isInverted, setIsInverted] = useState(true);
+
+
+  const toggleInvert = () => {
+    setIsInverted((prev) => !prev);
+  };
+
+
+
   return (
     <>
       <group
@@ -755,13 +765,19 @@ const DotDisplayEdit: React.FC<{
       <group
         data-width="auto"
         data-radius="40"
-        data-space="30"
-        data-background="text"
-        data-color="main-background"
+       
+        data-border=""
+        data-background={isInverted ? "text" :"context"}
+        data-color={isInverted ? "main-background" :"text"}
+
+         
         data-direction="column"
         data-justify="center"
+        data-wrap="no"
       >
-        <group data-direction="column" data-gap="5">
+
+<group  data-direction="column"  data-space="30" data-gap="30" data-height="fit">
+          <group data-direction="column" data-gap="5">
           <text
             data-weight="700"
             data-wrap="preline"
@@ -779,6 +795,35 @@ const DotDisplayEdit: React.FC<{
         <group data-position="center" data-justify="center" data-space="30">
           <DotDisplay size={130} activeDots={activeDots} />
         </group>
+</group>
+<group data-space-horizontal="20" >
+  <separator data-horizontal="dotted" data-opacity="20"></separator>
+</group>
+
+        <group   data-space="20">
+         
+<Ripple>
+            <group
+            data-ink-color="neutral"
+            data-contain=""
+           data-space-vertical="15"
+            data-space-horizontal="20"
+            data-align="center"
+            data-justify="center"
+            data-background="adaptive-gray"
+            // data-border="outline"
+           
+            data-interactive=""
+            data-over-color="neutral"
+            data-radius="30"
+            data-cursor="pointer"
+            onClick={toggleInvert}
+          >
+            <text>Invert Colors</text>
+          </group>
+</Ripple>
+        </group>
+
       </group>
     </>
   );
@@ -794,6 +839,13 @@ const Dot: React.FC<{
 }> = ({ x, y, active, r, onClick, onMouseMove }) => {
   const rectX = x - 5;
   const rectY = y - 5;
+
+
+
+
+
+
+
 
   return (
     <g>

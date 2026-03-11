@@ -36,6 +36,7 @@ const ThemePickerVertical: React.FC = () => {
       data-height="fit"
       data-contain=""
       data-align="start"
+      data-align-content="start"
 
       //  data-radius="20"
       // data-contain=""

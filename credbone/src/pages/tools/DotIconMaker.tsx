@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import DotDisplay from "../../template/dotDisplay";
 import DotDisplayEdit from "../../template/dotDisplayEdit";
 import Tooltip from "../../components/tooltip";
 
 import { arrow,  gear, mail, moon,  sun } from "../tools/dotIcon";
+
+
+
+
 
 
 // Convert a float-encoded Set<number> to the raw string format ("115.2, 131.2, 71, ...")
@@ -13,8 +17,9 @@ const encodeSet = (set: Set<number>): string =>
 
 function DotIconMaker() {
   const buttonData = [
-    { label: "Sun", set: sun },
+
     { label: "Arrow", set: arrow },
+    { label: "Sun", set: sun },
     { label: "Gear", set: gear },
     { label: "Moon", set: moon },
     { label: "Envelope", set: mail },
@@ -41,6 +46,65 @@ const handleClick = (index: number, set: Set<number>) => {
   setEncodedDots(""); // force reset so same icon re-triggers useEffect
   setTimeout(() => setEncodedDots(encodeSet(set)), 0);
 };
+
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  });
+
+
+
+    // Grid indicator: tracks full tile position relative to the grid container
+    const updateGridIndicator = useCallback(() => {
+      if (!gridRef.current) return;
+
+      if (selected < 0) {
+        setIndicatorStyle({ left: 0, top: 0, width: 0, height: 0 });
+        return;
+      }
+  
+      const container = gridRef.current;
+      const selectedEl = container.children[selected] as HTMLElement;
+      if (!selectedEl) return;
+  
+      const containerRect = container.getBoundingClientRect();
+      const selectedRect = selectedEl.getBoundingClientRect();
+  
+      setIndicatorStyle({
+        left: selectedRect.left - containerRect.left,
+        top: selectedRect.top - containerRect.top,
+        width: selectedRect.width,
+        height: selectedRect.height,
+      });
+    }, [selected]);
+  
+
+  
+    // Fire grid indicator on selection change
+    useEffect(() => {
+      updateGridIndicator();
+    }, [selected, updateGridIndicator]);
+  
+
+  
+    // Fire on resize
+    useEffect(() => {
+      const ro = new ResizeObserver(() => {
+        updateGridIndicator();
+      
+      });
+      if (gridRef.current) ro.observe(gridRef.current);
+     
+      return () => ro.disconnect();
+    }, [updateGridIndicator]);
+
+
+
+
 
   return (
     <group data-gap="30" data-max-length="1200">
@@ -97,6 +161,7 @@ const handleClick = (index: number, set: Set<number>) => {
             </group>
 
             <group
+             ref={gridRef}
               data-gap="1"
               data-type="grid"
               data-grid-template="70"
@@ -116,7 +181,7 @@ const handleClick = (index: number, set: Set<number>) => {
                     data-space="10"
                     data-interactive="border"
                     data-over-color="neutral"
-                    data-background={selected === index ? "adaptive-gray" : ""}
+               //     data-background={selected === index ? "adaptive-gray" : ""}
                     data-cursor="pointer"
                     onClick={() => handleClick(index, button.set)}
                     data-direction="column"
@@ -127,6 +192,30 @@ const handleClick = (index: number, set: Set<number>) => {
                   </group>
                 </Tooltip>
               ))}
+
+
+
+                        <group
+                        data-pointer-event="none"
+              data-name="grid-indicator"
+              data-position="absolute"
+          //    data-space="10"
+              data-pointer-events="none"
+              style={{
+                width: indicatorStyle.width,
+                height: indicatorStyle.height,
+
+                transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
+              }}
+            >
+              <group
+              //  data-radius="15"
+                data-background="main-alpha-15"
+                data-height="fit"
+              ></group>
+            </group>
+
+
             </group>
           </group>
         </group>

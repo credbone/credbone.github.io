@@ -1,12 +1,13 @@
 // useCyclingDots.ts
 import { useState, useEffect } from "react";
-import { heart, X, Circle, Bolt  } from "./dotIcon";
+import { heart, X, Bolt, colorspace  } from "./dotIcon";
 
 const dotMap = new Map([
   ["heart", new Set(heart)],
   ["x", new Set(X)],
-    // ["Circle", new Set(Circle)],
-        ["Bolt", new Set(Bolt)]
+
+        ["Bolt", new Set(Bolt)],
+                ["colorspace", new Set(colorspace)]
 ]);
 
 export function useCyclingDots(intervalMs = 1500) {

@@ -81,7 +81,7 @@ function ToolsCollection() {
                     data-type="grid"
                     data-grid-template="90"
                     data-gap="10"
-                    data-length="400"
+                    data-length="300"
                   >
                     {links.map((link, index) => (
                       <group key={index}>

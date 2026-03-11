@@ -132,11 +132,11 @@ function Tools() {
                   {link.new === "true" && (
                     <group
                       data-background="red"
-                      data-space="5"
+                      data-space="3"
                       data-position="absolute"
                       data-width="auto"
                       data-radius="5"
-                      data-left="20"
+                      data-right="20"
                       data-top="20"
                     ></group>
                   )}
