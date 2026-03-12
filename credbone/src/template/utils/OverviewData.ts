@@ -1,7 +1,7 @@
 
-import sectionImage_1 from "../../styles/images/samples/wide_res_70.webp";
+import sectionImage_1 from "../../styles/images/samples/wide_res_66.webp";
 import sectionImage_2 from "../../styles/images/samples/wide_res_72.webp";
-import sectionImage_3 from "../../styles/images/samples/wide_res_73.webp";
+import sectionImage_3 from "../../styles/images/samples/wide_res_68.webp";
 import sectionImage_4 from "../../styles/images/samples/wide_res_71.webp";
 import { colorcontent, typefacecontent } from "./richTumbnail";
 

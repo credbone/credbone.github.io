@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Ripple from "../../components/Ripple";
 
 
-import section_image from "../../styles/images/samples/wide_res_72.webp";
+import section_image from "../../styles/images/samples/wide_res_71.webp";
 import { links } from "./toolData";
 
 function Tools() {
@@ -39,7 +39,21 @@ function Tools() {
               data-width="auto"
               data-radius="20"
             >
-              <group data-gap="30">
+
+
+              <group data-gap="30" data-direction="column" data-align="start">
+                <group data-width="auto" data-gap="30">
+                  <text
+                    data-wrap="wrap"
+                    data-font-type="hero"
+                    data-line="1"
+                    data-text-size="medium-small"
+                    data-max-length="800"
+                  >
+                    Crafted <br></br>for growth.
+                  </text>
+                  <separator data-vertical="adaptive" data-height=""></separator>
+
                 <group
                   data-width="auto"
                   data-direction="column"
@@ -50,15 +64,18 @@ function Tools() {
                     data-wrap="wrap"
                     data-line="1.5"
                     data-length="300"
-
-
+                    data-text-size="medium-small"
                   >
-                 Built with the system's own resources, to meet various UI and design needs.
+                     Built with the system's own resources, to meet various UI and design needs.
                   </text>
                 </group>
 
-                
+                </group>
+
               </group>
+
+
+
             </group>
           </group>
         </group>

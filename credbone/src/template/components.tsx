@@ -8,7 +8,7 @@ import { useModal } from "../components/Modal";
 
 // import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 // import sampleImage_3 from "../styles/images/samples/res_82.webp";
-import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_66.webp";
 
 import buildInfo from "../buildInfo.json";
 // import ThemePicker from "./themePicker";
@@ -263,12 +263,16 @@ const Components: React.FC = () => {
           </text>
         </group>
 
+
+
+
+
         <group
-          data-gap="5"
-          data-type="grid"
-          data-grid-template="200"
-          data-weight="600"
-          // data-contain=""
+
+
+ data-gap="10" data-type="grid" data-grid-template="200" 
+
+
         >
           {linksArray.map((link, index) => (
             <Ripple key={index}>
@@ -279,21 +283,29 @@ const Components: React.FC = () => {
                 data-interactive=""
                 data-over-color="neutral"
                 data-ink-color="neutral"
-                data-width="auto"
+               // data-width="auto"
                 data-type="group"
                 data-contain=""
                 data-min-height="300"
                 data-radius="40"
                 data-direction="column"
                 data-wrap="no"
-                data-background={link.color ? "main" : "adaptive-gray"}
+                data-background={link.color ? "main" : ""}
                 data-color={link.color ? "main-text" : ""}
+
+                
+
+                data-border={link.color ? "1-primary":"inset"}
+
+                data-index={link.color ? "2":""}
+
+                
               >
 
                   {link.new === "true" && (
                     <group
                       data-background="red"
-                      data-space="5"
+                      data-space="3"
                       data-position="absolute"
                       data-width="auto"
                       data-radius="5"
@@ -338,8 +350,8 @@ const Components: React.FC = () => {
                     data-ellipsis=""
                     data-wrap="wrap"
                     data-line="1.3"
-                    data-max-length="300"
-                    //  data-opacity="60"
+                  //  data-max-length="300"
+                      data-opacity="60"
                   >
                     {link.description}
                   </text>
@@ -417,7 +429,7 @@ const Components: React.FC = () => {
                   data-gap="20"
                 >
                   <text
-                    data-wrap="wrap"
+     data-wrap="wrap"
                     data-line="1.5"
                     data-length="400"
                     data-text-size="medium-small"
