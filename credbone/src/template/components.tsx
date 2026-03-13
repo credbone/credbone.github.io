@@ -25,8 +25,6 @@ const links = [
 
 const currentYear: number = new Date().getFullYear();
 
-
-
 const Components: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
@@ -42,7 +40,6 @@ const Components: React.FC = () => {
 
   const { openModal, closeModal } = useModal();
 
-
   const modalConfig = {
     "data-radius": "none",
     "data-margin": "0",
@@ -55,10 +52,13 @@ const Components: React.FC = () => {
     "data-modal-backdrop": "dark",
   };
 
- 
-
   return (
-    <group data-scroll="" data-timeline-name="main-scroll" data-index="1" ref={viewRef}>
+    <group
+      data-scroll=""
+      data-timeline-name="main-scroll"
+      data-index="1"
+      ref={viewRef}
+    >
       <group
         data-space="adaptive-30-50"
         data-gap="50"
@@ -263,17 +263,7 @@ const Components: React.FC = () => {
           </text>
         </group>
 
-
-
-
-
-        <group
-
-
- data-gap="10" data-type="grid" data-grid-template="200" 
-
-
-        >
+        <group data-gap="10" data-type="grid" data-grid-template="200">
           {linksArray.map((link, index) => (
             <Ripple key={index}>
               <Link
@@ -283,37 +273,31 @@ const Components: React.FC = () => {
                 data-interactive=""
                 data-over-color="neutral"
                 data-ink-color="neutral"
-               // data-width="auto"
+                // data-width="auto"
                 data-type="group"
                 data-contain=""
                 data-min-height="300"
                 data-radius="40"
                 data-direction="column"
                 data-wrap="no"
-                data-background={link.color ? "main" : ""}
-                data-color={link.color ? "main-text" : ""}
-
-                
-
-                data-border={link.color ? "1-primary":"inset"}
-
-                data-index={link.color ? "2":""}
-
-                
+                data-background={link.color ? "main" : index === 0 ? "adaptive-gray" : undefined}
+                data-color={link.color ? "main-text" : undefined}
+                data-border={link.color ? "1-primary" : "inset"}
+                data-index={link.color ? "2" : undefined}
+                data-elevation={index === 7 ? "2":undefined}
               >
-
-                  {link.new === "true" && (
-                    <group
-                      data-background="red"
-                      data-space="3"
-                      data-position="absolute"
-                      data-width="auto"
-                      data-radius="5"
-                      data-right="30"
-                      data-top="30"
-                      data-index="2"
-                    ></group>
-                  )}
+                {link.new === "true" && (
+                  <group
+                    data-background="red"
+                    data-space="3"
+                    data-position="absolute"
+                    data-width="auto"
+                    data-radius="5"
+                    data-right="30"
+                    data-top="30"
+                    data-index="2"
+                  ></group>
+                )}
 
                 <group
                   data-index="1"
@@ -350,8 +334,8 @@ const Components: React.FC = () => {
                     data-ellipsis=""
                     data-wrap="wrap"
                     data-line="1.3"
-                  //  data-max-length="300"
-                      data-opacity="60"
+                    //  data-max-length="300"
+                    data-opacity="60"
                   >
                     {link.description}
                   </text>
@@ -429,7 +413,7 @@ const Components: React.FC = () => {
                   data-gap="20"
                 >
                   <text
-     data-wrap="wrap"
+                    data-wrap="wrap"
                     data-line="1.5"
                     data-length="400"
                     data-text-size="medium-small"
