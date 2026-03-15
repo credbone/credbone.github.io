@@ -5,7 +5,9 @@ import Ripple from "../../../components/Ripple";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
 
 
+import { isIOS, isMacOs } from 'react-device-detect';
 
+const isApple = isMacOs || isIOS;
 
 
 
@@ -618,7 +620,13 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
             data-theme="dark"
             data-gap="10"
           >
-            <group data-space="15" data-user-select="text" data-radius="15" data-background={copied ? "adaptive-gray" : undefined}>
+            <group data-space="15" data-user-select="text" data-radius="15" data-background={copied ? "adaptive-gray" : undefined}
+            
+
+  
+            
+            
+            >
               <text
               data-font-feature="tnum"
               data-wrap="wrap"
@@ -647,17 +655,24 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
 export const HintsPanel: React.FC = () => (
   <group data-space="10">
     {[
-      ["Ctrl + Click", "Add point"],
+     [`${isApple ? '⌘' : 'Ctrl'} + Click`, "Add point"],
       ["Click", "Select point"],
       ["Drag", "Move point / handle"],
       ["Delele", "Remove selected"],
-    ].map(([key, desc]) => (
+    ].map(([key, desc] , index) => (
       <group
         data-space="5"
         data-gap="10"
         data-align="center"
         data-wrap="no"
         key={key}
+
+                   data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration={2 + index * 0.5}
+   
+
+
       >
         <group
           data-space="10"

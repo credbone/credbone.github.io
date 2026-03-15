@@ -11,7 +11,7 @@ import StuckReporter from "../../components/StuckReporter";
 import ColorMixer from "./ColorMixer";
 import Ripple from "../../components/Ripple";
 import ColorSpaceConverter from "./ColorSpaceConverter";
-import PathBuilderExpanded from "./PathBuilderExpanded";
+
 import PathBulder from "./PathBuilder/PathBulder";
 
 function ToolsCollection() {
