@@ -174,6 +174,27 @@ export const routesData: RouteData[] = [
   tags: ["color", "converter", "color-theory", "harmony", "LAB", "RGB", "HSL", "HEX", "swatches", "token", "export", "tools", "svg", "CSS"],
   description: "Convert colors across spaces and explore theory-based combinations.",
   title: "Color Converter"
+},
+
+
+{
+  path: "../Tools/PathBuilder",
+  tags: [
+    "svg",
+    "path",
+    "vector",
+    "path-builder",
+    "segments",
+    "bezier",
+    "curves",
+    "lines",
+    "arc",
+    "curve",
+    "editor",
+
+  ],
+  description: "Build and edit SVG paths visually by combining segments, curves, and lines, with quick export.",
+  title: "Path Builder"
 }
 
 ];

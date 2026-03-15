@@ -167,7 +167,7 @@ text[data-width="auto"]{width: initial;}
 [data-position="absolute"] {position: absolute;}
 [data-position="relative"] {position: relative;}
 [data-position="fixed"] {position: fixed;}
-
+[data-position="sticky"] {position: sticky;}
 
 /* Bottom positions */
 
@@ -557,6 +557,17 @@ a[data-link]:active {transform:translateY(1px)}
 [data-decoration="underline"]{text-decoration:underline;}
 
 
+
+[data-adaptive="mobile-1000"] {display: none;}
+
+@media (max-width: 1000px) {
+
+  [data-adaptive="desktop-1000"] {display: none;}
+  [data-adaptive="mobile-1000"] {display: flex;}
+
+}
+
+
 [data-adaptive="mobile"],
 [data-adaptive="mobile-600"]
 {
@@ -729,6 +740,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height="16"] { height:16px; }
 [data-height="18"] { height:18px; }
 [data-height="20"] { height:20px; }
+[data-height="25"] { height:25px; }
 [data-height="30"] { height:30px; }
 
 [data-height="35"] { height:35px; }
@@ -771,7 +783,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height="400"] { height:400px; }
 [data-height="500"] { height:500px; }
 [data-height="600"] { height:600px; }
-
+[data-height="800"] { height:800px; }
 
 [data-height="50%"] { height:50%; }
 
@@ -848,6 +860,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-max-height="200"]{max-height:200px;}
 [data-max-height="300"]{max-height:300px;}
 [data-max-height="400"]{max-height:400px;}
+
+[data-max-height="600"]{max-height:400px;}
 
 [data-min-height="30"]{min-height:30px;}
 [data-min-height="130"]{min-height:130px;}
@@ -1365,7 +1379,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="max-width"]{transition-property: max-width;}
 [data-transition-prop="height"]{transition-property: height;}
 [data-transition-prop="padding"]{transition-property: padding;}
-
+[data-transition-prop="flex"]{transition-property: flex;}
 
 
 [data-transition-prop="border-radius"]{transition-property: border-radius;}

@@ -331,6 +331,8 @@
 [data-background="context-right"] {background-image: linear-gradient(90deg, var(--context) 0%, transparent);}
 [data-background="context-left"] {background-image: linear-gradient(-90deg, var(--context) 0%, transparent);}
 
+[data-background="context-bottom"] {background-image: linear-gradient( transparent 0%, var(--context) );}
+
 [data-color="transparent"]{color:transparent}
 [data-background-clip="text"]{background-clip: text;}
 

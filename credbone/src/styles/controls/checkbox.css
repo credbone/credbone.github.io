@@ -31,15 +31,29 @@ box ink { width: 50px; height: 50px; position: absolute; top: -16px; left: -16px
 box ink:hover { background-color: var(--hover); }
 
 
-[checkbox] input:checked ~ box { color: var(--main-color); }
-
-[checkbox][simple] check { height: 10px; width: 10px; box-shadow: inset 0 0 0 7px; top: 5px; left: 5px; transition: 0.25s;  border-radius: 20px; position: absolute;}
-
+[checkbox][simple] check { height: 10px; width: 10px; box-shadow: inset 0 0 0 7px; top: 5px; left: 5px; transition: 0.25s; border-radius: 20px; position: absolute;}
 [checkbox][simple]:active box check { width: 15px; }
-[checkbox][simple]:active input:checked ~ box check { left: 0px; }
 
-[checkbox][simple] input:checked ~ box { box-shadow: inset 0 0 0 20px;}
-[checkbox][simple] input:checked ~ box check { transform: translateX(14px); box-shadow: inset 0 0 0 0px; }
+[checkbox] input:checked ~ box
+
+{ color: var(--main-color); }
+
+[checkbox][simple]:active input:checked ~ box check,
+[checkbox][simple][data-checked="true"]:active box check
+{ left: 0px; }
+
+
+[checkbox][simple] input:checked ~ box,
+
+[checkbox][data-checked="true"] box
+
+{ box-shadow: inset 0 0 0 20px;}
+
+
+[checkbox][simple] input:checked ~ box check,
+[checkbox][data-checked="true"] box check
+
+{ transform: translateX(14px); box-shadow: inset 0 0 0 0px; }
 
 [checkbox][simple] check {background: var(--background);}
 

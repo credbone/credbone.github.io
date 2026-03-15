@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Ripple from "../../components/Ripple";
 
-
 import section_image from "../../styles/images/samples/wide_res_71.webp";
 import { links } from "./toolData";
 
@@ -20,7 +19,6 @@ function Tools() {
         data-direction="column"
         data-max-length="1200"
       >
-
         <group data-direction="column">
           <picture
             data-radius="50"
@@ -39,8 +37,6 @@ function Tools() {
               data-width="auto"
               data-radius="20"
             >
-
-
               <group data-gap="30" data-direction="column" data-align="start">
                 <group data-width="auto" data-gap="30">
                   <text
@@ -52,30 +48,29 @@ function Tools() {
                   >
                     Crafted <br></br>for growth.
                   </text>
-                  <separator data-vertical="adaptive" data-height=""></separator>
+                  <separator
+                    data-vertical="adaptive"
+                    data-height=""
+                  ></separator>
 
-                <group
-                  data-width="auto"
-                  data-direction="column"
-                  data-align="start"
-                  data-gap="20"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    data-length="300"
-                    data-text-size="medium-small"
+                  <group
+                    data-width="auto"
+                    data-direction="column"
+                    data-align="start"
+                    data-gap="20"
                   >
-                     Built with the system's own resources, to meet various UI and design needs.
-                  </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-length="300"
+                      data-text-size="medium-small"
+                    >
+                      Built with the system's own resources, to meet various UI
+                      and design needs.
+                    </text>
+                  </group>
                 </group>
-
-                </group>
-
               </group>
-
-
-
             </group>
           </group>
         </group>
@@ -112,9 +107,7 @@ function Tools() {
           </text>
         </group>
 
-
-
-        <group data-type="grid" data-grid-template="140/120" data-gap="15" >
+        <group data-type="grid" data-grid-template="140/120" data-gap="15">
           {links.map((link, index) => (
             <Link
               key={index}
@@ -128,13 +121,11 @@ function Tools() {
               data-direction="column"
               data-wrap="no"
               data-justify="start"
-
-                          data-animation-name="zoom-in"
-            data-fill-mode="backwards"
-            data-animation-duration={2 + index * 0.5}
-            data-animation-timing="fancy"
-            data-ink-color="dark-shade-10"
-
+              data-animation-name="zoom-in"
+              data-fill-mode="backwards"
+              data-animation-duration={2 + index * 0.5}
+              data-animation-timing="fancy"
+              data-ink-color="dark-shade-10"
             >
               <Ripple>
                 <group
@@ -167,11 +158,28 @@ function Tools() {
                   </group>
                 </group>
               </Ripple>
-              <group data-gap="5" data-space="20" data-wrap="no" data-direction="column">
-                <text data-weight="700" data-wrap="preline" data-text-size="medium" data-ellipsis="" data-font-type="hero" data-line="1">
+              <group
+                data-gap="5"
+                data-space="20"
+                data-wrap="no"
+                data-direction="column"
+              >
+                <text
+                  data-weight="700"
+                  data-wrap="preline"
+                  data-text-size="medium"
+                  data-ellipsis=""
+                  data-font-type="hero"
+                  data-line="1"
+                >
                   {link.title}
                 </text>
-                <text data-wrap="wrap" data-line="1.2" data-opacity="40" data-length="110">
+                <text
+                  data-wrap="wrap"
+                  data-line="1.2"
+                  data-opacity="40"
+                  data-length="110"
+                >
                   {link.description}
                 </text>
               </group>

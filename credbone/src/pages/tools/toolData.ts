@@ -1,4 +1,4 @@
-import { blobcontent, iconcontent, patternmaker, ColorMixer, ColorSpace } from "./toolThumbs";
+import { blobcontent, iconcontent, patternmaker, ColorMixer, ColorSpace, PathBuilder } from "./toolThumbs";
 
 
 
@@ -16,5 +16,7 @@ export const links =
 { title: "Pattern Maker", content: patternmaker, description: "Create seamless patterns.", url: "/Tools/PatternMaker", new:"true" },
 
 { title: "Color Converter", content: ColorSpace, description: "Convert colors between formats.", url: "/Tools/ColorSpaceConverter", new:"true" },
+
+{ title: "Path Builder", content: PathBuilder, description: "Easly create and modify paths.", url: "/Tools/PathBuilder", new:"true" },
 
 ];

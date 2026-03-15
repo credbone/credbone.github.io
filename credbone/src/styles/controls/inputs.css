@@ -214,7 +214,8 @@ errormessage { display: flex;overflow: hidden;width: 100%;}
 
 [data-name="input-reset"] {display: flex; appearance: none; -webkit-appearance: none; background: none; text-overflow: ellipsis;  color: var(--text-color);}
 
-
+[data-name="input-indicator"]{display: none;}
+[data-name="input-reset"]:focus ~ [data-name="input-indicator"]{display: flex;}
 
 /* Chrome, Safari, Edge, Opera */
 input[data-name="input-reset"]::-webkit-outer-spin-button,

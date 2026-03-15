@@ -1,5 +1,5 @@
 import DotDisplay from "../../template/dotDisplay";
-import { icon, blob, color, colorspace, patterns } from "./dotIcon";
+import { icon, blob, color, colorspace, patterns, Path } from "./dotIcon";
 
 
 
@@ -10,3 +10,4 @@ export const blobcontent = <DotDisplay size={"fit"} activeIndexes={blob} />;
 export const patternmaker = <DotDisplay size={"fit"} activeIndexes={patterns} />;
 export const ColorMixer = <DotDisplay size={"fit"} activeIndexes={color} />;
 export const ColorSpace = <DotDisplay size={"fit"} activeIndexes={colorspace} />;
+export const PathBuilder = <DotDisplay size={"fit"} activeIndexes={Path} />;

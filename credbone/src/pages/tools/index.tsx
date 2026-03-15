@@ -11,6 +11,8 @@ import StuckReporter from "../../components/StuckReporter";
 import ColorMixer from "./ColorMixer";
 import Ripple from "../../components/Ripple";
 import ColorSpaceConverter from "./ColorSpaceConverter";
+import PathBuilderExpanded from "./PathBuilderExpanded";
+import PathBulder from "./PathBuilder/PathBulder";
 
 function ToolsCollection() {
   return (
@@ -139,6 +141,7 @@ function ToolsCollection() {
           <Route path="PatternMaker" element={<PatternMaker />} />
           <Route path="ColorMixer" element={<ColorMixer />} />
           <Route path="ColorSpaceConverter" element={<ColorSpaceConverter />} />
+          <Route path="PathBuilder" element={<PathBulder />} />
         </Routes>
       </group>
       <group data-position="bottom" data-height="200" data-shrink="no"></group>
