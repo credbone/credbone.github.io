@@ -4,12 +4,9 @@ import CustomSlider from "../../../components/inputs/slider";
 import Ripple from "../../../components/Ripple";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
 
-
-import { isIOS, isMacOs } from 'react-device-detect';
+import { isIOS, isMacOs } from "react-device-detect";
 
 const isApple = isMacOs || isIOS;
-
-
 
 // ─── Primitives ───────────────────────────────────────────────────────────────
 
@@ -49,12 +46,14 @@ export const SliderRow: React.FC<SliderRowProps> = ({
 }) => (
   <group data-space="10" data-gap="5" data-align="center">
     <group data-space="5" data-gap="10" data-align="center" data-wrap="no">
-      <text data-opacity="50" data-ellipsis="">{label}</text>
+      <text data-opacity="50" data-ellipsis="">
+        {label}
+      </text>
 
       {/* <text data-position="right">{Math.round(value)}</text> */}
     </group>
 
-    <group data-fit="1" data-space-horizontal="5">
+    <group data-fit="1">
       <CustomSlider
         //  showvalue={false}
         handlerWidth={50}
@@ -63,7 +62,7 @@ export const SliderRow: React.FC<SliderRowProps> = ({
         step={step}
         value={Math.round(value)}
         onValueChange={(v) => onChange(v)}
-       // handlerProps={{ "data-radius": "10" }}
+        // handlerProps={{ "data-radius": "10" }}
         trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
         trackRightProps={{ "data-opacity": "20", "data-height": "1" }}
       />
@@ -88,59 +87,71 @@ export const NumberRow: React.FC<NumberRowProps> = ({
   onChange,
 }) => {
   const [local, setLocal] = React.useState(String(value));
-  React.useEffect(() => { setLocal(String(value)); }, [value]);
+  React.useEffect(() => {
+    setLocal(String(value));
+  }, [value]);
 
   const valueRef = useRef(value);
   valueRef.current = value;
 
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-const startHold = (dir: 'inc' | 'dec') => {
-  const fn = () => {
-    const next = dir === 'inc'
-      ? valueRef.current + step
-      : valueRef.current - step;
-    const clamped = dir === 'inc'
-      ? (max !== undefined ? Math.min(max, next) : next)
-      : (min !== undefined ? Math.max(min, next) : next);
-    onChange(clamped);
+  const startHold = (dir: "inc" | "dec") => {
+    const fn = () => {
+      const next =
+        dir === "inc" ? valueRef.current + step : valueRef.current - step;
+      const clamped =
+        dir === "inc"
+          ? max !== undefined
+            ? Math.min(max, next)
+            : next
+          : min !== undefined
+            ? Math.max(min, next)
+            : next;
+      onChange(clamped);
+    };
+
+    // delay before hold starts
+    interval.current = setTimeout(() => {
+      interval.current = setInterval(fn, 80);
+    }, 400);
   };
 
-  // delay before hold starts
-  interval.current = setTimeout(() => {
-    interval.current = setInterval(fn, 80);
-  }, 400);
-};
+  const stopHold = () => {
+    if (interval.current) {
+      clearTimeout(interval.current);
+      clearInterval(interval.current);
+      interval.current = null;
+    }
+  };
 
-const stopHold = () => {
-  if (interval.current) {
-    clearTimeout(interval.current);
-    clearInterval(interval.current);
-    interval.current = null;
-  }
-};
+  // single tap fires on mouseup only if hold never started
+  const hasFired = useRef(false);
 
-// single tap fires on mouseup only if hold never started
-const hasFired = useRef(false);
+  const handleMouseDown = (dir: "inc" | "dec") => {
+    hasFired.current = false;
+    startHold(dir);
+  };
 
-const handleMouseDown = (dir: 'inc' | 'dec') => {
-  hasFired.current = false;
-  startHold(dir);
-};
-
-const handleMouseUp = (dir: 'inc' | 'dec') => {
-  const wasHolding = !interval.current || typeof interval.current === 'number';
-  stopHold();
-  if (!hasFired.current) {
-    // was a quick tap, fire once
-    const next = dir === 'inc'
-      ? valueRef.current + step
-      : valueRef.current - step;
-    onChange(dir === 'inc'
-      ? (max !== undefined ? Math.min(max, next) : next)
-      : (min !== undefined ? Math.max(min, next) : next));
-  }
-};
+  const handleMouseUp = (dir: "inc" | "dec") => {
+    const wasHolding =
+      !interval.current || typeof interval.current === "number";
+    stopHold();
+    if (!hasFired.current) {
+      // was a quick tap, fire once
+      const next =
+        dir === "inc" ? valueRef.current + step : valueRef.current - step;
+      onChange(
+        dir === "inc"
+          ? max !== undefined
+            ? Math.min(max, next)
+            : next
+          : min !== undefined
+            ? Math.max(min, next)
+            : next,
+      );
+    }
+  };
 
   return (
     <label
@@ -168,12 +179,13 @@ const handleMouseUp = (dir: 'inc' | 'dec') => {
         data-cursor="pointer"
         data-disabled={min !== undefined && value <= min ? "true" : undefined}
         data-opacity={min !== undefined && value <= min ? "30" : undefined}
-onMouseDown={() => handleMouseDown('dec')}
-onMouseUp={() => handleMouseUp('dec')}
-onMouseLeave={stopHold}
+        onMouseDown={() => handleMouseDown("dec")}
+        onMouseUp={() => handleMouseUp("dec")}
+        onMouseLeave={stopHold}
       >
         <text>−</text>
       </group>
+
       <input
         data-interact=""
         data-text-align="center"
@@ -186,24 +198,21 @@ onMouseLeave={stopHold}
         step={step}
         onChange={(e) => setLocal(e.target.value)}
         onBlur={(e) => onChange(parseFloat(e.target.value))}
-
-
         onKeyDown={(e) => {
-  if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    const next = valueRef.current + step;
-    onChange(max !== undefined ? Math.min(max, next) : next);
-  }
-  if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    const next = valueRef.current - step;
-    onChange(min !== undefined ? Math.max(min, next) : next);
-  }
-  if (e.key === 'Enter') onChange(parseFloat(e.currentTarget.value));
-}}
-        
-
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            const next = valueRef.current + step;
+            onChange(max !== undefined ? Math.min(max, next) : next);
+          }
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            const next = valueRef.current - step;
+            onChange(min !== undefined ? Math.max(min, next) : next);
+          }
+          if (e.key === "Enter") onChange(parseFloat(e.currentTarget.value));
+        }}
       />
+
       <group
         data-height="35"
         data-length="35"
@@ -215,9 +224,9 @@ onMouseLeave={stopHold}
         data-cursor="pointer"
         data-disabled={max !== undefined && value >= max ? "true" : undefined}
         data-opacity={max !== undefined && value >= max ? "30" : undefined}
-onMouseDown={() => handleMouseDown('inc')}
-onMouseUp={() => handleMouseUp('inc')}
-onMouseLeave={stopHold}
+        onMouseDown={() => handleMouseDown("inc")}
+        onMouseUp={() => handleMouseUp("inc")}
+        onMouseLeave={stopHold}
       >
         <text>+</text>
       </group>
@@ -276,7 +285,7 @@ export const Section: React.FC<{
     )}
 
     <group
-    //  data-background="main-background"
+      //  data-background="main-background"
       data-direction="column"
       data-border=""
       data-space="10"
@@ -381,55 +390,86 @@ export const PointPanel: React.FC<PointPanelProps> = ({
   onRemove,
 }) => {
   const disabled = !point;
-  const types: PointType[] = ["L", "Q", "C", "A"];
+const types: { type: PointType; label: string }[] = [
+  { type: 'L', label: 'Line' },
+  { type: 'Q', label: 'Quadratic' },
+  { type: 'C', label: 'Cubic' },
+  { type: 'A', label: 'Arc' },
+];
 
   return (
     <>
       <group data-space="10">
         <text data-opacity="30">Segment Type</text>
       </group>
+
       <group data-direction="column">
         <group
-          data-background="adaptive-gray"
-        //  data-backdrop="20"
-          data-space="5"
+          data-background="text"
+          data-color="main-background"
+          //  data-backdrop="20"
+
           data-radius="15"
           data-wrap="no"
+          data-direction="column"
+          data-height="45"
+          data-contain=""
         >
-          {types.map((t) => (
-            <group
-              data-interactive=""
-              data-radius="10"
-              data-space="10"
-              data-space-horizontal="15"
-              //  data-duration=".125"
-
-              data-fit={point && !isFirst && point.type === t ? "2" : "1"}
-              data-transition-prop="flex"
-              data-duration=".225"
-              // data-length={
-              //   point && !isFirst && point.type === t ? "90" : "auto"
-              // }
-              data-cursor="pointer"
-              data-background={
-                point && !isFirst && point.type === t ? "context" : ""
-              }
-              data-border={
-                point && !isFirst && point.type === t ? "" : undefined
-              }
-              data-color=""
-              data-align="center"
-              data-direction="column"
-              data-over-color="neutral"
-              key={t}
-              data-disabled={isFirst}
-              data-opacity={disabled ? "30" : undefined}
-              data-pointer-event={disabled ? "none" : undefined}
-              onClick={() => onTypeChange(t)}
-            >
-              <text>{t}</text>
+          <group
+            data-space="5"
+            data-position="absolute"
+            data-translate-vertical={isFirst ? "" : "-100%"}
+            data-transition-prop="transform"
+            data-duration="3"
+            data-height="45"
+            data-align="center"
+          >
+            <group data-space="10">
+              <text>Starting point type is fixed</text>
             </group>
-          ))}
+          </group>
+
+          <group
+            data-position="absolute"
+            data-space="5"
+            data-translate-vertical={isFirst ? "100%" : ""}
+            data-transition-prop="transform"
+            data-duration="3"
+          >
+           {types.map(({ type: t, label }) => (
+              <group
+                data-interactive=""
+                data-radius="10"
+                data-space="10"
+                data-space-horizontal="15"
+                //  data-duration=".125"
+
+                data-fit={point && !isFirst && point.type === t ? "2" : "1"}
+                data-transition-prop="flex"
+                data-duration=".225"
+                // data-length={
+                //   point && !isFirst && point.type === t ? "90" : "auto"
+                // }
+                data-cursor="pointer"
+                data-background={
+                  point && !isFirst && point.type === t ? "context" : ""
+                }
+                data-color={
+                  point && !isFirst && point.type === t ? "text" : undefined
+                }
+                data-align="center"
+                data-direction="column"
+                data-over-color="neutral"
+                key={t}
+                data-disabled={isFirst}
+                data-opacity={disabled ? "30" : undefined}
+                data-pointer-event={disabled ? "none" : undefined}
+                onClick={() => onTypeChange(t)}
+              >
+                <text>{t}</text>
+              </group>
+            ))}
+          </group>
         </group>
       </group>
 
@@ -442,9 +482,9 @@ export const PointPanel: React.FC<PointPanelProps> = ({
           <text data-opacity="30">Selected Point</text>
         </group>
         <ActionBtn onClick={onRemove}>Remove Point</ActionBtn>
-        <group data-space="10">
+        {/* <group data-space="10">
           <text data-opacity="30">Point Position</text>
-        </group>
+        </group> */}
         <Section>
           <group
             data-gap="10"
@@ -496,7 +536,12 @@ export const PointPanel: React.FC<PointPanelProps> = ({
         {point && point.type === "C" && !isFirst && (
           <>
             <Section title={"First Control Point"}>
-              <group>
+              <group
+
+              // data-animation-name="appear-top"
+              // data-animation-duration="3.25"
+              // data-fill-mode="backwards"
+              >
                 <SliderRow
                   label="First control point X"
                   value={point.cx1 ?? 0}
@@ -582,16 +627,11 @@ export const PointPanel: React.FC<PointPanelProps> = ({
   );
 };
 
-
-
-
 // ─── Path Output ──────────────────────────────────────────────────────────────
 export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
   const [copied, setCopied] = React.useState(false);
 
-
-
-    const copy = async () => {
+  const copy = async () => {
     try {
       await navigator.clipboard.writeText(d);
       setCopied(true);
@@ -602,7 +642,7 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
       addSnackbar("Failed to copy", 1000);
     }
   };
-  
+
   const { addSnackbar } = useSnackbar();
 
   return (
@@ -614,35 +654,42 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
           </group>
 
           <group
-            data-background="context"
+            data-border=""
             data-space="10"
             data-radius="25"
-            data-theme="dark"
+            //    data-theme="dark"
             data-gap="10"
           >
-            <group data-space="15" data-user-select="text" data-radius="15" data-background={copied ? "adaptive-gray" : undefined}
-            
-
-  
-            
-            
+            <group
+              data-space="15"
+              data-user-select="text"
+              data-radius="15"
+              data-background={copied ? "adaptive-gray" : undefined}
             >
-              <text
-              data-font-feature="tnum"
-              data-wrap="wrap"
-
-              >
+              <text data-font-feature="tnum" data-wrap="wrap">
                 {d || "—"}
               </text>
             </group>
 
             {/* <separator data-horizontal=""></separator> */}
 
-            <ActionBtn onClick={copy}>           
-
-                    <text data-ellipsis="" data-transition-prop="font-size" data-duration="2" data-text-size={copied ?  "" : "0"} >Copied</text>
-                    <text data-ellipsis="" data-transition-prop="font-size" data-duration="2" data-text-size={!copied ?  "" : "0"} >Copy Path</text>
-
+            <ActionBtn onClick={copy}>
+              <text
+                data-ellipsis=""
+                data-transition-prop="font-size"
+                data-duration="2"
+                data-text-size={copied ? "" : "0"}
+              >
+                Copied
+              </text>
+              <text
+                data-ellipsis=""
+                data-transition-prop="font-size"
+                data-duration="2"
+                data-text-size={!copied ? "" : "0"}
+              >
+                Copy Path
+              </text>
             </ActionBtn>
           </group>
         </>
@@ -655,24 +702,20 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
 export const HintsPanel: React.FC = () => (
   <group data-space="10">
     {[
-     [`${isApple ? '⌘' : 'Ctrl'} + Click`, "Add point"],
+      [`${isApple ? "⌘" : "Ctrl"} + Click`, "Add point"],
       ["Click", "Select point"],
       ["Drag", "Move point / handle"],
       ["Delele", "Remove selected"],
-    ].map(([key, desc] , index) => (
+    ].map(([key, desc], index) => (
       <group
         data-space="5"
         data-gap="10"
         data-align="center"
         data-wrap="no"
         key={key}
-
-                   data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration={2 + index * 0.5}
-   
-
-
+        data-animation-name="appear-bottom"
+        data-fill-mode="backwards"
+        data-animation-duration={2 + index * 0.5}
       >
         <group
           data-space="10"
@@ -705,8 +748,10 @@ const ActionBtn: React.FC<ActionBtnProps> = ({ onClick, children }) => {
         data-align="center"
         data-contain=""
         data-direction="column"
-        data-background="text"
-        data-color="main-background"
+        data-background="adaptive-gray"
+        // data-color="main-background"
+
+        //data-border=""
         data-ink-color="gray-shade-20"
         data-over-color="neutral"
         onClick={onClick}

@@ -7,7 +7,7 @@ import { CanvasConfig, PointType } from "./types";
 import Popover from "../../../components/popover";
 import Ripple from "../../../components/Ripple";
 
-import {  Settings2, Spline } from "lucide-react";
+import {  Grid2x2Plus, Waypoints } from "lucide-react";
 
 export default function App() {
   const {
@@ -42,13 +42,19 @@ export default function App() {
 
   const canvasPanel = (
     <group data-gap="10" data-direction="column">
-      <ConfigPanel
+
+<group data-index="2" data-gap="10">
+  
+        <ConfigPanel
         config={state.config}
         onChange={(patch: Partial<CanvasConfig>) =>
           dispatch({ type: "SET_CONFIG", patch })
         }
         onReset={() => dispatch({ type: "RESET" })}
       />
+
+</group>
+
       <PathOutput d={pathD} />
       <HintsPanel />
     </group>
@@ -130,7 +136,7 @@ data-direction="column"
 
               content={(closePopover) => (
                 <>
-                  <group data-space="20" data-gap="10" data-wrap="no" data-direction="column">
+                  <group data-space="20"  data-space-top="10" data-gap="10" data-wrap="no" data-direction="column">
                     {canvasPanel}
                   </group>
                                 <group data-space-horizontal="20" data-position="bottom">
@@ -184,7 +190,7 @@ data-direction="column"
                     data-background="context"
                   >
                     <group data-width="auto" data-interact="">
-                      <Settings2 size={20}/>
+                      <Grid2x2Plus size={20}/>
                     </group>
                     <separator data-vertical="" data-height="fit"></separator>
                     <text>Canvas & Path Export</text>
@@ -201,7 +207,7 @@ data-direction="column"
          //   data-border="inset"
            // data-radius="25"
             data-scroll=""
-            data-scrollbar="none"
+        //   data-scrollbar="none"
           >
             <group data-width="auto">
               <PathCanvas
@@ -255,7 +261,7 @@ data-wrap="no"
             data-scrollbar="none"
             content={(closePopover) => (
               <>
-                <group data-space="20" data-gap="10" data-wrap="no" data-direction="column">
+                <group data-space="20" data-space-top="10" data-gap="10" data-wrap="no" data-direction="column">
                   {pointPanel}
                 </group>
                <group data-space-horizontal="30" data-position="bottom">
@@ -310,7 +316,7 @@ data-wrap="no"
                   data-backdrop="20-adaptive"
                 >
                   <group data-width="auto" data-interact="">
-                    <Spline size="20"/>
+                    <Waypoints size="20"/>
                     
                   </group>
                   <separator data-vertical="" data-height="fit"></separator>

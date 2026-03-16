@@ -206,13 +206,14 @@ const AnchorPoint: React.FC<AnchorPointProps> = ({ point, isSelected, isFirst, o
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {hovered && (
+      {(hovered || isSelected) && (
         <circle
           cx={r(point.x)} cy={r(point.y)} r={9}
           fill="none"
           stroke={`${strokeColor}`}
-          strokeWidth="10"
-          opacity={.3}
+          strokeWidth={isSelected ? 10 : hovered ? 7 : 0}
+          opacity={.2}
+
         />
       )}
       <circle
