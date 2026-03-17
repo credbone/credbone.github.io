@@ -91,25 +91,30 @@ case 'SET_CONFIG': {
 
 
 const DEFAULT_CONFIG = {
-  width: 360,
-  height: 480,
+  width: 420,
+  height: 420,
   closePath: false,
-  gridSize: 40,
+  gridSize: 30,
   snapGrid: true,
   showGrid: true,
 };
 
 
 
-const p0 = makePoint(80, 240, undefined, true);
+const p0 = makePoint(90, 210, undefined, true);
 const p1 = {
-  ...makePoint(280, 240, p0, false),
+  ...makePoint(330, 210, p0, false),
   type: 'C' as PointType,
-  cx1: 160,
-  cy1: 320,
-  cx2: 200,
-  cy2: 160,
+  cx1: 180,
+  cy1: 120,
+  cx2: 240,
+  cy2: 300,
 };
+
+
+
+
+
 
 
 const DEFAULT_POINTS: PathPoint[] = [p0, p1];

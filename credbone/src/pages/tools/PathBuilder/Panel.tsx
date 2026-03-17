@@ -63,8 +63,8 @@ export const SliderRow: React.FC<SliderRowProps> = ({
         value={Math.round(value)}
         onValueChange={(v) => onChange(v)}
         // handlerProps={{ "data-radius": "10" }}
-        trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
-        trackRightProps={{ "data-opacity": "20", "data-height": "1" }}
+        trackLeftProps={{"data-margin-right": "0", "data-height": "1" }}
+        trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
       />
     </group>
   </group>
@@ -412,16 +412,16 @@ const types: { type: PointType; label: string }[] = [
           data-radius="15"
           data-wrap="no"
           data-direction="column"
-          data-height="45"
+          //data-height="45"
           data-contain=""
         >
           <group
             data-space="5"
-            data-position="absolute"
+         //   data-position="absolute"
             data-translate-vertical={isFirst ? "" : "-100%"}
             data-transition-prop="transform"
             data-duration="3"
-            data-height="45"
+     //       data-height="45"
             data-align="center"
           >
             <group data-space="10">
