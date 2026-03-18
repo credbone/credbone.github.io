@@ -656,7 +656,7 @@ const SimplePaint: React.FC = () => {
               data-direction="column"
               data-length="300"
               data-space="15"
-              data-space-horizontal="30"
+             
               // onClick={closePopover}
             >
               {/* <group data-ratio="1:1"  data-align="center" data-justify="center" data-direction="column">
@@ -664,6 +664,7 @@ const SimplePaint: React.FC = () => {
               </group> */}
               <group data-gap="15" data-wrap="no">
                 <CustomSlider
+                edgeGap={30}
                   start={1}
                   end={48}
                   value={brushSize}

@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Tooltip from "../../components/tooltip";
-import { HexColorPicker } from "react-colorful";
+import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 
 import Ripple from "../../components/Ripple";
 import { Plus } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
+import { isMobile } from "react-device-detect";
 
 type InterpolationMethod = "rgb" | "lrgb" | "lab" | "via";
 type DisplayMode = "gradient" | "steps";
@@ -24,6 +25,15 @@ const ColorMixer: React.FC = () => {
   // Helper function to validate hex color
   const isValidHexColor = (color: string): boolean => {
     return /^#?([a-f\d]{6})$/i.test(color);
+  };
+
+  // Helper function to normalize short hex to full 6-digit hex
+  const normalizeHex = (color: string): string => {
+    const hex = color.replace("#", "");
+    if (hex.length === 3) {
+      return "#" + hex.split("").map((c) => c + c).join("");
+    }
+    return "#" + hex;
   };
 
   // Helper function to parse URL parameters
@@ -474,6 +484,7 @@ const ColorMixer: React.FC = () => {
       updateURL();
     }
   };
+
   const removeColor = (index: number) => {
     if (colors.length > 2) {
       const newColors = colors.filter((_, i) => i !== index);
@@ -487,7 +498,7 @@ const ColorMixer: React.FC = () => {
 
   const updateColor = (index: number, value: string) => {
     const newColors = [...colors];
-    newColors[index] = value;
+    newColors[index] = normalizeHex(value);
     setColors(newColors);
   };
 
@@ -663,42 +674,89 @@ const ColorMixer: React.FC = () => {
                           />
                         </group>
 
-                        {colors.length > 2 && (
-                          <group
-                            data-elevation="2"
-                            data-background="context"
-                            data-space="5"
-                            data-radius="20"
-                            data-animation-name="appear-top"
-                            data-fill-mode="backwards"
-                            data-animation-duration="3.25"
-                            data-index="1"
-                          >
-                            <Ripple>
-                              <group
-                                data-contain=""
-                                data-ink-color="neutral"
-                                data-space="15"
-                                data-interactive=""
-                                data-over-color="neutral"
-                                data-cursor="pointer"
-                                data-radius="15"
-                                data-align="center"
-                                data-wrap="no"
-                                data-justify="center"
-                                data-gap="10"
-                                onClick={() => {
-                                  removeColor(index);
-                                  closePopover();
+                        <group
+                          data-elevation="2"
+                          data-background="context"
+                          data-space="5"
+                          data-radius="20"
+                          data-animation-name="appear-top"
+                          data-fill-mode="backwards"
+                          data-animation-duration="3.25"
+                          data-index="1"
+                        >
+
+                                        <group data-name="autoseparation" data-pointer-event={isMobile ? "none" : undefined}>
+                            <group
+                              data-wrap="no"
+                              data-radius="15"
+                              data-contain=""
+                              data-direction="column"
+                              data-interactive=""
+                              data-over-color="neutral"
+                              data-font-feature="tnum"
+                              data-max-length="160"
+                            >
+                              <HexColorInput
+                                data-text-transform="uppercase"
+                                data-length="content"
+                                color={color}
+                                onChange={(newColor) =>
+                                  updateColor(index, newColor)
+                                }
+                                onBlur={() => {
+                                  // Normalize short hex to full on blur and sync URL
+                                  const normalized = normalizeHex(color);
+                                  if (normalized !== color) {
+                                    updateColor(index, normalized);
+                                  }
+                                  updateURL();
                                 }}
-                              >
-                                <group data-width="auto">
-                                  <text>Remove</text>
-                                </group>
-                              </group>
-                            </Ripple>
+                                data-name="input-reset"
+                                data-space="15"
+                                data-text-align="center"
+                                name="theme-color-hex"
+                              />
+                            </group>
                           </group>
-                        )}
+
+
+
+                          {colors.length > 2 && (
+                            <group
+                              data-name="autoseparation"
+                              data-align="center"
+                              data-direction="column"
+                            >
+                              <separator
+                                data-horizontal=""
+                                data-max-length="100"
+                              ></separator>
+                              <Ripple>
+                                <group
+                                  data-contain=""
+                                  data-ink-color="neutral"
+                                  data-space="15"
+                                  data-interactive=""
+                                  data-over-color="neutral"
+                                  data-cursor="pointer"
+                                  data-radius="15"
+                                  data-align="center"
+                                  data-wrap="no"
+                                  data-justify="center"
+                                  data-gap="10"
+                                  onClick={() => {
+                                    removeColor(index);
+                                    closePopover();
+                                  }}
+                                >
+                                  <group data-width="auto">
+                                    <text>Remove</text>
+                                  </group>
+                                </group>
+                              </Ripple>
+                            </group>
+                          )}
+                        </group>
                       </group>
                     )}
                     onOpenChange={(isOpen) => {
@@ -1086,22 +1144,29 @@ const ColorMixer: React.FC = () => {
               />
             )}
 
-            <group data-align="center" data-gap="15">
+            <group data-align="center">
+
+              <group  data-gap="15" data-width="auto" data-align="center">
+
               <group data-width="auto">
                 <group data-width="auto">
                   <text>Step Count</text>
                 </group>
               </group>
 
-              <separator data-vertical=""></separator>
+              <separator data-vertical="" data-opacity={tempSteps === 3 ? "0" : undefined}></separator>
+
+              </group>
+
 
               <group data-fit="1">
                 <CustomSlider
+                edgeGap={30}
                   start={3}
                   end={12}
                   value={tempSteps}
                   onValueChange={(value) => setTempSteps(value)}
-                                    handlerProps={{ "data-animation-name": "slider-smooth" }}
+                  handlerProps={{ "data-animation-name": "slider-smooth" }}
                   trackLeftProps={{
                     "data-margin-right": "0",
                     "data-height": "1",
@@ -1115,23 +1180,26 @@ const ColorMixer: React.FC = () => {
               </group>
             </group>
 
-            <group data-align="center" data-gap="15">
-              <group data-width="auto">
+            <group data-align="center">
+<group  data-gap="15" data-width="auto" data-align="center">
+                <group data-width="auto">
                 <group data-width="auto">
                   <text>Gamma</text>
                 </group>
               </group>
 
-              <separator data-vertical=""></separator>
+              <separator data-vertical="" data-opacity={tempGamma === 0.5 ? "0" : undefined}></separator>
 
+</group>
               <group data-fit="1">
                 <CustomSlider
+                edgeGap={30}
                   start={0.5}
                   end={2.5}
                   step={0.1}
                   value={tempGamma}
                   onValueChange={(value) => setTempGamma(value)}
-                                    handlerProps={{ "data-animation-name": "slider-smooth" }}
+                  handlerProps={{ "data-animation-name": "slider-smooth" }}
                   trackLeftProps={{
                     "data-margin-right": "0",
                     "data-height": "1",

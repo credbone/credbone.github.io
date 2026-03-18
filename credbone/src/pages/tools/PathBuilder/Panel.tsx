@@ -44,9 +44,9 @@ export const SliderRow: React.FC<SliderRowProps> = ({
   step = 1,
   onChange,
 }) => (
-  <group data-space="10" data-gap="5" data-align="center">
-    <group data-space="5" data-gap="10" data-align="center" data-wrap="no">
-      <text data-opacity="50" data-ellipsis="">
+  <group data-space="10" data-gap="10"  data-align="center"  data-direction="column">
+    <group   data-width="auto" data-align="center" data-wrap="no">
+      <text data-opacity="40" data-ellipsis="">
         {label}
       </text>
 
@@ -57,12 +57,13 @@ export const SliderRow: React.FC<SliderRowProps> = ({
       <CustomSlider
         //  showvalue={false}
         handlerWidth={50}
+        edgeGap={20}
         start={min}
         end={max}
         step={step}
         value={Math.round(value)}
         onValueChange={(v) => onChange(v)}
-        // handlerProps={{ "data-radius": "10" }}
+         handlerProps={{ "data-radius": "10"}}
         trackLeftProps={{"data-margin-right": "0", "data-height": "1" }}
         trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
       />
