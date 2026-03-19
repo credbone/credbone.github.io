@@ -68,6 +68,7 @@ const CustomSlider: React.FC<SliderProps> = ({
       data-wrap="no"
       data-contain=""
       data-direction="column"
+      data-justify="center"
     >
       <input
         ref={inputRef}
@@ -86,6 +87,7 @@ const CustomSlider: React.FC<SliderProps> = ({
         data-height="fit"
         data-contain=""
         data-top="0"
+       
         style={{
           width: `calc(100% - ${edgeGap}px)`,
           left: `${halfGap}px`,
@@ -108,6 +110,7 @@ const CustomSlider: React.FC<SliderProps> = ({
             style={{
               left: `calc(${percentage}% - ${handlerWidth * (percentage / 100)}px)`,
             }}
+             data-align="center"
           >
             <group
               data-background="text"

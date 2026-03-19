@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { CanvasConfig, DragRole, DragState, PathPoint, PointType } from './types';
 import { makePoint, snapToGrid, uid } from './pathUtils';
 
@@ -101,9 +101,11 @@ const DEFAULT_CONFIG = {
 
 
 
-const p0 = makePoint(90, 210, undefined, true);
+const TARGET_Y = 210;
+
+const p0 = makePoint(90, TARGET_Y, undefined, true);
 const p1 = {
-  ...makePoint(330, 210, p0, false),
+  ...makePoint(330, TARGET_Y, p0, false),
   type: 'C' as PointType,
   cx1: 180,
   cy1: 120,
@@ -111,26 +113,54 @@ const p1 = {
   cy2: 300,
 };
 
+const TARGET_POINTS = [p0, p1];
 
-
-
-
-
-
-const DEFAULT_POINTS: PathPoint[] = [p0, p1];
-
-
-
+const DEFAULT_POINTS: PathPoint[] = TARGET_POINTS.map(p => ({
+  ...p,
+  y: TARGET_Y,
+  cy: TARGET_Y,
+  cy1: TARGET_Y,
+  cy2: TARGET_Y,
+}));
 
 const INITIAL: EditorState = {
- points: DEFAULT_POINTS,
-selectedId: p1.id,
+  points: DEFAULT_POINTS,
+  selectedId: p1.id,
   config: DEFAULT_CONFIG,
 };
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useEditorState() {
   const [state, dispatch] = useReducer(reducer, INITIAL);
+  
+
+  useEffect(() => {
+  const duration = 700;
+  const start = performance.now();
+
+  const tick = (now: number) => {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3); // ease out cubic
+
+    TARGET_POINTS.forEach(target => {
+      dispatch({
+        type: 'UPDATE_POINT',
+        id: target.id,
+        patch: {
+          y:   TARGET_Y + (target.y   - TARGET_Y) * ease,
+          cy:  TARGET_Y + ((target.cy  ?? TARGET_Y) - TARGET_Y) * ease,
+          cy1: TARGET_Y + ((target.cy1 ?? TARGET_Y) - TARGET_Y) * ease,
+          cy2: TARGET_Y + ((target.cy2 ?? TARGET_Y) - TARGET_Y) * ease,
+        },
+      });
+    });
+
+    if (t < 1) requestAnimationFrame(tick);
+  };
+
+  requestAnimationFrame(tick);
+}, []);
+
   const dragRef = useRef<DragState | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
 

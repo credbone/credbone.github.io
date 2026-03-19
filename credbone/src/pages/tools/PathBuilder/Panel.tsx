@@ -44,16 +44,16 @@ export const SliderRow: React.FC<SliderRowProps> = ({
   step = 1,
   onChange,
 }) => (
-  <group data-space="10" data-gap="10"  data-align="center"  data-direction="column">
-    <group   data-width="auto" data-align="center" data-wrap="no">
-      <text data-opacity="40" data-ellipsis="">
+  <group data-type="group"  data-gap="10"   data-direction="column" >
+    <group   data-width="auto" data-wrap="no"  data-opacity="30" data-space-horizontal="10">
+      <text data-ellipsis="">
         {label}
       </text>
 
       {/* <text data-position="right">{Math.round(value)}</text> */}
     </group>
 
-    <group data-fit="1">
+    <group   data-fit="1">
       <CustomSlider
         //  showvalue={false}
         handlerWidth={50}
@@ -483,16 +483,19 @@ const types: { type: PointType; label: string }[] = [
           <text data-opacity="30">Selected Point</text>
         </group>
         <ActionBtn onClick={onRemove}>Remove Point</ActionBtn>
-        {/* <group data-space="10">
-          <text data-opacity="30">Point Position</text>
-        </group> */}
-        <Section>
-          <group
-            data-gap="10"
-            data-opacity={disabled ? "30" : undefined}
+
+
+<group data-height="5">
+
+</group>
+
+<group data-gap="15" data-direction="column">
+            <group
+            data-gap="15"
+            data-opacity={disabled ? "40" : undefined}
             data-pointer-event={disabled ? "none" : undefined}
           >
-            <group>
+            <>
               <SliderRow
                 label="Point X Position"
                 value={point?.x ?? 0}
@@ -507,14 +510,12 @@ const types: { type: PointType; label: string }[] = [
                 max={config.height}
                 onChange={(v) => onUpdate({ y: v })}
               />
-            </group>
+            </>
           </group>
-        </Section>
 
         {/* Q controls */}
         {point && point.type === "Q" && !isFirst && (
-          <Section title={"Control Point"}>
-            <group>
+            <>
               <SliderRow
                 label="Control Point X Position"
                 value={point.cx ?? 0}
@@ -529,20 +530,12 @@ const types: { type: PointType; label: string }[] = [
                 max={config.height}
                 onChange={(v) => onUpdate({ cy: v })}
               />
-            </group>
-          </Section>
+            </>
         )}
 
         {/* C controls */}
         {point && point.type === "C" && !isFirst && (
-          <>
-            <Section title={"First Control Point"}>
-              <group
-
-              // data-animation-name="appear-top"
-              // data-animation-duration="3.25"
-              // data-fill-mode="backwards"
-              >
+              <>
                 <SliderRow
                   label="First control point X"
                   value={point.cx1 ?? 0}
@@ -557,11 +550,7 @@ const types: { type: PointType; label: string }[] = [
                   max={config.height}
                   onChange={(v) => onUpdate({ cy1: v })}
                 />
-              </group>
-            </Section>
 
-            <Section title={"Second Control Point"}>
-              <group>
                 <SliderRow
                   label="Second control point X"
                   value={point.cx2 ?? 0}
@@ -576,15 +565,12 @@ const types: { type: PointType; label: string }[] = [
                   max={config.height}
                   onChange={(v) => onUpdate({ cy2: v })}
                 />
-              </group>
-            </Section>
-          </>
+              </>
         )}
 
         {/* A controls */}
         {point && point.type === "A" && !isFirst && (
-          <Section title={"Arc Parameters"}>
-            <group>
+            <>
               <SliderRow
                 label="X Radius"
                 value={point.rx ?? 50}
@@ -606,23 +592,35 @@ const types: { type: PointType; label: string }[] = [
                 max={360}
                 onChange={(v) => onUpdate({ xrot: v })}
               />
-              <ToggleRow
+
+<group></group>
+
+<Section>
+<group>
+<group data-name="autoseparation">
+                    <ToggleRow
                 label="Large Arc"
                 checked={point.large ?? false}
                 onChange={(v) => onUpdate({ large: v })}
               />
+</group>
+<group data-name="autoseparation">
+                <separator data-horizontal="dotted"></separator>
               <ToggleRow
                 label="Sweep"
                 checked={point.sweep ?? false}
                 onChange={(v) => onUpdate({ sweep: v })}
               />
-            </group>
-          </Section>
+</group>
+</group>
+</Section>
+
+            </>
         )}
-        {/* 
-<group data-space-vertical="15" >
-          <separator data-horizontal=""></separator>
-          </group> */}
+</group>
+
+
+
       </group>
     </>
   );

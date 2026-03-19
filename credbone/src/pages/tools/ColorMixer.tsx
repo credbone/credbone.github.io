@@ -631,7 +631,7 @@ const ColorMixer: React.FC = () => {
                 data-animation-name="zoom-in"
                 data-animation-duration="2"
               >
-                <group data-width="auto" data-align="center">
+                <group data-width="auto"    data-align="center">
                   <Popover
                     data-space="5"
                     data-radius="0"
@@ -643,6 +643,7 @@ const ColorMixer: React.FC = () => {
                         data-width="auto"
                         data-direction="column"
                         data-gap="5"
+                       
                       >
                         <group
                           data-animation-name="appear-bottom"
@@ -657,6 +658,7 @@ const ColorMixer: React.FC = () => {
                           data-name="cred-react-colorful"
                           data-width="auto"
                           data-gap="5"
+                        
                         >
                           <HexColorPicker
                             color={color}
@@ -683,6 +685,7 @@ const ColorMixer: React.FC = () => {
                           data-fill-mode="backwards"
                           data-animation-duration="3.25"
                           data-index="1"
+                          data-direction="column"
                         >
 
                                         <group data-name="autoseparation" data-pointer-event={isMobile ? "none" : undefined}>
