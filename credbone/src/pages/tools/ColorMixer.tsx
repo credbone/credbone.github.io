@@ -834,19 +834,7 @@ const ColorMixer: React.FC = () => {
             data-direction="column"
             data-align="start"
           >
-            <group>
-              <text
-                data-weight="700"
-                data-wrap="preline"
-                data-text-size="large"
-                data-ellipsis=""
-                data-font-type="hero"
-                data-line="1"
-              >
-                Preview your
-                <br /> perfect mix
-              </text>
-            </group>
+
 
             <group data-gap="10">
               <Popover
@@ -1101,6 +1089,20 @@ const ColorMixer: React.FC = () => {
                   </Tooltip>
                 </group>
               </Popover>
+            </group>
+
+                        <group>
+              <text
+                data-weight="700"
+                data-wrap="preline"
+                data-text-size="large"
+                data-ellipsis=""
+                data-font-type="hero"
+                data-line="1"
+              >
+                Preview your
+                <br /> perfect mix
+              </text>
             </group>
 
             {displayMode === "steps" ? (
