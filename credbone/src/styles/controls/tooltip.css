@@ -1,10 +1,7 @@
-@keyframes tooltip { from { opacity: 0; } }
-[data-animation-name="tooltip"] {animation-name: tooltip;}
-
 
 
 group.tooltip {
-  animation: tooltip .225s backwards;
+
   position: absolute;
   z-index: 9999;
   pointer-events: none;

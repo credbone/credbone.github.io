@@ -264,6 +264,9 @@ const Tooltip: React.FC<TooltipProps> = ({
         content &&
         ReactDOM.createPortal(
           <group
+          data-animation-name="tooltip"
+          data-animation-duration="2.25"
+          data-fill-mode="backwards"
             data-contain=""
             data-background="tooltip"
             data-color="white"

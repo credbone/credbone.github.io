@@ -154,7 +154,7 @@ data-direction="column"
                       <group
                         onClick={closePopover}
                         data-over-color="neutral"
-                          data-ink-color="main-dark"
+                          data-ink-color="neutral"
                         data-contain=""
                         data-space="15"
                         data-radius="15"
@@ -162,8 +162,8 @@ data-direction="column"
                         data-align="center"
                         data-justify="center"
                         data-cursor="pointer"
-                        data-background="main"
-                        data-color="main-text"
+                     data-backdrop="20"
+    
                       >
                         <text data-weight="600">Done</text>
                       </group>
@@ -193,7 +193,7 @@ data-direction="column"
                       <Grid2x2Plus size={20}/>
                     </group>
                     <separator data-vertical="" data-height="fit"></separator>
-                    <text>Canvas & Path Export</text>
+                    <text data-ellipsis="">Canvas & Path Export</text>
                   </group>
                 </Ripple>
               </group>
@@ -251,7 +251,7 @@ data-direction="column"
       >
         <group>
           <Popover
-           data-backdrop="20"
+         //  data-backdrop="20"
             data-elevation="2"
             data-space="0"
             data-radius="30"
@@ -285,7 +285,7 @@ data-wrap="no"
                     <group
                       onClick={closePopover}
                       data-over-color="neutral"
-                      data-ink-color="main-dark"
+                      data-ink-color="neutral"
                       data-contain=""
                       data-space="15"
                       data-radius="15"
@@ -293,8 +293,9 @@ data-wrap="no"
                       data-align="center"
                       data-justify="center"
                       data-cursor="pointer"
-                      data-background="main"
-                      data-color="main-text"
+                      // data-background="main"
+                      // data-color="main-text"
+                      data-backdrop="20"
                     >
                       <text data-weight="600">Done</text>
                     </group>
@@ -325,7 +326,7 @@ data-wrap="no"
                     
                   </group>
                   <separator data-vertical="" data-height="fit"></separator>
-                  <text>Selected Point & Segment</text>
+                  <text data-ellipsis="">Selected Point & Segment</text>
                 </group>
               </Ripple>
             </group>

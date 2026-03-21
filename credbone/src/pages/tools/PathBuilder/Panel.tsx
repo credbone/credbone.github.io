@@ -293,6 +293,7 @@ export const Section: React.FC<{
       data-elevation="2"
       data-radius="25"
       data-gap="10"
+      data-contain=""
     >
       {children}
     </group>
@@ -425,8 +426,8 @@ const types: { type: PointType; label: string }[] = [
      //       data-height="45"
             data-align="center"
           >
-            <group data-space="10">
-              <text>Starting point type is fixed</text>
+            <group data-space="10" data-align="center" data-direction="column">
+              <text data-ellipsis="">Starting point type is fixed</text>
             </group>
           </group>
 
@@ -725,7 +726,7 @@ export const HintsPanel: React.FC = () => (
         >
           <text data-weight="600">{key}</text>
         </group>
-        <text data-opacity="50">{desc}</text>
+        <text data-opacity="50" data-ellipsis="">{desc}</text>
       </group>
     ))}
   </group>

@@ -38,6 +38,9 @@
 
 @keyframes to-left-right { from{transform: translateX(-100%);}to{transform: translateX(100%);} }
 
+
+
+
 @keyframes bounce
  {
 
@@ -248,3 +251,11 @@
 
 
 [data-animate="parallax"] {animation-name: object-position;  animation-timeline: --main-scroll;}
+
+
+
+
+
+@keyframes tooltip { from { opacity: 0; } }
+[data-animation-name="tooltip"] {animation-name: tooltip;}
+
