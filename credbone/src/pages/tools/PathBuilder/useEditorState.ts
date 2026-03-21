@@ -43,18 +43,18 @@ function reducer(state: EditorState, action: Action): EditorState {
       return { ...state, points: next, selectedId: newSel };
     }
 
-case 'RESET':
-  return {
-    ...state,
-    points: [],
-    selectedId: null,
-    config: {
-      ...state.config,
-      width: INITIAL.config.width,
-      height: INITIAL.config.height,
-      gridSize: INITIAL.config.gridSize,
-    },
-  };
+    case 'RESET':
+      return {
+        ...state,
+        points: [],
+        selectedId: null,
+        config: {
+          ...state.config,
+          width: INITIAL.config.width,
+          height: INITIAL.config.height,
+          gridSize: INITIAL.config.gridSize,
+        },
+      };
 
     case 'SET_POINT_TYPE': {
       return {
@@ -74,20 +74,34 @@ case 'RESET':
       };
     }
 
-case 'SET_CONFIG': {
-  const patch = { ...action.patch };
-  if (patch.width !== undefined) patch.width = isNaN(patch.width) ? state.config.width : Math.min(2000, Math.max(100, patch.width));
-  if (patch.height !== undefined) patch.height = isNaN(patch.height) ? state.config.height : Math.min(2000, Math.max(100, patch.height));
-  if (patch.gridSize !== undefined) patch.gridSize = isNaN(patch.gridSize) ? state.config.gridSize : Math.min(200, Math.max(5, patch.gridSize));
-  return { ...state, config: { ...state.config, ...patch } };
-}
+    case 'SET_CONFIG': {
+      const patch = { ...action.patch };
+      if (patch.width !== undefined) patch.width = isNaN(patch.width) ? state.config.width : Math.min(2000, Math.max(100, patch.width));
+      if (patch.height !== undefined) patch.height = isNaN(patch.height) ? state.config.height : Math.min(2000, Math.max(100, patch.height));
+      if (patch.gridSize !== undefined) patch.gridSize = isNaN(patch.gridSize) ? state.config.gridSize : Math.min(200, Math.max(5, patch.gridSize));
+
+      const newW = patch.width  ?? state.config.width;
+      const newH = patch.height ?? state.config.height;
+
+      const clampedPoints = state.points.map(p => ({
+        ...p,
+        x:   Math.min(p.x,   newW),
+        y:   Math.min(p.y,   newH),
+        cx:  p.cx  != null ? Math.min(p.cx,  newW) : p.cx,
+        cy:  p.cy  != null ? Math.min(p.cy,  newH) : p.cy,
+        cx1: p.cx1 != null ? Math.min(p.cx1, newW) : p.cx1,
+        cy1: p.cy1 != null ? Math.min(p.cy1, newH) : p.cy1,
+        cx2: p.cx2 != null ? Math.min(p.cx2, newW) : p.cx2,
+        cy2: p.cy2 != null ? Math.min(p.cy2, newH) : p.cy2,
+      }));
+
+      return { ...state, config: { ...state.config, ...patch }, points: clampedPoints };
+    }
 
     default:
       return state;
   }
 }
-
-
 
 
 const DEFAULT_CONFIG = {
@@ -98,7 +112,6 @@ const DEFAULT_CONFIG = {
   snapGrid: true,
   showGrid: true,
 };
-
 
 
 const TARGET_Y = 210;
@@ -132,34 +145,36 @@ const INITIAL: EditorState = {
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useEditorState() {
   const [state, dispatch] = useReducer(reducer, INITIAL);
-  
+
+  const configRef = useRef(state.config);
+  useEffect(() => { configRef.current = state.config; }, [state.config]);
 
   useEffect(() => {
-  const duration = 700;
-  const start = performance.now();
+    const duration = 700;
+    const start = performance.now();
 
-  const tick = (now: number) => {
-    const t = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3); // ease out cubic
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3); // ease out cubic
 
-    TARGET_POINTS.forEach(target => {
-      dispatch({
-        type: 'UPDATE_POINT',
-        id: target.id,
-        patch: {
-          y:   TARGET_Y + (target.y   - TARGET_Y) * ease,
-          cy:  TARGET_Y + ((target.cy  ?? TARGET_Y) - TARGET_Y) * ease,
-          cy1: TARGET_Y + ((target.cy1 ?? TARGET_Y) - TARGET_Y) * ease,
-          cy2: TARGET_Y + ((target.cy2 ?? TARGET_Y) - TARGET_Y) * ease,
-        },
+      TARGET_POINTS.forEach(target => {
+        dispatch({
+          type: 'UPDATE_POINT',
+          id: target.id,
+          patch: {
+            y:   TARGET_Y + (target.y   - TARGET_Y) * ease,
+            cy:  TARGET_Y + ((target.cy  ?? TARGET_Y) - TARGET_Y) * ease,
+            cy1: TARGET_Y + ((target.cy1 ?? TARGET_Y) - TARGET_Y) * ease,
+            cy2: TARGET_Y + ((target.cy2 ?? TARGET_Y) - TARGET_Y) * ease,
+          },
+        });
       });
-    });
 
-    if (t < 1) requestAnimationFrame(tick);
-  };
+      if (t < 1) requestAnimationFrame(tick);
+    };
 
-  requestAnimationFrame(tick);
-}, []);
+    requestAnimationFrame(tick);
+  }, []);
 
   const dragRef = useRef<DragState | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -237,8 +252,8 @@ export function useEditorState() {
       const { x, y } = getSvgCoords(e);
       const dx = x - drag.startX;
       const dy = y - drag.startY;
-      const nx = snap(drag.originX + dx);
-      const ny = snap(drag.originY + dy);
+      const nx = Math.max(0, Math.min(configRef.current.width,  snap(drag.originX + dx)));
+      const ny = Math.max(0, Math.min(configRef.current.height, snap(drag.originY + dy)));
 
       const patch: Partial<PathPoint> = {};
       if (drag.role === 'anchor')   { patch.x = nx; patch.y = ny; }
