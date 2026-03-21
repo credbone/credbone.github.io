@@ -37,45 +37,35 @@ export const PathCanvas: React.FC<Props> = ({
   const pathD = buildPathD(points, config.closePath);
   const gs = config.gridSize;
   const { width, height } = config;
-const PAD = Math.max(15, gs);
 
-return (
-  <svg
+  return (
+    <svg
     data-shrink="no"
-
     data-margin-top="-1"
     data-margin-left="-1"
+      ref={svgRef as React.RefObject<SVGSVGElement>}
+      id="main-svg"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      style={{ display: 'block', cursor: 'crosshair' }}
+      xmlns="http://www.w3.org/2000/svg"
+      onMouseDown={onCanvasMouseDown}
+    >
+      <defs>
+        <pattern id="grid-pat" patternUnits="userSpaceOnUse" width={gs} height={gs}>
+          <path d={`M ${gs} 0 L 0 0 0 ${gs}`} fill="none" stroke="currentColor" opacity="0.2" strokeWidth="1" />
+        </pattern>
+      </defs>
 
-    ref={svgRef as React.RefObject<SVGSVGElement>}
-    id="main-svg"
-    width={width + PAD * 2}
-    height={height + PAD * 2}
-    viewBox={`${-PAD} ${-PAD} ${width + PAD * 2} ${height + PAD * 2}`}
-    style={{ display: 'block', cursor: 'crosshair' }}
-    xmlns="http://www.w3.org/2000/svg"
-    onMouseDown={onCanvasMouseDown}
-  >
-    <defs>
-      <pattern id="grid-pat" patternUnits="userSpaceOnUse" width={gs} height={gs}>
-        <path d={`M ${gs} 0 L 0 0 0 ${gs}`} fill="none" stroke="currentColor" opacity="0.2" strokeWidth="1" />
-      </pattern>
-      <clipPath id="canvas-clip">
-        <rect x={0} y={0} width={width} height={height} />
-      </clipPath>
-    </defs>
+      {/* Background */}
+      <rect
+        id="canvas-bg"
+        width={width}
+        height={height}
+        fill={config.showGrid ? 'url(#grid-pat)' : 'transparent'}
+      />
 
-    {/* Background grid — fills entire SVG including PAD area */}
-    <rect
-      id="canvas-bg"
-      x={-PAD}
-      y={-PAD}
-      width={width + PAD * 2}
-      height={height + PAD * 2}
-      fill={config.showGrid ? 'url(#grid-pat)' : 'transparent'}
-    />
-
-    {/* Clipped: ctrl lines + path */}
-    <g clipPath="url(#canvas-clip)">
       {/* ── Group 1: Control lines ── */}
       <g id="g-ctrl-lines">
         {points.map((p, i) => {
@@ -91,6 +81,7 @@ return (
             <React.Fragment key={p.id}>
               <CtrlLine x1={prev.x} y1={prev.y} x2={p.cx1!} y2={p.cy1!} />
               <CtrlLine x1={p.cx2!} y1={p.cy2!} x2={p.x} y2={p.y} />
+              {/* <CtrlLine x1={p.cx1!} y1={p.cy1!} x2={p.cx2!} y2={p.cy2!} /> */}
             </React.Fragment>
           );
           return null;
@@ -102,49 +93,64 @@ return (
         id="drawn-path"
         d={pathD}
         fill={config.closePath ? 'var(--gray-shade-20)' : 'none'}
+       // fill="none"
         stroke="currentColor"
         strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </g>
 
-    {/* Unclipped: control dots + anchors can bleed into PAD area */}
+      {/* ── Group 3: Control point dots ── */}
+      <g id="g-ctrl-points">
+        {points.map((p, i) => {
+          if (i === 0) return null;
+          return (
+            <React.Fragment key={p.id}>
+              {p.type === 'Q' && (
+                <CtrlDot cx={p.cx!} cy={p.cy!} pointId={p.id} role="cx_cy" onMouseDown={onCtrlMouseDown} />
+              )}
+              {p.type === 'C' && (
+                <>
+                  <CtrlDot cx={p.cx1!} cy={p.cy1!} pointId={p.id} role="cx1_cy1" onMouseDown={onCtrlMouseDown} />
+                  <CtrlDot cx={p.cx2!} cy={p.cy2!} pointId={p.id} role="cx2_cy2" onMouseDown={onCtrlMouseDown} />
+                </>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </g>
 
-    {/* ── Group 3: Control point dots ── */}
-    <g id="g-ctrl-points">
-      {points.map((p, i) => {
-        if (i === 0) return null;
-        return (
-          <React.Fragment key={p.id}>
-            {p.type === 'Q' && (
-              <CtrlDot cx={p.cx!} cy={p.cy!} pointId={p.id} role="cx_cy" onMouseDown={onCtrlMouseDown} />
-            )}
-            {p.type === 'C' && (
-              <>
-                <CtrlDot cx={p.cx1!} cy={p.cy1!} pointId={p.id} role="cx1_cy1" onMouseDown={onCtrlMouseDown} />
-                <CtrlDot cx={p.cx2!} cy={p.cy2!} pointId={p.id} role="cx2_cy2" onMouseDown={onCtrlMouseDown} />
-              </>
-            )}
-          </React.Fragment>
-        );
-      })}
-    </g>
+      {/* ── Group 4: Anchor points ── */}
+      <g id="g-anchor-points">
+        {points.map((p, i) => (
+          <AnchorPoint
+            key={p.id}
+            point={p}
+            isSelected={p.id === selectedId}
+            isFirst={i === 0}
+            onMouseDown={onAnchorMouseDown}
+          />
+        ))}
+      </g>
 
-    {/* ── Group 4: Anchor points ── */}
-    <g id="g-anchor-points">
-      {points.map((p, i) => (
-        <AnchorPoint
-          key={p.id}
-          point={p}
-          isSelected={p.id === selectedId}
-          isFirst={i === 0}
-          onMouseDown={onAnchorMouseDown}
-        />
-      ))}
-    </g>
-  </svg>
-);
+      {/* Empty state */}
+      {/* {points.length === 0 && (
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+         
+         // fill="#2a4060"
+      //    fontSize="15"
+     //     fontFamily="'Courier New', monospace"
+          pointerEvents="none"
+        >
+          Ctrl+Click to place first point
+        </text>
+      )} */}
+    </svg>
+  );
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
