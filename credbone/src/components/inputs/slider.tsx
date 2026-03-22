@@ -32,25 +32,25 @@ const CustomSlider: React.FC<SliderProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    if (!input) return;
+useEffect(() => {
+  const input = inputRef.current;
+  if (!input) return;
 
-    const handleDragStart = () => setIsDragging(true);
-    const handleDragEnd = () => setIsDragging(false);
+  const handleDragStart = () => setIsDragging(true);
+  const handleDragEnd = () => setIsDragging(false);
 
-    input.addEventListener("input", handleDragStart);
-    input.addEventListener("change", handleDragEnd);
-    input.addEventListener("touchend", handleDragEnd);
-    input.addEventListener("mouseup", handleDragEnd);
+  input.addEventListener("mousedown", handleDragStart);
+  input.addEventListener("touchstart", handleDragStart);
+  input.addEventListener("mouseup", handleDragEnd);
+  input.addEventListener("touchend", handleDragEnd);
 
-    return () => {
-      input.removeEventListener("input", handleDragStart);
-      input.removeEventListener("change", handleDragEnd);
-      input.removeEventListener("touchend", handleDragEnd);
-      input.removeEventListener("mouseup", handleDragEnd);
-    };
-  }, []);
+  return () => {
+    input.removeEventListener("mousedown", handleDragStart);
+    input.removeEventListener("touchstart", handleDragStart);
+    input.removeEventListener("mouseup", handleDragEnd);
+    input.removeEventListener("touchend", handleDragEnd);
+  };
+}, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(event.target.value);
@@ -118,7 +118,7 @@ const CustomSlider: React.FC<SliderProps> = ({
               data-height="2"
               data-min-length="700"
               data-position="absolute"
-              data-margin-right="5"
+           //   data-margin-right="5"
               {...trackLeftProps}
             />
             <group
@@ -135,6 +135,7 @@ const CustomSlider: React.FC<SliderProps> = ({
       </group>
 
       <group
+      data-pointer-event="none"
         data-duration={isDragging ? undefined : "2.25"}
         data-transition-prop="position"
         data-name="range-slider-handle"

@@ -846,7 +846,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-margin-left="-15"]{margin-left:-15px;}
 [data-margin-left="5"]{margin-left:5px;}
-[data-margin-right="5"]{margin-right:-5px;}
+[data-margin-right="5"]{margin-right:5px;}
 
 [data-margin-left="-10"]{margin-left:-10px;}
 
@@ -1309,7 +1309,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
     [data-scale="2"]{transform: scale(2);}
     [data-scale="3"]{transform: scale(3);}
-
+    [data-scale="-1"]{transform: scale(-1);}
 
     [data-origin="left"]{transform-origin: left;}
 

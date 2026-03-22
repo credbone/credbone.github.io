@@ -321,7 +321,7 @@ const activeDots = useCyclingDots();
                     //  data-text-align="right"
                     content={
                       isMobile ? undefined : (
-                        <text data-wrap="wprelinerap">
+                        <text data-wrap="preline">
                           Explore Demos.
                           <br />
                           See the system in action.
@@ -454,7 +454,7 @@ const activeDots = useCyclingDots();
                   data-wrap="no"
                 >
 
-<text data-wrap="preline"  data-line="1.3" data-length="180"  data-text-align="center" data-ellipsis=""> Browse demos and tools. See what's possible.</text>
+<text data-wrap="preline"  data-line="1" data-length="200" data-font-type="hero" data-text-size="medium"  data-text-align="center" data-ellipsis=""> Browse demos and tools. See what's possible.</text>
 
                 </group>
               </group>

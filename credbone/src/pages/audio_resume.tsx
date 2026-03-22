@@ -305,7 +305,7 @@ const containerRef = useRef<HTMLElement>(null);
           <group data-space-horizontal="15" data-gap="3" ref={containerRef}>
 
 
-<group data-left="0" data-height="45" data-duration="2.25" data-transition-prop="transform" data-opacity={hasActive ? "" : "50"} data-space-horizontal="15" data-position="absolute"
+<group data-left="0" data-height="45" data-duration="2.25" data-transition-prop="transform"  data-space-horizontal="15" data-position="absolute"
 
 
          style={{
