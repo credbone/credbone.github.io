@@ -94,25 +94,45 @@ const _createSvgPath = (points: string | any[]) => {
 };
 
 const BlobGenerator: React.FC = () => {
+  const [mode, setMode] = useState<"fill" | "stroke">("fill");
+  const [strokeWidth, setStrokeWidth] = useState(10);
+  const [blobCount, setBlobCount] = useState(1);
+
   const [points, setPoints] = useState(6);
   const [growth, setGrowth] = useState(6);
-  const [path, setPath] = useState("");
+  const [paths, setPaths] = useState<string[]>([""]);
+
+  const generatePaths = (count: number, edges: number, growthVal: number) =>
+    Array.from({ length: count }, () => generator({ edges, growth: growthVal }).path);
 
   useEffect(() => {
-    setPath(generator({ edges: points, growth }).path);
+    setPaths(generatePaths(blobCount, points, growth));
   }, [points, growth]);
 
+  // Keep path count in sync when blobCount changes without regenerating existing paths
+  useEffect(() => {
+    setPaths((prev) => {
+      if (blobCount > prev.length) {
+        const extra = generatePaths(blobCount - prev.length, points, growth);
+        return [...prev, ...extra];
+      }
+      return prev.slice(0, blobCount);
+    });
+  }, [blobCount]);
+
   const regenerateBlob = () => {
-    setPath(generator({ edges: points, growth }).path);
+    setPaths(generatePaths(blobCount, points, growth));
   };
 
-// const regenerateBlob = () => {
-//   const newPoints = Math.floor(Math.random() * (12 - 3 + 1)) + 3;
-//   const newGrowth = Math.floor(Math.random() * (9 - 2 + 1)) + 2;
-//   setPoints(newPoints);
-//   setGrowth(newGrowth);
-//   setPath(generator({ edges: newPoints, growth: newGrowth }).path);
-// };
+const getPathAttrs = (i: number) => {
+  const opacity = mode === "fill" ? 1 - (i / paths.length) * 0.75 : 1;
+  const opacityAttr = opacity < 1 ? ` opacity='${opacity.toFixed(2)}'` : "";
+
+  return mode === "fill"
+    ? `fill='currentColor'${opacityAttr}`
+    : `fill='none' stroke='currentColor' stroke-width='${strokeWidth / 10}'`;
+};
+
 
 
   const exportSVG = () => {
@@ -120,14 +140,17 @@ const BlobGenerator: React.FC = () => {
       .toISOString()
       .replace(/[^\w]/g, "")
       .slice(0, 15);
+const pathElements = paths
+  .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
+  .join("\n");
+
     const svgBlob = new Blob(
       [
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-        <path d='${path}' fill='currentColor'/>
-      </svg>`,
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\n${pathElements}\n</svg>`,
       ],
       { type: "image/svg+xml" },
     );
+
     const link = document.createElement("a");
     link.href = URL.createObjectURL(svgBlob);
     link.download = `blob-${currentDateTime}.svg`;
@@ -139,9 +162,11 @@ const BlobGenerator: React.FC = () => {
   const { addSnackbar } = useSnackbar();
 
   const copySVGToClipboard = async () => {
-    const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-    <path d='${path}' fill='currentColor'/>
-  </svg>`;
+const pathElements = paths
+  .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
+  .join("\n");
+
+    const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\n${pathElements}\n</svg>`;
 
     try {
       await navigator.clipboard.writeText(svgContent);
@@ -162,13 +187,52 @@ const BlobGenerator: React.FC = () => {
         data-border=""
         data-direction="column"
         data-radius="40"
-        //  data-space="10"
         data-contain=""
         data-elevation="2"
-    
         data-space="30"
         data-gap="30"
       >
+        <svg
+          width="100%"
+          height="100%"
+          data-position="absolute"
+          data-left="0"
+          data-top="0"
+          data-mask="bottom"
+        >
+          <pattern
+            id="combined-svg-7"
+            width="48"
+            height="48"
+            patternUnits="userSpaceOnUse"
+            patternContentUnits="userSpaceOnUse"
+          >
+            <g opacity="0.25">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M48 43L48 44L47 44L47 43L48 43ZM48 39L48 40L47 40L47 39L48 39ZM48 35L48 36L47 36L47 35L48 35ZM48 31L48 32L47 32L47 31L48 31ZM48 27L48 28L47 28L47 27L48 27ZM48 23L48 24L47 24L47 23L48 23ZM48 19L48 20L47 20L47 19L48 19ZM48 15L48 16L47 16L47 15L48 15ZM48 11L48 12L47 12L47 11L48 11ZM48 7L48 8L47 8L47 7L48 7ZM48 3L48 4L47 4L47 3L48 3Z"
+                fill="currentColor"
+              ></path>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M47 47L48 47L48 48L47 48L47 47ZM43 47L44 47L44 48L43 48L43 47ZM39 47L40 47L40 48L39 48L39 47ZM35 47L36 47L36 48L35 48L35 47ZM31 47L32 47L32 48L31 48L31 47ZM27 47L28 47L28 48L27 48L27 47ZM23 47L24 47L24 48L23 48L23 47ZM19 47L20 47L20 48L19 48L19 47ZM15 47L16 47L16 48L15 48L15 47ZM11 47L12 47L12 48L11 48L11 47ZM7 47L8 47L8 48L7 48L7 47ZM3 47L4 47L4 48L3 48L3 47Z"
+                fill="currentColor"
+              ></path>
+            </g>
+            <g opacity="0.45">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M24 23H23V24H24V23ZM24 47H23V48H24V47ZM47 23H48V24H47V23ZM48 47H47V48H48V47Z"
+                fill="currentColor"
+              ></path>
+            </g>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#combined-svg-7)"></rect>
+        </svg>
+
         <group>
           <text
             data-weight="700"
@@ -186,14 +250,28 @@ const BlobGenerator: React.FC = () => {
           data-justify="center"
           data-animation-name="appear-bottom"
           data-animation-duration="2"
+          data-ratio="1:1"
+          data-align="center"
         >
           <svg width="256" height="256" viewBox="0 0 100 100">
-            <path
-              data-duration="2.25"
-              data-transition-prop="d"
-              d={path}
-              fill="currentColor"
-            />
+{paths.map((p, i) => {
+const opacity =
+  mode === "fill" && paths.length > 1
+    ? 1 - ((i + 1) / (paths.length + 1)) * 0.8
+    : 1;
+  return (
+    <path
+      key={i}
+      data-duration="2.25"
+      data-transition-prop="d"
+      d={p}
+      fill={mode === "fill" ? "currentColor" : "none"}
+      stroke={mode === "stroke" ? "currentColor" : "none"}
+      strokeWidth={mode === "stroke" ? strokeWidth / 10 : 0}
+      opacity={opacity}
+    />
+  );
+})}
           </svg>
         </group>
 
@@ -204,7 +282,6 @@ const BlobGenerator: React.FC = () => {
         >
           <text
             data-wrap="wrap"
-            //data-space="20"
             data-line="1.3"
             data-length="280"
             data-opacity="50"
@@ -215,7 +292,6 @@ const BlobGenerator: React.FC = () => {
         </group>
 
         <group
-        //  data-background="main-background"
           data-radius="20"
           data-gap="10"
           data-wrap="no"
@@ -232,7 +308,6 @@ const BlobGenerator: React.FC = () => {
               data-color="main-text"
               data-contain=""
               data-interactive=""
-              //   data-over-color="neutral"
               data-radius="15"
               data-cursor="pointer"
               onClick={regenerateBlob}
@@ -252,30 +327,6 @@ const BlobGenerator: React.FC = () => {
                 data-length="240"
                 onClick={closePopover}
               >
-                {/* <group
-                  data-space="15"
-                  data-width="auto"
-                  data-interactive=""
-                  data-radius="10"
-                  data-cursor="pointer"
-                  onClick={exportSVG}
-                  data-weight="700"
-                  
-                >
-                  <text>Download</text>
-                </group>
-
-                <group
-                  data-space="15"
-                  data-width="auto"
-                  data-interactive=""
-                  data-radius="10"
-                  data-cursor="pointer"
-                  onClick={copySVGToClipboard}
-                >
-                  <text>Copy</text>
-                </group> */}
-
                 <group
                   onClick={exportSVG}
                   data-animation-name="appear-bottom"
@@ -342,7 +393,6 @@ const BlobGenerator: React.FC = () => {
                   data-cursor="pointer"
                   data-animation-name="appear-bottom"
                   data-animation-duration="4"
-                  //  data-position="right"
                 >
                   <text>Export</text>
                 </group>
@@ -352,7 +402,7 @@ const BlobGenerator: React.FC = () => {
         </group>
       </group>
 
-      <group data-direcion="column" >
+      <group data-direcion="column">
         <group data-space-vertical="30" data-direction="column" data-gap="10">
           <text
             data-weight="700"
@@ -365,97 +415,164 @@ const BlobGenerator: React.FC = () => {
             Customize
           </text>
 
-          <text
-            data-wrap="wrap"
-
-            data-length="200"
-            data-opacity="40"
-          >
-           Configure shape smoothness and edge count.
+          <text data-wrap="wrap" data-length="200" data-opacity="40">
+            Configure shape smoothness and edge count.
           </text>
         </group>
 
         <group data-gap="15">
           <group
-            data-border="outline"
+            
             data-elevation="2"
             data-radius="25"
             data-contain=""
-
-
           >
             <group data-align="center" data-gap="15" data-space="25">
               <group data-width="auto">
-                <group data-width="auto">
-                  <text>Edges</text>
-                </group>
+                <text>Edges</text>
               </group>
-
               <separator data-vertical=""></separator>
-
               <group data-fit="1">
                 <CustomSlider
                   start={3}
                   end={12}
                   value={points}
                   onValueChange={(value) => setPoints(value)}
-
-                  trackLeftProps={{
-                    "data-margin-right": "0",
-                    "data-height": "1",
-                  }}
-                  trackRightProps={{
-                    "data-opacity": "10",
-                    "data-margin-left": "5",
-                    "data-height": "1",
-                  }}
+                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
+                  trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
                 />
               </group>
             </group>
-          </group>
 
-          <group
-            data-border="outline"
-            data-elevation="2"
-            data-radius="25"
-            data-contain=""
+<separator data-horizontal="dotted" data-opacity="20"></separator>
 
-
-
-
-          >
             <group data-align="center" data-gap="15" data-space="25">
-              <group
-                data-width="auto"
-                //data-min-length="80"
-              >
-                <group>
-                  <text>Smoothness</text>
-                </group>
+              <group data-width="auto">
+                <text>Smoothness</text>
               </group>
-
               <separator data-vertical=""></separator>
-
               <group data-fit="1">
                 <CustomSlider
                   start={2}
                   end={9}
-         
                   value={growth}
                   onValueChange={(value) => setGrowth(value)}
-                  trackLeftProps={{
-                    "data-margin-right": "0",
-                    "data-height": "1",
-                  }}
-                  trackRightProps={{
-                    "data-opacity": "10",
-                    "data-margin-left": "5",
-                    "data-height": "1",
-                  }}
+                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
+                  trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
                 />
               </group>
             </group>
+
           </group>
+
+
+
+              <group
+                data-radius="25"
+                data-contain=""
+                data-elevation="2"
+                data-justify="center"
+
+              >
+                <group data-align="center" data-gap="15" data-space="25">
+                  <group data-width="auto">
+                    <text>Amount</text>
+                  </group>
+                  <separator data-vertical=""></separator>
+                  <group data-fit="1">
+                    <CustomSlider
+                      start={1}
+                      end={10}
+                      value={blobCount}
+                      onValueChange={(value) => setBlobCount(value)}
+                      trackLeftProps={{ "data-height": "1" }}
+                      trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
+                    />
+                  </group>
+                </group>
+              </group>
+
+          {/* Mode toggle */}
+          <group
+            data-radius="25"
+            data-contain=""
+          
+            data-justify="center"
+
+          >
+            <group data-align="center" data-gap="15" data-space="20" data-wrap="no">
+              <group data-width="auto" data-space="5">
+                <text>Blob Style</text>
+              </group>
+              <separator data-vertical=""></separator>
+              <group data-fit="1" data-gap="5" data-background="adaptive-gray" data-space="5" data-radius="20"  data-wrap="no">
+                {(["fill", "stroke"] as const).map((m) => (
+<Ripple   key={m}>
+                    <group
+                    data-ink-color="neutral"
+                    data-over-color="neutral"
+                    key={m}
+                   // data-width="auto"
+                    data-contain=""
+                    data-space="15"
+                    data-space-horizontal="20"
+                    data-align="center"
+                    data-justify="center"
+                    data-background={mode === m ? "text" : ""}
+                    data-color={mode === m ? "main-background" : ""}
+                    data-radius="15"
+                    data-cursor="pointer"
+                    data-interactive=""
+                    onClick={() => setMode(m)}
+                  >
+                   <text>{m === "fill" ? "Solid" : "Outline"}</text>
+                  </group>
+</Ripple>
+                ))}
+              </group>
+            </group>
+          </group>
+
+
+              <group
+
+
+data-opacity={mode === "stroke" ? undefined : "0"}
+
+data-translate-vertical={mode === "stroke" ? undefined : "50%"}
+
+data-pointer-event={mode === "stroke" ? undefined : "none"}
+
+data-duration=".125"
+
+              data-transition-behavior="allow-discrete"
+                data-radius="25"
+                data-contain=""
+                data-elevation="2"
+                data-justify="center"
+
+              >
+                <group data-align="center" data-gap="15" data-space="25">
+                  <group data-width="auto">
+                    <text>Stroke Width</text>
+                  </group>
+                  <separator data-vertical=""></separator>
+                  <group data-fit="1">
+                    <CustomSlider
+                      start={1}
+                      end={20}
+                      value={strokeWidth}
+                      onValueChange={(value) => setStrokeWidth(value)}
+                      trackLeftProps={{ "data-height": "1" }}
+                      trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
+                    />
+                  </group>
+                </group>
+              </group>
+
+
+
+
         </group>
       </group>
     </group>
