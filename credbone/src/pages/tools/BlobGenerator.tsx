@@ -93,14 +93,32 @@ const _createSvgPath = (points: string | any[]) => {
   return svgPath;
 };
 
-const BlobGenerator: React.FC = () => {
-  const [mode, setMode] = useState<"fill" | "stroke">("fill");
-  const [strokeWidth, setStrokeWidth] = useState(10);
-  const [blobCount, setBlobCount] = useState(1);
 
-  const [points, setPoints] = useState(6);
-  const [growth, setGrowth] = useState(6);
+
+
+
+
+const BlobGenerator: React.FC = () => {
+  const [mode, setMode] = useState<"fill" | "stroke">("stroke");
+  const [strokeWidth, setStrokeWidth] = useState(10);
+  const [blobCount, setBlobCount] = useState(10);
+
+  const [points, setPoints] = useState(12);
+  const [growth, setGrowth] = useState(3);
   const [paths, setPaths] = useState<string[]>([""]);
+
+
+
+
+useEffect(() => {
+  let current = 3;
+  const interval = setInterval(() => {
+    current += 1;
+    setGrowth(current);
+    if (current >= 8) clearInterval(interval);
+  }, 120);
+  return () => clearInterval(interval);
+}, []);
 
   const generatePaths = (count: number, edges: number, growthVal: number) =>
     Array.from({ length: count }, () => generator({ edges, growth: growthVal }).path);
@@ -247,6 +265,7 @@ const pathElements = paths
         </group>
 
         <group
+      //  data-cast-shadow="2"
           data-justify="center"
           data-animation-name="appear-bottom"
           data-animation-duration="2"
@@ -336,6 +355,7 @@ const opacity =
                 >
                   <group
                     data-space="15"
+                    
                     data-align="center"
                     data-gap="15"
                     data-interactive=""
@@ -382,6 +402,7 @@ const opacity =
                 <group
                   data-contain=""
                   data-space="15"
+                  data-space-horizontal="25"
                   data-align="center"
                   data-justify="center"
                   data-background="adaptive-gray"
