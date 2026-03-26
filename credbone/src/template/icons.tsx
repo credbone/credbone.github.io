@@ -579,8 +579,14 @@ const resetValues = () => {
 
 <group data-gap="10">
 {selectedColor === "main-text" || selectedColor === "secondary-text" ? (
-                <group data-length="240" data-space-bottom="20" >
-                  <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+                <group  data-space-bottom="20"
+                
+                                  data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3.25"
+
+                >
+                  <text data-wrap="wrap" data-length="240" data-line="1.5" >
                     Ensuring optimal contrast on main & secondary backgrounds
                     with system-generated colors
                   </text>

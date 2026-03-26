@@ -115,7 +115,7 @@ useEffect(() => {
   const interval = setInterval(() => {
     current += 1;
     setGrowth(current);
-    if (current >= 8) clearInterval(interval);
+    if (current >= 7) clearInterval(interval);
   }, 120);
   return () => clearInterval(interval);
 }, []);
