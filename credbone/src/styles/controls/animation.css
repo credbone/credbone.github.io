@@ -5,7 +5,7 @@
 
 @keyframes object-position {from{object-position: 0% 0% } to {object-position: 100% 100%;}}
 
-
+@keyframes rotate { to {transform: rotate(360deg);}}
 
 @keyframes to-position {from{transform: translateX(0);}}
 
@@ -24,6 +24,7 @@
 
 
 @keyframes height-60 {from{height: 0px;}to{height: 60px;}}
+@keyframes height-45 {from{height: 0px;}to{height: 45px;}}
 
 @keyframes to-top { 50%, 100%{transform: translateY(-100%);} }
 
@@ -39,6 +40,8 @@
 @keyframes to-left-right { from{transform: translateX(-100%);}to{transform: translateX(100%);} }
 
 
+@keyframes reset {from {transform:rotate(180deg);} 60%{ transform:rotate(-30deg);} 70%{ transform:rotate(10deg);} 80%{ transform:rotate(-10deg);}to { transform:rotate(0);}}
+
 
 
 @keyframes bounce
@@ -49,7 +52,12 @@
 60%{transform: scale(1.1);}
 }
 
+
+[data-animation-name="rotate"] {animation:rotate;}
+[data-animation-name="reset"] {animation:reset;}
+
 [data-animation-name="height-60"] {animation:height-60;}
+[data-animation-name="height-45"] {animation:height-45;}
 
 [data-animation-name="to-position"] {animation:to-position;}
 
@@ -87,7 +95,7 @@
 [data-animation-timing="fancy"]{animation-timing-function: cubic-bezier(0,1.3,.7,1);}
 
 
-
+[data-animation-timing="steps-360"]{animation-timing-function: steps(360);}
 
 
 
@@ -142,6 +150,9 @@
 [data-animation-duration="8"] {animation-duration: 0.8s;} /* Added for 8 */
 
 [data-animation-duration="16"] {animation-duration: 1.6s;} /* Added for 8 */
+
+[data-animation-duration="60"] {animation-duration: 60s;} 
+
 
 
 [data-duration="1"] {transition-duration: 0.1s;}
@@ -227,6 +238,7 @@
 
 [data-animation-play-state="paused"]{animation-play-state: paused;}
 [data-animation-play-state="running"]{animation-play-state: running;}
+
 
 
 

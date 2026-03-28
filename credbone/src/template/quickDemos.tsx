@@ -8,6 +8,7 @@ import WeatherWidget from "../tools/WeatherWidget";
 import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
 import TemplatePageHeader from "./TemplatePageHeader";
+import StopWatch from "../tools/StopWatch";
 
 //import { isMobile } from "react-device-detect";
 
@@ -36,6 +37,34 @@ const QuickDemos: React.FC = () => {
         data-column-size="240"
       >
   
+  <group>
+
+<group data-gap="10" data-space="30">
+  <text
+    data-weight="700"
+    data-wrap="preline"
+    data-text-size="large"
+    data-ellipsis=""
+    data-font-type="hero"
+    data-line="1"
+  >
+    Stop<br></br>Watch
+  </text>
+
+  <text data-wrap="wrap" data-line="1.5" data-opacity="40">
+    Demonstrates state-driven UI, dynamic controls, and animation within a token-based system
+  </text>
+</group>
+
+  <group
+
+
+
+>
+
+  <StopWatch/>
+</group>
+</group>
 
         <group
           data-height="auto"
@@ -209,6 +238,8 @@ const QuickDemos: React.FC = () => {
             </SnackbarContainer>
           </group>
         </group>
+
+
 
 
       </group>

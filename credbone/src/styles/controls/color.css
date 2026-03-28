@@ -337,6 +337,8 @@
 
 [data-background="context-bottom"] {background-image: linear-gradient( transparent 0%, var(--context) );}
 
+[data-background="context-top"] {background-image: linear-gradient( var(--context) 0%, transparent );}
+
 [data-color="transparent"]{color:transparent}
 [data-background-clip="text"]{background-clip: text;}
 

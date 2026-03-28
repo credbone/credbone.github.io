@@ -493,6 +493,8 @@ text[data-width="auto"]{width: initial;}
 [data-fit="3.5"] { flex-grow: 3.5; }
 [data-fit="4"] { flex-grow: 4; }
 
+[data-fit="0"] { flex-grow: 0; }
+
 [data-length="auto"]{ flex: auto; }
 
 
@@ -858,13 +860,18 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-max-height="fit-content"]{max-height:fit-content;}
 [data-max-height="fit"]{max-height:100%;}
 [data-max-height="200"]{max-height:200px;}
+[data-max-height="270"]{max-height:270px;}
 [data-max-height="300"]{max-height:300px;}
 [data-max-height="400"]{max-height:400px;}
+
+[data-max-height="135"]{max-height:135px;}
 
 [data-max-height="600"]{max-height:400px;}
 
 [data-min-height="30"]{min-height:30px;}
+[data-min-height="45"]{min-height:45px;}
 [data-min-height="130"]{min-height:130px;}
+
 [data-min-height="120"]{min-height:120px;}
 [data-min-height="200"]{min-height:200px;}
 [data-min-height="240"]{min-height:240px;}
@@ -1380,7 +1387,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="height"]{transition-property: height;}
 [data-transition-prop="padding"]{transition-property: padding;}
 [data-transition-prop="flex"]{transition-property: flex;}
-
+[data-transition-prop="opacity"]{transition-property: opacity;}
 
 [data-transition-prop="border-radius"]{transition-property: border-radius;}
 [data-transition-prop="border-radius-margin"]{transition-property: border-radius, margin;}
