@@ -6,6 +6,7 @@ import DotDisplay from "./dotDisplay";
 import Ripple from "../components/Ripple";
 
 import { IconMoreHoriz } from "../components/icon/credIcons";
+import { useModal } from "../components/Modal";
 
 // Cursor size definitions
 // small = r:2, suffix ".2" | default = r:4, no suffix | large = r:6, suffix ".3"
@@ -69,10 +70,8 @@ const DotDisplayEdit: React.FC<{
     return new Map();
   });
 
-
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isExportOpen, setIsExportOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
 
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isTouchActive, setIsTouchActive] = useState(false);
@@ -119,7 +118,8 @@ const DotDisplayEdit: React.FC<{
   const [isshowoverlay, setshowoverlay] = useState(true);
   const toggleoverlay = () => setshowoverlay((prev) => !prev);
 
-  const handleMouseDown = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => setIsMouseDown(true);
+  const handleMouseDown = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) =>
+    setIsMouseDown(true);
   const handleMouseUp = () => setIsMouseDown(false);
 
   const handleMouseMove = (index: number) => {
@@ -250,15 +250,172 @@ const DotDisplayEdit: React.FC<{
 
   const svgRef = React.useRef<SVGSVGElement>(null);
 
-
-     const [isInverted, setIsInverted] = useState(true);
-
+  const [isInverted, setIsInverted] = useState(true);
 
   const toggleInvert = () => {
     setIsInverted((prev) => !prev);
   };
 
+  const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
+  const [importValue, setImportValue] = useState("");
 
+  const handleImport = (): boolean => {
+    const textarea = document.getElementById(
+      "import-textarea",
+    ) as HTMLTextAreaElement;
+    const raw = textarea?.value.trim();
+    if (!raw) {
+      addSnackbar("Nothing to import", 1000);
+      return false;
+    }
+    const dots = raw
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map(decodeDot)
+      .filter((d) => !isNaN(d.index) && d.index >= 0 && d.index <= 255);
+    if (!dots.length) {
+      addSnackbar("No valid dots found", 1000);
+      return false;
+    }
+    setActiveDots(new Map(dots.map((d) => [d.index, d])));
+    onStartEdit?.();
+    addSnackbar(
+      `${dots.length} dot${dots.length === 1 ? "" : "s"} imported`,
+      1000,
+    );
+    return true;
+  };
+
+  const ImportContent = (
+    <group
+      data-direction="column"
+      data-align="start"
+      data-scroll=""
+      data-wrap="no"
+      data-margin="auto"
+      data-length="280"
+      data-max-height="fit"
+    >
+      <group
+        data-direction="column"
+        data-align="start"
+        data-width="auto"
+        data-margin="auto"
+        data-scroll=""
+        data-scrollbar="none"
+        data-max-height="fit"
+        data-wrap="no"
+      >
+        <label data-type="group" data-direction="column" data-wrap="no">
+          <group data-gap="10" data-space="30">
+            <group>
+              <text
+                data-weight="700"
+                data-wrap="preline"
+                data-text-size="medium"
+                data-ellipsis=""
+                data-font-type="hero"
+                data-line="1"
+              >
+                Import Raw Data
+              </text>
+            </group>
+            <text data-wrap="wrap" data-max-length="200" data-opacity="40">
+              Paste your previously copied matrix data
+            </text>
+          </group>
+          <group data-space-horizontal="30">
+            <separator data-horizontal="dotted" data-opacity="20"></separator>
+          </group>
+          <group data-direction="column" data-align="start">
+            <textarea
+            autoFocus
+            data-name="input-reset"
+              data-space="30"
+              data-length="fit"
+              data-height="content"
+              data-min-height="200"
+              maxLength={2048}
+              id="import-textarea"
+              rows={8}
+              placeholder="115.2, 131, 102.3 ..."
+            />
+          </group>
+        </label>
+
+        <group
+          data-shrink="no"
+          data-position="sticky"
+          data-bottom="0"
+          data-index="3"
+          data-direction="column"
+        >
+                    {/* <group data-space-horizontal="10">
+            <separator data-horizontal="" data-opacity="5"></separator>
+          </group> */}
+          <group
+            data-position="absolute"
+            data-background="context-bottom"
+            data-pointer-event="none"
+            data-top="-100%"
+            data-height="fit"
+          ></group>
+          <group data-space="10" data-gap="5" data-background="context" >
+            <Ripple>
+              <group
+                data-ink-color="neutral"
+                 
+                data-contain=""
+                data-align="center"
+                data-justify="center"
+                data-interactive=""
+                data-space="15"
+                data-radius="15"
+                data-cursor="pointer"
+                data-over-color="neutral"
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="2.25"
+                onClick={() => {
+                  setImportValue("");
+                  closeModal("modal-import");
+                }}
+              >
+                <text data-ellipsis="">Cancel</text>
+              </group>
+            </Ripple>
+            <Ripple>
+              <group
+             
+                data-ink-color="neutral"
+                data-contain=""
+                data-align="center"
+                data-justify="center"
+                data-interactive=""
+                data-space="15"
+                data-radius="15"
+                data-cursor="pointer"
+                data-background="adaptive-gray"
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="2.75"
+                onClick={() => {
+                  handleImport();
+                  closeModal("modal-import");
+                }}
+              >
+                <text data-ellipsis="">Apply</text>
+              </group>
+            </Ripple>
+
+
+
+          </group>
+        </group>
+      </group>
+    </group>
+  );
 
   return (
     <>
@@ -302,13 +459,8 @@ const DotDisplayEdit: React.FC<{
             </Ripple>
 
             <Popover
-
-
-
-            open={isExportOpen}
-            onOpenChange={setIsExportOpen}
-
-
+              open={isExportOpen}
+              onOpenChange={setIsExportOpen}
               placement="bottom"
               data-space="5"
               data-radius="20"
@@ -402,7 +554,6 @@ const DotDisplayEdit: React.FC<{
                 <Ripple>
                   <group
                     data-contain=""
-
                     data-space-vertical="15"
                     data-space-horizontal="20"
                     data-align="center"
@@ -422,63 +573,95 @@ const DotDisplayEdit: React.FC<{
             </Popover>
 
             <Popover
-
-
-            open={isMenuOpen}
-            onOpenChange={setIsMenuOpen}
-
-
+              open={isMenuOpen}
+              onOpenChange={setIsMenuOpen}
               placement="bottom"
               data-radius="20"
               data-space="5"
               content={(closePopover) => (
-    <group  data-length="200" onClick={closePopover}>
+                <group data-length="200" data-gap="5" onClick={closePopover}>
                   <Ripple>
-                  <group
-                    data-gap="15"
-                    data-wrap="no"
-                   
-                    data-contain=""
-                    data-space="15"
-                    data-radius="15"
-                    //    data-background="adaptive-gray"
-                    onClick={toggleoverlay}
-                    data-interactive=""
-                    data-over-color="neutral"
-                    data-cursor="pointer"
-                  >
-                    <group>
-                      <text data-ellipsis="" data-opacity="40">
-                        Guides
-                      </text>
-                    </group>
-                    <separator data-vertical="" data-height="fit"></separator>
                     <group
-                      data-align="center"
-                      data-justify="center"
-                      data-width="auto"
+                      data-gap="15"
+                      data-wrap="no"
+                      data-contain=""
+                      data-space="15"
+                      data-radius="15"
+                      //    data-background="adaptive-gray"
+                      onClick={toggleoverlay}
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-cursor="pointer"
                     >
-                      <text
-                        data-ellipsis=""
-                        data-transition-prop="font-size"
-                        data-duration="2"
-                        data-text-size={isshowoverlay ? "" : "0"}
+                      <group>
+                        <text data-ellipsis="" data-opacity="40">
+                          Guides
+                        </text>
+                      </group>
+                      <separator data-vertical="" data-height="fit"></separator>
+                      <group
+                        data-align="center"
+                        data-justify="center"
+                        data-width="auto"
                       >
-                        Hide
-                      </text>
-                      <text
-                        data-ellipsis=""
-                        data-transition-prop="font-size"
-                        data-duration="2"
-                        data-text-size={!isshowoverlay ? "" : "0"}
-                      >
-                        Show
-                      </text>
+                        <text
+                          data-ellipsis=""
+                          data-transition-prop="font-size"
+                          data-duration="2"
+                          data-text-size={isshowoverlay ? "" : "0"}
+                        >
+                          Hide
+                        </text>
+                        <text
+                          data-ellipsis=""
+                          data-transition-prop="font-size"
+                          data-duration="2"
+                          data-text-size={!isshowoverlay ? "" : "0"}
+                        >
+                          Show
+                        </text>
+                      </group>
                     </group>
+                  </Ripple>
+                  <group data-space-horizontal="5">
+                    <separator data-horizontal="" data-opacity="5" />
                   </group>
-                </Ripple>
-    </group>
-            )  }
+                  <Ripple>
+                    <group
+                      data-gap="15"
+                      data-wrap="no"
+                      data-contain=""
+                      data-space="15"
+                      data-radius="15"
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-cursor="pointer"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        openModal({
+                          id: "modal-import",
+                          title: "Import Raw Data",
+                          content: ImportContent,
+                          hasHeader: false,
+                          hasToolbar: false,
+
+                          customAttributes: {
+                            "data-radius": "25",
+                            "data-animation-name": "appear-bottom",
+                            "data-animation-duration": "1.75",
+                            "data-fill-mode": "backwards",
+                            "data-max-height": "fit",
+                          },
+                        });
+                      }}
+                    >
+                      <group>
+                        <text data-ellipsis="">Import</text>
+                      </group>
+                    </group>
+                  </Ripple>
+                </group>
+              )}
             >
               <group data-width="auto" data-position="right">
                 <Ripple>
@@ -600,23 +783,20 @@ const DotDisplayEdit: React.FC<{
               ref={svgRef}
               width="256"
               viewBox="0 0 160 160"
-                onMouseDown={(e) => {
-    setIsMenuOpen(false);
-    setIsExportOpen(false);
-    handleMouseDown(e);
-  }}
+              onMouseDown={(e) => {
+                setIsMenuOpen(false);
+                setIsExportOpen(false);
+                handleMouseDown(e);
+              }}
               onMouseUp={handleMouseUp}
-               onTouchStart={(e) => {
-    setIsMenuOpen(false);
-    setIsExportOpen(false);
-    handleTouchStart(e);
-  }}
+              onTouchStart={(e) => {
+                setIsMenuOpen(false);
+                setIsExportOpen(false);
+                handleTouchStart(e);
+              }}
               onTouchEnd={handleTouchEnd}
               onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
               style={{ touchAction: "none" }}
-
-
-              
             >
               {Array.from({ length: rows * cols }).map((_, index) => {
                 const x = (index % cols) * 10 + 5;
@@ -654,18 +834,14 @@ const DotDisplayEdit: React.FC<{
               data-wrap="no"
               data-space="2"
               data-contain=""
-
-                     data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="2"
-
-            >
-              <group
-
               data-animation-name="appear-bottom"
               data-fill-mode="backwards"
-              data-animation-duration="3.5"
-
+              data-animation-duration="2"
+            >
+              <group
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="3.5"
                 data-space-vertical="15"
                 data-align="center"
                 data-justify="center"
@@ -687,10 +863,9 @@ const DotDisplayEdit: React.FC<{
               </group>
 
               <group
-
-                            data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="3.25"
+                data-animation-name="appear-bottom"
+                data-fill-mode="backwards"
+                data-animation-duration="3.25"
                 data-space-vertical="10"
                 data-align="center"
                 data-justify="center"
@@ -716,46 +891,50 @@ const DotDisplayEdit: React.FC<{
 
             <group data-width="auto" data-position="right" data-wrap="no">
               <group data-align="center" data-wrap="no">
-                {(["small", "default", "large"] as CursorSize[]).map((size,index) => {
-                  const cfg = CURSOR_SIZE_CONFIG[size];
-                  const isActive = cursorSize === size;
-                  return (
-                    <group
-
-
-                                  data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-             data-animation-duration={4 - index * 0.5}
-
-                      key={size}
-                      data-space="10"
-                      data-align="center"
-                      data-justify="center"
-                      data-gap="6"
-                      data-border={isActive ? "" : "none"}
-                      //  data-background={isActive ? "context" : ""}
-                      // data-color={isActive ? "text" : ""}
-                      data-duration=".225"
-                      data-transition-prop="padding"
-                      data-width="auto"
-                      data-interactive=""
-                      data-over-color="neutral"
-                      data-radius="30"
-                      data-cursor="pointer"
-                      data-wrap="no"
-                      onClick={() => {
-                        setCursorSize(size);
-                        setIsEraserActive(false);
-                      }}
-                    >
-                      <group data-interact="">
-                        <svg width="20" height="20" viewBox={`0 0 16 16`}>
-                          <circle cx="8" cy="8" r={cfg.r} fill="currentcolor" />
-                        </svg>
+                {(["small", "default", "large"] as CursorSize[]).map(
+                  (size, index) => {
+                    const cfg = CURSOR_SIZE_CONFIG[size];
+                    const isActive = cursorSize === size;
+                    return (
+                      <group
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={4 - index * 0.5}
+                        key={size}
+                        data-space="10"
+                        data-align="center"
+                        data-justify="center"
+                        data-gap="6"
+                        data-border={isActive ? "" : "none"}
+                        //  data-background={isActive ? "context" : ""}
+                        // data-color={isActive ? "text" : ""}
+                        data-duration=".225"
+                        data-transition-prop="padding"
+                        data-width="auto"
+                        data-interactive=""
+                        data-over-color="neutral"
+                        data-radius="30"
+                        data-cursor="pointer"
+                        data-wrap="no"
+                        onClick={() => {
+                          setCursorSize(size);
+                          setIsEraserActive(false);
+                        }}
+                      >
+                        <group data-interact="">
+                          <svg width="20" height="20" viewBox={`0 0 16 16`}>
+                            <circle
+                              cx="8"
+                              cy="8"
+                              r={cfg.r}
+                              fill="currentcolor"
+                            />
+                          </svg>
+                        </group>
                       </group>
-                    </group>
-                  );
-                })}
+                    );
+                  },
+                )}
               </group>
             </group>
           </group>
@@ -765,65 +944,64 @@ const DotDisplayEdit: React.FC<{
       <group
         data-width="auto"
         data-radius="40"
-       
         data-border=""
-        data-background={isInverted ? "text" :"context"}
-        data-color={isInverted ? "main-background" :"text"}
-
-         
+        data-background={isInverted ? "text" : "context"}
+        data-color={isInverted ? "main-background" : "text"}
         data-direction="column"
         data-justify="center"
         data-wrap="no"
       >
-
-<group  data-direction="column"  data-space="30" data-gap="30" data-height="fit">
+        <group
+          data-direction="column"
+          data-space="30"
+          data-gap="30"
+          data-height="fit"
+        >
           <group data-direction="column" data-gap="5">
-          <text
-            data-weight="700"
-            data-wrap="preline"
-            data-text-size="large"
-            data-ellipsis=""
-            data-font-type="hero"
-            data-line="1"
-          >
-            Preview
-          </text>
-          <text data-opacity="30" data-max-length="160" data-wrap="wrap">
-            Your edits and icons update here live.
-          </text>
-        </group>
-        <group data-position="center" data-justify="center" data-space="30">
-          <DotDisplay size={130} activeDots={activeDots} />
-        </group>
-</group>
-<group data-space-horizontal="20" >
-  <separator data-horizontal="dotted" data-opacity="20"></separator>
-</group>
-
-        <group   data-space="20">
-         
-<Ripple>
-            <group
-            data-ink-color="neutral"
-            data-contain=""
-           data-space-vertical="15"
-            data-space-horizontal="20"
-            data-align="center"
-            data-justify="center"
-            data-background="adaptive-gray"
-            // data-border="outline"
-           
-            data-interactive=""
-            data-over-color="neutral"
-            data-radius="30"
-            data-cursor="pointer"
-            onClick={toggleInvert}
-          >
-            <text>Invert Colors</text>
+            <text
+              data-weight="700"
+              data-wrap="preline"
+              data-text-size="large"
+              data-ellipsis=""
+              data-font-type="hero"
+              data-line="1"
+            >
+              Preview
+            </text>
+            <text data-opacity="30" data-max-length="160" data-wrap="wrap">
+              Your edits and icons update here live.
+            </text>
           </group>
-</Ripple>
+          <group data-position="center" data-justify="center" data-space="30">
+            <DotDisplay size={130} activeDots={activeDots} />
+          </group>
+        </group>
+        <group data-space-horizontal="20">
+          <separator data-horizontal="dotted" data-opacity="20"></separator>
         </group>
 
+        <group data-space="20">
+          <Ripple>
+            <group
+              data-ink-color="neutral"
+              data-contain=""
+              data-space-vertical="15"
+              data-space-horizontal="20"
+              data-align="center"
+              data-justify="center"
+              data-background="adaptive-gray"
+              // data-border="outline"
+
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius="30"
+              data-cursor="pointer"
+              onClick={toggleInvert}
+            >
+              <text>Invert Colors</text>
+            </group>
+          </Ripple>
+        </group>
       </group>
     </>
   );
@@ -839,13 +1017,6 @@ const Dot: React.FC<{
 }> = ({ x, y, active, r, onClick, onMouseMove }) => {
   const rectX = x - 5;
   const rectY = y - 5;
-
-
-
-
-
-
-
 
   return (
     <g>

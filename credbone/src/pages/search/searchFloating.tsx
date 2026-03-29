@@ -1,13 +1,13 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import { RouteData, routesData } from "./routesData";
 
 import { IconSearch } from "../../components/icon/credIcons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Tooltip from "../../components/tooltip";
-import { X } from "lucide-react";
+import { CornerDownLeft, X } from "lucide-react";
 
 interface SearchComponentProps {
-  showRandomTagsByDefault?: boolean; // Add a prop to control random tags
+  showRandomTagsByDefault?: boolean;
 }
 
 function SearchFloating({
@@ -16,6 +16,25 @@ function SearchFloating({
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [results, setResults] = useState<RouteData[]>([]);
   const [randomTags, setRandomTags] = useState<string[]>([]);
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+
+  const navigate = useNavigate();
+  const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  useEffect(() => {
+    if (focusedIndex >= 0 && resultRefs.current[focusedIndex]) {
+      resultRefs.current[focusedIndex]?.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  }, [focusedIndex]);
+
+  useEffect(() => {
+    if (results.length > 0) {
+      setFocusedIndex(0);
+    }
+  }, [results]);
 
   useEffect(() => {
     if (showRandomTagsByDefault) {
@@ -24,8 +43,9 @@ function SearchFloating({
   }, [showRandomTagsByDefault]);
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.toLowerCase(); // Convert the query to lowercase
+    const query = e.target.value.toLowerCase();
     setSearchQuery(query);
+    setFocusedIndex(-1);
 
     const stopWords = [
       "and",
@@ -40,7 +60,7 @@ function SearchFloating({
       "by",
       "for",
       "to",
-    ]; // Define common stop words
+    ];
 
     if (query.length > 1 && query.length <= 100) {
       const searchTerms = query
@@ -48,13 +68,42 @@ function SearchFloating({
         .filter((term) => term.trim() !== "" && !stopWords.includes(term));
 
       if (searchTerms.length > 0) {
-        const filteredResults = routesData.filter((route) => {
-          const matches = searchTerms.some((term) =>
-            route.tags.some((tag) => tag.toLowerCase().includes(term)),
-          );
-          return matches;
-        });
+        const filteredResults = routesData
+          // .filter((route) => route.tagsVisible !== false)
+          .map((route) => ({
+            route,
+            score:
+              searchTerms.reduce((acc, term) => {
+                const exactIdx = route.tags.findIndex(
+                  (tag) => tag.toLowerCase() === term,
+                );
+                const partialIdx = route.tags.findIndex((tag) =>
+                  tag.toLowerCase().includes(term),
+                );
+
+                const exactScore = exactIdx !== -1 ? 10 - exactIdx * 0.1 : 0;
+                const partialScore =
+                  partialIdx !== -1 ? 1 - partialIdx * 0.01 : 0;
+                const titleScore = route.title.toLowerCase().includes(term)
+                  ? 5
+                  : 0; // 👈
+
+                return acc + exactScore + partialScore + titleScore;
+              }, 0) / route.tags.length,
+          }))
+          .filter(({ score }) => score > 0)
+          .sort((a, b) => b.score - a.score)
+          .map(({ route }) => route);
+
         setResults(filteredResults);
+
+        if (
+          filteredResults.length === 0 &&
+          showRandomTagsByDefault &&
+          randomTags.length === 0
+        ) {
+          showRandomTags();
+        }
       } else {
         setResults([]);
       }
@@ -66,8 +115,9 @@ function SearchFloating({
   const clearSearch = () => {
     setSearchQuery("");
     setResults([]);
+    setFocusedIndex(-1);
     if (showRandomTagsByDefault) {
-      showRandomTags(); // Show new random tags after clearing the search
+      showRandomTags();
     }
   };
 
@@ -78,7 +128,7 @@ function SearchFloating({
     for (let i = 0; i < 3; i++) {
       const randomIndex = Math.floor(Math.random() * uniqueTags.length);
       randomTags.push(uniqueTags[randomIndex].toLowerCase());
-      uniqueTags.splice(randomIndex, 1); // Remove the selected tag to avoid duplicates
+      uniqueTags.splice(randomIndex, 1);
     }
     setRandomTags(randomTags);
   };
@@ -93,7 +143,6 @@ function SearchFloating({
       <group data-width="auto" data-gap="20" data-sticky="top">
         <group
           data-length="500"
-          // data-border=""
           data-align="center"
           data-background="text"
           data-color="main-background"
@@ -128,21 +177,35 @@ function SearchFloating({
                   value={searchQuery}
                   onChange={handleSearch}
                   autoFocus={!showRandomTagsByDefault}
+                  autoComplete="off"
                   name="floatingsearch"
-
-
                   onKeyDown={(e) => {
-    if (e.key === 'Enter') {
-      e.currentTarget.blur(); // closes mobile keyboard
-    }
-  }}
-
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      setFocusedIndex((i) =>
+                        Math.min(i + 1, results.length - 1),
+                      );
+                    } else if (e.key === "ArrowUp") {
+                      e.preventDefault();
+                      setFocusedIndex((i) => Math.max(i - 1, 0));
+                    } else if (e.key === "Enter") {
+                      if (focusedIndex >= 0 && results[focusedIndex]) {
+                        navigate(results[focusedIndex].path);
+                      }
+                      //  else {
+                      //   e.currentTarget.blur();
+                      // }
+                    } else if (e.key === "Escape") {
+                      clearSearch();
+                      e.currentTarget.blur();
+                    }
+                  }}
                 />
 
                 {searchQuery && (
                   <Tooltip content="Clear" delay={500}>
                     <group
-                    data-over-color="neutral"
+                      data-over-color="neutral"
                       data-contain=""
                       data-space="5"
                       data-shrink="no"
@@ -221,8 +284,7 @@ function SearchFloating({
         >
           {results.map((result, index) => (
             <Link
-              //  data-drag="none"
-              autoFocus={true}
+              //  autoFocus={true}
               data-contain=""
               data-type="group"
               key={index}
@@ -236,34 +298,48 @@ function SearchFloating({
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
-              // data-border=""
+              ref={(el: HTMLAnchorElement | null) =>
+                (resultRefs.current[index] = el)
+              }
+              data-background={
+                focusedIndex === index ? "adaptive-gray" : undefined
+              }
+              data-selected={focusedIndex === index ? "true" : undefined}
             >
               <separator data-horizontal="dotted"></separator>
-              <group
-                data-space-vertical="20"
-                data-direction="column"
-                data-gap="5"
-              >
-                <text
-                  data-weight="700"
-                  data-color="main"
-                  data-wrap="preline"
-                  data-text-size="medium"
-               //   data-ellipsis=""
-                  data-font-type="hero"
-                  data-line="1"
+              <group data-wrap="no" data-align="center">
+                <group
+                  data-space-vertical="20"
+                  data-direction="column"
+                  data-gap="5"
                 >
-                  {result.title}
-                </text>
-                <text
-                  data-opacity="50"
-              //    data-line="1.2"
-                  data-wrap="balance"
-                  data-ellipsis=""
-                  data-length="300"
+                  <text
+                    data-weight="700"
+                    data-color="main"
+                    data-wrap="preline"
+                    data-text-size="medium"
+                    data-font-type="hero"
+                    data-line="1"
+                  >
+                    {result.title}
+                  </text>
+                  <text
+                    data-opacity="50"
+                    data-wrap="balance"
+                    data-ellipsis=""
+                    data-length="300"
+                  >
+                    {result.description}
+                  </text>
+                </group>
+
+                <group
+                  data-space="15"
+                  data-width="auto"
+                  data-opacity={focusedIndex === index ? "60" : "0"}
                 >
-                  {result.description}
-                </text>
+                  <CornerDownLeft strokeWidth={1} />
+                </group>
               </group>
             </Link>
           ))}

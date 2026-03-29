@@ -230,6 +230,8 @@ text[data-width="auto"]{width: initial;}
 [data-top="100%"] { top: 100%; }
 [data-top="50%"] { top: 50%; }
 
+[ data-top="-100%"] {top:-100%}
+
 [data-top="adaptive-30-50"] { top: 50px; }
 
 
@@ -425,7 +427,7 @@ text[data-width="auto"]{width: initial;}
 [data-length="25%"]{width:25%;}
 
 [data-length="content"]{field-sizing: content;}
-
+[data-height="content"]{field-sizing: content;}
 
 [data-max-length="auto"]{max-width:initial;}
 [data-max-length="fit"]{max-width:100%;}
@@ -800,6 +802,9 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-height="viewport"] {height: 100vh;}
 [data-height="viewport/2"] {height: 50vh;}
 [data-height="viewport/3"] {height: 33vh;}
+
+
+
 [data-min-height="viewport"] {min-height: 100vh;}
 
 [data-margin-top="-20"] {margin-top:-20px}
@@ -873,6 +878,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-min-height="130"]{min-height:130px;}
 
 [data-min-height="120"]{min-height:120px;}
+[data-min-height="160"]{min-height:160px;}
 [data-min-height="200"]{min-height:200px;}
 [data-min-height="240"]{min-height:240px;}
 [data-min-height="280"]{min-height:280px;}

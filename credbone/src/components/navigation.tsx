@@ -10,40 +10,26 @@ import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
 import { useCurrentHeader } from "./TitleUpdater";
 import { useFontSize } from "./FontSizeProvider";
 
-const navItems = [
-  { to: "", icon: <House size={20} />, label: "Home", type: "link" },
-  {
-    to: "/Components",
-    icon: <Box size={20} />,
-    label: "Components",
-    vertical: "true",
-    adaptive: "desktop",
-    type: "link",
-  },
-  {
-    to: "/Components/Typography",
-    icon: <Box size={20} />,
-    label: "Components",
-    adaptive: "mobile",
-    type: "toggle",
-  },
-  { to: "/Components", type: "separator" },
-  {
-    to: "/Tools",
-    icon: <PencilRuler size={20} />,
-    label: "Tools & Resources",
-    type: "link",
-  },
-  { to: "/About", icon: <BookOpen size={20} />, label: "About", type: "link" },
 
-  {
-    to: "/Settings",
-    icon: <Bolt size={20} />,
-    label: "Settings",
-    type: "link",
-  },
-  { to: "/Search", icon: <Search size={20} />, label: "Search", type: "link" },
+import { isIOS, isMacOs } from "react-device-detect";
+
+const isApple = isMacOs || isIOS;
+
+const navItems = [
+  { to: "", icon: <House size={20} />, label: "Home", ariaLabel: "Home", type: "link" },
+  { to: "/Components", icon: <Box size={20} />, label: "Components", ariaLabel: "Components", vertical: "true", adaptive: "desktop", type: "link", },
+  { to: "/Components/Typography", icon: <Box size={20} />, label: "Components", ariaLabel: "Components", adaptive: "mobile", type: "toggle", },
+  { to: "/Components", type: "separator" },
+  { to: "/Tools", icon: <PencilRuler size={20} />, label: "Tools & Resources",ariaLabel: "Tools & Resources", type: "link", },
+  { to: "/About", icon: <BookOpen size={20} />, label: "About",ariaLabel: "About", type: "link" },
+
+  { to: "/Settings", icon: <Bolt size={20} />, label: "Settings", ariaLabel: "Settings", type: "link", },
+  { to: "/Search", icon: <Search size={20} />, label: ( <group data-gap="10"> <text> Search </text><text data-opacity="40">{isApple ? "⌘" : "Ctrl"} + K</text> </group> ), ariaLabel: "Search",  type: "link" },
 ];
+
+
+
+    
 
 const Navigation: React.FC = () => {
   const location = useLocation(); // ✅ Use the hook, not window.location
@@ -337,7 +323,7 @@ const LeftNavigation: React.FC<{
           </group>
         ) : (
           <NavLink
-            aria-label={item.label}
+            aria-label={item.ariaLabel}
             key={index}
             to={item.to}
             data-adaptive={item.adaptive}

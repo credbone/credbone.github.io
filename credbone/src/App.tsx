@@ -30,6 +30,7 @@ import { NavProvider } from "./components/NavProvider";
 import HorizontalNav from "./template/horizontalNav";
 import Tools from "./pages/tools/tools";
 import ToolsCollection from "./pages/tools";
+import { SearchShortcutListener } from "./pages/search/Searchshortcutlistener";
 
 const MainLayout = () => {
 
@@ -73,6 +74,7 @@ function App() {
         <TitleUpdater />
         <NavProvider> 
         <ModalProvider>
+          <SearchShortcutListener/>
 <HorizontalNav data-print="hide"/>
           <view data-vertical="" data-border="no">
           <VerticalNav  data-print="hide" /> 

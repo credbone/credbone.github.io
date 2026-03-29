@@ -4,198 +4,207 @@ export interface RouteData {
     tags: string[];
     description: string; 
     title: string; 
+    tagsVisible?: boolean;
 }
   
 export const routesData: RouteData[] = [
-  { 
-    path: "../Components/Typography", 
-    tags: ["typeface", "fonts", "typography", "glyph", "lettering", "font styles", "serif", "text", "token"], 
-    description: "Typography tools, fonts, and typeface design for all styles.", 
-    title: "Typography" 
-  },
-  { 
-    path: "../Components/Icons", 
-    tags: ["icons", "graphics", "user interface", "svg", "vector", "pictograms", "symbols", "glyphs"], 
-    description: "Icon components for graphics and user interface design.", 
-    title: "Icons" 
-  },
-  { 
-    path: "../Components/Buttons", 
-    tags: ["buttons", "user interface", "icon", "fab", "click", "actions", "controls", "form"], 
-    description: "Interactive buttons for user interface actions and controls.", 
-    title: "Buttons" 
-  },
-  { 
-    path: "../Components/CheckboxSwitchers", 
-    tags: ["checkbox", "switchers", "radio", "button", "forms", "toggle", "input", "selection"], 
-    description: "Highly configurable checkboxes, switches, and toggle controls.", 
-    title: "Checkbox & Switchers" 
-  },
-  { 
-    path: "../Components/Colors", 
-    tags: ["colors", "design", "palette", "theme", "light", "dark", "shades", "hues", "tints", "swatches", "token","export","figma", "tools"], 
-    description: "Color design, palettes, and tools for theme building.", 
-    title: "Colors" 
-  },
-  { 
-    path: "../Components/DividerAndSpace", 
-    tags: ["separator", "layout", "spacing", "structure", "arrangement", "space", "divider"], 
-    description: "Essential components for creating structured layouts and managing spacing.", 
-    title: "Divider & Space" 
-  },
-  { 
-    path: "../Components/Layout", 
-    tags: ["layout", "design", "grid", "structure", "arrangement", "spacing", "alignment"], 
-    description: "Grid layouts and structure components for UI design.", 
-    title: "Layout" 
-  },
-  { 
-    path: "../Components/Navigation", 
-    tags: ["navigation", "menu", "user interface", "navbar", "sidebar", "links", "breadcrumbs", "tabs"], 
-    description: "Menus and navigation components for streamlined UIs.", 
-    title: "Navigation" 
-  },
-  { 
-    path: "../Components/Navigation/SideBar", 
-    tags: ["navigation", "menu", "user interface", "navbar", "sidebar", "links", "tabs"], 
-    description: "Sidebar navigation component Example for streamlined UIs.", 
-    title: "Sidebar" 
-  },
-  { 
-    path: "../Components/InputsAndForms", 
-    tags: ["inputs", "forms", "user interface", "password", "text fields", "input fields", "user input", "data entry"], 
-    description: "Input fields and forms for user interaction and data entry.", 
-    title: "Inputs & Forms" 
-  },
-  { 
-    path: "../Components/RangeSlider", 
-    tags: ["inputs", "range", "slider", "tick", "text fields", "input fields", "user input", "data entry"], 
-    description: "For adjusting values dynamically in user interface designs.", 
-    title: "Range Slider" 
-  },
-  { 
-    path: "../Components/TooltipAndPopover", 
-    tags: ["tooltip", "popover","user interface", "hover", "hint", "overlay"], 
-    description: "Contextual overlay components for hints and lightweight interactions.", 
-    title: "Tooltip & Popover" 
-  },
-  { 
-    path: "../Components/Snackbar", 
-    tags: ["toast", "snackbar", "user interface", "hint", "notification"], 
-    description: "Notification components for feedback, alerts, and system messages.", 
-    title: "Snackbar" 
-  },
-  { 
-    path: "../Components/CardsAndList", 
-    tags: ["cards", "list", "user interface", "item list", "data display", "containers", "grouping", "collections"], 
-    description: "Cards and lists for grouping and displaying data items.", 
-    title: "Cards & List" 
-  },
-  { 
-    path: "../Components/Miscellaneous", 
-    tags: ["miscellaneous", "marquee", "counter", "text", "digit", "ripple", "ink", "material"], 
-    description: "Various unique UI components and handy design tools.", 
-    title: "Miscellaneous" 
-  },
-  { 
-    path: "../Components/Dashboard", 
-    tags: ["dashboard","pattern", "monitoring", "gauge", "widget", "hardware", "temperature"], 
-    description: "Dashboard interfaces for hardware monitoring and widgets.", 
-    title: "Dashboard" 
-  },
-  { 
-    path: "../Components/Modal", 
-    tags: ["modal", "popup", "window", "overlay", "dialog"], 
-    description: "Modal components for creating overlays and popup dialogs.", 
-    title: "Modals" 
-  },
-  { 
-    path: "../Components/QuickDemos", 
-    tags: ["demo", "pattern", "showcase", "converter", "interactive", "weather", "paint", "app", "calculator"], 
-    description: "Explore interactive demos, apps, and functional showcases.", 
-    title: "Quick Demos" 
-  },
-
-  { 
-    path: "../Components/Overview", 
-    tags: ["overview", "all", "summary", "collection", "catalog", "categories","interface","experience"], 
-    description: "Contains all routes and a summary of components.", 
-    title: "Overview" 
-  },
-
   {
-    path: "../Components/Motion",
-    tags: ["motion", "animation", "transition", "effect", "interaction", "movement"],
-    description: "Create fluid animations and transitions for dynamic interactions.",
-    title: "Motion"
+    "path": "../Components/Typography",
+    "title": "Typography",
+    "description": "Typography tools, fonts, and typeface design for all styles.",
+    "tags": ["typography", "fonts", "typeface", "text", "glyph", "lettering", "serif", "font styles", "token"]
+  },
+  {
+    "path": "../Components/Icons",
+    "title": "Icons",
+    "description": "Icon components for graphics and user interface design.",
+    "tags": ["icon", "svg", "vector", "glyphs", "symbols", "pictograms", "graphics", "user interface"]
+  },
+  {
+    "path": "../Components/Buttons",
+    "title": "Buttons",
+    "description": "Interactive buttons for user interface actions and controls.",
+    "tags": ["button", "actions", "controls", "click", "fab", "form", "user interface"]
+  },
+  {
+    "path": "../Components/CheckboxSwitchers",
+    "title": "Checkbox & Switchers",
+    "description": "Highly configurable checkboxes, switches, and toggle controls.",
+    "tags": ["checkbox", "switchers", "toggle", "radio", "selection", "input", "forms", "button"]
+  },
+  {
+    "path": "../Components/Colors",
+    "title": "Colors",
+    "description": "Color design, palettes, and tools for theme building.",
+    "tags": ["color", "palette", "theme", "shades", "hues", "tints", "swatches", "light", "dark", "token", "export", "figma", "tools"]
+  },
+  {
+    "path": "../Components/DividerAndSpace",
+    "title": "Divider & Space",
+    "description": "Essential components for creating structured layouts and managing spacing.",
+    "tags": ["spacing", "divider", "separator", "layout", "structure", "arrangement", "space"]
+  },
+  {
+    "path": "../Components/Layout",
+    "title": "Layout",
+    "description": "Grid layouts and structure components for UI design.",
+    "tags": ["layout", "grid", "structure", "alignment", "spacing", "arrangement", "design"]
+  },
+  {
+    "path": "../Components/Navigation",
+    "title": "Navigation",
+    "description": "Menus and navigation components for streamlined UIs.",
+    "tags": ["navigation", "menu", "navbar", "sidebar", "tabs", "links", "breadcrumbs", "user interface"]
+  },
+  {
+    "path": "../Components/Navigation/SideBar",
+    "title": "Sidebar",
+    "description": "Sidebar navigation component Example for streamlined UIs.",
+    "tags": ["sidebar", "navigation", "menu", "tabs", "links", "navbar", "user interface"]
+  },
+  {
+    "path": "../Components/InputsAndForms",
+    "title": "Inputs & Forms",
+    "description": "Input fields and forms for user interaction and data entry.",
+    "tags": ["inputs", "forms", "input fields", "data entry", "user input", "textarea", "password", "user interface"]
+  },
+  {
+    "path": "../Components/RangeSlider",
+    "title": "Range Slider",
+    "description": "For adjusting values dynamically in user interface designs.",
+    "tags": ["slider", "range", "inputs", "user input", "data entry", "tick", "input fields"]
+  },
+  {
+    "path": "../Components/TooltipAndPopover",
+    "title": "Tooltip & Popover",
+    "description": "Contextual overlay components for hints and lightweight interactions.",
+    "tags": ["tooltip", "popover", "overlay", "hint", "hover", "user interface"]
+  },
+  {
+    "path": "../Components/Snackbar",
+    "title": "Snackbar",
+    "description": "Notification components for feedback, alerts, and system messages.",
+    "tags": ["snackbar", "toast", "notification", "feedback", "alert", "user interface", "hint"]
+  },
+  {
+    "path": "../Components/CardsAndList",
+    "title": "Cards & List",
+    "description": "Cards and lists for grouping and displaying data items.",
+    "tags": ["card", "list", "data display", "containers", "grouping", "collections", "item list", "user interface"]
+  },
+  {
+    "path": "../Components/Miscellaneous",
+    "title": "Miscellaneous",
+    "description": "Various unique UI components and handy design tools.",
+    "tags": ["miscellaneous", "marquee", "counter", "digit", "ripple", "ink", "material", "text"]
+  },
+  {
+    "path": "../Components/Dashboard",
+    "title": "Dashboard",
+    "description": "Dashboard interfaces for hardware monitoring and widgets.",
+    "tags": ["dashboard", "widget", "monitoring", "gauge", "temperature", "hardware", "pattern"]
+  },
+  {
+    "path": "../Components/Modal",
+    "title": "Modals",
+    "description": "Modal components for creating overlays and popup dialogs.",
+    "tags": ["modal", "dialog", "popup", "overlay", "window"]
+  },
+  {
+    "path": "../Components/QuickDemos",
+    "title": "Quick Demos",
+    "description": "Explore interactive demos, apps, and functional showcases.",
+    "tags": ["demo", "interactive", "showcase", "app", "calculator", "converter", "weather", "paint", "pattern"]
+  },
+  {
+    "path": "../Components/Overview",
+    "title": "Overview",
+    "description": "Contains all routes and a summary of components.",
+    "tags": ["overview", "summary", "collection", "catalog", "categories", "interface", "experience", "all"]
+  },
+  {
+    "path": "../Components/Motion",
+    "title": "Motion",
+    "description": "Create fluid animations and transitions for dynamic interactions.",
+    "tags": ["motion", "animation", "transition", "interaction", "effect", "movement"]
   },
 
 
 
   {
-    path: "../Tools",
-    tags: ["design", "editor", "creation","generator", "tools", "icon", "blob","CSS"],
-    description: "A collection of tools for designing, editing, and generating visuals.",
-    title: "Tools & Resources"
+    "path": "../Tools",
+    "title": "Tools & Resources",
+    "description": "A collection of tools for designing, editing, and generating visuals.",
+    "tags": ["tool", "editor", "generator", "creation", "design", "icon", "blob", "CSS", "figma",]
+  },
+  {
+    "path": "../Tools/DotIconMaker",
+    "title": "Icon Maker",
+    "description": "Create and edit 16x16 dotted icons. Export raw data or optimized SVGs.",
+    "tags": ["icon", "pixel", "dot", "editor", "generator", "retro", "svg", "vector", "tools", "figma",]
+  },
+  {
+    "path": "../Tools/BlobGenerator",
+    "title": "Blob Generator",
+    "description": "Yet another blob generator—because the world clearly needs more blobs.",
+    "tags": ["blob", "generator", "editor", "shape", "svg", "vector", "tools", "figma",]
+  },
+  {
+    "path": "../Tools/PatternMaker",
+    "title": "Pattern Maker",
+    "description": "Ideal for creating seamless, repeatable backgrounds.",
+    "tags": ["pattern", "seamless", "repeatable", "generator", "texture", "svg", "vector", "tools","figma",]
+  },
+  {
+    "path": "../Tools/ColorMixer",
+    "title": "Color Mixer",
+    "description": "Tool for blending and experimenting with custom colors.",
+    "tags": ["color", "mixer", "gradient", "LAB", "RGB", "swatches", "token", "export", "svg", "CSS", "tools", "figma",]
+  },
+  {
+    "path": "../Tools/ColorSpaceConverter",
+    "title": "Color Converter",
+    "description": "Convert colors across spaces and explore theory-based combinations.",
+    "tags": ["color", "converter", "LAB", "RGB", "HSL", "HEX", "color-theory", "harmony", "swatches", "token", "export", "svg", "CSS", "tools", "figma",]
+  },
+  {
+    "path": "../Tools/PathBuilder",
+    "title": "Path Builder",
+    "description": "Build and edit SVG paths visually by combining segments, curves, and lines, with quick export.",
+    "tags": ["path", "svg", "vector", "bezier", "curve", "arc", "line", "segments", "editor"]
   },
 
+
+
   {
-    path: "../Tools/DotIconMaker",
-    tags: ["icon", "pixel", "retro", "dot", "editor","tools",  "generator", "svg", "vector"],
-    description: "Create and edit 16x16 dotted icons. Export raw data or optimized SVGs for a retro pixel-perfect look.",
-    title: "Icon Maker"
+    "path": "/Settings",
+    "title": "Application Settings",
+    "description": "Configure the application, adjust preferences, and reset or customize behavior.",
+    "tags": ["settings", "preferences", "configuration", "customize", "options", "reset"],
+    "tagsVisible": false
+  },
+  {
+    "path": "/About",
+    "title": "About the Project",
+    "description": "Learn more about the project, its goals, features, and design approach.",
+    "tags": ["about", "project", "overview", "information", "details"],
+    "tagsVisible": false
+  },
+  {
+    "path": "/Resume",
+    "title": "Author & Resume",
+    "description": "View the creator profile, background, experience, and resume.",
+    "tags": ["resume", "author", "profile", "experience", "creator", "ruben", "sargsyan"],
+    "tagsVisible": false
   },
 
 
   {
-    path: "../Tools/BlobGenerator",
-    tags: ["blob", "pixel", "retro", "dot","tools", "editor", "svg", "vector"],
-    description: "Yet another blob generator—because the world clearly needs more blobs.",
-    title: "Blob Generator"
-  }
-,
-  {
-    path: "../Tools/PatternMaker",
-    tags: ["pattern", "seamless", "repeatable", "generator","tools", "maker", "svg", "vector", "texture"],
-    description: "Ideal for creating seamless, repeatable backgrounds.",
-    title: "Pattern Maker"
-  },
-
-    {
-    path: "../Tools/ColorMixer",
-    tags: ["color", "mixer", "gradient","LAB","RGB","swatches", "token","export", "tools","svg", "CSS"],
-    description: "Tool for blending and experimenting with custom colors.",
-    title: "Color Mixer"
-  }
-,
-
-{
-  path: "../Tools/ColorSpaceConverter",
-  tags: ["color", "converter", "color-theory", "harmony", "LAB", "RGB", "HSL", "HEX", "swatches", "token", "export", "tools", "svg", "CSS"],
-  description: "Convert colors across spaces and explore theory-based combinations.",
-  title: "Color Converter"
-},
-
-
-{
-  path: "../Tools/PathBuilder",
-  tags: [
-    "svg",
-    "path",
-    "vector",
-    "path-builder",
-    "segments",
-    "bezier",
-    "curves",
-    "lines",
-    "arc",
-    "curve",
-    "editor",
-
-  ],
-  description: "Build and edit SVG paths visually by combining segments, curves, and lines, with quick export.",
-  title: "Path Builder"
+  "path": "/",
+  "title": "Credbone",
+  "description": "Atomic design system and UI toolkit for building scalable interfaces and tools.",
+  "tags": ["home", "landing", "index","start"],
+  "tagsVisible": false
 }
-
-];
+]
 

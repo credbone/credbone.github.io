@@ -2,9 +2,9 @@ import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import { RouteData, routesData } from "./routesData";
 import Ripple from "../../components/Ripple";
 import { IconSearch } from "../../components/icon/credIcons";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import Tooltip from "../../components/tooltip";
-import { X } from "lucide-react";
+import { CornerDownLeft, X } from "lucide-react";
 
 interface SearchComponentProps {
   showRandomTagsByDefault?: boolean;
@@ -17,8 +17,27 @@ function SearchComponent({
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [results, setResults] = useState<RouteData[]>([]);
   const [randomTags, setRandomTags] = useState<string[]>([]);
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const lastUrlQueryRef = useRef<string>(""); // Track last URL update to avoid duplicate history
+  const lastUrlQueryRef = useRef<string>("");
+  const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (focusedIndex >= 0 && resultRefs.current[focusedIndex]) {
+      resultRefs.current[focusedIndex]?.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  }, [focusedIndex]);
+
+  useEffect(() => {
+    if (results.length > 0) {
+      setFocusedIndex(0);
+    }
+  }, [results]);
 
   // Initialize search from URL parameter on mount
   useEffect(() => {
@@ -30,15 +49,13 @@ function SearchComponent({
 
       setSearchQuery(trimmedQuery);
 
-      // Only perform search if query is long enough
       if (trimmedQuery.length >= MIN_SEARCH_LENGTH) {
         performSearch(trimmedQuery);
-        lastUrlQueryRef.current = trimmedQuery; // Track initial URL query
+        lastUrlQueryRef.current = trimmedQuery;
       } else if (showRandomTagsByDefault) {
         showRandomTags();
       }
 
-      // Update URL if it was truncated or too short
       if (
         trimmedQuery !== queryFromUrl ||
         trimmedQuery.length < MIN_SEARCH_LENGTH
@@ -55,7 +72,7 @@ function SearchComponent({
       showRandomTags();
       lastUrlQueryRef.current = "";
     }
-  }, []); // Run only on mount
+  }, []);
 
   // Debounced URL update
   useEffect(() => {
@@ -67,7 +84,6 @@ function SearchComponent({
       const MAX_URL_LENGTH = 50;
       const MIN_URL_LENGTH = 2;
 
-      // Determine what the URL query should be
       let targetUrlQuery = "";
       if (
         searchQuery.length >= MIN_URL_LENGTH &&
@@ -76,16 +92,15 @@ function SearchComponent({
         targetUrlQuery = searchQuery;
       }
 
-      // Only update URL if it's different from last update
       if (targetUrlQuery !== lastUrlQueryRef.current) {
         if (targetUrlQuery) {
-          setSearchParams({ q: targetUrlQuery }, { replace: true }); // Use replace to avoid history spam
+          setSearchParams({ q: targetUrlQuery }, { replace: true });
         } else {
           setSearchParams({}, { replace: true });
         }
         lastUrlQueryRef.current = targetUrlQuery;
       }
-    }, 500); // 500ms debounce
+    }, 500);
 
     return () => {
       if (debounceTimerRef.current) {
@@ -116,26 +131,41 @@ function SearchComponent({
         .split(/\s+/)
         .filter((term) => term.trim() !== "" && !stopWords.includes(term));
 
-      if (searchTerms.length > 0) {
-        const filteredResults = routesData.filter((route) => {
-          const matches = searchTerms.some((term) =>
-            route.tags.some((tag) => tag.toLowerCase().includes(term)),
-          );
-          return matches;
-        });
-        setResults(filteredResults);
+ 
+        if (searchTerms.length > 0) {
+  const filteredResults = routesData
+   // .filter((route) => route.tagsVisible !== false)
+.map((route) => ({
+  route,
+  score: searchTerms.reduce((acc, term) => {
+    const exactIdx = route.tags.findIndex((tag) => tag.toLowerCase() === term);
+    const partialIdx = route.tags.findIndex((tag) => tag.toLowerCase().includes(term));
 
-        // Generate random tags only once when first getting no results
-        if (
-          filteredResults.length === 0 &&
-          showRandomTagsByDefault &&
-          randomTags.length === 0
-        ) {
-          showRandomTags();
-        }
-      } else {
-        setResults([]);
-      }
+    const exactScore = exactIdx !== -1 ? 10 - exactIdx * 0.1 : 0;
+    const partialScore = partialIdx !== -1 ? 1 - partialIdx * 0.01 : 0;
+    const titleScore = route.title.toLowerCase().includes(term) ? 5 : 0; // 👈
+
+    return acc + exactScore + partialScore + titleScore;
+  }, 0) / route.tags.length,
+}))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ route }) => route);
+
+  setResults(filteredResults);
+
+  if (
+    filteredResults.length === 0 &&
+    showRandomTagsByDefault &&
+    randomTags.length === 0
+  ) {
+    showRandomTags();
+  }
+} else {
+  setResults([]);
+}
+
+
     } else {
       setResults([]);
     }
@@ -144,12 +174,14 @@ function SearchComponent({
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
+    setFocusedIndex(-1);
     performSearch(query);
   };
 
   const clearSearch = () => {
     setSearchQuery("");
     setResults([]);
+    setFocusedIndex(-1);
     setSearchParams({}, { replace: true });
     lastUrlQueryRef.current = "";
     if (showRandomTagsByDefault) {
@@ -158,7 +190,12 @@ function SearchComponent({
   };
 
   const showRandomTags = () => {
-    const allTags = routesData.flatMap((route) => route.tags);
+    const allTags = routesData
+  .filter((route) => route.tagsVisible !== false)
+  .flatMap((route) => route.tags);
+
+    
+
     const uniqueTags = Array.from(new Set(allTags));
     const randomTags = [];
     for (let i = 0; i < 3; i++) {
@@ -222,13 +259,24 @@ function SearchComponent({
                     onChange={handleSearch}
                     autoFocus={!showRandomTagsByDefault}
                     name="searchinput"
-
                     onKeyDown={(e) => {
-    if (e.key === 'Enter') {
-      e.currentTarget.blur(); // closes mobile keyboard
-    }
-  }}
-
+                      if (e.key === "ArrowDown") {
+                        e.preventDefault();
+                        setFocusedIndex((i) =>
+                          Math.min(i + 1, results.length - 1),
+                        );
+                      } else if (e.key === "ArrowUp") {
+                        e.preventDefault();
+                        setFocusedIndex((i) => Math.max(i - 1, 0));
+                      } else if (e.key === "Enter") {
+                        if (focusedIndex >= 0 && results[focusedIndex]) {
+                          navigate(results[focusedIndex].path);
+                        }
+                      } else if (e.key === "Escape") {
+                        clearSearch();
+                        e.currentTarget.blur();
+                      }
+                    }}
                   />
 
                   {searchQuery && (
@@ -305,55 +353,40 @@ function SearchComponent({
         <group data-direction="column" data-gap="30" data-max-length="600">
           <group
             data-gap="15"
-           // data-space-vertical="20"
-
-
             data-radius="20"
             data-wrap="no"
             data-align="center"
           >
-           {/* <group data-width="auto"
-           
-                       data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration="3.25"
-
-           >
-             <IconSearch size={72} stroke={2}/>
-           </group> */}
-
-
-
-<group data-direction="column" data-gap="5"
-
-            data-animation-name="appear-bottom"
-            data-fill-mode="backwards"
-            data-animation-duration="2.75"
-
->
+            <group
+              data-direction="column"
+              data-gap="5"
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="2.75"
+            >
               <group>
-              <text
-                data-text-size="medium"
-                data-font-type="hero"
-                data-wrap="preline"
-                data-ellipsis=""
-                data-line="1"
-              >
-                No results found
-              </text>
-            </group>
+                <text
+                  data-text-size="medium"
+                  data-font-type="hero"
+                  data-wrap="preline"
+                  data-ellipsis=""
+                  data-line="1"
+                >
+                  No results found
+                </text>
+              </group>
 
-            <group>
-              <text
-                data-opacity="50"
-                data-wrap="wrap"
-                data-max-length="260"
-                data-line="1.2"
-              >
-                Try one of the suggested tags below or adjust your keywords.
-              </text>
+              <group>
+                <text
+                  data-opacity="50"
+                  data-wrap="wrap"
+                  data-max-length="260"
+                  data-line="1.2"
+                >
+                  Try one of the suggested tags below or adjust your keywords.
+                </text>
+              </group>
             </group>
-</group>
           </group>
 
           <group data-gap="5">
@@ -393,7 +426,6 @@ function SearchComponent({
         <group data-direction="column" data-max-length="600" data-align="start">
           {results.map((result, index) => (
             <Link
-              autoFocus={true}
               data-contain=""
               data-type="group"
               key={index}
@@ -401,39 +433,54 @@ function SearchComponent({
               data-direction="column"
               data-name="autoseparation"
               data-space-horizontal="20"
-              data-radius="15"
+              data-radius="20"
               data-interactive=""
               data-animation-name="appear-top"
               data-fill-mode="backwards"
               data-animation-duration={2 + index * 0.25}
               tabIndex={index}
+              ref={(el: HTMLAnchorElement | null) =>
+                (resultRefs.current[index] = el)
+              }
+              data-background={
+                focusedIndex === index ? "adaptive-gray" : undefined
+              }
+              data-selected={focusedIndex === index ? "true" : undefined}
             >
               <separator data-horizontal="dotted"></separator>
-              <group
-                data-space-vertical="20"
-                data-direction="column"
-                data-gap="5"
-              >
-                <text
-                  data-weight="700"
-                  data-color="main"
-                  data-wrap="preline"
-                  data-text-size="medium"
-                  // data-ellipsis=""
-                  data-font-type="hero"
-                  data-line="1"
+              <group data-wrap="no" data-align="center">
+                <group
+                  data-space-vertical="20"
+                  data-direction="column"
+                  data-gap="5"
                 >
-                  {result.title}
-                </text>
-                <text
-                  data-opacity="50"
-                  data-line="1.2"
-                  data-wrap="balance"
-                  data-ellipsis=""
-                  data-length="300"
+                  <text
+                    data-weight="700"
+                    data-color="main"
+                    data-wrap="preline"
+                    data-text-size="medium"
+                    data-font-type="hero"
+                    data-line="1"
+                  >
+                    {result.title}
+                  </text>
+                  <text
+                    data-opacity="50"
+                    data-wrap="balance"
+                    data-ellipsis=""
+                    data-length="300"
+                  >
+                    {result.description}
+                  </text>
+                </group>
+
+                <group
+                  data-space="15"
+                  data-width="auto"
+                  data-opacity={focusedIndex === index ? "60" : "0"}
                 >
-                  {result.description}
-                </text>
+                  <CornerDownLeft strokeWidth={1} />
+                </group>
               </group>
             </Link>
           ))}
