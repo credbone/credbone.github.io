@@ -114,7 +114,7 @@ export const routesData: RouteData[] = [
     "path": "../Components/QuickDemos",
     "title": "Quick Demos",
     "description": "Explore interactive demos, apps, and functional showcases.",
-    "tags": ["demo", "interactive", "showcase", "app", "calculator", "converter", "weather", "paint", "pattern"]
+    "tags": ["demo", "interactive", "showcase", "app", "calculator", "converter", "weather", "paint", "stopwatch"]
   },
   {
     "path": "../Components/Overview",

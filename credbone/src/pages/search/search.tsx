@@ -1,4 +1,5 @@
-import SearchComponent from "./searchComponent";
+import SearchComponent from "./SearchComponent";
+
 
 function Search() {
   return (

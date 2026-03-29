@@ -14,8 +14,10 @@ import buildInfo from "../buildInfo.json";
 // import ThemePicker from "./themePicker";
 import { linksArray } from "./utils/OverviewData";
 // import DemoThemeToggle from "../components/DemoThemeToggle";
-import SearchFloating from "../pages/search/searchFloating";
+
 import Content from "./content";
+import SearchFloating from "../pages/search/SearchFloating";
+
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },

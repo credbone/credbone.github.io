@@ -1,7 +1,8 @@
 import { useEffect, useCallback, useRef } from "react";
 import { useModal } from "../../components/Modal";
-import SearchFloating from "./searchFloating";
+
 import { useLocation } from "react-router-dom";
+import SearchFloating from "./SearchFloating";
 
 
   const modalConfig = {
