@@ -280,10 +280,11 @@ const DotDisplayEdit: React.FC<{
     }
     setActiveDots(new Map(dots.map((d) => [d.index, d])));
     onStartEdit?.();
-    addSnackbar(
-      `${dots.length} dot${dots.length === 1 ? "" : "s"} imported`,
-      1000,
-    );
+
+    const dotsMap = new Map(dots.map((d) => [d.index, d]));
+setActiveDots(dotsMap);
+addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000);
+
     return true;
   };
 
@@ -294,13 +295,13 @@ const DotDisplayEdit: React.FC<{
       data-scroll=""
       data-wrap="no"
       data-margin="auto"
-      data-length="280"
+      data-length="300"
       data-max-height="fit"
     >
       <group
         data-direction="column"
         data-align="start"
-        data-width="auto"
+       // data-width="auto"
         data-margin="auto"
         data-scroll=""
         data-scrollbar="none"
@@ -658,6 +659,7 @@ const DotDisplayEdit: React.FC<{
                       <group>
                         <text data-ellipsis="">Import</text>
                       </group>
+
                     </group>
                   </Ripple>
                 </group>

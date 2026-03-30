@@ -76,12 +76,6 @@ export function useSearch({ showRandomTagsByDefault = true, initialQuery = "" }:
     }
   }, [focusedIndex]);
 
-  // Auto-focus first result when results change
-  useEffect(() => {
-    if (isMobile) return;
-    if (results.length > 0) setFocusedIndex(0);
-  }, [results]);
-
   // Init random tags
   useEffect(() => {
     if (showRandomTagsByDefault) setRandomTags(getRandomTags());
@@ -97,9 +91,9 @@ export function useSearch({ showRandomTagsByDefault = true, initialQuery = "" }:
 
   const search = (query: string) => {
     setSearchQuery(query);
-    setFocusedIndex(-1);
     const found = scoreAndFilter(query);
     setResults(found);
+    setFocusedIndex(!isMobile && found.length > 0 ? 0 : -1);
 
     if (found.length === 0 && showRandomTagsByDefault && randomTags.length === 0) {
       setRandomTags(getRandomTags());
