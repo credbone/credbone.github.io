@@ -11,20 +11,20 @@ import { useCurrentHeader } from "./TitleUpdater";
 import { useFontSize } from "./FontSizeProvider";
 
 
-import { isIOS, isMacOs } from "react-device-detect";
+import { isIOS, isMacOs, isMobile } from "react-device-detect";
 
 const isApple = isMacOs || isIOS;
 
 const navItems = [
-  { to: "", icon: <House size={20} />, label: "Home", ariaLabel: "Home", type: "link" },
-  { to: "/Components", icon: <Box size={20} />, label: "Components", ariaLabel: "Components", vertical: "true", adaptive: "desktop", type: "link", },
-  { to: "/Components/Typography", icon: <Box size={20} />, label: "Components", ariaLabel: "Components", adaptive: "mobile", type: "toggle", },
+  { to: "", icon: <House size={20} />, label: "Home",  type: "link" },
+  { to: "/Components", icon: <Box size={20} />, label: "Components",  vertical: "true", adaptive: "desktop", type: "link", },
+  { to: "/Components/Typography", icon: <Box size={20} />, label: "Components",  adaptive: "mobile", type: "toggle", },
   { to: "/Components", type: "separator" },
-  { to: "/Tools", icon: <PencilRuler size={20} />, label: "Tools & Resources",ariaLabel: "Tools & Resources", type: "link", },
-  { to: "/About", icon: <BookOpen size={20} />, label: "About",ariaLabel: "About", type: "link" },
+  { to: "/Tools", icon: <PencilRuler size={20} />, label: "Tools & Resources", type: "link", },
+  { to: "/About", icon: <BookOpen size={20} />, label: "About", type: "link" },
 
-  { to: "/Settings", icon: <Bolt size={20} />, label: "Settings", ariaLabel: "Settings", type: "link", },
-  { to: "/Search", icon: <Search size={20} />, label: ( <group data-gap="10"> <text> Search </text><text data-opacity="40">{isApple ? "⌘" : "Ctrl"} + K</text> </group> ), ariaLabel: "Search",  type: "link" },
+  { to: "/Settings", icon: <Bolt size={20} />, label: "Settings",  type: "link", },
+  { to: "/Search", icon: <Search size={20} />, label: "Search", hint: (<>{isApple ? "⌘" : "Ctrl"} + K</>),  type: "link" },
 ];
 
 
@@ -323,7 +323,7 @@ const LeftNavigation: React.FC<{
           </group>
         ) : (
           <NavLink
-            aria-label={item.ariaLabel}
+            aria-label={item.label}
             key={index}
             to={item.to}
             data-adaptive={item.adaptive}
@@ -340,7 +340,24 @@ const LeftNavigation: React.FC<{
             onClick={handleItemClick} // Close the nav on item click
           >
             <Tooltip
-              content={isNavOpen ? "" : item.vertical ? "" : item.label}
+            data-gap="10"
+
+            
+              content={isNavOpen ? "" : item.vertical ? ""
+                
+                : 
+                
+
+         <>
+         <text>{item.label}</text>
+         { item.hint &&
+ <text data-opacity="40"> {item.hint}</text>
+         }
+       
+         </>
+
+
+               }
               placement="right"
             >
               <group>
@@ -369,6 +386,15 @@ const LeftNavigation: React.FC<{
                     >
                       {item.label}
                     </text>
+
+                    {
+                      item.hint && !isMobile &&
+
+                      <group data-space-horizontal="10" data-width="auto" data-position="right" data-opacity={isNavOpen ? "40":"0"}>
+                      <text>{item.hint}</text>
+                      </group>
+
+                    }
                     {item.vertical === "true" && (
                       <group data-width="auto"></group>
                     )}

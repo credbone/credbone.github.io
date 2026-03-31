@@ -12,13 +12,13 @@ export const routesData: RouteData[] = [
     "path": "../Components/Typography",
     "title": "Typography",
     "description": "Typography tools, fonts, and typeface design for all styles.",
-    "tags": ["typography", "fonts", "typeface", "text", "glyph", "lettering", "serif", "font styles", "token"]
+    "tags": ["typography", "fonts", "typeface", "text", "glyph", "lettering", "serif", "token"]
   },
   {
     "path": "../Components/Icons",
     "title": "Icons",
     "description": "Icon components for graphics and user interface design.",
-    "tags": ["icon", "svg", "vector", "glyphs", "symbols", "pictograms", "graphics", "user interface"]
+    "tags": ["icon", "svg", "vector", "glyphs", "symbols"]
   },
   {
     "path": "../Components/Buttons",
@@ -54,19 +54,19 @@ export const routesData: RouteData[] = [
     "path": "../Components/Navigation",
     "title": "Navigation",
     "description": "Menus and navigation components for streamlined UIs.",
-    "tags": ["navigation", "menu", "navbar", "sidebar", "tabs", "links", "breadcrumbs", "user interface"]
+    "tags": ["navigation", "menu", "navbar", "sidebar", "tabs", "links", "breadcrumbs",]
   },
   {
     "path": "../Components/Navigation/SideBar",
     "title": "Sidebar",
     "description": "Sidebar navigation component Example for streamlined UIs.",
-    "tags": ["sidebar", "navigation", "menu", "tabs", "links", "navbar", "user interface"]
+    "tags": ["sidebar", "navigation", "menu", "tabs", "links", "navbar",]
   },
   {
     "path": "../Components/InputsAndForms",
     "title": "Inputs & Forms",
     "description": "Input fields and forms for user interaction and data entry.",
-    "tags": ["inputs", "forms", "input fields", "data entry", "user input", "textarea", "password", "user interface"]
+    "tags": ["inputs", "forms", "input fields", "data entry", "user input", "textarea", "password",]
   },
   {
     "path": "../Components/RangeSlider",
@@ -78,19 +78,19 @@ export const routesData: RouteData[] = [
     "path": "../Components/TooltipAndPopover",
     "title": "Tooltip & Popover",
     "description": "Contextual overlay components for hints and lightweight interactions.",
-    "tags": ["tooltip", "popover", "overlay", "hint", "hover", "user interface"]
+    "tags": ["tooltip", "popover", "overlay", "hint", "hover",]
   },
   {
     "path": "../Components/Snackbar",
     "title": "Snackbar",
     "description": "Notification components for feedback, alerts, and system messages.",
-    "tags": ["snackbar", "toast", "notification", "feedback", "alert", "user interface", "hint"]
+    "tags": ["snackbar", "toast", "notification", "feedback", "alert","hint"]
   },
   {
     "path": "../Components/CardsAndList",
     "title": "Cards & List",
     "description": "Cards and lists for grouping and displaying data items.",
-    "tags": ["card", "list", "data display", "containers", "grouping", "collections", "item list", "user interface"]
+    "tags": ["card", "list", "data display", "containers", "grouping", "collections", "item list"]
   },
   {
     "path": "../Components/Miscellaneous",

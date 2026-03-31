@@ -1,4 +1,4 @@
-import { Eraser, Pencil } from "lucide-react";
+import { ArrowDown, Copy, Eraser, Pencil } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
@@ -282,8 +282,11 @@ const DotDisplayEdit: React.FC<{
     onStartEdit?.();
 
     const dotsMap = new Map(dots.map((d) => [d.index, d]));
-setActiveDots(dotsMap);
-addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000);
+    setActiveDots(dotsMap);
+    addSnackbar(
+      `${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`,
+      1000,
+    );
 
     return true;
   };
@@ -301,7 +304,7 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
       <group
         data-direction="column"
         data-align="start"
-       // data-width="auto"
+        // data-width="auto"
         data-margin="auto"
         data-scroll=""
         data-scrollbar="none"
@@ -331,8 +334,8 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
           </group>
           <group data-direction="column" data-align="start">
             <textarea
-            autoFocus
-            data-name="input-reset"
+              autoFocus
+              data-name="input-reset"
               data-space="30"
               data-length="fit"
               data-height="content"
@@ -352,7 +355,7 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
           data-index="3"
           data-direction="column"
         >
-                    {/* <group data-space-horizontal="10">
+          {/* <group data-space-horizontal="10">
             <separator data-horizontal="" data-opacity="5"></separator>
           </group> */}
           <group
@@ -362,11 +365,10 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
             data-top="-100%"
             data-height="fit"
           ></group>
-          <group data-space="10" data-gap="5" data-background="context" >
+          <group data-space="10" data-gap="5" data-background="context">
             <Ripple>
               <group
                 data-ink-color="neutral"
-                 
                 data-contain=""
                 data-align="center"
                 data-justify="center"
@@ -388,7 +390,6 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
             </Ripple>
             <Ripple>
               <group
-             
                 data-ink-color="neutral"
                 data-contain=""
                 data-align="center"
@@ -409,9 +410,6 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
                 <text data-ellipsis="">Apply</text>
               </group>
             </Ripple>
-
-
-
           </group>
         </group>
       </group>
@@ -485,7 +483,15 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
                       data-interactive=""
                       data-radius="15"
                       data-cursor="pointer"
+                      data-wrap="no"
                     >
+                      <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Download</text>
                         <text data-opacity="30">Save icon for later</text>
@@ -512,7 +518,15 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
                       data-interactive=""
                       data-radius="15"
                       data-cursor="pointer"
+                       data-wrap="no"
                     >
+                      <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Copy strokeWidth={1.5} size={20} />
+                      </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Copy</text>
                         <text data-opacity="30">
@@ -541,7 +555,14 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
                       data-interactive=""
                       data-radius="15"
                       data-cursor="pointer"
+                       data-wrap="no"
                     >
+                                            <group
+                        data-length="20"
+
+                      >
+                        
+                      </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Matrix</text>
                         <text data-opacity="30">Grab Raw Data</text>
@@ -659,7 +680,6 @@ addSnackbar(`${dotsMap.size} dot${dotsMap.size === 1 ? "" : "s"} imported`, 1000
                       <group>
                         <text data-ellipsis="">Import</text>
                       </group>
-
                     </group>
                   </Ripple>
                 </group>

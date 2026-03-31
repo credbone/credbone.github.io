@@ -199,7 +199,8 @@ const handleClick = (index: number, set: Set<number>) => {
                         data-pointer-event="none"
               data-name="grid-indicator"
               data-position="absolute"
-          //    data-space="10"
+              data-index="2"
+             // data-space="5"
               data-pointer-events="none"
               style={{
                 width: indicatorStyle.width,
@@ -209,7 +210,7 @@ const handleClick = (index: number, set: Set<number>) => {
               }}
             >
               <group
-              //  data-radius="15"
+             //   data-radius="15"
                 data-background="main-alpha-15"
                 data-height="fit"
               ></group>

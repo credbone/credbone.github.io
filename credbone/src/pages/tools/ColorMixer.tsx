@@ -4,7 +4,7 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 
 import Ripple from "../../components/Ripple";
-import { Plus } from "lucide-react";
+import { ArrowDown, Copy, Plus } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import { isMobile } from "react-device-detect";
@@ -31,7 +31,13 @@ const ColorMixer: React.FC = () => {
   const normalizeHex = (color: string): string => {
     const hex = color.replace("#", "");
     if (hex.length === 3) {
-      return "#" + hex.split("").map((c) => c + c).join("");
+      return (
+        "#" +
+        hex
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      );
     }
     return "#" + hex;
   };
@@ -631,7 +637,7 @@ const ColorMixer: React.FC = () => {
                 data-animation-name="zoom-in"
                 data-animation-duration="2"
               >
-                <group data-width="auto"    data-align="center">
+                <group data-width="auto" data-align="center">
                   <Popover
                     data-space="5"
                     data-radius="0"
@@ -643,7 +649,6 @@ const ColorMixer: React.FC = () => {
                         data-width="auto"
                         data-direction="column"
                         data-gap="5"
-                       
                       >
                         <group
                           data-animation-name="appear-bottom"
@@ -658,7 +663,6 @@ const ColorMixer: React.FC = () => {
                           data-name="cred-react-colorful"
                           data-width="auto"
                           data-gap="5"
-                        
                         >
                           <HexColorPicker
                             color={color}
@@ -687,8 +691,10 @@ const ColorMixer: React.FC = () => {
                           data-index="1"
                           data-direction="column"
                         >
-
-                                        <group data-name="autoseparation" data-pointer-event={isMobile ? "none" : undefined}>
+                          <group
+                            data-name="autoseparation"
+                            data-pointer-event={isMobile ? "none" : undefined}
+                          >
                             <group
                               data-wrap="no"
                               data-radius="15"
@@ -721,8 +727,6 @@ const ColorMixer: React.FC = () => {
                               />
                             </group>
                           </group>
-
-
 
                           {colors.length > 2 && (
                             <group
@@ -834,8 +838,6 @@ const ColorMixer: React.FC = () => {
             data-direction="column"
             data-align="start"
           >
-
-
             <group data-gap="10">
               <Popover
                 data-space="5"
@@ -843,7 +845,7 @@ const ColorMixer: React.FC = () => {
                 content={(closePopover) => (
                   <group
                     data-direction="column"
-                    data-length="240"
+                    data-length="250"
                     onClick={closePopover}
                   >
                     <group
@@ -860,7 +862,15 @@ const ColorMixer: React.FC = () => {
                         data-interactive=""
                         data-radius="15"
                         data-cursor="pointer"
+                         data-wrap="no"
                       >
+                        <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <ArrowDown strokeWidth={1.5} size={20} />
+                        </group>
                         <group data-direction="column" data-width="auto">
                           <text data-weight="700">Download</text>
                           <text data-opacity="30">Save gradient for later</text>
@@ -886,7 +896,15 @@ const ColorMixer: React.FC = () => {
                         data-interactive=""
                         data-radius="15"
                         data-cursor="pointer"
+                         data-wrap="no"
                       >
+                        <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <Copy strokeWidth={1.5} size={20} />
+                        </group>
                         <group data-direction="column" data-width="auto">
                           <text data-weight="700">Copy</text>
                           <text data-opacity="30">
@@ -914,7 +932,9 @@ const ColorMixer: React.FC = () => {
                         data-interactive=""
                         data-radius="15"
                         data-cursor="pointer"
+                        data-wrap="no"
                       >
+                        <group data-length="20"></group>
                         <group data-direction="column" data-width="auto">
                           <text data-weight="700">CSS</text>
                           <text data-opacity="30">
@@ -1091,7 +1111,7 @@ const ColorMixer: React.FC = () => {
               </Popover>
             </group>
 
-                        <group>
+            <group>
               <text
                 data-weight="700"
                 data-wrap="preline"
@@ -1150,23 +1170,22 @@ const ColorMixer: React.FC = () => {
             )}
 
             <group data-align="center">
-
-              <group  data-gap="15" data-width="auto" data-align="center">
-
-              <group data-width="auto">
+              <group data-gap="15" data-width="auto" data-align="center">
                 <group data-width="auto">
-                  <text>Step Count</text>
+                  <group data-width="auto">
+                    <text>Step Count</text>
+                  </group>
                 </group>
+
+                <separator
+                  data-vertical=""
+                  data-opacity={tempSteps === 3 ? "0" : undefined}
+                ></separator>
               </group>
-
-              <separator data-vertical="" data-opacity={tempSteps === 3 ? "0" : undefined}></separator>
-
-              </group>
-
 
               <group data-fit="1">
                 <CustomSlider
-                edgeGap={30}
+                  edgeGap={30}
                   start={3}
                   end={12}
                   value={tempSteps}
@@ -1186,19 +1205,21 @@ const ColorMixer: React.FC = () => {
             </group>
 
             <group data-align="center">
-<group  data-gap="15" data-width="auto" data-align="center">
+              <group data-gap="15" data-width="auto" data-align="center">
                 <group data-width="auto">
-                <group data-width="auto">
-                  <text>Gamma</text>
+                  <group data-width="auto">
+                    <text>Gamma</text>
+                  </group>
                 </group>
+
+                <separator
+                  data-vertical=""
+                  data-opacity={tempGamma === 0.5 ? "0" : undefined}
+                ></separator>
               </group>
-
-              <separator data-vertical="" data-opacity={tempGamma === 0.5 ? "0" : undefined}></separator>
-
-</group>
               <group data-fit="1">
                 <CustomSlider
-                edgeGap={30}
+                  edgeGap={30}
                   start={0.5}
                   end={2.5}
                   step={0.1}

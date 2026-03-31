@@ -3,6 +3,7 @@ import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
+import { ArrowDown, Copy } from "lucide-react";
 
 const generator = ({ size = 100, growth = 6, edges = 6, seed = null } = {}) => {
   var { destPoints, seedValue } = _createPoints(size, growth, edges, seed);
@@ -340,6 +341,7 @@ const opacity =
           <Popover
             data-space="5"
             data-radius="20"
+           
             content={(closePopover) => (
               <group
                 data-direction="column"
@@ -361,7 +363,15 @@ const opacity =
                     data-interactive=""
                     data-radius="15"
                     data-cursor="pointer"
+                     data-wrap="no"
                   >
+                                          <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
                     <group data-direction="column" data-width="auto">
                       <text data-weight="700">Download</text>
                       <text data-opacity="30">Save blob for later</text>
@@ -387,7 +397,15 @@ const opacity =
                     data-interactive=""
                     data-radius="15"
                     data-cursor="pointer"
+                     data-wrap="no"
                   >
+                                          <group
+                                            data-length="20"
+                                            data-opacity="30"
+                                            data-interact=""
+                                          >
+                                            <Copy strokeWidth={1.5} size={20} />
+                                          </group>
                     <group data-direction="column" data-width="auto">
                       <text data-weight="700">Copy</text>
                       <text data-opacity="30">Paste in Figma or code ...</text>

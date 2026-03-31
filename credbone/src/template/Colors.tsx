@@ -8,7 +8,7 @@ import CustomColorPicker from "./theme/CustomColorPicker";
 import TemplatePageHeader from "./TemplatePageHeader";
 import { usePaletteActions } from "../styles/paletteUtils";
 import { useTheme } from "../components/ThemeProvider";
-import { Copy, Download } from "lucide-react";
+import { ArrowDown, Copy } from "lucide-react";
 
 export const ColorPalette = [
   { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
@@ -153,12 +153,15 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       data-radius="15"
                       data-cursor="pointer"
                       onClick={() => downloadPaletteSVG(theme)}
+                      data-wrap="no"
                     >
-                      {/* <group data-length="30" data-justify="center">
-                        <icon>
-                          <Download size="20" />
-                        </icon>
-                      </group> */}
+                                                                                          <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Download</text>
                         <text data-opacity="30">Save palette for later</text>
@@ -186,12 +189,15 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       data-radius="15"
                       data-cursor="pointer"
                       onClick={() => copyPaletteSVG(theme)}
+                      data-wrap="no"
                     >
-                      {/* <group data-length="30" data-justify="center">
-                        <icon>
-                          <Copy size="20" />
-                        </icon>
-                      </group> */}
+                                                                                          <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Copy strokeWidth={1.5} size={20} />
+                      </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Copy</text>
                         <text data-opacity="30">Paste in Figma or code ...</text>

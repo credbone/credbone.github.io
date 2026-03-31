@@ -4,7 +4,7 @@ import { SVG_TILES } from "./Tiles";
 import Tooltip from "../../components/tooltip";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
-import { Plus } from "lucide-react";
+import { ArrowDown, Copy, Plus, Share2 } from "lucide-react";
 import Ripple from "../../components/Ripple";
 
 const PatternMaker: React.FC = () => {
@@ -458,7 +458,15 @@ const PatternMaker: React.FC = () => {
                           data-interactive=""
                           data-radius="15"
                           data-cursor="pointer"
+                           data-wrap="no"
                         >
+                                                <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
                           <group data-direction="column" data-width="auto">
                             <text data-weight="700">Download</text>
                             <text data-opacity="30">
@@ -487,7 +495,15 @@ const PatternMaker: React.FC = () => {
                           data-interactive=""
                           data-radius="15"
                           data-cursor="pointer"
+                           data-wrap="no"
                         >
+                                                <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Copy strokeWidth={1.5} size={20} />
+                      </group>
                           <group data-direction="column" data-width="auto">
                             <text data-weight="700">Copy SVG</text>
                             <text data-opacity="30">
@@ -516,11 +532,21 @@ const PatternMaker: React.FC = () => {
                           data-interactive=""
                           data-radius="15"
                           data-cursor="pointer"
+                          data-wrap="no"
                         >
-                          <group data-direction="column" data-width="auto">
+
+                      <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Share2 strokeWidth={1.5} size={20} />
+                      </group>
+
+                          <group data-direction="column" data-width="auto" data-contain="">
                             <text data-weight="700">Share Link</text>
-                            <text data-opacity="30">
-                              Copy URL to share pattern
+                            <text data-opacity="30" data-ellipsis="">
+                              Copy URL for sharing
                             </text>
                           </group>
                         </group>
