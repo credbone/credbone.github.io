@@ -9,23 +9,185 @@ import TemplatePageHeader from "./TemplatePageHeader";
 import { usePaletteActions } from "../styles/paletteUtils";
 import { useTheme } from "../components/ThemeProvider";
 import { ArrowDown, Copy } from "lucide-react";
+import { getPalette } from "../styles/skin";
+import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import Ripple from "../components/Ripple";
+
 
 export const ColorPalette = [
-  { textcolor: "-darker", code: "-lightest", name: "Lightest", description: "100", },
-  { textcolor: "-darker", code: "-lighter", name: "Lighter", description: "200", },
-  { textcolor: "-darker", code: "-light", name: "Light", description: "300" },
-  { textcolor: "-text", code: "-soft", name: "Soft", description: "400" },
-  { textcolor: "-text", code: "", name: "Base", description: "500" },
-  { textcolor: "-lighter", code: "-deep", name: "Deep", description: "600" },
-  { textcolor: "-lighter", code: "-dark", name: "Dark", description: "700" },
-  { textcolor: "-lightest", code: "-darker", name: "Darker", description: "800", },
-  { textcolor: "-lightest", code: "-darkest", name: "Darkest", description: "900", },
+  {
+    textcolor: "-darker",
+    code: "-lightest",
+    name: "Lightest",
+    description: "100",
+    paletteKey: "Lightest",
+  },
+  {
+    textcolor: "-darker",
+    code: "-lighter",
+    name: "Lighter",
+    description: "200",
+    paletteKey: "Lighter",
+  },
+  {
+    textcolor: "-darker",
+    code: "-light",
+    name: "Light",
+    description: "300",
+    paletteKey: "Light",
+  },
+  {
+    textcolor: "-text",
+    code: "-soft",
+    name: "Soft",
+    description: "400",
+    paletteKey: "Soft",
+  },
+  {
+    textcolor: "-text",
+    code: "",
+    name: "Base",
+    description: "500",
+    paletteKey: "",
+  },
+  {
+    textcolor: "-lighter",
+    code: "-deep",
+    name: "Deep",
+    description: "600",
+    paletteKey: "Deep",
+  },
+  {
+    textcolor: "-lighter",
+    code: "-dark",
+    name: "Dark",
+    description: "700",
+    paletteKey: "Dark",
+  },
+  {
+    textcolor: "-lightest",
+    code: "-darker",
+    name: "Darker",
+    description: "800",
+    paletteKey: "Darker",
+  },
+  {
+    textcolor: "-lightest",
+    code: "-darkest",
+    name: "Darkest",
+    description: "900",
+    paletteKey: "Darkest",
+  },
 ];
 
-const Colors: React.FC = () => {
 
-    const { theme } = useTheme();
-const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
+
+interface SwatchGridProps {
+  group: "Primary" | "Secondary";
+  onCopy: (hex: string, name: string, group: "Primary" | "Secondary") => void;
+  getHex: (group: "Primary" | "Secondary", paletteKey: string) => string;
+}
+
+interface SwatchGridProps {
+  group: "Primary" | "Secondary";
+  onCopy: (hex: string, name: string, group: "Primary" | "Secondary") => void;
+  getHex: (group: "Primary" | "Secondary", paletteKey: string) => string;
+}
+
+const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
+  <group
+    data-type="grid"
+    data-grid-template="110/columns-3"
+    data-gap="5"
+    data-contain=""
+  >
+    {ColorPalette.map((color, index) => {
+      const hex = getHex(group, color.paletteKey);
+      const prefix = group === "Primary" ? "main" : "secondary";
+      return (
+<Ripple    key={index}>
+          <group
+          key={index}
+          data-ink-color="neutral"
+          data-over-color="none"
+          data-react="brightness"
+          data-contain=""
+          data-length="auto"
+          data-shrink="no"
+          data-direction="column"
+          data-justify="end"
+          data-gap="15"
+          data-width="auto"
+          data-space="20"
+          data-background={prefix + color.code}
+          data-color={prefix + color.textcolor}
+          data-wrap="no"
+          data-radius="20"
+          data-interactive=""
+          data-align="start"
+          data-cursor="pointer"
+          onClick={() => onCopy(hex, color.name, group)}
+        >
+          <group data-direction="column" data-width="auto">
+            <text data-ellipsis="" data-light="">{color.description}</text>
+            <text data-ellipsis="" data-font-type="hero" data-weight="700">{color.name}</text>
+          </group>
+          <group data-width="auto" data-gap="15">
+            <separator data-horizontal=""></separator>
+            <text data-ellipsis="" data-text-transform="uppercase" data-opacity="50">
+              {hex.replace("#", "")}
+            </text>
+          </group>
+        </group>
+</Ripple>
+      );
+    })}
+  </group>
+);
+
+const Colors: React.FC = () => {
+  const { theme } = useTheme();
+  const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
+  const { addSnackbar } = useSnackbar();
+
+  const palette = getPalette(theme.colorPrimary, theme.colorSecondary);
+
+  const getHex = (
+    group: "Primary" | "Secondary",
+    paletteKey: string,
+  ): string => {
+    const key = `color${group}${paletteKey}` as keyof typeof palette;
+    return (palette[key] as string) ?? "";
+  };
+
+  const copyHex = async (
+    hex: string,
+    name: string,
+    group: "Primary" | "Secondary",
+  ) => {
+    try {
+      await navigator.clipboard.writeText(hex);
+      addSnackbar(
+        <group data-gap="10" data-align="center" data-wrap="no">
+          {/* <group data-shrink="no" style={{ backgroundColor: hex }} data-length="15" data-height="15" data-radius="10" /> */}
+          <text
+            data-ellipsis=""
+            data-opacity="50"
+            data-text-transform="uppercase"
+          >
+            {hex.replace("#", "")}
+          </text>
+          <text>
+            {group} {name} copied
+          </text>
+        </group>,
+        1500,
+      );
+    } catch {
+      addSnackbar("Failed to copy.", 1500);
+    }
+  };
+
 
 
   return (
@@ -46,17 +208,6 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
         descriptionProps={{ "data-length": "600" }}
       />
 
-
-
-
-
-
-
-
-
-
-
-
       <group data-gap="30">
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
@@ -64,11 +215,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               Primary Color
             </text>
           </group>
-
-          <group
-            data-gap="30"
-            // data-width="auto" data-border="" data-radius="15" data-space="20"
-          >
+          <group data-gap="30">
             <text
               data-wrap="wrap"
               data-light=""
@@ -79,7 +226,6 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               generated automatically.
             </text>
             <separator data-vertical="adaptive-1200" data-height=""></separator>
-
             <Popover
               content={
                 <group
@@ -104,10 +250,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                 data-wrap="no"
                 data-gap="15"
                 data-autofit="1-800"
-                
               >
-
-
                 <group
                   data-interact=""
                   data-direction="column"
@@ -115,7 +258,6 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                   data-over-color="neutral"
                   data-space="15"
                   data-radius="15"
-
                 >
                   <text data-weight="700">Swatches</text>
                   <text data-opacity="30">Select from presets</text>
@@ -124,16 +266,12 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
             </Popover>
             <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="primary" />
-
- <separator data-vertical="adaptive" data-height=""></separator>
-
-
+            <separator data-vertical="adaptive" data-height=""></separator>
             <Popover
               data-space="5"
               data-radius="20"
               content={(closePopover) => (
                 <group
-                  //data-gap="5"
                   data-direction="column"
                   data-length="240"
                   onClick={closePopover}
@@ -148,14 +286,13 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       data-space="15"
                       data-align="center"
                       data-gap="15"
-                      //   data-width="auto"
                       data-interactive=""
                       data-radius="15"
                       data-cursor="pointer"
                       onClick={() => downloadPaletteSVG(theme)}
                       data-wrap="no"
                     >
-                                                                                          <group
+                      <group
                         data-length="20"
                         data-opacity="30"
                         data-interact=""
@@ -168,30 +305,28 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       </group>
                     </group>
                   </group>
-
-
-
-
-
                   <group
                     data-animation-name="appear-bottom"
                     data-fill-mode="backwards"
                     data-animation-duration="3.25"
                     data-name="autoseparation"
                   >
-  <separator data-horizontal="" data-margin-horizontal="10" data-opacity="5"></separator>
+                    <separator
+                      data-horizontal=""
+                      data-margin-horizontal="10"
+                      data-opacity="5"
+                    ></separator>
                     <group
                       data-space="15"
                       data-align="center"
                       data-gap="15"
-                      // data-width="auto"
                       data-interactive=""
                       data-radius="15"
                       data-cursor="pointer"
                       onClick={() => copyPaletteSVG(theme)}
                       data-wrap="no"
                     >
-                                                                                          <group
+                      <group
                         data-length="20"
                         data-opacity="30"
                         data-interact=""
@@ -200,7 +335,9 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                       </group>
                       <group data-direction="column" data-width="auto">
                         <text data-weight="700">Copy</text>
-                        <text data-opacity="30">Paste in Figma or code ...</text>
+                        <text data-opacity="30">
+                          Paste in Figma or code ...
+                        </text>
                       </group>
                     </group>
                   </group>
@@ -225,51 +362,14 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                   data-space="15"
                   data-radius="15"
                 >
-
-
-
                   <text data-weight="700">Export</text>
                   <text data-opacity="30">Grab palette files</text>
                 </group>
               </group>
             </Popover>
-
           </group>
         </group>
-
-        <group
-          data-type="grid"
-         data-grid-template="110/columns-3"
-          data-gap="5"
-          data-contain=""
-          data-radius="20"
-        >
-          {ColorPalette.map((color, index) => (
-            <group
-           // data-radius="20"
-              key={index}
-              data-contain=""
-              data-length="auto"
-              data-shrink="no"
-              data-direction="column"
-              data-ratio="1:1"
-              data-justify="end"
-              data-width="auto"
-              data-space="20"
-              data-background={"main" + color.code}
-              data-color={"main" + color.textcolor}
-              data-wrap="no"
-              data-radius="10"
-            >
-              <text data-ellipsis="" data-light="">
-                {color.description}
-              </text>
-              <text data-ellipsis="" data-weight="700">
-                {color.name}
-              </text>
-            </group>
-          ))}
-        </group>
+<SwatchGrid group="Primary" onCopy={copyHex} getHex={getHex} />
       </group>
 
       <group data-gap="30">
@@ -279,11 +379,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               Secondary Color
             </text>
           </group>
-
-          <group
-            data-gap="30"
-            //  data-width="auto" data-border="" data-radius="15" data-space="20"
-          >
+          <group data-gap="30">
             <text
               data-wrap="wrap"
               data-light=""
@@ -318,12 +414,7 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                 data-wrap="no"
                 data-gap="5"
                 data-autofit="1-800"
-                 
               >
-
-
-
-
                 <group
                   data-interact=""
                   data-direction="column"
@@ -339,45 +430,9 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
             </Popover>
             <separator data-vertical="adaptive" data-height=""></separator>
             <CustomColorPicker target="secondary" />
-
-
-
-
           </group>
         </group>
-
-        <group
-          data-type="grid"
-         data-grid-template="110/columns-3"
-          data-gap="5"
-          data-contain=""
-          data-radius="20"
-        >
-          {ColorPalette.map((color, index) => (
-            <group
-              key={index}
-              data-contain=""
-              data-length="auto"
-              data-shrink="no"
-              data-direction="column"
-              data-ratio="1:1"
-              data-justify="end"
-              data-width="auto"
-              data-space="20"
-              data-background={"secondary" + color.code}
-              data-color={"secondary" + color.textcolor}
-              data-wrap="no"
-              data-radius="10"
-            >
-              <text data-ellipsis="" data-light="">
-                {color.description}
-              </text>
-              <text data-ellipsis="" data-weight="700">
-                {color.name}
-              </text>
-            </group>
-          ))}
-        </group>
+<SwatchGrid group="Secondary" onCopy={copyHex} getHex={getHex} />
       </group>
 
       <group data-gap="30">
@@ -387,7 +442,6 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               Neutral Scale
             </text>
           </group>
-
           <group data-gap="30" data-wrap="no">
             <text
               data-wrap="wrap"
@@ -400,13 +454,11 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
             </text>
           </group>
         </group>
-
         <group
           data-type="grid"
-        data-grid-template="110/columns-3"
+          data-grid-template="110/columns-3"
           data-gap="5"
           data-contain=""
-          data-radius="20"
         >
           {ColorPalette.map((color, index) => (
             <group
@@ -415,19 +467,19 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
               data-length="auto"
               data-shrink="no"
               data-direction="column"
-              data-ratio="1:1"
+         //     data-ratio="1:1"
               data-justify="end"
               data-width="auto"
               data-space="20"
               data-background={"neutral" + color.code}
               data-color={"neutral" + color.textcolor}
               data-wrap="no"
-              data-radius="10"
+              data-radius="20"
             >
               <text data-ellipsis="" data-light="" data-color="reset">
                 {color.description}
               </text>
-              <text data-ellipsis="" data-weight="700" data-color="reset">
+              <text data-ellipsis="" data-font-type="hero" data-color="reset">
                 {color.name}
               </text>
             </group>
@@ -450,14 +502,12 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
             consistency across system.
           </text>
         </group>
-
         <group
           data-shrink="no"
           data-type="grid"
           data-gap="5"
           data-grid-template="58"
           data-contain=""
-          data-radius="15"
         >
           {BaseColors.map((colors, index) => (
             <group
@@ -519,38 +569,23 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                           {colors.description}
                         </text>
                       </group>
-
-
-
-
-                      {/* <group
-                        data-interactive=""
-                        data-cursor="pointer"
-                        data-over-color="neutral"
-                        data-width="auto"
-                        data-space="15"
-                        data-justify="center"
-                        data-align="center"
-                        data-radius="10"
-                        data-background={colors.value + "-darker"}
-                        data-color={colors.value + "-light"}
-                      >
-                        <text data-weight="700">Done</text>
-                      </group> */}
                     </group>
                   )}
                 >
                   <group
                     data-interactive=""
+                    data-interact=""
+                   
+
                     data-cursor="pointer"
+                    data-transition-prop="border-radius"
                     data-ratio="1:1"
                     data-expand-react="radius"
                     data-duration="1.25"
-                    data-radius="10"
+                    data-radius="15"
                     data-background={colors.value + "-light"}
                   ></group>
                 </Popover>
-
                 <Popover
                   data-background={colors.value}
                   data-length="160"
@@ -597,37 +632,23 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                           {colors.description}
                         </text>
                       </group>
-
-                      {/* <group
-                        data-interactive=""
-                        data-cursor="pointer"
-                        data-over-color="neutral"
-                        data-width="auto"
-                        data-space="15"
-                        data-justify="center"
-                        data-align="center"
-                        data-radius="10"
-                        data-background={
-                          colors.light ? colors.value + "-darker" : "white"
-                        }
-                        data-color={colors.value}
-                      >
-                        <text data-weight="700">Done</text>
-                      </group> */}
                     </group>
                   )}
                 >
                   <group
                     data-interactive=""
+                   
+
                     data-cursor="pointer"
+                    data-transition-prop="border-radius"
+                    
                     data-ratio="1:1"
-                                        data-expand-react="radius"
+                    data-expand-react="radius"
                     data-duration="1.25"
-                    data-radius="10"
+                    data-radius="15"
                     data-background={colors.value}
                   ></group>
                 </Popover>
-
                 <Popover
                   data-background={colors.value + "-dark"}
                   data-length="160"
@@ -672,31 +693,19 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
                           {colors.description}
                         </text>
                       </group>
-
-                      {/* <group
-                        data-interactive=""
-                        data-cursor="pointer"
-                        data-over-color="neutral"
-                        data-width="auto"
-                        data-space="15"
-                        data-justify="center"
-                        data-align="center"
-                        data-radius="10"
-                        data-background={colors.value + "-lighter"}
-                        data-color={colors.value + "-dark"}
-                      >
-                        <text data-weight="700">Done</text>
-                      </group> */}
                     </group>
                   )}
                 >
                   <group
                     data-interactive=""
+                             
+
                     data-cursor="pointer"
+                    data-transition-prop="border-radius"
                     data-ratio="1:1"
-                                        data-expand-react="radius"
+                    data-expand-react="radius"
                     data-duration="1.25"
-                    data-radius="10"
+                    data-radius="15"
                     data-background={colors.value + "-dark"}
                   ></group>
                 </Popover>
@@ -705,8 +714,8 @@ const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
           ))}
         </group>
       </group>
-      
     </group>
   );
 };
+
 export default Colors;
