@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { BaseColors } from "./utils/colorData";
 import Popover from "../components/popover";
@@ -12,7 +12,6 @@ import { ArrowDown, Copy } from "lucide-react";
 import { getPalette } from "../styles/skin";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
-
 
 export const ColorPalette = [
   {
@@ -80,8 +79,6 @@ export const ColorPalette = [
   },
 ];
 
-
-
 interface SwatchGridProps {
   group: "Primary" | "Secondary";
   onCopy: (hex: string, name: string, group: "Primary" | "Secondary") => void;
@@ -105,41 +102,61 @@ const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
       const hex = getHex(group, color.paletteKey);
       const prefix = group === "Primary" ? "main" : "secondary";
       return (
-<Ripple    key={index}>
+        <Ripple key={index}>
           <group
-          key={index}
-          data-ink-color="neutral"
-          data-over-color="none"
-          data-react="brightness"
-          data-contain=""
-          data-length="auto"
-          data-shrink="no"
-          data-direction="column"
-          data-justify="end"
-          data-gap="15"
-          data-width="auto"
-          data-space="20"
-          data-background={prefix + color.code}
-          data-color={prefix + color.textcolor}
-          data-wrap="no"
-          data-radius="20"
-          data-interactive=""
-          data-align="start"
-          data-cursor="pointer"
-          onClick={() => onCopy(hex, color.name, group)}
-        >
-          <group data-direction="column" data-width="auto">
-            <text data-ellipsis="" data-light="">{color.description}</text>
-            <text data-ellipsis="" data-font-type="hero" data-weight="700">{color.name}</text>
+            key={index}
+            data-ink-color="neutral"
+            data-over-color="none"
+            data-react="brightness"
+            data-contain=""
+            data-length="auto"
+            data-shrink="no"
+            data-direction="column"
+            data-justify="end"
+            data-gap="15"
+            data-width="auto"
+            data-space="20"
+            data-background={prefix + color.code}
+            data-color={prefix + color.textcolor}
+            data-wrap="no"
+            data-radius="20"
+            data-interactive=""
+            data-align="start"
+            data-cursor="pointer"
+            onClick={() => onCopy(hex, color.name, group)}
+          >
+            <group data-height="20" data-align="start">
+              {color.name === "Base" && (
+                <group
+                  data-interact=""
+                  data-space="3"
+                  data-background={prefix + color.textcolor}
+                  data-width="auto"
+                  data-radius="10"
+                />
+              )}
+            </group>
+
+            <group data-direction="column" data-width="auto">
+              <text data-ellipsis="" data-light="">
+                {color.description}
+              </text>
+              <text data-ellipsis="" data-font-type="hero" data-weight="700">
+                {color.name}
+              </text>
+            </group>
+            <group data-width="auto" data-gap="15">
+              <separator data-horizontal="" data-interact=""></separator>
+              <text
+                data-ellipsis=""
+                data-text-transform="uppercase"
+                data-opacity="50"
+              >
+                {hex.replace("#", "")}
+              </text>
+            </group>
           </group>
-          <group data-width="auto" data-gap="15">
-            <separator data-horizontal=""></separator>
-            <text data-ellipsis="" data-text-transform="uppercase" data-opacity="50">
-              {hex.replace("#", "")}
-            </text>
-          </group>
-        </group>
-</Ripple>
+        </Ripple>
       );
     })}
   </group>
@@ -187,8 +204,6 @@ const Colors: React.FC = () => {
       addSnackbar("Failed to copy.", 1500);
     }
   };
-
-
 
   return (
     <group
@@ -369,7 +384,7 @@ const Colors: React.FC = () => {
             </Popover>
           </group>
         </group>
-<SwatchGrid group="Primary" onCopy={copyHex} getHex={getHex} />
+        <SwatchGrid group="Primary" onCopy={copyHex} getHex={getHex} />
       </group>
 
       <group data-gap="30">
@@ -432,7 +447,7 @@ const Colors: React.FC = () => {
             <CustomColorPicker target="secondary" />
           </group>
         </group>
-<SwatchGrid group="Secondary" onCopy={copyHex} getHex={getHex} />
+        <SwatchGrid group="Secondary" onCopy={copyHex} getHex={getHex} />
       </group>
 
       <group data-gap="30">
@@ -467,7 +482,7 @@ const Colors: React.FC = () => {
               data-length="auto"
               data-shrink="no"
               data-direction="column"
-         //     data-ratio="1:1"
+              //     data-ratio="1:1"
               data-justify="end"
               data-width="auto"
               data-space="20"
@@ -518,19 +533,19 @@ const Colors: React.FC = () => {
               data-wrap="no"
             >
               <group
-                data-interact=""
                 data-position="bottom"
                 data-wrap="no"
                 data-direction="column"
                 data-gap="5"
                 data-height="fit"
+                data-cursor="pointer"
               >
                 <Popover
                   data-background={colors.value + "-light"}
-                  data-length="160"
-                  data-space={null}
-                  data-radius="20"
-                  data-elevation={null}
+                  data-length="140"
+                  data-space={undefined}
+                  data-radius="25"
+                  data-elevation={undefined}
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
@@ -542,25 +557,32 @@ const Colors: React.FC = () => {
                       data-space="10"
                     >
                       <group
-                        data-gap="10"
-                        data-space="20"
+                        data-gap="15"
+                        data-space="15"
                         data-direction="column"
+                        data-align="start"
                       >
-                        <text
-                          data-wrap="wrap"
-                          data-weight="700"
-                          data-text-size="large"
+                        <group
+                          data-width="auto"
+                          data-gap="15"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.25"
-                          data-font-type="hero"
-                          data-line="1"
                         >
-                          Light <br></br> {colors.name}
-                        </text>
+                          <text
+                            data-wrap="wrap"
+                            data-weight="700"
+                            data-text-size="medium"
+                            data-font-type="hero"
+                            data-line="1"
+                          >
+                            Light <br></br> {colors.name}
+                          </text>
+                          <separator data-horizontal="" />
+                        </group>
                         <text
                           data-wrap="wrap"
-                          data-line="1.5"
+                          data-line="1.2"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.75"
@@ -574,24 +596,25 @@ const Colors: React.FC = () => {
                 >
                   <group
                     data-interactive=""
-                    data-interact=""
-                   
-
-                    data-cursor="pointer"
-                    data-transition-prop="border-radius"
+                    data-over-color="none"
                     data-ratio="1:1"
-                    data-expand-react="radius"
-                    data-duration="1.25"
-                    data-radius="15"
-                    data-background={colors.value + "-light"}
-                  ></group>
+                  >
+                    <group
+                      data-expand-react="radius"
+                      data-interactive=""
+                      data-interact=""
+                      data-radius="15"
+                      data-height="fit"
+                      data-background={colors.value + "-light"}
+                    />
+                  </group>
                 </Popover>
                 <Popover
                   data-background={colors.value}
-                  data-length="160"
-                  data-space={null}
-                  data-radius="20"
-                  data-elevation={null}
+                  data-length="140"
+                  data-space={undefined}
+                  data-radius="25"
+                  data-elevation={undefined}
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
@@ -605,25 +628,32 @@ const Colors: React.FC = () => {
                       data-space="10"
                     >
                       <group
-                        data-gap="10"
+                        data-gap="15"
+                        data-space="15"
                         data-direction="column"
-                        data-space="20"
+                        data-align="start"
                       >
-                        <text
-                          data-wrap="wrap"
-                          data-weight="700"
-                          data-text-size="large"
+                        <group
+                          data-width="auto"
+                          data-gap="15"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.25"
-                          data-font-type="hero"
-                          data-line="1"
                         >
-                          Base <br></br> {colors.name}
-                        </text>
+                          <text
+                            data-wrap="wrap"
+                            data-weight="700"
+                            data-text-size="medium"
+                            data-font-type="hero"
+                            data-line="1"
+                          >
+                            Base <br></br> {colors.name}
+                          </text>
+                          <separator data-horizontal="" />
+                        </group>
                         <text
                           data-wrap="wrap"
-                          data-line="1.5"
+                          data-line="1.2"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.75"
@@ -637,24 +667,25 @@ const Colors: React.FC = () => {
                 >
                   <group
                     data-interactive=""
-                   
-
-                    data-cursor="pointer"
-                    data-transition-prop="border-radius"
-                    
+                    data-over-color="none"
                     data-ratio="1:1"
-                    data-expand-react="radius"
-                    data-duration="1.25"
-                    data-radius="15"
-                    data-background={colors.value}
-                  ></group>
+                  >
+                    <group
+                      data-expand-react="radius"
+                      data-interactive=""
+                      data-interact=""
+                      data-radius="15"
+                      data-height="fit"
+                      data-background={colors.value}
+                    />
+                  </group>
                 </Popover>
                 <Popover
                   data-background={colors.value + "-dark"}
-                  data-length="160"
-                  data-space={null}
-                  data-radius="20"
-                  data-elevation={null}
+                  data-length="140"
+                  data-space={undefined}
+                  data-radius="25"
+                  data-elevation={undefined}
                   data-animation-name="appear-bottom"
                   data-fill-mode="backwards"
                   data-animation-duration="1.25"
@@ -666,25 +697,32 @@ const Colors: React.FC = () => {
                       data-space="10"
                     >
                       <group
-                        data-gap="10"
+                        data-gap="15"
+                        data-space="15"
                         data-direction="column"
-                        data-space="20"
+                        data-align="start"
                       >
-                        <text
-                          data-wrap="wrap"
-                          data-weight="700"
-                          data-text-size="large"
+                        <group
+                          data-width="auto"
+                          data-gap="15"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.25"
-                          data-font-type="hero"
-                          data-line="1"
                         >
-                          Dark <br></br> {colors.name}
-                        </text>
+                          <text
+                            data-wrap="wrap"
+                            data-weight="700"
+                            data-text-size="medium"
+                            data-font-type="hero"
+                            data-line="1"
+                          >
+                            Dark <br></br> {colors.name}
+                          </text>
+                          <separator data-horizontal="" />
+                        </group>
                         <text
                           data-wrap="wrap"
-                          data-line="1.5"
+                          data-line="1.2"
                           data-animation-name="appear-bottom"
                           data-fill-mode="backwards"
                           data-animation-duration="2.75"
@@ -698,16 +736,18 @@ const Colors: React.FC = () => {
                 >
                   <group
                     data-interactive=""
-                             
-
-                    data-cursor="pointer"
-                    data-transition-prop="border-radius"
+                    data-over-color="none"
                     data-ratio="1:1"
-                    data-expand-react="radius"
-                    data-duration="1.25"
-                    data-radius="15"
-                    data-background={colors.value + "-dark"}
-                  ></group>
+                  >
+                    <group
+                      data-expand-react="radius"
+                      data-interactive=""
+                      data-interact=""
+                      data-radius="15"
+                      data-height="fit"
+                      data-background={colors.value + "-dark"}
+                    />
+                  </group>
                 </Popover>
               </group>
             </group>

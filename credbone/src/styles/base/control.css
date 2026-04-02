@@ -1227,7 +1227,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-popover-expand="true"][data-expand-react="radius"]{border-radius: 50px;}
-
+[data-popover-expand="true"] [data-expand-react="radius"]{border-radius: 50px;}
 
 [data-cursor="auto"]{cursor: auto;}
 [data-cursor="pointer"]{cursor: pointer;}
