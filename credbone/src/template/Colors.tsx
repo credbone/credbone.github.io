@@ -81,13 +81,7 @@ export const ColorPalette = [
 
 interface SwatchGridProps {
   group: "Primary" | "Secondary";
-  onCopy: (hex: string, name: string, group: "Primary" | "Secondary") => void;
-  getHex: (group: "Primary" | "Secondary", paletteKey: string) => string;
-}
-
-interface SwatchGridProps {
-  group: "Primary" | "Secondary";
-  onCopy: (hex: string, name: string, group: "Primary" | "Secondary") => void;
+  onCopy: (hex: string, label: string) => void;
   getHex: (group: "Primary" | "Secondary", paletteKey: string) => string;
 }
 
@@ -123,7 +117,7 @@ const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
             data-interactive=""
             data-align="start"
             data-cursor="pointer"
-            onClick={() => onCopy(hex, color.name, group)}
+            onClick={() => onCopy(hex, `${group} ${color.name}`)}
           >
             <group data-height="20" data-align="start">
               {color.name === "Base" && (
@@ -177,16 +171,11 @@ const Colors: React.FC = () => {
     return (palette[key] as string) ?? "";
   };
 
-  const copyHex = async (
-    hex: string,
-    name: string,
-    group: "Primary" | "Secondary",
-  ) => {
+  const copyHex = async (hex: string, label: string) => {
     try {
       await navigator.clipboard.writeText(hex);
       addSnackbar(
         <group data-gap="10" data-align="center" data-wrap="no">
-          {/* <group data-shrink="no" style={{ backgroundColor: hex }} data-length="15" data-height="15" data-radius="10" /> */}
           <text
             data-ellipsis=""
             data-opacity="50"
@@ -194,9 +183,7 @@ const Colors: React.FC = () => {
           >
             {hex.replace("#", "")}
           </text>
-          <text>
-            {group} {name} copied
-          </text>
+          <text>{label} copied</text>
         </group>,
         1500,
       );
@@ -204,6 +191,14 @@ const Colors: React.FC = () => {
       addSnackbar("Failed to copy.", 1500);
     }
   };
+
+  const shades = [
+    // { suffix: "-lighter", label: "Lighter", key: "lighter", textColor: (v: string) => v + "-darker", },
+    { suffix: "-light", label: "Soft", key: "light", textColor: (v: string) => v + "-darker", },
+    { suffix: "", label: "Base", key: "base", textColor: (v: string, light?: string) => light ? v + "-darker" : "white", },
+    { suffix: "-dark", label: "Deep", key: "dark", textColor: (v: string) => v + "-lighter", },
+    // { suffix: "-darker", label: "Darker", key: "darker", textColor: (v: string) => v + "-lighter", },
+  ];
 
   return (
     <group
@@ -522,13 +517,12 @@ const Colors: React.FC = () => {
           data-type="grid"
           data-gap="5"
           data-grid-template="58"
-          data-contain=""
+          //  data-contain=""
         >
-          {BaseColors.map((colors, index) => (
+          {BaseColors.map((color, i) => (
             <group
               data-background="main-background"
-              key={index}
-              data-contain=""
+              key={i}
               data-direction="column"
               data-wrap="no"
             >
@@ -540,215 +534,123 @@ const Colors: React.FC = () => {
                 data-height="fit"
                 data-cursor="pointer"
               >
-                <Popover
-                  data-background={colors.value + "-light"}
-                  data-length="140"
-                  data-space={undefined}
-                  data-radius="25"
-                  data-elevation={undefined}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                  content={(closePopover) => (
-                    <group
-                      onClick={closePopover}
-                      data-direction="column"
-                      data-color={colors.value + "-darker"}
-                      data-space="10"
+                {shades.map((shade) => {
+                  const hex =
+                    (color[shade.key as keyof typeof color] as string) ?? "";
+                  return (
+                    <Popover
+                      key={shade.key}
+                     data-background={undefined}
+                      data-length="140"
+                      data-space={undefined}
+                      data-radius="25"
+                      data-elevation={undefined}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="1.75"
+
+                      content={(closePopover) => (
+                        <group
+                       //   onClick={closePopover}
+                          data-direction="column"
+
+                         data-interactive=""
+                         data-over-color="none"
+                        >
+                          <Ripple>
+                            <group
+                            data-ink-color="neutral"
+                              data-cursor="pointer"
+                               data-background={color.value + shade.suffix}
+                                                         data-color={shade.textColor( color.value, color.light_text, )}
+                              data-react="brightness"
+                              data-gap="15"
+                              data-space="25"
+                              data-direction="column"
+                              data-align="start"
+                              onClick={() => {
+                                copyHex(hex, `${shade.label} ${color.name}`);
+                             //   closePopover();
+                              }}
+                            >
+                              <group
+                                data-width="auto"
+                                data-gap="15"
+                                data-animation-name="appear-bottom"
+                                data-fill-mode="backwards"
+                                data-animation-duration="2.25"
+                              >
+                                <text
+                                  data-wrap="wrap"
+                                  data-weight="700"
+                                  data-text-size="medium"
+                                  data-font-type="hero"
+                                  data-line="1"
+                                >
+                                  {shade.label}
+                                  <br />
+                                  {color.name}
+                                </text>
+                                <text
+                                  data-wrap="wrap"
+                                  data-line="1.2"
+                                  data-opacity="70"
+                                >
+                                  {color.description}
+                                </text>
+                              </group>
+
+                              <group
+                                data-width="auto"
+                                data-gap="15"
+                                data-animation-name="appear-bottom"
+                                data-fill-mode="backwards"
+                                data-animation-duration="2.75"
+                              >
+                                <separator data-horizontal="" data-interact="" />
+                                <text
+                                  data-wrap="wrap"
+                                  data-line="1.2"
+                                  data-text-transform="uppercase"
+                                  data-opacity="70"
+                                >
+
+
+                                  {hex.replace("#", "")}
+                                </text>
+                              </group>
+                            </group>
+                          </Ripple>
+                        </group>
+                      )}
                     >
                       <group
-                        data-gap="15"
-                        data-space="15"
-                        data-direction="column"
-                        data-align="start"
+                        data-interactive=""
+                        data-over-color="none"
+                        data-ratio="1:1"
+                        data-expand-react="space"
+                          data-duration="1.25"
+                          data-transition-prop="padding"
                       >
                         <group
-                          data-width="auto"
-                          data-gap="15"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.25"
-                        >
-                          <text
-                            data-wrap="wrap"
-                            data-weight="700"
-                            data-text-size="medium"
-                            data-font-type="hero"
-                            data-line="1"
-                          >
-                            Light <br></br> {colors.name}
-                          </text>
-                          <separator data-horizontal="" />
-                        </group>
-                        <text
-                          data-wrap="wrap"
-                          data-line="1.2"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.75"
-                          data-opacity="70"
-                        >
-                          {colors.description}
-                        </text>
+                          data-expand-react="radius"
+                          data-duration="2.25"
+                          data-transition-prop="border-radius"
+                          data-interactive=""
+                          data-interact=""
+                          data-radius="15"
+                          data-height="fit"
+                          data-background={color.value + shade.suffix}
+
+                          data-color={shade.textColor( color.value, color.light_text, )}
+
+                      />
+
+
                       </group>
-                    </group>
-                  )}
-                >
-                  <group
-                    data-interactive=""
-                    data-over-color="none"
-                    data-ratio="1:1"
-                  >
-                    <group
-                      data-expand-react="radius"
-                      data-interactive=""
-                      data-interact=""
-                      data-radius="15"
-                      data-height="fit"
-                      data-background={colors.value + "-light"}
-                    />
-                  </group>
-                </Popover>
-                <Popover
-                  data-background={colors.value}
-                  data-length="140"
-                  data-space={undefined}
-                  data-radius="25"
-                  data-elevation={undefined}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                  content={(closePopover) => (
-                    <group
-                      onClick={closePopover}
-                      data-direction="column"
-                      data-color={
-                        colors.light ? colors.value + "-darker" : "white"
-                      }
-                      data-space="10"
-                    >
-                      <group
-                        data-gap="15"
-                        data-space="15"
-                        data-direction="column"
-                        data-align="start"
-                      >
-                        <group
-                          data-width="auto"
-                          data-gap="15"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.25"
-                        >
-                          <text
-                            data-wrap="wrap"
-                            data-weight="700"
-                            data-text-size="medium"
-                            data-font-type="hero"
-                            data-line="1"
-                          >
-                            Base <br></br> {colors.name}
-                          </text>
-                          <separator data-horizontal="" />
-                        </group>
-                        <text
-                          data-wrap="wrap"
-                          data-line="1.2"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.75"
-                          data-opacity="70"
-                        >
-                          {colors.description}
-                        </text>
-                      </group>
-                    </group>
-                  )}
-                >
-                  <group
-                    data-interactive=""
-                    data-over-color="none"
-                    data-ratio="1:1"
-                  >
-                    <group
-                      data-expand-react="radius"
-                      data-interactive=""
-                      data-interact=""
-                      data-radius="15"
-                      data-height="fit"
-                      data-background={colors.value}
-                    />
-                  </group>
-                </Popover>
-                <Popover
-                  data-background={colors.value + "-dark"}
-                  data-length="140"
-                  data-space={undefined}
-                  data-radius="25"
-                  data-elevation={undefined}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="1.25"
-                  content={(closePopover) => (
-                    <group
-                      onClick={closePopover}
-                      data-direction="column"
-                      data-color={colors.value + "-lighter"}
-                      data-space="10"
-                    >
-                      <group
-                        data-gap="15"
-                        data-space="15"
-                        data-direction="column"
-                        data-align="start"
-                      >
-                        <group
-                          data-width="auto"
-                          data-gap="15"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.25"
-                        >
-                          <text
-                            data-wrap="wrap"
-                            data-weight="700"
-                            data-text-size="medium"
-                            data-font-type="hero"
-                            data-line="1"
-                          >
-                            Dark <br></br> {colors.name}
-                          </text>
-                          <separator data-horizontal="" />
-                        </group>
-                        <text
-                          data-wrap="wrap"
-                          data-line="1.2"
-                          data-animation-name="appear-bottom"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.75"
-                          data-opacity="70"
-                        >
-                          {colors.description}
-                        </text>
-                      </group>
-                    </group>
-                  )}
-                >
-                  <group
-                    data-interactive=""
-                    data-over-color="none"
-                    data-ratio="1:1"
-                  >
-                    <group
-                      data-expand-react="radius"
-                      data-interactive=""
-                      data-interact=""
-                      data-radius="15"
-                      data-height="fit"
-                      data-background={colors.value + "-dark"}
-                    />
-                  </group>
-                </Popover>
+                    </Popover>
+                  );
+                })}
               </group>
             </group>
           ))}

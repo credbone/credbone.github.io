@@ -20,7 +20,7 @@ const Popover: React.FC<PopoverProps> = ({
   containerId = "popover-container",
   trigger = "click",
   onOpenChange,
-  open, // ← NEW
+  open, 
   ...rest
 }) => {
   const isControlled = open !== undefined; // ← NEW
