@@ -179,6 +179,12 @@
 
   --main-color-font: var(--main-color-light);
 
+  
+    --main-color-alpha-15: var(--main-color-light-alpha-15);
+    --main-color-alpha-50: var(--main-color-light-alpha-50);
+
+
+
 }
 
 
@@ -218,6 +224,11 @@
 [data-theme="auto"][data-main-color-luminance="dark"]:root{
 
   --main-color-font: var(--main-color-light);
+
+  
+    --main-color-alpha-15: var(--main-color-light-alpha-15);
+    --main-color-alpha-50: var(--main-color-light-alpha-50);
+
 
 }
 

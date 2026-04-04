@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { BaseColors } from "./utils/colorData";
+import { BaseColors, NeutralShades } from "./utils/colorData";
 import Popover from "../components/popover";
 import RichThemePicker from "./richThemePicker";
 
@@ -36,7 +36,7 @@ export const ColorPalette = [
     paletteKey: "Light",
   },
   {
-    textcolor: "-text",
+    textcolor: "-darker",
     code: "-soft",
     name: "Soft",
     description: "400",
@@ -101,7 +101,6 @@ const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
             key={index}
             data-ink-color="neutral"
             data-over-color="none"
-            data-react="brightness"
             data-contain=""
             data-length="auto"
             data-shrink="no"
@@ -117,6 +116,7 @@ const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
             data-interactive=""
             data-align="start"
             data-cursor="pointer"
+            data-react="brightness"
             onClick={() => onCopy(hex, `${group} ${color.name}`)}
           >
             <group data-height="20" data-align="start">
@@ -194,11 +194,36 @@ const Colors: React.FC = () => {
 
   const shades = [
     // { suffix: "-lighter", label: "Lighter", key: "lighter", textColor: (v: string) => v + "-darker", },
-    { suffix: "-light", label: "Soft", key: "light", textColor: (v: string) => v + "-darker", },
-    { suffix: "", label: "Base", key: "base", textColor: (v: string, light?: string) => light ? v + "-darker" : "white", },
-    { suffix: "-dark", label: "Deep", key: "dark", textColor: (v: string) => v + "-lighter", },
+    {
+      suffix: "-light",
+      label: "Soft",
+      key: "light",
+      textColor: (v: string) => v + "-darker",
+    },
+    {
+      suffix: "",
+      label: "Base",
+      key: "base",
+      textColor: (v: string, light?: string) =>
+        light ? v + "-darker" : "white",
+    },
+    {
+      suffix: "-dark",
+      label: "Deep",
+      key: "dark",
+      textColor: (v: string) => v + "-lighter",
+    },
     // { suffix: "-darker", label: "Darker", key: "darker", textColor: (v: string) => v + "-lighter", },
   ];
+
+  const { themeMode } = useTheme();
+  const neutralHex = (paletteKey: string) => {
+    const key = (paletteKey.toLowerCase() ||
+      "base") as keyof typeof NeutralShades.light;
+    return themeMode === "dark"
+      ? NeutralShades.dark[key]
+      : NeutralShades.light[key];
+  };
 
   return (
     <group
@@ -459,8 +484,8 @@ const Colors: React.FC = () => {
               data-line="20"
               data-max-length="300"
             >
-              Neutral colors provide a versatile base for the UI, with shades
-              generated for balance and flexibility.
+              Neutral shades automatically adapt to light and dark mode,
+              ensuring consistent contrast and readability across the entire UI.
             </text>
           </group>
         </group>
@@ -470,30 +495,60 @@ const Colors: React.FC = () => {
           data-gap="5"
           data-contain=""
         >
-          {ColorPalette.map((color, index) => (
-            <group
-              key={index}
-              data-contain=""
-              data-length="auto"
-              data-shrink="no"
-              data-direction="column"
-              //     data-ratio="1:1"
-              data-justify="end"
-              data-width="auto"
-              data-space="20"
-              data-background={"neutral" + color.code}
-              data-color={"neutral" + color.textcolor}
-              data-wrap="no"
-              data-radius="20"
-            >
-              <text data-ellipsis="" data-light="" data-color="reset">
-                {color.description}
-              </text>
-              <text data-ellipsis="" data-font-type="hero" data-color="reset">
-                {color.name}
-              </text>
-            </group>
-          ))}
+          {ColorPalette.map((color, index) => {
+            const hex = neutralHex(color.paletteKey);
+            return (
+              <Ripple key={index}>
+                <group
+                  key={index}
+                  data-contain=""
+                  data-length="auto"
+                  data-shrink="no"
+                  data-direction="column"
+                  //     data-ratio="1:1"
+                  data-justify="end"
+                  data-width="auto"
+                  data-space="20"
+                  data-background={"neutral" + color.code}
+                  data-color={"neutral" + color.textcolor}
+                  data-wrap="no"
+                  data-radius="20"
+                  data-gap="15"
+                  data-ink-color="neutral"
+                  data-interactive=""
+                  data-align="start"
+                  data-cursor="pointer"
+                  data-react="brightness"
+                  data-over-color="none"
+                  onClick={() => copyHex(hex, `Neutral ${color.name}`)}
+                >
+                  <group data-direction="column">
+                    <text data-ellipsis="" data-light="" data-color="reset">
+                      {color.description}
+                    </text>
+                    <text
+                      data-ellipsis=""
+                      data-font-type="hero"
+                      data-color="reset"
+                    >
+                      {color.name}
+                    </text>
+                  </group>
+
+                  <group data-width="auto" data-gap="15" data-color="reset">
+                    <separator data-horizontal="" data-interact=""></separator>
+                    <text
+                      data-ellipsis=""
+                      data-text-transform="uppercase"
+                      data-opacity="50"
+                    >
+                      {hex.replace("#", "")}
+                    </text>
+                  </group>
+                </group>
+              </Ripple>
+            );
+          })}
         </group>
       </group>
 
@@ -540,7 +595,7 @@ const Colors: React.FC = () => {
                   return (
                     <Popover
                       key={shade.key}
-                     data-background={undefined}
+                      data-background={undefined}
                       data-length="140"
                       data-space={undefined}
                       data-radius="25"
@@ -548,21 +603,22 @@ const Colors: React.FC = () => {
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
                       data-animation-duration="1.75"
-
                       content={(closePopover) => (
                         <group
-                       //   onClick={closePopover}
+                          //   onClick={closePopover}
                           data-direction="column"
-
-                         data-interactive=""
-                         data-over-color="none"
+                          data-interactive=""
+                          data-over-color="none"
                         >
                           <Ripple>
                             <group
-                            data-ink-color="neutral"
+                              data-ink-color="neutral"
                               data-cursor="pointer"
-                               data-background={color.value + shade.suffix}
-                                                         data-color={shade.textColor( color.value, color.light_text, )}
+                              data-background={color.value + shade.suffix}
+                              data-color={shade.textColor(
+                                color.value,
+                                color.light_text,
+                              )}
                               data-react="brightness"
                               data-gap="15"
                               data-space="25"
@@ -570,7 +626,7 @@ const Colors: React.FC = () => {
                               data-align="start"
                               onClick={() => {
                                 copyHex(hex, `${shade.label} ${color.name}`);
-                             //   closePopover();
+                                //   closePopover();
                               }}
                             >
                               <group
@@ -607,15 +663,16 @@ const Colors: React.FC = () => {
                                 data-fill-mode="backwards"
                                 data-animation-duration="2.75"
                               >
-                                <separator data-horizontal="" data-interact="" />
+                                <separator
+                                  data-horizontal=""
+                                  data-interact=""
+                                />
                                 <text
                                   data-wrap="wrap"
                                   data-line="1.2"
                                   data-text-transform="uppercase"
                                   data-opacity="70"
                                 >
-
-
                                   {hex.replace("#", "")}
                                 </text>
                               </group>
@@ -629,8 +686,8 @@ const Colors: React.FC = () => {
                         data-over-color="none"
                         data-ratio="1:1"
                         data-expand-react="space"
-                          data-duration="1.25"
-                          data-transition-prop="padding"
+                        data-duration="1.25"
+                        data-transition-prop="padding"
                       >
                         <group
                           data-expand-react="radius"
@@ -641,12 +698,11 @@ const Colors: React.FC = () => {
                           data-radius="15"
                           data-height="fit"
                           data-background={color.value + shade.suffix}
-
-                          data-color={shade.textColor( color.value, color.light_text, )}
-
-                      />
-
-
+                          data-color={shade.textColor(
+                            color.value,
+                            color.light_text,
+                          )}
+                        />
                       </group>
                     </Popover>
                   );

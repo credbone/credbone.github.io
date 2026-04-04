@@ -493,6 +493,7 @@ const Modal: React.FC = () => {
                                 data-animation-name="appear-bottom"
                                 data-fill-mode="backwards"
                                 data-animation-duration="2.25"
+                                data-font-type="hero"
                               >
                                 Custom Modal Window
                               </text>
@@ -503,7 +504,7 @@ const Modal: React.FC = () => {
                                 data-animation-duration="2"
                                 data-weight="600"
                                 data-wrap="wrap"
-                                data-line="20"
+                                data-line="1.5"
                                 data-max-length="400"
                               >
                                 This demo showcases a highly customizable modal
@@ -617,6 +618,7 @@ const Modal: React.FC = () => {
                                   data-text-size="x-large"
                                   data-wrap="wrap"
                                   data-ellipsis=""
+                                  data-font-type="hero"
                                 >
                                   Custom Modal Window
                                 </text>
@@ -624,7 +626,7 @@ const Modal: React.FC = () => {
                                 <text
                                   data-weight="600"
                                   data-wrap="wrap"
-                                  data-line="20"
+                                  data-line="1.5"
                                   data-max-length="400"
                                 >
                                   This demo showcases a highly customizable
@@ -734,7 +736,7 @@ const Modal: React.FC = () => {
                             >
                               <text
                                 data-font-type="hero"
-                                data-text-size="x-large"
+                                data-text-size="large"
                                 data-wrap="wrap"
                                 data-ellipsis=""
                                 data-text-align="center"
@@ -746,7 +748,7 @@ const Modal: React.FC = () => {
                                 data-text-align="center"
                                 data-weight="600"
                                 data-wrap="wrap"
-                                data-line="20"
+                             //   data-line="20"
                                 data-max-length="400"
                               >
                                 This demo showcases a highly customizable modal
@@ -819,7 +821,7 @@ const Modal: React.FC = () => {
                             >
                               <text
                                 data-font-type="hero"
-                                data-text-size="x-large"
+                                data-text-size="large"
                                 data-wrap="wrap"
                                 data-ellipsis=""
                                 data-text-align="center"
@@ -831,7 +833,7 @@ const Modal: React.FC = () => {
                                 data-text-align="center"
                                 data-weight="600"
                                 data-wrap="wrap"
-                                data-line="20"
+                               // data-line="20"
                                 data-max-length="400"
                               >
                                 This demo showcases a highly customizable modal

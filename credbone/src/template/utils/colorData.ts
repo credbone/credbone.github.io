@@ -18,3 +18,29 @@ export const BaseColors = [
   { value: "grey", name: "Grey", description: "Neutral slate grey, versatile and cool.", base: "#757575", light: "#a4a4a4", lighter: "#e0e0e0", dark: "#494949", darker: "#1c1c1c" },
   { value: "slate", name: "Slate", description: "Stormy blue-grey, elegant and calm.", base: "#546e7a", light: "#819ca9", lighter: "#d5e1e6", dark: "#29434e", darker: "#0d171c" },
 ];
+
+
+export const NeutralShades = {
+  light: {
+    lightest: "#F5F5F5",
+    lighter:  "#EEEEEE",
+    light:    "#E0E0E0",
+    soft:     "#BDBDBD",
+    base:     "#9E9E9E",
+    deep:     "#757575",
+    dark:     "#616161",
+    darker:   "#424242",
+    darkest:  "#212121",
+  },
+  dark: {
+    lightest: "#303030",
+    lighter:  "#2f2f2f",
+    light:    "#2c2c2c",
+    soft:     "#252525",
+    base:     "#1f1f1f",
+    deep:     "#171717",
+    dark:     "#131313",
+    darker:   "#0d0d0d",
+    darkest:  "#060606",
+  },
+};

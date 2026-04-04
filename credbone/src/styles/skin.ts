@@ -76,7 +76,8 @@ export const getCSSByPalette = (palette: ColorPalette) => {
             --main-color-alpha-15: ${colorPrimary}26;
             --main-color-alpha-50: ${colorPrimary}80;
 
-
+            --main-color-light-alpha-15: ${colorPrimaryLight || getColorShade(colorPrimary, "60")}26;
+            --main-color-light-alpha-50: ${colorPrimaryLight || getColorShade(colorPrimary, "60")}80;
 
             --main-color-ultra-light: ${colorPrimaryUltraLight || getColorShade(colorPrimary, "10")};
             --main-color-lightest: ${colorPrimaryLightest || getColorShade(colorPrimary, "20")};

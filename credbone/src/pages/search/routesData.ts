@@ -171,7 +171,7 @@ export const routesData: RouteData[] = [
     "path": "../Tools/PathBuilder",
     "title": "Path Builder",
     "description": "Build and edit SVG paths visually by combining segments, curves, and lines, with quick export.",
-    "tags": ["path", "svg", "vector", "bezier", "curve", "arc", "line", "segments", "editor"]
+    "tags": ["path", "svg", "vector", "bezier", "curve", "arc", "line", "segments", "editor", "tools"]
   },
 
 
