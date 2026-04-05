@@ -73,7 +73,7 @@ export const democolors = [
 
 
 
-  { code: "#6A2333", name: "Garnet Earth" },
+{ code: "#6A2333", name: "Garnet Earth" },
 { code: "#8E4A57", name: "Clay Plum" },
 { code: "#B96A6E", name: "Desert Rose" },
 { code: "#D89A8F", name: "Sunbaked Blush" },
@@ -93,6 +93,11 @@ export const democolors = [
 { code: "#3E5A2F", name: "Forest Moss" },
 { code: "#2F4A28", name: "Woodland Green" },
 { code: "#1F3A22", name: "Evergreen Shade" }
+
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import { IconDelete } from "../components/icon/credIcons";
 
 const Calculator: React.FC = () => {
 
@@ -45,9 +46,9 @@ const Calculator: React.FC = () => {
   };
 
   // Button mapping with labels and their corresponding actions
-  const buttons: Array<{ label: string; action: () => void; type: string, background: string, color: string}> = [
-
-    { color:"main-text", background:"main",  label: "C", action: handleClear, type: "wide" },
+  const buttons: Array<{ label: string; icon?: React.ReactNode; action: () => void; type: string, background: string, color: string}> = [
+    { color:"", background:"",  icon:<IconDelete stroke={1.5} size={22}/>, label: "", action: () => { setResult(null); setInput((prev) => prev.length > 1 ? prev.slice(0, -1) : "0"); }, type: "" },
+    { color:"", background:"",  label: "C", action: handleClear, type: "" },
     { color:"", background:"",  label: "÷", action: () => handleButtonClick("/"), type: "" },
     { color:"", background:"",  label: "×", action: () => handleButtonClick("*"), type: "" },
     { color:"", background:"",  label: "7", action: () => handleButtonClick("7"), type: "" },
@@ -61,15 +62,16 @@ const Calculator: React.FC = () => {
     { color:"", background:"",  label: "1", action: () => handleButtonClick("1"), type: "" },
     { color:"", background:"",  label: "2", action: () => handleButtonClick("2"), type: "" },
     { color:"", background:"",  label: "3", action: () => handleButtonClick("3"), type: "" },
-    { color:"ember-lighter", background:"ember-light", label: "=", action: calculateResult, type: "tall" },
-    { color:"", background:"", label: "0", action: () => handleButtonClick("0"), type: "wide" },
+    { color:"white", background:"ember-light", label: "=", action: calculateResult, type: "tall" },
+    { color:"", background:"adaptive-gray", label: "0", action: () => handleButtonClick("0"), type: "wide" },
     { color:"", background:"", label: ".", action: () => handleButtonClick("."), type: "" },
    
   ];
 
   return (
     
-    <group data-direction="column"       
+    <group data-direction="column"   
+        data-space="10"
 >
       <group data-direction="column" data-space-horizontal="15"  data-height="120" data-text-align="right"  data-justify="center">
         <input
@@ -90,13 +92,17 @@ const Calculator: React.FC = () => {
 {typeof result === 'number' ? result.toLocaleString() : '0'}
 </text>
       </group>
+
+        <separator data-horizontal="dotted" data-opacity="20" />
+<group data-height="10"></group>
+     
       <group
         data-type="grid"
-        data-gap="2"
+       // data-gap="2"
         data-grid-template-columns="4"
 
 data-contain=""
-data-radius="15"
+
       >
         {buttons.map((button) => (
           <group
@@ -105,13 +111,13 @@ data-radius="15"
             data-ratio={button.type ? "" : "1:1"}
             data-row-end={button.type === "tall" ? "2" : ""}
             data-column-end={button.type === "wide" ? "2" : ""}
-            data-background={button.background ? button.background :"highlight"}
+            data-background={button.background ? button.background :""}
             data-color={button.color}
 
 
             
 
-//data-radius="3"
+data-radius="15"
 data-contain=""
 
           >
@@ -119,7 +125,7 @@ data-contain=""
               <group
                
                 data-direction="column"
-                data-weight="600"
+               // data-weight="600"
 
              
 
@@ -128,8 +134,9 @@ data-contain=""
                 data-align="center"
                 data-interactive=""
                 data-cursor="pointer"
+
               >
-                <text data-position="center">{button.label}</text>
+{button.icon ?? <text data-position="center">{button.label}</text>}
               </group>
             </Ripple>
           </group>

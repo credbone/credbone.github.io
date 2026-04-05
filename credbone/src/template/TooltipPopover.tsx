@@ -362,7 +362,7 @@ const TooltipPopover: React.FC = () => {
                 data-length="260"
                 data-radius="25"
                 data-elevation="2"
-                data-space="10"
+                data-space={undefined}
                 data-space-top="0"
                
               >

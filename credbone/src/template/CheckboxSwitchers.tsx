@@ -16,6 +16,7 @@ import {
 import sectionImage from "../styles/images/samples/wide_res_72.webp";
 import TemplatePageHeader from "./TemplatePageHeader";
 import Ripple from "../components/Ripple";
+import { cursor } from "../pages/tools/dotIcon";
 // import sectionImage_2 from "../styles/images/samples/wide_res_73.webp";
 
 const CheckboxAndSwitchers: React.FC = () => {
@@ -342,6 +343,7 @@ descriptionProps={{"data-length":"300"}}
                   {radioViewData.map((radio, index) => (
                     <Radio
                       iconProps={{ "data-length": "30" }}
+                    //  tooltipProps={{placement:"cursor"}}
                       tooltip={radio.label}
                       icon={radio.icon}
                       key={index}

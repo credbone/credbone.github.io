@@ -4,7 +4,7 @@ import { ThemeContext } from "../components/ThemeProvider";
 import { democolors } from "../styles/colorData";
 import { getComplementaryColor } from "../styles/skin";
 import Ripple from "../components/Ripple";
-import Tooltip from "../components/tooltip";
+
 
 const ThemePickerVertical: React.FC = () => {
   const themeContext = useContext(ThemeContext);

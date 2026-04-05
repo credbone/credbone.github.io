@@ -41,6 +41,7 @@ const Overview: React.FC = () => {
               data-align="start"
               data-radius="50"
               data-contain=""
+             
             >
               <picture
                 data-brightness="adaptive"
@@ -100,7 +101,7 @@ const Overview: React.FC = () => {
                   <text
                     data-wrap="wrap"
                     data-max-length="240"
-                    data-line="1.5"
+                    data-line="1.3"
                     //  data-weight="600"
                   >
                     {group.description}

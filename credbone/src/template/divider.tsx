@@ -74,8 +74,8 @@ const Divider: React.FC = () => {
             <group
               data-border="2"
               data-index="2"
-              data-height="3"
-              data-length="3"
+              data-height="5"
+              data-length="5"
               data-radius="5"
             ></group>
             <separator data-horizontal=""></separator>
@@ -116,8 +116,8 @@ const Divider: React.FC = () => {
             <group
               data-border="2"
               data-index="2"
-              data-height="3"
-              data-length="3"
+              data-height="5"
+              data-length="5"
               data-radius="5"
             ></group>
             <separator data-horizontal=""></separator>
@@ -594,8 +594,8 @@ const Divider: React.FC = () => {
               <group
                 data-border="2"
                 data-index="3"
-                data-height="3"
-                data-length="3"
+                data-height="5"
+                data-length="5"
                 data-radius="5"
               ></group>
               <separator data-vertical="" data-height="40"></separator>

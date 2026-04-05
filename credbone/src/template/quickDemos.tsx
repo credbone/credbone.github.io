@@ -226,7 +226,7 @@ const QuickDemos: React.FC = () => {
             data-radius="25"
             data-border=""
             data-contain=""
-            data-space="10"
+            
             data-space-top="0"
             //    data-gap="20"
             data-elevation="2"

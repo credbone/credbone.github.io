@@ -575,13 +575,8 @@ const Colors: React.FC = () => {
           //  data-contain=""
         >
           {BaseColors.map((color, i) => (
-            <group
-              data-background="main-background"
-              key={i}
-              data-direction="column"
-              data-wrap="no"
-            >
               <group
+               key={i}
                 data-position="bottom"
                 data-wrap="no"
                 data-direction="column"
@@ -626,7 +621,7 @@ const Colors: React.FC = () => {
                               data-align="start"
                               onClick={() => {
                                 copyHex(hex, `${shade.label} ${color.name}`);
-                                //   closePopover();
+                                   closePopover();
                               }}
                             >
                               <group
@@ -708,7 +703,6 @@ const Colors: React.FC = () => {
                   );
                 })}
               </group>
-            </group>
           ))}
         </group>
       </group>
