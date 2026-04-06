@@ -47,7 +47,7 @@ const Calculator: React.FC = () => {
 
   // Button mapping with labels and their corresponding actions
   const buttons: Array<{ label: string; icon?: React.ReactNode; action: () => void; type: string, background: string, color: string}> = [
-    { color:"", background:"",  icon:<IconDelete stroke={1.5} size={22}/>, label: "", action: () => { setResult(null); setInput((prev) => prev.length > 1 ? prev.slice(0, -1) : "0"); }, type: "" },
+    { color:"", background:"",  icon:<IconDelete stroke={1.8} size={22}/>, label: "", action: () => { setResult(null); setInput((prev) => prev.length > 1 ? prev.slice(0, -1) : "0"); }, type: "" },
     { color:"", background:"",  label: "C", action: handleClear, type: "" },
     { color:"", background:"",  label: "÷", action: () => handleButtonClick("/"), type: "" },
     { color:"", background:"",  label: "×", action: () => handleButtonClick("*"), type: "" },

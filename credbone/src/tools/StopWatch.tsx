@@ -127,7 +127,7 @@ const StopWatch: React.FC = () => {
         <separator data-horizontal="" />
         <group data-space-horizontal="20" data-width="auto">
           <text
-            data-weight="700"
+       //     data-weight="700"
             data-text-size="medium"
             data-font-feature="tnum"
           >
