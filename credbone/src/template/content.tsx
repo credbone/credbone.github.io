@@ -454,7 +454,8 @@ const activeDots = useCyclingDots();
                   data-wrap="no"
                 >
 
-<text data-wrap="preline"  data-line="1" data-length="200" data-font-type="hero" data-text-size="medium"  data-text-align="center" data-ellipsis=""> Browse demos and tools. See what's possible.</text>
+<text data-wrap="preline"  data-line="1" data-length="200" data-font-type="hero" data-text-size="medium"  data-text-align="center" data-ellipsis=""> There’s More to Search.
+Keep Exploring.</text>
 
                 </group>
               </group>

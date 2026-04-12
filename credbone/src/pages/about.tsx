@@ -7,6 +7,7 @@ import { SvgLogoIllustration, SvgWood } from "../components/icon/svgRes";
 //import sampleImage from "../styles/images/samples/res_82.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_68.webp";
 import Tooltip from "../components/tooltip";
+import Ripple from "../components/Ripple";
 // import sampleImage_2 from "../styles/images/samples/wide_res_01.jpg";
 
 const links = [
@@ -135,7 +136,7 @@ function About() {
           </group>
         </group>
 
-        <group data-direction="column" >
+        <group data-direction="column">
           <picture
             data-radius="50"
             data-brightness="adaptive"
@@ -164,34 +165,35 @@ function About() {
                   >
                     Crafted <br></br>for growth.
                   </text>
-                  <separator data-vertical="adaptive" data-height=""></separator>
+                  <separator
+                    data-vertical="adaptive"
+                    data-height=""
+                  ></separator>
 
-                <group
-                  data-width="auto"
-                  data-direction="column"
-                  data-align="start"
-                  data-gap="20"
-                >
-                  <text
-                    data-wrap="wrap"
-                    data-line="1.5"
-                    data-length="300"
-                    data-text-size="medium-small"
+                  <group
+                    data-width="auto"
+                    data-direction="column"
+                    data-align="start"
+                    data-gap="20"
                   >
-                    Adapting from prototypes to enterprise apps, evolving with
-                    every project.
-                  </text>
+                    <text
+                      data-wrap="wrap"
+                      data-line="1.5"
+                      data-length="300"
+                      data-text-size="medium-small"
+                    >
+                      Adapting from prototypes to enterprise apps, evolving with
+                      every project.
+                    </text>
+                  </group>
                 </group>
-
-                </group>
-
               </group>
             </group>
           </group>
         </group>
 
         <group
-          data-radius="40"
+          data-radius="50"
           data-border="inset"
           data-direction="column-1200"
           data-contain=""
@@ -212,14 +214,18 @@ function About() {
             <group data-direction="column" data-gap="15" data-align="start">
               <text
                 data-text-size="display-md"
-               data-height="3.846rem"
+                data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
               >
                 01
               </text>
-              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
+              <text
+                data-font-type="hero"
+                data-text-size="large"
+                data-wrap="wrap"
+              >
                 Purpose & Vision
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="300">
@@ -228,25 +234,28 @@ function About() {
                 practical efficiency.
               </text>
             </group>
-            <Link
-              data-position="bottom"
-              data-contain=""
-              data-drag="none"
-              data-type="group"
-              to="/Components/Overview"
-              data-interactive=""
-              data-width="auto"
-              data-background="text"
-              data-color="main-background"
-              data-over-color="neutral"
-              data-space="15"
-              data-space-horizontal="25"
-              data-radius="10"
-            >
-              <text data-weight="700" data-ellipsis="">
-                Explore Components
-              </text>
-            </Link>
+            <Ripple>
+              <Link
+                data-ink-color="gray-shade-20"
+                data-position="bottom"
+                data-contain=""
+                data-drag="none"
+                data-type="group"
+                to="/Components/Overview"
+                data-interactive=""
+                data-width="auto"
+                data-background="text"
+                data-color="main-background"
+                data-over-color="neutral"
+                data-space="15"
+                data-space-horizontal="25"
+                data-radius="15"
+              >
+                <text data-weight="700" data-ellipsis="">
+                  Explore Components
+                </text>
+              </Link>
+            </Ripple>
           </group>
 
           <group
@@ -262,14 +271,18 @@ function About() {
             <group data-direction="column" data-gap="15">
               <text
                 data-text-size="display-md"
-               data-height="3.846rem"
+                data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
               >
                 02
               </text>
-              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
+              <text
+                data-font-type="hero"
+                data-text-size="large"
+                data-wrap="wrap"
+              >
                 Designed to Scale
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="200">
@@ -291,7 +304,7 @@ function About() {
               data-over-color="neutral"
               data-space="15"
               data-space-horizontal="25"
-              data-radius="10"
+              data-radius="15"
             >
               <text
                 data-weight="700"
@@ -318,14 +331,18 @@ function About() {
             <group data-direction="column" data-gap="15">
               <text
                 data-text-size="display-md"
-               data-height="3.846rem"
+                data-height="3.846rem"
                 data-contain=""
                 data-weight="100"
                 data-opacity="10"
               >
                 {buildInfo.version}
               </text>
-              <text data-font-type="hero" data-text-size="large" data-wrap="wrap">
+              <text
+                data-font-type="hero"
+                data-text-size="large"
+                data-wrap="wrap"
+              >
                 Up to Date
               </text>
               <text data-wrap="wrap" data-line="1.5" data-length="300">
@@ -346,8 +363,8 @@ function About() {
                 // data-interactive=""
                 data-cursor="pointer"
                 data-space="15"
-                              data-space-horizontal="25"
-                data-radius="10"
+                data-space-horizontal="25"
+                data-radius="15"
                 data-width="auto"
                 data-wrap="no"
                 data-border=""
@@ -367,6 +384,7 @@ function About() {
           data-direction="column"
           // data-background="context"
           data-space="30"
+          data-space-horizontal="25"
           data-radius="30"
           // data-theme="dark"
           data-align="start"
@@ -376,8 +394,13 @@ function About() {
             data-direction="column"
             data-gap="20"
             data-space="15"
+            data-space-horizontal="20"
           >
-            <text data-text-size="xx-large" data-font-type="hero" data-wrap="wrap">
+            <text
+              data-text-size="xx-large"
+              data-font-type="hero"
+              data-wrap="wrap"
+            >
               Get in Touch
             </text>
             <text
@@ -396,53 +419,68 @@ function About() {
           <group data-gap="30" data-type="grid" data-grid-template="200">
             <group data-direction="column" data-width="auto" data-align="start">
               {links.map((link, index) => (
+                <Ripple key={index}>
+                  <Link
+                    data-drag="none"
+                    data-width="auto"
+                    data-type="group"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-space-vertical="15"
+                    data-space-horizontal="20"
+                    data-radius="15"
+                    data-weight="600"
+                    to={link.url}
+                    target={link.target}
+                    key={index}
+                    data-ink-color="neutral"
+                    data-contain=""
+                  >
+                    <text data-ellipsis="">{link.name}</text>
+                  </Link>
+                </Ripple>
+              ))}
+            </group>
+
+            <group data-direction="column" data-width="auto" data-align="start">
+              <Ripple>
                 <Link
                   data-drag="none"
                   data-width="auto"
                   data-type="group"
                   data-interactive=""
                   data-over-color="neutral"
-                  data-space="15"
-                  data-radius="10"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
                   data-weight="600"
-                  to={link.url}
-                  target={link.target}
-                  key={index}
+                  to="https://calendly.com/sargsyanrubens/15-minute-chat"
+                  target="_blank"
+                  data-ink-color="neutral"
+                  data-contain=""
                 >
-                  <text data-ellipsis="">{link.name}</text>
+                  <text>Reserve 15-Minute Call</text>
                 </Link>
-              ))}
-            </group>
-
-            <group data-direction="column" data-width="auto" data-align="start">
-              <Link
-                data-drag="none"
-                data-width="auto"
-                data-type="group"
-                data-interactive=""
-                data-over-color="neutral"
-                data-space="15"
-                data-radius="10"
-                data-weight="600"
-                to="https://calendly.com/sargsyanrubens/15-minute-chat"
-                target="_blank"
-              >
-                <text>Reserve 15-Minute Call</text>
-              </Link>
-              <Link
-                data-drag="none"
-                data-width="auto"
-                data-type="group"
-                data-interactive=""
-                data-over-color="neutral"
-                data-space="15"
-                data-radius="10"
-                data-weight="600"
-                to="https://t.me/sargsyanruben"
-                target="_blank"
-              >
-                <text>Message Me</text>
-              </Link>
+              </Ripple>
+              <Ripple>
+                <Link
+                  data-drag="none"
+                  data-width="auto"
+                  data-type="group"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
+                  data-weight="600"
+                  to="https://t.me/sargsyanruben"
+                  target="_blank"
+                  data-ink-color="neutral"
+                  data-contain=""
+                >
+                  <text>Message Me</text>
+                </Link>
+              </Ripple>
             </group>
           </group>
         </group>

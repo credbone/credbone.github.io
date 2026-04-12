@@ -437,7 +437,7 @@ const Miscellaneous: React.FC = () => {
               data-length="forcefit"
               data-width="auto"
               data-direction="column"
-              data-ink-color="main-dark"
+              data-ink-color="main-deep"
               data-cursor="pointer"
               data-background="main"
               data-color="main-text"

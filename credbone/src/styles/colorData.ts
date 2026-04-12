@@ -73,6 +73,10 @@ export const democolors = [
 
 
 
+
+
+
+
 { code: "#6A2333", name: "Garnet Earth" },
 { code: "#8E4A57", name: "Clay Plum" },
 { code: "#B96A6E", name: "Desert Rose" },

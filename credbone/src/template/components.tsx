@@ -175,7 +175,7 @@ const Components: React.FC = () => {
                 data-width="auto"
                 data-background="main"
                 data-color="main-text"
-                data-ink-color="main-dark"
+                data-ink-color="main-deep"
                 data-space-horizontal="50"
                 data-space-vertical="20"
                 data-radius="30"
@@ -346,6 +346,11 @@ const Components: React.FC = () => {
             </Ripple>
           ))}
         </group>
+
+
+
+
+
 
         <group
           //  data-width="auto"

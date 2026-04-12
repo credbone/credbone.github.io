@@ -531,7 +531,7 @@ const Modal: React.FC = () => {
                                       flex-direction="column"
                                       data-justify="center"
                                       //data-min-length="140"
-                                      data-ink-color="main-dark"
+                                      data-ink-color="main-deep"
                                       data-background="main"
                                       data-color="main-text"
                                       data-interactive=""
@@ -650,7 +650,7 @@ const Modal: React.FC = () => {
                                 >
                                   <Ripple>
                                     <group
-                                      data-ink-color="main-dark"
+                                      data-ink-color="main-deep"
                                       data-background="main"
                                       data-color="main-text"
                                       data-interactive=""

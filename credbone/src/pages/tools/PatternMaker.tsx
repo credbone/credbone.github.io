@@ -360,7 +360,7 @@ const PatternMaker: React.FC = () => {
                     <Ripple>
                       <group
                         data-contain=""
-                        data-ink-color="main-dark"
+                        data-ink-color="main-deep"
                         data-cursor="pointer"
                         data-interactive=""
                         data-space="20"

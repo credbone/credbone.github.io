@@ -6,7 +6,7 @@ import Colors from "./../template/Colors";
 import Layout from "./../template/layout";
 
 import Icons from "./../template/icons";
-import "./../styles/demo.css";
+// import "./../styles/demo.css";
 
 import Buttons from "./buttons";
 import Typeface from "./typeface";

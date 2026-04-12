@@ -153,3 +153,4 @@ html.mobile .snapcont .slide-button
 
 /**/
 
+[data-overscroll-behavior="contain"]{overscroll-behavior: contain;}

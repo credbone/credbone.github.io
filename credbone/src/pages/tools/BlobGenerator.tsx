@@ -320,7 +320,7 @@ const opacity =
         >
           <Ripple>
             <group
-              data-ink-color="main-dark"
+              data-ink-color="main-deep"
               data-space="15"
               data-align="center"
               data-justify="center"

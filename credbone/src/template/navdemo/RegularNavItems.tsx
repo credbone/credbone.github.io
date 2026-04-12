@@ -278,7 +278,7 @@ const RegularNavItems: React.FC = () => {
                       item2.key === selectedItem2Key ? "main-text" : ""
                     }
                     data-ink-color={
-                      item2.key === selectedItem2Key ? "main-dark" : ""
+                      item2.key === selectedItem2Key ? "main-deep" : ""
                     }
                     data-contain=""
                     data-interactive=""

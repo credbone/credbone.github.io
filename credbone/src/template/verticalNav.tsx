@@ -1,6 +1,6 @@
 import Ripple from "../components/Ripple";
 import { SvgHamburgerToLeft } from "../components/svg";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Tooltip from "../components/tooltip";
 import { LeftNavigation } from "../components/navigation";
 import buildInfo from "../buildInfo.json";
@@ -48,6 +48,68 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const timeout = 1000; // Timeout in milliseconds to reset tap count
   const [tapCount, setTapCount] = useState(0);
   const [showCounter, setShowCounter] = useState(false);
+
+
+
+const startXRef = useRef<number | null>(null);
+const startYRef = useRef<number | null>(null);
+const deltaRef = useRef<number>(0);
+const axisRef = useRef<"x" | "y" | null>(null);
+const THRESHOLD = 100;
+
+useEffect(() => {
+  const el = navRef.current;
+  if (!el) return;
+
+  const onTouchStart = (e: TouchEvent) => {
+    startXRef.current = e.touches[0].clientX;
+    startYRef.current = e.touches[0].clientY;
+    deltaRef.current = 0;
+    axisRef.current = null;
+    el.style.transitionDuration = "0s";
+  };
+
+  const onTouchMove = (e: TouchEvent) => {
+    if (startXRef.current === null || startYRef.current === null) return;
+
+    const deltaX = startXRef.current - e.touches[0].clientX;
+    const deltaY = Math.abs(e.touches[0].clientY - startYRef.current);
+
+    if (axisRef.current === null) {
+      if (Math.abs(deltaX) > deltaY) axisRef.current = "x";
+      else axisRef.current = "y";
+    }
+
+    if (axisRef.current === "x" && deltaX > 0) {
+      e.preventDefault();
+      deltaRef.current = deltaX;
+      el.style.transform = `translateX(-${deltaX}px)`;
+    }
+  };
+
+  const onTouchEnd = () => {
+    if (deltaRef.current >= THRESHOLD) {
+      setIsNavOpen(false);
+    }
+    el.style.transform = "";
+    el.style.transitionDuration = "";
+    startXRef.current = null;
+    startYRef.current = null;
+    deltaRef.current = 0;
+    axisRef.current = null;
+  };
+
+  el.addEventListener("touchstart", onTouchStart, { passive: true });
+  el.addEventListener("touchmove", onTouchMove, { passive: false });
+  el.addEventListener("touchend", onTouchEnd);
+
+  return () => {
+    el.removeEventListener("touchstart", onTouchStart);
+    el.removeEventListener("touchmove", onTouchMove);
+    el.removeEventListener("touchend", onTouchEnd);
+  };
+}, [setIsNavOpen]);
+
 
   // Reset tap count after the timeout
   useEffect(() => {
@@ -132,6 +194,7 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
           data-direction="column"
           data-border=""
           data-index="2"
+          data-overscroll-behavior="contain"
         >
           <group
          // data-delay={isNavOpen ? "2.25" : "0"}
