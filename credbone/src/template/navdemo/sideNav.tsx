@@ -4,7 +4,7 @@ import { SvgHamburgerToLeft } from "../../components/svg";
 import { useRef, useState } from "react";
 
 
-import sampleImage2 from "../../styles/images/samples/list_res/res_1x/res_09.jpg";
+import sampleImage2 from "../../styles/images/samples/list_res/res_1x/res_05.jpg";
 import { BookOpen, Grip, ShoppingBag } from "lucide-react";
 
 const SideNav = () => {
@@ -43,6 +43,8 @@ const SideNav = () => {
         // data-name="side_nav"
         data-background="context"
         data-expanded={isNavOpen ? "open" : "close"}
+
+        // data-elevation={isNavOpen ? "2" : undefined}
         data-length={isNavOpen ? "240" : "90"}
         data-transition-prop="width"
         //  data-width="auto"
@@ -141,7 +143,7 @@ const SideNav = () => {
                   // }, 325);
                 }}
               >
-                <picture  data-type="interact" data-position="absolute" data-object-position="top">
+                <picture  data-type="interact" data-position="absolute" data-object-position="center">
                   <img src={sampleImage2} alt="" />
                 </picture>
               </group>

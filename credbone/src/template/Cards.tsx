@@ -22,6 +22,7 @@ import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
+import { Film, ImagePlay, Play } from "lucide-react";
 
 
 interface ContentToolbarProps {
@@ -231,10 +232,12 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             data-contain=""
             data-direction="column"
             data-wrap="no"
-            data-gap="5"
+          //  data-gap="5"
             data-radius="25"
             
           >
+
+
             <picture
             
                         style={{
@@ -246,6 +249,24 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             >
               <img src={item.image_1x} srcSet={`${item.image} 2x`}  alt={item.title} />
             </picture>
+
+{item.video && selectedKey === item.key && <video
+
+ autoPlay
+                muted
+                loop
+                playsInline
+                data-object-fit="cover"
+                data-height="fit"
+                data-max-length="fit"
+                data-length="fit"
+src={item.video}
+data-position="absolute"
+data-pointer-event="none"
+
+></video>}
+
+
 
 
           <group
@@ -273,11 +294,14 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             >
 
 
+
+
               <group
               data-space-top="40"
                 data-space-vertical="20"
                 data-direction="column"
               >
+                {item.video && selectedKey != item.key &&  <group  data-color="white" data-space="15"> <Film  size={20}/> </group> }
                 <text
                   data-space-horizontal="20"
                   data-text-size="medium-small"
