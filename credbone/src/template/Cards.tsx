@@ -22,11 +22,16 @@ import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { Film, ImagePlay, Play } from "lucide-react";
+import { Film} from "lucide-react";
+import { useFavMap } from "./useFavMap";
+import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 
 interface ContentToolbarProps {
   count: number;
+  itemKey: string;
+  itemTitle: string;
+  color?: boolean;
 }
 
 const modalConfig = {
@@ -49,6 +54,7 @@ const useOpenCustomModal = () => {
     description: string;
     long_description: string;
     image: string;
+    video:string;
   }) => {
     openModal({
       id: `modal-${item.key}`,
@@ -69,13 +75,24 @@ const useOpenCustomModal = () => {
   return handleOpenModal;
 };
 
-const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
-  const [isFavorite, setIsFavorite] = React.useState(false); // for demo
+const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTitle, color }) => {
+
+   const { addSnackbar } = useSnackbar();
+  const { isFav, toggleFav } = useFavMap();
+  const favorite = isFav(itemKey);
+
+
 
   const handleFavClick = () => {
-    // for demo
-    setIsFavorite(!isFavorite);
-  };
+  toggleFav(itemKey);
+  if (!favorite) {
+    addSnackbar(`${itemTitle} added to favorites...`, 1500);
+  }
+};
+  
+
+  const displayCount = count + (favorite ? 1 : 0);
+
 
   return (
     <group
@@ -88,7 +105,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
       data-align="center"
       //data-gap="5"
     >
-      <Tooltip content="Share">
+      <Tooltip delay={300} content="Share">
         <group
           data-width="auto"
           data-space="10"
@@ -105,7 +122,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
         </group>
       </Tooltip>
 
-      <Tooltip content="Like">
+      <Tooltip delay={300}  content="Like">
         <group
           data-width="auto"
           data-animation-name="appear-bottom"
@@ -121,15 +138,29 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count }) => {
           data-wrap="no"
         >
           <group
+
+          
             data-animation-duration="4.75"
             data-fill-mode="backwards"
-            data-animation-name={isFavorite ? "bounce" : ""}
+            key={favorite ? `${itemKey}-fav` : itemKey}
+  data-animation-name={favorite ? "bounce" : ""}
+data-color={favorite && color ? "ember" : ""}
           >
-            <IconHeart size={20} fill={isFavorite} />
+            <IconHeart size={20} fill={favorite} />
           </group>
 
           <text data-weight="700">
-            <Count from={0} to={count} duration={1500} />
+           
+           {/* <Count 
+  key={`${itemKey}-${favorite}`}
+  from={favorite ? count : 0} 
+  to={favorite ? displayCount : count} 
+  duration={1500} 
+/> */}
+
+
+<text data-weight="700">{displayCount}</text>
+
           </text>
         </group>
       </Tooltip>
@@ -225,6 +256,13 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
           onTouchStart={() => handleTouchStart(item)} // Use onTouchStart for touch event
           onTouchEnd={handleTouchEnd} // Use onTouchEnd for touch release
           onTouchMove={handleTouchMove} // Optional: Handle touch move to cancel long press
+
+
+                        data-animation-name="zoom-in"
+              data-fill-mode="backwards"
+              data-animation-duration={2 + index * 0.5}
+              data-animation-timing="fancy"
+
 
         >
           <group
@@ -340,7 +378,7 @@ data-pointer-event="none"
                     //  data-width="auto"
                   >
                     {selectedKey === item.key && (
-                    <ContentToolbar count={item.count} />
+                    <ContentToolbar count={item.count} itemKey={item.key} itemTitle={item.title} color />
                      )}
                   </group>
 
@@ -383,6 +421,16 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
             data-contain=""
             data-ink-color={selectedKey === item.key ? "main-dark" : ""}
             onDoubleClick={() => openCustomModal(item)}
+
+
+
+            
+                        data-animation-name="appear-left"
+              data-fill-mode="backwards"
+              data-animation-duration={1 + index * 0.5}
+             // data-animation-timing="fancy"
+
+
           >
             <group
               data-ratio="1:1"
@@ -417,7 +465,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
               </group>
 
               {selectedKey === item.key && (
-                <ContentToolbar count={item.count} />
+                <ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title}  />
               )}
             </group>
           </group>
@@ -473,7 +521,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
               }
             >
               <Popover
-                content={<ContentToolbar count={item.count} />}
+                content={<ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title} color/>}
                 data-space="5"
                 data-radius="15"
               //  trigger="contextmenu"
