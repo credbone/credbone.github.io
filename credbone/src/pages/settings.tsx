@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import ThemeToggle from "../components/themeToggle";
 
@@ -16,7 +17,6 @@ function Settings() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const { resetFontSize } = useFontSize();
-
   const { resetTheme } = useTheme();
 
   const { addSnackbar } = useSnackbar();
@@ -24,8 +24,11 @@ function Settings() {
   const handleReset = () => {
     resetFontSize();
     resetTheme();
+
+      localStorage.removeItem("cards_view");
+  localStorage.removeItem("fav_map");
     
-        rootRef.current?.scrollIntoView({
+      rootRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });

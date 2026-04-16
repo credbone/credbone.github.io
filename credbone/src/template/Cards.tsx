@@ -15,7 +15,7 @@ import {
 } from "../components/icon/credIcons";
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
-import Count from "../components/Coutner";
+// import Count from "../components/Coutner";
 import StuckReporter from "../components/StuckReporter";
 import { Link } from "react-router-dom";
 import { useModal } from "../components/Modal";
@@ -553,6 +553,8 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
   );
 };
 
+
+
 // Define a type for the views
 type ViewTypes = "CardView" | "ListView" | "GridView";
 
@@ -573,15 +575,28 @@ type TemplateProps = {
   onSelect: (key: string) => void;
 };
 
+
+
+
+
 const Cards: React.FC = () => {
+
+
+const savedView = localStorage.getItem("cards_view") as ViewTypes | null;
+
   const { control, watch } = useForm<FieldValues>({
     defaultValues: {
-      ViewSwitch: "CardView",
+       ViewSwitch: savedView ?? "CardView",
     },
   });
 
+  
+
   const view = watch("ViewSwitch") as ViewTypes; // Ensure the view type is correct
   const { component: ViewComponent, gridTemplate, gridGap, wrapperProps } = ViewTemplates[view];
+
+
+
 
   const [selectedKey, setSelectedKey] = useState<string>("1");
   const selectedRef = useRef<HTMLDivElement | null>(null);
@@ -591,7 +606,9 @@ const Cards: React.FC = () => {
   };
 
 
-
+  useEffect(() => {
+  localStorage.setItem("cards_view", view);
+}, [view]);
 
   useEffect(() => {
 
