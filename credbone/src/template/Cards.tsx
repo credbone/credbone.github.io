@@ -209,7 +209,7 @@ const handleShare = async () => {
                           <group data-direction="column" data-width="auto">
                             <text data-weight="700">Download</text>
                             <text data-opacity="30">
-                              Save pattern for later
+                              Save Image
                             </text>
                           </group>
                         </group>
