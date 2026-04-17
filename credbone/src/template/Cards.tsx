@@ -17,14 +17,21 @@ import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
 // import Count from "../components/Coutner";
 import StuckReporter from "../components/StuckReporter";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { Film} from "lucide-react";
+import { ArrowDown, Copy, Film} from "lucide-react";
 import { useFavMap } from "./useFavMap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+
+
+
+
+
+
+
 
 
 interface ContentToolbarProps {
@@ -32,6 +39,7 @@ interface ContentToolbarProps {
   itemKey: string;
   itemTitle: string;
   color?: boolean;
+  imageUrl?: string;
 }
 
 const modalConfig = {
@@ -47,6 +55,7 @@ const modalConfig = {
 
 const useOpenCustomModal = () => {
   const { openModal, closeModal } = useModal();
+  const [, setSearchParams] = useSearchParams();
 
   const handleOpenModal = (item: {
     key: string;
@@ -54,15 +63,20 @@ const useOpenCustomModal = () => {
     description: string;
     long_description: string;
     image: string;
-    video:string;
+    video: string;
   }) => {
+    // REMOVED: setSearchParams({ item: item.key }); 
+
     openModal({
       id: `modal-${item.key}`,
       title: item.title,
       content: (
         <CardModal
           item={item}
-          onClose={() => closeModal(`modal-${item.key}`)}
+          onClose={() => {
+            closeModal(`modal-${item.key}`);
+            setSearchParams({}); // Keep this so closing clears the URL
+          }}
         />
       ),
       hasHeader: false,
@@ -75,12 +89,42 @@ const useOpenCustomModal = () => {
   return handleOpenModal;
 };
 
-const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTitle, color }) => {
+
+const downloadImage = async (imageUrl: string, filename: string) => {
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = filename ? `${filename.replace(/\s+/g, '_')}_Credbone.jpg` : "download.jpg";
+    document.body.appendChild(link);
+    
+    link.click();
+    
+    document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    console.error("Failed to download image:", error);
+  //  addSnackbar("Failed to download image:", 1500);
+  }
+};
+
+
+const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTitle, color, imageUrl  }) => {
 
    const { addSnackbar } = useSnackbar();
   const { isFav, toggleFav } = useFavMap();
   const favorite = isFav(itemKey);
 
+
+  const handleDownloadClick = () => {
+    if (imageUrl) {
+      downloadImage(imageUrl, itemTitle);
+      addSnackbar(`Downloading ${itemTitle}...`, 1500);
+    }
+  };
 
 
   const handleFavClick = () => {
@@ -90,6 +134,22 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTit
   }
 };
   
+
+const handleShare = async () => {
+  const url = `${window.location.origin}${window.location.pathname}?item=${itemKey}`;
+ // navigator.clipboard.writeText(url);
+ 
+
+
+      try {
+      await navigator.clipboard.writeText(url);
+       addSnackbar("Link copied", 1500);
+    } catch (err) {
+      addSnackbar("Failed to copy", 1000);
+    }
+
+
+};
 
   const displayCount = count + (favorite ? 1 : 0);
 
@@ -105,7 +165,103 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTit
       data-align="center"
       //data-gap="5"
     >
-      <Tooltip delay={300} content="Share">
+<Popover 
+
+                data-space="5"
+                data-radius="20"
+                content={(closePopover) => (
+                  <group
+                    data-direction="column"
+                    data-length="220"
+                    onClick={closePopover}
+                  >
+                    <group data-direction="column" data-length="240">
+
+
+                      <group
+                   onClick={handleDownloadClick}
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.75"
+                        data-name="autoseparation"
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+                        <group
+                          data-space="15"
+                          data-align="center"
+                          data-gap="15"
+                          data-interactive=""
+                          data-radius="15"
+                          data-cursor="pointer"
+                           data-wrap="no"
+                        >
+                                                <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
+                          <group data-direction="column" data-width="auto">
+                            <text data-weight="700">Download</text>
+                            <text data-opacity="30">
+                              Save pattern for later
+                            </text>
+                          </group>
+                        </group>
+                      </group>
+
+                      <group
+                     onClick={handleShare}
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="3"
+                        data-name="autoseparation"
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+                        <group
+                          data-space="15"
+                          data-align="center"
+                          data-gap="15"
+                          data-interactive=""
+                          data-radius="15"
+                          data-cursor="pointer"
+                           data-wrap="no"
+                        >
+                                                <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Copy strokeWidth={1.5} size={20} />
+                      </group>
+                          <group data-direction="column" data-width="auto">
+                          <group data-direction="column" data-width="auto" data-contain="">
+                            <text data-weight="700">Share Link</text>
+                            <text data-opacity="30" data-ellipsis="">
+                              Copy URL for sharing
+                            </text>
+                          </group>
+                          </group>
+                        </group>
+                      </group>
+
+
+                    </group>
+                  </group>
+                )}
+
+
+>
+
         <group
           data-width="auto"
           data-space="10"
@@ -120,7 +276,8 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({ count, itemKey, itemTit
         >
           <IconShare size={20}/>
         </group>
-      </Tooltip>
+
+</Popover>
 
       <Tooltip delay={300}  content="Like">
         <group
@@ -193,8 +350,7 @@ const ViewSwitch = [
   },
 ];
 
-const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSelect }) => {
-  const openCustomModal = useOpenCustomModal();
+const CardTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSelect, onOpenModalRequest }) => {
 
 
   const [pressTimer, setPressTimer] = React.useState<NodeJS.Timeout | null>(null);
@@ -202,7 +358,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
 
   const handleLongPress = (item: any) => {
     // Trigger modal on long press
-    openCustomModal(item);
+    onOpenModalRequest(item.key);
   };
 
   const handleTouchStart = (item: any) => {
@@ -252,7 +408,7 @@ const CardTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
           data-over-color="neutral"
           data-react="scale"
           data-cursor="pointer"
-          onDoubleClick={() => openCustomModal(item)}
+         onDoubleClick={() => onOpenModalRequest(item.key)}
           onTouchStart={() => handleTouchStart(item)} // Use onTouchStart for touch event
           onTouchEnd={handleTouchEnd} // Use onTouchEnd for touch release
           onTouchMove={handleTouchMove} // Optional: Handle touch move to cancel long press
@@ -378,7 +534,7 @@ data-pointer-event="none"
                     //  data-width="auto"
                   >
                     {selectedKey === item.key && (
-                    <ContentToolbar count={item.count} itemKey={item.key} itemTitle={item.title} color />
+                    <ContentToolbar count={item.count} itemKey={item.key} itemTitle={item.title} imageUrl={item.image} color />
                      )}
                   </group>
 
@@ -397,8 +553,7 @@ data-pointer-event="none"
   );
 };
 
-const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSelect }) => {
-  const openCustomModal = useOpenCustomModal();
+const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSelect, onOpenModalRequest }) => {
   return (
     <>
       {ContentData.map((item,index) => (
@@ -420,7 +575,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
             data-name="card"
             data-contain=""
             data-ink-color={selectedKey === item.key ? "main-dark" : ""}
-            onDoubleClick={() => openCustomModal(item)}
+            onDoubleClick={() => onOpenModalRequest(item.key)}
 
 
 
@@ -465,7 +620,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
               </group>
 
               {selectedKey === item.key && (
-                <ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title}  />
+                <ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title} imageUrl={item.image}  />
               )}
             </group>
           </group>
@@ -475,8 +630,7 @@ const ListTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSel
   );
 };
 
-const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSelect }) => {
-  const openCustomModal = useOpenCustomModal();
+const GridTemplate: React.FC<TemplateProps> = ({ selectedKey, selectedRef, onSelect, onOpenModalRequest }) => {
   return (
     <>
       {ContentData.map((item,index) => (
@@ -498,7 +652,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
             //openCustomModal(item);
           }}
 
-          onDoubleClick={() => openCustomModal(item)}
+         onDoubleClick={() => onOpenModalRequest(item.key)}
         >
           <group data-wrap="no" data-align="start">
             <group
@@ -521,7 +675,7 @@ const GridTemplate: React.FC<TemplateProps> = ({ selectedKey,selectedRef, onSele
               }
             >
               <Popover
-                content={<ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title} color/>}
+                content={<ContentToolbar count={item.count}  itemKey={item.key}  itemTitle={item.title} imageUrl={item.image} color/>}
                 data-space="5"
                 data-radius="15"
               //  trigger="contextmenu"
@@ -573,14 +727,37 @@ type TemplateProps = {
   selectedKey: string;
   selectedRef: React.RefObject<HTMLDivElement>;
   onSelect: (key: string) => void;
+  onOpenModalRequest: (key: string) => void; // Add this new prop
 };
-
 
 
 
 
 const Cards: React.FC = () => {
 
+const { openModal, closeModal } = useModal();
+
+const openCustomModal = useOpenCustomModal();
+const [searchParams, setSearchParams] = useSearchParams();
+
+const lastOpenedKey = useRef<string | null>(null);
+
+useEffect(() => {
+  const itemParam = searchParams.get("item");
+  
+  if (itemParam) {
+    const item = ContentData.find((i) => i.key === itemParam);
+    if (item && lastOpenedKey.current !== itemParam) {
+      lastOpenedKey.current = itemParam;
+      openCustomModal(item);
+    }
+  } else {
+    if (lastOpenedKey.current) {
+      closeModal(`modal-${lastOpenedKey.current}`);
+      lastOpenedKey.current = null;
+    }
+  }
+}, [searchParams]);
 
 const savedView = localStorage.getItem("cards_view") as ViewTypes | null;
 
@@ -689,7 +866,12 @@ const savedView = localStorage.getItem("cards_view") as ViewTypes | null;
 {/* <separator data-horizontal=""></separator>
 <group data-height="30"></group> */}
 <group data-type="grid" data-grid-template={gridTemplate} data-gap={gridGap} {...wrapperProps} >
-  <ViewComponent selectedKey={selectedKey} onSelect={handleSelect} selectedRef={selectedRef} />
+  <ViewComponent 
+    selectedKey={selectedKey} 
+    onSelect={handleSelect} 
+    selectedRef={selectedRef} 
+    onOpenModalRequest={(key) => setSearchParams({ item: key })} // Pass the URL setter here
+  />
 </group>
 
 

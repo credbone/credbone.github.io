@@ -327,13 +327,24 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   const location = useLocation(); // Get current location
   const prevLocationRef = useRef(location); // Store previous location
 
+  // useEffect(() => {
+  //   if (prevLocationRef.current !== location) {
+  //     // Clear all modals when location changes
+  //     setModals([]); // Reset modals to an empty array to clear them
+  //     prevLocationRef.current = location; // Update the previous location
+  //   }
+  // }, [location]); // Only depend on location changes
+
+
+
   useEffect(() => {
-    if (prevLocationRef.current !== location) {
-      // Clear all modals when location changes
-      setModals([]); // Reset modals to an empty array to clear them
-      prevLocationRef.current = location; // Update the previous location
+  if (prevLocationRef.current !== location) {
+    if (prevLocationRef.current.pathname !== location.pathname) {
+      setModals([]);
     }
-  }, [location]); // Only depend on location changes
+    prevLocationRef.current = location;
+  }
+}, [location]);
 
   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
     return modal.isOpen ? index : highestIndex;

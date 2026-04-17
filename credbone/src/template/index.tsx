@@ -66,15 +66,14 @@ const Template: React.FC = () => {
   //   return () => document.removeEventListener("click", handleOutsideClick);
   // }, [isSubNavOpen]);
 
-  useEffect(() => {
-    if (viewRef.current) {
-      viewRef.current.scrollTo({
-        top: 0,
-         behavior: isDesktop ? "smooth" : "auto",
-      //  behavior: "smooth",
-      });
-    }
-  }, [location]);
+useEffect(() => {
+  if (viewRef.current) {
+    viewRef.current.scrollTo({
+      top: 0,
+      behavior: isDesktop ? "smooth" : "auto",
+    });
+  }
+}, [location.pathname]);
 
   return (
     <>
