@@ -343,10 +343,10 @@ const opacity =
             data-space="5"
             data-radius="20"
            
-            content={(closePopover) => (
+            content={(closePopover, isBottomSheet) => (
               <group
                 data-direction="column"
-                data-length="240"
+                data-length={isBottomSheet ? undefined : "240"}
                 onClick={closePopover}
                 data-contain=""
               >
