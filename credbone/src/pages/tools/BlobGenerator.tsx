@@ -339,6 +339,7 @@ const opacity =
           </Ripple>
 
           <Popover
+          bottomsheet
             data-space="5"
             data-radius="20"
            
@@ -347,6 +348,7 @@ const opacity =
                 data-direction="column"
                 data-length="240"
                 onClick={closePopover}
+                data-contain=""
               >
                 <group
                   onClick={exportSVG}

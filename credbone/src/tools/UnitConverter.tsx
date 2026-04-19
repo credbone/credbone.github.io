@@ -297,6 +297,7 @@ const UnitConverter: React.FC = () => {
             data-radius="15"
           >
             <Popover
+            bottomsheet
               placement="middle"
               data-space="5"
               data-radius="15"
@@ -400,6 +401,7 @@ const UnitConverter: React.FC = () => {
             </group>
 
             <Popover
+            bottomsheet
               placement="middle"
               data-space="5"
               data-radius="15"
@@ -488,6 +490,7 @@ const UnitConverter: React.FC = () => {
 
             {/* To Unit Select using Popover */}
             <Popover
+            bottomsheet
               placement="middle"
               data-space="5"
               data-radius="15"

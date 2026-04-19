@@ -114,6 +114,7 @@ data-contain=""
 
 const showinsidepopover = (
   <Popover
+  bottomsheet
     data-elevation="2"
     placement="auto"
     data-length="200"
@@ -152,7 +153,7 @@ const SampleData = (
 
     data-height="auto"
     data-radius="10"
-    data-border=""
+  //  data-border=""
     data-contain=""
   >
     <group data-space="5">
@@ -329,6 +330,9 @@ const TooltipPopover: React.FC = () => {
 
             <group>
               <Popover
+
+              bottomsheet
+              bottomsheetProps={{"data-space":"0", "data-radius":"35"}}
                 placement="right"
                 data-radius="35"
                 data-space="0"

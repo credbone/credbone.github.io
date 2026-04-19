@@ -1,4 +1,4 @@
-import { ArrowDown, Copy, Eraser, Pencil } from "lucide-react";
+import { ArrowDown, Copy, Eraser, Grid3x3, Pencil } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
@@ -458,16 +458,19 @@ const DotDisplayEdit: React.FC<{
             </Ripple>
 
             <Popover
+            bottomsheet
+          
               open={isExportOpen}
               onOpenChange={setIsExportOpen}
               placement="bottom"
               data-space="5"
               data-radius="20"
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <group
                   data-direction="column"
-                  data-length="240"
+                  data-length={isBottomSheet ? undefined : "240"}
                   onClick={closePopover}
+                  data-contain=""
                 >
                   <group
                     onClick={exportSVG}
@@ -595,16 +598,18 @@ const DotDisplayEdit: React.FC<{
             </Popover>
 
             <Popover
+             bottomsheet
+              dim={false}
               open={isMenuOpen}
               onOpenChange={setIsMenuOpen}
               placement="bottom"
               data-radius="20"
               data-space="5"
-              content={(closePopover) => (
-                <group data-length="200" data-gap="5" onClick={closePopover}>
+              content={(closePopover, bottomsheet) => (
+                <group data-length={bottomsheet ?undefined: "200"}>
                   <Ripple>
                     <group
-                      data-gap="15"
+                     
                       data-wrap="no"
                       data-contain=""
                       data-space="15"
@@ -614,7 +619,20 @@ const DotDisplayEdit: React.FC<{
                       data-interactive=""
                       data-over-color="neutral"
                       data-cursor="pointer"
+                      data-align='center'
+                      data-name="autoseparation"
                     >
+
+
+<group  data-wrap="no"  data-gap="15"  data-align='center'>
+                        <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <Grid3x3 strokeWidth={1.5} size={20} />
+                      </group>
+
                       <group>
                         <text data-ellipsis="" data-opacity="40">
                           Guides
@@ -643,21 +661,22 @@ const DotDisplayEdit: React.FC<{
                           Show
                         </text>
                       </group>
+</group>
                     </group>
                   </Ripple>
-                  <group data-space-horizontal="5">
-                    <separator data-horizontal="" data-opacity="5" />
-                  </group>
+
                   <Ripple>
                     <group
-                      data-gap="15"
-                      data-wrap="no"
+                   
+                      data-direction="column"
                       data-contain=""
-                      data-space="15"
+                     
                       data-radius="15"
                       data-interactive=""
                       data-over-color="neutral"
                       data-cursor="pointer"
+                      data-align="center"
+                      data-name="autoseparation"
                       onClick={() => {
                         setIsMenuOpen(false);
                         openModal({
@@ -677,9 +696,24 @@ const DotDisplayEdit: React.FC<{
                         });
                       }}
                     >
+                        <separator data-horizontal=""                      
+                      data-opacity="5"></separator>
+<group data-wrap="no"  data-space="15" data-gap="15"  data-align='center'>
+  
+
+
+                      <group
+                        data-length="20"
+                        data-opacity="30"
+                        data-interact=""
+                      >
+                        <ArrowDown strokeWidth={1.5} size={20} />
+                      </group>
+                      
                       <group>
                         <text data-ellipsis="">Import</text>
                       </group>
+</group>
                     </group>
                   </Ripple>
                 </group>

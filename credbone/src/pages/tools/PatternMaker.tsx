@@ -134,6 +134,15 @@ const PatternMaker: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
+
+    const bottomsheetConfig = {
+
+"data-space":"0",
+
+
+};
+
+
   const tileGrid = (
     <>
       {SVG_TILES.map((tile, index) => {
@@ -295,11 +304,14 @@ const PatternMaker: React.FC = () => {
                 data-right="0"
               >
                 <Popover
+                  bottomsheet
+                  dim={false}
+                  bottomsheetProps={bottomsheetConfig}
                   placement="top"
                   data-space="0"
                   data-radius="30"
                   data-length="600"
-                  content={(closePopover) => (
+                  content={(closePopover, isBottomSheet) => (
                     <group
                       data-direction="column"
                       data-wrap="no"
@@ -330,7 +342,7 @@ const PatternMaker: React.FC = () => {
                           data-interactive=""
                           data-space-vertical="15"
                           data-radius="15"
-                          data-space-horizontal="20"
+                          data-space-horizontal="30"
                           data-background="adaptive-gray"
                           onClick={resetSelection}
                           data-width="auto"
@@ -403,15 +415,17 @@ const PatternMaker: React.FC = () => {
               </Ripple>
 
               <Popover
+              bottomsheet
                 data-space="5"
                 data-radius="20"
-                content={(closePopover) => (
+                content={(closePopover, isBottomSheet) => (
                   <group
                     data-direction="column"
-                    data-length="220"
+                    data-length={isBottomSheet ? undefined : "220"}
                     onClick={closePopover}
+                    data-contain=""
                   >
-                    <group data-direction="column" data-length="240">
+                    <group data-direction="column" >
                       <group
                         data-align="center"
                         data-justify="center"

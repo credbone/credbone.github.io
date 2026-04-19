@@ -16,6 +16,17 @@ function formatTime(ms: number): string {
   return `${String(minutes).padStart(2, "0")} : ${String(seconds).padStart(2, "0")} . ${String(centis).padStart(2, "0")}`;
 }
 
+
+  const bottomsheetConfig = {
+ // "data-height": "400",
+  "data-scroll":"",
+  "data-direction":"column",
+"data-wrap":"no",
+"data-space":"0",
+"data-scrollbar":"none"
+
+};
+
 const StopWatch: React.FC = () => {
   const [elapsed, setElapsed] = useState(0);
   const [running, setRunning] = useState(false);
@@ -211,6 +222,11 @@ const StopWatch: React.FC = () => {
               </group>
             ) : (
               <Popover
+
+
+              bottomsheet
+                  bottomsheetProps={bottomsheetConfig}
+
                 placement="top"
                 // data-backdrop="20"
                 data-radius="25"
@@ -220,14 +236,14 @@ const StopWatch: React.FC = () => {
                 
                 data-length="220"
 
-                content={(closePopover) => (
-                  <group data-max-height="270">
+                content={(closePopover, isBottomSheet) => (
+                  <group data-max-height={isBottomSheet ? "400" : "270"}>
 
 
 
                     <group
                       data-direction="column"
-                      data-space="10"
+                      data-space={isBottomSheet ? "20" : "10"}
                       data-wrap="no"
                       data-contain=""
                       data-space-bottom="0"
@@ -274,7 +290,7 @@ const StopWatch: React.FC = () => {
                     </group>
 
                     <group
-                      data-space="10"
+                       data-space={isBottomSheet ? "20" : "10"}
                       data-background="context-bottom"
                       data-shrink="no"
                       data-position="sticky"

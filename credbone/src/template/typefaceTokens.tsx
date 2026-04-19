@@ -158,11 +158,15 @@ const resetValues = () => {
         >
           <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
             <Popover
+
+
+bottomsheet
+
               placement="middle"
               data-radius="10"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover) => (
+              content={(closePopover, isbottomsheet) => (
                 <group
                   data-direction="column"
                   //   data-length="240"
@@ -178,7 +182,7 @@ const resetValues = () => {
                       data-align="center"
                       data-interactive=""
                       data-over-color="neutral"
-                      //  data-radius="5"
+                        data-radius={isbottomsheet ? "10" : undefined}
                       data-cursor="pointer"
                       data-space="15"
                       data-gap="10"
@@ -251,13 +255,14 @@ const resetValues = () => {
             <separator data-horizontal=""></separator>
 
             <Popover
+            bottomsheet
               //   data-backdrop="10"
               placement="middle"
               data-radius="10"
               data-space="0"
               //data-space-vertical="10"
               data-scroll=""
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <group
                   data-direction="column"
                   //  data-length="240"
@@ -278,7 +283,7 @@ const resetValues = () => {
                         data-align="center"
                         data-interactive=""
                         data-over-color="neutral"
-                        //  data-radius="5"
+                                       data-radius={isBottomSheet ? "10" : undefined}
                         data-cursor="pointer"
                         data-space="15"
                       >
@@ -292,7 +297,7 @@ const resetValues = () => {
                   <group
                     data-sticky="bottom"
                     data-gap="10"
-                    data-background="context"
+                    data-background={isBottomSheet ? undefined : "context"}
                     data-shrink="0"
                   >
                     <group>
@@ -303,7 +308,7 @@ const resetValues = () => {
                       data-align="center"
                       data-interactive=""
                       data-over-color="neutral"
-                      //  data-radius="5"
+                                                data-radius={isBottomSheet ? "10" : undefined}
                       data-cursor="pointer"
                       data-space="15"
                       onClick={closePopover}
@@ -513,11 +518,14 @@ const resetValues = () => {
 
           <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
             <Popover
+
+bottomsheet
+
               placement="middle"
               data-radius="10"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <group
                   data-direction="column"
                   //   data-length="240"
@@ -536,7 +544,7 @@ const resetValues = () => {
                       data-align="center"
                       data-interactive=""
                       data-over-color="neutral"
-                      //  data-radius="5"
+                        data-radius={isBottomSheet ? "10" : undefined}
                       data-cursor="pointer"
                       data-space="15"
                       data-gap="10"

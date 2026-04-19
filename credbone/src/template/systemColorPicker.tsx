@@ -76,14 +76,18 @@ interface ColorPickerProps {
 
 const SystemColorPicker: React.FC<ColorPickerProps> = ({ selectedColor, handleColorSelect }) => (
     <Popover
+    
+
+    bottomsheet
+
     placement="mouse"
     data-radius="25"
     data-scroll=""
     data-space="20"
-    content={(closePopover) => (
+    content={(closePopover, isBottomSheet) => (
       <group
         data-direction="column"
-        data-length="270"
+        data-length={isBottomSheet ? undefined : "270"}
         //  onClick={closePopover}
         data-gap="20"
       >

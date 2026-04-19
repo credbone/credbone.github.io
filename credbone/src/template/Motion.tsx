@@ -313,11 +313,12 @@ const Motion: React.FC = () => {
         <group data-gap="15">
           <group data-elevation="2" data-background="context" data-radius="20" data-contain="" data-index="1">
             <Popover
+            bottomsheet
               placement="middle"
               data-radius="10"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <group
                   data-direction="column"
                   //   data-length="240"
@@ -335,7 +336,7 @@ const Motion: React.FC = () => {
                       data-align="center"
                       data-interactive=""
                       data-over-color="neutral"
-                      //  data-radius="5"
+                       data-radius={isBottomSheet ? "10" : undefined}
                       data-cursor="pointer"
                       data-space="15"
                       data-gap="10"

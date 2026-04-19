@@ -14,6 +14,7 @@ const ThemePickerNav: React.FC = () => {
 
     <group data-space="30" data-background="main-background">
       <Popover
+      data-direction="row"
         placement="top"
         content={
           <group

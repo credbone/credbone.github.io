@@ -145,6 +145,7 @@ const WeatherWidget: React.FC = () => {
 
   const selectCity = (
     <Popover
+    bottomsheet
       data-radius="15"
       data-space="5"
       placement="middle"
@@ -355,6 +356,7 @@ const WeatherWidget: React.FC = () => {
 
           <separator data-horizontal="dotted" data-opacity="20"></separator>
           <Popover
+          bottomsheet
             data-radius="25"
             data-space="10"
             placement="top"

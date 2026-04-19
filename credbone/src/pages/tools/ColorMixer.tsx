@@ -840,6 +840,7 @@ const ColorMixer: React.FC = () => {
           >
             <group data-gap="10">
               <Popover
+              bottomsheet
                 data-space="5"
                 data-radius="20"
                 content={(closePopover) => (
@@ -847,6 +848,7 @@ const ColorMixer: React.FC = () => {
                     data-direction="column"
                     data-length="250"
                     onClick={closePopover}
+                    data-contain=""
                   >
                     <group
                       onClick={downloadSVG}
@@ -1018,6 +1020,7 @@ const ColorMixer: React.FC = () => {
               </Ripple>
 
               <Popover
+              bottomsheet
                 placement="middle"
                 data-space="5"
                 data-radius="15"

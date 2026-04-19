@@ -26,6 +26,17 @@ export default function App() {
     removeSelected,
   } = useEditorState();
 
+
+  const bottomsheetConfig = {
+  "data-height": "600",
+  "data-scroll":"",
+  "data-direction":"column",
+"data-wrap":"no",
+"data-space":"0",
+"data-scrollbar":"none"
+
+};
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const tag = (document.activeElement as HTMLElement)?.tagName;
@@ -120,7 +131,8 @@ export default function App() {
 
           <group data-index="2" data-adaptive="mobile-1000">
             <Popover
-           
+                     bottomsheet
+          bottomsheetProps={bottomsheetConfig}
             // data-backdrop="20"
               data-scrollbar="none"
               data-elevation="2"
@@ -251,6 +263,8 @@ data-direction="column"
       >
         <group>
           <Popover
+          bottomsheet
+          bottomsheetProps={bottomsheetConfig}
          //  data-backdrop="20"
             data-elevation="2"
             data-space="0"

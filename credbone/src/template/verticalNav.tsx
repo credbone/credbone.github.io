@@ -80,11 +80,11 @@ useEffect(() => {
       else axisRef.current = "y";
     }
 
-    if (axisRef.current === "x" && deltaX > 0) {
-      e.preventDefault();
-      deltaRef.current = deltaX;
-      el.style.transform = `translateX(-${deltaX}px)`;
-    }
+if (axisRef.current === "x" && deltaX > 0) {
+  if (e.cancelable) e.preventDefault(); // only if browser allows
+  deltaRef.current = deltaX;
+  el.style.transform = `translateX(-${deltaX}px)`;
+}
   };
 
   const onTouchEnd = () => {

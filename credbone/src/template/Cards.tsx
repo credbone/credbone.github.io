@@ -103,6 +103,10 @@ const downloadImage = async (imageUrl: string, filename: string) => {
   }
 };
 
+
+
+
+
 const ContentToolbar: React.FC<ContentToolbarProps> = ({
   count,
   itemKey,
@@ -142,6 +146,10 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
 
   const displayCount = count + (favorite ? 1 : 0);
 
+
+
+
+
   return (
     <group
       onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
@@ -154,12 +162,16 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
       //data-gap="5"
     >
       <Popover
-        data-space="5"
-        data-radius="20"
-        content={(closePopover) => (
+
+
+
+      bottomsheet
+      data-space="5"
+      data-radius="20"
+      content={(closePopover, isBottomSheet) => (
           <group
             data-direction="column"
-            data-length="220"
+            data-length={isBottomSheet ? undefined :"220"}
             onClick={closePopover}
           >
             <group data-direction="column" >
@@ -196,6 +208,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
 
               <group
                 onClick={handleShare}
+
                 data-animation-name="appear-bottom"
                 data-fill-mode="backwards"
                 data-animation-duration="3"
@@ -247,6 +260,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
           data-align="center"
           data-gap="10"
           data-cursor="pointer"
+
         >
           <IconShare size={20} />
         </group>
@@ -613,11 +627,16 @@ const ListTemplate: React.FC<TemplateProps> = ({
 };
 
 const GridTemplate: React.FC<TemplateProps> = ({
+  
   selectedKey,
   selectedRef,
   onSelect,
   onOpenModalRequest,
 }) => {
+
+ //   const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+
   return (
     <>
       {ContentData.map((item, index) => (
@@ -667,6 +686,10 @@ const GridTemplate: React.FC<TemplateProps> = ({
               }
             >
               <Popover
+
+            //  open={isMenuOpen}
+            //  onOpenChange={setIsMenuOpen}
+
                 content={
                   <ContentToolbar
                     count={item.count}
@@ -710,6 +733,8 @@ const GridTemplate: React.FC<TemplateProps> = ({
     </>
   );
 };
+
+
 
 // Define a type for the views
 type ViewTypes = "CardView" | "ListView" | "GridView";

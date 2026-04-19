@@ -262,6 +262,7 @@ const Colors: React.FC = () => {
             </text>
             <separator data-vertical="adaptive-1200" data-height=""></separator>
             <Popover
+              data-direction="row"
               content={
                 <group
                   data-animation-name="appear-bottom"
@@ -303,13 +304,17 @@ const Colors: React.FC = () => {
             <CustomColorPicker target="primary" />
             <separator data-vertical="adaptive" data-height=""></separator>
             <Popover
+
+bottomsheet
+
               data-space="5"
               data-radius="20"
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <group
                   data-direction="column"
-                  data-length="240"
+                  data-length={isBottomSheet ? undefined: "240"}
                   onClick={closePopover}
+                  data-contain=""
                 >
                   <group
                     data-animation-name="appear-bottom"
@@ -426,6 +431,7 @@ const Colors: React.FC = () => {
             </text>
             <separator data-vertical="adaptive-1200" data-height=""></separator>
             <Popover
+            data-direction="row"
               content={
                 <group
                   data-animation-name="appear-bottom"
@@ -589,6 +595,8 @@ const Colors: React.FC = () => {
                     (color[shade.key as keyof typeof color] as string) ?? "";
                   return (
                     <Popover
+
+                    data-contain=""
                       key={shade.key}
                       data-background={undefined}
                       data-length="140"

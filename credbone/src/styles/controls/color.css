@@ -350,6 +350,8 @@
 
 [data-background="context-top"] {background-image: linear-gradient( var(--context) 0%, transparent );}
 
+[data-background="context-main-background"] {background-image: linear-gradient( var(--context) 0%, var(--background) );}
+
 [data-color="transparent"]{color:transparent}
 [data-background-clip="text"]{background-clip: text;}
 

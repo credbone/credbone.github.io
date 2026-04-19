@@ -505,6 +505,8 @@ text[data-width="auto"]{width: initial;}
 
 
 
+[data-max-length="fit-20"]{max-width: calc(100% - 20px);}
+[data-max-height="fit-20"]{max-height: calc(100% - 20px);}
 
 
 
@@ -1241,6 +1243,10 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-appearance="none"] {appearance:none;-webkit-appearance: none;}
+
+[data-index="9996"]{z-index: 9996;}
+[data-index="9997"]{z-index: 9997;}
+[data-index="9998"]{z-index: 9998;}
 
 
 [data-index="999"] {z-index: 999;}
