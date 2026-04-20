@@ -78,7 +78,7 @@ export const routesData: RouteData[] = [
     "path": "../Components/TooltipAndPopover",
     "title": "Tooltip & Popover",
     "description": "Contextual overlay components for hints and lightweight interactions.",
-    "tags": ["tooltip", "popover", "overlay", "hint", "hover",]
+    "tags": ["tooltip", "popover","bottom sheet", "overlay", "hint", "hover",]
   },
   {
     "path": "../Components/Snackbar",

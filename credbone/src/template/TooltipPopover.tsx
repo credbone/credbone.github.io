@@ -361,6 +361,7 @@ const TooltipPopover: React.FC = () => {
               data-direction="column"
             >
               <Popover
+              bottomsheet
                 placement="right"
                 content={<Calculator />}
                 data-length="260"

@@ -381,7 +381,7 @@ if (axisRef.current === "y" && deltaY > 0) {
               <group
                ref={dimRef}
                 data-background="dim"
-                data-index="9997"
+                data-index="9998"
                 data-position="absolute"
                 data-bottom="0"
                 data-left="0"
