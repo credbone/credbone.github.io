@@ -24,6 +24,7 @@ import TemplatePageHeader from "./TemplatePageHeader";
 import { ArrowDown, Copy, Film, Link2 } from "lucide-react";
 import { useFavMap } from "./useFavMap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
+import MenuItem from "../components/MenuItem";
 
 interface ContentToolbarProps {
   count: number;
@@ -147,7 +148,10 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
   const displayCount = count + (favorite ? 1 : 0);
 
 
-
+const menuItems = [
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save Image", onClick: handleDownloadClick, },
+  { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: handleShare, },
+];
 
 
   return (
@@ -176,7 +180,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
 
           >
             <group data-direction="column" data-contain="" >
-              <group
+              {/* <group
                 onClick={handleDownloadClick}
                 data-animation-name="appear-bottom"
                 data-fill-mode="backwards"
@@ -245,7 +249,37 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
                     </group>
                   </group>
                 </group>
-              </group>
+              </group> */}
+
+
+
+                    {menuItems.map((item, index) => (
+                      <group
+                       key={item.title}
+                        data-name="autoseparation"
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+
+                        <MenuItem
+                         
+                          icon={item.icon}
+                          title={item.title}
+                          description={item.description}
+                          onClick={item.onClick}
+                          data-space={isBottomSheet ? "20" : "15"}
+                          data-gap={isBottomSheet ? "20" : "15"}
+                        />
+                      </group>
+                    ))}
+
+
             </group>
           </group>
         )}

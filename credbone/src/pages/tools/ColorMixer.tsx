@@ -4,10 +4,11 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 
 import Ripple from "../../components/Ripple";
-import { ArrowDown, Copy, Plus } from "lucide-react";
+import { ArrowDown, Copy, Link2, Plus } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import { isMobile } from "react-device-detect";
+import MenuItem from "../../components/MenuItem";
 
 type InterpolationMethod = "rgb" | "lrgb" | "lab" | "via";
 type DisplayMode = "gradient" | "steps";
@@ -17,6 +18,12 @@ const defaultSteps = 8;
 const defaultMethod = "lab";
 const defaultDisplayMode = "steps";
 const defaultGamma = 1.0;
+
+
+
+
+
+
 
 const ColorMixer: React.FC = () => {
   const { addSnackbar } = useSnackbar();
@@ -577,6 +584,17 @@ const ColorMixer: React.FC = () => {
     }
   };
 
+
+
+  const menuItems = [
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save gradient for later", onClick: downloadSVG, },
+  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copyToClipboard, },
+  { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: copyShareLink, },
+  { icon: "", title: "CSS", description: "Paste into your stylesheet", onClick: copyCSSGradient, },
+];
+
+
+
   return (
     <group data-align="start" data-direction="column">
       <group
@@ -840,7 +858,7 @@ const ColorMixer: React.FC = () => {
           >
             <group data-gap="10">
               <Popover
-              bottomsheet
+                bottomsheet
                 data-space="5"
                 data-radius="20"
                 content={(closePopover, isBottomSheet) => (
@@ -850,7 +868,7 @@ const ColorMixer: React.FC = () => {
                     onClick={closePopover}
                     data-contain=""
                   >
-                    <group
+                    {/* <group
                       onClick={downloadSVG}
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
@@ -916,6 +934,42 @@ const ColorMixer: React.FC = () => {
                       </group>
                     </group>
                     <group
+                      onClick={copyShareLink}
+                      data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="3.75"
+                      data-name="autoseparation"
+                    >
+                      <separator
+                        data-horizontal=""
+                        data-margin-horizontal="10"
+                        data-opacity="5"
+                      ></separator>
+                      <group
+                         data-space={isBottomSheet ? "20" : "15"}
+                        data-align="center"
+                        data-gap="15"
+                        data-interactive=""
+                        data-radius="15"
+                        data-cursor="pointer"
+                        data-wrap="no"
+                      >
+                                                <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <Link2 strokeWidth={1.5} size={20} />
+                        </group>
+                        <group data-direction="column" data-width="auto">
+                          <text data-weight="700">Share Link</text>
+                          <text data-opacity="30">
+                            Copy URL for sharing
+                          </text>
+                        </group>
+                      </group>
+                    </group>
+                    <group
                       onClick={copyCSSGradient}
                       data-animation-name="appear-bottom"
                       data-fill-mode="backwards"
@@ -944,7 +998,33 @@ const ColorMixer: React.FC = () => {
                           </text>
                         </group>
                       </group>
-                    </group>
+                    </group> */}
+
+                    {menuItems.map((item, index) => (
+                      <group
+                       key={item.title}
+                        data-name="autoseparation"
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+
+                        <MenuItem
+                         
+                          icon={item.icon}
+                          title={item.title}
+                          description={item.description}
+                          onClick={item.onClick}
+                          data-space={isBottomSheet ? "20" : "15"}
+                          data-gap={isBottomSheet ? "20" : "15"}
+                        />
+                      </group>
+                    ))}
                   </group>
                 )}
               >
@@ -1020,7 +1100,7 @@ const ColorMixer: React.FC = () => {
               </Ripple>
 
               <Popover
-              bottomsheet
+                bottomsheet
                 placement="middle"
                 data-space="5"
                 data-radius="15"
@@ -1039,7 +1119,7 @@ const ColorMixer: React.FC = () => {
                         // data-direction="column"
                         data-interactive=""
                         data-radius="10"
-                              data-space={isBottomSheet ? "20" :"15"}
+                        data-space={isBottomSheet ? "20" : "15"}
                         data-space-horizontal="20"
                         key={m}
                         data-cursor="pointer"

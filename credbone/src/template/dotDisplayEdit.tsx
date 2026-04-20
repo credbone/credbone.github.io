@@ -7,6 +7,7 @@ import Ripple from "../components/Ripple";
 
 import { IconMoreHoriz } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
+import MenuItem from "../components/MenuItem";
 
 // Cursor size definitions
 // small = r:2, suffix ".2" | default = r:4, no suffix | large = r:6, suffix ".3"
@@ -416,6 +417,13 @@ const DotDisplayEdit: React.FC<{
     </group>
   );
 
+
+  const menuItems = [
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save icon for later", onClick: exportSVG, },
+  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copySVGToClipboard, },
+  { icon: "", title: "Matrix", description: "Grab Raw Data", onClick: copyRawData, },
+];
+
   return (
     <>
       <group
@@ -472,7 +480,7 @@ const DotDisplayEdit: React.FC<{
                   onClick={closePopover}
                   data-contain=""
                 >
-                  <group
+                  {/* <group
                     onClick={exportSVG}
                     data-animation-name="appear-top"
                     data-fill-mode="backwards"
@@ -571,7 +579,37 @@ const DotDisplayEdit: React.FC<{
                         <text data-opacity="30">Grab Raw Data</text>
                       </group>
                     </group>
-                  </group>
+                  </group> */}
+
+
+                    {menuItems.map((item, index) => (
+                      <group
+                      key={item.title}
+                        data-name="autoseparation"
+                        data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+
+                        <MenuItem
+                          
+                          icon={item.icon}
+                          title={item.title}
+                          description={item.description}
+                          onClick={item.onClick}
+                          data-space={isBottomSheet ? "20" : "15"}
+                          data-gap={isBottomSheet ? "20" : "15"}
+                        />
+                      </group>
+                    ))}
+
+
+
                 </group>
               )}
             >

@@ -12,6 +12,7 @@ import { ArrowDown, Copy } from "lucide-react";
 import { getPalette } from "../styles/skin";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
+import MenuItem from "../components/MenuItem";
 
 export const ColorPalette = [
   {
@@ -225,6 +226,12 @@ const Colors: React.FC = () => {
       : NeutralShades.light[key];
   };
 
+
+  const menuItems = [
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save palette for later", onClick: () => downloadPaletteSVG(theme), },
+  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: () => copyPaletteSVG(theme), },
+];
+
   return (
     <group
       data-space="30"
@@ -316,7 +323,7 @@ bottomsheet
                   onClick={closePopover}
                   data-contain=""
                 >
-                  <group
+                  {/* <group
                     data-animation-name="appear-bottom"
                     data-fill-mode="backwards"
                     data-animation-duration="2.75"
@@ -380,7 +387,36 @@ bottomsheet
                         </text>
                       </group>
                     </group>
-                  </group>
+                  </group> */}
+
+
+                    {menuItems.map((item, index) => (
+                      <group
+                       key={item.title}
+                        data-name="autoseparation"
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
+                      >
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+
+                        <MenuItem
+                         
+                          icon={item.icon}
+                          title={item.title}
+                          description={item.description}
+                          onClick={item.onClick}
+                          data-space={isBottomSheet ? "20" : "15"}
+                          data-gap={isBottomSheet ? "20" : "15"}
+                        />
+                      </group>
+                    ))}
+
+
                 </group>
               )}
             >

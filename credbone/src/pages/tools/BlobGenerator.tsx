@@ -4,6 +4,7 @@ import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
 import { ArrowDown, Copy } from "lucide-react";
+import MenuItem from "../../components/MenuItem";
 
 const generator = ({ size = 100, growth = 6, edges = 6, seed = null } = {}) => {
   var { destPoints, seedValue } = _createPoints(size, growth, edges, seed);
@@ -195,6 +196,12 @@ const pathElements = paths
     }
   };
 
+const menuItems = [
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save blob for later", onClick: exportSVG, },
+  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copySVGToClipboard, },
+];
+
+
   return (
     <group
       data-type="grid"
@@ -350,70 +357,36 @@ const opacity =
                 onClick={closePopover}
                 data-contain=""
               >
-                <group
-                  onClick={exportSVG}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="2.75"
-                  data-name="autoseparation"
-                >
-                  <group
-                     data-space={isBottomSheet ? "20" : "15"}
-                    
-                    data-align="center"
-                    data-gap="15"
-                    data-interactive=""
-                    data-radius="15"
-                    data-cursor="pointer"
-                     data-wrap="no"
-                  >
-                                          <group
-                        data-length="20"
-                        data-opacity="30"
-                        data-interact=""
+
+
+                    {menuItems.map((item, index) => (
+                      <group
+                       key={item.title}
+                        data-name="autoseparation"
+                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration={2 + index * 0.5}
                       >
-                        <ArrowDown strokeWidth={1.5} size={20} />
+                        <separator
+                          data-horizontal=""
+                          data-margin-horizontal="10"
+                          data-opacity="5"
+                        ></separator>
+
+                        <MenuItem
+                         
+                          icon={item.icon}
+                          title={item.title}
+                          description={item.description}
+                          onClick={item.onClick}
+                          data-space={isBottomSheet ? "20" : "15"}
+                          data-gap={isBottomSheet ? "20" : "15"}
+                        />
                       </group>
-                    <group data-direction="column" data-width="auto">
-                      <text data-weight="700">Download</text>
-                      <text data-opacity="30">Save blob for later</text>
-                    </group>
-                  </group>
-                </group>
-                <group
-                  onClick={copySVGToClipboard}
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
-                  data-animation-duration="3.25"
-                  data-name="autoseparation"
-                >
-                  <separator
-                    data-horizontal=""
-                    data-margin-horizontal="10"
-                    data-opacity="5"
-                  ></separator>
-                  <group
-                     data-space={isBottomSheet ? "20" : "15"}
-                    data-align="center"
-                    data-gap="15"
-                    data-interactive=""
-                    data-radius="15"
-                    data-cursor="pointer"
-                     data-wrap="no"
-                  >
-                                          <group
-                                            data-length="20"
-                                            data-opacity="30"
-                                            data-interact=""
-                                          >
-                                            <Copy strokeWidth={1.5} size={20} />
-                                          </group>
-                    <group data-direction="column" data-width="auto">
-                      <text data-weight="700">Copy</text>
-                      <text data-opacity="30">Paste in Figma or code ...</text>
-                    </group>
-                  </group>
-                </group>
+                    ))}
+
+
+
               </group>
             )}
           >
