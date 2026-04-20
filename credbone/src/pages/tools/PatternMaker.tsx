@@ -431,7 +431,7 @@ const PatternMaker: React.FC = () => {
                         data-justify="center"
                       >
                         <group
-                          data-space="15"
+                          data-space={isBottomSheet ? "20" : "15"}
                           data-radius="15"
                           data-height="fit"
                           data-animation-name="appear-bottom"
@@ -466,7 +466,7 @@ const PatternMaker: React.FC = () => {
                           data-opacity="5"
                         ></separator>
                         <group
-                          data-space="15"
+                           data-space={isBottomSheet ? "20" : "15"}
                           data-align="center"
                           data-gap="15"
                           data-interactive=""
@@ -503,7 +503,7 @@ const PatternMaker: React.FC = () => {
                           data-opacity="5"
                         ></separator>
                         <group
-                          data-space="15"
+                           data-space={isBottomSheet ? "20" : "15"}
                           data-align="center"
                           data-gap="15"
                           data-interactive=""
@@ -540,7 +540,7 @@ const PatternMaker: React.FC = () => {
                           data-opacity="5"
                         ></separator>
                         <group
-                          data-space="15"
+                           data-space={isBottomSheet ? "20" : "15"}
                           data-align="center"
                           data-gap="15"
                           data-interactive=""

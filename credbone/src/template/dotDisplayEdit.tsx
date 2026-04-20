@@ -480,7 +480,7 @@ const DotDisplayEdit: React.FC<{
                     data-name="autoseparation"
                   >
                     <group
-                      data-space="15"
+                       data-space={isBottomSheet ? "20" : "15"}
                       data-align="center"
                       data-gap="15"
                       data-interactive=""
@@ -515,7 +515,7 @@ const DotDisplayEdit: React.FC<{
                       data-opacity="5"
                     ></separator>
                     <group
-                      data-space="15"
+                       data-space={isBottomSheet ? "20" : "15"}
                       data-align="center"
                       data-gap="15"
                       data-interactive=""
@@ -552,7 +552,7 @@ const DotDisplayEdit: React.FC<{
                       data-opacity="5"
                     ></separator>
                     <group
-                      data-space="15"
+                      data-space={isBottomSheet ? "20" : "15"}
                       data-align="center"
                       data-gap="15"
                       data-interactive=""
@@ -605,14 +605,14 @@ const DotDisplayEdit: React.FC<{
               placement="bottom"
               data-radius="20"
               data-space="5"
-              content={(closePopover, bottomsheet) => (
-                <group data-length={bottomsheet ?undefined: "200"}>
+              content={(closePopover, isBottomSheet) => (
+                <group data-length={isBottomSheet ? undefined: "200"}>
                   <Ripple>
                     <group
                      
                       data-wrap="no"
                       data-contain=""
-                      data-space="15"
+                       data-space={isBottomSheet ? "20" : "15"}
                       data-radius="15"
                       //    data-background="adaptive-gray"
                       onClick={toggleoverlay}
@@ -698,7 +698,7 @@ const DotDisplayEdit: React.FC<{
                     >
                         <separator data-horizontal=""                      
                       data-opacity="5"></separator>
-<group data-wrap="no"  data-space="15" data-gap="15"  data-align='center'>
+<group data-wrap="no"   data-space={isBottomSheet ? "20" : "15"} data-gap="15"  data-align='center'>
   
 
 

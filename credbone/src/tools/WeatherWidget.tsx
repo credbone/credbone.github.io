@@ -361,13 +361,13 @@ const WeatherWidget: React.FC = () => {
             data-space="10"
             placement="top"
             data-length="320"
-            content={(closePopover) => (
+            content={(closePopover, isBottomSheet) => (
               <group data-direction="column" data-gap="10" data-align="start">
                 <group
                   data-interactive=""
                   data-cursor="pointer"
                   data-radius="15"
-                  data-width="auto"
+                  data-width={isBottomSheet ? undefined :"auto"}
                   data-contain=""
                   data-space="15"
                   data-wrap="no"
@@ -382,7 +382,7 @@ const WeatherWidget: React.FC = () => {
                     Show Forecast
                   </text>
 
-                  <separator data-vertical="" data-height="fit"></separator>
+                  <separator data-vertical="" data-height="fit" data-position="right"></separator>
                   <text data-weight="700">{showForecast ? "On" : "No"}</text>
                 </group>
 

@@ -173,8 +173,9 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
             data-direction="column"
             data-length={isBottomSheet ? undefined :"220"}
             onClick={closePopover}
+
           >
-            <group data-direction="column" >
+            <group data-direction="column" data-contain="" >
               <group
                 onClick={handleDownloadClick}
                 data-animation-name="appear-bottom"
@@ -188,7 +189,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
                   data-opacity="5"
                 ></separator>
                 <group
-                  data-space="15"
+                   data-space={isBottomSheet ? "20" : "15"}
                   data-align="center"
                   data-gap="15"
                   data-interactive=""
@@ -220,7 +221,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
                   data-opacity="5"
                 ></separator>
                 <group
-                  data-space="15"
+                  data-space={isBottomSheet ? "20" : "15"}
                   data-align="center"
                   data-gap="15"
                   data-interactive=""

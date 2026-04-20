@@ -843,7 +843,7 @@ const ColorMixer: React.FC = () => {
               bottomsheet
                 data-space="5"
                 data-radius="20"
-                content={(closePopover) => (
+                content={(closePopover, isBottomSheet) => (
                   <group
                     data-direction="column"
                     data-length="250"
@@ -858,7 +858,7 @@ const ColorMixer: React.FC = () => {
                       data-name="autoseparation"
                     >
                       <group
-                        data-space="15"
+                        data-space={isBottomSheet ? "20" : "15"}
                         data-align="center"
                         data-gap="15"
                         data-interactive=""
@@ -892,7 +892,7 @@ const ColorMixer: React.FC = () => {
                         data-opacity="5"
                       ></separator>
                       <group
-                        data-space="15"
+                        data-space={isBottomSheet ? "20" : "15"}
                         data-align="center"
                         data-gap="15"
                         data-interactive=""
@@ -928,7 +928,7 @@ const ColorMixer: React.FC = () => {
                         data-opacity="5"
                       ></separator>
                       <group
-                        data-space="15"
+                         data-space={isBottomSheet ? "20" : "15"}
                         data-align="center"
                         data-gap="15"
                         data-interactive=""
@@ -1024,7 +1024,7 @@ const ColorMixer: React.FC = () => {
                 placement="middle"
                 data-space="5"
                 data-radius="15"
-                content={(closePopover) => (
+                content={(closePopover, isBottomSheet) => (
                   <group
                     //   data-length="200"
                     data-direction="column"
@@ -1039,7 +1039,7 @@ const ColorMixer: React.FC = () => {
                         // data-direction="column"
                         data-interactive=""
                         data-radius="10"
-                        data-space="15"
+                              data-space={isBottomSheet ? "20" :"15"}
                         data-space-horizontal="20"
                         key={m}
                         data-cursor="pointer"
