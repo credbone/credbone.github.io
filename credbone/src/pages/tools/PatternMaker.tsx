@@ -139,6 +139,7 @@ const PatternMaker: React.FC = () => {
     const bottomsheetConfig = {
 
 "data-space":"0",
+// "data-background" : "main-background"
 
 
 };
@@ -327,7 +328,7 @@ const PatternMaker: React.FC = () => {
                     >
                       <group data-scroll="scroll">
                         <group
-                          data-space="20"
+                          data-space="30"
                           data-gap="15"
                           data-wrap="no"
                           data-width="auto"
@@ -342,14 +343,14 @@ const PatternMaker: React.FC = () => {
                       <group
                         data-wrap="no"
                         data-align="center"
-                        data-space="20"
+                        data-space="30"
                         data-gap="10"
                       >
                         <group
                           data-cursor="pointer"
                           data-interactive=""
                           data-space-vertical="15"
-                          data-radius="15"
+                          data-radius="30"
                           data-space-horizontal="30"
                           data-background="adaptive-gray"
                           onClick={resetSelection}
@@ -362,7 +363,7 @@ const PatternMaker: React.FC = () => {
                           data-cursor="pointer"
                           data-interactive=""
                           data-space-vertical="15"
-                          data-radius="15"
+                          data-radius="30"
                           data-space-horizontal="20"
                           data-background="text"
                           data-color="main-background"

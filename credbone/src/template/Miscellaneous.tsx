@@ -242,7 +242,7 @@ const Miscellaneous: React.FC = () => {
 
         <group
           data-border=""
-          data-radius="20"
+          data-radius="30"
           data-gap="1"
           data-direction="column"
           data-type="grid"
