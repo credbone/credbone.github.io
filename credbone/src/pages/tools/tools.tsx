@@ -62,8 +62,8 @@ function Tools() {
                     <text
                       data-wrap="wrap"
                       data-line="1.5"
-                      data-length="300"
-                      data-text-size="medium-small"
+                      data-length="220"
+                     // data-text-size="medium-small"
                     >
                       Built with the system's own resources, to meet various UI
                       and design needs.
@@ -88,8 +88,8 @@ function Tools() {
             data-font-type="hero"
             data-ellipsis=""
             data-line="1"
-            data-text-size="48"
-            data-text-clamp="48"
+            data-text-size="36"
+            data-text-clamp="36"
             data-max-length="800"
           >
             Tools & Resources
@@ -97,10 +97,10 @@ function Tools() {
 
           <text
             data-wrap="wrap"
-            data-max-length="400"
+            data-max-length="240"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="medium-small"
+           //data-text-size="medium-small"
           >
             A set of tools to enhance design and code workflows, for developers
             and designers.

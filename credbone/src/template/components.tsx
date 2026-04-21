@@ -80,8 +80,8 @@ const Components: React.FC = () => {
             data-wrap="wrap"
             data-max-length="400"
             data-line="1.5"
-            data-opacity="70"
-            data-text-size="medium-small"
+            data-opacity="60"
+          //  data-text-size="medium-small"
           >
             A hybrid, atomic, and declarative design system that brings
             flexibility, control and speed to projects.
@@ -255,10 +255,10 @@ const Components: React.FC = () => {
 
           <text
             data-wrap="wrap"
-            data-max-length="400"
+            data-max-length="240"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="medium-small"
+           // data-text-size="medium-small"
           >
             Check out some component demos below—just a glimpse of what's
             possible!
@@ -374,10 +374,10 @@ const Components: React.FC = () => {
 
           <text
             data-wrap="wrap"
-            data-max-length="400"
+            data-max-length="300"
             data-line="1.5"
             data-opacity="70"
-            data-text-size="medium-small"
+         //   data-text-size="medium-small"
           >
             Got a question or just want to say hi? Drop me a message, and I'll
             get back to you soon.
@@ -423,7 +423,7 @@ const Components: React.FC = () => {
                     data-wrap="wrap"
                     data-line="1.5"
                     data-length="400"
-                    data-text-size="medium-small"
+                    //data-text-size="medium-small"
                   >
                     Let's connect! Whether you're curious about my work, looking
                     to collaborate, or simply want to reach out, feel free to

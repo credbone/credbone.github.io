@@ -50,9 +50,7 @@ const Modal: React.FC = () => {
     "data-scroll": "",
     "data-min-height": "fit",
     "data-contain": "scroll",
-    "data-animation-name": "appear-bottom",
-    "data-animation-duration": "2.75",
-    "data-fill-mode": "backwards",
+
   };
 
   const animationConfig = {
@@ -727,12 +725,20 @@ const Modal: React.FC = () => {
                             data-align="center"
                             data-gap="30"
                             data-space="30"
+
+     data-animation-name="appear-bottom"
+    data-animation-duration="2.75"
+    data-fill-mode="backwards"
+
+
                           >
                             <group
                               data-gap="20"
                               data-direction="column"
                               data-align="center"
                               data-width="auto"
+
+                              
                             >
                               <text
                                 data-font-type="hero"
@@ -765,6 +771,13 @@ const Modal: React.FC = () => {
                               data-radius="15"
                               data-backdrop="10"
                               data-max-length="300"
+
+
+     data-animation-name="appear-bottom"
+    data-animation-duration="3.75"
+    data-fill-mode="backwards"
+
+
                             >
                               <ThemeToggle />
                             </group>
@@ -818,6 +831,13 @@ const Modal: React.FC = () => {
                               data-direction="column"
                               data-align="center"
                               data-width="auto"
+
+
+                                   data-animation-name="appear-bottom"
+    data-animation-duration="2.75"
+    data-fill-mode="backwards"
+
+
                             >
                               <text
                                 data-font-type="hero"
@@ -843,7 +863,16 @@ const Modal: React.FC = () => {
                             </group>
 
                             <separator data-horizontal=""></separator>
-                            <group data-width="auto">
+                            <group data-width="auto"
+                            
+                            
+                                 data-animation-name="appear-bottom"
+    data-animation-duration="3.75"
+    data-fill-mode="backwards"
+
+
+                            
+                            >
                               <RichThemePicker pickerType="primary" />
                             </group>
                           </group>

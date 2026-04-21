@@ -388,7 +388,7 @@ if (axisRef.current === "y" && deltaY > 0) {
                 data-height="viewport"
                 data-animation-name="tooltip"
                 data-fill-mode="backwards"
-                data-animation-duration="2.25"
+                data-animation-duration="2.75"
                 onClick={closePopover}
                   data-duration="1.25"
               />

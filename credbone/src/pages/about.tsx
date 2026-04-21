@@ -124,10 +124,11 @@ function About() {
             <group data-width="auto">
               <text
                 data-wrap="wrap"
-                data-length="300"
+                data-length="400"
                 //   data-opacity="60"
                 data-line="1.5"
                 data-text-size="medium-small"
+                data-weight="600"
               >
                 A hybrid, atomic, and declarative design system that brings
                 flexibility, control and speed to projects.
@@ -179,8 +180,8 @@ function About() {
                     <text
                       data-wrap="wrap"
                       data-line="1.5"
-                      data-length="300"
-                      data-text-size="medium-small"
+                      data-length="220"
+                     // data-text-size="medium-small"
                     >
                       Adapting from prototypes to enterprise apps, evolving with
                       every project.
@@ -406,9 +407,9 @@ function About() {
             <text
               data-wrap="wrap"
               data-max-length="400"
-              data-opacity="40"
+              data-opacity="60"
               data-line="1.5"
-              data-text-size="medium-small"
+             // data-text-size="medium-small"
             >
               Let's connect! Whether you're curious about my work, looking to
               collaborate, or simply want to reach out, feel free to explore or

@@ -363,6 +363,7 @@ const TooltipPropsDemo: React.FC = () => {
                     >
                       <group
                         data-duration=".125"
+                        data-transition-prop="border-radius-margin"
                         data-over-color="neutral-10"
                         data-react="background"
                         data-border="none"

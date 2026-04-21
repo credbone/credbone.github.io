@@ -54,7 +54,7 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
 
         </>
       )}
-      <group data-height="100" data-adaptive="desktop"></group>
+      <group data-height="70" data-adaptive="desktop"></group>
       <group data-direction="column" data-gap="10">
         <text
           data-weight="700"
@@ -68,7 +68,7 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
         <text
           data-wrap="wrap"
           data-length="400"
-       data-line="1.5385rem"
+       data-line="1.5"
           {...descriptionProps}
         >
           {description}

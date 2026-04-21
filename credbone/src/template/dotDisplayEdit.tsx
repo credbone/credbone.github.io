@@ -648,6 +648,11 @@ const DotDisplayEdit: React.FC<{
                   <Ripple>
                     <group
                      
+
+                        data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.25"
+
                       data-wrap="no"
                       data-contain=""
                        data-space={isBottomSheet ? "20" : "15"}
@@ -681,6 +686,7 @@ const DotDisplayEdit: React.FC<{
                         data-align="center"
                         data-justify="center"
                         data-width="auto"
+                        data-wrap="no"
                       >
                         <text
                           data-ellipsis=""
@@ -705,6 +711,10 @@ const DotDisplayEdit: React.FC<{
 
                   <Ripple>
                     <group
+
+                                            data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.75"
                    
                       data-direction="column"
                       data-contain=""
