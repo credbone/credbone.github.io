@@ -35,6 +35,7 @@ export default function App() {
 "data-space":"0",
 "data-scrollbar":"none"
 
+
 };
 
   useEffect(() => {
@@ -146,17 +147,17 @@ data-wrap="no"
 data-direction="column"
               
 
-              content={(closePopover) => (
+              content={(closePopover, isBottomSheet) => (
                 <>
-                  <group data-space="20"  data-space-top="10" data-gap="10" data-wrap="no" data-direction="column">
+                  <group data-space={isBottomSheet ? "30" : "20"}  data-space-top={isBottomSheet ? "20" : "10"} data-gap="10" data-wrap="no" data-direction="column">
                     {canvasPanel}
                   </group>
-                                <group data-space-horizontal="20" data-position="bottom">
-                 <separator data-horizontal=""></separator>
+                                <group  data-position="bottom">
+                 <separator data-horizontal="dotted"></separator>
                </group>
                   <group
-                    data-space="20"
-                    data-background="context-bottom"
+                    data-space={isBottomSheet ? "30" : "20"}
+                   data-background="main-background-bottom"
                     data-shrink="no"
                     data-position="sticky"
                     data-bottom="0"
@@ -169,7 +170,7 @@ data-direction="column"
                           data-ink-color="neutral"
                         data-contain=""
                         data-space="15"
-                        data-radius="15"
+                        data-radius="30"
                         data-interactive=""
                         data-align="center"
                         data-justify="center"
@@ -278,17 +279,17 @@ data-direction="column"
 data-direction="column"
 data-wrap="no"
             data-scrollbar="none"
-            content={(closePopover) => (
+            content={(closePopover, isBottomSheet) => (
               <>
-                <group data-space="20" data-space-top="10" data-gap="10" data-wrap="no" data-direction="column">
+                <group data-space={isBottomSheet ? "30" : "20"} data-space-top={isBottomSheet ? "20" : "10"} data-gap="10" data-wrap="no" data-direction="column">
                   {pointPanel}
                 </group>
-               <group data-space-horizontal="30" data-position="bottom">
-                 <separator data-horizontal="" ></separator>
+                                <group  data-position="bottom">
+                 <separator data-horizontal="dotted"></separator>
                </group>
                 <group
-                  data-space="20"
-                  data-background="context-bottom"
+                  data-space={isBottomSheet ? "30" : "20"}
+                  data-background="main-background-bottom"
                   data-shrink="no"
                   data-position="sticky"
                   data-bottom="0"
@@ -302,7 +303,7 @@ data-wrap="no"
                       data-ink-color="neutral"
                       data-contain=""
                       data-space="15"
-                      data-radius="15"
+                      data-radius="30"
                       data-interactive=""
                       data-align="center"
                       data-justify="center"
