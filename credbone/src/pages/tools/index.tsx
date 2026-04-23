@@ -13,6 +13,7 @@ import Ripple from "../../components/Ripple";
 import ColorSpaceConverter from "./ColorSpaceConverter";
 
 import PathBulder from "./PathBuilder/PathBulder";
+import Marquee from "../../components/Marquee";
 
 function ToolsCollection() {
   return (
@@ -73,42 +74,82 @@ function ToolsCollection() {
               </Link>
               <separator data-vertical=""></separator>
               <Popover
-                data-radius="25"
-                data-space="10"
+                data-radius="30"
+                data-space="0"
                 placement="bottom"
+                data-contain=""
                 data-elevation="2"
                 content={(closePopover) => (
                   <group
                     onClick={closePopover}
                     data-type="grid"
-                    data-grid-template="90"
-                    data-gap="10"
-                    data-length="300"
+                    data-grid-template="100"
+                    data-gap="1"
+                    data-length="360"
+                    data-contain=""
                   >
                     {links.map((link, index) => (
-                      <group key={index}>
+                      <group key={index} data-border="">
                         <Ripple>
-                          <NavLink
-                            data-contain=""
-                            data-type="group"
-                            data-space="15"
-                            data-radius="15"
-                            data-width="auto"
-                            data-interactive=""
-                            // data-background="adaptive-gray"
+                          <group data-ink-color="neutral">
+                            <NavLink
+                              to={link.url}
+                              data-type="group"
+                              data-drag="none"
+                            >
+                              {({ isActive }) => (
+                                <group
+                                  data-space="10"
+                                  data-interactive=""
+                                  data-over-color="neutral"
+                                  data-background={
+                                    isActive ? "adaptive-gray" : ""
+                                  }
+                                >
 
-                            to={link.url}
-                            data-name="nav-item"
-                            data-direction="column"
-                            data-gap="10"
-                          >
-                            <group data-ratio="1:1" data-interact="">
-                              {link.content}
-                            </group>
-                            <text data-wrap="wrap" data-text-align="center">
-                              {link.title}
-                            </text>
-                          </NavLink>
+                  {link.new === "true" && (
+                    <group
+                      data-background="red"
+                      data-space="3"
+                      data-position="absolute"
+                      data-width="auto"
+                      data-radius="5"
+                      data-right="20"
+                      data-top="20"
+                    ></group>
+                  )}
+
+                                  <group
+                                    data-contain=""
+                                    data-space="15"
+                                    data-width="auto"
+                                    data-animation-name="appear-top"
+                                    data-fill-mode="backwards"
+                                    data-animation-duration={2 + index * 0.5}
+                                    data-animation-timing="fancy"
+                                    // data-name="nav-item"
+                                    data-direction="column"
+                                    data-gap="10"
+                                  >
+                                    <group data-ratio="1:1" data-interact="">
+                                      {link.content}
+                                    </group>
+                                    <group data-pointer-event="none">
+                                      <Marquee auto={isActive}>
+                                        <text
+                                          data-ellipsis=""
+                                          data-opacity={isActive ? "" : "40"}
+                                          data-text-align="center"
+                                        >
+                                          {link.title}
+                                        </text>
+                                      </Marquee>
+                                    </group>
+                                  </group>
+                                </group>
+                              )}
+                            </NavLink>
+                          </group>
                         </Ripple>
                       </group>
                     ))}

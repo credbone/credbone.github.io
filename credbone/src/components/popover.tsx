@@ -147,6 +147,11 @@ const Popover: React.FC<PopoverProps> = ({
 
     const determinePosition = (placement: string) => {
       switch (placement) {
+        case "bottomsheet":
+  position.bottom = 0;
+  position.left = Math.max(0, window.innerWidth / 2 - popoverRect.width / 2);
+  position.right = Math.max(0, window.innerWidth / 2 - popoverRect.width / 2);
+  break;
         case "top":
           position.top = Math.max(10, targetRect.top - popoverRect.height + 10);
           position.left = Math.max(
@@ -233,11 +238,14 @@ const Popover: React.FC<PopoverProps> = ({
       }
     };
 
-    if (placement === "auto") {
-      determinePosition(fitTop ? "top" : "bottom");
-    } else {
-      determinePosition(placement);
-    }
+    
+if (isBottomSheet) {
+  determinePosition("bottomsheet");
+} else if (placement === "auto") {
+  determinePosition(fitTop ? "top" : "bottom");
+} else {
+  determinePosition(placement);
+}
 
     return position;
   };
@@ -396,7 +404,7 @@ if (axisRef.current === "y" && deltaY > 0) {
 
             <group
             
-              data-length={isBottomSheet ? undefined : "auto"}
+              data-length={isBottomSheet ? "500" : "auto"}
               data-position="absolute"
               data-background={isBottomSheet ? "context-main-background" : "context"}
               data-elevation={isBottomSheet ? "2" : "1"}
@@ -415,7 +423,9 @@ if (axisRef.current === "y" && deltaY > 0) {
                data-direction="column"
               ref={popoverRef}
               className={`popover ${placement}`}
-              style={isBottomSheet ? { bottom: 0 } : popoverPosition}
+              style={popoverPosition}
+
+
              {...(isBottomSheet ? bottomsheetProps : rest)}
               
             >

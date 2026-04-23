@@ -351,6 +351,8 @@ const TooltipPropsDemo: React.FC = () => {
                   data-wrap="no"
                   data-type="grid"
                   data-grid-template="30"
+                       
+                  data-gap="2"
                 >
                   {colorOptions.map((option, index) => (
                     <group
@@ -380,7 +382,7 @@ const TooltipPropsDemo: React.FC = () => {
                         data-radius={
                           selectedColor.background === option.background
                             ? "30"
-                            : ""
+                            : "25%"
                         }
                       ></group>
                     </group>

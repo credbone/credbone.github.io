@@ -1084,6 +1084,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-radius="full"]{border-radius: 100%;}
 [data-radius="50%"]{border-radius: 50%;}
 
+[data-radius="25%"]{border-radius: 25%;}
+
 [data-radius="full-top-left"] { border-radius: 50% 0 0 0; }
 
 [data-radius="full-top-right"] { border-radius: 0 50% 0 0; }

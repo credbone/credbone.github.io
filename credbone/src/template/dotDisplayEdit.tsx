@@ -427,7 +427,7 @@ const DotDisplayEdit: React.FC<{
   return (
     <>
       <group
-        data-border=""
+       data-background="context"
         data-width="auto"
         data-radius="40"
         data-contain=""
