@@ -21,7 +21,7 @@ import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { ArrowDown, Copy, Film, Link2 } from "lucide-react";
+import { ArrowDown, Copy, Film, Link2, Share } from "lucide-react";
 import { useFavMap } from "./useFavMap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import MenuItem from "../components/MenuItem";
@@ -126,6 +126,40 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
     }
   };
 
+
+
+const imageFileRef = useRef<File | null>(null);
+
+useEffect(() => {
+  if (!imageUrl) return;
+  fetch(imageUrl)
+    .then(r => r.blob())
+    .then(blob => {
+      imageFileRef.current = new File([blob], `${itemTitle}.jpg`, { type: blob.type });
+    })
+    .catch(() => {});
+}, [imageUrl]);
+
+const handleNativeShare = async () => {
+  if (!('share' in navigator)) return;
+
+  const url = `${window.location.origin}${window.location.pathname}?item=${itemKey}`;
+  const shareData: ShareData = { url, title: itemTitle };
+
+  const file = imageFileRef.current;
+  if (file && navigator.canShare?.({ files: [file] })) {
+    shareData.files = [file];
+  }
+
+  try {
+    await navigator.share(shareData);
+  } catch (err) {
+    if ((err as DOMException).name !== "AbortError") console.error(err);
+  }
+};
+  
+
+
   const handleFavClick = () => {
     toggleFav(itemKey);
     if (!favorite) {
@@ -148,9 +182,17 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
   const displayCount = count + (favorite ? 1 : 0);
 
 
+
+
 const menuItems = [
-  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save Image", onClick: handleDownloadClick, },
-  { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: handleShare, },
+  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save Image", onClick: handleDownloadClick },
+  { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: handleShare },
+  ...('share' in navigator ? [{
+    icon: <Share strokeWidth={1.5} size={20} />,
+    title: "Share",
+    description: "Share image via...",
+    onClick: handleNativeShare,
+  }] : []),
 ];
 
 

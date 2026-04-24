@@ -4,7 +4,7 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 
 import Ripple from "../../components/Ripple";
-import { ArrowDown, Copy, Link2, Plus } from "lucide-react";
+import { ArrowDown, Copy, Link2, Plus, Share } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import { isMobile } from "react-device-detect";
@@ -586,11 +586,75 @@ const ColorMixer: React.FC = () => {
 
 
 
+const svgToPng = (svgString: string, width: number, height: number): Promise<File> => {
+  return new Promise((resolve, reject) => {
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d')?.drawImage(img, 0, 0);
+      canvas.toBlob(blob => {
+        URL.revokeObjectURL(url);
+        if (blob) resolve(new File([blob], 'gradient.png', { type: 'image/png' }));
+        else reject();
+      }, 'image/png');
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(); };
+    img.src = url;
+  });
+};
+
+const handleNativeShare = async () => {
+  if (!('share' in navigator)) return;
+
+  const svg = generateSVG();
+  const width = 45 * gradient.length;
+  const height = 100;
+
+  const shareData: ShareData = { url: window.location.href };
+
+  try {
+    const file = await svgToPng(svg, width, height);
+    if (navigator.canShare?.({ files: [file] })) {
+      shareData.files = [file];
+    }
+  } catch {
+    // share URL only
+  }
+
+  try {
+    await navigator.share(shareData);
+  } catch (err) {
+    if ((err as DOMException).name !== "AbortError") console.error(err);
+  }
+};
+
+
+
+
   const menuItems = [
+
+
+      ...('share' in navigator ? [{
+  icon: <Share strokeWidth={1.5} size={20} />,
+  title: "Share",
+  description: "Send gradient via...",
+  onClick: handleNativeShare,
+}] : []),
+
+
   { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save gradient for later", onClick: downloadSVG, },
   { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copyToClipboard, },
   { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: copyShareLink, },
   { icon: "", title: "CSS", description: "Paste into your stylesheet", onClick: copyCSSGradient, },
+
+
+
+
+
 ];
 
 
