@@ -1152,12 +1152,14 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
-[data-interactive]:hover,
-[data-interact="popover"][data-popover-expand="true"],
-[data-interactive]:hover [data-react="background"] 
+  [data-interactive]:active
 
-{ background-image: var(--over-color);}
+{ background-image: var(--press-color);}
 
+
+[data-interactive]:active [data-react="background"] 
+
+{ background-image: var(--press-color);}
 
 
 [data-interactive-index="1"]:hover{z-index: 1;}
@@ -1169,18 +1171,22 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-interactive="border-main-alpha-15"]:hover
 {box-shadow: 0 0 0 1px var(--main-color-alpha-15), 0 0 0 1px var(--border-color);}
 
-/* @media(hover: hover) and (pointer: fine) {
+@media(hover: hover) and (pointer: fine) {
 
-  
+  [data-interactive]:hover,
+[data-interact="popover"][data-popover-expand="true"],
+[data-interactive]:hover [data-react="background"] 
+
+{ background-image: var(--over-color);}
 
 
-} */
+}
 
 /* [data-interactive] {-webkit-tap-highlight-color:var(--main-color-alpha-15)} */
 
 
 [data-over-color="none"][data-interactive]:hover {background-image: none;}
-
+[data-over-color="none"][data-interactive]:active {background-image: none;}
 
 
 
@@ -1297,16 +1303,28 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
     
     {display: none;}
 
-    [data-name="autoseparation"]:hover > separator,
-    [data-name="autoseparation"]:hover + [data-name="autoseparation"] > separator,
 
 
+          [data-name="autoseparation"]:active > separator,
+    [data-name="autoseparation"]:active + [data-name="autoseparation"] > separator,
     [data-selected="true"][data-name="autoseparation"] > separator,
     [data-selected="true"][data-name="autoseparation"] + [data-name="autoseparation"] > separator
   
     {opacity: 0; }
 
     /* stylelint-enable */
+
+
+    @media(hover: hover) and (pointer: fine) {
+
+
+          [data-name="autoseparation"]:hover > separator,
+    [data-name="autoseparation"]:hover + [data-name="autoseparation"] > separator
+
+        {opacity: 0; }
+
+
+    }
 
 
     

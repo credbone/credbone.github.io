@@ -653,12 +653,26 @@ const ColorSpaceConverter: React.FC = () => {
                   data-direction="column"
                   data-align="start"
                 >
-                  <group data-width="auto" data-gap="20" data-interact="">
+                  <group data-width="auto" data-gap="20" data-interact=""
+                  
+                                        data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="2.25"
+                  
+                  >
                     <IconClick size={32}/>
                     <separator data-horizontal=""></separator>
                   </group>
 
-                  <group data-gap="10" data-wrap="no" data-direction="column">
+                  <group data-gap="10" data-wrap="no" data-direction="column"
+                  
+
+                                        data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="3"
+                  
+                  
+                  >
                     <text
                       data-weight="700"
                       data-text-size="large"
@@ -674,7 +688,13 @@ const ColorSpaceConverter: React.FC = () => {
                   </group>
                 </group>
 
-                <group>
+                <group
+                
+                                                        data-animation-name="appear-bottom"
+                      data-fill-mode="backwards"
+                      data-animation-duration="3.75"
+                
+                >
                   <HexColorInput
                     data-interact=""
                     data-index="2"

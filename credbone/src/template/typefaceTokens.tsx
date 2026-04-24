@@ -6,7 +6,7 @@ import Ripple from "../components/Ripple";
 import CustomSlider from "../components/inputs/slider";
 import SystemColorPicker from "./systemColorPicker";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { AArrowUp,AlignCenter, AlignLeft, AlignRight } from "lucide-react";
+import { AArrowUp, AlignCenter, AlignLeft, AlignRight } from "lucide-react";
 import Tooltip from "../components/tooltip";
 
 const TypefaceTokens: React.FC = () => {
@@ -17,45 +17,38 @@ const TypefaceTokens: React.FC = () => {
   const [LineValue, setLineValue] = useState(1.2);
   const [selectedTransform, setselectedTransform] = useState<string>("none");
 
+  const [hasChanged, setHasChanged] = useState(false);
 
+  // Check if any value has changed from the initial state
+  useEffect(() => {
+    if (
+      selectedWeight !== "400" ||
+      selectedAlignment !== "left" ||
+      selectedSize !== "large" ||
+      selectedColor !== "text" ||
+      LineValue !== 1.2 ||
+      selectedTransform !== "none"
+    ) {
+      setHasChanged(true);
+    }
+  }, [
+    selectedWeight,
+    selectedAlignment,
+    selectedSize,
+    selectedColor,
+    LineValue,
+    selectedTransform,
+  ]);
 
-
-
-
-
-
-    const [hasChanged, setHasChanged] = useState(false);
-  
-    // Check if any value has changed from the initial state
-    useEffect(() => {
-      if (
-        selectedWeight !== "400" ||
-        selectedAlignment !== "left" ||
-        selectedSize !== "large" ||
-        selectedColor !== "text" ||
-        LineValue !== 1.2 ||
-        selectedTransform !== "none"
-      ) {
-        setHasChanged(true);
-      }
-    }, [selectedWeight, selectedAlignment, selectedSize, selectedColor,LineValue,selectedTransform]);
-
-
-
-
-
-const resetValues = () => {
-  setSelectedWeight("400");
-  setSelectedAlignment("left");
-  setSelectedSize("large");
-  setSelectedColor("text");
-  setLineValue(1.2);
-  setselectedTransform("none");
-  setHasChanged(false); // Hide the reset button after reset
-};
-
-
-
+  const resetValues = () => {
+    setSelectedWeight("400");
+    setSelectedAlignment("left");
+    setSelectedSize("large");
+    setSelectedColor("text");
+    setLineValue(1.2);
+    setselectedTransform("none");
+    setHasChanged(false); // Hide the reset button after reset
+  };
 
   // const isTransparent = selectedColor === "transparent";
   const isbackground = selectedColor === "main-background";
@@ -72,13 +65,11 @@ const resetValues = () => {
     { value: "800", name: "Extra-Bold" },
   ];
 
-
   const alignmentOptions = [
-    { value: "left", title: "Left", icon: <AlignLeft size={20}/> },
-    { value: "center", title: "Center", icon:<AlignCenter size={20}/> },
-    { value: "right", title: "Right", icon:<AlignRight size={20}/> },
+    { value: "left", title: "Left", icon: <AlignLeft size={20} /> },
+    { value: "center", title: "Center", icon: <AlignCenter size={20} /> },
+    { value: "right", title: "Right", icon: <AlignRight size={20} /> },
   ];
-
 
   const transformOptions = [
     { value: "none" },
@@ -86,7 +77,6 @@ const resetValues = () => {
     { value: "uppercase" },
     { value: "lowercase" },
   ];
-
 
   const sizeOptions = [
     { value: "0", title: "Extra Option" },
@@ -156,43 +146,56 @@ const resetValues = () => {
           //  data-min-length="300"
           data-gap="15"
         >
-          <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
+          <group
+            data-elevation="2"
+            data-radius="20"
+            data-background="context"
+            data-contain=""
+          >
             <Popover
-
-
-bottomsheet
-
+              bottomsheet
               placement="middle"
-              data-radius="10"
+              data-radius="15"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover, isbottomsheet) => (
-                <group
-                  data-direction="column"
-                  //   data-length="240"
-                  onClick={closePopover}
-                >
-                  {weightOptions.map(({ value, name }) => (
-                    <group
-                      key={value}
-                      onClick={() => handleWeightSelect(value)}
-                      data-background={selectedWeight === value ? "main" : ""}
-                      data-color={selectedWeight === value ? "main-text" : ""}
-                      
-                      data-align="center"
-                      data-interactive=""
-                      data-over-color="neutral"
-                        data-radius={isbottomsheet ? "10" : undefined}
-                      data-cursor="pointer"
-                      data-space="15"
-                      data-gap="10"
-                    >
-                      <text data-weight={value}> {value}</text>
-                      <text data-opacity="40"> {name}</text>
-                    </group>
-                  ))}
-                </group>
-              )}
+content={(closePopover, isbottomsheet) => (
+  <group
+    data-direction="column"
+    onClick={closePopover}
+  >
+    {weightOptions.map(({ value, name }, index) => {
+      const midIndex = Math.floor(weightOptions.length / 2);
+      const distance = Math.abs(index - midIndex);
+      const fromBottom = index >= midIndex;
+
+      return (
+        <group
+          key={value}
+          onClick={() => handleWeightSelect(value)}
+          data-background={selectedWeight === value ? "main" : ""}
+          data-color={selectedWeight === value ? "main-text" : ""}
+          data-animation-name={
+            isbottomsheet ? "appear-bottom" : fromBottom ? "appear-top" : "appear-bottom"
+          }
+          data-fill-mode="backwards"
+          data-animation-duration={
+            isbottomsheet ? 2 + index * 0.25 : 2 + distance * 0.25
+          }
+          data-align="center"
+          data-interactive=""
+          data-over-color="neutral"
+          data-radius={isbottomsheet ? "10" : undefined}
+          data-cursor="pointer"
+          data-space="15"
+          data-gap="10"
+        >
+          <text data-weight={value}> {value}</text>
+          <text data-opacity="40"> {name}</text>
+        </group>
+      );
+    })}
+  </group>
+)}
             >
               <group>
                 <Ripple>
@@ -255,70 +258,64 @@ bottomsheet
             <separator data-horizontal=""></separator>
 
             <Popover
-            bottomsheet
+              bottomsheet
               //   data-backdrop="10"
               placement="middle"
-              data-radius="10"
+              data-radius="15"
               data-space="0"
               //data-space-vertical="10"
               data-scroll=""
-              content={(closePopover, isBottomSheet) => (
-                <group
-                  data-direction="column"
-                  //  data-length="240"
-                  onClick={closePopover}
-                >
-                  <group data-height="10"></group>
-                  {sizeOptions.map(({ value, title, type }, index) =>
-                    type === "separator" ? (
-                      <group key={index} data-space-vertical="10">
-                        <separator data-horizontal=""></separator>
-                      </group>
-                    ) : (
-                      <group
-                        key={value}
-                        onClick={() => handleSizeSelect(value)}
-                        data-background={selectedSize === value ? "main" : ""}
-                        data-color={selectedSize === value ? "main-text" : ""}
-                        data-align="center"
-                        data-interactive=""
-                        data-over-color="neutral"
-                                       data-radius={isBottomSheet ? "10" : undefined}
-                        data-cursor="pointer"
-                        data-space="15"
-                      >
-                        <text>{title}</text>
-                        <text data-position="right">{value}</text>
-                      </group>
-                    )
-                  )}
-                  <group data-height="10"></group>
+content={(closePopover, isBottomSheet) => {
+  const realItems = sizeOptions.filter(o => o.type !== "separator");
+  const midIndex = Math.floor(realItems.length / 2);
+  let realCount = 0;
 
-                  <group
-                    data-sticky="bottom"
-                    data-gap="10"
-                    data-background={isBottomSheet ? undefined : "context"}
-                    data-shrink="0"
-                  >
-                    <group>
-                      <separator data-horizontal=""></separator>
-                    </group>
+  return (
+    <group
+      data-direction="column"
+      onClick={closePopover}
+    >
+      <group data-height="10"></group>
+      {sizeOptions.map(({ value, title, type }, index) =>
+        type === "separator" ? (
+          <group key={index} data-space-vertical="10">
+            <separator data-horizontal=""></separator>
+          </group>
+        ) : (() => {
+          const realIndex = realCount++;
+          const distance = Math.abs(realIndex - midIndex);
+          const fromBottom = realIndex >= midIndex;
 
-                    <group
-                      data-align="center"
-                      data-interactive=""
-                      data-over-color="neutral"
-                                                data-radius={isBottomSheet ? "10" : undefined}
-                      data-cursor="pointer"
-                      data-space="15"
-                      onClick={closePopover}
-                    >
-                      <text data-weight="700">Close</text>
-                    </group>
-                  </group>
-                  <group data-height="10"></group>
-                </group>
-              )}
+          return (
+            <group
+              key={value}
+              onClick={() => handleSizeSelect(value)}
+              data-background={selectedSize === value ? "main" : ""}
+              data-color={selectedSize === value ? "main-text" : ""}
+              data-animation-name={
+                isBottomSheet ? "appear-bottom" : fromBottom ? "appear-top" : "appear-bottom"
+              }
+              data-fill-mode="backwards"
+              data-animation-duration={
+                isBottomSheet ? 2 + realIndex * 0.25 : 2 + distance * 0.25
+              }
+              data-align="center"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius={isBottomSheet ? "10" : undefined}
+              data-cursor="pointer"
+              data-space="15"
+            >
+              <text>{title}</text>
+              <text data-position="right" data-opacity="40">{value}</text>
+            </group>
+          );
+        })()
+      )}
+      <group data-height="10"></group>
+    </group>
+  );
+}}
             >
               <group>
                 <Ripple>
@@ -417,7 +414,13 @@ bottomsheet
             </text>
           </group>
 
-          <group data-elevation="2" data-radius="20" data-background="context" data-contain="" data-index="1">
+          <group
+            data-elevation="2"
+            data-radius="20"
+            data-background="context"
+            data-contain=""
+            data-index="1"
+          >
             <group data-align="center" data-gap="15" data-space="20">
               <group
                 data-width="auto"
@@ -437,41 +440,41 @@ bottomsheet
 
               <separator data-vertical=""></separator>
 
-              <group data-gap="1" data-width="auto"  data-wrap="no" data-contain="" data-radius="5" data-border="">
+              <group
+                data-gap="1"
+                data-width="auto"
+                data-wrap="no"
+                data-contain=""
+                data-radius="5"
+                data-border=""
+              >
                 {alignmentOptions.map(({ value, title, icon }) => (
-<group  key={value}>
-  <Tooltip content={title} delay={300}>
+                  <group key={value}>
+                    <Tooltip content={title} delay={300}>
                       <group
-                   
-                    onClick={() => handleAlignmentSelect(value)}
-                    data-align="center"
-                    data-justify="center"
-                    data-background={
-                      selectedAlignment === value ? "adaptive-gray" : ""
-                    }
-
-   
-                    data-border=""
-                   // data-width="auto"
-                    data-interactive=""
-                    data-over-color="neutral"
-                    
-                    data-cursor="pointer"
-                    data-space-horizontal="10"
-             data-height="36"
-                   
-                  >
-                    {/* <text>{value}</text> */}
-                   <group data-interact="" data-width="auto"> {icon}</group>
+                        onClick={() => handleAlignmentSelect(value)}
+                        data-align="center"
+                        data-justify="center"
+                        data-background={
+                          selectedAlignment === value ? "adaptive-gray" : ""
+                        }
+                        data-border=""
+                        // data-width="auto"
+                        data-interactive=""
+                        data-over-color="neutral"
+                        data-cursor="pointer"
+                        data-space-horizontal="10"
+                        data-height="36"
+                      >
+                        {/* <text>{value}</text> */}
+                        <group data-interact="" data-width="auto">
+                          {icon}
+                        </group>
+                      </group>
+                    </Tooltip>
                   </group>
-  </Tooltip>
-  </group>
                 ))}
               </group>
-
-
-
-
             </group>
             <separator data-horizontal=""></separator>
             <group data-align="center" data-gap="15" data-space="20">
@@ -509,63 +512,73 @@ bottomsheet
                     "data-height": "initial",
                     "data-space-vertical": "10",
                   }}
-                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
+                  trackLeftProps={{
+                    "data-margin-right": "0",
+                    "data-height": "1",
+                  }}
                   trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
                 />
               </group>
             </group>
           </group>
 
-          <group data-elevation="2" data-radius="20" data-background="context" data-contain="">
+          <group
+            data-elevation="2"
+            data-radius="20"
+            data-background="context"
+            data-contain=""
+          >
             <Popover
-
-bottomsheet
-
+              bottomsheet
               placement="middle"
-              data-radius="10"
+              data-radius="15"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover, isBottomSheet) => (
-                <group
-                  data-direction="column"
-                  //   data-length="240"
-                  onClick={closePopover}
-                >
-                  {transformOptions.map(({ value }) => (
-                    <group
-                      key={value}
-                      onClick={() => handleTransformSelect(value)}
-                      data-background={
-                        selectedTransform === value ? "main" : ""
-                      }
-                      data-color={
-                        selectedTransform === value ? "main-text" : ""
-                      }
-                      data-align="center"
-                      data-interactive=""
-                      data-over-color="neutral"
-                        data-radius={isBottomSheet ? "10" : undefined}
-                      data-cursor="pointer"
-                      data-space="15"
-                      data-gap="10"
-                    >
-                      <text
-                        data-text-transform="capitalize"
-                        data-weight={value}
-                      >
-                        {value}
-                      </text>
-                      <text
-                        data-position="right"
-                        data-opacity="40"
-                        data-text-transform={value}
-                      >
-                        aa
-                      </text>
-                    </group>
-                  ))}
-                </group>
-              )}
+content={(closePopover, isBottomSheet) => {
+  const midIndex = Math.floor(transformOptions.length / 2);
+
+  return (
+    <group
+      data-direction="column"
+      onClick={closePopover}
+    >
+      {transformOptions.map(({ value }, index) => {
+        const distance = Math.abs(index - midIndex);
+        const fromBottom = index >= midIndex;
+
+        return (
+          <group
+            key={value}
+            onClick={() => handleTransformSelect(value)}
+            data-background={selectedTransform === value ? "main" : ""}
+            data-color={selectedTransform === value ? "main-text" : ""}
+            data-animation-name={
+              isBottomSheet ? "appear-bottom" : fromBottom ? "appear-top" : "appear-bottom"
+            }
+            data-fill-mode="backwards"
+            data-animation-duration={
+              isBottomSheet ? 2 + index * 0.25 : 2 + distance * 0.25
+            }
+            data-align="center"
+            data-interactive=""
+            data-over-color="neutral"
+            data-radius={isBottomSheet ? "10" : undefined}
+            data-cursor="pointer"
+            data-space="15"
+            data-gap="10"
+          >
+            <text data-text-transform="capitalize" data-weight={value}>
+              {value}
+            </text>
+            <text data-position="right" data-opacity="40" data-text-transform={value}>
+              aa
+            </text>
+          </group>
+        );
+      })}
+    </group>
+  );
+}}
             >
               <group>
                 <Ripple>
@@ -635,8 +648,24 @@ bottomsheet
           data-fit="2"
           data-elevation="2"
           data-radius="40"
-          data-background={ isbackground ? "text" : istextmain ? "main" : istextsecondary ? "secondary" : ""}
-          data-color={ isbackground ? "main-background" : istextmain ? "main-text" : istextsecondary ? "secondary-text" : "" }
+          data-background={
+            isbackground
+              ? "text"
+              : istextmain
+                ? "main"
+                : istextsecondary
+                  ? "secondary"
+                  : ""
+          }
+          data-color={
+            isbackground
+              ? "main-background"
+              : istextmain
+                ? "main-text"
+                : istextsecondary
+                  ? "secondary-text"
+                  : ""
+          }
         >
           <text
             data-space="30"
@@ -656,73 +685,80 @@ bottomsheet
             alignment {selectedAlignment}
           </text>
 
-<group data-space="30" data-space-top="0" data-gap="30" data-direction="column" data-align="start" data-width="auto">
-<separator data-horizontal=""></separator>
-{isbackground ? (
+          <group
+            data-space="30"
+            data-space-top="0"
+            data-gap="30"
+            data-direction="column"
+            data-align="start"
+            data-width="auto"
+          >
+            <separator data-horizontal=""></separator>
+            {isbackground ? (
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-              Text color can also serve as the background, enabling inverted
-              designs that adapt to the system theme
-            </text>
-          ) : istextmain || istextsecondary ? (
-            <text data-wrap="wrap" data-line="1.5" data-max-length="400">
-            Ensuring optimal contrast on main & secondary backgrounds with
-            system-generated colors
-          </text>
-          ) : ismain ? (
-            <text data-wrap="wrap" data-line="1.5" data-max-length="300">
-              If the main color lacks contrast, a different shade will be used,
-              with variations in dark and light modes.
-            </text>
-          ) : (
-            <text
-              data-wrap="wrap"
-              data-line="1.5"
-              data-max-length="200"
-              data-opacity="60"
-              data-space-right="30"
-            >
-              Adjust the values to explore how they affect the text
-            </text>
-          )}
+                Text color can also serve as the background, enabling inverted
+                designs that adapt to the system theme
+              </text>
+            ) : istextmain || istextsecondary ? (
+              <text data-wrap="wrap" data-line="1.5" data-max-length="400">
+                Ensuring optimal contrast on main & secondary backgrounds with
+                system-generated colors
+              </text>
+            ) : ismain ? (
+              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+                If the main color lacks contrast, a different shade will be
+                used, with variations in dark and light modes.
+              </text>
+            ) : (
+              <text
+                data-wrap="wrap"
+                data-line="1.5"
+                data-max-length="200"
+                data-opacity="60"
+                data-space-right="30"
+              >
+                Adjust the values to explore how they affect the text
+              </text>
+            )}
 
-          {hasChanged && (
-            <group
-              data-space-vertical="15"
-              data-space-horizontal="20"
-              data-align="center"
-              data-justify="center"
-              data-background={
-                selectedColor === "main-text"
-                  ? "main-text"
-                  : selectedColor === "secondary-text"
-                  ? "secondary-text"
-                  : selectedColor === "main-background"
-                  ? "main-background" 
-                  : "adaptive-gray"
-              }
-              data-color={
-                selectedColor === "main-text"
-                  ? "main-color"
-                  : selectedColor === "secondary-text"
-                  ? "secondary"
-                  : selectedColor === "main-background"
-                  ? "text"
-                  : "adaptive-gray"
-              }
-              data-width="auto"
-              data-interactive=""
-              data-over-color="neutral"
-              data-radius="15"
-              data-cursor="pointer"
-              data-animation-name="appear-top"
-              data-fill-mode="forwards"
-              data-animation-duration="2.25"
-              onClick={resetValues}
-            >
-              <text>Reset</text>
-            </group>
-          )}
-</group>
+            {hasChanged && (
+              <group
+                data-space-vertical="15"
+                data-space-horizontal="20"
+                data-align="center"
+                data-justify="center"
+                data-background={
+                  selectedColor === "main-text"
+                    ? "main-text"
+                    : selectedColor === "secondary-text"
+                      ? "secondary-text"
+                      : selectedColor === "main-background"
+                        ? "main-background"
+                        : "adaptive-gray"
+                }
+                data-color={
+                  selectedColor === "main-text"
+                    ? "main-color"
+                    : selectedColor === "secondary-text"
+                      ? "secondary"
+                      : selectedColor === "main-background"
+                        ? "text"
+                        : "adaptive-gray"
+                }
+                data-width="auto"
+                data-interactive=""
+                data-over-color="neutral"
+                data-radius="15"
+                data-cursor="pointer"
+                data-animation-name="appear-top"
+                data-fill-mode="forwards"
+                data-animation-duration="2.25"
+                onClick={resetValues}
+              >
+                <text>Reset</text>
+              </group>
+            )}
+          </group>
         </group>
       </group>
     </group>

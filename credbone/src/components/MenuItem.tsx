@@ -1,4 +1,5 @@
 import { ReactNode, HTMLAttributes } from "react";
+import Ripple from "./Ripple";
 
 interface MenuItemProps extends HTMLAttributes<HTMLElement> {
   icon?: ReactNode;
@@ -14,14 +15,22 @@ export default function MenuItem({
 }: MenuItemProps) {
   return (
 
-      <group
+<>
+
+<Ripple>
+        <group
         data-align="center"
         data-gap="15"
         data-interactive=""
         data-radius="15"
         data-cursor="pointer"
         data-wrap="no"
+        data-contain=""
+        data-over-color="neutral"
         {...rest}
+
+        
+        
       >
         <group data-length="20" data-opacity="30" data-interact="">
           {icon && <>{icon}</>}
@@ -32,6 +41,9 @@ export default function MenuItem({
           {description && <text data-opacity="30" data-ellipsis="">{description}</text>}
         </group>
       </group>
+</Ripple>
+
+</>
 
   );
 }

@@ -31,12 +31,23 @@ import HorizontalNav from "./template/horizontalNav";
 import Tools from "./pages/tools/tools";
 import ToolsCollection from "./pages/tools";
 import { SearchShortcutListener } from "./pages/search/Searchshortcutlistener";
+import { isIOS } from "react-device-detect";
 
 const MainLayout = () => {
 
 
     const location = useLocation();
     const viewRef = useRef<HTMLDivElement>(null);
+
+
+
+    useEffect(() => {
+  if (!isIOS) return;
+  const handleTouchEnd = (e: TouchEvent) => (e.target as HTMLElement)?.blur();
+  document.addEventListener('touchend', handleTouchEnd);
+  return () => document.removeEventListener('touchend', handleTouchEnd);
+}, []);
+
   
     useEffect(() => {
       if (viewRef.current) {

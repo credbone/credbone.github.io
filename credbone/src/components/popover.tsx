@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import ReactDOM from "react-dom";
 import { isMobile } from "react-device-detect";
+import { useLocation } from "react-router-dom";
 
 interface PopoverProps {
 content: ReactNode | ((closePopover: () => void, isBottomSheet: boolean) => ReactNode);
@@ -371,6 +372,15 @@ if (axisRef.current === "y" && deltaY > 0) {
     if (dim) detachSwipe(dim);
   };
 }, [isBottomSheet, isVisible]);
+
+
+// inside Popover
+const location = useLocation();
+
+useEffect(() => {
+  setIsVisible(false);
+  
+}, [location.pathname]);
 
   return (
     <>

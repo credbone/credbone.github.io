@@ -6,30 +6,66 @@ import Tooltip from "./tooltip";
 import { useNavContext } from "../components/NavProvider";
 
 import { SvgHamburger, SvgPlus } from "./svg";
-import { Bolt, BookOpen, Box, House, PencilRuler, Search } from "lucide-react";
+import {
+  ArrowLeft,
+  Bolt,
+  BookOpen,
+  Box,
+  Grip,
+  House,
+  PencilRuler,
+  Search,
+} from "lucide-react";
 import { useCurrentHeader } from "./TitleUpdater";
 import { useFontSize } from "./FontSizeProvider";
 
-
 import { isIOS, isMacOs, isMobile } from "react-device-detect";
+import Marquee from "./Marquee";
+import Popover from "./popover";
+import { links } from "../pages/tools/toolData";
 
 const isApple = isMacOs || isIOS;
 
 const navItems = [
-  { to: "", icon: <House size={20} />, label: "Home",  type: "link" },
-  { to: "/Components", icon: <Box size={20} />, label: "Components",  vertical: "true", adaptive: "desktop", type: "link", },
-  { to: "/Components/Typography", icon: <Box size={20} />, label: "Components",  adaptive: "mobile", type: "toggle", },
+  { to: "", icon: <House size={20} />, label: "Home", type: "link" },
+  {
+    to: "/Components",
+    icon: <Box size={20} />,
+    label: "Components",
+    vertical: "true",
+    adaptive: "desktop",
+    type: "link",
+  },
+  {
+    to: "/Components/Typography",
+    icon: <Box size={20} />,
+    label: "Components",
+    adaptive: "mobile",
+    type: "toggle",
+  },
   { to: "/Components", type: "separator" },
-  { to: "/Tools", icon: <PencilRuler size={20} />, label: "Tools & Resources", type: "link", },
+  {
+    to: "/Tools",
+    icon: <PencilRuler size={20} />,
+    label: "Tools & Resources",
+    type: "link",
+  },
   { to: "/About", icon: <BookOpen size={20} />, label: "About", type: "link" },
 
-  { to: "/Settings", icon: <Bolt size={20} />, label: "Settings",  type: "link", },
-  { to: "/Search", icon: <Search size={20} />, label: "Search", hint: (<>{isApple ? "⌘" : "Ctrl"} + K</>),  type: "link" },
+  {
+    to: "/Settings",
+    icon: <Bolt size={20} />,
+    label: "Settings",
+    type: "link",
+  },
+  {
+    to: "/Search",
+    icon: <Search size={20} />,
+    label: "Search",
+    hint: <>{isApple ? "⌘" : "Ctrl"} + K</>,
+    type: "link",
+  },
 ];
-
-
-
-    
 
 const Navigation: React.FC = () => {
   const location = useLocation(); // ✅ Use the hook, not window.location
@@ -46,28 +82,33 @@ const Navigation: React.FC = () => {
   return (
     <>
       <group data-gap="10" data-align="center" data-wrap="no">
-        <group
-          ref={buttonRef}
-          data-shrink="no"
-          data-over-color="neutral"
-          className={isNavOpen ? "open" : ""}
-          data-background={isNavOpen ? "main-background" : ""}
-          data-color={isNavOpen ? "text" : ""}
-          onClick={handleNavToggle}
-          data-cursor="pointer"
-          data-width="auto"
-          data-space="10"
-          data-interactive=""
-          data-radius="30"
-          data-contain=""
-          data-name="nav-item"
-        >
-          <group>
-            <icon data-length="30">
-              <SvgHamburger />
-            </icon>
+        <Ripple>
+          <group
+            data-width="auto"
+            data-shrink="no"
+            data-over-color="neutral"
+            data-interactive=""
+            data-radius="30"
+            data-contain=""
+          >
+            <group
+              ref={buttonRef}
+              className={isNavOpen ? "open" : ""}
+              //  data-background={isNavOpen ? "main-background" : ""}
+              data-color={isNavOpen ? "text" : ""}
+              onClick={handleNavToggle}
+              data-cursor="pointer"
+              data-space="10"
+              data-name="nav-item"
+            >
+              <group>
+                <icon data-length="30">
+                  <SvgHamburger />
+                </icon>
+              </group>
+            </group>
           </group>
-        </group>
+        </Ripple>
         <separator data-vertical=""></separator>
 
         <Ripple>
@@ -77,10 +118,9 @@ const Navigation: React.FC = () => {
             data-radius="30"
             data-height="50"
             data-contain=""
-        
           >
             <NavLink
-               data-drag="none"
+              data-drag="none"
               data-position="absolute"
               data-translate-vertical={isInTools ? "-100%" : ""}
               data-transition-prop="transform"
@@ -105,31 +145,145 @@ const Navigation: React.FC = () => {
               {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text> */}
             </NavLink>
 
-            <NavLink
-               data-drag="none"
-              data-position="absolute"
-              data-top="0"
-              data-translate-vertical={isInTools ? "" : "100%"}
-              data-transition-prop="transform"
-              data-duration="3"
-              data-shrink="no"
-              data-type="group"
-              data-width="auto"
-              data-space="10"
-              data-align="center"
+            <Popover
+              bottomsheet
+              bottomsheetProps={{
+                "data-space": "0",
+              }}
+              data-radius="30"
+              data-space="0"
+              placement="bottom"
               data-contain=""
-              to="/Tools"
+              data-elevation="2"
+              content={(closePopover, isbottomSheet) => (
+                <group
+                  onClick={closePopover}
+                  data-type="grid"
+                  data-grid-template="100"
+                  data-gap="1"
+                  // data-length="360"
+                  data-contain=""
+                  data-radius="30"
+                >
+                  <NavLink
+                    data-type="group"
+                    to="/"
+                    data-hide={isbottomSheet ? undefined : "true"}
+                    data-align="center"
+                    data-justify="center"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-cursor="pointer"
+                  >
+                    <group
+                      data-drag="no"
+                      data-radius="50"
+                      data-align="center"
+                      data-react="background"
+                      data-interact=""
+                      data-background="adaptive-gray"
+                      data-space="20"
+                      data-width="auto"
+                    >
+                      <group>
+                        <ArrowLeft strokeWidth="1.5" />
+                      </group>
+                    </group>
+                  </NavLink>
+                  {links.map((link, index) => (
+                    <group key={index} data-border="">
+                      <Ripple>
+                        <group data-ink-color="neutral">
+                          <NavLink
+                            to={link.url}
+                            data-type="group"
+                            data-drag="none"
+                          >
+                            {({ isActive }) => (
+                              <group
+                                data-space="10"
+                                data-interactive=""
+                                data-over-color="neutral"
+                                data-background={
+                                  isActive ? "adaptive-gray" : ""
+                                }
+                              >
+                                {link.new === "true" && (
+                                  <group
+                                    data-background="red"
+                                    data-space="3"
+                                    data-position="absolute"
+                                    data-width="auto"
+                                    data-radius="5"
+                                    data-right="20"
+                                    data-top="20"
+                                  ></group>
+                                )}
+
+                                <group
+                                  data-contain=""
+                                  data-space="15"
+                                  data-width="auto"
+                                  data-animation-name="appear-bottom"
+                                  data-fill-mode="backwards"
+                                  data-animation-duration={2 + index * 0.5}
+                                  data-animation-timing="fancy"
+                                  // data-name="nav-item"
+                                  data-direction="column"
+                                  data-gap="10"
+                                >
+                                  <group data-ratio="1:1" data-interact="">
+                                    {link.content}
+                                  </group>
+                                  <group data-pointer-event="none">
+                                    <Marquee auto={isActive}>
+                                      <text
+                                        data-ellipsis=""
+                                        data-opacity={isActive ? "" : "40"}
+                                        data-text-align="center"
+                                      >
+                                        {link.title}
+                                      </text>
+                                    </Marquee>
+                                  </group>
+                                </group>
+                              </group>
+                            )}
+                          </NavLink>
+                        </group>
+                      </Ripple>
+                    </group>
+                  ))}
+                </group>
+              )}
             >
               <group
-                data-interact=""
-                data-length="30"
-                data-height="30"
+                data-cursor="pointer"
+                data-drag="none"
+                data-position="absolute"
+                data-top="0"
+                data-translate-vertical={isInTools ? "" : "100%"}
+                data-transition-prop="transform"
+                data-duration="3"
+                data-shrink="no"
+                data-type="group"
+                data-width="auto"
+                data-space="10"
                 data-align="center"
-                data-justify="center"
+                data-contain=""
+                to="/Tools"
               >
-                <PencilRuler size={20} />
+                <group
+                  data-interact=""
+                  data-length="30"
+                  data-height="30"
+                  data-align="center"
+                  data-justify="center"
+                >
+                  <PencilRuler size={20} />
+                </group>
               </group>
-            </NavLink>
+            </Popover>
           </group>
         </Ripple>
 
@@ -150,7 +304,8 @@ const Navigation: React.FC = () => {
           </>
         )}
 
-        <NavLink
+<Ripple>
+          <NavLink
           data-shrink="no"
           data-position="right"
           data-align="center"
@@ -160,7 +315,7 @@ const Navigation: React.FC = () => {
           data-interactive=""
           data-radius="30"
           data-contain=""
-          data-name="nav-item"
+       //   data-name="nav-item"
           to="/Search"
         >
           {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Search</text> */}
@@ -174,6 +329,7 @@ const Navigation: React.FC = () => {
             <Search size={20} />
           </group>
         </NavLink>
+</Ripple>
       </group>
     </>
   );
@@ -340,24 +496,19 @@ const LeftNavigation: React.FC<{
             onClick={handleItemClick} // Close the nav on item click
           >
             <Tooltip
-            data-gap="10"
-
-            
-              content={isNavOpen ? "" : item.vertical ? ""
-                
-                : 
-                
-
-         <>
-         <text>{item.label}</text>
-         { item.hint &&
- <text data-opacity="40"> {item.hint}</text>
-         }
-       
-         </>
-
-
-               }
+              data-gap="10"
+              content={
+                isNavOpen ? (
+                  ""
+                ) : item.vertical ? (
+                  ""
+                ) : (
+                  <>
+                    <text>{item.label}</text>
+                    {item.hint && <text data-opacity="40"> {item.hint}</text>}
+                  </>
+                )
+              }
               placement="right"
             >
               <group>
@@ -387,14 +538,16 @@ const LeftNavigation: React.FC<{
                       {item.label}
                     </text>
 
-                    {
-                      item.hint && !isMobile &&
-
-                      <group data-space-horizontal="10" data-width="auto" data-position="right" data-opacity={isNavOpen ? "40":"0"}>
-                      <text>{item.hint}</text>
+                    {item.hint && !isMobile && (
+                      <group
+                        data-space-horizontal="10"
+                        data-width="auto"
+                        data-position="right"
+                        data-opacity={isNavOpen ? "40" : "0"}
+                      >
+                        <text>{item.hint}</text>
                       </group>
-
-                    }
+                    )}
                     {item.vertical === "true" && (
                       <group data-width="auto"></group>
                     )}

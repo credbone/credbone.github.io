@@ -315,38 +315,49 @@ const Motion: React.FC = () => {
             <Popover
             bottomsheet
               placement="middle"
-              data-radius="10"
+              data-radius="15"
               data-space="0"
               data-space-vertical="10"
-              content={(closePopover, isBottomSheet) => (
-                <group
-                  data-direction="column"
-                  //   data-length="240"
-                  onClick={closePopover}
-                >
-                  {timingFunction.map(({ value, name }, index) => (
-                    <group
-                      key={value}
-                      onClick={() => handleWeightSelect(value)}
-                      data-background={selectedTiming === value ? "main" : ""}
-                      data-color={selectedTiming === value ? "main-text" : ""}
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration={2 + index * 0.5}
-                      data-align="center"
-                      data-interactive=""
-                      data-over-color="neutral"
-                       data-radius={isBottomSheet ? "10" : undefined}
-                      data-cursor="pointer"
-                      data-space="15"
-                      data-gap="10"
-                    >
-                      {/* <text data-weight={value}>{value}</text> */}
-                      <text>{name}</text>
-                    </group>
-                  ))}
-                </group>
-              )}
+content={(closePopover, isBottomSheet) => {
+  const midIndex = Math.floor(timingFunction.length / 2);
+
+  return (
+    <group
+      data-direction="column"
+      onClick={closePopover}
+    >
+      {timingFunction.map(({ value, name }, index) => {
+        const distance = Math.abs(index - midIndex);
+        const fromBottom = index >= midIndex;
+
+        return (
+          <group
+            key={value}
+            onClick={() => handleWeightSelect(value)}
+            data-background={selectedTiming === value ? "main" : ""}
+            data-color={selectedTiming === value ? "main-text" : ""}
+            data-animation-name={
+              isBottomSheet ? "appear-bottom" : fromBottom ? "appear-top" : "appear-bottom"
+            }
+            data-fill-mode="backwards"
+            data-animation-duration={
+              isBottomSheet ? 2 + index * 0.5 : 2 + distance * 0.5
+            }
+            data-align="center"
+            data-interactive=""
+            data-over-color="neutral"
+            data-radius={isBottomSheet ? "10" : undefined}
+            data-cursor="pointer"
+            data-space="15"
+            data-gap="10"
+          >
+            <text>{name}</text>
+          </group>
+        );
+      })}
+    </group>
+  );
+}}
             >
               <group>
                 <Ripple>

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Navigate, NavLink, Route, Routes } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import DotIconMaker from "./DotIconMaker";
 
 import { links } from "./toolData";
@@ -16,6 +16,21 @@ import PathBulder from "./PathBuilder/PathBulder";
 import Marquee from "../../components/Marquee";
 
 function ToolsCollection() {
+
+
+    const location = useLocation();
+    const viewRef = useRef<HTMLDivElement>(null);
+  
+    useEffect(() => {
+      if (viewRef.current) {
+        viewRef.current.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }, [location]);
+
+
   return (
     <group
       data-wrap="no"
@@ -27,6 +42,7 @@ function ToolsCollection() {
       data-align="start"
       data-min-height="fit"
       data-space-top="0"
+      ref={viewRef}
     >
       <group data-height="30" data-shrink="no" data-adaptive="desktop"></group>
       <group data-height="20" data-shrink="no" data-adaptive="600"></group>
