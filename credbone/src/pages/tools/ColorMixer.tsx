@@ -4,7 +4,7 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 import Popover from "../../components/popover";
 
 import Ripple from "../../components/Ripple";
-import { ArrowDown, Copy, Link2, Plus, Share } from "lucide-react";
+import { ArrowDown, Braces, Copy, Link2, Plus, Share } from "lucide-react";
 import CustomSlider from "../../components/inputs/slider";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import { isMobile } from "react-device-detect";
@@ -654,7 +654,7 @@ const handleNativeShare = async () => {
   { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save gradient for later", onClick: downloadSVG, },
   { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copyToClipboard, },
   { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: copyShareLink, },
-  { icon: "", title: "CSS", description: "Paste into your stylesheet", onClick: copyCSSGradient, },
+  { icon: <Braces strokeWidth={1.5} size={20}/>, title: "CSS", description: "Paste into your stylesheet", onClick: copyCSSGradient, },
 
 
 
@@ -937,137 +937,7 @@ const handleNativeShare = async () => {
                     onClick={closePopover}
                     data-contain=""
                   >
-                    {/* <group
-                      onClick={downloadSVG}
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration="2.75"
-                      data-name="autoseparation"
-                    >
-                      <group
-                        data-space={isBottomSheet ? "20" : "15"}
-                        data-align="center"
-                        data-gap="15"
-                        data-interactive=""
-                        data-radius="15"
-                        data-cursor="pointer"
-                         data-wrap="no"
-                      >
-                        <group
-                          data-length="20"
-                          data-opacity="30"
-                          data-interact=""
-                        >
-                          <ArrowDown strokeWidth={1.5} size={20} />
-                        </group>
-                        <group data-direction="column" data-width="auto">
-                          <text data-weight="700">Download</text>
-                          <text data-opacity="30">Save gradient for later</text>
-                        </group>
-                      </group>
-                    </group>
-                    <group
-                      onClick={copyToClipboard}
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration="3.25"
-                      data-name="autoseparation"
-                    >
-                      <separator
-                        data-horizontal=""
-                        data-margin-horizontal="10"
-                        data-opacity="5"
-                      ></separator>
-                      <group
-                        data-space={isBottomSheet ? "20" : "15"}
-                        data-align="center"
-                        data-gap="15"
-                        data-interactive=""
-                        data-radius="15"
-                        data-cursor="pointer"
-                         data-wrap="no"
-                      >
-                        <group
-                          data-length="20"
-                          data-opacity="30"
-                          data-interact=""
-                        >
-                          <Copy strokeWidth={1.5} size={20} />
-                        </group>
-                        <group data-direction="column" data-width="auto">
-                          <text data-weight="700">Copy</text>
-                          <text data-opacity="30">
-                            Paste in Figma or code ...
-                          </text>
-                        </group>
-                      </group>
-                    </group>
-                    <group
-                      onClick={copyShareLink}
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration="3.75"
-                      data-name="autoseparation"
-                    >
-                      <separator
-                        data-horizontal=""
-                        data-margin-horizontal="10"
-                        data-opacity="5"
-                      ></separator>
-                      <group
-                         data-space={isBottomSheet ? "20" : "15"}
-                        data-align="center"
-                        data-gap="15"
-                        data-interactive=""
-                        data-radius="15"
-                        data-cursor="pointer"
-                        data-wrap="no"
-                      >
-                                                <group
-                          data-length="20"
-                          data-opacity="30"
-                          data-interact=""
-                        >
-                          <Link2 strokeWidth={1.5} size={20} />
-                        </group>
-                        <group data-direction="column" data-width="auto">
-                          <text data-weight="700">Share Link</text>
-                          <text data-opacity="30">
-                            Copy URL for sharing
-                          </text>
-                        </group>
-                      </group>
-                    </group>
-                    <group
-                      onClick={copyCSSGradient}
-                      data-animation-name="appear-bottom"
-                      data-fill-mode="backwards"
-                      data-animation-duration="3.75"
-                      data-name="autoseparation"
-                    >
-                      <separator
-                        data-horizontal=""
-                        data-margin-horizontal="10"
-                        data-opacity="5"
-                      ></separator>
-                      <group
-                         data-space={isBottomSheet ? "20" : "15"}
-                        data-align="center"
-                        data-gap="15"
-                        data-interactive=""
-                        data-radius="15"
-                        data-cursor="pointer"
-                        data-wrap="no"
-                      >
-                        <group data-length="20"></group>
-                        <group data-direction="column" data-width="auto">
-                          <text data-weight="700">CSS</text>
-                          <text data-opacity="30">
-                            Paste into your stylesheet
-                          </text>
-                        </group>
-                      </group>
-                    </group> */}
+                    
 
                     {menuItems.map((item, index) => (
                       <group

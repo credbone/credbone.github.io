@@ -21,7 +21,7 @@ import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { ArrowDown, Copy, Film, Link2, Share } from "lucide-react";
+import { ArrowDown, Copy, Film, Link2, Share, Share2 } from "lucide-react";
 import { useFavMap } from "./useFavMap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import MenuItem from "../components/MenuItem";
@@ -135,7 +135,7 @@ useEffect(() => {
   fetch(imageUrl)
     .then(r => r.blob())
     .then(blob => {
-      imageFileRef.current = new File([blob], `${itemTitle}.jpg`, { type: blob.type });
+      imageFileRef.current = new File([blob], `${itemTitle.replace(/\s+/g, "_")}_Credbone.jpg`, { type: blob.type });
     })
     .catch(() => {});
 }, [imageUrl]);
@@ -188,7 +188,7 @@ const menuItems = [
   { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save Image", onClick: handleDownloadClick },
   { icon: <Link2 strokeWidth={1.5} size={20} />, title: "Share Link", description: "Copy URL for sharing", onClick: handleShare },
   ...('share' in navigator ? [{
-    icon: <Share strokeWidth={1.5} size={20} />,
+    icon: <Share2 strokeWidth={1.5} size={20} />,
     title: "Share",
     description: "Share image via...",
     onClick: handleNativeShare,
