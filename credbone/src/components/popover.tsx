@@ -332,6 +332,13 @@ useEffect(() => {
 if (axisRef.current === "y" && deltaY > 0) {
   if (!startedAtTopRef.current) return; // ← block if didn't start at top
   if (e.cancelable) e.preventDefault();
+
+
+  if (deltaRef.current < THRESHOLD && deltaY >= THRESHOLD) {
+      navigator.vibrate?.(10);
+    }
+
+
   deltaRef.current = deltaY;
   el.style.transform = `translateY(${deltaY}px)`;
   if (dim) dim.style.opacity = `${1 - deltaY / THRESHOLD}`;

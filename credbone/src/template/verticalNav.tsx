@@ -268,8 +268,10 @@ if (axisRef.current === "x" && deltaX > 0) {
 {isSubNavOpen ? 
                 
                
-                <group
-             
+<>
+<Ripple>
+                  <group
+            
                 data-cursor="pointer"
                 data-interactive="color"
               
@@ -281,7 +283,11 @@ if (axisRef.current === "x" && deltaX > 0) {
                 data-wrap="no"
 
               >
-                <ThemeIcon /> </group> : <ThemeToggle /> }
+                <ThemeIcon /> </group>
+</Ripple>
+</>
+
+: <ThemeToggle /> }
 </group>
 
 
@@ -304,7 +310,12 @@ if (axisRef.current === "x" && deltaX > 0) {
                 data-wrap="no"
                 data-adaptive="desktop"
               >
-                {isNavOpen ? <ThemeToggle /> : <group data-cursor="pointer" data-interactive="color" data-space="10" data-gap="10"  data-radius="10"><ThemeIcon /></group>}
+                {isNavOpen ? <ThemeToggle /> : <>
+                
+                <Ripple>
+                  <group data-cursor="pointer" data-contain="" data-interactive="color" data-space="10" data-gap="10"  data-radius="10"><ThemeIcon /></group>
+                </Ripple>
+                </>}
                 {/* {isSubNavOpen && isNavOpen ? <ThemeIcon /> : isNavOpen ? <ThemeToggle /> : <ThemeIcon />} */}
               </group>
             </Popover>
@@ -334,7 +345,9 @@ if (axisRef.current === "x" && deltaX > 0) {
                 )
               }
             >
-              <group
+<group>
+  <Ripple>
+                  <group
            //     data-adaptive="desktop"
                 data-cursor="pointer"
                 data-interactive=""
@@ -373,6 +386,8 @@ if (axisRef.current === "x" && deltaX > 0) {
                   )}
                 </group>
               </group>
+  </Ripple>
+</group>
             </Tooltip>
 
 

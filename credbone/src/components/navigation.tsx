@@ -198,6 +198,10 @@ const Navigation: React.FC = () => {
                             to={link.url}
                             data-type="group"
                             data-drag="none"
+                            onClick={() => {
+  navigator.vibrate?.(5);
+  // rest of your logic
+}}
                           >
                             {({ isActive }) => (
                               <group
