@@ -23,62 +23,69 @@ const SimplePopover = (
       Popover
     </text>
     <text data-wrap="wrap" data-line="1.3">
-     A floating card that appears on click and can flexibly display any content.
+      A floating card that appears on click and can flexibly display any
+      content.
     </text>
   </group>
 );
 
-
-const SemiSimplePopover = ({ closePopover }: { closePopover: () => void }) => (
-      <group data-direction="column" data-gap="20">
-        <group data-direction="column" data-gap="15" data-space="20" data-space-bottom="10">
-          <text         data-weight="700"
-      
-       
-       
+const SemiSimplePopover = ({
+  closePopover,
+  isBottomSheet,
+}: {
+  closePopover: () => void;
+  isBottomSheet: boolean;
+}) => (
+  <group data-direction="column" data-gap={isBottomSheet ? "20" : "15"}>
+    <group
+      data-direction="column"
+      data-gap="15"
+      data-space="20"
+      data-space-bottom="10"
+    >
+      <text
+        data-weight="700"
         data-ellipsis=""
+        data-font-type="hero"
+        data-text-size="large"
+        data-wrap="preline"
+        data-line="1"
+      >
+        Sample
+        {"\n"}
+        Popover
+      </text>
+      <text data-line="1.5" data-wrap="wrap" data-max-length="300">
+        Comparing with
+        <Tooltip content="Sample Tooltip">
+          <text data-weight="700"> Tooltip</text>
+        </Tooltip>
+        , besides information Popover card can also provide action elements like
+        links and buttons.
+      </text>
+    </group>
+    <separator data-horizontal=""></separator>
 
-
-                             data-font-type="hero"
-                     data-text-size="large"
-                      data-wrap="preline"
-                      data-line="1">
-                        Sample
-                         {"\n"}
-            Popover
-          </text>
-          <text data-line="1.5" data-wrap="wrap" data-max-length="300">
-            Comparing with
-            <Tooltip content="Sample Tooltip">
-              <text data-weight="700"> Tooltip</text>
-            </Tooltip>
-            , besides information Popover card can also provide action elements
-            like links and buttons.
-          </text>
+    <group data-space={isBottomSheet ? "10" : "0"}>
+      <Ripple>
+        <group
+          data-wrap="no"
+          data-align="center"
+          data-cursor="pointer"
+          data-contain=""
+          data-interactive=""
+          data-space="15"
+          data-radius="30"
+          data-gap="20"
+          onClick={closePopover}
+          data-direction="column"
+          data-background={isBottomSheet ? "adaptive-gray" : undefined}
+        >
+          <text data-weight="700">Got It</text>
         </group>
-        <separator data-horizontal=""></separator>
-
-        <Ripple>
-          <group
-            data-wrap="no"
-          //  data-ink-color="main"
-            data-align="center"
-            data-cursor="pointer"
-            data-contain=""
-           // data-background="main"
-          //  data-color="main-text"
-            data-interactive=""
-            data-space="15"
-            data-radius="30"
-            // data-height="80"
-            data-gap="20"
-            onClick={closePopover}
-            data-direction="column"
-          >
-            <text data-weight="700">Got It</text>
-          </group>
-        </Ripple>
-      </group>
+      </Ripple>
+    </group>
+  </group>
 );
 
 const ShowPopover = (
@@ -89,138 +96,67 @@ const ShowPopover = (
     data-space="15"
     data-radius="30"
     content={(closePopover) => (
-<SemiSimplePopover closePopover={closePopover} />
+      <SemiSimplePopover closePopover={closePopover} isBottomSheet={false} />
     )}
   >
-        <group
-       
-data-contain=""
-              data-width="auto"
-              data-interactive=""
-             data-over-color="neutral"
-              data-space="15"
-              data-space-horizontal="40"
-              data-radius="30"
-              data-cursor="pointer"
-              data-background="text"
-              data-color="main-background"
-        >
-           <text data-weight="700">Show Popover</text>
-        </group>
+    <group
+      data-contain=""
+      data-width="auto"
+      data-interactive=""
+      data-over-color="neutral"
+      data-space="15"
+      data-space-horizontal="40"
+      data-radius="30"
+      data-cursor="pointer"
+      data-background="text"
+      data-color="main-background"
+    >
+      <text data-weight="700">Show Popover</text>
+    </group>
   </Popover>
 );
 
-
-
 const showinsidepopover = (
   <Popover
-  bottomsheet
+    bottomsheet
+    // bottomsheetProps={
+    //   {
+    //     "data-max-length" : "260"
+    //   }
+    // }
     data-elevation="2"
     placement="auto"
     data-length="200"
     data-space="15"
     data-radius="30"
-    content={(closePopover) => (
-<SemiSimplePopover closePopover={closePopover} />
+    content={(closePopover, isBottomSheet) => (
+      <SemiSimplePopover
+        closePopover={closePopover}
+        isBottomSheet={isBottomSheet}
+      />
     )}
   >
-        <group
-       
-          data-wrap="no"
-
-          data-align="center"
-          data-cursor="pointer"
-          data-contain=""
-          data-over-color="neutral"
-          data-background="text"
-          data-color="main-background"
-          data-interactive=""
-          data-space="15"
-          data-radius="30"
-          // data-height="80"
-          data-gap="20"
-          data-justify="center"
-        >
-           <text data-weight="700">Show Popover</text>
-        </group>
+    <group
+      data-wrap="no"
+      data-align="center"
+      data-cursor="pointer"
+      data-contain=""
+      data-over-color="neutral"
+      data-background="text"
+      data-color="main-background"
+      data-interactive=""
+      data-space="15"
+      data-radius="30"
+      // data-height="80"
+      data-gap="20"
+      data-justify="center"
+    >
+      <text data-weight="700">Show Popover</text>
+    </group>
   </Popover>
 );
 
-
-
-const SampleData = (
-  <group
-
-    data-height="auto"
-    data-radius="10"
-  //  data-border=""
-    data-contain=""
-  >
-    <group data-space="5">
-      <picture
-
-      data-radius-top="30"
-     data-object-position="left"
-        data-contain=""
-        data-brightness="adaptive"
-        //  data-position="absolute"
-        data-background="grey-light"
-        
-        data-height="160"
-        data-mask="bottom"
-      >
-        <img src={sampleImage} alt="" />  
-      </picture>
-    </group>
-
-    <group data-direction="column" data-space="30" data-space-top="0" data-gap="15">
-      <text
-        data-weight="700"
-      
-       
-     //   data-color="main"
-        data-ellipsis=""
-
-
-                             data-font-type="hero"
-                     data-text-size="large"
-                      data-wrap="preline"
-                      data-line="1"
-      >
-
-        Sample
-        Rich
-       {"\n"} 
-        Content 
-      </text>
-
-
-
-      <text data-wrap="wrap"  data-line="1.5" data-opacity="60">
-        Tooltips display informative text when users hover over, focus on, or
-        tap an element, while a popover is a floating card that appears when
-        users click or hover over an element.
-      </text>
-    </group>
-
-
-<group data-space-horizontal="15">
-  <separator data-horizontal=""></separator>
-</group>
-
-    <group
-      //  data-background="main"
-      data-contain=""
-      // data-theme="dark"
-      data-align="center"
-    >
-    
-      <group data-length="fit" data-space="15">
-        {showinsidepopover}
-      </group>
-    </group>
-  </group>
-);
+const SampleData = <></>;
 
 const SampleTooltipData = (
   <group data-direction="column" data-gap="15">
@@ -245,9 +181,6 @@ const SampleTooltipData = (
 const TooltipPopover: React.FC = () => {
   return (
     <group data-space="30" data-gap="30" data-align="start">
-
-
-
       <TemplatePageHeader
         title="Tooltip & Popover"
         description="Tooltips display informative text when users hover over, focus on, or
@@ -255,13 +188,12 @@ const TooltipPopover: React.FC = () => {
           users click or hover over an element."
         version="2.1.0"
         type="Component"
-        descriptionProps={{"data-length":"600"}}
+        descriptionProps={{ "data-length": "600" }}
       />
-
 
       <group>
         <picture
-        data-object-position="left"
+          data-object-position="left"
           data-radius="40"
           data-contain=""
           data-brightness="adaptive"
@@ -271,7 +203,13 @@ const TooltipPopover: React.FC = () => {
           <img src={sectionImage} alt="" />
         </picture>
 
-        <group data-space="30" data-width="auto" data-direction="column" data-align="start" data-gap="30">
+        <group
+          data-space="30"
+          data-width="auto"
+          data-direction="column"
+          data-align="start"
+          data-gap="30"
+        >
           <group
             data-direction="column"
             data-radius="15"
@@ -281,8 +219,6 @@ const TooltipPopover: React.FC = () => {
             data-space="30"
             data-gap="20"
           >
-
-
             <group>
               <text data-wrap="wrap" data-line="1.5" data-max-length="400">
                 Click to view a sample popover. The default placement is on top,
@@ -292,7 +228,7 @@ const TooltipPopover: React.FC = () => {
             </group>
           </group>
 
-                        {ShowPopover}
+          {ShowPopover}
         </group>
       </group>
 
@@ -312,7 +248,11 @@ const TooltipPopover: React.FC = () => {
         >
           <group data-space="20" data-gap="15" data-weight="600">
             <group>
-              <Popover content={SimplePopover} data-width="auto" data-radius="20">
+              <Popover
+                content={SimplePopover}
+                data-width="auto"
+                data-radius="20"
+              >
                 <group
                   data-interactive=""
                   data-interact="popover"
@@ -330,14 +270,76 @@ const TooltipPopover: React.FC = () => {
 
             <group>
               <Popover
-
-              bottomsheet
-              bottomsheetProps={{"data-space":"0", "data-radius":"35"}}
+                bottomsheet
+                bottomsheetProps={{ "data-space": "0", "data-radius": "35" }}
                 placement="right"
                 data-radius="35"
                 data-space="0"
                 data-elevation="2"
-                content={SampleData}
+                content={(closePopover, isBottomSheet) => (
+                  <group data-height="auto" data-radius="10" data-contain="">
+                    <group data-space="5">
+                      <picture
+                        data-radius-top="30"
+                        data-object-position="left"
+                        data-contain=""
+                        data-brightness="adaptive"
+                        data-background="grey-light"
+                        data-height="200"
+                        data-mask="bottom"
+                      >
+                        <img src={sampleImage} alt="" />
+                      </picture>
+                    </group>
+
+
+                    <group
+                      data-direction="column"
+                      data-space="30"
+                      data-space-top="0"
+                      data-gap="15"
+                    >
+                      <text
+                        data-weight="700"
+                        //   data-color="main"
+                        data-ellipsis=""
+                        data-font-type="hero"
+                        data-text-size="large"
+                        data-wrap="preline"
+                        data-line="1"
+                      >
+                        Sample Rich
+                        {"\n"}
+                        Content
+                      </text>
+
+                      <text data-wrap="wrap" data-line="1.5" data-opacity="60">
+                        Tooltips display informative text when users hover over,
+                        focus on, or tap an element, while a popover is a
+                        floating card that appears when users click or hover
+                        over an element.
+                      </text>
+                    </group>
+
+                    <group data-space-horizontal="15">
+                      <separator data-horizontal=""></separator>
+                    </group>
+
+                    <group
+                      //  data-background="main"
+                      data-contain=""
+                      // data-theme="dark"
+                      data-align="center"
+                    >
+                      <group
+                        data-length="fit"
+                        data-space={isBottomSheet ? "30" : "15"}
+                      >
+                        {showinsidepopover}
+                      </group>
+                    </group>
+                  </group>
+                )}
                 data-length="300"
               >
                 <group
@@ -351,6 +353,11 @@ const TooltipPopover: React.FC = () => {
                   <text decoration="">Show Rich Popover</text>
                 </group>
               </Popover>
+
+
+
+
+
             </group>
             <separator data-horizontal=""></separator>
 
@@ -361,7 +368,7 @@ const TooltipPopover: React.FC = () => {
               data-direction="column"
             >
               <Popover
-              bottomsheet
+                bottomsheet
                 placement="right"
                 content={<Calculator />}
                 data-length="260"
@@ -369,7 +376,6 @@ const TooltipPopover: React.FC = () => {
                 data-elevation="2"
                 data-space={undefined}
                 data-space-top="0"
-               
               >
                 <group
                   data-interactive=""
@@ -428,8 +434,7 @@ const TooltipPopover: React.FC = () => {
                 placement="auto"
                 data-radius="30"
                 data-space="30"
-
-               // data-elevation="2"
+                // data-elevation="2"
                 content={SampleTooltipData}
                 data-length="200"
               >
@@ -449,7 +454,7 @@ const TooltipPopover: React.FC = () => {
         </group>
       </group>
 
-<TooltipPropsDemo/>
+      <TooltipPropsDemo />
     </group>
   );
 };

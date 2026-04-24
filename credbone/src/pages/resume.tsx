@@ -359,12 +359,12 @@ data-gap="20"
             <group data-gap="10" data-space-horizontal="30">
               <group data-gap="10">
 
-
+              <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text"> AI </text> <dot></dot> <text data-user-select="text"> LLMs </text> </group>
              
               <group data-width="auto" data-background="text" data-color="main-background" data-space="15"data-radius="15" data-space-horizontal="20"  data-print="hide"> <text data-user-select="text" > Figma </text> </group>
 
               <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" data-print="show"> <text data-user-select="text" data-weight="700"> Figma </text> </group>
-              <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text"> AI </text> <dot></dot> <text data-user-select="text"> LLMs </text> </group>
+
               <group data-width="auto" data-border="" data-space="15" data-space-horizontal="20" data-radius="15" > <text data-user-select="text"></text> <text>Adobe</text> <group data-length="15"></group> <text>Ps</text> <dot></dot> <text>Ai</text> </group>
 
 
