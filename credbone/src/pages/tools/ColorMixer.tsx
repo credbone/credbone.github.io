@@ -593,9 +593,14 @@ const svgToPng = (svgString: string, width: number, height: number): Promise<Fil
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      canvas.getContext('2d')?.drawImage(img, 0, 0);
+      
+      const scale = 2;
+canvas.width = width * scale;
+canvas.height = height * scale;
+     const ctx = canvas.getContext('2d');
+ctx?.scale(scale, scale);
+ctx?.drawImage(img, 0, 0);
+      
       canvas.toBlob(blob => {
         URL.revokeObjectURL(url);
         if (blob) resolve(new File([blob], 'gradient.png', { type: 'image/png' }));

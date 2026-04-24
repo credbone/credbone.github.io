@@ -163,7 +163,7 @@ const Navigation: React.FC = () => {
                   data-gap="1"
                   // data-length="360"
                   data-contain=""
-                  data-radius="30"
+                  data-radius-top="30"
                 >
                   <NavLink
                     data-type="group"
