@@ -24,6 +24,8 @@ const VerticalNav: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
   const { isNavOpen, setIsNavOpen, navRef, toggleRef  } = useNavContext();
   //const navRef = useRef<HTMLDivElement>(null);
 
+    const dimRef = useRef<HTMLDivElement>(null);
+
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -59,6 +61,7 @@ const THRESHOLD = 100;
 
 useEffect(() => {
   const el = navRef.current;
+  const dim = dimRef.current;
   if (!el) return;
 
   const onTouchStart = (e: TouchEvent) => {
@@ -80,17 +83,55 @@ useEffect(() => {
       else axisRef.current = "y";
     }
 
+
+      if (deltaRef.current < THRESHOLD && deltaX >= THRESHOLD) {
+      navigator.vibrate?.(10);
+    }
+
+
+
 if (axisRef.current === "x" && deltaX > 0) {
   if (e.cancelable) e.preventDefault(); // only if browser allows
   deltaRef.current = deltaX;
   el.style.transform = `translateX(-${deltaX}px)`;
+      dim!.style.opacity = String(Math.max(0, 1 - deltaX / 300));
 }
   };
+
+const onDimTouchStart = (e: TouchEvent) => {
+  startXRef.current = e.touches[0].clientX;
+  deltaRef.current = 0;
+  el.style.transitionDuration = "0s";
+  dim!.style.transitionDuration = "0s";
+};
+
+const onDimTouchMove = (e: TouchEvent) => {
+  if (startXRef.current === null) return;
+  const deltaX = startXRef.current - e.touches[0].clientX;
+
+
+        if (deltaRef.current < THRESHOLD && deltaX >= THRESHOLD) {
+      navigator.vibrate?.(10);
+    }
+
+  if (deltaX > 0) {
+    if (e.cancelable) e.preventDefault();
+    deltaRef.current = deltaX;
+    el.style.transform = `translateX(-${deltaX}px)`;
+    dim!.style.opacity = String(Math.max(0, 1 - deltaX / 300));
+  }
+};
+  
 
   const onTouchEnd = () => {
     if (deltaRef.current >= THRESHOLD) {
       setIsNavOpen(false);
     }
+
+      if (dim) {                          // ← add
+    dim.style.opacity = "";
+    dim.style.transitionDuration = "";
+  } 
     el.style.transform = "";
     el.style.transitionDuration = "";
     startXRef.current = null;
@@ -99,15 +140,27 @@ if (axisRef.current === "x" && deltaX > 0) {
     axisRef.current = null;
   };
 
-  el.addEventListener("touchstart", onTouchStart, { passive: true });
-  el.addEventListener("touchmove", onTouchMove, { passive: false });
-  el.addEventListener("touchend", onTouchEnd);
+el.addEventListener("touchstart", onTouchStart, { passive: true });
+el.addEventListener("touchmove", onTouchMove, { passive: false });
+el.addEventListener("touchend", onTouchEnd);
 
-  return () => {
-    el.removeEventListener("touchstart", onTouchStart);
-    el.removeEventListener("touchmove", onTouchMove);
-    el.removeEventListener("touchend", onTouchEnd);
-  };
+if (dim) {
+  dim.addEventListener("touchstart", onDimTouchStart, );
+  dim.addEventListener("touchmove", onDimTouchMove, );
+  dim.addEventListener("touchend", onTouchEnd);
+}
+
+return () => {
+  el.removeEventListener("touchstart", onDimTouchStart);
+  el.removeEventListener("touchmove", onDimTouchMove);
+  el.removeEventListener("touchend", onTouchEnd);
+
+  if (dim) {
+    dim.removeEventListener("touchstart", onTouchStart);
+    dim.removeEventListener("touchmove", onTouchMove);
+    dim.removeEventListener("touchend", onTouchEnd);
+  }
+};
 }, [setIsNavOpen]);
 
 
@@ -151,12 +204,18 @@ if (axisRef.current === "x" && deltaX > 0) {
   return (
     <>
       <group
+        ref={dimRef}
         data-position="absolute"
         data-background="dim"
         data-height="fit"
         data-index="2"
         data-visibility={isNavOpen ? "visible" : "hidden"}
         data-adaptive="mobile"
+
+                //         data-animation-name={isNavOpen ? "tooltip" : undefined}
+                // data-fill-mode="backwards"
+                // data-animation-duration="3.75"
+
       ></group>
       <group
       

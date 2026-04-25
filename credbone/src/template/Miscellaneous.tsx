@@ -42,7 +42,7 @@ const Miscellaneous: React.FC = () => {
         description="Encompasses a variety of small, diverse UI components that don't fit
           into other categories, including elements like marquees and counters."
         // version="1.0.2"
-        //  type="Pattern"
+          type="Component"
         descriptionProps={{ "data-length": "500" }}
       />
 

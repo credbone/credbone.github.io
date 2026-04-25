@@ -445,7 +445,7 @@ content={(closePopover, isBottomSheet) => {
                 data-width="auto"
                 data-wrap="no"
                 data-contain=""
-                data-radius="5"
+                data-radius="10"
                 data-border=""
               >
                 {alignmentOptions.map(({ value, title, icon }) => (
