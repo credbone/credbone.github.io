@@ -124,7 +124,7 @@ export default function App() {
                 Path Builder
               </text>
               <text data-wrap="wrap" data-max-length="300" data-opacity="40">
-                Ctrl + Click to add points. Use the left panel to change segment
+                Ctrl + Click to add points. Use the right panel to change segment
                 type and adjust the path.
               </text>
             </group>

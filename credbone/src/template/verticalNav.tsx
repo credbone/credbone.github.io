@@ -72,31 +72,31 @@ useEffect(() => {
     el.style.transitionDuration = "0s";
   };
 
-  const onTouchMove = (e: TouchEvent) => {
-    if (startXRef.current === null || startYRef.current === null) return;
+const onTouchMove = (e: TouchEvent) => {
+  if (startXRef.current === null || startYRef.current === null) return;
 
-    const deltaX = startXRef.current - e.touches[0].clientX;
-    const deltaY = Math.abs(e.touches[0].clientY - startYRef.current);
+  const deltaX = startXRef.current - e.touches[0].clientX;
+  const deltaY = Math.abs(e.touches[0].clientY - startYRef.current);
 
-    if (axisRef.current === null) {
-      if (Math.abs(deltaX) > deltaY) axisRef.current = "x";
-      else axisRef.current = "y";
-    }
+  if (axisRef.current === null) {
+    if (Math.abs(deltaX) > deltaY) axisRef.current = "x";
+    else axisRef.current = "y";
+  }
 
+  if (axisRef.current === "x" && deltaX > 0) {
+    if (e.cancelable) e.preventDefault();
 
-      if (deltaRef.current < THRESHOLD && deltaX >= THRESHOLD) {
+    if (deltaRef.current < THRESHOLD && deltaX >= THRESHOLD) {
       navigator.vibrate?.(10);
     }
 
+    deltaRef.current = deltaX;
+    el.style.transform = `translateX(-${deltaX}px)`;
+    dim!.style.opacity = String(Math.max(0, 1 - deltaX / 300));
+  }
+};
 
 
-if (axisRef.current === "x" && deltaX > 0) {
-  if (e.cancelable) e.preventDefault(); // only if browser allows
-  deltaRef.current = deltaX;
-  el.style.transform = `translateX(-${deltaX}px)`;
-      dim!.style.opacity = String(Math.max(0, 1 - deltaX / 300));
-}
-  };
 
 const onDimTouchStart = (e: TouchEvent) => {
   startXRef.current = e.touches[0].clientX;

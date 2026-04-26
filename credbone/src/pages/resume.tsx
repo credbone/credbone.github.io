@@ -278,9 +278,9 @@ data-gap="20"
 
 {/* section */}
 
-<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Experience </text> </group>
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-font-type="hero" > Experience </text> </group>
 
-
+<group data-print="hide"></group>
 
             <group  data-direction="column" data-contain=""    >
 
@@ -299,7 +299,7 @@ data-gap="20"
 
     
 
-<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Skills </text> </group>
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-font-type="hero" > Skills </text> </group>
 
 
 <group >
@@ -318,7 +318,7 @@ data-gap="20"
 {/* section */}
 
 <group data-space-horizontal="30" data-print="hide"> 
-  <text data-user-select="text" data-weight="700" data-text-size="x-large"> Strategic <br></br>& Leadership </text> 
+  <text data-user-select="text" data-weight="700" data-text-size="x-large" data-font-type="hero"> Strategic <br></br>& Leadership </text> 
 </group>
 
 <group data-print="hide">
@@ -352,7 +352,7 @@ data-gap="20"
 
 {/* section */}
 
-<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Tools </text> </group>
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-font-type="hero" > Tools </text> </group>
 
 <group data-print="hide"></group>
 
@@ -381,7 +381,7 @@ data-gap="20"
 <group data-print="hide"></group>
 
 {/* section */}
-<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-print="hide"> Education </text> </group>
+<group data-space-horizontal="30"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-font-type="hero" data-print="hide"> Education </text> </group>
 
 <group data-print="hide">
   
@@ -459,7 +459,7 @@ target="_blank"
 
 {/* section */}
 
-<group data-space-horizontal="30" data-print="hide"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" > Links </text> </group>
+<group data-space-horizontal="30" data-print="hide"> <text data-user-select="text" data-weight="700"  data-text-size="x-large" data-font-type="hero" > Links </text> </group>
 
             <group data-gap="10" data-space="30" data-print="hide">
               <group data-gap="10" data-direction="column">

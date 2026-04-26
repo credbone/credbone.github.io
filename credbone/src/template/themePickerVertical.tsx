@@ -42,12 +42,14 @@ const ThemePickerVertical: React.FC = () => {
       // data-contain=""
       //  data-space="2"
     >
-      {democolors.slice(0, 18).map((color, index) => (
+      {democolors.slice(0, 18).map((color, index, arr) => {
         // <Tooltip data-radius="30" data-space="15" data-backdrop="20-dark"  distance={-10} content={color.name} delay={500} key={color.code}>
 
         // </Tooltip>
 
-        <group
+        const next = arr[index + 1] || color;
+return (
+ <group
           data-ratio="1:1"
           data-interactive=""
           data-over-color="none"
@@ -59,6 +61,8 @@ const ThemePickerVertical: React.FC = () => {
           data-animation-duration={2 + index * 0.25}
           // data-animation-timing="fancy"
           data-ink-color="dark-shade-10"
+         // data-space="2"
+          
         >
           <Ripple>
             <group
@@ -72,11 +76,15 @@ const ThemePickerVertical: React.FC = () => {
               data-cursor="pointer"
               data-direction="column"
               style={{ backgroundColor: color.code }}
+      //               style={{
+      //   background: `linear-gradient(90deg, ${color.code}, ${next.code})`
+      // }}
               data-contain=""
             ></group>
           </Ripple>
         </group>
-      ))}
+);
+      })}
     </group>
   );
 };

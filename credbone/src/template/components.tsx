@@ -17,7 +17,7 @@ import { linksArray } from "./utils/OverviewData";
 
 import Content from "./content";
 import SearchFloating from "../pages/search/SearchFloating";
-
+import { ChevronRight } from "lucide-react";
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
@@ -70,22 +70,13 @@ const Components: React.FC = () => {
       >
         <group
           data-width="auto"
-          data-space="adaptive-30-50"
+          data-space="adaptive-20-50"
           data-direction="column"
           data-gap="50"
           data-index="3"
           data-wrap="no"
         >
-          <text
-            data-wrap="wrap"
-            data-max-length="400"
-            data-line="1.5"
-            data-opacity="60"
-          //  data-text-size="medium-small"
-          >
-            A hybrid, atomic, and declarative design system that brings
-            flexibility, control and speed to projects.
-          </text>
+
 
           <text
             // data-wrap="wrap"
@@ -102,18 +93,22 @@ const Components: React.FC = () => {
             <br></br> evolve and adapt.
           </text>
 
-          <group data-width="auto" data-gap="5" data-align="center">
+            <group data-width="auto" data-align="center" data-wrap="no">
             <Ripple>
               <group
+                data-over-color="neutral-10"
+                data-ink-color="neutral"
+                data-index="2"
                 data-contain=""
                 data-drag="none"
                 data-type="group"
                 data-cursor="pointer"
                 data-interactive=""
                 data-width="auto"
-                data-background="highlight"
-                data-space="15"
-                data-radius="30"
+                data-background="text"
+                data-color="main-background"
+                data-space="20"
+                data-radius="60"
                 onClick={() =>
                   openModal({
                     id: "modal-2",
@@ -160,10 +155,33 @@ const Components: React.FC = () => {
                   })
                 }
               >
-                <IconSearch></IconSearch>
+                <group
+                  //data-height="fit"
+                  data-align="center"
+                  data-justify="center"
+                  data-length="30"
+                  data-height="30"
+                >
+                  <IconSearch stroke={1.5} />
+                </group>
               </group>
             </Ripple>
-            {/* <separator data-vertical="" data-height="20"></separator> */}
+
+            <group data-width="auto" data-margin-horizontal="-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="42"
+                viewBox="0 0 24 42"
+                fill="none"
+              >
+                <path
+                  data-fill="text"
+                  d="M24 41.999C22.8167 40.4234 21.7622 38.7454 20.8545 36.9795C19.1046 33.575 15.8279 31 12 31C8.17214 31 4.89544 33.575 3.14551 36.9795C2.23779 38.7454 1.1833 40.4234 0 41.999V0C1.18349 1.57576 2.23767 3.25436 3.14551 5.02051C4.89544 8.42495 8.17214 11 12 11C15.8279 11 19.1046 8.42495 20.8545 5.02051C21.7623 3.25436 22.8165 1.57576 24 0V41.999Z"
+                />
+              </svg>
+            </group>
+
             <Ripple>
               <Link
                 data-contain=""
@@ -172,72 +190,77 @@ const Components: React.FC = () => {
                 to="/Components"
                 data-interactive=""
                 data-over-color="neutral-10"
+                data-ink-color="neutral"
                 data-width="auto"
-                data-background="main"
-                data-color="main-text"
-                data-ink-color="main-deep"
-                data-space-horizontal="50"
-                data-space-vertical="20"
-                data-radius="30"
-                data-direction="column"
+                data-background="text"
+                data-color="main-background"
+                data-space="20"
+                //  data-space-horizontal="50"
+                //   data-space-vertical="20"
+
+                //    data-direction="column"
                 data-length="autofit-600"
                 data-align="center"
+                data-radius="60"
+                data-gap="10"
+                data-wrap="no"
               >
-                {/* <TextReveal text={message} duration={1200} /> */}
-                <text
-                  data-weight="700"
-                  //  data-wrap="wrap"
-                  data-ellipsis=""
+                <group
+                  data-space-horizontal="10"
+                  data-direction="column"
+                  data-width="auto"
+                  data-contain=""
                 >
-                  Get Started
-                </text>
+                  <text data-opacity="30">Discover</text>
+                  <text
+                    data-weight="700"
+                    //  data-wrap="wrap"
+                    data-ellipsis=""
+                  >
+                    Get Started
+                  </text>
+                </group>
+
+                <group
+                  data-position="right"
+                  data-height="30"
+                  data-align="center"
+                  data-justify="center"
+                  data-interact=""
+                  data-length="30"
+
+                 // data-adaptive="desktop"
+                >
+                  <ChevronRight strokeWidth={1.5} />
+                </group>
               </Link>
             </Ripple>
           </group>
-        </group>
+
+
+          <text
+            data-wrap="wrap"
+            data-max-length="280"
+            data-line="1.5"
+            data-opacity="70"
+           // data-weight="500"
+            //  data-text-size="medium-small"
+          >
+            A hybrid, atomic, and declarative design system that brings
+            flexibility, control and speed to projects.
+          </text>
 
         <Content />
 
-        {/* <group data-hide="true">
-          <picture
-            data-radius="60"
-            data-brightness="adaptive"
-            data-position="absolute"
-            data-background="grey-light"
-          >
-            <img src={sampleImage_3} data-adaptive="mobile" alt=""></img>
-            <img src={sampleImage_2} data-adaptive="desktop" alt="" />
-          </picture>
+        </group>
 
-          <group
-            data-space="30"
-            data-gap="10"
-            data-contain=""
-            data-type="grid"
-            data-grid-template="240"
-          >
-            <group
-              data-contain=""
-              data-width="auto"
-              data-backdrop="20-adaptive"
-              // data-elevation="2-main-color"
-              data-gap="30"
-              data-space="10"
-              data-radius="30"
-              data-align="start"
-              data-wrap="no"
-              data-direction="column"
-            >
-              <ThemePicker />
-            </group>
 
-            <DemoThemeToggle />
-          </group>
-        </group> */}
+
+
 
         <group
           data-space="adaptive-30-50"
-          data-gap="20"
+          data-gap="10"
           data-direction="column"
           data-align="start"
         >
@@ -258,7 +281,7 @@ const Components: React.FC = () => {
             data-max-length="240"
             data-line="1.5"
             data-opacity="70"
-           // data-text-size="medium-small"
+            // data-text-size="medium-small"
           >
             Check out some component demos below—just a glimpse of what's
             possible!
@@ -282,11 +305,17 @@ const Components: React.FC = () => {
                 data-radius="40"
                 data-direction="column"
                 data-wrap="no"
-                data-background={link.color ? "main" : index === 0 ? "adaptive-gray" : undefined}
+                data-background={
+                  link.color
+                    ? "main"
+                    : index === 0
+                      ? "adaptive-gray"
+                      : undefined
+                }
                 data-color={link.color ? "main-text" : undefined}
                 data-border={link.color ? "1-primary" : "inset"}
                 data-index={link.color ? "2" : undefined}
-                data-elevation={index === 7 ? "2":undefined}
+                data-elevation={index === 7 ? "2" : undefined}
               >
                 {link.new === "true" && (
                   <group
@@ -347,15 +376,10 @@ const Components: React.FC = () => {
           ))}
         </group>
 
-
-
-
-
-
         <group
           //  data-width="auto"
           data-space="adaptive-30-50"
-          data-gap="20"
+          data-gap="10"
           data-direction="column"
           // data-text-align="center"
           // data-align="center"
@@ -377,7 +401,7 @@ const Components: React.FC = () => {
             data-max-length="300"
             data-line="1.5"
             data-opacity="70"
-         //   data-text-size="medium-small"
+            //   data-text-size="medium-small"
           >
             Got a question or just want to say hi? Drop me a message, and I'll
             get back to you soon.

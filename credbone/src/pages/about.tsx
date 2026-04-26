@@ -393,7 +393,7 @@ function About() {
           <group
             data-width="auto"
             data-direction="column"
-            data-gap="20"
+            data-gap="15"
             data-space="15"
             data-space-horizontal="20"
           >

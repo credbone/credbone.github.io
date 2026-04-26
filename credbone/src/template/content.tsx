@@ -12,12 +12,10 @@ import { isMobile } from "react-device-detect";
 import DotDisplay from "./dotDisplay";
 import { useCyclingDots } from "../pages/tools/DotCycler";
 
-
 const Content: React.FC = () => {
   const [hidden, setHidden] = useState(true);
 
-
-const activeDots = useCyclingDots();
+  const activeDots = useCyclingDots();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,7 +35,7 @@ const activeDots = useCyclingDots();
 
   return (
     <>
-      <group data-max-length="1080">
+      <group data-max-length="960">
         {/* <group
           data-position="absolute"
           data-type="grid"
@@ -115,9 +113,9 @@ const activeDots = useCyclingDots();
           <group
             data-type="grid"
             data-grid-template-columns="dynamic"
-        //    data-radius="130"
-        //    data-background="neutral-lighter"
-         //   data-space="30"
+            //    data-radius="130"
+            //    data-background="neutral-lighter"
+            //   data-space="30"
             data-align="start"
           >
             <group
@@ -135,7 +133,10 @@ const activeDots = useCyclingDots();
                 <group
                   data-ratio="1:1"
                   data-radius="full"
-                  data-background="adaptive-gray"
+                  data-border="outline"
+                  //  data-background="adaptive-gray"
+
+                  data-mask="bottom"
                 ></group>
 
                 <Tooltip
@@ -214,14 +215,23 @@ const activeDots = useCyclingDots();
                     data-react="scale"
                     data-over-color="none"
                     data-ink-color="neutral"
-                    data-radius="130"
                     data-align="start"
                     data-wrap="no"
                     data-contain=""
                     data-direction="row-500"
                     data-cursor="pointer"
+                    data-radius="130"
                   >
-                    <picture
+                    <group
+                      data-position="absolute"
+                      data-top="0"
+                      data-radius="130"
+                      data-mask="bottom"
+                      data-border="outline"
+                      data-height="fit"
+                    />
+
+                    {/* <picture
                       data-mask="top"
                       // data-radius="60"
                       data-brightness="adaptive"
@@ -229,19 +239,19 @@ const activeDots = useCyclingDots();
                       //    data-background="grey-light"
                     >
                       <img src={sampleImage_3} alt=""></img>
-                    </picture>
+                    </picture> */}
                     <group
                       data-order="2-500"
                       data-ratio="1:1"
                       data-align="center"
                       data-justify="center"
                     >
-
-
-<group data-interact="" data-width="auto" data-space="20" data-contain="" >
-
-</group>
-
+                      <group
+                        data-interact=""
+                        data-width="auto"
+                        data-space="20"
+                        data-contain=""
+                      ></group>
                     </group>
 
                     <group
@@ -252,9 +262,9 @@ const activeDots = useCyclingDots();
                       data-align="center"
                       data-justify="center"
                       data-space="20"
-                      data-theme="dark"
+                      //    data-theme="dark"
                       data-contain=""
-                    //  data-shadow="crips"
+                      //  data-shadow="crips"
                     >
                       {/* <group
                         data-theme="dark"
@@ -274,8 +284,7 @@ const activeDots = useCyclingDots();
                         ></group>
                       </group> */}
 
-  <DotDisplay size="fit" activeIndexes={activeDots} />
-
+                      <DotDisplay size="fit" activeIndexes={activeDots} />
                     </group>
                   </group>
                 </Ripple>
@@ -294,7 +303,8 @@ const activeDots = useCyclingDots();
                   data-ratio="1:1"
                   //          data-length="200"
                   data-radius="full"
-                 data-border="outline"
+                  data-border="outline"
+                  data-mask="top"
                 ></group>
 
                 <group
@@ -306,6 +316,7 @@ const activeDots = useCyclingDots();
                   //   data-space="20"
                   data-contain=""
                   data-direction="column"
+                  
                 >
                   <Tooltip
                     //    delay={200}
@@ -335,7 +346,13 @@ const activeDots = useCyclingDots();
                       data-direction="column"
                       data-contain=""
                       data-ink-color="neutral"
+                      
                     >
+
+
+                  {/* <group data-position="absolute" date-height="fit" data-left="0" data-top="0"   data-ratio="1:1"           data-mask="bottom" data-background="adaptive-gray"  /> */}
+
+
                       <Ripple>
                         <Link
                           data-drag="none"
@@ -357,81 +374,74 @@ const activeDots = useCyclingDots();
                             data-ratio="1:1"
                             data-position="center"
                             data-radius="130"
-                            //   data-length="60"
-                            //  data-background="adaptive-gray"
+                           
+
                             data-contain=""
                             data-space="20"
                           >
-                            {/* <group
-                            //   data-border="20"
-                            data-height="20"
-                            data-position="center"
-                            data-length="20"
-                            data-radius="20"
-                            data-background="context"
-                          ></group> */}
+
 
                             <group
                               data-height="fit"
                               data-contain=""
                               data-interact=""
-                              
                             >
-                
-
- 
-    <svg width="100%" height="100%" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="75" cy="125" r="2"/>
-<circle cx="75" cy="115" r="4"/>
-<circle cx="75" cy="105" r="4"/>
-<circle cx="75" cy="95" r="6"/>
-<circle cx="45" cy="75" r="2"/>
-<circle cx="55" cy="75" r="4"/>
-<circle cx="75" cy="75" r="6"/>
-<circle cx="55" cy="65" r="2"/>
-<circle cx="75" cy="55" r="4"/>
-<circle cx="75" cy="45" r="2"/>
-<circle cx="75" cy="65" r="4"/>
-<circle cx="65" cy="65" r="4"/>
-<circle cx="105" cy="85" r="4"/>
-<circle cx="105" cy="95" r="2"/>
-<circle cx="95" cy="95" r="4"/>
-<circle cx="95" cy="105" r="2"/>
-<circle cx="85" cy="105" r="4"/>
-<circle cx="85" cy="115" r="2"/>
-<circle cx="85" cy="95" r="4"/>
-<circle cx="85" cy="85" r="6"/>
-<circle cx="85" cy="75" r="6"/>
-<circle cx="85" cy="65" r="6"/>
-<circle cx="85" cy="35" r="2"/>
-<circle cx="65" cy="55" r="2"/>
-<circle cx="65" cy="85" r="6"/>
-<circle cx="95" cy="75" r="4"/>
-<circle cx="55" cy="85" r="4"/>
-<circle cx="105" cy="75" r="4"/>
-<circle cx="95" cy="65" r="4"/>
-<circle cx="95" cy="55" r="4"/>
-<circle cx="95" cy="45" r="4"/>
-<circle cx="95" cy="35" r="2"/>
-<circle cx="65" cy="95" r="4"/>
-<circle cx="85" cy="45" r="4"/>
-<circle cx="85" cy="55" r="4"/>
-<circle cx="95" cy="25" r="2"/>
-<circle cx="65" cy="135" r="2"/>
-<circle cx="65" cy="125" r="2"/>
-<circle cx="65" cy="115" r="4"/>
-<circle cx="65" cy="105" r="4"/>
-<circle cx="115" cy="85" r="2"/>
-<circle cx="75" cy="85" r="6"/>
-<circle cx="35" cy="85" r="2"/>
-<circle cx="45" cy="85" r="4"/>
-<circle cx="115" cy="75" r="2"/>
-<circle cx="125" cy="75" r="2"/>
-<circle cx="65" cy="75" r="4"/>
-<circle cx="95" cy="85" r="4"/>
-    </svg>
-  
-  
+                              <svg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 160 160"
+                                fill="currentcolor"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle cx="75" cy="125" r="2" />
+                                <circle cx="75" cy="115" r="4" />
+                                <circle cx="75" cy="105" r="4" />
+                                <circle cx="75" cy="95" r="6" />
+                                <circle cx="45" cy="75" r="2" />
+                                <circle cx="55" cy="75" r="4" />
+                                <circle cx="75" cy="75" r="6" />
+                                <circle cx="55" cy="65" r="2" />
+                                <circle cx="75" cy="55" r="4" />
+                                <circle cx="75" cy="45" r="2" />
+                                <circle cx="75" cy="65" r="4" />
+                                <circle cx="65" cy="65" r="4" />
+                                <circle cx="105" cy="85" r="4" />
+                                <circle cx="105" cy="95" r="2" />
+                                <circle cx="95" cy="95" r="4" />
+                                <circle cx="95" cy="105" r="2" />
+                                <circle cx="85" cy="105" r="4" />
+                                <circle cx="85" cy="115" r="2" />
+                                <circle cx="85" cy="95" r="4" />
+                                <circle cx="85" cy="85" r="6" />
+                                <circle cx="85" cy="75" r="6" />
+                                <circle cx="85" cy="65" r="6" />
+                                <circle cx="85" cy="35" r="2" />
+                                <circle cx="65" cy="55" r="2" />
+                                <circle cx="65" cy="85" r="6" />
+                                <circle cx="95" cy="75" r="4" />
+                                <circle cx="55" cy="85" r="4" />
+                                <circle cx="105" cy="75" r="4" />
+                                <circle cx="95" cy="65" r="4" />
+                                <circle cx="95" cy="55" r="4" />
+                                <circle cx="95" cy="45" r="4" />
+                                <circle cx="95" cy="35" r="2" />
+                                <circle cx="65" cy="95" r="4" />
+                                <circle cx="85" cy="45" r="4" />
+                                <circle cx="85" cy="55" r="4" />
+                                <circle cx="95" cy="25" r="2" />
+                                <circle cx="65" cy="135" r="2" />
+                                <circle cx="65" cy="125" r="2" />
+                                <circle cx="65" cy="115" r="4" />
+                                <circle cx="65" cy="105" r="4" />
+                                <circle cx="115" cy="85" r="2" />
+                                <circle cx="75" cy="85" r="6" />
+                                <circle cx="35" cy="85" r="2" />
+                                <circle cx="45" cy="85" r="4" />
+                                <circle cx="115" cy="75" r="2" />
+                                <circle cx="125" cy="75" r="2" />
+                                <circle cx="65" cy="75" r="4" />
+                                <circle cx="95" cy="85" r="4" />
+                              </svg>
                             </group>
                           </group>
                         </Link>
@@ -442,20 +452,46 @@ const activeDots = useCyclingDots();
               </group>
 
               <group data-ratio="2:1" data-align="start">
+
+
+                  <group
+                    data-position="absolute"
+                    date-height="fit"
+                    data-left="0"
+                    data-top="0"
+                    data-ratio="2:1"
+                    data-mask="top"
+                    data-border="outline"
+                     data-radius="130"
+                  />
+
                 <group
                   data-radius="130"
-                data-background="adaptive-gray"
+                  //   data-border="outline"
+
                   data-height="fit"
                   data-align="center"
                   data-justify="center"
-                  data-space="20"
-                  data-direction="column"data-contain=""
+                  data-space="10"
+                  data-direction="column"
+                  data-contain=""
                   data-gap="5"
                   data-wrap="no"
                 >
 
-<text data-wrap="preline"  data-line="1" data-length="200" data-font-type="hero" data-text-size="medium"  data-text-align="center" data-ellipsis=""> There’s More to Search.
-Keep Exploring.</text>
+
+                  <text
+                    data-wrap="preline"
+                    data-line="1"
+                    data-length="200"
+                    data-font-type="hero"
+                    data-text-size="medium"
+                    data-text-align="center"
+                    data-ellipsis=""
+                  >
+                    There’s More to Search. Keep Exploring.
+                  </text>
+
 
                 </group>
               </group>
@@ -593,11 +629,11 @@ Keep Exploring.</text>
                 data-index="2"
                 data-ratio="1:1"
                 data-radius="full"
-            data-border=""
+                data-border=""
                 data-ink-color="neutral"
               >
                 <group
-                  data-border="outline"
+                  data-border=""
                   data-height="fit"
                   data-radius-bottom-right="10"
                 >
