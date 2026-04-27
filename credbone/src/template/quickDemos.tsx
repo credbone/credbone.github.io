@@ -9,6 +9,7 @@ import Ripple from "../components/Ripple";
 import { useModal } from "../components/Modal";
 import TemplatePageHeader from "./TemplatePageHeader";
 import StopWatch from "../tools/StopWatch";
+import { isMobile } from "react-device-detect";
 
 //import { isMobile } from "react-device-detect";
 
@@ -131,8 +132,8 @@ const QuickDemos: React.FC = () => {
                   ),
                   hasHeader: true,
 
-                  fullscreenbutton: true,
-                //  fullscreen: isMobile,
+                  fullscreenbutton: !isMobile,
+                  fullscreen: isMobile,
 
                   hasToolbar: false,
                   customAttributes: {

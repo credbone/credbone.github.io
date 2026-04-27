@@ -136,7 +136,7 @@ const Content: React.FC = () => {
                   data-border="outline"
                   //  data-background="adaptive-gray"
 
-                  data-mask="bottom"
+        //          data-mask="bottom"
                 ></group>
 
                 <Tooltip
@@ -304,7 +304,7 @@ const Content: React.FC = () => {
                   //          data-length="200"
                   data-radius="full"
                   data-border="outline"
-                  data-mask="top"
+                //  data-mask="top"
                 ></group>
 
                 <group
@@ -460,7 +460,7 @@ const Content: React.FC = () => {
                     data-left="0"
                     data-top="0"
                     data-ratio="2:1"
-                    data-mask="top"
+                    data-mask="bottom"
                     data-border="outline"
                      data-radius="130"
                   />

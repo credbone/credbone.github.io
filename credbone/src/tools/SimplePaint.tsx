@@ -97,8 +97,8 @@ const SimplePaint: React.FC = () => {
       if (tempCtx) tempCtx.drawImage(canvasRef.current, 0, 0);
     }
     setIsResizing(true);
-      setIsBrushOpen(false);
-  setIsColorsOpen(false);
+    setIsBrushOpen(false);
+    setIsColorsOpen(false);
   };
 
   const stopResize = () => setIsResizing(false);
@@ -134,14 +134,12 @@ const SimplePaint: React.FC = () => {
     };
   }, [handleResize]);
 
-
-
   // ─── ────
   useEffect(() => {
     if (appRef.current) setWidth(appRef.current.offsetWidth - 60);
   }, []);
   useEffect(() => {
-    if (wrapperRef.current) setHeight(wrapperRef.current.offsetHeight - 60);
+    if (wrapperRef.current) setHeight(wrapperRef.current.offsetHeight);
   }, []);
 
   // ─── Drawing ──────────────────────────────────────────────────────────────
@@ -553,157 +551,155 @@ const SimplePaint: React.FC = () => {
       data-height="fit"
       data-contain=""
     >
-
-
       <group
         data-scroll=""
         data-background="adaptive-gray"
         data-max-height="fit"
         data-height="fit"
         data-space="30"
-        ref={wrapperRef}
+        data-width="auto"
         data-wrap="no"
-        data-direction="column"
-        data-align="start"
         data-gap="30"
+        data-direction="column"
       >
+        <group
+          data-sticky=""
+          data-top="0"
+          data-left="0"
+          // data-space="30"
+          //  data-space-bottom="0"
+          data-align="start"
+          data-gap="10"
+          // data-background="adaptive-gray"
+          //  data-wrap="no"
+        >
+          <Ripple>
+            <group
+              data-backdrop="20-contrast"
+              data-ink-color="neutral"
+              data-over-color="neutral"
+              onClick={clearCanvas}
+              data-cursor="pointer"
+              data-radius="30"
+              data-width="auto"
+              data-contain=""
+              data-interactive=""
+              data-height="50"
+              data-space-vertical="15"
+              data-space-horizontal="25"
+              data-wrap="no"
+              data-align="center"
+              data-gap="15"
+              data-background="adaptive-gray"
+            >
+              <text data-weight="700" data-length="autofit">
+                New
+              </text>
+            </group>
+          </Ripple>
 
-
-
-      <group
-
-      data-sticky=""
-      data-top="0"
-      data-left="0"
-       // data-space="30"
-      //  data-space-bottom="0"
-        data-align="start"
-        data-gap="10"
-       // data-background="adaptive-gray"
-      //  data-wrap="no"
-      >
-        <Ripple>
+          {/* ── Brush type selector ── */}
           <group
-          data-backdrop="20-contrast"
-            data-ink-color="neutral"
-            onClick={clearCanvas}
-            data-cursor="pointer"
+            data-background="adaptive-gray"
             data-radius="30"
+            data-space="5"
+            data-wrap="no"
             data-width="auto"
             data-contain=""
-            data-interactive=""
-            data-height="50"
-            data-space-vertical="15"
-            data-space-horizontal="25"
-            data-wrap="no"
-            data-align="center"
-            data-gap="15"
-            data-background="adaptive-gray"
+            data-backdrop="20-contrast"
           >
-            <text data-weight="700" data-length="autofit">
-              New
-            </text>
+            {brushTypeLabels.map(({ type, label, icon }) => (
+              <Ripple key={type}>
+                <group
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  onClick={() => setBrushType(type)}
+                  data-cursor="pointer"
+                  data-width="auto"
+                  data-contain=""
+                  data-interactive=""
+                  data-radius="30"
+                  data-space="15"
+                  data-duration="2.25"
+                  data-transition-prop="padding"
+                  data-space-horizontal={brushType === type ? "20" : ""}
+                  data-height="40"
+                  data-wrap="no"
+                  data-align="center"
+                  data-background={brushType === type ? "text" : ""}
+                  data-color={brushType === type ? "main-background" : ""}
+                >
+                  {/* <text data-weight={brushType === type ? "700" : "400"} data-length="autofit">{label}</text> */}
+                  {icon}
+                </group>
+              </Ripple>
+            ))}
           </group>
-        </Ripple>
 
-        {/* ── Brush type selector ── */}
-        <group
-          data-background="adaptive-gray"
-          data-radius="30"
-          data-space="5"
-          data-wrap="no"
-          data-width="auto"
-          data-contain=""
-           data-backdrop="20-contrast"
-         
-        >
-          {brushTypeLabels.map(({ type, label, icon }) => (
-            <Ripple key={type}>
+          {/* ── Brush size ── */}
+          <Popover
+          
+            open={isBrushOpen}
+            onOpenChange={setIsBrushOpen}
+            data-space="0"
+            data-radius="30"
+            content={
               <group
-              
-                data-ink-color="neutral"
-                data-over-color="neutral"
-                onClick={() => setBrushType(type)}
-                data-cursor="pointer"
-                data-width="auto"
-                data-contain=""
-                data-interactive=""
-                data-radius="30"
+                data-direction="column"
+                data-length="300"
                 data-space="15"
-                data-duration="2.25"
-                data-transition-prop="padding"
-                data-space-horizontal={brushType === type ? "20" : ""}
-                data-height="40"
-                data-wrap="no"
-                data-align="center"
-                data-background={brushType === type ? "text" : ""}
-                data-color={brushType === type ? "main-background" : ""}
-              >
-                {/* <text data-weight={brushType === type ? "700" : "400"} data-length="autofit">{label}</text> */}
-                {icon}
-              </group>
-            </Ripple>
-          ))}
-        </group>
+                
 
-        {/* ── Brush size ── */}
-        <Popover
-          open={isBrushOpen}
-          onOpenChange={setIsBrushOpen}
-          data-space="0"
-          data-radius="30"
-          content={<group
-              data-direction="column"
-              data-length="300"
-              data-space="15"
-             
-              // onClick={closePopover}
-            >
-              {/* <group data-ratio="1:1"  data-align="center" data-justify="center" data-direction="column">
+                // onClick={closePopover}
+              >
+                {/* <group data-ratio="1:1"  data-align="center" data-justify="center" data-direction="column">
 
               </group> */}
-              <group data-gap="15" data-wrap="no">
-                <CustomSlider
-                edgeGap={30}
-                  start={1}
-                  end={48}
-                  value={brushSize}
-                  onValueChange={(value) => setBrushSize(value)}
-                  handlerProps={{ "data-animation-name": "slider-smooth" }}
-                  trackLeftProps={{
-                    "data-margin-right": "0",
-                    "data-height": "1",
-                  }}
-                  trackRightProps={{
-                    "data-opacity": "10",
-                    "data-margin-left": "5",
-                    "data-height": "1",
-                  }}
-                />
-                {/* <separator data-vertical></separator>
+                <group data-gap="15" data-wrap="no">
+                  <CustomSlider
+                    edgeGap={30}
+                    start={1}
+                    end={48}
+                    value={brushSize}
+                    onValueChange={(value) => setBrushSize(value)}
+                    handlerProps={{ "data-animation-name": "slider-smooth" }}
+                    trackLeftProps={{
+                      "data-margin-right": "0",
+                      "data-height": "1",
+                    }}
+                    trackRightProps={{
+                      "data-opacity": "10",
+                      "data-margin-left": "5",
+                      "data-height": "1",
+                    }}
+                  />
+                  {/* <separator data-vertical></separator>
 
                 <group data-ratio="1:1" style={{ height: brushSize }} data-radius="full" data-width="auto" data-background="text"></group> */}
+                </group>
               </group>
-            </group>
-          }
-        >
-          <group
-            data-cursor="pointer"
-            data-radius="30"
-            data-width="auto"
-            data-background="adaptive-gray"
-            data-contain=""
-            data-interactive=""
-            data-space-horizontal="20"
-            data-space-vertical="15"
-            data-wrap="no"
-            data-align="center"
-            data-gap="15"
-             data-backdrop="20-contrast"
+            }
           >
-            <text data-opacity="50">Brush</text>
-            <separator data-vertical="" data-height="20"></separator>
-            {/* <group data-length="20" data-align="center" data-direction="column" data-interact="">
+<group  data-width="auto">
+  <Ripple>
+                <group
+              data-cursor="pointer"
+              data-radius="30"
+                           data-ink-color="neutral"
+              data-over-color="neutral"
+              data-background="adaptive-gray"
+              data-contain=""
+              data-interactive=""
+              data-space-horizontal="20"
+              data-space-vertical="15"
+              data-wrap="no"
+              data-align="center"
+              data-gap="15"
+              data-backdrop="20-contrast"
+            >
+              <text data-opacity="50">Brush</text>
+              <separator data-vertical="" data-height="20"></separator>
+              {/* <group data-length="20" data-align="center" data-direction="column" data-interact="">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r={brushSize} data-duration=".225" fill="currentColor" />
               </svg>
@@ -711,228 +707,245 @@ const SimplePaint: React.FC = () => {
              
             </group> */}
 
-            <group data-length="20" data-align="center" data-direction="column">
-              <text data-weight="700">{brushSize}</text>
-            </group>
-          </group>
-        </Popover>
-
-        {/* ── Color picker ── */}
-        <group
-          data-contain=""
-          data-gap="10"
-          data-shrink="no"
-          data-width="auto"
-          data-background="adaptive-gray"
-          data-radius="30"
-          data-adaptive="desktop"
-           data-backdrop="20-contrast"
-        >
-          <group data-snap-button="10">
-            <Scroll>
-              <group data-wrap="no" data-space="5">
-                {colors.map((color, index) => (
-                  <group key={index} data-height="40" data-length="40">
-                    <Tooltip content={color.name} delay={300}>
-                      <group
-                        data-animation-name="appear-left"
-                        data-over-color="neutral"
-                        data-fill-mode="backwards"
-                        data-animation-duration={2 + index * 0.25}
-                        data-radius="30"
-                        data-align="center"
-                        data-justify="center"
-                        data-direction="column"
-                        data-cursor="pointer"
-                        data-interactive=""
-                        data-transition-prop="padding"
-                        data-duration=".125"
-                        data-background={
-                          brushColor === color.value ? "context" : ""
-                        }
-                        data-index={brushColor === color.value ? "1" : ""}
-                        data-space={brushColor === color.value ? "15" : "10"}
-                        onClick={() => setBrushColor(color.value)}
-                      >
-                        <group
-                          data-border="outline-soft"
-                          data-interact=""
-                          data-radius="30"
-                          data-height="fit"
-                          style={{ backgroundColor: color.value }}
-                        ></group>
-                      </group>
-                    </Tooltip>
-                  </group>
-                ))}
-              </group>
-            </Scroll>
-          </group>
-        </group>
-
-        {/* ── Color picker mobile ── */}
-        <group data-adaptive="mobile" data-width="auto">
-          <Popover
-            open={isColorsOpen}
-            onOpenChange={setIsColorsOpen}
-            data-space="0"
-            data-radius="30"
-            //  data-backdrop="20-adaptive"
-            content={
               <group
-                data-direction="column"
-                data-length="400"
-                data-snap-button="15"
-              >
-                <Scroll
-                  wheelEnabled
-                  buttonProps={{ "data-radius": "30", "data-contain": "" }}
-                >
-                  <group data-wrap="no" data-space="10">
-                    {colors.map((color, index) => (
-                      <group key={index} data-height="40" data-length="40">
-                        <Tooltip content={color.name} delay={300}>
-                          <group
-                            data-animation-name="appear-left"
-                            data-over-color="neutral"
-                            data-fill-mode="backwards"
-                            data-animation-duration={2 + index * 0.25}
-                            data-radius="30"
-                            data-align="center"
-                            data-justify="center"
-                            data-direction="column"
-                            data-cursor="pointer"
-                            data-interactive=""
-                            data-transition-prop="padding"
-                            data-duration=".125"
-                            data-background={
-                              brushColor === color.value ? "context" : ""
-                            }
-                            data-index={brushColor === color.value ? "1" : ""}
-                            data-space={
-                              brushColor === color.value ? "15" : "10"
-                            }
-                            onClick={() => setBrushColor(color.value)}
-
-                            // onClick={closePopover}
-                          >
-                            <group
-                              data-border="outline-soft"
-                              data-interact=""
-                              data-radius="30"
-                              data-height="fit"
-                              style={{ backgroundColor: color.value }}
-                            ></group>
-                          </group>
-                        </Tooltip>
-                      </group>
-                    ))}
-                  </group>
-                </Scroll>
-              </group>
-            }
-          >
-            <group
-              data-over-color="neutral"
-              data-cursor="pointer"
-              data-radius="30"
-              data-width="auto"
-              data-background="adaptive-gray"
-              data-contain=""
-              data-interactive=""
-              data-space-horizontal="15"
-              data-space-vertical="15"
-              data-wrap="no"
-              data-align="center"
-              data-gap="15"
-               data-backdrop="20-contrast"
-            >
-              <text data-space-left="5" data-opacity="50">
-                Color
-              </text>
-              <separator data-vertical="" data-height="20"></separator>
-
-              <group
-                data-height="20"
-                data-border="outline-soft"
                 data-length="20"
-                data-interact=""
-                data-radius="30"
-                style={{ backgroundColor: brushColor }}
-              ></group>
+                data-align="center"
+                data-direction="column"
+              >
+                <text data-weight="700">{brushSize}</text>
+              </group>
             </group>
+  </Ripple>
+</group>
           </Popover>
+
+          {/* ── Color picker ── */}
+          <group
+            data-contain=""
+            data-gap="10"
+            data-shrink="no"
+            data-width="auto"
+            data-background="adaptive-gray"
+            data-radius="30"
+            data-adaptive="desktop"
+            data-backdrop="20-contrast"
+          >
+            <group data-snap-button="10">
+              <Scroll>
+                <group data-wrap="no" data-space="5">
+                  {colors.map((color, index) => (
+                    <group key={index} data-height="40" data-length="40">
+                      <Tooltip content={color.name} delay={300}>
+                        <group
+                          data-animation-name="appear-left"
+                          data-over-color="neutral"
+                          data-fill-mode="backwards"
+                          data-animation-duration={2 + index * 0.25}
+                          data-radius="30"
+                          data-align="center"
+                          data-justify="center"
+                          data-direction="column"
+                          data-cursor="pointer"
+                          data-interactive=""
+                          data-transition-prop="padding"
+                          data-duration=".125"
+                          data-background={
+                            brushColor === color.value ? "context" : ""
+                          }
+                          data-index={brushColor === color.value ? "1" : ""}
+                          data-space={brushColor === color.value ? "15" : "10"}
+                          onClick={() => setBrushColor(color.value)}
+                        >
+                          <group
+                            data-border="outline-soft"
+                            data-interact=""
+                            data-radius="30"
+                            data-height="fit"
+                            style={{ backgroundColor: color.value }}
+                          ></group>
+                        </group>
+                      </Tooltip>
+                    </group>
+                  ))}
+                </group>
+              </Scroll>
+            </group>
+          </group>
+
+          {/* ── Color picker mobile ── */}
+          <group data-adaptive="mobile" data-width="auto">
+            <Popover
+              open={isColorsOpen}
+              onOpenChange={setIsColorsOpen}
+              data-space="0"
+              data-radius="30"
+             //   data-backdrop="20-adaptive"
+              content={
+                <group
+                  data-direction="column"
+                  data-length="400"
+                  data-snap-button="15"
+                >
+                  <Scroll
+                    wheelEnabled
+                    buttonProps={{ "data-radius": "30", "data-contain": "" }}
+                  >
+                    <group data-wrap="no" data-space="10">
+                      {colors.map((color, index) => (
+                        <group key={index} data-height="40" data-length="40">
+                          <Tooltip content={color.name} delay={300}>
+                            <group
+                              data-animation-name="appear-left"
+                              data-over-color="neutral"
+                              data-fill-mode="backwards"
+                              data-animation-duration={2 + index * 0.25}
+                              data-radius="30"
+                              data-align="center"
+                              data-justify="center"
+                              data-direction="column"
+                              data-cursor="pointer"
+                              data-interactive=""
+                              data-transition-prop="padding"
+                              data-duration=".125"
+                              data-background={
+                                brushColor === color.value ? "context" : ""
+                              }
+                              data-index={brushColor === color.value ? "1" : ""}
+                              data-space={
+                                brushColor === color.value ? "15" : "10"
+                              }
+                              onClick={() => setBrushColor(color.value)}
+
+                              // onClick={closePopover}
+                            >
+                              <group
+                                data-border="outline-soft"
+                                data-interact=""
+                                data-radius="30"
+                                data-height="fit"
+                                style={{ backgroundColor: color.value }}
+                              ></group>
+                            </group>
+                          </Tooltip>
+                        </group>
+                      ))}
+                    </group>
+                  </Scroll>
+                </group>
+              }
+            >
+<group  data-width="auto">
+  <Ripple>
+                  <group
+                              data-ink-color="neutral"
+              data-over-color="neutral"
+                data-cursor="pointer"
+                data-radius="30"
+               
+                data-background="adaptive-gray"
+                data-contain=""
+                data-interactive=""
+                data-space-horizontal="15"
+                data-space-vertical="15"
+                data-wrap="no"
+                data-align="center"
+                data-gap="15"
+                data-backdrop="20-contrast"
+              >
+                <text data-space-left="5" data-opacity="50">
+                  Color
+                </text>
+                <separator data-vertical="" data-height="20"></separator>
+
+                <group
+                  data-height="20"
+                  data-border="outline-soft"
+                  data-length="20"
+                  data-interact=""
+                  data-radius="30"
+                  style={{ backgroundColor: brushColor }}
+                ></group>
+              </group>
+  </Ripple>
+</group>
+            </Popover>
+          </group>
         </group>
-      </group>
-
-
 
         <group
-          data-border=""
-          data-radius="20"
-          // data-contain=""
-          //  /     data-elevation="2"
-          data-type="group"
-          data-direction="column"
-          data-align="start"
-          data-max-length="auto"
-          data-position="center"
           data-width="auto"
-          data-background="white"
-          ref={containerRef}
-          style={{ width: `${width}px`, height: `${height}px` }}
+          ref={wrapperRef}
+          data-align="start"
+          data-direction="column"
+          data-wrap="no"
+          data-height="fit"
+        //  data-background="red"
         >
-          <canvas
+          <group
+            data-border=""
             data-radius="20"
-            ref={canvasRef}
-            //   onMouseDown={startDrawing}
-            onMouseDown={(e) => {
-              setIsBrushOpen(false);
-              setIsColorsOpen(false);
-              startDrawing(e);
-            }}
-            onMouseMove={draw}
-            onMouseUp={stopDrawing}
-            onMouseLeave={stopDrawing}
-            onTouchStart={(e) => {
-              setIsBrushOpen(false);
-              setIsColorsOpen(false);
-              startDrawing(e);
-            }}
-            onTouchMove={draw}
-            onTouchEnd={stopDrawing}
-            style={{ cursor: buildCursorSvg(), touchAction: "none" }}
-          />
+            // data-contain=""
+            //  /     data-elevation="2"
+            data-type="group"
+            data-direction="column"
+            data-align="start"
+            data-max-length="auto"
+            data-position="center"
+            data-width="auto"
+            data-background="white"
+            ref={containerRef}
+            style={{ width: `${width}px`, height: `${height}px` }}
+          >
+            <canvas
+              data-radius="20"
+              ref={canvasRef}
+              //   onMouseDown={startDrawing}
+              onMouseDown={(e) => {
+                setIsBrushOpen(false);
+                setIsColorsOpen(false);
+                startDrawing(e);
+              }}
+              onMouseMove={draw}
+              onMouseUp={stopDrawing}
+              onMouseLeave={stopDrawing}
+              onTouchStart={(e) => {
+                setIsBrushOpen(false);
+                setIsColorsOpen(false);
+                startDrawing(e);
+              }}
+              onTouchMove={draw}
+              onTouchEnd={stopDrawing}
+              style={{ cursor: buildCursorSvg(), touchAction: "none" }}
+            />
 
-{/* <group data-hidden={isBrushOpen? "true":""} data-hide="over" data-position="absolute" data-pointer-event="none"  data-direction="column" data-align="center" data-justify="center" data-height="fit" data-top="0" > 
+            {/* <group data-hidden={isBrushOpen? "true":""} data-hide="over" data-position="absolute" data-pointer-event="none"  data-direction="column" data-align="center" data-justify="center" data-height="fit" data-top="0" > 
 <svg width="100" height="100" data-animation-name="zoom-in" data-animation-duration="2" >
   <circle cx="50" cy="50" r={brushSize / 2}  fill="#000" />
 </svg>
 </group> */}
 
-
-          <group
-            data-position="absolute"
-            data-height="30"
-            data-length="30"
-            data-bottom="-30"
-            data-right="-30"
-            style={{ cursor: "nwse-resize" }}
-            onPointerDown={startResize}
-            
-          >
             <group
-              data-height="5"
-              data-length="5"
-              data-background="text"
-            ></group>
-          </group>
+              data-position="absolute"
+              data-height="20"
+              data-length="20"
+              data-bottom="-20"
+              data-right="-20"
+              style={{ cursor: "nwse-resize" }}
+              onPointerDown={startResize}
+            >
+              <group
+                data-height="5"
+                data-length="5"
+                data-background="text"
+              ></group>
+            </group>
 
-          {/*
+            {/*
           <group data-position="absolute" data-height="30" data-length="30" data-bottom="-30" data-left="-30"  data-justify="end" style={{ cursor: "nesw-resize", }} > <group data-height="5" data-length="5" data-background="text" ></group> </group>
           <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-right="-30" data-align="end" data-justify="start" style={{ cursor: "nesw-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group>
           <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-left="-30" data-align="end" data-justify="end" style={{ cursor: "nwse-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group>
           */}
+          </group>
         </group>
       </group>
 
