@@ -489,7 +489,7 @@ const Content: React.FC = () => {
                     data-text-align="center"
                     data-ellipsis=""
                   >
-                    There’s More to Search. Keep Exploring.
+                    There’s More to Explore. Keep Searching.
                   </text>
 
 

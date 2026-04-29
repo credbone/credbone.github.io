@@ -42,8 +42,9 @@ const DotDisplay: React.FC<GridProps> = ({
   );
 
   return (
-    <group data-contain="" data-width="auto" data-name="dot-display">
+    <group  data-width="auto" data-name="dot-display">
       <svg
+      data-contain="visible"
         xmlns="http://www.w3.org/2000/svg"
         width={size === "fit" ? "100%" : size}
         height={size === "fit" ? "100%" : size}

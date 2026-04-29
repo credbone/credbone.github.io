@@ -795,14 +795,17 @@ const DotDisplayEdit: React.FC<{
             data-fill-mode="backwards"
             data-animation-duration="2.25"
           >
-            <group
+            {/* <group
               data-disabled="true"
               data-position="absolute"
               data-ratio="1:1"
               data-width="auto"
               data-height="fit"
               data-top="0"
-              data-opacity={isshowoverlay ? "20" : "0"}
+              data-opacity="20"
+              
+              
+
             >
               <group
                 data-position="absolute"
@@ -881,11 +884,17 @@ const DotDisplayEdit: React.FC<{
                   data-height="fit"
                 ></group>
               </group>
-            </group>
+
+
+
+            </group> */}
 
             <svg
+            data-contain="visible"
               ref={svgRef}
-              width="256"
+              width="100%"
+              height="100%"
+              data-length="260"
               viewBox="0 0 160 160"
               onMouseDown={(e) => {
                 setIsMenuOpen(false);
@@ -902,6 +911,22 @@ const DotDisplayEdit: React.FC<{
               onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
               style={{ touchAction: "none" }}
             >
+
+<g data-hide={isshowoverlay ? undefined : "true"} opacity={.15} stroke="currentColor" fill="none">
+     <circle cx="80" cy="80" data-duration=".225" r={isshowoverlay ? 50 : 40}  vectorEffect="non-scaling-stroke" />
+    <circle cx="80" cy="80" data-duration=".175" r={isshowoverlay ? 100 : 40} vectorEffect="non-scaling-stroke"/>
+
+    <line x1="130" x2="130" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
+    <line x1="80" x2="80" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
+    <line x1="30" x2="30" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
+    
+
+<line x1="180" y1="80" x2="-20" y2="80" vectorEffect="non-scaling-stroke"/>
+<line x1="180" y1="30" x2="-20" y2="30" vectorEffect="non-scaling-stroke"/>
+<line x1="180" y1="130" x2="-20" y2="130" vectorEffect="non-scaling-stroke"/>
+
+</g>
+
               {Array.from({ length: rows * cols }).map((_, index) => {
                 const x = (index % cols) * 10 + 5;
                 const y = Math.floor(index / cols) * 10 + 5;
@@ -1139,7 +1164,7 @@ const Dot: React.FC<{
         opacity={active ? "1" : ".1"}
         cx={x}
         cy={y}
-        r={active ? r : "4"}
+        r={active ? r : "3"}
         fill="currentcolor"
         pointerEvents="none"
       />

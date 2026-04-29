@@ -397,7 +397,12 @@ text[data-width="auto"]{width: initial;}
 [data-length="210"] { width: 210px; } 
 [data-length="220"] { width: 220px; } 
 [data-length="240"] { width: 240px; } 
+
+[data-length="256"] { width: 256px; }
 [data-length="260"] { width: 260px; }
+
+
+
 [data-length="270"] { width: 270px; }
 [data-length="280"] { width: 280px; }
 [data-length="300"] { width: 300px; }
