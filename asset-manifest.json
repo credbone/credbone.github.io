@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.baf58dd0.css",
-    "main.js": "/static/js/main.eae4fac0.js",
+    "main.css": "/static/css/main.694ee9f0.css",
+    "main.js": "/static/js/main.ccd4ef17.js",
     "static/js/206.eca87e7a.chunk.js": "/static/js/206.eca87e7a.chunk.js",
     "static/media/res_01.mp4": "/static/media/res_01.92563858998726e57605.mp4",
     "static/media/res_04.mp4": "/static/media/res_04.859e3d9b6fa15c7bfe84.mp4",
@@ -31,12 +31,32 @@
     "static/media/wide_res_73.webp": "/static/media/wide_res_73.97d9bc371b866ecad027.webp",
     "static/media/wide_res_63.webp": "/static/media/wide_res_63.1895ff6de32d1253a45b.webp",
     "static/media/wide_res_72.webp": "/static/media/wide_res_72.02844237128a535ba7c1.webp",
+    "static/media/res_3.webp": "/static/media/res_3.b0de79c2e6f6d76ceb1b.webp",
     "static/media/CalSans-SemiBold.woff2": "/static/media/CalSans-SemiBold.82d4f62fb972e38abe4a.woff2",
     "static/media/wide_res_66.webp": "/static/media/wide_res_66.4816f1d9c060e5274dec.webp",
+    "static/media/res_26.webp": "/static/media/res_26.7b61f771efa64a55282a.webp",
+    "static/media/res_4.webp": "/static/media/res_4.651a7b001518b57a0492.webp",
+    "static/media/res_9.webp": "/static/media/res_9.8fbb9fd729dbc0c23e36.webp",
+    "static/media/res_5.webp": "/static/media/res_5.7e2621746506aa639715.webp",
+    "static/media/res_6.webp": "/static/media/res_6.882804ae05a0a653f410.webp",
+    "static/media/res_15.webp": "/static/media/res_15.0c7fea2e5cc692473d6c.webp",
+    "static/media/res_12.webp": "/static/media/res_12.b065ffb993f9830811d9.webp",
+    "static/media/res_14.webp": "/static/media/res_14.5eba5fb6300088fa968d.webp",
+    "static/media/res_13.webp": "/static/media/res_13.93ab5a3dd1489b868513.webp",
+    "static/media/res_11.webp": "/static/media/res_11.2224d66f10dc8f52e897.webp",
+    "static/media/res_7.webp": "/static/media/res_7.7319eb9fcfec525de18e.webp",
+    "static/media/res_21.webp": "/static/media/res_21.1944489f30942013201d.webp",
+    "static/media/res_28.webp": "/static/media/res_28.8eadd45bd74c5e3c5c7c.webp",
+    "static/media/res_1.webp": "/static/media/res_1.2bde63a72ff98289129f.webp",
+    "static/media/res_2.webp": "/static/media/res_2.b16bc224de1282b062d5.webp",
+    "static/media/res_16.webp": "/static/media/res_16.2abaee6246d3a2d13616.webp",
+    "static/media/res_27.webp": "/static/media/res_27.68dcd5e4ff38fb5a19fc.webp",
+    "static/media/res_23.webp": "/static/media/res_23.04227821c07c2d769681.webp",
+    "static/media/res_20.webp": "/static/media/res_20.b96ad69329651e098aca.webp",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.baf58dd0.css",
-    "static/js/main.eae4fac0.js"
+    "static/css/main.694ee9f0.css",
+    "static/js/main.ccd4ef17.js"
   ]
 }
