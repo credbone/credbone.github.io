@@ -138,7 +138,7 @@ html.mobile .snapcont.vertical.left.right > .snapscroll {-webkit-mask-image:line
 
 [data-snap-button="compact"] {--scroll-button-position:5px;}
 [data-snap-button="15"] {--scroll-button-position:15px;}
-
+[data-snap-button="30"] {--scroll-button-position:30px;}
 
 .snapcont .slide-button:not(.show),
 html.mobile .snapcont .slide-button

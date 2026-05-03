@@ -173,6 +173,14 @@ export const routesData: RouteData[] = [
     "description": "Build and edit SVG paths visually by combining segments, curves, and lines, with quick export.",
     "tags": ["path", "svg", "vector", "bezier", "curve", "arc", "line", "segments", "editor", "tools"]
   },
+{
+  "path": "../Tools/AvatarMaker",
+  "title": "Avatar Maker",
+  "description": "Customize and export simple avatars by adjusting size, colors, and basic attributes.",
+  "tags": ["avatar", "maker", "editor", "customize", "color", "size", "export", "svg", "tools"]
+},
+
+
 
 
 

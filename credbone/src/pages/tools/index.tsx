@@ -14,6 +14,7 @@ import ColorSpaceConverter from "./ColorSpaceConverter";
 
 import PathBulder from "./PathBuilder/PathBulder";
 import Marquee from "../../components/Marquee";
+import AvatarMaker from "./avatars/AvatarMaker";
 
 function ToolsCollection() {
 
@@ -199,6 +200,7 @@ function ToolsCollection() {
           <Route path="ColorMixer" element={<ColorMixer />} />
           <Route path="ColorSpaceConverter" element={<ColorSpaceConverter />} />
           <Route path="PathBuilder" element={<PathBulder />} />
+          <Route path="AvatarMaker" element={<AvatarMaker />} />
         </Routes>
       </group>
       <group data-position="bottom" data-height="200" data-shrink="no"></group>

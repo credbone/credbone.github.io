@@ -142,3 +142,15 @@ export const democolors = [
 
 
 ];
+
+
+
+
+export const demo_colors = [
+  { name: "Coral Sunset", value: "#F5745E" },
+  { name: "Sunset Orange", value: "#EF7843" },
+  { name: "Warm Apricot", value: "#F39555" },
+
+
+
+];

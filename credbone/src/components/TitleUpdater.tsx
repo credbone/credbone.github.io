@@ -40,6 +40,7 @@ const routeTitles: {
   ColorMixer: { title: "Color Mixer", header: "Color Mixer" },
   ColorSpaceConverter: { title: "Color Converter", header: "Color Converter" },
   PathBuilder: { title: "Path Builder", header: "Path Builder" },
+  AvatarMaker: { title: "Avatar Maker", header: "Avatar Maker " },
 
   Resume: { title: "Ruben Sargsyan", header: "Ruben Sargsyan" },
   Dashboard: { title: "Dashboard", header: "Dashboard" },
