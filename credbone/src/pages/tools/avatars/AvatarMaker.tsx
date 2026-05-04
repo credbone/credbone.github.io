@@ -423,13 +423,15 @@ const AvatarMaker: React.FC = () => {
             <group
               data-contain=""
               data-space="30"
-              data-interactive=""
+              data-interactive="avatar"
               data-over-color="neutral"
               data-ink-color="neutral"
               data-gap="10"
             >
               <group data-interact="">
                 <svg
+                data-pointer-event="none"
+                data-name="avatar"
                   data-contain="visible"
                   xmlns="http://www.w3.org/2000/svg"
                   width="100%"
