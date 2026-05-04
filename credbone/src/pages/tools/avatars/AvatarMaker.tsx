@@ -731,10 +731,13 @@ const AvatarMaker: React.FC = () => {
             }}
             data-gap="30"
           >
-            <group>
+            <group  data-position="center" data-length="260" data-wrap="no" data-gap="15" data-align="center">
+              <text>Size</text>
+              <separator data-vertical=""></separator>
               <CustomSlider
-                //showvalue={false}
-                edgeGap={30}
+                showvalue={false}
+                handlerWidth={50}
+               // edgeGap={30}
                 start={220}
                 end={310}
                 value={tempRadius}
@@ -750,6 +753,7 @@ const AvatarMaker: React.FC = () => {
                   "data-height": "1",
                 }}
               />
+               <text data-font-feature="tnum" data-opacity="30">{tempRadius}</text>
             </group>
 
             <group data-adaptive="mobile" data-contain="">
