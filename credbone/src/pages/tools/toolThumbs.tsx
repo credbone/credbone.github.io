@@ -29,21 +29,9 @@ export const AvatarMaker = (
       viewBox="0 0 620 620"
       fill="none"
     >
-      <defs>
-        <clipPath id="grid-a-thumb" clipPathUnits="userSpaceOnUse">
-          <rect x="0" y="-54" width="620" height="310"></rect>
-          <circle cx="310" cy="310" r="256"></circle>
-        </clipPath>
-      </defs>
+      <defs> <clipPath id="grid-a-thumb" clipPathUnits="userSpaceOnUse"> <rect x="0" y="-54" width="620" height="310"></rect> <circle cx="310" cy="310" r="256"></circle> </clipPath> </defs>
       <circle cx="310" cy="310" r="256" fill="#FAC377"></circle>
-      <image
-        x="0"
-        y="-54"
-        width="620"
-        height="620"
-        clip-path="url(#grid-a-thumb)"
-        href={res_1_2x}
-      ></image>
+      <image x="0" y="-54" width="620" height="620" clipPath="url(#grid-a-thumb)" href={res_1_2x} ></image>
     </svg>
   </>
 );

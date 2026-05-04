@@ -5,6 +5,7 @@ import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
 import { ArrowDown, Copy } from "lucide-react";
 import MenuItem from "../../components/MenuItem";
+import { SvgPattern_1 } from "../../components/icon/svgRes";
 
 const generator = ({ size = 100, growth = 6, edges = 6, seed = null } = {}) => {
   var { destPoints, seedValue } = _createPoints(size, growth, edges, seed);
@@ -218,46 +219,7 @@ const menuItems = [
         data-space="30"
         data-gap="30"
       >
-        <svg
-          width="100%"
-          height="100%"
-          data-position="absolute"
-          data-left="0"
-          data-top="0"
-          data-mask="bottom"
-        >
-          <pattern
-            id="combined-svg-7"
-            width="48"
-            height="48"
-            patternUnits="userSpaceOnUse"
-            patternContentUnits="userSpaceOnUse"
-          >
-            <g opacity="0.25">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M48 43L48 44L47 44L47 43L48 43ZM48 39L48 40L47 40L47 39L48 39ZM48 35L48 36L47 36L47 35L48 35ZM48 31L48 32L47 32L47 31L48 31ZM48 27L48 28L47 28L47 27L48 27ZM48 23L48 24L47 24L47 23L48 23ZM48 19L48 20L47 20L47 19L48 19ZM48 15L48 16L47 16L47 15L48 15ZM48 11L48 12L47 12L47 11L48 11ZM48 7L48 8L47 8L47 7L48 7ZM48 3L48 4L47 4L47 3L48 3Z"
-                fill="currentColor"
-              ></path>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M47 47L48 47L48 48L47 48L47 47ZM43 47L44 47L44 48L43 48L43 47ZM39 47L40 47L40 48L39 48L39 47ZM35 47L36 47L36 48L35 48L35 47ZM31 47L32 47L32 48L31 48L31 47ZM27 47L28 47L28 48L27 48L27 47ZM23 47L24 47L24 48L23 48L23 47ZM19 47L20 47L20 48L19 48L19 47ZM15 47L16 47L16 48L15 48L15 47ZM11 47L12 47L12 48L11 48L11 47ZM7 47L8 47L8 48L7 48L7 47ZM3 47L4 47L4 48L3 48L3 47Z"
-                fill="currentColor"
-              ></path>
-            </g>
-            <g opacity="0.45">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M24 23H23V24H24V23ZM24 47H23V48H24V47ZM47 23H48V24H47V23ZM48 47H47V48H48V47Z"
-                fill="currentColor"
-              ></path>
-            </g>
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#combined-svg-7)"></rect>
-        </svg>
+<SvgPattern_1/>
 
         <group>
           <text

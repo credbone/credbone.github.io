@@ -7,6 +7,7 @@ import Popover from "../../components/popover";
 import { ArrowDown, Copy, Plus, Share2 } from "lucide-react";
 import Ripple from "../../components/Ripple";
 import MenuItem from "../../components/MenuItem";
+import Scroll from "../../components/scroll";
 
 const PatternMaker: React.FC = () => {
   // Initialize from URL parameters or 3 random tiles
@@ -229,8 +230,11 @@ const PatternMaker: React.FC = () => {
         data-gap="30"
         data-direction="column"
         data-align="start"
+                data-position="sticky"
+        data-top="30"
       >
         <group
+
           data-radius="40"
           data-elevation="2"
           data-background="context"
@@ -326,8 +330,11 @@ const PatternMaker: React.FC = () => {
                       data-wrap="no"
                       data-contain=""
                     >
-                      <group data-scroll="scroll">
-                        <group
+                      <group   data-scroll-mask="false" >
+<Scroll wheelEnabled                      buttonProps={{
+                          "data-hide": "true",
+                        }}>
+                          <group
                           data-space="30"
                           data-gap="15"
                           data-wrap="no"
@@ -336,6 +343,7 @@ const PatternMaker: React.FC = () => {
                         >
                           {tileGrid}
                         </group>
+</Scroll>
                       </group>
                       <group data-space-horizontal="20">
                         <separator data-horizontal=""></separator>

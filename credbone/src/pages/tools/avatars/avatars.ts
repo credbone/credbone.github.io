@@ -100,7 +100,7 @@ export const avatars = [
   { key: "21", color: "#4E7F73", image_2x: res_21_2x, image_3x: res_21_3x, name: "Urban Pulse", description: "City energy flow." },
 
   { key: "23", color: "#F6D88A", image_2x: res_23_2x, image_3x: res_23_3x, name: "Bunny Hop", description: "Playful and quick." },
-  { key: "26", color: "#9B7BE3", image_2x: res_26_2x, image_3x: res_26_3x, name: "Warm Hug", description: "Soft and caring." },
+  { key: "26", color: "#e99797", image_2x: res_26_2x, image_3x: res_26_3x, name: "Warm Hug", description: "Soft and caring." },
   { key: "27", color: "#F1C27D", image_2x: res_27_2x, image_3x: res_27_3x, name: "Chef Star", description: "Cooking with flair." },
-  { key: "28", color: "#F28C3A", image_2x: res_28_2x, image_3x: res_28_3x, name: "Clever Fox", description: "Smart and quick." },
+  { key: "28", color: "#f2d1ae", image_2x: res_28_2x, image_3x: res_28_3x, name: "Clever Fox", description: "Smart and quick." },
 ];

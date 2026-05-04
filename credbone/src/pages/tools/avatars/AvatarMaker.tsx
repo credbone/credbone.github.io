@@ -472,6 +472,7 @@ const AvatarMaker: React.FC = () => {
 
   const [isColorOpen, setIsColorOpen] = useState(false);
 
+
   return (
     <group data-wrap="no" data-gap="30" data-align="start">
       <group
@@ -722,9 +723,11 @@ const AvatarMaker: React.FC = () => {
           <group
             onMouseDown={() => {
               setIsColorOpen(false);
+           
             }}
             onTouchStart={() => {
               setIsColorOpen(false);
+
             }}
             data-gap="30"
           >
@@ -754,6 +757,9 @@ const AvatarMaker: React.FC = () => {
                 bottomsheet
                 dim={false}
                 bottomsheetProps={bottomsheetConfig}
+
+
+
                 placement="middle"
                 data-space="0"
                 data-radius="30"
@@ -762,7 +768,6 @@ const AvatarMaker: React.FC = () => {
                   <group data-direction="column" data-wrap="no" data-contain="">
                     <group
                       data-scroll-mask="false"
-                      data-snap-button="15"
                       data-contain=""
                       data-radius-top="30"
                     >
@@ -850,6 +855,7 @@ const AvatarMaker: React.FC = () => {
                 bottomsheet
                 data-space="5"
                 data-radius="20"
+ 
                 content={(closePopover, isBottomSheet) => (
                   <group
                     data-direction="column"
