@@ -65,7 +65,11 @@ useEffect(() => {
   if (!el) return;
 
   const onTouchStart = (e: TouchEvent) => {
-    startXRef.current = e.touches[0].clientX;
+
+  const startX = e.touches[0].clientX;
+  if (startX > window.innerWidth - 30) return;
+
+    startXRef.current = startX;
     startYRef.current = e.touches[0].clientY;
     deltaRef.current = 0;
     axisRef.current = null;
@@ -99,7 +103,11 @@ const onTouchMove = (e: TouchEvent) => {
 
 
 const onDimTouchStart = (e: TouchEvent) => {
-  startXRef.current = e.touches[0].clientX;
+
+  const startX = e.touches[0].clientX;
+  if (startX > window.innerWidth - 30) return;
+
+    startXRef.current = startX;
   deltaRef.current = 0;
   el.style.transitionDuration = "0s";
   dim!.style.transitionDuration = "0s";
