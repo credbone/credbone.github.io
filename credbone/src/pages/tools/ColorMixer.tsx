@@ -927,6 +927,7 @@ const handleNativeShare = async () => {
           >
             <group data-gap="10">
               <Popover
+              data-background="fg"
                 bottomsheet
                 data-space="5"
                 data-radius="20"
@@ -1039,6 +1040,7 @@ const handleNativeShare = async () => {
               </Ripple>
 
               <Popover
+              data-background="fg"
                 bottomsheet
                 placement="middle"
                 data-space="5"

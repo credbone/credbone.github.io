@@ -53,7 +53,7 @@
 [data-background="highlight"]{ background-color: var(--highlight) }
 [data-background="border-color"]{ background-color: var(--border-color) }
 [data-background="context"]{ background-color: var(--context) }
-
+[data-background="fg"]{ background-color: var(--foreground) }
 
 
 

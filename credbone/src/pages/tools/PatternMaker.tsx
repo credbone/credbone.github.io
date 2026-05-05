@@ -157,7 +157,7 @@ const PatternMaker: React.FC = () => {
               data-interactive=""
               data-over-color="neutral"
               data-cursor="pointer"
-              data-background="context"
+              data-background="fg"
               data-shrink="no"
               data-border={selectedTiles.has(tile.id) ? "2" : ""}
               data-space="15"
@@ -317,6 +317,7 @@ const PatternMaker: React.FC = () => {
                 data-right="0"
               >
                 <Popover
+                
                   bottomsheet
                   dim={false}
                   bottomsheetProps={bottomsheetConfig}
@@ -432,6 +433,7 @@ const PatternMaker: React.FC = () => {
               </Ripple>
 
               <Popover
+             
               bottomsheet
                 data-space="5"
                 data-radius="20"

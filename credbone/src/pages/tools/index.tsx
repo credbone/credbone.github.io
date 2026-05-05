@@ -58,7 +58,7 @@ function ToolsCollection() {
               data-space="10"
               data-gap="10"
               data-radius="20"
-              data-background="context"
+              data-background="fg"
               data-width="auto"
               data-align="center"
               data-duration="2.25"

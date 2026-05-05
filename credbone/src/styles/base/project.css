@@ -60,6 +60,7 @@
     --outline: rgba(255, 255, 255, .08);
     --background: #191919;
     --context: #1e1e1e;
+    --foreground:#232323;
     --border-color: #2b2b2b;
     --overlay: rgba(6, 6, 6, 0.9);
     --highlight: #212121;
@@ -92,6 +93,7 @@
     --outline: rgba(255, 255, 255, .08);
     --background: #191919;
     --context: #1e1e1e;
+    --foreground:#232323;
     --border-color: #2b2b2b;
     --overlay: rgba(6, 6, 6, 0.9);
     --highlight: #212121;

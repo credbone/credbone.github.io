@@ -467,7 +467,7 @@ const DotDisplayEdit: React.FC<{
 
             <Popover
             bottomsheet
-          
+          data-background="fg"
               open={isExportOpen}
               onOpenChange={setIsExportOpen}
               placement="bottom"
@@ -636,6 +636,7 @@ const DotDisplayEdit: React.FC<{
             </Popover>
 
             <Popover
+            data-background="fg"
              bottomsheet
               dim={false}
               open={isMenuOpen}

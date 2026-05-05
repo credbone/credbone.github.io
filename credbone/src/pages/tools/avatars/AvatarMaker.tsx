@@ -498,8 +498,8 @@ const AvatarMaker: React.FC = () => {
           data-contain=""
         >
           <SvgPattern_1 />
-          <group data-wrap="no" data-align="center">
-            <group data-direction="column">
+          <group data-wrap="no" data-justify="center">
+            <group data-direction="column" data-space="8" data-contain="" >
               <text
                 data-text-size="medium"
                 data-ellipsis=""
@@ -507,7 +507,7 @@ const AvatarMaker: React.FC = () => {
               >
                 {selected.name}
               </text>
-              <text data-opacity="40">{selected.description}</text>
+              <text  data-ellipsis="" data-opacity="40">{selected.description}</text>
             </group>
 
             <Popover
