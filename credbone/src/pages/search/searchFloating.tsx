@@ -9,9 +9,10 @@ import SearchResults from "./SearchResults";
 
 interface SearchFloatingProps {
   showRandomTagsByDefault?: boolean;
+  onClose?: () => void;
 }
 
-function SearchFloating({ showRandomTagsByDefault = true }: SearchFloatingProps) {
+function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloatingProps) {
   const {
     searchQuery,
     results,
@@ -22,7 +23,7 @@ function SearchFloating({ showRandomTagsByDefault = true }: SearchFloatingProps)
     handleKeyDown,
     searchByTag,
     clearSearch,
-  } = useSearch({ showRandomTagsByDefault });
+  } = useSearch({ showRandomTagsByDefault, onClose });
 
   return (
     <>
@@ -137,7 +138,7 @@ function SearchFloating({ showRandomTagsByDefault = true }: SearchFloatingProps)
           data-max-length="500"
           data-align="start"
         >
-          <SearchResults results={results} focusedIndex={focusedIndex} resultRefs={resultRefs} />
+          <SearchResults results={results} focusedIndex={focusedIndex} resultRefs={resultRefs} onResultClick={onClose} />
         </group>
       )}
     </>

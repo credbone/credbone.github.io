@@ -12,25 +12,25 @@ export const routesData: RouteData[] = [
     "path": "../Components/Typography",
     "title": "Typography",
     "description": "Typography tools, fonts, and typeface design for all styles.",
-    "tags": ["typography", "fonts", "typeface", "text", "glyph", "lettering", "serif", "token"]
+    "tags": ["typography", "fonts", "typeface", "text", "glyph", "lettering", "serif","token"]
   },
   {
     "path": "../Components/Icons",
     "title": "Icons",
     "description": "Icon components for graphics and user interface design.",
-    "tags": ["icon", "svg", "vector", "glyphs", "symbols"]
+    "tags": ["icon","component", "svg", "vector", "glyphs", "symbols"]
   },
   {
     "path": "../Components/Buttons",
     "title": "Buttons",
     "description": "Interactive buttons for user interface actions and controls.",
-    "tags": ["button", "actions", "controls", "click", "fab", "form", "user interface"]
+    "tags": ["button","component", "actions", "controls", "click", "fab", "form", "user interface"]
   },
   {
     "path": "../Components/CheckboxSwitchers",
     "title": "Checkbox & Switchers",
     "description": "Highly configurable checkboxes, switches, and toggle controls.",
-    "tags": ["checkbox", "switchers", "toggle", "radio", "selection", "input", "forms", "button"]
+    "tags": ["checkbox","component", "switchers", "toggle", "radio", "selection", "input", "forms", "button"]
   },
   {
     "path": "../Components/Colors",
@@ -42,7 +42,7 @@ export const routesData: RouteData[] = [
     "path": "../Components/DividerAndSpace",
     "title": "Divider & Space",
     "description": "Essential components for creating structured layouts and managing spacing.",
-    "tags": ["spacing", "divider", "separator", "layout", "structure", "arrangement", "space"]
+    "tags": ["spacing","component", "divider", "separator", "layout", "structure", "arrangement", "space"]
   },
   {
     "path": "../Components/Layout",
@@ -54,7 +54,7 @@ export const routesData: RouteData[] = [
     "path": "../Components/Navigation",
     "title": "Navigation",
     "description": "Menus and navigation components for streamlined UIs.",
-    "tags": ["navigation", "menu", "navbar", "sidebar", "tabs", "links", "breadcrumbs",]
+    "tags": ["navigation","component", "menu", "navbar", "sidebar", "tabs", "links", "breadcrumbs",]
   },
   {
     "path": "../Components/Navigation/SideBar",
@@ -66,25 +66,25 @@ export const routesData: RouteData[] = [
     "path": "../Components/InputsAndForms",
     "title": "Inputs & Forms",
     "description": "Input fields and forms for user interaction and data entry.",
-    "tags": ["inputs", "forms", "input fields", "data entry", "user input", "textarea", "password",]
+    "tags": ["inputs","component", "forms", "input fields", "data entry", "user input", "textarea", "password",]
   },
   {
     "path": "../Components/RangeSlider",
     "title": "Range Slider",
     "description": "For adjusting values dynamically in user interface designs.",
-    "tags": ["slider", "range", "inputs", "user input", "data entry", "tick", "input fields"]
+    "tags": ["slider","component", "range", "inputs", "user input", "data entry", "tick", "input fields"]
   },
   {
     "path": "../Components/TooltipAndPopover",
     "title": "Tooltip & Popover",
     "description": "Contextual overlay components for hints and lightweight interactions.",
-    "tags": ["tooltip", "popover","bottom sheet", "overlay", "hint", "hover",]
+    "tags": ["tooltip","component", "popover","bottom sheet", "overlay", "hint", "hover",]
   },
   {
     "path": "../Components/Snackbar",
     "title": "Snackbar",
     "description": "Notification components for feedback, alerts, and system messages.",
-    "tags": ["snackbar", "toast", "notification", "feedback", "alert","hint"]
+    "tags": ["snackbar","component", "toast", "notification", "feedback", "alert","hint"]
   },
   {
     "path": "../Components/CardsAndList",
@@ -96,19 +96,19 @@ export const routesData: RouteData[] = [
     "path": "../Components/Miscellaneous",
     "title": "Miscellaneous",
     "description": "Various unique UI components and handy design tools.",
-    "tags": ["miscellaneous", "marquee", "counter", "digit", "ripple", "ink", "material", "text"]
+    "tags": ["miscellaneous","component", "marquee", "counter", "digit", "ripple", "ink", "material", "text"]
   },
   {
     "path": "../Components/Dashboard",
     "title": "Dashboard",
     "description": "Dashboard interfaces for hardware monitoring and widgets.",
-    "tags": ["dashboard", "widget", "monitoring", "gauge", "temperature", "hardware", "pattern"]
+    "tags": ["dashboard","component", "widget", "monitoring", "gauge", "temperature", "hardware", "pattern"]
   },
   {
     "path": "../Components/Modal",
     "title": "Modals",
     "description": "Modal components for creating overlays and popup dialogs.",
-    "tags": ["modal", "dialog", "popup", "overlay", "window"]
+    "tags": ["modal","component", "dialog", "popup", "overlay", "window"]
   },
   {
     "path": "../Components/QuickDemos",

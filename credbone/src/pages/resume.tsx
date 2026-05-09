@@ -4,18 +4,40 @@ import StuckReporter from "../components/StuckReporter";
 import { ArrowDownToLine } from "lucide-react";
 import AudioPlayer from "./audio_resume";
 import { SvgWood } from "../components/icon/svgRes";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import person_image from "../styles/images/samples/person-res.png";
 import { IconPlane } from "../components/icon/credIcons";
+import { useEffect, useRef } from "react";
 
 // const handlePrint = () => {
 //   window.print();
 // };
 
+
+
+  //  const location = useLocation();
+
+
+
 function Resume() {
+
+
+ const location = useLocation();
+      const viewRef = useRef<HTMLDivElement>(null);
+  
+    useEffect(() => {
+      if (viewRef.current) {
+        viewRef.current.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }, [location]);
+
+
   return (
-    <view data-scroll="" data-border="no">
+    <group data-scroll="" ref={viewRef} data-border="no">
       <group
         data-print="hide"
         data-max-length="1200"
@@ -521,7 +543,7 @@ target="_blank"
 
         </group>
       </group>
-    </view>
+    </group>
   );
 }
 

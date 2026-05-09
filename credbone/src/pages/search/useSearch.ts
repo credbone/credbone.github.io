@@ -57,9 +57,10 @@ function getRandomTags(count = RANDOM_TAG_COUNT): string[] {
 interface UseSearchOptions {
   showRandomTagsByDefault?: boolean;
   initialQuery?: string;
+  onClose?: () => void;
 }
 
-export function useSearch({ showRandomTagsByDefault = true, initialQuery = "" }: UseSearchOptions = {}) {
+export function useSearch({ showRandomTagsByDefault = true, initialQuery = "", onClose }: UseSearchOptions = {}) {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [results, setResults] = useState<RouteData[]>([]);
   const [randomTags, setRandomTags] = useState<string[]>([]);
@@ -125,10 +126,12 @@ export function useSearch({ showRandomTagsByDefault = true, initialQuery = "" }:
     } else if (e.key === "Enter") {
       if (focusedIndex >= 0 && results[focusedIndex]) {
         navigate(results[focusedIndex].path);
+        onClose?.();
       }
     } else if (e.key === "Escape") {
       clearSearch();
       e.currentTarget.blur();
+      onClose?.();
     }
   };
 

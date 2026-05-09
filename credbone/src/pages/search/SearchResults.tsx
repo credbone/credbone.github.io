@@ -9,10 +9,11 @@ interface SearchResultsProps {
   results: RouteData[];
   focusedIndex: number;
   resultRefs: React.MutableRefObject<(HTMLAnchorElement | null)[]>;
-   linkData?: DataAttributes;
+  linkData?: DataAttributes;
+  onResultClick?: () => void;
 }
 
-function SearchResults({ results, focusedIndex, resultRefs, linkData }: SearchResultsProps) {
+function SearchResults({ results, focusedIndex, resultRefs, linkData, onResultClick }: SearchResultsProps) {
   if (results.length === 0) return null;
 
   return (
@@ -33,6 +34,7 @@ function SearchResults({ results, focusedIndex, resultRefs, linkData }: SearchRe
           data-animation-duration={2 + index * 0.25}
           tabIndex={index}
           ref={(el: HTMLAnchorElement | null) => (resultRefs.current[index] = el)}
+          onClick={() => onResultClick?.()}
           data-background={focusedIndex === index ? "adaptive-gray" : undefined}
           data-selected={focusedIndex === index ? "true" : undefined}
          {...linkData}

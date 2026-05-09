@@ -16,8 +16,11 @@ import { linksArray } from "./utils/OverviewData";
 // import DemoThemeToggle from "../components/DemoThemeToggle";
 
 import Content from "./content";
-import SearchFloating from "../pages/search/SearchFloating";
+//import SearchFloating from "../pages/search/SearchFloating";
 import { ChevronRight } from "lucide-react";
+import { openSearchModal, ModalControls } from "../pages/search/Searchshortcutlistener";
+
+
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
@@ -42,17 +45,7 @@ const Components: React.FC = () => {
 
   const { openModal, closeModal } = useModal();
 
-  const modalConfig = {
-    "data-radius": "none",
-    "data-margin": "0",
-    "data-background": "none",
-    "data-elevation": "none",
-    "data-width": "fit",
-    "data-scroll": "",
-    "data-min-height": "fit",
-    "data-contain": "scroll",
-    "data-modal-backdrop": "dark",
-  };
+
 
   return (
     <group
@@ -109,51 +102,64 @@ const Components: React.FC = () => {
                 data-color="main-background"
                 data-space="20"
                 data-radius="60"
-                onClick={() =>
-                  openModal({
-                    id: "modal-2",
-                    title: "Customized Popup",
-                    content: (
-                      <group
-                        data-min-height="fit"
-                        data-justify="center"
-                        data-align="start"
-                        data-space="30"
-                        data-contain="scroll"
-                      >
-                        <group
-                          data-top="0"
-                          data-position="absolute"
-                          data-height="fit"
-                          onClick={() => closeModal("modal-2")}
-                        ></group>
+              //   onClick={() =>
+              //     openModal({
+              //       id: "modal-2",
+              //       title: "Customized Popup",
+              //       content: (
+              //         <group
+              //           data-min-height="fit"
+              //           data-justify="center"
+              //           data-align="start"
+              //           data-space="30"
+              //           data-contain="scroll"
+              //         >
+              //           <group
+              //             data-top="0"
+              //             data-position="absolute"
+              //             data-height="fit"
+              //             onClick={() => closeModal("modal-2")}
+              //           ></group>
 
-                        <group
-                          data-animation-name="appear-top"
-                          data-fill-mode="backwards"
-                          data-animation-duration="2.75"
-                          data-max-length="500"
-                          //  data-border=""
-                          // data-background="context"
-                          // data-radius="25"
-                          data-space="10"
-                          data-gap="20"
-                          // data-elevation="2"
-                          //    data-animation-name="appear-top"
-                          //    data-fill-mode="backwards"
-                          //     data-animation-duration="2"
-                        >
-                          <SearchFloating showRandomTagsByDefault={false} />
-                        </group>
-                      </group>
-                    ),
-                    hasHeader: false,
-                    hasToolbar: false,
-                    customAttributes: modalConfig,
-                    //    dimAttributes: {"data-background" : "dark-shade-10"},
-                    spacing: 0,
-                  })
-                }
+              //           <group
+              //             data-animation-name="appear-top"
+              //             data-fill-mode="backwards"
+              //             data-animation-duration="2.75"
+              //             data-max-length="500"
+              //             //  data-border=""
+              //             // data-background="context"
+              //             // data-radius="25"
+              //             data-space="10"
+              //             data-gap="20"
+              //             // data-elevation="2"
+              //             //    data-animation-name="appear-top"
+              //             //    data-fill-mode="backwards"
+              //             //     data-animation-duration="2"
+              //           >
+              //             <SearchFloating showRandomTagsByDefault={false} 
+
+
+              //                             onClose={() => {
+              // //    isOpen.current = false;
+              //     closeModal("modal-2");
+              //   }}
+
+
+              //             />
+              //           </group>
+              //         </group>
+              //       ),
+              //       hasHeader: false,
+              //       hasToolbar: false,
+              //       customAttributes: modalConfig,
+              //       //    dimAttributes: {"data-background" : "dark-shade-10"},
+              //       spacing: 0,
+              //     })
+              //   }
+
+
+              onClick={() => openSearchModal({ openModal: openModal as ModalControls["openModal"], closeModal })}
+
               >
                 <group
                   //data-height="fit"
