@@ -37,7 +37,7 @@ function Resume() {
 
 
   return (
-    <group data-scroll="" ref={viewRef} data-border="no">
+    <group data-scroll="" ref={viewRef} data-border="no" data-index="1">
       <group
         data-print="hide"
         data-max-length="1200"
