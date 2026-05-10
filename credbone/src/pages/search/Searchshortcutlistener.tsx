@@ -2,6 +2,7 @@ import { useEffect, useCallback, useRef } from "react";
 import { useModal } from "../../components/Modal";
 // import { useLocation } from "react-router-dom";
 import SearchFloating from "./SearchFloating";
+import { useLocation } from "react-router-dom";
 
 const SEARCH_MODAL_ID = "modal-search-global";
 
@@ -24,6 +25,8 @@ export type ModalControls = {
 
 let isSearchOpen = false;
 
+
+
 export function openSearchModal({ openModal, closeModal }: ModalControls) {
 
   
@@ -36,6 +39,7 @@ export function openSearchModal({ openModal, closeModal }: ModalControls) {
   openModal({
     id: SEARCH_MODAL_ID,
     title: "Search",
+    onClose: () => { isSearchOpen = false; },
     content: (
       <group
         data-min-height="fit"
@@ -74,11 +78,11 @@ export function SearchShortcutListener() {
   const { openModal, closeModal } = useModal();
   // const isOpen = useRef(false);
 
-  // const location = useLocation();
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   isOpen.current = false;
-  // }, [location]);
+ useEffect(() => {
+    isSearchOpen = false;
+  }, [location]);
 
 const handleKeyDown = useCallback(
   (e: KeyboardEvent) => {

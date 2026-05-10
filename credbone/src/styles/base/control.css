@@ -852,6 +852,14 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin="40"] {margin:40px}
 
 
+[data-margin-top="-80"] {margin-top:-80px}
+[data-margin-top="-170"] {margin-top:-170px}
+
+
+
+
+
+
 [data-margin-horizontal="5"] {margin-left:5px; margin-right: 5px;}
 [data-margin-horizontal="-10"] {margin-left:-10px; margin-right: -10px;}
 
@@ -946,6 +954,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space="20"] { padding:20px;}
 [data-space="25"] { padding:25px;}
 [data-space="30"] { padding:30px;}
+
+[data-space="35"] { padding:35px;}
 [data-space="40"] { padding:40px;}
 [data-space="45"] { padding:45px;}
 [data-space="50"] { padding:50px;}
@@ -971,7 +981,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-vertical="15"] {padding-top:15px; padding-bottom: 15px;}
 [data-space-vertical="20"] {padding-top:20px; padding-bottom: 20px;}
 [data-space-vertical="25"] {padding-top:25px; padding-bottom: 25px;}
-[data-space-vertical="30"] {padding-top:30px; padding-bottom: 30px;}s
+[data-space-vertical="30"] {padding-top:30px; padding-bottom: 30px;}
 [data-space-vertical="40"] {padding-top:40px; padding-bottom: 40px;}
 [data-space-vertical="50"] {padding-top:50px; padding-bottom: 50px;}
 
@@ -1001,6 +1011,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-top="30"] {padding-top:30px;}
 [data-space-top="40"] {padding-top:40px;}
 [data-space-top="50"] {padding-top:50px;}
+[data-space-top="60"] {padding-top:60px;}
 
 [data-space-bottom="150"] {padding-bottom:150px;}
 

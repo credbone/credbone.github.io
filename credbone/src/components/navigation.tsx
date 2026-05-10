@@ -23,8 +23,14 @@ import { isIOS, isMacOs, isMobile } from "react-device-detect";
 import Marquee from "./Marquee";
 import Popover from "./popover";
 import { links } from "../pages/tools/toolData";
+import { ModalControls, openSearchModal } from "../pages/search/Searchshortcutlistener";
+import { useModal } from "./Modal";
 
 const isApple = isMacOs || isIOS;
+
+
+
+
 
 const navItems = [
   { to: "", icon: <House size={20} />, label: "Home", type: "link" },
@@ -72,6 +78,8 @@ const Navigation: React.FC = () => {
   const isInTools = location.pathname.startsWith("/Tools/");
 
   const { isNavOpen, setIsNavOpen, buttonRef } = useNavContext();
+
+    const { openModal, closeModal } = useModal();
 
   const handleNavToggle = () => {
     // event.stopPropagation(); // Prevents event from bubbling up
@@ -309,7 +317,34 @@ const Navigation: React.FC = () => {
         )}
 
 <Ripple>
-          <NavLink
+          {/* <NavLink
+          data-shrink="no"
+          data-position="right"
+          data-align="center"
+          data-type="group"
+          data-width="auto"
+          data-space="10"
+          data-interactive=""
+          data-radius="30"
+          data-contain=""
+       
+          to="/Search"
+        >
+         
+          <group
+            data-interact=""
+            data-length="30"
+            data-height="30"
+            data-align="center"
+            data-justify="center"
+          >
+            <Search size={20} />
+          </group>
+        </NavLink> */}
+
+
+
+          <group
           data-shrink="no"
           data-position="right"
           data-align="center"
@@ -320,7 +355,7 @@ const Navigation: React.FC = () => {
           data-radius="30"
           data-contain=""
        //   data-name="nav-item"
-          to="/Search"
+         onClick={() => openSearchModal({ openModal: openModal as ModalControls["openModal"], closeModal })}
         >
           {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Search</text> */}
           <group
@@ -332,8 +367,15 @@ const Navigation: React.FC = () => {
           >
             <Search size={20} />
           </group>
-        </NavLink>
+        </group>
+
+
 </Ripple>
+
+            
+
+
+
       </group>
     </>
   );

@@ -23,6 +23,12 @@ import { useEffect, useRef } from "react";
 function Resume() {
 
 
+
+const today = new Date();
+const date = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+
+
  const location = useLocation();
       const viewRef = useRef<HTMLDivElement>(null);
   
@@ -78,25 +84,13 @@ function Resume() {
         data-space="30"
         data-wrap="no"
         data-direction="column-800"
+      //  data-align="start"
       >
-        <group
-          data-length="300"
-          data-width="auto-800"
-          data-direction="column"
-          data-gap="30"
-          data-align="start"
-          data-print="hide"
-        >
-          <group
-            data-border=""
-            data-space="5"
-            data-radius="40"
-            data-sticky="top"
-            data-top="30"
-          >
+
+
             <AudioPlayer />
-          </group>
-        </group>
+
+
 
         <group data-max-length="800">
           <group
@@ -308,8 +302,8 @@ data-gap="20"
 
               <separator data-print="hide" data-vertical="" data-height="fit" data-position="absolute" data-left="50"></separator>
 
-
-<group data-space-horizontal="30" data-index="2"> <group data-align="start"> <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text"  data-weight="700"> SoftConstruct </text> <text data-opacity="60">May 2025 - Present</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5"  data-space-bottom="20"  data-background="main-background" > <text data-user-select="text" data-weight="700" data-wrap="wrap" > Senior UX Designer </text> <text data-user-select="text" data-wrap="wrap" data-line="1.3" > Senior UX at SoftConstruct, working on large-scale projects with cross-functional teams, delivering user-centered web and mobile solutions. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>       
+<group data-space-horizontal="30" data-index="2"> <group data-align="start"> <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text"  data-weight="700"> IntelinAir </text> <text data-opacity="60">May 2026 - Present</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5"  data-space-bottom="20"  data-background="main-background" > <text data-user-select="text" data-weight="700" data-wrap="wrap" > Senior Product Designer </text> <text data-user-select="text" data-wrap="wrap" data-line="1.3" >Joined a product-focused team, currently exploring the platform, product ecosystem, and future design opportunities.</text> </group> </group> <group data-height="50" data-print="hide"></group> </group>       
+<group data-space-horizontal="30" data-index="2"><group data-height="20" data-background="main-background"></group><group data-align="start"> <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text"  data-weight="700"> SoftConstruct </text> <text data-opacity="60">2025 - 2026</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5"  data-space-bottom="20"  data-background="main-background" > <text data-user-select="text" data-weight="700" data-wrap="wrap" > Senior UX Designer </text> <text data-user-select="text" data-wrap="wrap" data-line="1.3" > Senior UX at SoftConstruct, working on large-scale projects with cross-functional teams, delivering user-centered web and mobile solutions. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>       
 <group data-space-horizontal="30" data-index="2"><group data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Ogma Applications</text> <text data-opacity="60">2014 - 2024</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">Design Department Manager</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> Joined Ogma to lead design for content management software, web systems, and mobile apps. Focused on user-centered, impactful designs aligned with technical objectives. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>
 <group data-space-horizontal="30" data-index="2"><group  data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Wovenmedia</text> <text data-opacity="60">2014 - 2024</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">User Interface Design Manager</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> In parallel, led UI design at Wovenmedia for a complex digital video signage management system. </text> </group> </group> <group data-height="50" data-print="hide"></group> </group>
 <group data-space-horizontal="30" data-index="2" data-background="main-background"><group  data-print="hide" data-height="20" data-background="main-background"></group><group data-align="start" > <group data-length="170" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700">Altacode</text> <text data-opacity="60">2011 - 2014</text> </group> <group data-length="auto" data-max-length="500" data-direction="column" data-gap="5" data-space-bottom="20" data-background="main-background"> <text data-user-select="text" data-weight="700" data-wrap="wrap">UI Designer</text> <text data-user-select="text" data-wrap="wrap" data-line="1.3"> First role in a large company, gaining experience in project management, team collaboration, client communication, and working on diverse web and mobile products. </text> </group> </group> </group>
@@ -421,6 +415,7 @@ data-gap="20"
     {/**/}      
 
 
+
           <StuckReporter>
             {(isSticky) => (
               <group
@@ -439,9 +434,9 @@ data-gap="20"
                   //  onClick={handlePrint}
 
                   data-type="group"
-target="_blank"
+                  target="_blank"
                   href="/cv.pdf"
-                  download="Ruben_Sargsyan_CV.pdf"
+                  download={`Ruben_Sargsyan_${date}.pdf`}
 
                     data-contain=""
                     data-width="auto"

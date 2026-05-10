@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import audio from "../resources/resume_audio.mp3";
 import CustomSlider from "../components/inputs/slider";
 import Ripple from "../components/Ripple";
+import StuckReporter from "../components/StuckReporter";
 
 const AudioPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -27,32 +28,27 @@ const AudioPlayer: React.FC = () => {
 
   const [progress, setProgress] = useState(0);
 
+  const containerRef = useRef<HTMLElement>(null);
+  const [indicatorTop, setIndicatorTop] = useState(0);
 
-const containerRef = useRef<HTMLElement>(null);
-    const [indicatorTop, setIndicatorTop] = useState(0);
-
-    const hasActive = timestamps.some(
-  ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE
-);
-
-    useEffect(() => {
-  const activeIndex = timestamps.findIndex(
-    ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE
+  const hasActive = timestamps.some(
+    ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE,
   );
 
-  if (activeIndex === -1) return;
+  useEffect(() => {
+    const activeIndex = timestamps.findIndex(
+      ({ time }) => Math.abs(currentTime - time) <= HIGHLIGHT_RANGE,
+    );
 
-  const container = containerRef.current;
-  const activeItem = container?.children[activeIndex + 1] as HTMLElement;
+    if (activeIndex === -1) return;
 
-  
+    const container = containerRef.current;
+    const activeItem = container?.children[activeIndex + 1] as HTMLElement;
 
-  if (activeItem) {
-    setIndicatorTop(activeItem.offsetTop);
-  }
-}, [currentTime, timestamps]);
-
-
+    if (activeItem) {
+      setIndicatorTop(activeItem.offsetTop);
+    }
+  }, [currentTime, timestamps]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -275,185 +271,265 @@ const containerRef = useRef<HTMLElement>(null);
   };
 
   return (
-    <group data-gap="15" data-space-vertical="30" >
-      <group data-space-horizontal="30">
-        <text
-          data-wrap="wrap"
-          data-line="1.5"
-          data-weight="600"
-          data-length="400"
+    <>
+      <group
+        data-index="4"
+        data-length="300"
+        data-width="auto-800"
+        data-direction="column"
+        data-gap="30"
+        data-align="start"
+        data-print="hide"
+      >
+        <group
+          data-border=""
+          data-space="5"
+          data-radius="40"
+          data-position="sticky"
+          data-top="30"
+          data-background="main-background"
         >
-          Listen AI dive into my resume, discussing it with zero input from me.
-          A fun, AI-powered take on my career journey.
-        </text>
-      </group>
+          <group data-gap="15" data-space-vertical="30">
+            <group data-space-horizontal="30">
+              <text
+                data-wrap="wrap"
+                data-line="1.5"
+                data-weight="600"
+                data-length="400"
+              >
+                Listen AI dive into my resume, discussing it with zero input
+                from me. A fun, AI-powered take on my career journey.
+              </text>
+            </group>
 
-      {audioAvailable ? (
-        <>
-          <audio
-            ref={audioRef}
-            src={audio}
-            onTimeUpdate={updateProgress}
-            preload="metadata"
-          />
+            {audioAvailable ? (
+              <>
+                <audio
+                  ref={audioRef}
+                  src={audio}
+                  onTimeUpdate={updateProgress}
+                  preload="metadata"
+                />
 
-
-
-
-
-
-          <group data-space-horizontal="15" data-gap="3" ref={containerRef}>
-
-
-<group data-left="0" data-height="45" data-duration="2.25" data-transition-prop="transform"  data-space-horizontal="15" data-position="absolute"
-
-
-         style={{
-    transform: `translateY(${indicatorTop}px)`,
-    
-  }}
-
-
->
-  <group data-radius="10" data-background="highlight" data-hight="fit" >
-
-  </group>
-
-</group>
-
-
-            {timestamps.map(({ time, label }) => {
-              const isActive = Math.abs(currentTime - time) <= HIGHLIGHT_RANGE;
-
-              return (
                 <group
-                  key={time}
-                  data-color="text"
-                  data-cursor="pointer"
-                  onClick={() => jumpToTime(time)}
+                  data-space-horizontal="15"
+                  data-gap="3"
+                  ref={containerRef}
                 >
-                  <Ripple>
+                  <group
+                    data-left="0"
+                    data-height="45"
+                    data-duration="2.25"
+                    data-transition-prop="transform"
+                    data-space-horizontal="15"
+                    data-position="absolute"
+                    style={{
+                      transform: `translateY(${indicatorTop}px)`,
+                    }}
+                  >
                     <group
-                 //     data-background={isActive ? "highlight" : ""}
-                      data-contain=""
-                      data-ink-color="neutral"
                       data-radius="10"
-                      data-space-horizontal="15"
-                      data-align="center"
-                      data-height="45"
-                      data-gap="10"
-                      data-wrap="no"
-                      data-interactive=""
-                      data-over-color="neutral"
-                    >
-                      <text data-weight="700">{formatTime(time)}</text>
-                      <text data-ellipsis="">{label}</text>
-                    </group>
-                  </Ripple>
+                      data-background="highlight"
+                      data-hight="fit"
+                    ></group>
+                  </group>
+
+                  {timestamps.map(({ time, label }) => {
+                    const isActive =
+                      Math.abs(currentTime - time) <= HIGHLIGHT_RANGE;
+
+                    return (
+                      <group
+                        key={time}
+                        data-color="text"
+                        data-cursor="pointer"
+                        onClick={() => jumpToTime(time)}
+                      >
+                        <Ripple>
+                          <group
+                            //     data-background={isActive ? "highlight" : ""}
+                            data-contain=""
+                            data-ink-color="neutral"
+                            data-radius="10"
+                            data-space-horizontal="15"
+                            data-align="center"
+                            data-height="45"
+                            data-gap="10"
+                            data-wrap="no"
+                            data-interactive=""
+                            data-over-color="neutral"
+                          >
+                            <text data-weight="700">{formatTime(time)}</text>
+                            <text data-ellipsis="">{label}</text>
+                          </group>
+                        </Ripple>
+                      </group>
+                    );
+                  })}
                 </group>
-              );
-            })}
 
+                <group data-space-horizontal="30" data-gap="30">
+                  <CustomSlider
+                    start={0}
+                    end={100}
+                    step={1}
+                    showvalue={false}
+                    value={progress}
+                    onValueChange={handleSliderChange}
+                    unit={formatTime(currentTime)}
+                    handlerProps={{
+                      "data-background": "none",
+                      "data-color": "text",
+                      "data-border": "inset-2",
+                    }}
+                    trackLeftProps={{ "data-margin": "0" }}
+                    trackRightProps={{ "data-opacity": "10" }}
+                  />
 
-
-
-
-          </group>
-
-          <group data-space-horizontal="30" data-gap="30">
-            <CustomSlider
-              start={0}
-              end={100}
-              step={1}
-              showvalue={false}
-              value={progress}
-              onValueChange={handleSliderChange}
-              unit={formatTime(currentTime)}
-              handlerProps={{
-                "data-background": "none",
-                "data-color": "text",
-                "data-border" : "inset-2",
-   
-              }}
-              trackLeftProps={{ "data-margin": "0",  }}
-              trackRightProps={{ "data-opacity": "10",  }}
-            />
-
-            <group>
-              <group
-               // data-length="140"
-                data-cursor="pointer"
-                data-interactive=""
-                data-radius="30"
-                data-space="15"
-                data-background="text"
-                data-color="main-background"
-                data-over-color="neutral"
-                onClick={togglePlay}
-                data-justify="center"
-              >
-                <text data-weight="700">{isPlaying ? "Pause" : "Listen"}</text>
-              </group>
-              <group
-                data-height={isPlaying ? "30" : "0"}
-    
-                data-duration=".125"
-              ></group>
-              <group
-
-                data-height={isPlaying ? "40" : "0"}
-                data-opacity={isPlaying ? "" : "0"}
-                data-contain=""
-                data-duration=".125"
-                data-width="auto"
-                data-align="center"
-                data-gap="2"
-                ref={visualizerRef}
-              >
-                {/* {Array.from({ length: 50 }).map((_, i) => (
+                  <group>
+                    <group
+                      data-height={isPlaying ? "40" : "0"}
+                      data-opacity={isPlaying ? "" : "0"}
+                      data-contain=""
+                      data-duration=".125"
+                      data-width="auto"
+                      data-align="center"
+                      data-gap="2"
+                      ref={visualizerRef}
+                    >
+                      {/* {Array.from({ length: 50 }).map((_, i) => (
                   <group data-length="2" data-background="text" key={i} />
                 ))} */}
 
-                <svg
-                  fill="currentColor"
-                  width="200"
-                  height="40"
-                  viewBox="0 0 200 40"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {Array.from({ length: 50 }).map((_, i) => (
-                    <rect
-                      key={i}
-                      x={i * 4}
-                      width="2"
-                      height="40"
-                      // style={{
-                      //   transform: `scaleY(${Math.random() * 1})`,
+                      <svg
+                        fill="currentColor"
+                        width="200"
+                        height="40"
+                        viewBox="0 0 200 40"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {Array.from({ length: 50 }).map((_, i) => (
+                          <rect
+                            key={i}
+                            x={i * 4}
+                            width="2"
+                           
+                            height="40"
+                            // style={{
+                            //   transform: `scaleY(${Math.random() * 1})`,
 
-                      // }}
-                      transform-origin="center"
-                      data-will-change="transform"
-                    />
-                  ))}
-                </svg>
+                            // }}
+                            transform-origin="center"
+                            data-will-change="transform"
+                          />
+                        ))}
+                      </svg>
+                    </group>
+
+                    <group
+                      data-height={isPlaying ? "30" : "0"}
+                      data-duration=".125"
+                    ></group>
+
+                    <group data-height="50" data-adaptive="mobile"></group>
+
+<Ripple>
+                      <group
+                      data-adaptive="desktop"
+                      data-ink-color="gray-shade-20"
+                      // data-length="140"
+                      data-cursor="pointer"
+                      data-interactive=""
+                      data-radius="30"
+                       data-space="15"
+                      data-align="center"
+                      data-background="text"
+                      data-color="main-background"
+                      data-over-color="neutral"
+                      onClick={togglePlay}
+                      data-justify="center"
+                      data-contain=""
+                     
+                    >
+                      <text data-weight="700">
+                        {isPlaying ? "Pause" : "Listen"}
+                      </text>
+                    </group>
+</Ripple>
+                  </group>
+                </group>
+              </>
+            ) : (
+              <group data-space="30">
+                <text data-wrap="wrap" data-line="1.5">
+                  Audio unavailable, <br></br>please try again later.
+                </text>
               </group>
+            )}
+          </group>
+        </group>
+      </group>
+
+
+      {audioAvailable && 
+      
+      <>
+
+            <group
+        data-margin-top="-170"
+        data-adaptive="mobile"
+        data-weight="700"
+        data-space="15"
+        data-print="hide"
+      />
+
+      <StuckReporter>
+        {(isSticky) => (
+          <group  data-print="hide" data-sticky="top" data-index="4" data-adaptive="mobile">
+            <group
+              data-space-horizontal={isSticky ? "" : "30"}
+              //  data-translate-vertical={isSticky ? "" : "-100%"}
+              //   data-opacity={isSticky ? undefined : "0"}
+              data-duration="1.25"
+            >
+              <Ripple>
+                <group
+                 
+                  data-top={isSticky ? "30" : "0"}
+                  data-transition-prop="position"
+                  data-duration="2.25"
+                  data-contain=""
+                  // data-length="140"
+                  data-cursor="pointer"
+                  data-interactive=""
+                  data-radius="30"
+                   data-space="15"
+                  data-background="text"
+                  data-color="main-background"
+                 data-ink-color="gray-shade-20"
+                  data-align="center"
+                  //    data-backdrop="20"
+                  data-over-color="neutral"
+                  onClick={togglePlay}
+                  data-justify="center"
+                >
+                  <text data-weight="700">
+                    {isPlaying ? "Pause" : "Listen"}
+                  </text>
+                </group>
+              </Ripple>
             </group>
           </group>
+        )}
+      </StuckReporter>
+
+      </>
+      
+      }
 
 
-
-        </>
-      ) : (
-        <group data-space="30">
-          <text data-wrap="wrap" data-line="1.5">
-            Audio unavailable, <br></br>please try again later.
-          </text>
-        </group>
-      )}
-    </group>
+    </>
   );
 };
-
-
 
 export default AudioPlayer;
