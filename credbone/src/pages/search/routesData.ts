@@ -199,7 +199,7 @@ export const routesData: RouteData[] = [
     "tagsVisible": false
   },
   {
-    "path": "/Resume",
+    "path": "/About/Resume",
     "title": "Author & Resume",
     "description": "View the creator profile, background, experience, and resume.",
     "tags": ["resume", "author", "profile", "experience", "creator", "ruben", "sargsyan"],

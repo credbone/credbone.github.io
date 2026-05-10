@@ -105,7 +105,10 @@ function App() {
                 <Route path="Components" element={<Template />} />
               </Route>
               
-              <Route path="/Resume" element={<Resume />} />
+
+
+              <Route path="/Resume" element={<Navigate to="/About/Resume" replace />} />
+              <Route path="About/Resume" element={<Resume />} />
             </Routes>
           </view>
           <div id="popover-container" data-max-length="fit"></div>
