@@ -12,12 +12,7 @@
       "type": "image/png",
       "sizes": "192x192"
     },
-    {
-      "src": "maskable_icon.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable"
-    },
+
     {
       "src": "512.png",
       "type": "image/png",
@@ -25,20 +20,7 @@
     }
   ],
 
-  "shortcuts": [
-    {
-      "name": "Components",
-      "url": "/Components"
-    },
-    {
-      "name": "Tools",
-      "url": "/Tools"
-    },
-    {
-      "name": "Settings",
-      "url": "/Settings"
-    }
-  ],
+
 
   "start_url": ".",
   "display": "standalone",
