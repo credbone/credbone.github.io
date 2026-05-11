@@ -345,6 +345,7 @@ const Navigation: React.FC = () => {
 
 
           <group
+          data-cursor="pointer"
           data-shrink="no"
           data-position="right"
           data-align="center"

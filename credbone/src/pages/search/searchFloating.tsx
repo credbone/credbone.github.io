@@ -1,4 +1,3 @@
-
 import { useSearch } from "./useSearch";
 
 import { IconSearch } from "../../components/icon/credIcons";
@@ -12,7 +11,10 @@ interface SearchFloatingProps {
   onClose?: () => void;
 }
 
-function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloatingProps) {
+function SearchFloating({
+  showRandomTagsByDefault = true,
+  onClose,
+}: SearchFloatingProps) {
   const {
     searchQuery,
     results,
@@ -49,12 +51,22 @@ function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloat
           >
             <div className="form_fields">
               <div className="field_cont" data-height="60" data-gap="15">
-                <group data-length="30" data-align="center" data-justify="center">
+                <group
+                  data-length="30"
+                  data-align="center"
+                  data-justify="center"
+                  data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="2.25"
+                >
                   <IconSearch size={20} />
                 </group>
 
                 <separator data-vertical="" data-height="20"></separator>
                 <input
+                  data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3.25"
                   autoCapitalize="off"
                   type="search"
                   placeholder="Search..."
@@ -84,7 +96,9 @@ function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloat
                       data-fill-mode="backwards"
                       data-animation-duration="2"
                     >
-                      <icon data-height="auto"><X size={20} /></icon>
+                      <icon data-height="auto">
+                        <X size={20} />
+                      </icon>
                     </group>
                   </Tooltip>
                 )}
@@ -95,7 +109,11 @@ function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloat
 
         {!searchQuery && showRandomTagsByDefault && (
           <>
-            <group data-animation-name="appear-bottom" data-fill-mode="backwards" data-animation-duration="2">
+            <group
+              data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="2"
+            >
               <text data-opacity="60">Try searching for...</text>
             </group>
             <group data-gap="5">
@@ -118,7 +136,11 @@ function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloat
                   data-animation-duration={2 + index * 0.25}
                   onClick={() => searchByTag(tag)}
                 >
-                  <text data-text-transform="capitalize" data-ellipsis="" data-weight="600">
+                  <text
+                    data-text-transform="capitalize"
+                    data-ellipsis=""
+                    data-weight="600"
+                  >
                     {tag}
                   </text>
                 </group>
@@ -138,7 +160,12 @@ function SearchFloating({ showRandomTagsByDefault = true, onClose }: SearchFloat
           data-max-length="500"
           data-align="start"
         >
-          <SearchResults results={results} focusedIndex={focusedIndex} resultRefs={resultRefs} onResultClick={onClose} />
+          <SearchResults
+            results={results}
+            focusedIndex={focusedIndex}
+            resultRefs={resultRefs}
+            onResultClick={onClose}
+          />
         </group>
       )}
     </>

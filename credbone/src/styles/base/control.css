@@ -1157,6 +1157,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 [data-radius-bottom="30"]{border-bottom-left-radius:30px;border-bottom-right-radius: 30px;}
 [data-radius-bottom="40"]{border-bottom-left-radius:40px;border-bottom-right-radius: 40px;}
+[data-radius-bottom="50"]{border-bottom-left-radius:50px;border-bottom-right-radius: 50px;}
 
 
 [data-radius-bottom-right="10"]{border-bottom-right-radius: 10px;}

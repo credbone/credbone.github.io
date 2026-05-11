@@ -270,6 +270,17 @@ const AudioPlayer: React.FC = () => {
     });
   };
 
+
+
+//   const handleSliderDragStart = () => {
+//   if (audioRef.current) audioRef.current.muted = true;
+// };
+
+// const handleSliderDragEnd = () => {
+//   if (audioRef.current) audioRef.current.muted = false;
+// };
+
+
   return (
     <>
       <group
@@ -285,6 +296,7 @@ const AudioPlayer: React.FC = () => {
           data-border=""
           data-space="5"
           data-radius="40"
+          data-radius-bottom="50"
           data-position="sticky"
           data-top="30"
           data-background="main-background"
@@ -301,7 +313,7 @@ const AudioPlayer: React.FC = () => {
                 from me. A fun, AI-powered take on my career journey.
               </text>
             </group>
-
+<group/>
             {audioAvailable ? (
               <>
                 <audio
@@ -384,6 +396,11 @@ const AudioPlayer: React.FC = () => {
                     }}
                     trackLeftProps={{ "data-margin": "0" }}
                     trackRightProps={{ "data-opacity": "10" }}
+
+
+  // onDragStart={handleSliderDragStart}
+  // onDragEnd={handleSliderDragEnd}
+
                   />
 
                   <group>
@@ -403,17 +420,16 @@ const AudioPlayer: React.FC = () => {
 
                       <svg
                         fill="currentColor"
-                        width="200"
+                        width="230"
                         height="40"
-                        viewBox="0 0 200 40"
+                        viewBox="0 0 230 40"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        {Array.from({ length: 50 }).map((_, i) => (
+                        {Array.from({ length: 58 }).map((_, i) => (
                           <rect
                             key={i}
                             x={i * 4}
                             width="2"
-                           
                             height="40"
                             // style={{
                             //   transform: `scaleY(${Math.random() * 1})`,
@@ -433,29 +449,28 @@ const AudioPlayer: React.FC = () => {
 
                     <group data-height="50" data-adaptive="mobile"></group>
 
-<Ripple>
+                    <Ripple>
                       <group
-                      data-adaptive="desktop"
-                      data-ink-color="gray-shade-20"
-                      // data-length="140"
-                      data-cursor="pointer"
-                      data-interactive=""
-                      data-radius="30"
-                       data-space="15"
-                      data-align="center"
-                      data-background="text"
-                      data-color="main-background"
-                      data-over-color="neutral"
-                      onClick={togglePlay}
-                      data-justify="center"
-                      data-contain=""
-                     
-                    >
-                      <text data-weight="700">
-                        {isPlaying ? "Pause" : "Listen"}
-                      </text>
-                    </group>
-</Ripple>
+                        data-adaptive="desktop"
+                        data-ink-color="gray-shade-20"
+                        // data-length="140"
+                        data-cursor="pointer"
+                        data-interactive=""
+                        data-radius="30"
+                        data-space="15"
+                        data-align="center"
+                        data-background="text"
+                        data-color="main-background"
+                        data-over-color="neutral"
+                        onClick={togglePlay}
+                        data-justify="center"
+                        data-contain=""
+                      >
+                        <text data-weight="700">
+                          {isPlaying ? "Pause" : "Listen"}
+                        </text>
+                      </group>
+                    </Ripple>
                   </group>
                 </group>
               </>
@@ -470,64 +485,61 @@ const AudioPlayer: React.FC = () => {
         </group>
       </group>
 
+      {audioAvailable && (
+        <>
+          <group
+            data-margin-top="-170"
+            data-adaptive="mobile"
+            data-weight="700"
+            data-space="15"
+            data-print="hide"
+          />
 
-      {audioAvailable && 
-      
-      <>
-
-            <group
-        data-margin-top="-170"
-        data-adaptive="mobile"
-        data-weight="700"
-        data-space="15"
-        data-print="hide"
-      />
-
-      <StuckReporter>
-        {(isSticky) => (
-          <group  data-print="hide" data-sticky="top" data-index="4" data-adaptive="mobile">
-            <group
-              data-space-horizontal={isSticky ? "" : "30"}
-              //  data-translate-vertical={isSticky ? "" : "-100%"}
-              //   data-opacity={isSticky ? undefined : "0"}
-              data-duration="1.25"
-            >
-              <Ripple>
+          <StuckReporter>
+            {(isSticky) => (
+              <group
+                data-print="hide"
+                data-sticky="top"
+                data-index="4"
+                data-adaptive="mobile"
+              >
                 <group
-                 
-                  data-top={isSticky ? "30" : "0"}
-                  data-transition-prop="position"
-                  data-duration="2.25"
-                  data-contain=""
-                  // data-length="140"
-                  data-cursor="pointer"
-                  data-interactive=""
-                  data-radius="30"
-                   data-space="15"
-                  data-background="text"
-                  data-color="main-background"
-                 data-ink-color="gray-shade-20"
-                  data-align="center"
-                  //    data-backdrop="20"
-                  data-over-color="neutral"
-                  onClick={togglePlay}
-                  data-justify="center"
+                  data-space-horizontal={isSticky ? "" : "30"}
+                  //  data-translate-vertical={isSticky ? "" : "-100%"}
+                  //   data-opacity={isSticky ? undefined : "0"}
+                  data-duration="1.25"
+                  //   data-delay={isSticky ? undefined : "2.25"}
                 >
-                  <text data-weight="700">
-                    {isPlaying ? "Pause" : "Listen"}
-                  </text>
+                  <Ripple>
+                    <group
+                      data-top={isSticky ? "30" : "0"}
+                      data-transition-prop="position"
+                      data-duration="3.25"
+                      data-contain=""
+                      // data-length="140"
+                      data-cursor="pointer"
+                      data-interactive=""
+                      data-radius="30"
+                      data-space="15"
+                      data-background="text"
+                      data-color="main-background"
+                      data-ink-color="gray-shade-20"
+                      data-align="center"
+                      data-over-color="neutral"
+                      onClick={togglePlay}
+                      data-justify="center"
+                    >
+                      <text data-weight="700">
+                        {isPlaying ? "Pause" : "Listen"}
+                      </text>
+                    </group>
+                  </Ripple>
                 </group>
-              </Ripple>
-            </group>
-          </group>
-        )}
-      </StuckReporter>
-
-      </>
-      
-      }
-
-
+              </group>
+            )}
+          </StuckReporter>
+        </>
+      )}
     </>
   );
 };

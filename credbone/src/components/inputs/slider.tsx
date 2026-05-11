@@ -13,7 +13,14 @@ interface SliderProps {
   trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   showvalue?: boolean;
+
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
+
 }
+
+
+
 
 const CustomSlider: React.FC<SliderProps> = ({
   start,
@@ -28,6 +35,10 @@ const CustomSlider: React.FC<SliderProps> = ({
   trackLeftProps,
   trackRightProps,
   showvalue = true,
+
+  onDragStart,
+  onDragEnd,
+  
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,8 +47,17 @@ useEffect(() => {
   const input = inputRef.current;
   if (!input) return;
 
-  const handleDragStart = () => setIsDragging(true);
-  const handleDragEnd = () => setIsDragging(false);
+
+  const handleDragStart = () => {
+  setIsDragging(true);
+  onDragStart?.();
+};
+const handleDragEnd = () => {
+  setIsDragging(false);
+  onDragEnd?.();
+};
+
+
 
   input.addEventListener("mousedown", handleDragStart);
   input.addEventListener("touchstart", handleDragStart);
@@ -61,6 +81,10 @@ useEffect(() => {
 
   // edgeGap can be negative — use Math.abs only for the sign-safe half
   const halfGap = edgeGap / 2;
+
+
+  
+
 
   return (
     <group
