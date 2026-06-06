@@ -252,38 +252,88 @@ const UnitConverter: React.FC = () => {
     return unitObj ? unitObj.full : unit; // Return full name or name name if not found
   };
 
+  // const getFormula = () => {
+  //   if (fromUnit === toUnit) {
+  //     return null; // No message if the units are the same
+  //   }
+
+  //   const conversionFactor =
+  //     conversions[conversionType].units[toUnit] /
+  //     conversions[conversionType].units[fromUnit];
+
+  //   let displayConversionFactor = conversionFactor;
+
+  //   switch (conversionType) {
+  //     case "time":
+  //       // Round for mass and length
+
+  //       displayConversionFactor =
+  //         Math.round(conversionFactor * 100000) / 100000;
+  //       break;
+
+  //     default:
+  //       // Default case, no rounding needed
+  //       break;
+  //   }
+
+  //   return (
+  //     <>
+  //       Multiply the {getFullUnitName(fromUnit)} value by{" "}
+  //       <b>{displayConversionFactor}</b> to get the {getFullUnitName(toUnit)}{" "}
+  //       value.
+  //     </>
+  //   );
+  // };
+
+
+
+
   const getFormula = () => {
-    if (fromUnit === toUnit) {
-      return null; // No message if the units are the same
-    }
+  if (fromUnit === toUnit) return null;
 
-    const conversionFactor =
-      conversions[conversionType].units[toUnit] /
-      conversions[conversionType].units[fromUnit];
+  const conversionFactor =
+    conversions[conversionType].units[toUnit] /
+    conversions[conversionType].units[fromUnit];
 
-    let displayConversionFactor = conversionFactor;
-
-    switch (conversionType) {
-      case "time":
-        // Round for mass and length
-
-        displayConversionFactor =
-          Math.round(conversionFactor * 100000) / 100000;
-        break;
-
-      default:
-        // Default case, no rounding needed
-        break;
-    }
-
-    return (
-      <>
-        Multiply the {getFullUnitName(fromUnit)} value by{" "}
-        <b>{displayConversionFactor}</b> to get the {getFullUnitName(toUnit)}{" "}
-        value.
-      </>
-    );
+  const isLong = (n: number) => {
+    const decimals = (n.toString().split(".")[1] || "").length;
+    return decimals > 4;
   };
+
+  const niceRound = (n: number) => {
+    if (n >= 100) return Math.round(n);
+    if (n >= 10) return Math.round(n * 10) / 10;
+    if (n >= 1) return Math.round(n * 100) / 100;
+    return Math.round(n * 1000) / 1000;
+  };
+
+  const fromName = getFullUnitName(fromUnit);
+  const toName = getFullUnitName(toUnit);
+  const typeName = conversions[conversionType].name.toLowerCase();
+
+  const useDivide = conversionFactor < 1;
+  const displayFactor = useDivide ? 1 / conversionFactor : conversionFactor;
+  const approximate = isLong(displayFactor);
+  const roundedFactor = approximate ? niceRound(displayFactor) : displayFactor;
+
+  const verb = useDivide ? "divide" : "multiply";
+  const operation = useDivide ? (
+    <>divide the {typeName} value by <b>{roundedFactor}</b></>
+  ) : (
+    <>multiply the {typeName} value by <b>{roundedFactor}</b></>
+  );
+
+  return approximate ? (
+    <>
+      For an approximate result, {operation} to convert from {fromName} to {toName}.
+    </>
+  ) : (
+    <>
+      To convert from {fromName} to {toName}, {operation}.
+    </>
+  );
+};
+
 
   return (
     <group data-direction="column" >

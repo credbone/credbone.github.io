@@ -175,6 +175,36 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.setItem("themeMode", themeMode);
   }, [themeMode]);
 
+
+
+  // Sync theme across tabs
+useEffect(() => {
+  const handler = (e: StorageEvent) => {
+    if (e.key === "selectedColors") {
+      if (!e.newValue) {
+        setTheme(getPalette(defaultPrimaryColor, defaultSecondaryColor));
+        return;
+      }
+      try {
+        const parsed = JSON.parse(e.newValue) as ColorPalette;
+        const validPrimary = validateAndNormalizeColor(parsed.colorPrimary, defaultPrimaryColor);
+        const validSecondary = validateAndNormalizeColor(parsed.colorSecondary, defaultSecondaryColor);
+        setTheme(getPalette(validPrimary, validSecondary));
+      } catch {
+        setTheme(getPalette(defaultPrimaryColor, defaultSecondaryColor));
+      }
+    }
+
+    if (e.key === "themeMode" && e.newValue) {
+      setThemeMode(e.newValue);
+    }
+  };
+
+  window.addEventListener("storage", handler);
+  return () => window.removeEventListener("storage", handler);
+}, []);
+
+
   const updateTheme = (mode: string) => {
     document.documentElement.setAttribute("data-theme", mode);
   };

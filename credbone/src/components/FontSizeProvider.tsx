@@ -36,6 +36,21 @@ export function FontSizeProvider({ children }: Props) {
     localStorage.setItem("fontSize", String(fontSize));
   }, [fontSize]);
 
+
+  React.useEffect(() => {
+  const handler = (e: StorageEvent) => {
+    if (e.key === "fontSize" && e.newValue) {
+      setFontSize(parseInt(e.newValue, 10));
+    }
+    if (e.key === "fontSize" && !e.newValue) {
+      setFontSize(DEFAULT_FONT_SIZE);
+    }
+  };
+  window.addEventListener("storage", handler);
+  return () => window.removeEventListener("storage", handler);
+}, []);
+
+
   const resetFontSize = React.useCallback(() => {
     setFontSize(DEFAULT_FONT_SIZE);
     localStorage.removeItem("fontSize");
