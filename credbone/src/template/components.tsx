@@ -6,8 +6,8 @@ import Ripple from "../components/Ripple";
 import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 
-// import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
-// import sampleImage_3 from "../styles/images/samples/res_82.webp";
+// import sampleImage_2 from "../styles/images/samples/tool_res.webp";
+ import sampleImage_3 from "../styles/images/samples/res_82.webp";
 import sampleImage_4 from "../styles/images/samples/wide_res_66.webp";
 
 import buildInfo from "../buildInfo.json";
@@ -19,6 +19,10 @@ import Content from "./content";
 //import SearchFloating from "../pages/search/SearchFloating";
 import { ChevronRight } from "lucide-react";
 import { openSearchModal, ModalControls } from "../pages/search/Searchshortcutlistener";
+import { SvgQR } from "../components/icon/svgRes";
+import { avatars } from "../pages/tools/avatars/avatars";
+import Highlights from "./highlights";
+
 
 
 
@@ -264,6 +268,9 @@ const Components: React.FC = () => {
 
 
 
+
+
+
         <group
           data-space="adaptive-30-50"
           data-gap="10"
@@ -381,6 +388,46 @@ const Components: React.FC = () => {
             </Ripple>
           ))}
         </group>
+
+
+
+
+        <group
+          data-space="adaptive-30-50"
+          data-gap="10"
+          data-direction="column"
+          data-align="start"
+        >
+          <text
+            data-wrap="wrap"
+            data-font-type="hero"
+            data-ellipsis=""
+            data-line="1"
+            data-text-size="48"
+            data-text-clamp="48"
+            data-max-length="800"
+          >
+            System Showcase
+          </text>
+
+          <text
+            data-wrap="wrap"
+            data-max-length="280"
+            data-line="1.5"
+            data-opacity="70"
+            // data-text-size="medium-small"
+          >
+           Browse interactive examples, utilities, and design patterns built with the system.
+          </text>
+        </group>
+
+
+
+
+<Highlights/>
+
+
+
 
         <group
           //  data-width="auto"

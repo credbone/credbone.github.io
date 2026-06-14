@@ -213,7 +213,7 @@ text[data-width="auto"]{width: initial;}
 /* Top positions */
 
 [data-right="-25%"] { top: -25%; }
-
+[data-top="-45"] { top: -45px; }
 [data-top="-30"] { top: -30px; }
 [data-top="-60"] { top: -60px; }
 [data-top="-90"] { top: -90px; }
