@@ -117,7 +117,7 @@ data-over-color="neutral"
           data-type="group"
           data-drag="none"
           to={`/Tools/AvatarMaker?avatar=${index + 1}`}
-
+aria-label={avatar.name}
                 key={avatar.key}
               >
                 <group
@@ -165,7 +165,7 @@ data-over-color="neutral"
           <group data-align="start" data-direction="column">
             {avatars.slice(8, 12).map((avatar, index) => (
               <Link
-                
+                aria-label={avatar.name}
           data-type="group"
           data-drag="none"
     to={`/Tools/AvatarMaker?avatar=${index + 8}`}

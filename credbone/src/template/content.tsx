@@ -202,6 +202,7 @@ const Content: React.FC = () => {
               }
             >
               <Link
+              aria-label="Explore tokens and patterns"
                 data-drag="none"
                 to={"/Components/Overview"}
                 data-type="group"
@@ -355,6 +356,7 @@ const Content: React.FC = () => {
 
                       <Ripple>
                         <Link
+                        aria-label="Explore Demos. See the system in action."
                           data-drag="none"
                           data-type="group"
                           to={"/Components/QuickDemos"}
@@ -706,6 +708,7 @@ const Content: React.FC = () => {
                     >
                       <Ripple>
                         <Link
+                        aria-label="Tools & Resources"
                           data-drag="none"
                           to={"/Tools"}
                           data-type="group"
