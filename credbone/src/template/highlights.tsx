@@ -227,6 +227,7 @@ aria-label={avatar.name}
           data-width="auto"
           data-radius="25"
           data-pointer-event="none"
+          data-elevation="2"
         >
           <group
             data-gap="15"
@@ -324,7 +325,7 @@ data-over-color="neutral"
 
 data-interact=""
 
-          data-space="15"
+       //   data-space="15"
           data-position="center"
     //      data-backdrop="20-adaptive"
           data-width="auto"
@@ -335,7 +336,7 @@ data-interact=""
 {/* <group data-background="red" data-space="3" data-position="absolute" data-width="auto" data-radius="5" data-right="25" data-top="25"></group> */}
 
           <group
-            data-gap="15"
+            data-gap="30"
             data-contain=""
             data-justify="center"
             data-text-align="center"
@@ -345,7 +346,8 @@ data-interact=""
           >
 
 
-    <svg width="100%" height="100%" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
+<group data-background="white" data-color="black" data-space="10" data-radius="25" data-elevation="2">
+      <svg width="100%" height="100%" viewBox="0 0 160 160" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
       <circle cx="35" cy="35" r="4"/>
 <circle cx="45" cy="35" r="4"/>
 <circle cx="125" cy="35" r="4"/>
@@ -422,7 +424,17 @@ data-interact=""
 <circle cx="115" cy="105" r="2"/>
 <circle cx="125" cy="115" r="4"/>
     </svg>
+</group>
   
+
+
+            {/* <separator data-horizontal=""></separator> */}
+            <group
+              data-width="auto"
+              data-direction="column"
+              data-align="center"
+              data-gap="15"
+            >
 
             <text
               data-wrap="wrap"
@@ -434,13 +446,7 @@ data-interact=""
               Pattern 
               <br /> Maker
             </text>
-            {/* <separator data-horizontal=""></separator> */}
-            <group
-              data-width="auto"
-              data-direction="column"
-              data-align="start"
-              data-gap="20"
-            >
+
               <text
                 data-wrap="wrap"
                 data-line="1.3"
