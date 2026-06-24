@@ -5,6 +5,10 @@
 
 @keyframes object-position {from{object-position: 0% 0% } to {object-position: 100% 100%;}}
 
+
+@keyframes pattern-move { to {transform: translate(-48px, -48px);}}
+
+
 @keyframes rotate { to {transform: rotate(360deg);}}
 
 @keyframes to-position {from{transform: translateX(0);}}
@@ -52,6 +56,8 @@
 60%{transform: scale(1.1);}
 }
 
+
+[data-animation-name="pattern-move"] {animation:pattern-move;}
 
 [data-animation-name="rotate"] {animation:rotate;}
 [data-animation-name="reset"] {animation:reset;}
@@ -151,6 +157,10 @@
 
 [data-animation-duration="16"] {animation-duration: 1.6s;} /* Added for 8 */
 
+
+[data-animation-duration="80"] {animation-duration: 8s;} 
+
+
 [data-animation-duration="60"] {animation-duration: 60s;} 
 
 
@@ -203,6 +213,7 @@
 
 
 
+
 [data-delay="1"] {transition-delay: 0.1s;}
 [data-delay="1.25"] {transition-delay: 0.125s;}
 [data-delay="1.5"] {transition-delay: 0.15s;}
@@ -240,7 +251,9 @@
 [data-animation-play-state="running"]{animation-play-state: running;}
 
 
-
+[data-animation-play-state="running-hover"]{animation-play-state: paused;}
+:hover > [data-animation-play-state="running-hover"]{animation-play-state: running;}
+:active > [data-animation-play-state="running-hover"]{animation-play-state: running;}
 
 
 
