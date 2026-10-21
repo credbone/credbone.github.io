@@ -69,6 +69,8 @@ const SimplePaint: React.FC = () => {
     logicalW: number,
     logicalH: number,
     restoreFrom?: HTMLCanvasElement | null,
+    offsetX = 0,
+    offsetY = 0,
   ) => {
     canvas.width = Math.round(logicalW * dpr);
     canvas.height = Math.round(logicalH * dpr);
@@ -80,8 +82,8 @@ const SimplePaint: React.FC = () => {
     if (restoreFrom && restoreFrom.width > 0 && restoreFrom.height > 0) {
       ctx.drawImage(
         restoreFrom,
-        0,
-        0,
+        offsetX,
+        offsetY,
         restoreFrom.width / dpr,
         restoreFrom.height / dpr,
       );
@@ -89,7 +91,44 @@ const SimplePaint: React.FC = () => {
   };
 
   // ─── Resize ───────────────────────────────────────────────────────────────
-  const startResize = () => {
+  // Which edges the active handle moves: x/y = -1 (left/top), 1 (right/bottom)
+  const resizeRef = useRef<{
+    dirX: number;
+    dirY: number;
+    startX: number;
+    startY: number;
+    startW: number;
+    startH: number;
+    factorX: number;
+    factorY: number;
+  } | null>(null);
+
+  const startResize = (
+    e: React.PointerEvent,
+    dirX: number,
+    dirY: number,
+  ) => {
+    e.preventDefault();
+    const container = containerRef.current;
+    const wrapper = wrapperRef.current;
+    if (container && wrapper) {
+      // The canvas is centered with margin:auto, so it grows from both sides.
+      // Detect that per axis so the dragged edge tracks the pointer exactly.
+      const r = container.getBoundingClientRect();
+      const w = wrapper.getBoundingClientRect();
+      const centeredX = Math.abs(r.left - w.left - (w.right - r.right)) < 2;
+      const centeredY = Math.abs(r.top - w.top - (w.bottom - r.bottom)) < 2;
+      resizeRef.current = {
+        dirX,
+        dirY,
+        startX: e.clientX,
+        startY: e.clientY,
+        startW: width,
+        startH: height,
+        factorX: centeredX ? 2 : 1,
+        factorY: centeredY ? 2 : 1,
+      };
+    }
     if (canvasRef.current && tempCanvasRef.current) {
       tempCanvasRef.current.width = canvasRef.current.width;
       tempCanvasRef.current.height = canvasRef.current.height;
@@ -105,12 +144,15 @@ const SimplePaint: React.FC = () => {
 
   const handleResize = useCallback(
     (e: PointerEvent | TouchEvent) => {
-      if (!isResizing || !containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
+      const r = resizeRef.current;
+      if (!isResizing || !r) return;
+      if ("touches" in e) e.preventDefault();
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
-      setWidth(Math.max(40, Math.round(clientX - rect.left)));
-      setHeight(Math.max(40, Math.round(clientY - rect.top)));
+      const dx = (clientX - r.startX) * r.dirX * r.factorX;
+      const dy = (clientY - r.startY) * r.dirY * r.factorY;
+      setWidth(Math.max(40, Math.round(r.startW + dx)));
+      setHeight(Math.max(40, Math.round(r.startH + dy)));
     },
     [isResizing],
   );
@@ -118,7 +160,12 @@ const SimplePaint: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    setupCanvas(canvas, width, height, tempCanvasRef.current);
+    // When dragging a left/top handle, keep the drawing pinned to the
+    // opposite edge instead of the top-left corner.
+    const r = resizeRef.current;
+    const offsetX = r && r.dirX < 0 ? width - r.startW : 0;
+    const offsetY = r && r.dirY < 0 ? height - r.startH : 0;
+    setupCanvas(canvas, width, height, tempCanvasRef.current, offsetX, offsetY);
   }, [width, height]);
 
   useEffect(() => {
@@ -924,27 +971,35 @@ const SimplePaint: React.FC = () => {
 </svg>
 </group> */}
 
-            <group
-              data-position="absolute"
-              data-height="20"
-              data-length="20"
-              data-bottom="-20"
-              data-right="-20"
-              style={{ cursor: "nwse-resize" }}
-              onPointerDown={startResize}
-            >
+            {[
+              { dirX: 1, dirY: 1 },
+              { dirX: -1, dirY: 1 },
+              { dirX: 1, dirY: -1 },
+              { dirX: -1, dirY: -1 },
+            ].map(({ dirX, dirY }) => (
               <group
-                data-height="5"
-                data-length="5"
-                data-background="text"
-              ></group>
-            </group>
-
-            {/*
-          <group data-position="absolute" data-height="30" data-length="30" data-bottom="-30" data-left="-30"  data-justify="end" style={{ cursor: "nesw-resize", }} > <group data-height="5" data-length="5" data-background="text" ></group> </group>
-          <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-right="-30" data-align="end" data-justify="start" style={{ cursor: "nesw-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group>
-          <group data-position="absolute" data-height="30" data-length="30" data-top="-30" data-left="-30" data-align="end" data-justify="end" style={{ cursor: "nwse-resize", }}  > <group data-height="5" data-length="5" data-background="text" ></group> </group>
-          */}
+                key={`${dirX}${dirY}`}
+                data-position="absolute"
+                data-height="20"
+                data-length="20"
+                {...(dirY > 0 ? { "data-bottom": "-20" } : { "data-top": "-20" })}
+                {...(dirX > 0 ? { "data-right": "-20" } : { "data-left": "-20" })}
+                // Place the dot at the corner closest to the canvas
+                data-align={dirY < 0 ? "end" : undefined}
+                data-justify={dirX < 0 ? "end" : undefined}
+                style={{
+                  cursor: dirX === dirY ? "nwse-resize" : "nesw-resize",
+                  touchAction: "none",
+                }}
+                onPointerDown={(e: React.PointerEvent) => startResize(e, dirX, dirY)}
+              >
+                <group
+                  data-height="5"
+                  data-length="5"
+                  data-background="text"
+                ></group>
+              </group>
+            ))}
           </group>
         </group>
       </group>

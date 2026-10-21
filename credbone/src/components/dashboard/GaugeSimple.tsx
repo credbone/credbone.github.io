@@ -24,7 +24,7 @@ const GaugeSimple: React.FC<GaugeProps> = ({
   return (
     <svg
       width="100%"
-      preserveAspectRatio=""
+      preserveAspectRatio="none"
       viewBox="0 0 120 120"
       xmlns="http://www.w3.org/2000/svg"
       //transform="rotate(-225)"
