@@ -11,6 +11,24 @@ import Scroll from "../components/scroll";
 import Ripple from "../components/Ripple";
 import CustomSlider from "../components/inputs/slider";
 import { Brush, Highlighter, Pencil, PenIcon, PenTool } from "lucide-react";
+import { getStroke } from "perfect-freehand";
+
+/** Turn a perfect-freehand outline into a smooth closed SVG path. */
+const getSvgPathFromStroke = (points: number[][]) => {
+  const len = points.length;
+  if (len < 4) return "";
+  const avg = (a: number, b: number) => (a + b) / 2;
+  let a = points[0];
+  let b = points[1];
+  const c = points[2];
+  let d = `M${a[0]},${a[1]} Q${b[0]},${b[1]} ${avg(b[0], c[0])},${avg(b[1], c[1])} T`;
+  for (let i = 2; i < len - 1; i++) {
+    a = points[i];
+    b = points[i + 1];
+    d += `${avg(a[0], b[0])},${avg(a[1], b[1])} `;
+  }
+  return d + "Z";
+};
 
 const colors = [
   { name: "Coral Sunset", value: "#F5745E" },
@@ -37,6 +55,8 @@ const brushTypeLabels: { type: BrushType; label: string; icon: ReactNode }[] = [
 
 const SimplePaint: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Live-stroke layer for marker and ink, committed to canvasRef on release
+  const overlayRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -55,8 +75,6 @@ const SimplePaint: React.FC = () => {
 
   // Smooth drawing: rolling buffer of recent points
   const pointsRef = useRef<{ x: number; y: number }[]>([]);
-  // Previous point for calligraphy angle calculation
-  const prevPtRef = useRef<{ x: number; y: number } | null>(null);
 
   const [isBrushOpen, setIsBrushOpen] = useState(false);
   const [isColorsOpen, setIsColorsOpen] = useState(false);
@@ -166,6 +184,7 @@ const SimplePaint: React.FC = () => {
     const offsetX = r && r.dirX < 0 ? width - r.startW : 0;
     const offsetY = r && r.dirY < 0 ? height - r.startH : 0;
     setupCanvas(canvas, width, height, tempCanvasRef.current, offsetX, offsetY);
+    if (overlayRef.current) setupCanvas(overlayRef.current, width, height);
   }, [width, height]);
 
   useEffect(() => {
@@ -190,23 +209,22 @@ const SimplePaint: React.FC = () => {
   }, []);
 
   // ─── Drawing ──────────────────────────────────────────────────────────────
-  const getCoordinates = (e: React.MouseEvent | React.TouchEvent) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return { x: 0, y: 0 };
-    if ("touches" in e) {
-      const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
-    }
-    return { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
-  };
+  type Sample = { x: number; y: number; t: number; p: number };
 
-  /** Parse hex color to r,g,b components */
-  const hexToRgb = (hex: string) => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return { r, g, b };
+  /** All samples for this move, including coalesced high-rate ones. */
+  const getSamples = (e: React.PointerEvent): Sample[] => {
+    const canvas = canvasRef.current;
+    if (!canvas) return [];
+    const rect = canvas.getBoundingClientRect();
+    const native = e.nativeEvent;
+    const coalesced = native.getCoalescedEvents?.() ?? [];
+    const events = coalesced.length ? coalesced : [native];
+    return events.map((ev) => ({
+      x: ev.clientX - rect.left,
+      y: ev.clientY - rect.top,
+      t: ev.timeStamp,
+      p: ev.pressure,
+    }));
   };
 
   const getContext = () => {
@@ -217,6 +235,15 @@ const SimplePaint: React.FC = () => {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
     return ctx;
+  };
+
+  const getOverlayContext = () => overlayRef.current?.getContext("2d") ?? null;
+
+  const clearOverlay = () => {
+    const overlay = overlayRef.current;
+    const octx = getOverlayContext();
+    if (!overlay || !octx) return;
+    octx.clearRect(0, 0, overlay.width / dpr, overlay.height / dpr);
   };
 
   // ── Brush (smooth Catmull-Rom) ─────────────────────────────────────────
@@ -254,174 +281,133 @@ const SimplePaint: React.FC = () => {
   };
 
   // ── Marker ────────────────────────────────────────────────────────────
-  // Offscreen buffer approach: the current stroke is drawn at full opacity
-  // onto a temp canvas, then composited at marker opacity onto the main canvas.
-  // This means overlaps within a single stroke don't darken — only separate
-  // strokes layer on top of each other, exactly like a real marker.
-  const markerBufferRef = useRef<HTMLCanvasElement | null>(null);
+  // The live stroke is drawn opaque onto the overlay canvas, which shows it
+  // at MARKER_OPACITY via CSS. Overlaps within one stroke never darken; on
+  // release it is multiplied onto the main canvas once, so separate strokes
+  // layer like a real highlighter. Each move only draws the newest segment
+  // (quadratic through midpoints), so cost doesn't grow with stroke length.
+  const MARKER_OPACITY = 0.4;
 
-  const getMarkerBuffer = (): HTMLCanvasElement | null => {
-    const canvas = canvasRef.current;
-    if (!canvas) return null;
-    if (!markerBufferRef.current) {
-      markerBufferRef.current = document.createElement("canvas");
-    }
-    const buf = markerBufferRef.current;
-    if (buf.width !== canvas.width || buf.height !== canvas.height) {
-      buf.width = canvas.width;
-      buf.height = canvas.height;
-    }
-    return buf;
-  };
+  const drawMarkerSegment = (pts: { x: number; y: number }[]) => {
+    const octx = getOverlayContext();
+    if (!octx) return;
+    octx.strokeStyle = brushColor;
+    octx.fillStyle = brushColor;
+    octx.lineWidth = brushSize;
+    octx.lineCap = "round";
+    octx.lineJoin = "round";
 
-  const drawMarkerStrokeToBuffer = (pts: { x: number; y: number }[]) => {
-    const buf = getMarkerBuffer();
-    if (!buf) return;
-    const bctx = buf.getContext("2d");
-    if (!bctx) return;
-
-    // Clear buffer, apply dpr scale
-    bctx.clearRect(0, 0, buf.width, buf.height);
-    bctx.save();
-    bctx.scale(dpr, dpr);
-
-    bctx.strokeStyle = brushColor;
-    bctx.lineWidth = brushSize * 1;
-    bctx.lineCap = "round";
-    bctx.lineJoin = "round";
-    bctx.globalAlpha = 1;
-
-    // Draw smooth Catmull-Rom through all marker points
-    if (pts.length < 2) {
-      bctx.beginPath();
-      bctx.arc(pts[0].x, pts[0].y, brushSize * 0.8, 0, Math.PI * 2);
-      bctx.fillStyle = brushColor;
-      bctx.fill();
-    } else {
-      bctx.beginPath();
-      bctx.moveTo(pts[0].x, pts[0].y);
-      for (let i = 0; i < pts.length - 1; i++) {
-        const p0 = pts[Math.max(i - 1, 0)];
-        const p1 = pts[i];
-        const p2 = pts[i + 1];
-        const p3 = pts[Math.min(i + 2, pts.length - 1)];
-        const t = 0.5;
-        const cp1x = p1.x + ((p2.x - p0.x) * t) / 3;
-        const cp1y = p1.y + ((p2.y - p0.y) * t) / 3;
-        const cp2x = p2.x - ((p3.x - p1.x) * t) / 3;
-        const cp2y = p2.y - ((p3.y - p1.y) * t) / 3;
-        bctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
-      }
-      bctx.stroke();
-    }
-    bctx.restore();
-  };
-
-  // Snapshot of canvas before marker stroke starts (same pattern as calligraphy)
-  const markerSnapshotRef = useRef<HTMLCanvasElement | null>(null);
-
-  const compositeMarkerBuffer = () => {
-    const canvas = canvasRef.current;
-    const buf = markerBufferRef.current;
-    const snapshot = markerSnapshotRef.current;
-    if (!canvas || !buf) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const lw = canvas.width / dpr;
-    const lh = canvas.height / dpr;
-
-    // Restore snapshot (removes incremental overdraw from live preview)
-    if (snapshot) {
-      ctx.clearRect(0, 0, lw, lh);
-      ctx.drawImage(snapshot, 0, 0, lw, lh);
-    }
-    // Composite the fully-drawn stroke once at marker opacity — clean, no overlaps
-    ctx.save();
-    ctx.globalAlpha = 0.4;
-    ctx.globalCompositeOperation = "source-over";
-    ctx.drawImage(buf, 0, 0, lw, lh);
-    ctx.restore();
-  };
-
-  // ── Ink / Calligraphy ─────────────────────────────────────────────────
-  // Velocity-based variable-width ink: each segment is drawn with a lineWidth
-  // derived from how fast the pointer moved. Slow = thick, fast = thin.
-  // Width is smoothed with exponential decay (EMA) to avoid jitter.
-  // Segments overlap with round caps so there are no gaps.
-  // A snapshot at stroke-start enables clean per-segment overdraw.
-  //
-  // This is the same core approach used in most real drawing apps:
-  // simple, fast, and looks good.
-
-  const calligSnapshotRef = useRef<HTMLCanvasElement | null>(null);
-  type InkPoint = { x: number; y: number; w: number };
-  const inkPointsRef = useRef<InkPoint[]>([]);
-
-  const INK_MAX_WIDTH = 1; // multiplier on brushSize at rest (thick)
-  const INK_MIN_WIDTH = 0.2; // multiplier on brushSize at full speed (hairline)
-  const INK_VELOCITY_SCALE = 2; // px/event where stroke becomes fully thin
-  const INK_EMA_ALPHA = 0.2; // width reaction speed (higher = more responsive)
-
-  /**
-   * Redraw the entire ink stroke from scratch on the main canvas.
-   * Restores snapshot first, then replays all segments. This keeps
-   * the stroke clean even as new points are added.
-   */
-  const redrawInkStroke = (pts: InkPoint[]) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const lw = canvas.width / dpr;
-    const lh = canvas.height / dpr;
-
-    // Restore canvas to pre-stroke state
-    const snapshot = calligSnapshotRef.current;
-    if (snapshot) {
-      ctx.clearRect(0, 0, lw, lh);
-      ctx.drawImage(snapshot, 0, 0, lw, lh);
-    }
-
-    if (pts.length === 0) return;
-
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = brushColor;
-    ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = "source-over";
-
-    if (pts.length === 1) {
-      // Single tap: filled dot
-      ctx.beginPath();
-      ctx.arc(pts[0].x, pts[0].y, pts[0].w / 2, 0, Math.PI * 2);
-      ctx.fillStyle = brushColor;
-      ctx.fill();
+    const n = pts.length;
+    if (n === 1) {
+      octx.beginPath();
+      octx.arc(pts[0].x, pts[0].y, brushSize / 2, 0, Math.PI * 2);
+      octx.fill();
       return;
     }
-
-    // Draw each segment individually with its own lineWidth.
-    // Each segment slightly overlaps the previous (round caps ensure continuity).
-    for (let i = 1; i < pts.length; i++) {
-      const a = pts[i - 1];
-      const b = pts[i];
-      ctx.beginPath();
-      ctx.lineWidth = (a.w + b.w) / 2; // average width over the segment
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.stroke();
+    const a = pts[n - 2];
+    const b = pts[n - 1];
+    const midAB = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    octx.beginPath();
+    if (n === 2) {
+      octx.moveTo(a.x, a.y);
+      octx.lineTo(midAB.x, midAB.y);
+    } else {
+      const z = pts[n - 3];
+      octx.moveTo((z.x + a.x) / 2, (z.y + a.y) / 2);
+      octx.quadraticCurveTo(a.x, a.y, midAB.x, midAB.y);
     }
+    octx.stroke();
+  };
+
+  /** Close the gap between the last midpoint and the final point. */
+  const finishMarkerStroke = (pts: { x: number; y: number }[]) => {
+    const octx = getOverlayContext();
+    if (!octx || pts.length < 2) return;
+    const a = pts[pts.length - 2];
+    const b = pts[pts.length - 1];
+    octx.beginPath();
+    octx.moveTo((a.x + b.x) / 2, (a.y + b.y) / 2);
+    octx.lineTo(b.x, b.y);
+    octx.stroke();
+  };
+
+  const commitOverlay = (alpha: number, op: GlobalCompositeOperation) => {
+    const canvas = canvasRef.current;
+    const overlay = overlayRef.current;
+    const ctx = getContext();
+    if (!canvas || !overlay || !ctx) return;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.globalCompositeOperation = op;
+    ctx.drawImage(overlay, 0, 0, canvas.width / dpr, canvas.height / dpr);
+    ctx.restore();
+    clearOverlay();
+  };
+
+  // ── Ink ───────────────────────────────────────────────────────────────
+  // Outline-based variable-width stroke (perfect-freehand): the input is
+  // streamlined, each point gets a radius from pressure, and the left/right
+  // offsets form one polygon that is filled in a single pass — smooth edges,
+  // tapered ends, no beads at width changes.
+  //
+  // Pens report real pressure. Mouse/touch get pressure simulated from
+  // speed in px/ms (not px/event), so it feels the same at any input rate.
+  const INK_THINNING = 0.7; // how much pressure affects width
+  const INK_FAST_SPEED = 1.6; // px/ms at which simulated pressure bottoms out
+  const INK_PRESSURE_EMA = 0.2; // pressure reaction speed (higher = more responsive)
+  const INK_REST_PRESSURE = 0.6; // pressure at the very start of a stroke
+
+  const inkPointsRef = useRef<number[][]>([]);
+  const inkLastRef = useRef<{ x: number; y: number; t: number; p: number } | null>(null);
+  const isPenRef = useRef(false);
+
+  const addInkSample = (s: Sample) => {
+    const last = inkLastRef.current;
+    let p: number;
+    if (isPenRef.current) {
+      p = s.p;
+    } else if (!last) {
+      p = INK_REST_PRESSURE;
+    } else {
+      const dist = Math.hypot(s.x - last.x, s.y - last.y);
+      if (dist < 0.5) return;
+      const dt = Math.max(s.t - last.t, 1);
+      const speed = Math.min(dist / dt / INK_FAST_SPEED, 1);
+      const target = 1 - speed;
+      p = last.p + (target - last.p) * INK_PRESSURE_EMA;
+    }
+    inkLastRef.current = { x: s.x, y: s.y, t: s.t, p };
+    inkPointsRef.current.push([s.x, s.y, p]);
+  };
+
+  const drawInkStroke = (last: boolean) => {
+    const octx = getOverlayContext();
+    if (!octx) return;
+    const outline = getStroke(inkPointsRef.current, {
+      size: brushSize,
+      thinning: INK_THINNING,
+      smoothing: 0.6,
+      streamline: 0.45,
+      simulatePressure: false,
+      start: { taper: brushSize * 2, cap: true },
+      end: { taper: brushSize * 2, cap: true },
+      last,
+    });
+    clearOverlay();
+    if (!outline.length) return;
+    octx.fillStyle = brushColor;
+    octx.fill(new Path2D(getSvgPathFromStroke(outline)));
   };
 
   // ── Unified start/draw/stop ────────────────────────────────────────────
-  const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
-    const pt = getCoordinates(e);
+  const startDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    const [pt] = getSamples(e);
     const ctx = getContext();
-    if (!ctx) return;
+    if (!ctx || !pt) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
 
     pointsRef.current = [pt];
-    prevPtRef.current = pt;
 
     if (brushType === "brush") {
       ctx.fillStyle = brushColor;
@@ -430,104 +416,42 @@ const SimplePaint: React.FC = () => {
       ctx.arc(pt.x, pt.y, brushSize / 2, 0, Math.PI * 2);
       ctx.fill();
     } else if (brushType === "marker") {
-      // Snapshot canvas before stroke (enables clean final composite)
-      const canvas = canvasRef.current;
-      if (canvas) {
-        if (!markerSnapshotRef.current)
-          markerSnapshotRef.current = document.createElement("canvas");
-        const snap = markerSnapshotRef.current;
-        snap.width = canvas.width;
-        snap.height = canvas.height;
-        const sctx = snap.getContext("2d");
-        if (sctx) sctx.drawImage(canvas, 0, 0);
-      }
-      // Init marker buffer
-      const buf = getMarkerBuffer();
-      if (buf) {
-        const bctx = buf.getContext("2d");
-        if (bctx) bctx.clearRect(0, 0, buf.width, buf.height);
-      }
-      drawMarkerStrokeToBuffer([pt]);
+      clearOverlay();
+      drawMarkerSegment(pointsRef.current);
     } else {
-      // Ink: snapshot canvas before stroke, seed with full-width point
-      const canvas = canvasRef.current;
-      if (canvas) {
-        if (!calligSnapshotRef.current)
-          calligSnapshotRef.current = document.createElement("canvas");
-        const snap = calligSnapshotRef.current;
-        snap.width = canvas.width;
-        snap.height = canvas.height;
-        const sctx = snap.getContext("2d");
-        if (sctx) sctx.drawImage(canvas, 0, 0);
-      }
-      inkPointsRef.current = [
-        { x: pt.x, y: pt.y, w: brushSize * INK_MAX_WIDTH },
-      ];
-      redrawInkStroke(inkPointsRef.current);
+      isPenRef.current = e.pointerType === "pen";
+      inkPointsRef.current = [];
+      inkLastRef.current = null;
+      addInkSample(pt);
+      drawInkStroke(false);
     }
 
     setIsDrawing(true);
   };
 
-  const draw = (e: React.MouseEvent | React.TouchEvent) => {
+  const draw = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!isDrawing) return;
     const ctx = getContext();
     if (!ctx) return;
-    const pt = getCoordinates(e);
+    const samples = getSamples(e);
 
-    if (brushType === "brush") {
+    if (brushType === "brush" || brushType === "marker") {
       const pts = pointsRef.current;
-      const last = pts[pts.length - 1];
-      const dx = pt.x - last.x;
-      const dy = pt.y - last.y;
-      if (dx * dx + dy * dy < 1) return;
-      pts.push(pt);
-      drawSmoothCurve(ctx, pts.slice(Math.max(pts.length - 4, 0)));
-    } else if (brushType === "marker") {
-      const pts = pointsRef.current;
-      const last = pts[pts.length - 1];
-      const dx = pt.x - last.x;
-      const dy = pt.y - last.y;
-      if (dx * dx + dy * dy < 1) return;
-      pts.push(pt);
-      drawMarkerStrokeToBuffer(pts);
-      // Live preview: restore snapshot then composite buffer at opacity
-      // — this keeps mid-stroke overlaps clean during drag
-      const canvas = canvasRef.current;
-      const snapshot = markerSnapshotRef.current;
-      const buf = markerBufferRef.current;
-      if (canvas && buf) {
-        const lw = canvas.width / dpr;
-        const lh = canvas.height / dpr;
-        if (snapshot) {
-          ctx.clearRect(0, 0, lw, lh);
-          ctx.drawImage(snapshot, 0, 0, lw, lh);
+      for (const pt of samples) {
+        const last = pts[pts.length - 1];
+        const dx = pt.x - last.x;
+        const dy = pt.y - last.y;
+        if (dx * dx + dy * dy < 1) continue;
+        pts.push(pt);
+        if (brushType === "brush") {
+          drawSmoothCurve(ctx, pts.slice(Math.max(pts.length - 4, 0)));
+        } else {
+          drawMarkerSegment(pts);
         }
-        ctx.save();
-        ctx.globalAlpha = 0.4;
-        ctx.drawImage(buf, 0, 0, lw, lh);
-        ctx.restore();
       }
     } else {
-      // Ink: velocity → width with EMA smoothing
-      const inkPts = inkPointsRef.current;
-      const last = inkPts[inkPts.length - 1];
-      const dx = pt.x - last.x;
-      const dy = pt.y - last.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 0.5) return;
-
-      const velocity = Math.min(dist, INK_VELOCITY_SCALE);
-      const thinness = velocity / INK_VELOCITY_SCALE; // 0=slow 1=fast
-      const targetW =
-        brushSize *
-        (INK_MAX_WIDTH - (INK_MAX_WIDTH - INK_MIN_WIDTH) * thinness);
-      // EMA: blend toward target width — smooths out jitter from uneven mouse events
-      const prevW = last.w;
-      const w = prevW + (targetW - prevW) * INK_EMA_ALPHA;
-
-      inkPts.push({ x: pt.x, y: pt.y, w });
-      redrawInkStroke(inkPts);
+      samples.forEach(addInkSample);
+      drawInkStroke(false);
     }
   };
 
@@ -538,19 +462,16 @@ const SimplePaint: React.FC = () => {
       const ctx = getContext();
       if (ctx) drawSmoothCurve(ctx, pointsRef.current);
     } else if (brushType === "marker") {
-      // Final clean composite: snapshot already restored in live preview,
-      // so compositeMarkerBuffer just needs to lay the stroke on top once.
-      drawMarkerStrokeToBuffer(pointsRef.current);
-      compositeMarkerBuffer();
-      markerSnapshotRef.current = null;
+      finishMarkerStroke(pointsRef.current);
+      commitOverlay(MARKER_OPACITY, "multiply");
     } else {
-      // Ink: final stroke already on canvas
-      calligSnapshotRef.current = null;
+      drawInkStroke(true);
+      commitOverlay(1, "source-over");
       inkPointsRef.current = [];
+      inkLastRef.current = null;
     }
 
     pointsRef.current = [];
-    prevPtRef.current = null;
     setIsDrawing(false);
   };
 
@@ -946,23 +867,27 @@ const SimplePaint: React.FC = () => {
             <canvas
               data-radius="20"
               ref={canvasRef}
-              //   onMouseDown={startDrawing}
-              onMouseDown={(e) => {
+              onPointerDown={(e) => {
                 setIsBrushOpen(false);
                 setIsColorsOpen(false);
                 startDrawing(e);
               }}
-              onMouseMove={draw}
-              onMouseUp={stopDrawing}
-              onMouseLeave={stopDrawing}
-              onTouchStart={(e) => {
-                setIsBrushOpen(false);
-                setIsColorsOpen(false);
-                startDrawing(e);
-              }}
-              onTouchMove={draw}
-              onTouchEnd={stopDrawing}
+              onPointerMove={draw}
+              onPointerUp={stopDrawing}
+              onPointerCancel={stopDrawing}
               style={{ cursor: buildCursorSvg(), touchAction: "none" }}
+            />
+            <canvas
+              data-radius="20"
+              ref={overlayRef}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                pointerEvents: "none",
+                opacity: brushType === "marker" ? MARKER_OPACITY : 1,
+                mixBlendMode: brushType === "marker" ? "multiply" : "normal",
+              }}
             />
 
             {/* <group data-hidden={isBrushOpen? "true":""} data-hide="over" data-position="absolute" data-pointer-event="none"  data-direction="column" data-align="center" data-justify="center" data-height="fit" data-top="0" > 
