@@ -1,23 +1,61 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
 
 import { democolors } from "../styles/colorData";
 import { getComplementaryColor } from "../styles/skin";
-import Ripple from "../components/Ripple";
+import { CirclePhysicsOptions, useCirclePhysics } from "./useCirclePhysics";
 
+interface ThemePickerVerticalProps {
+  /** How many colors are in the capsule at once, centered on the selected one. Fewer leaves more room to play. */
+  count?: number;
+  /** Small text-colored circles mixed in for play; they can be moved but not selected. */
+  fillers?: number;
+  /** Overrides for gravity, bounce, stretch and the rest of the simulation. */
+  physics?: Partial<CirclePhysicsOptions>;
+}
 
-const ThemePickerVertical: React.FC = () => {
+const usePrefersReducedMotion = () => {
+  const query = "(prefers-reduced-motion: reduce)";
+  const [reduced, setReduced] = useState(() => window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const onChange = () => setReduced(media.matches);
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  return reduced;
+};
+
+const ThemePickerVertical: React.FC<ThemePickerVerticalProps> = ({ count = 12, fillers = 12, physics }) => {
   const themeContext = useContext(ThemeContext);
+  const reducedMotion = usePrefersReducedMotion();
 
-  // Check if themeContext is undefined
-  if (!themeContext) {
-    return null; // or return a fallback UI
-  }
+  const total = democolors.length;
+  const size = Math.min(count, total);
+  const half = Math.floor(size / 2);
 
-  const { theme, setTheme } = themeContext;
+  // Where the current theme color sits in the palette; -1 for a custom color.
+  const primary = themeContext?.theme.colorPrimary.toLowerCase() ?? "";
+  const selectedIndex = useMemo(() => democolors.findIndex((color) => color.code.toLowerCase() === primary), [primary]);
+
+  // The window stays centered on the selected color, wrapping around the palette.
+  // With a custom color nothing is selected, and the window stays where it last was.
+  const [center, setCenter] = useState(() => (selectedIndex >= 0 ? selectedIndex : half));
+  useEffect(() => {
+    if (selectedIndex >= 0) setCenter(selectedIndex);
+  }, [selectedIndex]);
+
+  const colors = useMemo(
+    () => Array.from({ length: size }, (_, i) => democolors[(((center - half + i) % total) + total) % total]),
+    [center, half, size, total]
+  );
+  const codes = useMemo(() => colors.map((color) => color.code), [colors]);
+  const selectedCode = selectedIndex >= 0 ? democolors[selectedIndex].code : "";
 
   const handleColorSelection = (color: string) => {
-    //  const newTheme = getPalette(color);
+    if (!themeContext) return;
 
     const newTheme = {
       colorPrimary: color,
@@ -25,66 +63,50 @@ const ThemePickerVertical: React.FC = () => {
     };
 
     // Primary color will update and secondary will adjust automatically
-    setTheme(newTheme);
+    themeContext.setTheme(newTheme);
     localStorage.setItem("selectedColors", JSON.stringify(newTheme));
   };
 
+  const { containerRef, canvasRef, canvasProps } = useCirclePhysics({
+    colors: codes,
+    selected: selectedCode,
+    enabled: !reducedMotion,
+    onSelect: handleColorSelection,
+    fillers,
+    options: physics,
+  });
+
+  // Check if themeContext is undefined
+  if (!themeContext) {
+    return null; // or return a fallback UI
+  }
+
   return (
-    <group
-      data-type="grid"
-      data-grid-template-columns="3-6-600"
-      data-height="fit"
-      data-contain=""
-      data-align="start"
-      data-align-content="start"
+    <group ref={containerRef} data-ratio="1:2/2:1-600" data-radius="pill" data-contain="">
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        data-position="absolute"
+        data-top="0"
+        data-left="0"
+        data-touch-action="none"
+        data-user-select="none"
+        data-ink-color="dark-shade-10"
+        {...canvasProps}
+      />
 
-      //  data-radius="20"
-      // data-contain=""
-      //  data-space="2"
-    >
-      {democolors.slice(0, 18).map((color, index, arr) => {
-        // <Tooltip data-radius="30" data-space="15" data-backdrop="20-dark"  distance={-10} content={color.name} delay={500} key={color.code}>
-
-        // </Tooltip>
-
-        const next = arr[index + 1] || color;
-return (
- <group
-          data-ratio="1:1"
-          data-interactive=""
-          data-over-color="none"
-          key={color.code}
-          onClick={() => handleColorSelection(color.code)}
-          data-animation-name="zoom-in"
-          //data-fill-mode="backwards"
-
-          data-animation-duration={2 + index * 0.25}
-          // data-animation-timing="fancy"
-          data-ink-color="dark-shade-10"
-         // data-space="2"
-          
-        >
-          <Ripple>
-            <group
-              //   data-border="outline-soft"
-              data-radius="50"
-              data-margin={theme.colorPrimary === color.code ? "10" : undefined}
-              data-duration=".125"
-              data-transition-prop="border-radius-margin"
-              data-interact=""
-              data-over-color="neutral-10"
-              data-cursor="pointer"
-              data-direction="column"
-              style={{ backgroundColor: color.code }}
-      //               style={{
-      //   background: `linear-gradient(90deg, ${color.code}, ${next.code})`
-      // }}
-              data-contain=""
-            ></group>
-          </Ripple>
-        </group>
-);
-      })}
+      {/* The canvas is pointer-only; these keep the picker usable by keyboard and screen readers. */}
+      {/* <group data-visibility="screen-reader">
+        {colors.map((color) => (
+          <button
+            key={color.code}
+            type="button"
+            aria-label={color.name}
+            aria-pressed={selectedCode === color.code}
+            onClick={() => handleColorSelection(color.code)}
+          />
+        ))}
+      </group> */}
     </group>
   );
 };

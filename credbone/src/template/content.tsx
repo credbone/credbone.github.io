@@ -137,10 +137,15 @@ const Content: React.FC = () => {
                   //  data-background="adaptive-gray"
 
         //          data-mask="bottom"
-                ></group>
+                >
+                  
+                </group>
 
                 <Tooltip
                   //  distance={-30}
+
+
+
 
                   placement="cursor"
                   data-contain="visible"
@@ -176,6 +181,9 @@ const Content: React.FC = () => {
                 data-contain=""
                 data-align="start"
               >
+{/* 
+<group data-position="absolute" data-top="0" data-radius="130" data-mask="top" data-border="outline" data-height="fit"></group> */}
+
                 <group data-height="fit" data-contain="" data-align="start">
                   <ThemePickerVertical />
                 </group>
