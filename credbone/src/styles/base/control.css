@@ -73,6 +73,7 @@
 
 
 [data-backdrop="20-adaptive"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:var(--adaptive-backdrop) }
+[data-backdrop="20-clear"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px); }
 [data-backdrop="20-contrast"]{-webkit-backdrop-filter: blur(20px);backdrop-filter: blur(20px);background:var(--contrast-backdrop)}
 
 [data-backdrop="10-dark"]{-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px);background:rgba(53, 53, 53, 0.75) }
@@ -1284,6 +1285,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-appearance="none"] {appearance:none;-webkit-appearance: none;}
+
 
 [data-index="9996"]{z-index: 9996;}
 [data-index="9997"]{z-index: 9997;}

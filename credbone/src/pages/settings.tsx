@@ -27,6 +27,7 @@ function Settings() {
 
       localStorage.removeItem("cards_view");
   localStorage.removeItem("fav_map");
+  localStorage.removeItem("dashboardLayout");
     
       rootRef.current?.scrollIntoView({
       behavior: "smooth",

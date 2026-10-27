@@ -28,7 +28,7 @@ Three parts: **Components** (the CredBone UI framework showcase and design syste
 
 ## Markup conventions (the house style)
 - **Layout uses custom tags, not divs:** `<group>`, `<text>`, `<icon>`, `<separator>`, `<picture>`, `<view>`, `<badge>`, `<space>` and so on. They're registered in `src/configs/customTags.tsx`. A new tag must be added to that set before it's used.
-- **Styling uses `data-*` attributes, not classNames:** `data-gap`, `data-space`, `data-radius`, `data-direction`, `data-align`, `data-wrap`, `data-width`, `data-background`, `data-contain`, `data-opacity`, `data-weight`, `data-text-size`… They're defined in `src/styles/base/control.css`. Check there for an existing attribute or value before writing CSS. Classes (`.button` etc.) are for components only.
+- **The system is classless: everything is styled with `data-*` attributes, not classNames:** `data-gap`, `data-space`, `data-radius`, `data-direction`, `data-align`, `data-wrap`, `data-width`, `data-background`, `data-contain`, `data-opacity`, `data-weight`, `data-text-size`… They're defined in `src/styles/base/control.css`. Style elements in place with these attributes. If an attribute or value is missing, declare it in the CSS (next to its siblings in `control.css`) rather than adding a class or one-off stylesheet. Never add new classes; the existing ones on legacy components (`.button` etc.) stay as they are.
 - **Spacing scale:** gap/space values are 5, 10, 15, 20 and 30 (50 occasionally). Radius values are 5, 10, 15, 20, 30, 40 and `full`. Don't invent in-between values.
 - **Colors:** use the theme tokens through attributes such as `data-background="main-background" | "adaptive-gray" | "context" | "text" | "main"` and `data-color`. Never use raw hex.
 - **Interactive items:** `data-interactive=""` + `data-cursor="pointer"`, and wrap in `<Ripple>` where other items do. Use `<Tooltip content=…>` for hints.
@@ -43,16 +43,16 @@ Everything new must use the conventions above and fit the existing structure wit
 - **New CSS file:** put it in `src/styles/controls/` (one file per control), start it with the header comment `/* CredBone UI Framefork Component / Layout / Version 3.0.0 */` and import it in `src/styles/controls/index.ts`. Don't import CSS from components.
 - **New `data-*` utility value:** add it next to its siblings in `control.css`, following the existing naming pattern (e.g. a new `data-gap` value goes with the other gaps).
 - **New CSS variables:** declare them in that control's `:root` block with a control prefix (`--tooltip-…`, `--button-…`) so they can't clash with global tokens.
-- **Scope selectors:** `group.my-control`, `.my-control text` and so on. Never restyle bare global tags (`text`, `group`, `icon`) or override another control's rules from a new file.
+- **No named scopes:** elements mostly don't have names. A "control" is just the right collection of shared attributes on plain tags, not a named block with its own selectors. If a style is missing, add it as a generic, reusable `data-*` attribute/value that any element can use. Don't target a specific element by name (no `.my-control`, no `[data-control="…"]`). An element may carry `data-name` to identify it, but the name never carries UI style: don't write new CSS selectors on `[data-name="…"]`. Never restyle bare global tags (`text`, `group`, `icon`) or override another control's rules from a new file.
 - **No `!important`.** Don't fight the cascade; adjust the right rule instead.
 - **New custom tag:** add it once to `customTags.tsx` (check it isn't already there) and to the JSX `IntrinsicElements` list in the same file.
-- **New component:** put it in `src/components/` (or a subfolder for a family), as a typed `React.FC` with a props interface, and use `classnames` for conditional classes, like `button.tsx`.
+- **New component:** put it in `src/components/` (or a subfolder for a family), as a typed `React.FC` with a props interface. Express variants and states as conditional `data-*` attributes, never classes.
 - **New page or route:** register it in `App.tsx`, nav (`subroutesData.ts`) and search (`routesData.ts`), so it's never orphaned.
 - If a new piece doesn't fit any existing pattern, stop and propose where it should live before writing it.
 
 ## Working rules
 - **Git:** never commit, push or deploy. Leave changes uncommitted so I can review them.
-- **Styling:** reuse existing CSS classes from `src/styles` first. Add new CSS only when nothing fits, and put it in the matching file under `src/styles`, not inline.
+- **Styling:** reuse existing `data-*` attributes first. When something is missing, declare the new attribute/value in the matching file under `src/styles` (usually `control.css`), not inline and not as a new class.
 - **Components:** reuse existing components from `src/components`. Create a new component only when it's genuinely needed, and say so.
 - **Mobile + dark mode:** every UI change must work at phone widths and in light, dark and auto themes. Use theme CSS variables, never hard-coded colors.
 - **Suggest, don't sprawl:** if you see improvements beyond the request, suggest them rather than making them.

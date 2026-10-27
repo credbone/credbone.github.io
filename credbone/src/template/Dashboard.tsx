@@ -3,6 +3,8 @@ import Gauge from "../components/dashboard/Gauge";
 import LineChart from "../components/dashboard/LineChart";
 import GaugeZoom from "../components/dashboard/GaugeZoom";
 import GaugeSimple from "../components/dashboard/GaugeSimple";
+import SortableGrid from "../components/SortableGrid";
+
 import sampleImage from "../styles/images/samples/wide_res_72.webp";
 
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -63,6 +65,16 @@ const generateMonitorCardData = (): MonitorCardType[] => [
 ];
 
 
+const LAYOUT_KEY = "dashboardLayout";
+
+const loadLayout = (): string[] => {
+  try {
+    return JSON.parse(localStorage.getItem(LAYOUT_KEY) || "[]");
+  } catch {
+    return [];
+  }
+};
+
 // const getGreeting = (): string => {
 //   const hour = new Date().getHours();
 
@@ -88,6 +100,15 @@ const Dashboard: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const [layout, setLayout] = useState<string[]>(loadLayout);
+
+  useEffect(() => {
+    try {
+      if (layout.length) localStorage.setItem(LAYOUT_KEY, JSON.stringify(layout));
+      else localStorage.removeItem(LAYOUT_KEY);
+    } catch {}
+  }, [layout]);
+
 
   
 
@@ -99,19 +120,17 @@ const Dashboard: React.FC = () => {
       data-direction="column"
       data-align="start"
     >
-
-
-
-
       <TemplatePageHeader
         title="Dashboard"
         description="Demo features a simple dashboard interface designed for monitoring
             hardware."
-         version="2.0.1"
+        version="2.0.1"
         type="Demo"
-        descriptionProps={{"data-length":"400"}}
+        descriptionProps={{ "data-length": "400" }}
       />
-      <group
+      <SortableGrid
+        order={layout}
+        onOrderChange={setLayout}
         data-type="grid"
         data-grid-template="140/120"
         data-gap="10"
@@ -136,22 +155,22 @@ const Dashboard: React.FC = () => {
 </group> */}
 
         <group
+          key="info"
           data-contain=""
-         // data-elevation="2"
+          // data-elevation="2"
 
           data-index="2"
           data-space="20"
           data-gap="15"
           data-height="fit"
-         data-background="context"
-         data-elevation="2"
+          data-background="context"
+          data-elevation="2"
           data-align="center"
           data-justify="center"
           data-ratio="1:2"
           data-radius="30"
           data-wrap="no"
           data-direction="column"
-
         >
           <group data-width="auto" data-align="center" data-direction="column">
             <group data-space="15">
@@ -166,15 +185,15 @@ const Dashboard: React.FC = () => {
               data-wrap="wrap"
               data-line="1.5"
             >
-              Widgets show real-time simulated data.
+              Widgets show real-time simulated data. Drag to rearrange.
             </text>
           </group>
         </group>
 
-        {monitorCard.map((item, index) =>
+        {monitorCard.map((item) =>
           item.chart === "gauge" && item.max ? (
             <group
-              key={index}
+              key={item.title}
               data-height="fit"
               data-contain=""
               data-space="20"
@@ -213,13 +232,15 @@ const Dashboard: React.FC = () => {
                   data-direction="column"
                   data-gap="10"
                 >
-                  <group data-gap="5"  data-wrap="no" data-width="auto">
+                  <group data-gap="5" data-wrap="no" data-width="auto">
                     <text data-weight="700">{item.title}</text>
 
                     {item.titleunit && (
                       <>
                         {/* <dot></dot> */}
-                        <text data-opacity="60" data-ellipsis="">{item.titleunit}</text>
+                        <text data-opacity="60" data-ellipsis="">
+                          {item.titleunit}
+                        </text>
                       </>
                     )}
                   </group>
@@ -237,7 +258,7 @@ const Dashboard: React.FC = () => {
             <group
               data-background="main"
               data-color="main-text"
-              key={index}
+              key={item.title}
               data-height="fit"
               data-contain=""
               data-space="20"
@@ -294,7 +315,7 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              key={index}
+              key={item.title}
               data-column-end={item.wide === true ? "2" : ""}
               data-border=""
               data-wrap="no"
@@ -342,7 +363,7 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              key={index}
+              key={item.title}
               data-column-end={item.wide === true ? "2" : ""}
               data-row-end={item.long === true ? "2" : ""}
               data-border=""
@@ -413,7 +434,7 @@ const Dashboard: React.FC = () => {
             <group
               data-height="fit"
               data-contain=""
-              key={index}
+              key={item.title}
               data-space={item.chart === "line" ? "" : "20"}
               data-column-end={item.wide === true ? "2" : ""}
               data-border=""
@@ -461,9 +482,34 @@ const Dashboard: React.FC = () => {
                 </group>
               </group>
             </group>
-          )
+          ),
         )}
-      </group>
+      </SortableGrid>
+
+      {layout.length > 0 && (
+        <group>
+          <group
+            data-contain=""
+            data-space-vertical="15"
+            data-space-horizontal="20"
+            data-interactive=""
+            data-cursor="pointer"
+            data-radius="15"
+            data-width="auto"
+            data-align="center"
+            data-direction="column"
+            data-background="highlight"
+
+             onClick={() => setLayout([])}
+
+          >
+            <text data-ellipsis="" data-weight="600">
+              Reset Layout
+            </text>
+          </group>
+        </group>
+      )}
+
       <group>
         <picture
           data-radius="50"
@@ -523,13 +569,12 @@ const Dashboard: React.FC = () => {
               data-line="1.5"
               data-weight="600"
             >
- All widgets are independent components, easily configurable for flexibility.
+              All widgets are independent components, easily configurable for
+              flexibility.
             </text>
           </group>
         </group>
       </group>
-
-
     </group>
   );
 };
