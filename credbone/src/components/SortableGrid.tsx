@@ -158,17 +158,13 @@ const SortableGrid: React.FC<SortableGridProps> = ({
     let timer: ReturnType<typeof setTimeout> | undefined;
     let frame = 0;
     let pointer = start;
-    let origin: DOMRect;
     const scroller = getScroller(grid.current!);
 
-    // Item is positioned in the grid, so offset it by however far the grid
-    // has scrolled since the drag began to keep it under the pointer
+    // Item is fixed to the viewport, so it simply tracks the pointer;
+    // also runs on scroll so the grid shifting under the pointer reorders
     const follow = () => {
       if (!active) return;
-      const box = grid.current!.getBoundingClientRect();
-      const dx = pointer.x - start.x - (box.left - origin.left);
-      const dy = pointer.y - start.y - (box.top - origin.top);
-      el.style.transform = `translate(${dx}px, ${dy}px)`;
+      el.style.transform = `translate(${pointer.x - start.x}px, ${pointer.y - start.y}px)`;
       reorder(id, pointer);
     };
 
@@ -188,13 +184,12 @@ const SortableGrid: React.FC<SortableGridProps> = ({
     };
 
     const begin = () => {
-      origin = grid.current!.getBoundingClientRect();
       const r = el.getBoundingClientRect();
       active = true;
       setDrag({
         id,
-        left: r.left - origin.left,
-        top: r.top - origin.top,
+        left: r.left,
+        top: r.top,
         width: r.width,
         height: r.height,
       });
@@ -315,7 +310,7 @@ const SortableGrid: React.FC<SortableGridProps> = ({
           <group key="sortable-placeholder" ref={ref}  data-background="adaptive-gray" {...shape} />,
           // Filter-only backdrop and shadow leave the item's own background intact
           cloneElement(child, {
-            "data-position": "absolute",
+            "data-position": "fixed",
             "data-index": "999",
             "data-elevation": "2",
             "data-backdrop": "20-clear",

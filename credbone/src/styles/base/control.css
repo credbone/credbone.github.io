@@ -1304,6 +1304,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-index="1"] {z-index: 1;}
 [data-index="0"] {z-index: 0;}
 
+[data-index="initial"] {z-index: initial;}
+
 [data-user-select="text"] {user-select: text; cursor: text;}
 [data-user-select="initial"] {user-select: initial;cursor: initial; -webkit-user-select: initial;}
 [data-user-select="none"] {user-select: none; -webkit-user-select: none;}
