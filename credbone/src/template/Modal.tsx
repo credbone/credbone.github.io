@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useModal } from "../components/Modal";
+import Checkbox from "../components/inputs/checkbox";
 import TooltipPopover from "./TooltipPopover";
 import StuckReporter from "../components/StuckReporter";
 import ThemeToggle from "../components/themeToggle";
@@ -13,10 +14,58 @@ import { X } from "lucide-react";
 // import UnitConverter from "../tools/UnitConverter";
 // import Calculator from "../tools/Calculator";
 
+// Live options for the Basic Modal; lives inside its content, so it keeps its own state
+const BasicModalOptions: React.FC<{ modalId: string }> = ({ modalId }) => {
+  const { updateModal } = useModal();
+  const [draggable, setDraggable] = useState(true);
+  const [dim, setDim] = useState(true);
+  const [fullscreenButton, setFullscreenButton] = useState(false);
+
+  return (
+<>
+
+<separator data-horizontal="dotted"></separator>
+
+    <group data-direction="column" data-gap="20">
+      <Checkbox
+        simple
+        label="Drag by header"
+        checked={draggable}
+        onChange={(e) => {
+          setDraggable(e.target.checked);
+          updateModal(modalId, { draggable: e.target.checked });
+        }}
+      />
+      <Checkbox
+        simple
+        label="Dim background"
+        checked={dim}
+        onChange={(e) => {
+          setDim(e.target.checked);
+          updateModal(modalId, {
+            dimAttributes: e.target.checked ? {} : { "data-background": "none" },
+          });
+        }}
+      />
+      <Checkbox
+        simple
+        label="Enable fullscreen"
+        checked={fullscreenButton}
+        onChange={(e) => {
+          setFullscreenButton(e.target.checked);
+          updateModal(modalId, { fullscreenbutton: e.target.checked });
+        }}
+      />
+    </group>
+
+</>
+  );
+};
+
 const Modal: React.FC = () => {
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
 
-  const sampleContent = (
+  const renderSampleContent = (extra?: React.ReactNode) => (
     <group
       data-space="40"
       data-max-length="400"
@@ -38,6 +87,8 @@ const Modal: React.FC = () => {
         It uses context to manage multiple modals and ensures only the topmost
         modal can be interacted with when multiple are open.
       </text>
+
+      {extra}
     </group>
   );
 
@@ -62,19 +113,19 @@ const Modal: React.FC = () => {
   const modalData = [
     {
       title: "Basic Modal",
-      content: sampleContent,
+      content: renderSampleContent(<BasicModalOptions modalId="modal-map-0" />),
       toolbar: false,
       header: true,
     },
     {
       title: " Modal with no Header",
-      content: sampleContent,
+      content: renderSampleContent(),
       toolbar: true,
       header: false,
     },
     {
       title: "Info Modal",
-      content: sampleContent,
+      content: renderSampleContent(),
       toolbar: true,
       header: true,
     },

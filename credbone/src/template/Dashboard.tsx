@@ -499,7 +499,7 @@ const Dashboard: React.FC = () => {
             data-align="center"
             data-direction="column"
             data-background="highlight"
-
+data-animation-name="appear-bottom" data-fill-mode="backwards" data-animation-duration="2.25"
              onClick={() => setLayout([])}
 
           >

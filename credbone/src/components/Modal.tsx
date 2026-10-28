@@ -5,6 +5,7 @@ import React, {
   ReactNode,
   useEffect,
   useRef,
+  useCallback,
 } from "react";
 import Button from "./button";
 import { useLocation } from "react-router-dom";
@@ -24,6 +25,7 @@ interface ModalProps {
   dimClose?: boolean;
   fullscreen?: boolean;
   fullscreenbutton?: boolean;
+  draggable?: boolean;
   isTopmost: boolean;
   customAttributes?: { [key: string]: string };
   dimAttributes?: { [key: string]: string };
@@ -40,6 +42,7 @@ const Modal: React.FC<ModalProps> = ({
   dimClose = false,
   fullscreen = false,
   fullscreenbutton = false,
+  draggable = true,
   isTopmost,
   customAttributes = {},
   dimAttributes = {},
@@ -47,8 +50,128 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(fullscreen); // Local fullscreen state
 
+  const layerRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+  const controlsRef = useRef<HTMLElement>(null);
+  const offsetRef = useRef({ x: 0, y: 0 }); // Panel offset from its centered position
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
+
+  const canDrag = draggable && hasHeader && !isFullscreen;
+
+  // Uses `translate`, not `transform`, so it doesn't fight the entrance animations
+  const applyOffset = useCallback((offset: { x: number; y: number }) => {
+    offsetRef.current = offset;
+    if (panelRef.current) {
+      panelRef.current.style.translate =
+        offset.x || offset.y ? `${offset.x}px ${offset.y}px` : "";
+    }
+  }, []);
+
+  // Keeps the panel inside the layer's padded box; an axis that doesn't fit goes back to center
+  const clampOffset = useCallback((x: number, y: number) => {
+    const layer = layerRef.current;
+    const panel = panelRef.current;
+    if (!layer || !panel) return { x, y };
+
+    const layerRect = layer.getBoundingClientRect();
+    const panelRect = panel.getBoundingClientRect();
+    const padding = getComputedStyle(layer);
+
+    const left = layerRect.left + parseFloat(padding.paddingLeft);
+    const right = layerRect.right - parseFloat(padding.paddingRight);
+    const top = layerRect.top + parseFloat(padding.paddingTop);
+    const bottom = layerRect.bottom - parseFloat(padding.paddingBottom);
+
+    const baseLeft = panelRect.left - offsetRef.current.x;
+    const baseTop = panelRect.top - offsetRef.current.y;
+
+    const minX = left - baseLeft;
+    const maxX = right - (baseLeft + panelRect.width);
+    const minY = top - baseTop;
+    const maxY = bottom - (baseTop + panelRect.height);
+
+    return {
+      x: minX > maxX ? 0 : Math.min(Math.max(x, minX), maxX),
+      y: minY > maxY ? 0 : Math.min(Math.max(y, minY), maxY),
+    };
+  }, []);
+
+  // Without the maximize button there's no way to restore, so drop back to the initial size
+  useEffect(() => {
+    if (!fullscreenbutton) setIsFullscreen(fullscreen);
+  }, [fullscreenbutton, fullscreen]);
+
+  // Once drag turns off (option changed, maximized), recenter: there's no way to move it back
+  useEffect(() => {
+    if (!canDrag) applyOffset({ x: 0, y: 0 });
+  }, [canDrag, applyOffset]);
+
+  // Re-clamp when the layer or panel resizes, so a moved panel never ends up clipped
+  useEffect(() => {
+    const layer = layerRef.current;
+    const panel = panelRef.current;
+    if (!canDrag || !layer || !panel) return;
+
+    const observer = new ResizeObserver(() => {
+      const { x, y } = offsetRef.current;
+      if (!x && !y) return;
+      const next = clampOffset(x, y);
+      if (next.x !== x || next.y !== y) applyOffset(next);
+    });
+
+    observer.observe(layer);
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, [canDrag, isOpen, clampOffset, applyOffset]);
+
+  const handleHeaderPointerDown = (event: React.PointerEvent<HTMLElement>) => {
+    if (!canDrag || !event.isPrimary || event.button !== 0) return;
+    // The header controls (maximize, close) are never a drag handle
+    if (controlsRef.current?.contains(event.target as Node)) return;
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      originX: offsetRef.current.x,
+      originY: offsetRef.current.y,
+    };
+  };
+
+  const handleHeaderPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    applyOffset(
+      clampOffset(
+        drag.originX + event.clientX - drag.startX,
+        drag.originY + event.clientY - drag.startY
+      )
+    );
+  };
+
+  const handleHeaderPointerUp = (event: React.PointerEvent<HTMLElement>) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
   const toggleFullscreen = () => {
+    applyOffset({ x: 0, y: 0 }); // Maximized panels aren't draggable, so start centered
     setIsFullscreen((prev) => !prev); // Toggle the fullscreen state
+  };
+
+  // Double-clicking the header toggles maximize, like a window title bar
+  const handleHeaderDoubleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!fullscreenbutton) return;
+    if (controlsRef.current?.contains(event.target as Node)) return;
+    toggleFullscreen();
   };
 
   useEffect(() => {
@@ -74,6 +197,7 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <group
+      ref={layerRef}
       data-top="0"
       data-index="1"
       data-space={spacing}
@@ -91,6 +215,7 @@ const Modal: React.FC<ModalProps> = ({
         {...dimAttributes}
       ></group>
       <group
+        ref={panelRef}
         data-radius="20"
         data-direction="column"
         data-width={isFullscreen ? "fit" : "auto"}
@@ -112,12 +237,20 @@ const Modal: React.FC<ModalProps> = ({
               data-wrap="no"
               data-contain=""
               data-shrink="no"
+              data-touch-action={canDrag ? "none" : undefined}
+              data-user-select={canDrag ? "none" : undefined}
+              onPointerDown={handleHeaderPointerDown}
+              onPointerMove={handleHeaderPointerMove}
+              onPointerUp={handleHeaderPointerUp}
+              onPointerCancel={handleHeaderPointerUp}
+              onDoubleClick={handleHeaderDoubleClick}
             >
               <text data-space="10" data-ellipsis="">
                 {title}
               </text>
 
               <group
+                ref={controlsRef}
                 data-position="right"
                 data-width="auto"
               //  data-gap="5"
@@ -234,11 +367,17 @@ interface ModalContextType {
     hasToolbar?: boolean;
     fullscreen?: boolean;
     fullscreenbutton?: boolean;
+    draggable?: boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
   }) => void;
   closeModal: (id: string) => void;
+  // Change options of an open modal (e.g. from controls inside its content)
+  updateModal: (
+    id: string,
+    options: Partial<Omit<Parameters<ModalContextType["openModal"]>[0], "id">>
+  ) => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -266,6 +405,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       hasToolbar?: boolean;
       fullscreen?: boolean;
       fullscreenbutton?: boolean;
+      draggable?: boolean;
       customAttributes?: { [key: string]: string };
       dimAttributes?: { [key: string]: string };
       spacing?: number;
@@ -280,6 +420,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     hasToolbar = false,
     fullscreen = false,
     fullscreenbutton = false,
+    draggable = true,
     customAttributes = {},
     dimAttributes = {},
     spacing = 20,
@@ -291,6 +432,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     hasToolbar?: boolean;
     fullscreen?: boolean;
     fullscreenbutton?: boolean;
+    draggable?: boolean;
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
@@ -306,6 +448,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
         hasToolbar,
         fullscreen,
         fullscreenbutton,
+        draggable,
         customAttributes,
         dimAttributes,
         spacing,
@@ -321,6 +464,12 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             modal.id === id ? { ...modal, isOpen: false } : modal
           )
           .filter((modal) => modal.isOpen) // Optionally filter out closed modals
+    );
+  };
+
+  const updateModal: ModalContextType["updateModal"] = (id, options) => {
+    setModals((prev) =>
+      prev.map((modal) => (modal.id === id ? { ...modal, ...options } : modal))
     );
   };
 
@@ -351,7 +500,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   }, -1);
 
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModal, closeModal, updateModal }}>
       {children}
       <div data-name="modal-wrapper" data-max-length="fit">
         {modals.map((modal) => (
@@ -365,6 +514,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             hasToolbar={modal.hasToolbar}
             fullscreen={modal.fullscreen}
             fullscreenbutton={modal.fullscreenbutton}
+            draggable={modal.draggable}
             customAttributes={modal.customAttributes}
             dimAttributes={modal.dimAttributes}
             onClose={() => closeModal(modal.id)}
