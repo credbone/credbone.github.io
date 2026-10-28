@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { BaseColors, NeutralShades } from "./utils/colorData";
 import Popover from "../components/popover";
@@ -157,6 +157,98 @@ const SwatchGrid: React.FC<SwatchGridProps> = ({ group, onCopy, getHex }) => (
   </group>
 );
 
+// Tints & Blend — tokens defined in styles/controls/color.css
+
+interface MixItem {
+  name: string;
+  description: string;
+  value: string;
+  token: string;
+  css: string;
+  textColor: string;
+}
+
+const tintSteps = [
+  { percent: 5, name: "Whisper" },
+  { percent: 10, name: "Wash" },
+  { percent: 20, name: "Tint" },
+];
+
+const getTints = (group: "main" | "secondary"): MixItem[] =>
+  tintSteps.map(({ percent, name }) => ({
+    name,
+    description: group === "main" ? "Primary" : "Secondary",
+    value: `${percent}%`,
+    token: `${group}-tint-${percent}`,
+    css: `color-mix(in oklch, var(--${group}-color) ${percent}%, var(--context))`,
+    textColor: "text",
+  }));
+
+const blends: MixItem[] = [
+  { percent: 25, name: "Primary Lean" },
+  { percent: 50, name: "Midpoint" },
+  { percent: 75, name: "Secondary Lean" },
+].map(({ percent, name }) => ({
+  name,
+  description: "Blend",
+  value: `${100 - percent} / ${percent}`,
+  token: `blend-${percent}`,
+  css: `color-mix(in oklch, var(--main-color), var(--secondary-color) ${percent}%)`,
+  textColor: percent > 50 ? "secondary-text" : "main-text",
+}));
+
+// Primary tints → secondary tints → blends
+const MixItems: MixItem[] = [...getTints("main"), ...getTints("secondary"), ...blends];
+
+interface MixSwatchProps {
+  item: MixItem;
+  onCopy: (item: MixItem) => void;
+}
+
+const MixSwatch: React.FC<MixSwatchProps> = ({ item, onCopy }) => {
+  return (
+    <Ripple>
+      <group
+        data-ink-color="neutral"
+        data-over-color="none"
+        data-contain=""
+        data-length="auto"
+        data-shrink="no"
+        data-direction="column"
+        data-justify="end"
+        data-gap="15"
+        data-width="auto"
+        data-space="20"
+        data-background={item.token}
+        data-color={item.textColor}
+        data-wrap="no"
+        data-radius="20"
+        data-interactive=""
+        data-align="start"
+        data-cursor="pointer"
+        data-react="brightness"
+        onClick={() => onCopy(item)}
+      >
+        <group data-height="20" />
+        <group data-direction="column" data-width="auto">
+          <text data-ellipsis="" data-light="">
+            {item.description}
+          </text>
+          <text data-ellipsis="" data-font-type="hero" data-weight="700">
+            {item.name}
+          </text>
+        </group>
+        <group data-width="auto" data-gap="15">
+          <separator data-horizontal="" data-interact=""></separator>
+          <text data-ellipsis="" data-opacity="50">
+            {item.value}
+          </text>
+        </group>
+      </group>
+    </Ripple>
+  );
+};
+
 const Colors: React.FC = () => {
   const { theme } = useTheme();
   const { downloadPaletteSVG, copyPaletteSVG } = usePaletteActions();
@@ -185,6 +277,23 @@ const Colors: React.FC = () => {
             {hex.replace("#", "")}
           </text>
           <text>{label} copied</text>
+        </group>,
+        1500,
+      );
+    } catch {
+      addSnackbar("Failed to copy.", 1500);
+    }
+  };
+
+  const copyMix = async (item: MixItem) => {
+    try {
+      await navigator.clipboard.writeText(item.css);
+      addSnackbar(
+        <group data-gap="10" data-align="center" data-wrap="no">
+          <text data-ellipsis="" data-opacity="50">
+            CSS
+          </text>
+          <text>{item.name} copied</text>
         </group>,
         1500,
       );
@@ -516,6 +625,37 @@ bottomsheet
         <group data-gap="15" data-align="center" data-space="30">
           <group data-direction="column" data-gap="10">
             <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
+              Tints & Blend
+            </text>
+          </group>
+          <group data-gap="30" data-wrap="no">
+            <text
+              data-wrap="wrap"
+              data-light=""
+              data-line="20"
+              data-max-length="300"
+            >
+              Theme colors washed into the surface, adapting to dark mode, and
+              blended into each other in OKLCH for clean midtones.
+            </text>
+          </group>
+        </group>
+        <group
+          data-type="grid"
+          data-grid-template="110/columns-3"
+          data-gap="5"
+          data-contain=""
+        >
+          {MixItems.map((item) => (
+            <MixSwatch key={item.token} item={item} onCopy={copyMix} />
+          ))}
+        </group>
+      </group>
+
+      <group data-gap="30">
+        <group data-gap="15" data-align="center" data-space="30">
+          <group data-direction="column" data-gap="10">
+            <text data-wrap="wrap" data-font-type="hero" data-text-size="large">
               Neutral Scale
             </text>
           </group>
@@ -564,6 +704,7 @@ bottomsheet
                   data-over-color="none"
                   onClick={() => copyHex(hex, `Neutral ${color.name}`)}
                 >
+                  <group data-height="20" />
                   <group data-direction="column">
                     <text data-ellipsis="" data-light="" data-color="reset">
                       {color.description}

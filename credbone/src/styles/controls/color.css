@@ -82,6 +82,55 @@
 
 
 
+/* Tints & Blend — computed in CSS from the theme tokens */
+
+:root {
+
+  /* fallbacks for browsers without color-mix / relative colors */
+
+  --main-tint-5: var(--main-color-lightest);
+  --main-tint-10: var(--main-color-lightest);
+  --main-tint-20: var(--main-color-lighter);
+
+  --secondary-tint-5: var(--secondary-color-lightest);
+  --secondary-tint-10: var(--secondary-color-lightest);
+  --secondary-tint-20: var(--secondary-color-lighter);
+
+  --blend-25: var(--main-color);
+  --blend-50: var(--main-color);
+  --blend-75: var(--secondary-color);
+}
+
+@supports (color: color-mix(in oklch, red, blue)) {
+  :root {
+    --main-tint-5: color-mix(in oklch, var(--main-color) 5%, var(--context));
+    --main-tint-10: color-mix(in oklch, var(--main-color) 10%, var(--context));
+    --main-tint-20: color-mix(in oklch, var(--main-color) 20%, var(--context));
+
+    --secondary-tint-5: color-mix(in oklch, var(--secondary-color) 5%, var(--context));
+    --secondary-tint-10: color-mix(in oklch, var(--secondary-color) 10%, var(--context));
+    --secondary-tint-20: color-mix(in oklch, var(--secondary-color) 20%, var(--context));
+
+    --blend-25: color-mix(in oklch, var(--main-color), var(--secondary-color) 25%);
+    --blend-50: color-mix(in oklch, var(--main-color), var(--secondary-color) 50%);
+    --blend-75: color-mix(in oklch, var(--main-color), var(--secondary-color) 75%);
+  }
+}
+
+[data-background="main-tint-5"] { background-color: var(--main-tint-5)}
+[data-background="main-tint-10"] { background-color: var(--main-tint-10)}
+[data-background="main-tint-20"] { background-color: var(--main-tint-20)}
+
+[data-background="secondary-tint-5"] { background-color: var(--secondary-tint-5)}
+[data-background="secondary-tint-10"] { background-color: var(--secondary-tint-10)}
+[data-background="secondary-tint-20"] { background-color: var(--secondary-tint-20)}
+
+[data-background="blend-25"] { background-color: var(--blend-25)}
+[data-background="blend-50"] { background-color: var(--blend-50)}
+[data-background="blend-75"] { background-color: var(--blend-75)}
+
+
+
 [data-background="neutral-lightest"] { background-color: var(--neutral-color-lightest)}
 [data-background="neutral-lighter"] { background-color: var(--neutral-color-lighter)}
 [data-background="neutral-light"] { background-color: var(--neutral-color-light)}
@@ -287,6 +336,10 @@
 [data-color="secondary-dark"] { color: var(--secondary-color-dark)}
 [data-color="secondary-darker"] { color: var(--secondary-color-darker)}
 [data-color="secondary-darkest"] { color: var(--secondary-color-darkest)}
+
+[data-color="blend-25"] { color: var(--blend-25)}
+[data-color="blend-50"] { color: var(--blend-50)}
+[data-color="blend-75"] { color: var(--blend-75)}
 
 
 

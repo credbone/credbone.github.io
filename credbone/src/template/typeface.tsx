@@ -137,7 +137,7 @@ const Typeface: React.FC = () => {
                 data-backdrop={isSticky ? "20" : ""}
                data-space="20"
            //     data-elevation={isSticky ? "2" : ""}
-                data-radius="15"
+                data-radius="20"
              //   data-duration=".125"
                 data-align="center"
 
@@ -148,6 +148,7 @@ const Typeface: React.FC = () => {
 
 <group>
             <CustomSlider
+            edgeGap={isSticky ? 20 : undefined}
               start={1.25}
               end={3.5}
               value={sliderValue}

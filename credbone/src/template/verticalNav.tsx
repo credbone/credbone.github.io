@@ -216,7 +216,7 @@ return () => {
         data-position="absolute"
         data-background="dim"
         data-height="fit"
-        data-index="2"
+        data-index="102"
         data-visibility={isNavOpen ? "visible" : "hidden"}
         data-adaptive="mobile"
 
@@ -242,7 +242,7 @@ return () => {
         data-height="fit"
         //data-elevation={isNavOpen ? "2" : ""}
         data-border=""
-        data-index="4"
+        data-index="104"
         data-align="start"
         data-wrap="no"
         //data-direction="column"

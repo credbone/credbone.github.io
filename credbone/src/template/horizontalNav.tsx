@@ -15,7 +15,7 @@ const HorizontalNav: React.FC = () => {
     <group
     data-adaptive="mobile"
  //   data-adaptive-order="2"
-    data-index="3"
+    data-index="999"
     data-border="overprint"
     data-background="main-background"
     data-print="hide"
