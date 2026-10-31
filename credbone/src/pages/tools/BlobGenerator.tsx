@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import CustomSlider from "../../components/inputs/slider";
+import TickComponent from "../../components/inputs/TickComponent";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
@@ -96,10 +97,68 @@ const _createSvgPath = (points: string | any[]) => {
   return svgPath;
 };
 
+interface DialSliderProps {
+  label: string;
+  start: number;
+  end: number;
+  value: number;
+  onValueChange: (value: number) => void;
+}
 
+// Dial-style slider: ticks behind a wide labelled handle that shows the value while dragging
+const DialSlider: React.FC<DialSliderProps> = ({
+  label,
+  start,
+  end,
+  value,
+  onValueChange,
+}) => (
+  <group data-align="center" data-gap="15" data-space="15">
+    <group>
+      <group
+        data-position="absolute"
+        data-width="fit"
+        data-left="0"
+        data-top="0"
+        data-space-horizontal="15"
+        data-height="fit"
+        data-align="center"
+      >
+        <TickComponent
+          tickCount={30}
+          majorEvery={5}
+          emphasizeCenter={false}
+          //      data-opacity="90"
+          data-align="center"
+          data-height="40"
+          heights={{ minor: 8, major: 18, center: 30 }}
+        ></TickComponent>
+      </group>
 
-
-
+      <CustomSlider
+        label={label}
+        showValueOnDrag
+        start={start}
+        end={end}
+        value={value}
+        onValueChange={onValueChange}
+        handlerWidth={120}
+        handlerProps={{
+          "data-height": "40",
+          "data-background": "text",
+          "data-color": "main-background",
+        }}
+        trackLeftProps={{ "data-background": "none" }}
+        trackRightProps={{
+          "data-background": "main-background",
+          "data-height": "30",
+          "data-opacity": "70",
+          "data-margin-left": undefined,
+        }}
+      />
+    </group>
+  </group>
+);
 
 const BlobGenerator: React.FC = () => {
   const [mode, setMode] = useState<"fill" | "stroke">("stroke");
@@ -110,21 +169,70 @@ const BlobGenerator: React.FC = () => {
   const [growth, setGrowth] = useState(3);
   const [paths, setPaths] = useState<string[]>([""]);
 
+  const modeToggleRef = useRef<HTMLDivElement>(null);
+  const modeIndicatorRef = useRef<HTMLDivElement>(null);
+  const [modeIndicatorStyle, setModeIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+  });
 
+  // Mode indicator: tracks the selected option relative to the toggle container
+  const updateModeIndicator = useCallback(() => {
+    if (!modeToggleRef.current) return;
 
+    const container = modeToggleRef.current;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-selected="true"]',
+    );
+    if (!selected) return;
 
-useEffect(() => {
-  let current = 3;
-  const interval = setInterval(() => {
-    current += 1;
-    setGrowth(current);
-    if (current >= 7) clearInterval(interval);
-  }, 120);
-  return () => clearInterval(interval);
-}, []);
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
+    const indicatorStyle = modeIndicatorRef.current
+      ? getComputedStyle(modeIndicatorRef.current)
+      : null;
+    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
+    const padRight = indicatorStyle
+      ? parseFloat(indicatorStyle.paddingRight)
+      : 0;
+
+    setModeIndicatorStyle({
+      // clientLeft offsets the container border, since absolute positioning starts inside it
+      left:
+        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
+      width: selectedRect.width + padLeft + padRight,
+    });
+  }, []);
+
+  // Fire on selection change
+  useEffect(() => {
+    updateModeIndicator();
+  }, [mode, updateModeIndicator]);
+
+  // Fire on resize
+  useEffect(() => {
+    const ro = new ResizeObserver(updateModeIndicator);
+    if (modeToggleRef.current) ro.observe(modeToggleRef.current);
+    return () => ro.disconnect();
+  }, [updateModeIndicator]);
+
+  useEffect(() => {
+    let current = 3;
+    const interval = setInterval(() => {
+      current += 1;
+      setGrowth(current);
+      if (current >= 7) clearInterval(interval);
+    }, 120);
+    return () => clearInterval(interval);
+  }, []);
 
   const generatePaths = (count: number, edges: number, growthVal: number) =>
-    Array.from({ length: count }, () => generator({ edges, growth: growthVal }).path);
+    Array.from(
+      { length: count },
+      () => generator({ edges, growth: growthVal }).path,
+    );
 
   useEffect(() => {
     setPaths(generatePaths(blobCount, points, growth));
@@ -145,25 +253,23 @@ useEffect(() => {
     setPaths(generatePaths(blobCount, points, growth));
   };
 
-const getPathAttrs = (i: number) => {
-  const opacity = mode === "fill" ? 1 - (i / paths.length) * 0.75 : 1;
-  const opacityAttr = opacity < 1 ? ` opacity='${opacity.toFixed(2)}'` : "";
+  const getPathAttrs = (i: number) => {
+    const opacity = mode === "fill" ? 1 - (i / paths.length) * 0.75 : 1;
+    const opacityAttr = opacity < 1 ? ` opacity='${opacity.toFixed(2)}'` : "";
 
-  return mode === "fill"
-    ? `fill='currentColor'${opacityAttr}`
-    : `fill='none' stroke='currentColor' stroke-width='${strokeWidth / 10}'`;
-};
-
-
+    return mode === "fill"
+      ? `fill='currentColor'${opacityAttr}`
+      : `fill='none' stroke='currentColor' stroke-width='${strokeWidth / 10}'`;
+  };
 
   const exportSVG = () => {
     const currentDateTime = new Date()
       .toISOString()
       .replace(/[^\w]/g, "")
       .slice(0, 15);
-const pathElements = paths
-  .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
-  .join("\n");
+    const pathElements = paths
+      .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
+      .join("\n");
 
     const svgBlob = new Blob(
       [
@@ -183,9 +289,9 @@ const pathElements = paths
   const { addSnackbar } = useSnackbar();
 
   const copySVGToClipboard = async () => {
-const pathElements = paths
-  .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
-  .join("\n");
+    const pathElements = paths
+      .map((p, i) => `  <path d='${p}' ${getPathAttrs(i)}/>`)
+      .join("\n");
 
     const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\n${pathElements}\n</svg>`;
 
@@ -197,11 +303,20 @@ const pathElements = paths
     }
   };
 
-const menuItems = [
-  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save blob for later", onClick: exportSVG, },
-  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copySVGToClipboard, },
-];
-
+  const menuItems = [
+    {
+      icon: <ArrowDown strokeWidth={1.5} size={20} />,
+      title: "Download",
+      description: "Save blob for later",
+      onClick: exportSVG,
+    },
+    {
+      icon: <Copy strokeWidth={1.5} size={20} />,
+      title: "Copy",
+      description: "Paste in Figma or code ...",
+      onClick: copySVGToClipboard,
+    },
+  ];
 
   return (
     <group
@@ -219,7 +334,7 @@ const menuItems = [
         data-space="30"
         data-gap="30"
       >
-<SvgPattern_1/>
+        <SvgPattern_1 />
 
         <group>
           <text
@@ -235,7 +350,7 @@ const menuItems = [
         </group>
 
         <group
-      //  data-cast-shadow="2"
+          //  data-cast-shadow="2"
           data-justify="center"
           data-animation-name="appear-bottom"
           data-animation-duration="2"
@@ -243,24 +358,24 @@ const menuItems = [
           data-align="center"
         >
           <svg width="256" height="256" viewBox="0 0 100 100">
-{paths.map((p, i) => {
-const opacity =
-  mode === "fill" && paths.length > 1
-    ? 1 - ((i + 1) / (paths.length + 1)) * 0.8
-    : 1;
-  return (
-    <path
-      key={i}
-      data-duration="2.25"
-      data-transition-prop="d"
-      d={p}
-      fill={mode === "fill" ? "currentColor" : "none"}
-      stroke={mode === "stroke" ? "currentColor" : "none"}
-      strokeWidth={mode === "stroke" ? strokeWidth / 10 : 0}
-      opacity={opacity}
-    />
-  );
-})}
+            {paths.map((p, i) => {
+              const opacity =
+                mode === "fill" && paths.length > 1
+                  ? 1 - ((i + 1) / (paths.length + 1)) * 0.8
+                  : 1;
+              return (
+                <path
+                  key={i}
+                  data-duration="2.25"
+                  data-transition-prop="d"
+                  d={p}
+                  fill={mode === "fill" ? "currentColor" : "none"}
+                  stroke={mode === "stroke" ? "currentColor" : "none"}
+                  strokeWidth={mode === "stroke" ? strokeWidth / 10 : 0}
+                  opacity={opacity}
+                />
+              );
+            })}
           </svg>
         </group>
 
@@ -308,10 +423,9 @@ const opacity =
           </Ripple>
 
           <Popover
-          bottomsheet
+            bottomsheet
             data-space="5"
             data-radius="20"
-           
             content={(closePopover, isBottomSheet) => (
               <group
                 data-direction="column"
@@ -319,36 +433,30 @@ const opacity =
                 onClick={closePopover}
                 data-contain=""
               >
+                {menuItems.map((item, index) => (
+                  <group
+                    key={item.title}
+                    data-name="autoseparation"
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    data-animation-duration={2 + index * 0.5}
+                  >
+                    <separator
+                      data-horizontal=""
+                      data-margin-horizontal="10"
+                      data-opacity="5"
+                    ></separator>
 
-
-                    {menuItems.map((item, index) => (
-                      <group
-                       key={item.title}
-                        data-name="autoseparation"
-                        data-animation-name="appear-bottom"
-                        data-fill-mode="backwards"
-                        data-animation-duration={2 + index * 0.5}
-                      >
-                        <separator
-                          data-horizontal=""
-                          data-margin-horizontal="10"
-                          data-opacity="5"
-                        ></separator>
-
-                        <MenuItem
-                         
-                          icon={item.icon}
-                          title={item.title}
-                          description={item.description}
-                          onClick={item.onClick}
-                          data-space={isBottomSheet ? "20" : "15"}
-                          data-gap={isBottomSheet ? "20" : "15"}
-                        />
-                      </group>
-                    ))}
-
-
-
+                    <MenuItem
+                      icon={item.icon}
+                      title={item.title}
+                      description={item.description}
+                      onClick={item.onClick}
+                      data-space={isBottomSheet ? "20" : "15"}
+                      data-gap={isBottomSheet ? "20" : "15"}
+                    />
+                  </group>
+                ))}
               </group>
             )}
           >
@@ -398,157 +506,146 @@ const opacity =
 
         <group data-gap="15">
           <group
-            
+            data-index="2"
             data-elevation="2"
-            data-radius="25"
+            data-radius="20"
             data-contain=""
           >
-            <group data-align="center" data-gap="15" data-space="25">
-              <group data-width="auto">
-                <text>Edges</text>
-              </group>
-              <separator data-vertical=""></separator>
-              <group data-fit="1">
-                <CustomSlider
-                  start={3}
-                  end={12}
-                  value={points}
-                  onValueChange={(value) => setPoints(value)}
-                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
-                  trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
-                />
-              </group>
-            </group>
+            <DialSlider
+              label="Edges"
+              start={3}
+              end={12}
+              value={points}
+              onValueChange={(value) => setPoints(value)}
+            />
 
-<separator data-horizontal="dotted" data-opacity="20"></separator>
+            <separator data-horizontal="dotted" data-opacity="20"></separator>
 
-            <group data-align="center" data-gap="15" data-space="25">
-              <group data-width="auto">
-                <text>Smoothness</text>
-              </group>
-              <separator data-vertical=""></separator>
-              <group data-fit="1">
-                <CustomSlider
-                  start={2}
-                  end={9}
-                  value={growth}
-                  onValueChange={(value) => setGrowth(value)}
-                  trackLeftProps={{ "data-margin-right": "0", "data-height": "1" }}
-                  trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
-                />
-              </group>
-            </group>
-
+            <DialSlider
+              label="Smoothness"
+              start={2}
+              end={9}
+              value={growth}
+              onValueChange={(value) => setGrowth(value)}
+            />
           </group>
 
-
-
-              <group
-                data-radius="25"
-                data-contain=""
-                data-elevation="2"
-                data-justify="center"
-
-              >
-                <group data-align="center" data-gap="15" data-space="25">
-                  <group data-width="auto">
-                    <text>Amount</text>
-                  </group>
-                  <separator data-vertical=""></separator>
-                  <group data-fit="1">
-                    <CustomSlider
-                      start={1}
-                      end={10}
-                      value={blobCount}
-                      onValueChange={(value) => setBlobCount(value)}
-                      trackLeftProps={{ "data-height": "1" }}
-                      trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
-                    />
-                  </group>
-                </group>
-              </group>
+          <group
+            data-radius="20"
+            data-contain=""
+            data-elevation="2"
+            data-justify="center"
+          >
+            <DialSlider
+              label="Amount"
+              start={1}
+              end={10}
+              value={blobCount}
+              onValueChange={(value) => setBlobCount(value)}
+            />
+          </group>
 
           {/* Mode toggle */}
           <group
-            data-radius="25"
-            data-contain=""
-          
-            data-justify="center"
+            //  data-radius="25"
+            // data-contain=""
 
+            data-justify="center"
           >
-            <group data-align="center" data-gap="15" data-space="20" data-wrap="no">
-              <group data-width="auto" data-space="5">
+            <group
+              data-gap="15"
+              data-space-vertical="20"
+           //   data-direction="column"
+           data-align="center"
+              data-wrap="no"
+            >
+              <group data-width="auto" data-space="5" data-opacity="40">
                 <text>Blob Style</text>
               </group>
-              <separator data-vertical=""></separator>
-              <group data-fit="1" data-gap="5" data-background="adaptive-gray" data-space="5" data-radius="20"  data-wrap="no">
+
+              <group
+                ref={modeToggleRef}
+                data-fit="1"
+                data-gap="3"
+                data-space="3"
+                data-radius="40"
+                data-wrap="no"
+                data-border=""
+              >
+                {/* Rendered before the options so their labels paint above the fill */}
+                <group
+                  ref={modeIndicatorRef}
+                  data-position="absolute"
+                  data-top="0"
+                  data-left="0"
+                  data-height="fit"
+                  data-space="3"
+                  data-pointer-event="none"
+                  data-transition-prop="transform"
+                  data-duration=".325"
+                  data-timing="fancy"
+                  style={{
+                    width: modeIndicatorStyle.width,
+                    transform: `translateX(${modeIndicatorStyle.left}px)`,
+                  }}
+                >
+                  <group
+                    data-height="fit"
+                    data-radius="30"
+                    data-background="text"
+                  ></group>
+                </group>
                 {(["fill", "stroke"] as const).map((m) => (
-<Ripple   key={m}>
+                  <Ripple key={m}>
                     <group
-                    data-ink-color="neutral"
-                    data-over-color="neutral"
-                    key={m}
-                   // data-width="auto"
-                    data-contain=""
-                    data-space="15"
-                    data-space-horizontal="20"
-                    data-align="center"
-                    data-justify="center"
-                    data-background={mode === m ? "text" : ""}
-                    data-color={mode === m ? "main-background" : ""}
-                    data-radius="15"
-                    data-cursor="pointer"
-                    data-interactive=""
-                    onClick={() => setMode(m)}
-                  >
-                   <text>{m === "fill" ? "Solid" : "Outline"}</text>
-                  </group>
-</Ripple>
+                      data-ink-color="neutral"
+                      data-over-color="neutral"
+                      key={m}
+                      // data-width="auto"
+                      data-contain=""
+                      data-height="40"
+                      data-space-horizontal="20"
+                      data-align="center"
+                      data-justify="center"
+                      data-selected={mode === m ? "true" : undefined}
+                      data-color={mode === m ? "main-background" : ""}
+                      data-radius="30"
+                      data-cursor="pointer"
+                      data-interactive=""
+                      onClick={() => setMode(m)}
+                    >
+                      <text>{m === "fill" ? "Solid" : "Outline"}</text>
+                    </group>
+                  </Ripple>
                 ))}
               </group>
             </group>
           </group>
 
-
-              <group
-
-
-data-opacity={mode === "stroke" ? undefined : "0"}
-
-data-translate-vertical={mode === "stroke" ? undefined : "50%"}
-
-data-pointer-event={mode === "stroke" ? undefined : "none"}
-
-data-duration=".125"
-
-              data-transition-behavior="allow-discrete"
-                data-radius="25"
-                data-contain=""
-                data-elevation="2"
-                data-justify="center"
-
-              >
-                <group data-align="center" data-gap="15" data-space="25">
-                  <group data-width="auto">
-                    <text>Stroke Width</text>
-                  </group>
-                  <separator data-vertical=""></separator>
-                  <group data-fit="1">
-                    <CustomSlider
-                      start={1}
-                      end={20}
-                      value={strokeWidth}
-                      onValueChange={(value) => setStrokeWidth(value)}
-                      trackLeftProps={{ "data-height": "1" }}
-                      trackRightProps={{ "data-opacity": "10", "data-margin-left": "5", "data-height": "1" }}
-                    />
-                  </group>
-                </group>
-              </group>
-
-
-
-
+          <group
+            data-opacity={mode === "stroke" ? undefined : "0"}
+            data-translate-vertical={mode === "stroke" ? undefined : "50%"}
+            data-duration=".125"
+            data-pointer-event={mode === "stroke" ? undefined : "none"}
+            data-transition-behavior="allow-discrete"
+            data-radius="20"
+            data-contain=""
+            data-elevation="2"
+            data-justify="center"
+          >
+            <group
+              data-translate-vertical={mode === "stroke" ? undefined : "50%"}
+              data-duration=".225"
+            >
+              <DialSlider
+                label="Stroke"
+                start={1}
+                end={20}
+                value={strokeWidth}
+                onValueChange={(value) => setStrokeWidth(value)}
+              />
+            </group>
+          </group>
         </group>
       </group>
     </group>

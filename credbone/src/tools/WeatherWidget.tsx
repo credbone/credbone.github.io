@@ -421,8 +421,8 @@ const WeatherWidget: React.FC = () => {
                         // data-ratio="1:1"
                         data-length="50"
                         data-cursor="pointer"
-                        data-background={unit === unitType ? "context" : ""}
-                        data-color={unit === unitType ? "" : ""}
+                        data-background={unit === unitType ? "white" : ""}
+                        data-color={unit === unitType ? "black" : ""}
                         data-border={unit === unitType ? "" : "none"}
                         // data-color={unit === unitType ? "main-text" : ""}
                         data-align="center"

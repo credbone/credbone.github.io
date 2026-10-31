@@ -9,6 +9,8 @@ interface SliderProps {
   handlerWidth?: number;
   edgeGap?: number;
   unit?: string;
+  label?: string; // Replaces the value and unit on the handle
+  showValueOnDrag?: boolean; // With a label, shows the value and unit while dragging
   handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
@@ -31,6 +33,8 @@ const CustomSlider: React.FC<SliderProps> = ({
   handlerWidth = 60,
   edgeGap = 0,
   unit,
+  label,
+  showValueOnDrag = false,
   handlerProps,
   trackLeftProps,
   trackRightProps,
@@ -82,6 +86,8 @@ const handleDragEnd = () => {
   // edgeGap can be negative — use Math.abs only for the sign-safe half
   const halfGap = edgeGap / 2;
 
+  const showLabel = label !== undefined && !(showValueOnDrag && isDragging);
+
 
   
 
@@ -101,6 +107,7 @@ const handleDragEnd = () => {
         max={end}
         value={value}
         onChange={handleChange}
+        aria-valuetext={label}
         data-height="fit"
         step={step}
       />
@@ -176,9 +183,15 @@ const handleDragEnd = () => {
         }}
         {...handlerProps}
       >
-        <text data-weight="700">
-          {showvalue ? value : ""}
-          {unit || ""}
+        <text data-weight={showLabel ? undefined : "700"}>
+          {showLabel ? (
+            label
+          ) : (
+            <>
+              {showvalue ? value : ""}
+              {unit || ""}
+            </>
+          )}
         </text>
       </group>
     </group>
