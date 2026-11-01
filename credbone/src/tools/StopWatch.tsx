@@ -97,7 +97,7 @@ const StopWatch: React.FC = () => {
         // data-background="text"
         // data-color="main-background"
       >
-        <group data-direction="column" data-space="10">
+        <group data-direction="column">
           <group data-ratio="1:1">
             <SvgTimerIndex />
 
@@ -135,12 +135,14 @@ const StopWatch: React.FC = () => {
         data-position="center"
         data-gap="20"
       >
-        <separator data-horizontal="" />
+        {/* <separator data-horizontal="dotted" data-opacity="30"/> */}
         <group data-space-horizontal="20" data-width="auto">
           <text
-       //     data-weight="700"
-            data-text-size="medium"
+           // data-weight="300"
+            data-text-size="large"
+          //  data-text-clamp="36"
             data-font-feature="tnum"
+          
           >
             {formatTime(elapsed)}
           </text>
@@ -218,7 +220,7 @@ const StopWatch: React.FC = () => {
           <group data-direction="column" data-wrap="no">
             {laps.length === 0 ? (
               <group data-align="center" data-justify="center" data-space="15">
-                <text>No Laps Recorded</text>
+                <text data-opacity="30">No Laps Recorded</text>
               </group>
             ) : (
               <Popover

@@ -52,7 +52,7 @@ const Overview: React.FC = () => {
               </picture>
 
               <group
-                data-space="30"
+                data-space="15"
                 data-gap="10"
                 data-direction="column"
                 data-align="start"
@@ -76,9 +76,9 @@ const Overview: React.FC = () => {
                     </group> */}
 
                 <group
-                  data-space="30"
+                  data-space="40"
                   data-width="auto"
-                  data-radius="20"
+                  data-radius="35"
                  // data-background="context"
                   data-backdrop="20-adaptive"
                   data-gap="15"

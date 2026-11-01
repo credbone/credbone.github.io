@@ -413,16 +413,17 @@ const resetValues = () => {
 
 
 
-                <group data-space="30">
+                <group data-space="15">
                   <group
                     data-background="main-background"
-                    data-space="30"
+                    data-space="40"
                     data-width="auto"
-                    data-radius="20"
+                    data-radius="35"
                     data-direction="column"
                     data-gap="15"
                     data-align="start"
                     data-contain=""
+                    data-backdrop="20-adaptive"
                   >
                     <text
                      data-font-type="hero"
@@ -436,7 +437,7 @@ const resetValues = () => {
                       Icons
                     </text>
                     <text
-                      data-opacity="50"
+                    //  data-opacity="50"
                       data-line="20"
                       data-wrap="wrap"
                       data-length="300"

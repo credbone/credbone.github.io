@@ -194,7 +194,7 @@ const TooltipPopover: React.FC = () => {
       <group>
         <picture
           data-object-position="left"
-          data-radius="40"
+          data-radius="50"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -204,31 +204,38 @@ const TooltipPopover: React.FC = () => {
         </picture>
 
         <group
-          data-space="30"
+          data-space="15"
           data-width="auto"
           data-direction="column"
           data-align="start"
-          data-gap="30"
+          data-gap="15"
         >
           <group
             data-direction="column"
-            data-radius="15"
+            data-radius="35"
             data-background="main-background"
             data-contain=""
             data-align="center"
-            data-space="30"
-            data-gap="20"
+            data-space="15"
+            data-gap="15"
+            data-backdrop="20-adaptive"
           >
-            <group>
-              <text data-wrap="wrap" data-line="1.5" data-max-length="400">
+            <group data-space="15">
+              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
                 Click to view a sample popover. The default placement is on top,
                 but if there's not enough space, it will find a way to display
                 itself.
               </text>
             </group>
+
+
+  <group>
+      {ShowPopover}
+  </group>
+
           </group>
 
-          {ShowPopover}
+
         </group>
       </group>
 

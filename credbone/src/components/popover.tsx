@@ -9,6 +9,9 @@ import ReactDOM from "react-dom";
 import { isMobile } from "react-device-detect";
 import { useLocation } from "react-router-dom";
 
+// Dispatch on window to close every open popover (e.g. when a drag starts)
+export const POPOVER_DISMISS_EVENT = "popover-dismiss";
+
 interface PopoverProps {
 content: ReactNode | ((closePopover: () => void, isBottomSheet: boolean) => ReactNode);
   children: React.ReactNode;
@@ -120,6 +123,7 @@ const Popover: React.FC<PopoverProps> = ({
   }, [isVisible]);
 
   const handleResize = () => setIsVisible(false);
+  const handleDismiss = () => setIsVisible(false);
 
   const handleScroll = (event: Event) => {
     if (hideOnScroll) {
@@ -258,12 +262,14 @@ if (isBottomSheet) {
       document.addEventListener("mousedown", handleMouseDown);
       document.addEventListener("click", handleDocumentClick);
       window.addEventListener("resize", handleResize);
+      window.addEventListener(POPOVER_DISMISS_EVENT, handleDismiss);
       if (hideOnScroll) window.addEventListener("scroll", handleScroll, true);
       childRef.current?.setAttribute("data-popover-expand", "true");
     } else {
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener(POPOVER_DISMISS_EVENT, handleDismiss);
       if (hideOnScroll)
         window.removeEventListener("scroll", handleScroll, true);
       childRef.current?.removeAttribute("data-popover-expand");
@@ -272,6 +278,7 @@ if (isBottomSheet) {
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener(POPOVER_DISMISS_EVENT, handleDismiss);
       if (hideOnScroll)
         window.removeEventListener("scroll", handleScroll, true);
     };

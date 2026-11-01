@@ -147,13 +147,13 @@ function About() {
             <img src={sampleImage_4} alt="" />
           </picture>
 
-          <group data-direction="column" data-space="30" data-align="start">
+          <group data-direction="column" data-space="15" data-align="start">
             <group
-              data-space="30"
+              data-space="40"
               data-position="bottom"
               data-backdrop="20-adaptive"
               data-width="auto"
-              data-radius="20"
+              data-radius="35"
             >
               <group data-gap="30" data-direction="column" data-align="start">
                 <group data-width="auto" data-gap="30">

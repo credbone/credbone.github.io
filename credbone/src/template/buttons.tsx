@@ -57,21 +57,21 @@ const Buttons: React.FC = () => {
             <img src={sectionImage} alt="" />
           </picture>
 
-<group data-type="grid" data-grid-template="100" data-space="30" data-gap="20"  >
+<group data-type="grid" data-grid-template="100" data-space="15" data-gap="15"  >
 
-<group data-wrap="no" data-ratio="1:1" data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<group data-wrap="no" data-ratio="1:1" data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="25" data-gap="20">
 <IconHome size={60}/>
 </group>
 
 <Ripple>
-<group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer"  data-contain="" data-background="main" data-color="main-text" data-interactive=""  data-space="20" data-radius="15" data-gap="20">
+<group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer"  data-contain="" data-background="main" data-color="main-text" data-interactive=""  data-space="20" data-radius="25" data-gap="20">
 <group data-width="auto">
 <IconSearch size={60}/>
 </group>
 </group>
 </Ripple>
 
-<group className={isOpen ? 'open' : ''} onClick={toggleClass} data-wrap="no" data-ratio="1:1" data-justify="center" data-mix-blend-mode="screen"  data-color="black"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-background="white" data-interactive="" data-space="20" data-radius="15" data-gap="20">
+<group className={isOpen ? 'open' : ''} onClick={toggleClass} data-wrap="no" data-ratio="1:1" data-justify="center" data-mix-blend-mode="screen"  data-color="black"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-background="white" data-interactive="" data-space="20" data-radius="25" data-gap="20">
 
 
 <group data-width="auto" data-loop="smooth" data-over-color="none" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">

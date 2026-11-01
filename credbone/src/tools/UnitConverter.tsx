@@ -602,13 +602,13 @@ const UnitConverter: React.FC = () => {
               data-background="yellow-light"
               data-color="yellow-darker"
               data-radius="15"
-              data-gap="10"
-              data-space="15"
+              data-gap="15"
+              data-space="20"
               data-direction="column"
               data-align="start"
             >
-              <text data-weight="700">Formula</text>
-              <text data-wrap="wrap" data-line="1.5">
+              <text data-weight="700"  data-font-type="hero" data-line="1" data-text-size="medium-small">Formula</text>
+              <text data-wrap="wrap" data-line="1.3">
                 {getFormula()}
               </text>
             </group>

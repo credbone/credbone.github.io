@@ -541,15 +541,16 @@ const Divider: React.FC = () => {
             <img src={sectionImage} alt="" />
           </picture>
 
-          <group data-space="30" data-width="auto">
+          <group data-space="15" data-width="auto">
             <group
               data-direction="column"
-              data-radius="20"
+              data-radius="35"
               data-background="main-background"
               data-contain=""
               data-align="start"
-              data-space="30"
+              data-space="40"
               data-gap="20"
+              data-backdrop="20-adaptive"
             >
               <group data-width="auto" data-gap="30">
                 <group data-gap="30" data-direction="column-1200">

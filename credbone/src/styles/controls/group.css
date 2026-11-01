@@ -4,6 +4,8 @@
 
 group, [data-type="group"] { display: flex; flex-wrap: wrap; width: 100%; position: relative;max-width: 100%; }
 group[data-type="grid"]{display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));}
+group[data-type="stack"]{display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center;}
+group[data-type="stack"] > * {grid-area: 1 / 1;}
 
 
 

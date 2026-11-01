@@ -70,14 +70,15 @@ const Miscellaneous: React.FC = () => {
               <img src={sampleImage} alt="" />
             </picture>
 
-            <group data-space="30">
+            <group data-space="15">
               <group
                 data-width="auto"
                 data-background="context"
                 data-direction="column"
-                data-space="30"
+                data-space="40"
                 data-gap="10"
-                data-radius="20"
+                data-radius="35"
+                data-backdrop="20-adaptive"
               >
                 <text
                   data-font-type="hero"
@@ -212,14 +213,15 @@ const Miscellaneous: React.FC = () => {
               <img src={sampleImage_2} alt="" />
             </picture>
 
-            <group data-space="30">
+            <group data-space="15">
               <group
                 data-width="auto"
                 data-background="context"
                 data-direction="column"
-                data-space="30"
+                data-space="40"
                 data-gap="10"
-                data-radius="20"
+                data-radius="35"
+                data-backdrop="20-adaptive"
               >
                 <text
                   data-font-type="hero"
@@ -353,14 +355,15 @@ const Miscellaneous: React.FC = () => {
                 <img src={sampleImage_3} alt="" />
               </picture>
 
-              <group data-space="30">
-                <group
-                  data-width="auto"
-                  data-background="context"
-                  data-direction="column"
-                  data-space="30"
-                  data-gap="10"
-                  data-radius="20"
+            <group data-space="15">
+              <group
+                data-width="auto"
+                data-background="context"
+                data-direction="column"
+                data-space="40"
+                data-gap="10"
+                data-radius="35"
+                data-backdrop="20-adaptive"
                 >
                   <text
                     data-font-type="hero"

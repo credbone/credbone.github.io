@@ -189,7 +189,7 @@ const Modal: React.FC = () => {
       <group
         data-height="auto"
         data-max-height="fit"
-        data-radius="40"
+        data-radius="50"
         //       data-border=""
         data-contain=""
       >
@@ -208,23 +208,21 @@ const Modal: React.FC = () => {
             <img src={sampleImage} alt="" />
           </picture>
 
-          <group
-            data-space="30"
-            data-direction="column"
-            data-align="start"
-            data-gap="30"
-          >
-            <group
-              data-space="30"
-              data-index="2"
-              data-radius="15"
-              data-contain=""
-              //   data-backdrop="20-dark"
-              data-background="main-background"
-              data-direction="column"
-              data-width="auto"
+            <group data-space="15" data-direction="column" data-align="start">
+              <group
+                data-width="auto"
+                data-background="context"
+                data-direction="column"
+                data-space="15"
+                data-gap="15"
+                data-radius="35"
+                data-backdrop="20-adaptive"
+                data-align="start"
             >
               <group
+
+ data-space="15"
+
                 data-width="auto"
                 data-gap="20"
                 data-direction="column"
@@ -236,7 +234,8 @@ const Modal: React.FC = () => {
                   open/close logic.
                 </text>
               </group>
-            </group>
+
+{/* <separator data-horizontal="dotted" data-opacity="20"></separator> */}
 
             <group
               data-width="auto"
@@ -252,7 +251,7 @@ const Modal: React.FC = () => {
                 openModal({
                   id: "modal-01",
                   title: "Sample Basic Popup",
-                  fullscreenbutton: true,
+              //    fullscreenbutton: true,
                   customAttributes: {
                     "data-animation-name": "zoom-in",
                     "data-animation-duration": "1.75",
@@ -378,15 +377,20 @@ const Modal: React.FC = () => {
                   ),
                   //  hasHeader: false,
                   //   hasToolbar: false,
-                  //    customAttributes: modalConfig,
+                  //   customAttributes: modalConfig,
                   // spacing: 0,
                 })
               }
             >
-              <text data-weight="700" data-ellipsis="">
+              <text  data-ellipsis="">
                 Open Modal
               </text>
             </group>
+
+
+            </group>
+
+
           </group>
         </group>
       </group>

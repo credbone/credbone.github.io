@@ -377,6 +377,7 @@ text[data-width="auto"]{width: initial;}
 [data-length="25"] { width: 25px; }
 [data-length="30"] { width: 30px; }
 [data-length="35"] { width: 35px; }
+[data-length="36"] { width: 36px; }
 [data-length="40"] { width: 40px; }
 [data-length="45"] { width: 45px; }
 [data-length="50"] { width: 50px; }
@@ -975,7 +976,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-horizontal="40"] {padding-left: 40px; padding-right: 40px;}
 [data-space-horizontal="45"] {padding-left: 45px; padding-right: 45px;}
 [data-space-horizontal="50"] {padding-left: 50px; padding-right: 50px;}
-
+[data-space-horizontal="60"] {padding-left: 60px; padding-right: 60px;}
 
 [data-space-vertical="5"] {padding-top:5px; padding-bottom: 5px;}
 [data-space-vertical="10"] {padding-top:10px; padding-bottom: 10px;}
@@ -1433,12 +1434,13 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
     [data-rotate-y="-180"]{transform: rotateY( -180deg ) ;}
 
     [data-perspective="500"] {perspective: 500px;}
+    [data-perspective="1200"] {perspective: 1200px;}
     [data-transoform-style="preserve-3d"]{transform-style: preserve-3d;}
-
 
 [data-drag="none"]{-webkit-user-drag: none;}
 [data-touch-action="manipulation"]{touch-action: manipulation;}
 [data-touch-action="none"]{touch-action: none;}
+[data-touch-action="pan-y"]{touch-action: pan-y;}
 
 [data-text-transform="capitalize"] { text-transform: capitalize; }
 [data-text-transform="uppercase"] { text-transform: uppercase; }
@@ -1473,7 +1475,6 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-transition-prop="padding"]{transition-property: padding;}
 [data-transition-prop="flex"]{transition-property: flex;}
 [data-transition-prop="opacity"]{transition-property: opacity;}
-
 [data-transition-prop="border-radius"]{transition-property: border-radius;}
 [data-transition-prop="border-radius-margin"]{transition-property: border-radius, margin;}
 [data-transition-prop="r"]{transition-property: r;}

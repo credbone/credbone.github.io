@@ -11,6 +11,7 @@ import {
   IconTableRows,
   IconViewStream,
   IconViewWindow,
+  IconCarousel,
 } from "../components/icon/credIcons";
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
@@ -21,7 +22,8 @@ import { useModal } from "../components/Modal";
 import Marquee from "../components/Marquee";
 import CardModal from "./CardsModal";
 import TemplatePageHeader from "./TemplatePageHeader";
-import { ArrowDown, Copy, Film, Link2, Share, Share2 } from "lucide-react";
+import { ArrowDown, Copy, Film, GalleryHorizontal, Link2, Share, Share2 } from "lucide-react";
+import Carousel3D, { Carousel3DItem } from "../components/Carousel3D";
 import { useFavMap } from "./useFavMap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import MenuItem from "../components/MenuItem";
@@ -32,6 +34,7 @@ interface ContentToolbarProps {
   itemTitle: string;
   color?: boolean;
   imageUrl?: string;
+  animateIntro?: boolean;
 }
 
 const modalConfig = {
@@ -114,6 +117,7 @@ const ContentToolbar: React.FC<ContentToolbarProps> = ({
   itemTitle,
   color,
   imageUrl,
+  animateIntro = true,
 }) => {
   const { addSnackbar } = useSnackbar();
   const { isFav, toggleFav } = useFavMap();
@@ -329,14 +333,18 @@ const menuItems = [
         <group
           data-width="auto"
           data-space="10"
-          data-animation-name="appear-bottom"
-          data-fill-mode="backwards"
-          data-animation-duration="2.75"
+
           data-interactive=""
           data-radius="10"
           data-align="center"
           data-gap="10"
           data-cursor="pointer"
+                  data-over-color="neutral"
+
+// intro
+          data-animation-name={animateIntro ? "appear-bottom" : undefined}
+          data-fill-mode="backwards"
+          data-animation-duration="2.75"
 
         >
           <IconShare size={20} />
@@ -346,17 +354,23 @@ const menuItems = [
       <Tooltip delay={300} content="Like">
         <group
           data-width="auto"
-          data-animation-name="appear-bottom"
-          data-fill-mode="backwards"
-          data-animation-duration="3.75"
+
           data-align="center"
           data-gap="10"
           data-space="10"
           data-interactive=""
+          data-over-color="neutral"
+
           data-radius="10"
           data-cursor="pointer"
           onClick={handleFavClick}
           data-wrap="no"
+
+          // intro
+          data-animation-name={animateIntro ? "appear-bottom" : undefined}
+          data-fill-mode="backwards"
+          data-animation-duration="3.75"
+
         >
           <group
             data-animation-duration="4.75"
@@ -405,6 +419,13 @@ const ViewSwitch = [
     value: "GridView",
     label: "Grid",
     icon: <IconViewStream size={20} />,
+  },
+  {
+    key: "4",
+    name: "ViewSwitch",
+    value: "CarouselView",
+    label: "Rail",
+    icon: <IconCarousel size={20} />,
   },
 ];
 
@@ -811,10 +832,99 @@ const GridTemplate: React.FC<TemplateProps> = ({
   );
 };
 
+const CarouselTemplate: React.FC<TemplateProps> = ({
+  selectedKey,
+  selectedRef,
+  onSelect,
+  onOpenModalRequest,
+}) => {
+  const selectedIndex = ContentData.findIndex((item) => item.key === selectedKey);
 
+  const carouselItems: Carousel3DItem[] = ContentData.map((item) => ({
+    id: item.key,
+    title: item.title,
+    node: ({ centered }) => (
+      <group
+        data-background={centered ? "context" : "main-background"}
+        data-elevation={centered ? "2" : ""}
+     //   data-space="5"
+        data-radius="25"
+        onDoubleClick={() => onOpenModalRequest(item.key)}
+      >
+        <group data-ratio="2:3" data-contain="" data-radius="25" data-react="scale">
+          <picture
+            style={{ backgroundColor: item.dominantDark }}
+        //    data-brightness="adaptive"
+          >
+            <img src={item.image_1x} srcSet={`${item.image} 2x`} alt={item.title} />
+          </picture>
+
+          {item.video && centered && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              data-object-fit="cover"
+              data-height="fit"
+              data-max-length="fit"
+              data-length="fit"
+              src={item.video}
+              data-position="absolute"
+              data-pointer-event="none"
+            ></video>
+          )}
+        </group>
+      </group>
+    ),
+    caption: (
+      <group data-direction="column" data-align="center" data-gap="10">
+        <text data-weight="700" data-text-size="medium" data-font-type="hero" data-wrap="wrap">
+          {item.title}
+        </text>
+        <text data-wrap="wrap" data-line="1.3" data-opacity="40">
+          {item.description}
+        </text>
+        <ContentToolbar
+          count={item.count}
+          itemKey={item.key}
+          itemTitle={item.title}
+          imageUrl={item.image}
+          animateIntro={false}
+        />
+      </group>
+    ),
+  }));
+
+  // The ref sits outside the animated group so the view-switch scroll
+  // measures the final position, not the 50px appear-bottom offset
+  return (
+    <group ref={selectedRef}>
+    <group data-animation-name="appear-bottom" data-fill-mode="backwards" data-contain="" >
+      <Carousel3D
+
+fade={0}
+  desktop={{ spread: 0.15, maxSpread: 300, sideCount: 3 }}
+  mobile={{ spread: 0.35 }}
+  depth={400}
+  tilt={45}
+
+
+        items={carouselItems}
+        initialIndex={Math.max(selectedIndex, 0)}
+        // The centered card is the selected one; onSelect toggles, so skip the current key
+        onChange={(index) => {
+          const key = ContentData[index].key;
+          if (key !== selectedKey) onSelect(key);
+        }}
+      />
+    </group>
+    </group>
+  );
+};
 
 // Define a type for the views
-type ViewTypes = "CardView" | "ListView" | "GridView";
+type ViewTypes = "CardView" | "ListView" | "GridView" | "CarouselView";
 
 // Mapping views to their templates and grid templates
 const ViewTemplates: Record<
@@ -824,6 +934,7 @@ const ViewTemplates: Record<
     gridTemplate: string;
     gridGap: string;
     wrapperProps?: Record<string, string>;
+    standalone?: boolean; // Renders without the grid wrapper
   }
 > = {
   CardView: { component: CardTemplate, gridTemplate: "200", gridGap: "5" },
@@ -837,6 +948,12 @@ const ViewTemplates: Record<
       "data-contain": "",
       "data-border": "",
     },
+  },
+  CarouselView: {
+    component: CarouselTemplate,
+    gridTemplate: "",
+    gridGap: "",
+    standalone: true,
   },
 };
 
@@ -887,6 +1004,7 @@ const Cards: React.FC = () => {
     gridTemplate,
     gridGap,
     wrapperProps,
+    standalone,
   } = ViewTemplates[view];
 
   const [selectedKey, setSelectedKey] = useState<string>("1");
@@ -977,19 +1095,28 @@ const Cards: React.FC = () => {
 
         {/* <separator data-horizontal=""></separator>
 <group data-height="30"></group> */}
-        <group
-          data-type="grid"
-          data-grid-template={gridTemplate}
-          data-gap={gridGap}
-          {...wrapperProps}
-        >
+        {standalone ? (
           <ViewComponent
             selectedKey={selectedKey}
             onSelect={handleSelect}
             selectedRef={selectedRef}
-            onOpenModalRequest={(key) => setSearchParams({ item: key })} // Pass the URL setter here
+            onOpenModalRequest={(key) => setSearchParams({ item: key })}
           />
-        </group>
+        ) : (
+          <group
+            data-type="grid"
+            data-grid-template={gridTemplate}
+            data-gap={gridGap}
+            {...wrapperProps}
+          >
+            <ViewComponent
+              selectedKey={selectedKey}
+              onSelect={handleSelect}
+              selectedRef={selectedRef}
+              onOpenModalRequest={(key) => setSearchParams({ item: key })} // Pass the URL setter here
+            />
+          </group>
+        )}
       </group>
 
       <group data-space="30">

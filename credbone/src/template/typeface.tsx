@@ -79,7 +79,7 @@ const Typeface: React.FC = () => {
       data-type="column"
     >
       <group
-        data-radius="30"
+        data-radius="40"
         data-background="main"
         data-color="main-text"
         data-break="break-word"
@@ -87,7 +87,7 @@ const Typeface: React.FC = () => {
         <group
           data-space="30"
           data-border="none"
-          data-scroll=""
+        //  data-scroll=""
           data-direction="column"
           data-gap="20"
         >

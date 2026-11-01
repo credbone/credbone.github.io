@@ -120,12 +120,12 @@ const CheckboxAndSwitchers: React.FC = () => {
               <img src={sectionImage} alt="" />
             </picture>
 
-            <group data-space="30">
+            <group data-space="15">
               <group
-                data-radius="20"
+                data-radius="35"
                 data-background="main"
-                data-space="30"
-                data-gap="30"
+                data-space="40"
+                data-gap="40"
                 data-color="main-text"
                 //   data-wrap="no"
                 data-contain=""

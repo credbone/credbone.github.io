@@ -58,7 +58,7 @@ const Snackbar: React.FC = () => {
 
       <group>
         <picture
-          data-radius="40"
+          data-radius="50"
           data-contain=""
           data-brightness="adaptive"
           data-background="grey-light"
@@ -67,28 +67,28 @@ const Snackbar: React.FC = () => {
           <img src={sectionImage} alt="" />
         </picture>
 
-        <group data-space="30" data-width="auto" data-direction="column" data-align="start" data-gap="30">
+        <group data-space="15" data-width="auto" data-direction="column" data-align="start" data-gap="15">
           <group
             data-direction="column"
-            data-radius="15"
+            data-radius="35"
             data-background="main-background"
             data-contain=""
             data-align="start"
-            data-space="30"
+            data-space="15"
             data-gap="20"
+            data-backdrop="20-adaptive"
           >
 
 
-            <group>
+            <group data-space="15">
               <text data-wrap="wrap" data-line="1.5" data-max-length="300">
                 Click to view a sample snackbar. The default duration is 3000
                 milliseconds.
               </text>
             </group>
-          </group>
 
 
-<group
+  <group
 
 data-contain=""
               data-width="auto"
@@ -106,6 +106,13 @@ data-contain=""
                 Show Snackbar
               </text>
             </group>
+
+
+
+          </group>
+
+
+
 
 
         </group>

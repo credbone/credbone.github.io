@@ -522,50 +522,19 @@ data-animation-name="appear-bottom" data-fill-mode="backwards" data-animation-du
           <img src={sampleImage} alt="" />
         </picture>
 
-        <group data-space="30" data-gap="10">
-          {/* <group
-            data-space="30"
-            data-width="auto"
-           // data-align="center"
-            data-justify="center"
-            data-radius="15"
-            data-backdrop="20"
-            data-color="white"
-           
-            data-direction="column"
-          >
-            <group    data-text-size="36" data-weight="300">
-            <text data-contain=""  data-line="1">
-               <Count
-                
-                from={11}
-                to={23}
-                duration={1700}
-              ></Count></text>
-            <text  data-line="1">°</text>
-            </group>
-
-            <text
-              data-text-size="large"
-              data-weight="700"
-              data-wrap="preline"
-              data-ellipsis=""
-            >
-           {getGreeting()}
-            </text>
-          </group> */}
-
-          <group
-            data-space="30"
-            data-width="auto"
-            data-direction="column"
-            data-radius="20"
-            data-background="context"
-            //data-color="main-text"
+            <group data-space="15">
+              <group
+                data-width="auto"
+                data-background="context"
+                data-direction="column"
+                data-space="40"
+                data-gap="10"
+                data-radius="35"
+                data-backdrop="20-adaptive"
           >
             <text
               data-wrap="wrap"
-              data-max-length="200"
+              data-max-length="240"
               data-line="1.5"
               data-weight="600"
             >
