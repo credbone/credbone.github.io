@@ -8,11 +8,6 @@ import { useNavContext } from "../components/NavProvider";
 import { SvgHamburger, SvgPlus } from "./svg";
 import {
   ArrowLeft,
-  Bolt,
-  BookOpen,
-  Box,
-  Grip,
-  House,
   PencilRuler,
   Search,
 } from "lucide-react";
@@ -25,6 +20,7 @@ import Popover from "./popover";
 import { links } from "../pages/tools/toolData";
 import { ModalControls, openSearchModal } from "../pages/search/Searchshortcutlistener";
 import { useModal } from "./Modal";
+import { IconBookOpen, IconCube, IconGear, IconHomeAlternate } from "./icon/credIcons";
 
 const isApple = isMacOs || isIOS;
 
@@ -33,10 +29,10 @@ const isApple = isMacOs || isIOS;
 
 
 const navItems = [
-  { to: "", icon: <House size={20} />, label: "Home", type: "link" },
+  { to: "", icon:   <IconHomeAlternate size={20}/>, label: "Home", type: "link" },
   {
     to: "/Components",
-    icon: <Box size={20} />,
+    icon:  <IconCube size={20} />,
     label: "Components",
     vertical: "true",
     adaptive: "desktop",
@@ -44,7 +40,7 @@ const navItems = [
   },
   {
     to: "/Components/Typography",
-    icon: <Box size={20} />,
+    icon: <IconCube size={20} />,
     label: "Components",
     adaptive: "mobile",
     type: "toggle",
@@ -56,11 +52,11 @@ const navItems = [
     label: "Tools & Resources",
     type: "link",
   },
-  { to: "/About", icon: <BookOpen size={20} />, label: "About", type: "link" },
+  { to: "/About", icon: <IconBookOpen size={20} />, label: "About", type: "link" },
 
   {
     to: "/Settings",
-    icon: <Bolt size={20} />,
+    icon: <IconGear size={20} />,
     label: "Settings",
     type: "link",
   },
@@ -148,7 +144,8 @@ const Navigation: React.FC = () => {
                 data-align="center"
                 data-justify="center"
               >
-                <House size={20} />
+                {/* <House size={20} /> */}
+                <IconHomeAlternate size={20}/>
               </group>
               {/* <text data-name="dinamic-text" data-weight="600" data-space-horizontal="5">Home</text> */}
             </NavLink>

@@ -485,6 +485,7 @@ const resetValues = () => {
                             data-height="30"
                             data-align="center"
                             data-justify="center"
+                            data-interact=""
                           >
                             <icon.Component />
                           </group>

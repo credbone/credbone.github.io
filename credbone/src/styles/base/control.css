@@ -1228,14 +1228,13 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 
-
+/* [data-interactive]:active [data-name="cred-icon"] */
 
 [data-interactive=""]:active text,
 [data-interactive=""]:active dot,
 [data-interactive=""]:active icon,
 [data-interactive]:active [data-type="interact"],
-[data-interactive]:active [data-interact=""],
-[data-interactive]:active [data-name="cred-icon"]
+[data-interactive]:active [data-interact=""]
 
 {transform: translateY(1px);}
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
 import { Moon, MoonStar, Sun, SunMoon } from "lucide-react";
+import { IconSunAlternate } from "./icon/credIcons";
 
 const ThemeIcon = () => {
   const { themeMode } = useTheme();
@@ -23,7 +24,7 @@ const ThemeIcon = () => {
   let icon;
   switch (themeMode) {
     case "light":
-      icon = <Sun size={20}/>;
+      icon = <IconSunAlternate size={20}/>;
       break;
     case "dark":
       icon = <Moon size={20}/>;

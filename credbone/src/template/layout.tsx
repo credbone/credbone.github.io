@@ -98,8 +98,8 @@ const Layout: React.FC = () => {
               >
                 <group
                   data-align="center"
-                  data-gap="15"
-                  data-space="15"
+                  data-gap="10"
+                  data-space="5"
                   data-wrap="no"
                 >
                   <group
@@ -107,12 +107,12 @@ const Layout: React.FC = () => {
                     //data-min-length="80"
                     data-contain=""
                   >
-                    <group data-space="10" data-width="auto">
+                    <group data-space="15" data-width="auto" data-contain="">
                       <text data-ellipsis="">Guides</text>
                     </group>
                   </group>
 
-                  <separator data-vertical=""></separator>
+                  {/* <separator data-vertical=""></separator> */}
 
                   <group
                     data-fit="1"
@@ -129,10 +129,10 @@ const Layout: React.FC = () => {
                       data-width="auto"
                       data-interactive=""
                       data-over-color="neutral"
-                      data-radius="10"
+                      data-radius="15"
                       data-cursor="pointer"
-                      data-space-vertical="10"
-                      data-space-horizontal="15"
+                      data-space-vertical="15"
+                      data-space-horizontal="25"
                       data-contain=""
                     >
                       <text data-ellipsis="">
@@ -147,10 +147,9 @@ const Layout: React.FC = () => {
                         data-width="auto"
                         data-interactive=""
                         data-over-color="neutral"
-                        data-radius="10"
+                        data-radius="15"
                         data-cursor="pointer"
-                        data-space-vertical="10"
-                        data-space-horizontal="15"
+                        data-space="15"
                         data-contain=""
                         data-animation-name="appear-bottom"
                         data-fill-mode="backwards"
@@ -354,18 +353,20 @@ data-elevation="2" data-background="context" data-radius="20"
 </group> */}
 
         <group
-          data-radius="20"
+          data-radius="30"
           data-border=""
           data-contain=""
           data-space={gap}
           data-type="grid"
           data-grid-template={template}
           data-gap={gap}
+          data-elevation="2"
+          data-index="3"
         >
           {Array.from({ length: count }).map((_, index) => (
             <group
               key={index}
-              data-radius={20 - gap}
+              data-radius={30 - gap}
               data-ratio="1:1"
               data-background="adaptive-gray"
               data-align="center"
