@@ -124,7 +124,7 @@ const DemoBlock: React.FC<{
 };
 
 const QuickDemos: React.FC = () => {
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { control, watch } = useForm<{ view: DemoView }>({
     defaultValues: { view: "grid" },
   });
@@ -156,16 +156,16 @@ const QuickDemos: React.FC = () => {
                 data-contain=""
                 data-shrink="initial"
               >
-                <SimplePaint />
+                <SimplePaint onExit={() => closeModal("paint-modal")} />
               </group>
             ),
-            hasHeader: true,
-
-            fullscreenbutton: !isMobile,
+            hasHeader: false,
             fullscreen: isMobile,
-
             hasToolbar: false,
+            // Exit button only: a stray backdrop click would lose the drawing
+            dimClose: false,
             customAttributes: {
+              "data-radius": "40",
               "data-background": "main-background",
               "data-animation-name": "zoom-in-9",
               "data-animation-duration": "2.75",

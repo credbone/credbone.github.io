@@ -99,3 +99,12 @@ To line ticks up with a slider, inset the tick row by half the handle width so t
 8. **Legacy styling.** The CSS targets `[data-name="range-slider…"]` selectors, which the house rules don't allow for new code. The block also declares `position` twice, and has commented-out rules and an empty `@media` block. The `edgeGap` comment mentions a `Math.abs` the code doesn't use.
 
 A likely fix for 1, 2 and 3 together: switch to pointer events with pointer capture (or listen for release on `window`), keep the callbacks in refs, and size the thumb from `handlerWidth` through a CSS variable set on the slider.
+
+## TODO
+
+1. **Haptic tick on snap.** Add a `vibrate?: boolean` prop (default `true`) that fires one very short pulse each time the value snaps to a new step while dragging.
+   - In `handleChange`, pulse only when the new value differs from the last one (kept in a ref), so moving within a step does nothing.
+   - Use `navigator.vibrate?.(5)`, the same short tick as `navigation.tsx`. It does nothing on iOS Safari and desktop.
+   - Keep at least 30ms between pulses (last pulse time kept in a ref, read with `performance.now()`), so a fast sweep across a long range ticks quickly instead of buzzing nonstop. Refs only, no extra state or re-renders.
+   - Pulse only while `isDragging`, so keyboard arrows and programmatic value changes stay silent. Known issue 2 (stuck drag) can let a keyboard change pulse after a release outside the slider; the pointer-events fix covers this too.
+   - Add the prop to the Props table when it's done.

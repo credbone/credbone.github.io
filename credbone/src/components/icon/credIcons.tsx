@@ -538,6 +538,79 @@ export const IconSunAlternate: React.FC<IconProps> = ({
   );
 };
 
+export const IconBrush: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path d="m16.7 16.77.68-.68c1.34-1.34 2-2 2-2.83s-.66-1.5-2-2.83l-3.47-3.47c-1.33-1.34-2-2-2.83-2s-1.5.66-2.83 2l-.68.68"></path>
+        <path d="M8.53 6.69 2.2 13a2.01 2.01 0 0 0 1.66 3.42l.25-.03a1.63 1.63 0 0 1 1.8 1.83c-.1.75.16 1.5.7 2.04l.52.52c.6.6.91.91 1.22 1.1a3 3 0 0 0 3.1 0c.32-.19.62-.5 1.23-1.1l4.96-4.97"></path>
+        <path d="m14.02 7.07 4.3-4.31c.2-.2.3-.3.4-.38a2 2 0 0 1 2.47 0c.1.08.2.18.4.38s.3.3.37.39a2 2 0 0 1 0 2.47c-.08.1-.18.2-.38.4l-4.3 4.3"></path>
+        <path d="m8 8.07 8.27 8.27"></path>
+      </g>
+    </Icon>
+  );
+};
+
+export const IconMarker: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path d="m22.84 11.72-5 5c-.26.26-.39.39-.53.5q-.56.45-1.27.6c-.17.03-.35.05-.72.08l-.87.07c-.38.04-.75.2-1.02.48-.65.65-1.68.65-2.33 0l-4.62-4.62a1.6 1.6 0 0 1 0-2.25c.3-.3.46-.71.46-1.14v-1.4a3.2 3.2 0 0 1 1.1-2.24l4.82-4.82"></path>
+        <path d="m6.39 13.92-2.87 3.23c-1.27 1.43-1.9 2.15-1.64 2.74.27.59 1.23.59 3.14.59h2.36c.31 0 .47 0 .61-.05s.28-.13.53-.31l2.39-1.65"></path>
+        <path d="m7.3 8.07 9.44 9.44"></path>
+      </g>
+    </Icon>
+  );
+};
+
+export const IconAdd: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon fill={fill} {...restProps}>
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path
+         d="M14 2.27V6.4c0 .56 0 .84.109 1.054a1 1 0 0 0 .437.437C14.76 8 15.04 8 15.6 8h4.13M20 9.988V17.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C17.72 22 16.88 22 15.2 22H8.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C4 19.72 4 18.88 4 17.2V6.8c0-1.68 0-2.52.327-3.162a3 3 0 0 1 1.311-1.311C6.28 2 7.12 2 8.8 2h3.212c.733 0 1.1 0 1.446.083.306.073.598.195.867.36.303.185.562.444 1.08.963l3.19 3.188c.518.519.777.778.963 1.081a3 3 0 0 1 .36.867c.082.346.082.712.082 1.446"
+  
+         />
+      </g>
+    </Icon>
+  );
+};
+
+
+
+
+
+
 // export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
 //   const id = useId();
 //   return (

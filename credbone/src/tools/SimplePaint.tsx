@@ -7,11 +7,22 @@ import React, {
 } from "react";
 import Tooltip from "../components/tooltip";
 import Popover from "../components/popover";
+import { isMobile } from "react-device-detect";
+import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Scroll from "../components/scroll";
 import Ripple from "../components/Ripple";
 import CustomSlider from "../components/inputs/slider";
-import { Brush, Highlighter, Pencil, PenIcon, PenTool } from "lucide-react";
-import { getStroke } from "perfect-freehand";
+import {
+  Brush,
+  Feather,
+  Highlighter,
+  Pencil,
+  PenIcon,
+  PenTool,
+  X,
+} from "lucide-react";
+import { getStroke, getStrokePoints } from "perfect-freehand";
+import { IconAdd, IconBrush, IconMarker } from "../components/icon/credIcons";
 
 /** Turn a perfect-freehand outline into a smooth closed SVG path. */
 const getSvgPathFromStroke = (points: number[][]) => {
@@ -45,20 +56,40 @@ const colors = [
   { name: "Cool Breeze", value: "#84CEC0" },
 ];
 
-type BrushType = "brush" | "marker" | "calligraphy";
+/** Lighten (amount > 0) or darken (amount < 0) a #rrggbb color by 0..1. */
+const shadeHex = (hex: string, amount: number) => {
+  const n = parseInt(hex.slice(1, 7), 16);
+  return (
+    "#" +
+    [n >> 16, (n >> 8) & 255, n & 255]
+      .map((c) =>
+        Math.round(amount > 0 ? c + (255 - c) * amount : c * (1 + amount)),
+      )
+      .map((c) => c.toString(16).padStart(2, "0"))
+      .join("")
+  );
+};
+
+type BrushType = "brush" | "marker" | "calligraphy" | "oil";
 
 const brushTypeLabels: { type: BrushType; label: string; icon: ReactNode }[] = [
   { type: "brush", icon: <Pencil size={20} />, label: "Brush" },
-  { type: "marker", icon: <Highlighter size={20} />, label: "Marker" },
-  { type: "calligraphy", icon: <PenTool size={20} />, label: "Ink" },
+  { type: "marker", icon: <IconMarker size={20} />, label: "Marker" },
+  { type: "calligraphy", icon: <Feather size={20} />, label: "Ink" },
+  { type: "oil", icon: <IconBrush size={20} />, label: "Oil" },
 ];
 
-const SimplePaint: React.FC = () => {
+interface SimplePaintProps {
+  /** Shows an Exit button in the top bar, e.g. to close the hosting modal. */
+  onExit?: () => void;
+}
+
+const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
+  const { addSnackbar } = useSnackbar();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  // Live-stroke layer for marker and ink, committed to canvasRef on release
+  // Live-stroke layer for all tools, committed to canvasRef on release
   const overlayRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const appRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const tempCanvasRef = useRef<HTMLCanvasElement | null>(
     document.createElement("canvas"),
@@ -67,17 +98,24 @@ const SimplePaint: React.FC = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState("#F5745E");
   const [brushSize, setBrushSize] = useState(16);
-  const [brushType, setBrushType] = useState<BrushType>("brush");
+  const [brushType, setBrushType] = useState<BrushType>("calligraphy");
 
   const [width, setWidth] = useState(200);
-  const [height, setHeight] = useState(200);
+  const [height, setHeight] = useState(300);
   const [isResizing, setIsResizing] = useState(false);
-
-  // Smooth drawing: rolling buffer of recent points
-  const pointsRef = useRef<{ x: number; y: number }[]>([]);
 
   const [isBrushOpen, setIsBrushOpen] = useState(false);
   const [isColorsOpen, setIsColorsOpen] = useState(false);
+  // Mobile tool | size picker
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isSizeOpen, setIsSizeOpen] = useState(false);
+
+  const closePickers = () => {
+    setIsBrushOpen(false);
+    setIsColorsOpen(false);
+    setIsToolsOpen(false);
+    setIsSizeOpen(false);
+  };
 
   // ─── HiDPI ────────────────────────────────────────────────────────────────
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
@@ -119,13 +157,51 @@ const SimplePaint: React.FC = () => {
     startH: number;
     factorX: number;
     factorY: number;
+    maxW: number;
+    maxH: number;
   } | null>(null);
 
-  const startResize = (
-    e: React.PointerEvent,
-    dirX: number,
-    dirY: number,
-  ) => {
+  // The wrapper is the size limit, but it grows with the canvas up to its
+  // own limits (the max-height / max-width fit chain), so its current size
+  // is just the canvas size. To find how far it can grow, oversize the
+  // canvas box to the viewport for one synchronous layout, read the
+  // wrapper, and restore. Nothing paints in between, so there's no flicker.
+  // Forces layout: call it once per gesture, not per move.
+  const getBounds = () => {
+    const wrapper = wrapperRef.current;
+    const container = containerRef.current;
+    if (!wrapper || !container) return { w: Infinity, h: Infinity };
+    const { width: prevW, height: prevH } = container.style;
+    container.style.width = `${window.innerWidth}px`;
+    container.style.height = `${window.innerHeight}px`;
+    const bounds = { w: wrapper.clientWidth, h: wrapper.clientHeight };
+    container.style.width = prevW;
+    container.style.height = prevH;
+    return bounds;
+  };
+
+  // Initial / New size: a fixed default on desktop (the modal is windowed
+  // there), the whole wrapper on mobile (fullscreen). Never past the limit.
+  const DESKTOP_CANVAS = { w: 1200, h: 400 };
+
+  const fitToBounds = () => {
+    const { w, h } = getBounds();
+    if (w === Infinity) return;
+    setWidth(Math.max(40, isMobile ? w : Math.min(DESKTOP_CANVAS.w, w)));
+    setHeight(Math.max(40, isMobile ? h : Math.min(DESKTOP_CANVAS.h, h)));
+  };
+
+  /** Copy the drawing so the size effect can restore it after a resize. */
+  const snapshotCanvas = () => {
+    if (canvasRef.current && tempCanvasRef.current) {
+      tempCanvasRef.current.width = canvasRef.current.width;
+      tempCanvasRef.current.height = canvasRef.current.height;
+      const tempCtx = tempCanvasRef.current.getContext("2d");
+      if (tempCtx) tempCtx.drawImage(canvasRef.current, 0, 0);
+    }
+  };
+
+  const startResize = (e: React.PointerEvent, dirX: number, dirY: number) => {
     e.preventDefault();
     const container = containerRef.current;
     const wrapper = wrapperRef.current;
@@ -136,7 +212,10 @@ const SimplePaint: React.FC = () => {
       const w = wrapper.getBoundingClientRect();
       const centeredX = Math.abs(r.left - w.left - (w.right - r.right)) < 2;
       const centeredY = Math.abs(r.top - w.top - (w.bottom - r.bottom)) < 2;
+      const bounds = getBounds();
       resizeRef.current = {
+        maxW: bounds.w,
+        maxH: bounds.h,
         dirX,
         dirY,
         startX: e.clientX,
@@ -147,18 +226,16 @@ const SimplePaint: React.FC = () => {
         factorY: centeredY ? 2 : 1,
       };
     }
-    if (canvasRef.current && tempCanvasRef.current) {
-      tempCanvasRef.current.width = canvasRef.current.width;
-      tempCanvasRef.current.height = canvasRef.current.height;
-      const tempCtx = tempCanvasRef.current.getContext("2d");
-      if (tempCtx) tempCtx.drawImage(canvasRef.current, 0, 0);
-    }
+    snapshotCanvas();
     setIsResizing(true);
-    setIsBrushOpen(false);
-    setIsColorsOpen(false);
+    closePickers();
   };
 
-  const stopResize = () => setIsResizing(false);
+  const stopResize = () => {
+    // Later size changes (shrink to fit, New) keep the drawing top-left
+    resizeRef.current = null;
+    setIsResizing(false);
+  };
 
   const handleResize = useCallback(
     (e: PointerEvent | TouchEvent) => {
@@ -169,8 +246,8 @@ const SimplePaint: React.FC = () => {
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
       const dx = (clientX - r.startX) * r.dirX * r.factorX;
       const dy = (clientY - r.startY) * r.dirY * r.factorY;
-      setWidth(Math.max(40, Math.round(r.startW + dx)));
-      setHeight(Math.max(40, Math.round(r.startH + dy)));
+      setWidth(Math.min(Math.max(40, Math.round(r.startW + dx)), r.maxW));
+      setHeight(Math.min(Math.max(40, Math.round(r.startH + dy)), r.maxH));
     },
     [isResizing],
   );
@@ -201,11 +278,33 @@ const SimplePaint: React.FC = () => {
   }, [handleResize]);
 
   // ─── ────
+  // Start by filling the wrapper
   useEffect(() => {
-    if (appRef.current) setWidth(appRef.current.offsetWidth - 60);
+    fitToBounds();
   }, []);
+
+  // When the wrapper's limits shrink below the canvas (window resize,
+  // rotation), shrink the canvas with them, keeping the top-left of the
+  // drawing. A wrapper that's still below its limits only changes size when
+  // the canvas does, and then the canvas fits by definition.
+  const sizeRef = useRef({ width, height });
+  sizeRef.current = { width, height };
   useEffect(() => {
-    if (wrapperRef.current) setHeight(wrapperRef.current.offsetHeight);
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const observer = new ResizeObserver(() => {
+      // A drag already clamps itself; skip the probe on every step
+      if (resizeRef.current) return;
+      const { w, h } = getBounds();
+      const { width: cw, height: ch } = sizeRef.current;
+      if (cw <= w && ch <= h) return;
+      resizeRef.current = null;
+      snapshotCanvas();
+      setWidth(Math.max(40, Math.min(cw, w)));
+      setHeight(Math.max(40, Math.min(ch, h)));
+    });
+    observer.observe(wrapper);
+    return () => observer.disconnect();
   }, []);
 
   // ─── Drawing ──────────────────────────────────────────────────────────────
@@ -246,91 +345,6 @@ const SimplePaint: React.FC = () => {
     octx.clearRect(0, 0, overlay.width / dpr, overlay.height / dpr);
   };
 
-  // ── Brush (smooth Catmull-Rom) ─────────────────────────────────────────
-  const drawSmoothCurve = (
-    ctx: CanvasRenderingContext2D,
-    pts: { x: number; y: number }[],
-  ) => {
-    if (pts.length < 2) return;
-    ctx.strokeStyle = brushColor;
-    ctx.lineWidth = brushSize;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = "source-over";
-    ctx.beginPath();
-    if (pts.length === 2) {
-      ctx.moveTo(pts[0].x, pts[0].y);
-      ctx.lineTo(pts[1].x, pts[1].y);
-    } else {
-      ctx.moveTo(pts[0].x, pts[0].y);
-      for (let i = 0; i < pts.length - 1; i++) {
-        const p0 = pts[Math.max(i - 1, 0)];
-        const p1 = pts[i];
-        const p2 = pts[i + 1];
-        const p3 = pts[Math.min(i + 2, pts.length - 1)];
-        const t = 0.5;
-        const cp1x = p1.x + ((p2.x - p0.x) * t) / 3;
-        const cp1y = p1.y + ((p2.y - p0.y) * t) / 3;
-        const cp2x = p2.x - ((p3.x - p1.x) * t) / 3;
-        const cp2y = p2.y - ((p3.y - p1.y) * t) / 3;
-        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
-      }
-    }
-    ctx.stroke();
-  };
-
-  // ── Marker ────────────────────────────────────────────────────────────
-  // The live stroke is drawn opaque onto the overlay canvas, which shows it
-  // at MARKER_OPACITY via CSS. Overlaps within one stroke never darken; on
-  // release it is multiplied onto the main canvas once, so separate strokes
-  // layer like a real highlighter. Each move only draws the newest segment
-  // (quadratic through midpoints), so cost doesn't grow with stroke length.
-  const MARKER_OPACITY = 0.4;
-
-  const drawMarkerSegment = (pts: { x: number; y: number }[]) => {
-    const octx = getOverlayContext();
-    if (!octx) return;
-    octx.strokeStyle = brushColor;
-    octx.fillStyle = brushColor;
-    octx.lineWidth = brushSize;
-    octx.lineCap = "round";
-    octx.lineJoin = "round";
-
-    const n = pts.length;
-    if (n === 1) {
-      octx.beginPath();
-      octx.arc(pts[0].x, pts[0].y, brushSize / 2, 0, Math.PI * 2);
-      octx.fill();
-      return;
-    }
-    const a = pts[n - 2];
-    const b = pts[n - 1];
-    const midAB = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-    octx.beginPath();
-    if (n === 2) {
-      octx.moveTo(a.x, a.y);
-      octx.lineTo(midAB.x, midAB.y);
-    } else {
-      const z = pts[n - 3];
-      octx.moveTo((z.x + a.x) / 2, (z.y + a.y) / 2);
-      octx.quadraticCurveTo(a.x, a.y, midAB.x, midAB.y);
-    }
-    octx.stroke();
-  };
-
-  /** Close the gap between the last midpoint and the final point. */
-  const finishMarkerStroke = (pts: { x: number; y: number }[]) => {
-    const octx = getOverlayContext();
-    if (!octx || pts.length < 2) return;
-    const a = pts[pts.length - 2];
-    const b = pts[pts.length - 1];
-    octx.beginPath();
-    octx.moveTo((a.x + b.x) / 2, (a.y + b.y) / 2);
-    octx.lineTo(b.x, b.y);
-    octx.stroke();
-  };
-
   const commitOverlay = (alpha: number, op: GlobalCompositeOperation) => {
     const canvas = canvasRef.current;
     const overlay = overlayRef.current;
@@ -344,25 +358,33 @@ const SimplePaint: React.FC = () => {
     clearOverlay();
   };
 
-  // ── Ink ───────────────────────────────────────────────────────────────
-  // Outline-based variable-width stroke (perfect-freehand): the input is
-  // streamlined, each point gets a radius from pressure, and the left/right
-  // offsets form one polygon that is filled in a single pass — smooth edges,
-  // tapered ends, no beads at width changes.
+  // ── Stroke pipeline ───────────────────────────────────────────────────
+  // All tools collect samples the same way and draw the live stroke on the
+  // overlay, which is committed once on release. Brush, Marker and Ink
+  // redraw the whole stroke each move as one filled shape (no seams where
+  // segments meet); Oil only adds its new segments. The input is
+  // streamlined, so jitter is smoothed out.
   //
   // Pens report real pressure. Mouse/touch get pressure simulated from
   // speed in px/ms (not px/event), so it feels the same at any input rate.
+  // Only Ink uses pressure; the other tools keep a constant width.
+  const STROKE_STREAMLINE = 0.45;
   const INK_THINNING = 0.7; // how much pressure affects width
   const INK_FAST_SPEED = 1.6; // px/ms at which simulated pressure bottoms out
   const INK_PRESSURE_EMA = 0.2; // pressure reaction speed (higher = more responsive)
   const INK_REST_PRESSURE = 0.6; // pressure at the very start of a stroke
 
-  const inkPointsRef = useRef<number[][]>([]);
-  const inkLastRef = useRef<{ x: number; y: number; t: number; p: number } | null>(null);
+  const strokePointsRef = useRef<number[][]>([]);
+  const strokeLastRef = useRef<{
+    x: number;
+    y: number;
+    t: number;
+    p: number;
+  } | null>(null);
   const isPenRef = useRef(false);
 
-  const addInkSample = (s: Sample) => {
-    const last = inkLastRef.current;
+  const addSample = (s: Sample) => {
+    const last = strokeLastRef.current;
     let p: number;
     if (isPenRef.current) {
       p = s.p;
@@ -376,102 +398,254 @@ const SimplePaint: React.FC = () => {
       const target = 1 - speed;
       p = last.p + (target - last.p) * INK_PRESSURE_EMA;
     }
-    inkLastRef.current = { x: s.x, y: s.y, t: s.t, p };
-    inkPointsRef.current.push([s.x, s.y, p]);
+    strokeLastRef.current = { x: s.x, y: s.y, t: s.t, p };
+    strokePointsRef.current.push([s.x, s.y, p]);
   };
 
-  const drawInkStroke = (last: boolean) => {
+  const fillOverlay = (path: Path2D | string) => {
     const octx = getOverlayContext();
     if (!octx) return;
-    const outline = getStroke(inkPointsRef.current, {
+    clearOverlay();
+    if (!path) return;
+    octx.fillStyle = brushColor;
+    octx.fill(typeof path === "string" ? new Path2D(path) : path);
+  };
+
+  // ── Brush / Ink ───────────────────────────────────────────────────────
+  // Outline-based stroke (perfect-freehand): each point gets a radius, and
+  // the left/right offsets form one polygon. Brush uses no thinning (even
+  // width, round caps); Ink thins with pressure and tapers both ends.
+  const drawOutlineStroke = (last: boolean) => {
+    const ink = brushType === "calligraphy";
+    const outline = getStroke(strokePointsRef.current, {
       size: brushSize,
-      thinning: INK_THINNING,
+      thinning: ink ? INK_THINNING : 0,
       smoothing: 0.6,
-      streamline: 0.45,
+      streamline: STROKE_STREAMLINE,
       simulatePressure: false,
-      start: { taper: brushSize * 2, cap: true },
-      end: { taper: brushSize * 2, cap: true },
+      start: { taper: ink ? brushSize * 2 : 0, cap: true },
+      end: { taper: ink ? brushSize * 2 : 0, cap: true },
       last,
     });
-    clearOverlay();
-    if (!outline.length) return;
-    octx.fillStyle = brushColor;
-    octx.fill(new Path2D(getSvgPathFromStroke(outline)));
+    fillOverlay(getSvgPathFromStroke(outline));
+  };
+
+  // ── Marker ────────────────────────────────────────────────────────────
+  // A chisel nib: a rectangle (brushSize long, MARKER_NIB_THICKNESS thick)
+  // held at MARKER_NIB_ANGLE. The stroke is the nib swept along the
+  // streamlined path: for each pair of points, the convex hull of the two
+  // nib rectangles. Every hull is wound the same way, so nonzero fill
+  // unions them into one seamless shape. Width depends on direction, like
+  // a real highlighter, and the ends come out flat and angled.
+  //
+  // The overlay shows the stroke at MARKER_OPACITY via CSS, so overlaps
+  // within one stroke never darken; on release it is multiplied onto the
+  // main canvas once, so separate strokes layer like a real highlighter.
+  const MARKER_OPACITY = 0.55;
+  const MARKER_NIB_ANGLE = (-40 * Math.PI) / 180;
+  const MARKER_NIB_THICKNESS = 0.3; // fraction of brushSize
+
+  /** Andrew's monotone chain; returns the hull counterclockwise. */
+  const convexHull = (pts: number[][]) => {
+    const sorted = [...pts].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    const cross = (o: number[], a: number[], b: number[]) =>
+      (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const half = (list: number[][]) => {
+      const out: number[][] = [];
+      for (const p of list) {
+        while (
+          out.length >= 2 &&
+          cross(out[out.length - 2], out[out.length - 1], p) <= 0
+        )
+          out.pop();
+        out.push(p);
+      }
+      out.pop();
+      return out;
+    };
+    return [...half(sorted), ...half(sorted.reverse())];
+  };
+
+  const drawMarkerStroke = (last: boolean) => {
+    const pts = getStrokePoints(strokePointsRef.current, {
+      size: brushSize,
+      streamline: STROKE_STREAMLINE,
+      last,
+    }).map((s) => s.point);
+    if (!pts.length) return fillOverlay("");
+
+    const ux = (Math.cos(MARKER_NIB_ANGLE) * brushSize) / 2;
+    const uy = (Math.sin(MARKER_NIB_ANGLE) * brushSize) / 2;
+    const thickness = Math.max(brushSize * MARKER_NIB_THICKNESS, 2) / 2;
+    const vx = -Math.sin(MARKER_NIB_ANGLE) * thickness;
+    const vy = Math.cos(MARKER_NIB_ANGLE) * thickness;
+    const nib = ([x, y]: number[]) => [
+      [x + ux + vx, y + uy + vy],
+      [x + ux - vx, y + uy - vy],
+      [x - ux - vx, y - uy - vy],
+      [x - ux + vx, y - uy + vy],
+    ];
+
+    const path = new Path2D();
+    const addPolygon = (poly: number[][]) => {
+      path.moveTo(poly[0][0], poly[0][1]);
+      for (let i = 1; i < poly.length; i++) path.lineTo(poly[i][0], poly[i][1]);
+      path.closePath();
+    };
+    if (pts.length === 1) addPolygon(convexHull(nib(pts[0])));
+    for (let i = 1; i < pts.length; i++) {
+      addPolygon(convexHull([...nib(pts[i - 1]), ...nib(pts[i])]));
+    }
+    fillOverlay(path);
+  };
+
+  // ── Oil ───────────────────────────────────────────────────────────────
+  // A row of bristles spread across brushSize, each with its own width and
+  // a slightly lighter or darker shade, fixed for the whole stroke so the
+  // streaks stay continuous. The row is held perpendicular to the drawing
+  // direction and eases into new directions, so curves fan out. The row
+  // has no front or back, so angles are compared mod π: doubling back
+  // doesn't spin the brush around.
+  //
+  // Bristles are opaque, so only new segments are drawn each move. The
+  // streamline is causal (each point depends only on earlier ones), which
+  // keeps already-drawn segments valid.
+  const OIL_COLOR_VARIATION = 0.08; // max lighten/darken per bristle
+  const OIL_TURN_EASE = 0.35; // how fast the row follows direction changes
+  const OIL_STREAMLINE_T = 0.15 + (1 - STROKE_STREAMLINE) * 0.85;
+
+  type Bristle = { offset: number; width: number; color: string };
+  const oilRef = useRef<{
+    bristles: Bristle[];
+    next: number; // index of the next raw point to process
+    point: number[]; // last streamlined point
+    angle: number | null; // row angle; null until the first movement
+  } | null>(null);
+
+  const makeBristles = (): Bristle[] => {
+    const count = Math.min(Math.max(Math.round(brushSize / 3), 3), 32);
+    const gap = brushSize / count;
+    return Array.from({ length: count }, (_, i) => ({
+      offset:
+        -brushSize / 2 + gap * (i + 0.5) + (Math.random() - 0.5) * gap * 0.5,
+      width: Math.max(gap * (1 + Math.random() * 0.8), 1),
+      color: shadeHex(
+        brushColor,
+        (Math.random() * 2 - 1) * OIL_COLOR_VARIATION,
+      ),
+    }));
+  };
+
+  const drawOilStroke = (last: boolean) => {
+    const octx = getOverlayContext();
+    const raw = strokePointsRef.current;
+    if (!octx || !raw.length) return;
+    if (!oilRef.current) {
+      clearOverlay();
+      oilRef.current = {
+        bristles: makeBristles(),
+        next: 1,
+        point: raw[0],
+        angle: null,
+      };
+    }
+    const oil = oilRef.current;
+
+    // Each segment: [x0, y0, angle0, x1, y1, angle1]
+    const segments: number[][] = [];
+    const step = (target: number[]) => {
+      const [px, py] = oil.point;
+      const dx = target[0] - px;
+      const dy = target[1] - py;
+      if (dx * dx + dy * dy < 0.25) return;
+      const axis = Math.atan2(dy, dx) + Math.PI / 2;
+      const prev = oil.angle ?? axis;
+      // Shortest turn mod π, in [-π/2, π/2)
+      const diff =
+        ((((axis - prev + Math.PI / 2) % Math.PI) + Math.PI) % Math.PI) -
+        Math.PI / 2;
+      const angle = oil.angle === null ? axis : prev + diff * OIL_TURN_EASE;
+      segments.push([px, py, prev, target[0], target[1], angle]);
+      oil.point = [target[0], target[1]];
+      oil.angle = angle;
+    };
+    for (; oil.next < raw.length; oil.next++) {
+      const q = raw[oil.next];
+      const [px, py] = oil.point;
+      step([
+        px + (q[0] - px) * OIL_STREAMLINE_T,
+        py + (q[1] - py) * OIL_STREAMLINE_T,
+      ]);
+    }
+    // Close the streamline lag so the stroke ends under the pointer
+    if (last) step(raw[raw.length - 1]);
+
+    if (!segments.length) {
+      // A tap: dab the bristles in a horizontal row
+      if (!last || oil.angle !== null) return;
+      const [x, y] = oil.point;
+      for (const b of oil.bristles) {
+        octx.fillStyle = b.color;
+        octx.beginPath();
+        octx.arc(x + b.offset, y, b.width / 2, 0, Math.PI * 2);
+        octx.fill();
+      }
+      return;
+    }
+
+    octx.lineCap = "round";
+    octx.lineJoin = "round";
+    for (const b of oil.bristles) {
+      octx.strokeStyle = b.color;
+      octx.lineWidth = b.width;
+      octx.beginPath();
+      const [x0, y0, a0] = segments[0];
+      octx.moveTo(x0 + Math.cos(a0) * b.offset, y0 + Math.sin(a0) * b.offset);
+      for (const [, , , x1, y1, a1] of segments) {
+        octx.lineTo(x1 + Math.cos(a1) * b.offset, y1 + Math.sin(a1) * b.offset);
+      }
+      octx.stroke();
+    }
+  };
+
+  const drawStroke = (last: boolean) => {
+    if (brushType === "marker") drawMarkerStroke(last);
+    else if (brushType === "oil") drawOilStroke(last);
+    else drawOutlineStroke(last);
   };
 
   // ── Unified start/draw/stop ────────────────────────────────────────────
   const startDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
     const [pt] = getSamples(e);
-    const ctx = getContext();
-    if (!ctx || !pt) return;
+    if (!pt) return;
     e.currentTarget.setPointerCapture(e.pointerId);
 
-    pointsRef.current = [pt];
-
-    if (brushType === "brush") {
-      ctx.fillStyle = brushColor;
-      ctx.globalAlpha = 1;
-      ctx.beginPath();
-      ctx.arc(pt.x, pt.y, brushSize / 2, 0, Math.PI * 2);
-      ctx.fill();
-    } else if (brushType === "marker") {
-      clearOverlay();
-      drawMarkerSegment(pointsRef.current);
-    } else {
-      isPenRef.current = e.pointerType === "pen";
-      inkPointsRef.current = [];
-      inkLastRef.current = null;
-      addInkSample(pt);
-      drawInkStroke(false);
-    }
+    isPenRef.current = e.pointerType === "pen";
+    strokePointsRef.current = [];
+    strokeLastRef.current = null;
+    oilRef.current = null;
+    addSample(pt);
+    drawStroke(false);
 
     setIsDrawing(true);
   };
 
   const draw = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!isDrawing) return;
-    const ctx = getContext();
-    if (!ctx) return;
-    const samples = getSamples(e);
-
-    if (brushType === "brush" || brushType === "marker") {
-      const pts = pointsRef.current;
-      for (const pt of samples) {
-        const last = pts[pts.length - 1];
-        const dx = pt.x - last.x;
-        const dy = pt.y - last.y;
-        if (dx * dx + dy * dy < 1) continue;
-        pts.push(pt);
-        if (brushType === "brush") {
-          drawSmoothCurve(ctx, pts.slice(Math.max(pts.length - 4, 0)));
-        } else {
-          drawMarkerSegment(pts);
-        }
-      }
-    } else {
-      samples.forEach(addInkSample);
-      drawInkStroke(false);
-    }
+    getSamples(e).forEach(addSample);
+    drawStroke(false);
   };
 
   const stopDrawing = () => {
     if (!isDrawing) return;
 
-    if (brushType === "brush") {
-      const ctx = getContext();
-      if (ctx) drawSmoothCurve(ctx, pointsRef.current);
-    } else if (brushType === "marker") {
-      finishMarkerStroke(pointsRef.current);
-      commitOverlay(MARKER_OPACITY, "multiply");
-    } else {
-      drawInkStroke(true);
-      commitOverlay(1, "source-over");
-      inkPointsRef.current = [];
-      inkLastRef.current = null;
-    }
+    drawStroke(true);
+    if (brushType === "marker") commitOverlay(MARKER_OPACITY, "multiply");
+    else commitOverlay(1, "source-over");
+    strokePointsRef.current = [];
+    strokeLastRef.current = null;
 
-    pointsRef.current = [];
     setIsDrawing(false);
   };
 
@@ -489,6 +663,10 @@ const SimplePaint: React.FC = () => {
           tempCanvasRef.current.height,
         );
     }
+    // New also resets the size (see fitToBounds)
+    resizeRef.current = null;
+    fitToBounds();
+    addSnackbar(<text>Canvas cleared</text>, 1500, "paint-clear", true);
   };
 
   // ─── SVG cursor ───────────────────────────────────────────────────────────
@@ -510,336 +688,467 @@ const SimplePaint: React.FC = () => {
     return `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${c} ${c}, crosshair`;
   };
 
+  // Shared by the desktop toolbar and the mobile tool | size picker
+  const renderToolButtons = (onPick?: () => void) =>
+    brushTypeLabels.map(({ type, label, icon }) => (
+      <Tooltip key={type} content={label} delay={300}>
+        <group data-width="auto">
+          <Ripple>
+            <group
+              data-ink-color="neutral"
+              data-over-color="neutral"
+              onClick={() => {
+                setBrushType(type);
+                onPick?.();
+              }}
+              data-cursor="pointer"
+              data-width="auto"
+              data-contain=""
+              data-interactive=""
+              data-radius="30"
+              data-space="15"
+              data-duration="2.25"
+              data-transition-prop="padding"
+
+
+
+              data-space-horizontal={brushType === type ? "20" : ""}
+              data-height="40"
+              data-wrap="no"
+              data-align="center"
+              data-background={brushType === type ? "text" : ""}
+              data-color={brushType === type ? "main-background" : ""}
+            >
+              {icon}
+            </group>
+          </Ripple>
+        </group>
+      </Tooltip>
+    ));
+
+  const sizeSlider = (
+    <group data-direction="column" data-length="300" data-space="15">
+      <group data-gap="15" data-wrap="no">
+        <CustomSlider
+          edgeGap={30}
+          start={1}
+          end={48}
+          value={brushSize}
+          onValueChange={(value) => setBrushSize(value)}
+          handlerProps={{ "data-animation-name": "slider-smooth" }}
+          trackLeftProps={{
+            "data-margin-right": "0",
+            "data-height": "1",
+          }}
+          trackRightProps={{
+            "data-opacity": "10",
+            "data-margin-left": "5",
+            "data-height": "1",
+          }}
+        />
+      </group>
+    </group>
+  );
+
   return (
     <group
       data-direction="column"
       data-wrap="no"
-      ref={appRef}
       data-max-height="fit"
       data-height="fit"
       data-contain=""
+      data-background="adaptive-gray"
     >
       <group
-        data-scroll=""
-        data-background="adaptive-gray"
-        data-max-height="fit"
-        data-height="fit"
-        data-space="30"
-        data-width="auto"
-        data-wrap="no"
-        data-gap="30"
-        data-direction="column"
+        data-space="25"
+        data-space-bottom="0"
+         data-wrap="no"
+        // data-sticky=""
+        // data-bottom="0"
+        data-left="0"
+        // data-space="30"
+        //  data-space-bottom="0"
+        data-align="center"
+        data-gap="10"
+        // data-background="adaptive-gray"
+        //  data-wrap="no"
       >
-        <group
-          data-sticky=""
-          data-top="0"
-          data-left="0"
-          // data-space="30"
-          //  data-space-bottom="0"
-          data-align="start"
-          data-gap="10"
-          // data-background="adaptive-gray"
-          //  data-wrap="no"
-        >
-          <Ripple>
-            <group
-              data-backdrop="20-contrast"
-              data-ink-color="neutral"
-              data-over-color="neutral"
-              onClick={clearCanvas}
-              data-cursor="pointer"
-              data-radius="30"
-              data-width="auto"
-              data-contain=""
-              data-interactive=""
-              data-height="50"
-              data-space-vertical="15"
-              data-space-horizontal="25"
-              data-wrap="no"
-              data-align="center"
-              data-gap="15"
-              data-background="adaptive-gray"
-            >
-              <text data-weight="700" data-length="autofit">
-                New
-              </text>
-            </group>
-          </Ripple>
-
-          {/* ── Brush type selector ── */}
+        {/* TODO: confirm (or offer undo) before clearing a drawing */}
+        <Ripple>
           <group
-            data-background="adaptive-gray"
+            //    data-backdrop="20-contrast"
+            data-ink-color="neutral"
+            data-over-color="neutral"
+            onClick={clearCanvas}
+            data-cursor="pointer"
             data-radius="30"
-            data-space="5"
-            data-wrap="no"
             data-width="auto"
             data-contain=""
-            data-backdrop="20-contrast"
+            data-interactive=""
+            data-height="50"
+            data-wrap="no"
+            data-align="center"
+            data-gap="15"
+            data-background="adaptive-gray"
+            //   data-adaptive="desktop"
           >
-            {brushTypeLabels.map(({ type, label, icon }) => (
-              <Ripple key={type}>
-                <group
-                  data-ink-color="neutral"
-                  data-over-color="neutral"
-                  onClick={() => setBrushType(type)}
-                  data-cursor="pointer"
-                  data-width="auto"
-                  data-contain=""
-                  data-interactive=""
-                  data-radius="30"
-                  data-space="15"
-                  data-duration="2.25"
-                  data-transition-prop="padding"
-                  data-space-horizontal={brushType === type ? "20" : ""}
-                  data-height="40"
-                  data-wrap="no"
-                  data-align="center"
-                  data-background={brushType === type ? "text" : ""}
-                  data-color={brushType === type ? "main-background" : ""}
-                >
-                  {/* <text data-weight={brushType === type ? "700" : "400"} data-length="autofit">{label}</text> */}
-                  {icon}
-                </group>
-              </Ripple>
-            ))}
+            <group data-width="auto" data-wrap="no">
+              <group data-adaptive="desktop" data-space-horizontal="25">
+                <text data-weight="700" data-length="autofit">
+                  New
+                </text>
+              </group>
+              <group data-adaptive="mobile" data-space="15" data-interact="">
+                <IconAdd size={20} />
+              </group>
+            </group>
           </group>
+        </Ripple>
 
-          {/* ── Brush size ── */}
+        {/* ── Brush type selector ── */}
+        <group
+          data-shrink="no"
+          data-adaptive="desktop"
+          data-background="adaptive-gray"
+          data-radius="30"
+          data-space="5"
+          data-wrap="no"
+          data-width="auto"
+          data-contain=""
+          //    data-backdrop="20-contrast"
+        >
+          {renderToolButtons()}
+        </group>
+
+        {/* ── Brush size ── */}
+        <group data-adaptive="desktop" data-width="auto">
           <Popover
-          
             open={isBrushOpen}
             onOpenChange={setIsBrushOpen}
             data-space="0"
             data-radius="30"
-            content={
-              <group
-                data-direction="column"
-                data-length="300"
-                data-space="15"
-                
-
-                // onClick={closePopover}
-              >
-                {/* <group data-ratio="1:1"  data-align="center" data-justify="center" data-direction="column">
-
-              </group> */}
-                <group data-gap="15" data-wrap="no">
-                  <CustomSlider
-                    edgeGap={30}
-                    start={1}
-                    end={48}
-                    value={brushSize}
-                    onValueChange={(value) => setBrushSize(value)}
-                    handlerProps={{ "data-animation-name": "slider-smooth" }}
-                    trackLeftProps={{
-                      "data-margin-right": "0",
-                      "data-height": "1",
-                    }}
-                    trackRightProps={{
-                      "data-opacity": "10",
-                      "data-margin-left": "5",
-                      "data-height": "1",
-                    }}
-                  />
-                  {/* <separator data-vertical></separator>
-
-                <group data-ratio="1:1" style={{ height: brushSize }} data-radius="full" data-width="auto" data-background="text"></group> */}
-                </group>
-              </group>
-            }
+            content={sizeSlider}
           >
-<group  data-width="auto">
-  <Ripple>
+            <group data-width="auto">
+              <Ripple>
                 <group
-              data-cursor="pointer"
-              data-radius="30"
-                           data-ink-color="neutral"
-              data-over-color="neutral"
-              data-background="adaptive-gray"
-              data-contain=""
-              data-interactive=""
-              data-space-horizontal="20"
-              data-space-vertical="15"
-              data-wrap="no"
-              data-align="center"
-              data-gap="15"
-              data-backdrop="20-contrast"
-            >
-              <text data-opacity="50">Brush</text>
-              <separator data-vertical="" data-height="20"></separator>
-              {/* <group data-length="20" data-align="center" data-direction="column" data-interact="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r={brushSize} data-duration=".225" fill="currentColor" />
-              </svg>
-
-             
-            </group> */}
-
-              <group
-                data-length="20"
-                data-align="center"
-                data-direction="column"
-              >
-                <text data-weight="700">{brushSize}</text>
-              </group>
-            </group>
-  </Ripple>
-</group>
-          </Popover>
-
-          {/* ── Color picker ── */}
-          <group
-            data-contain=""
-            data-gap="10"
-            data-shrink="no"
-            data-width="auto"
-            data-background="adaptive-gray"
-            data-radius="30"
-            data-adaptive="desktop"
-            data-backdrop="20-contrast"
-          >
-            <group data-snap-button="10">
-              <Scroll>
-                <group data-wrap="no" data-space="5">
-                  {colors.map((color, index) => (
-                    <group key={index} data-height="40" data-length="40">
-                      <Tooltip content={color.name} delay={300}>
-                        <group
-                          data-animation-name="appear-left"
-                          data-over-color="neutral"
-                          data-fill-mode="backwards"
-                          data-animation-duration={2 + index * 0.25}
-                          data-radius="30"
-                          data-align="center"
-                          data-justify="center"
-                          data-direction="column"
-                          data-cursor="pointer"
-                          data-interactive=""
-                          data-transition-prop="padding"
-                          data-duration=".125"
-                          data-background={
-                            brushColor === color.value ? "context" : ""
-                          }
-                          data-index={brushColor === color.value ? "1" : ""}
-                          data-space={brushColor === color.value ? "15" : "10"}
-                          onClick={() => setBrushColor(color.value)}
-                        >
-                          <group
-                            data-border="outline-soft"
-                            data-interact=""
-                            data-radius="30"
-                            data-height="fit"
-                            style={{ backgroundColor: color.value }}
-                          ></group>
-                        </group>
-                      </Tooltip>
-                    </group>
-                  ))}
-                </group>
-              </Scroll>
-            </group>
-          </group>
-
-          {/* ── Color picker mobile ── */}
-          <group data-adaptive="mobile" data-width="auto">
-            <Popover
-              open={isColorsOpen}
-              onOpenChange={setIsColorsOpen}
-              data-space="0"
-              data-radius="30"
-             //   data-backdrop="20-adaptive"
-              content={
-                <group
-                  data-direction="column"
-                  data-length="400"
-                  data-snap-button="15"
-                >
-                  <Scroll
-                    wheelEnabled
-                    buttonProps={{ "data-radius": "30", "data-contain": "" }}
-                  >
-                    <group data-wrap="no" data-space="10">
-                      {colors.map((color, index) => (
-                        <group key={index} data-height="40" data-length="40">
-                          <Tooltip content={color.name} delay={300}>
-                            <group
-                              data-animation-name="appear-left"
-                              data-over-color="neutral"
-                              data-fill-mode="backwards"
-                              data-animation-duration={2 + index * 0.25}
-                              data-radius="30"
-                              data-align="center"
-                              data-justify="center"
-                              data-direction="column"
-                              data-cursor="pointer"
-                              data-interactive=""
-                              data-transition-prop="padding"
-                              data-duration=".125"
-                              data-background={
-                                brushColor === color.value ? "context" : ""
-                              }
-                              data-index={brushColor === color.value ? "1" : ""}
-                              data-space={
-                                brushColor === color.value ? "15" : "10"
-                              }
-                              onClick={() => setBrushColor(color.value)}
-
-                              // onClick={closePopover}
-                            >
-                              <group
-                                data-border="outline-soft"
-                                data-interact=""
-                                data-radius="30"
-                                data-height="fit"
-                                style={{ backgroundColor: color.value }}
-                              ></group>
-                            </group>
-                          </Tooltip>
-                        </group>
-                      ))}
-                    </group>
-                  </Scroll>
-                </group>
-              }
-            >
-<group  data-width="auto">
-  <Ripple>
-                  <group
-                              data-ink-color="neutral"
-              data-over-color="neutral"
-                data-cursor="pointer"
-                data-radius="30"
-               
-                data-background="adaptive-gray"
-                data-contain=""
-                data-interactive=""
-                data-space-horizontal="15"
-                data-space-vertical="15"
-                data-wrap="no"
-                data-align="center"
-                data-gap="15"
-                data-backdrop="20-contrast"
-              >
-                <text data-space-left="5" data-opacity="50">
-                  Color
-                </text>
-                <separator data-vertical="" data-height="20"></separator>
-
-                <group
-                  data-height="20"
-                  data-border="outline-soft"
-                  data-length="20"
-                  data-interact=""
+                  data-cursor="pointer"
                   data-radius="30"
-                  style={{ backgroundColor: brushColor }}
-                ></group>
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  data-background="adaptive-gray"
+                  data-contain=""
+                  data-interactive=""
+                  data-space-horizontal="20"
+                  data-space-vertical="15"
+                  data-wrap="no"
+                  data-align="center"
+                  data-gap="15"
+                  //   data-backdrop="20-contrast"
+                >
+                  <text data-opacity="50">Brush</text>
+                  <separator data-vertical="" data-height="20"></separator>
+
+                  <group
+                    data-length="20"
+                    data-align="center"
+                    data-direction="column"
+                  >
+                    <text data-weight="700">{brushSize}</text>
+                  </group>
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
+        </group>
+
+        {/* ── Color picker ── */}
+        <group
+          data-contain=""
+          data-gap="10"
+          //    data-shrink="no"
+          data-width="auto"
+          data-background="adaptive-gray"
+          data-radius="30"
+          data-adaptive="desktop-1200"
+          //       data-backdrop="20-contrast"
+        >
+          <group data-wrap="no" data-space="5">
+            {colors.map((color, index) => (
+              <group key={index} data-height="40" data-length="40">
+                <Tooltip content={color.name} delay={300}>
+                  <group
+                    data-animation-name="appear-left"
+                    data-over-color="neutral"
+                    data-fill-mode="backwards"
+                    data-animation-duration={2 + index * 0.25}
+                    data-radius="30"
+                    data-align="center"
+                    data-justify="center"
+                    data-direction="column"
+                    data-cursor="pointer"
+                    data-interactive=""
+                    data-transition-prop="padding"
+                    data-duration=".125"
+                    data-background={
+                      brushColor === color.value ? "context" : ""
+                    }
+                    data-index={brushColor === color.value ? "1" : ""}
+                    data-space={brushColor === color.value ? "15" : "10"}
+                    onClick={() => setBrushColor(color.value)}
+                  >
+                    <group
+                      data-border="outline-soft"
+                      data-interact=""
+                      data-radius="30"
+                      data-height="fit"
+                      style={{ backgroundColor: color.value }}
+                    ></group>
+                  </group>
+                </Tooltip>
               </group>
-  </Ripple>
-</group>
-            </Popover>
+            ))}
           </group>
         </group>
 
+        {/* ── Tool | size picker mobile ── */}
+        <group
+          data-adaptive="mobile"
+          data-width="auto"
+          data-background="adaptive-gray"
+          data-radius="30"
+          data-contain=""
+          data-wrap="no"
+          data-align="center"
+          //      data-backdrop="20-contrast"
+          //  data-space="5"
+
+       //   data-clip="toolbar-pill"
+        >
+          <Popover
+            open={isToolsOpen}
+            onOpenChange={setIsToolsOpen}
+            data-space="0"
+            data-radius="30"
+            content={
+              <group data-space="10" data-wrap="no" data-width="auto">
+                {renderToolButtons(() => setIsToolsOpen(false))}
+              </group>
+            }
+          >
+            <group data-width="auto">
+              <Ripple>
+                <group
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  data-contain=""
+                  data-interactive=""
+                  //data-height="40"
+                  data-space="15"
+                  //  data-space-horizontal="20"
+                  data-radius="30"
+                  data-wrap="no"
+                  data-align="center"
+                >
+                  {brushTypeLabels.find((t) => t.type === brushType)?.icon}
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
+
+          {/* <group data-length="10"></group> */}
+
+          <separator data-vertical="" data-height="20"></separator>
+
+          <Popover
+            open={isSizeOpen}
+            onOpenChange={setIsSizeOpen}
+            data-space="0"
+            data-radius="30"
+            content={sizeSlider}
+          >
+            <group data-width="auto">
+              <Ripple>
+                <group
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  data-contain=""
+                  data-interactive=""
+                  data-height="50"
+                  data-space="15"
+                  //  data-space-horizontal="20"
+                  data-radius="30"
+                  data-wrap="no"
+                  data-align="center"
+                >
+                  <group
+                    data-length="20"
+                    data-align="center"
+                    data-direction="column"
+                  >
+                    <text data-weight="700">{brushSize}</text>
+                  </group>
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
+        </group>
+
+        <group
+          data-width="auto"
+          data-radius="30"
+          data-background="adaptive-gray"
+          data-adaptive="mobile-1200"
+        >
+          <Popover
+            open={isColorsOpen}
+            onOpenChange={setIsColorsOpen}
+            data-space="0"
+            data-radius="30"
+            //   data-backdrop="20-adaptive"
+            content={
+              <group
+                data-direction="column"
+                data-length="400"
+                data-snap-button="15"
+              >
+                <Scroll
+                  wheelEnabled
+                  buttonProps={{ "data-radius": "30", "data-contain": "" }}
+                >
+                  <group data-wrap="no" data-space="10">
+                    {colors.map((color, index) => (
+                      <group key={index} data-height="40" data-length="40">
+                        <Tooltip content={color.name} delay={300}>
+                          <group
+                            data-animation-name="appear-left"
+                            data-over-color="neutral"
+                            data-fill-mode="backwards"
+                            data-animation-duration={2 + index * 0.25}
+                            data-radius="30"
+                            data-align="center"
+                            data-justify="center"
+                            data-direction="column"
+                            data-cursor="pointer"
+                            data-interactive=""
+                            data-transition-prop="padding"
+                            data-duration=".125"
+                            data-background={
+                              brushColor === color.value ? "context" : ""
+                            }
+                            data-index={brushColor === color.value ? "1" : ""}
+                            data-space={
+                              brushColor === color.value ? "15" : "10"
+                            }
+                            onClick={() => setBrushColor(color.value)}
+
+                            // onClick={closePopover}
+                          >
+                            <group
+                              data-border="outline-soft"
+                              data-interact=""
+                              data-radius="30"
+                              data-height="fit"
+                              style={{ backgroundColor: color.value }}
+                            ></group>
+                          </group>
+                        </Tooltip>
+                      </group>
+                    ))}
+                  </group>
+                </Scroll>
+              </group>
+            }
+          >
+            <group data-width="auto">
+              <Ripple>
+                <group
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  data-cursor="pointer"
+                  data-radius="30"
+                  data-contain=""
+                  data-interactive=""
+                  // data-space-horizontal="15"
+                  // data-space-vertical="15"
+                  data-wrap="no"
+                  data-align="center"
+                  data-gap="15"
+                  data-space="15"
+
+                  // data-height="40"
+                >
+                  <group
+                    data-adaptive="desktop-500"
+                    data-wrap="no"
+                    data-align="center"
+                    data-gap="15"
+                  >
+                    <text data-space-left="5" data-opacity="50">
+                      Color
+                    </text>
+                    <separator data-vertical="" data-height="20"></separator>
+                  </group>
+
+                  <group
+                    data-height="20"
+                    data-border="outline-soft"
+                    data-length="20"
+                    data-interact=""
+                    data-radius="30"
+                    style={{ backgroundColor: brushColor }}
+                  ></group>
+                </group>
+              </Ripple>
+            </group>
+          </Popover>
+        </group>
+
+        {/* <separator data-vertical="" data-height="20"></separator> */}
+
+        {onExit && (
+          <Tooltip content="Exit" delay={300}>
+            <group data-width="auto" data-position="right">
+              <Ripple>
+                <group
+                  //   data-backdrop="20-contrast"
+                  data-ink-color="neutral"
+                  data-over-color="neutral"
+                  onClick={onExit}
+                  data-cursor="pointer"
+                  data-radius="full"
+                  data-contain=""
+                  data-interactive=""
+                  data-height="50"
+                  data-length="50"
+                  data-align="center"
+                  data-justify="center"
+                  data-background="adaptive-gray"
+                >
+                  <icon>
+                    <X size={20} />
+                  </icon>
+                </group>
+              </Ripple>
+            </group>
+          </Tooltip>
+        )}
+      </group>
+
+      <group
+        // data-scroll=""
+
+        data-max-height="fit"
+        data-height="fit"
+        data-space="25"
+        data-width="auto"
+        data-wrap="no"
+        data-gap="25"
+        data-direction="column"
+        data-min-height="300"
+      >
         <group
           data-width="auto"
           ref={wrapperRef}
@@ -847,7 +1156,7 @@ const SimplePaint: React.FC = () => {
           data-direction="column"
           data-wrap="no"
           data-height="fit"
-        //  data-background="red"
+          //  data-background="red"
         >
           <group
             data-border=""
@@ -857,7 +1166,7 @@ const SimplePaint: React.FC = () => {
             data-type="group"
             data-direction="column"
             data-align="start"
-            data-max-length="auto"
+            // data-max-length="auto"
             data-position="center"
             data-width="auto"
             data-background="white"
@@ -868,8 +1177,7 @@ const SimplePaint: React.FC = () => {
               data-radius="20"
               ref={canvasRef}
               onPointerDown={(e) => {
-                setIsBrushOpen(false);
-                setIsColorsOpen(false);
+                closePickers();
                 startDrawing(e);
               }}
               onPointerMove={draw}
@@ -907,8 +1215,12 @@ const SimplePaint: React.FC = () => {
                 data-position="absolute"
                 data-height="20"
                 data-length="20"
-                {...(dirY > 0 ? { "data-bottom": "-20" } : { "data-top": "-20" })}
-                {...(dirX > 0 ? { "data-right": "-20" } : { "data-left": "-20" })}
+                {...(dirY > 0
+                  ? { "data-bottom": "-20" }
+                  : { "data-top": "-20" })}
+                {...(dirX > 0
+                  ? { "data-right": "-20" }
+                  : { "data-left": "-20" })}
                 // Place the dot at the corner closest to the canvas
                 data-align={dirY < 0 ? "end" : undefined}
                 data-justify={dirX < 0 ? "end" : undefined}
@@ -916,11 +1228,14 @@ const SimplePaint: React.FC = () => {
                   cursor: dirX === dirY ? "nwse-resize" : "nesw-resize",
                   touchAction: "none",
                 }}
-                onPointerDown={(e: React.PointerEvent) => startResize(e, dirX, dirY)}
+                onPointerDown={(e: React.PointerEvent) =>
+                  startResize(e, dirX, dirY)
+                }
               >
                 <group
                   data-height="5"
                   data-length="5"
+                  data-radius="10"
                   data-background="text"
                 ></group>
               </group>
@@ -929,14 +1244,14 @@ const SimplePaint: React.FC = () => {
         </group>
       </group>
 
-      <group data-position="bottom">
-        <group data-space-horizontal="30" data-background="adaptive-gray">
-          <separator data-horizontal=""></separator>
-          <group data-space-vertical="30" data-gap="5" data-width="auto">
+      {/* <group data-position="bottom">
+        <group data-space-horizontal="25" data-background="adaptive-gray">
+          <separator data-horizontal="dotted"></separator>
+          <group data-space-vertical="25" data-gap="5" data-width="auto">
             <text>{width}</text> <text>×</text> <text>{height}</text>
           </group>
         </group>
-      </group>
+      </group> */}
     </group>
   );
 };

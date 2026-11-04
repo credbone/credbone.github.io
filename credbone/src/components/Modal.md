@@ -34,6 +34,7 @@ openModal({
 | `content` | required | ReactNode rendered inside the panel |
 | `hasHeader` | `true` | Title bar with the close button |
 | `hasToolbar` | `false` | Cancel / OK footer |
+| `dimClose` | unset | Whether a backdrop click closes the modal. Unset falls back to the header/toolbar rule (see Closing) |
 | `fullscreen` | `false` | Starts maximized |
 | `fullscreenbutton` | `false` | Shows the maximize / minimize toggle in the header |
 | `draggable` | `true` | Panel can be dragged by its header (see Dragging) |
@@ -75,7 +76,7 @@ The maximized state is local to each `Modal` and starts from `fullscreen`.
 - Esc (topmost only)
 - The header X
 - Either toolbar button (both just close)
-- Backdrop click, **only when both `hasHeader` and `hasToolbar` are off**
+- Backdrop click: `dimClose` decides when it's set. When it's unset, **only when both `hasHeader` and `hasToolbar` are off**, since then there may be no other way out. A headerless modal with its own close button (Paint in `template/quickDemos.tsx`) passes `dimClose: false`.
 
 ## Patterns in use
 
@@ -89,9 +90,9 @@ The maximized state is local to each `Modal` and starts from `fullscreen`.
 1. **Search: Ctrl+K stops working after Esc.** `Searchshortcutlistener.tsx` passes `onClose` to `openModal`, but `openModal` has no such option, and the `as ModalControls["openModal"]` cast hides the type error. Esc closes the modal without resetting `isSearchOpen`, so Ctrl+K does nothing until the route changes. Clicking outside works, because the content has its own click handler.
 2. **`content` is a snapshot.** It's stored in provider state when the modal opens, so it won't re-render when the opener's state changes. Anything dynamic has to live in a component inside the modal.
 3. **No duplicate-id guard.** Opening the same `id` twice gives duplicate React keys, and the two close together.
-4. **`dimClose` can't be set.** It's a `Modal` prop, but `openModal` doesn't pass it through. The `id` prop on `Modal` is also unused.
+4. **The `id` prop on `Modal` is unused.** (`dimClose` used to be missing from `openModal` too; fixed 2026-11-04.)
 5. **The toolbar can't confirm anything.** OK and Cancel both call `onClose`; there's no `onConfirm`. It's only useful for demos.
 6. **Leftover code:** `className="modal-container"` has no CSS behind it; `data-modal-backdrop="dark"` in the search config lands on the panel and has no CSS either; some blocks are commented out.
 7. **Accessibility:** no `role="dialog"` / `aria-modal`, no focus trap, and focus isn't returned to where it was on close.
 
-A likely fix for 1, 4 and 5 together: add optional `onClose`, `onConfirm` and `dimClose` to `openModal` and call `onClose` on every close path.
+A likely fix for 1 and 5 together: add optional `onClose` and `onConfirm` to `openModal` and call `onClose` on every close path.

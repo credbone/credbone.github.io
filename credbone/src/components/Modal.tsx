@@ -39,7 +39,7 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   hasHeader = true,
   hasToolbar = false,
-  dimClose = false,
+  dimClose,
   fullscreen = false,
   fullscreenbutton = false,
   draggable = true,
@@ -188,8 +188,10 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen, onClose, isTopmost]);
 
   const handleBackdropClick = () => {
-    if (dimClose || (!hasHeader && !hasToolbar)) {
-      onClose(); // Close if dimClose is true or both header and toolbar are hidden
+    // dimClose decides when set; otherwise close only when there's no header
+    // or toolbar, since then there may be no other way out
+    if (dimClose ?? (!hasHeader && !hasToolbar)) {
+      onClose();
     }
   };
 
@@ -365,6 +367,7 @@ interface ModalContextType {
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
+    dimClose?: boolean;
     fullscreen?: boolean;
     fullscreenbutton?: boolean;
     draggable?: boolean;
@@ -403,6 +406,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       isOpen: boolean;
       hasHeader?: boolean;
       hasToolbar?: boolean;
+      dimClose?: boolean;
       fullscreen?: boolean;
       fullscreenbutton?: boolean;
       draggable?: boolean;
@@ -418,6 +422,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     content,
     hasHeader = true,
     hasToolbar = false,
+    dimClose,
     fullscreen = false,
     fullscreenbutton = false,
     draggable = true,
@@ -430,6 +435,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     content: ReactNode;
     hasHeader?: boolean;
     hasToolbar?: boolean;
+    dimClose?: boolean;
     fullscreen?: boolean;
     fullscreenbutton?: boolean;
     draggable?: boolean;
@@ -446,6 +452,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
         isOpen: true,
         hasHeader,
         hasToolbar,
+        dimClose,
         fullscreen,
         fullscreenbutton,
         draggable,
@@ -512,6 +519,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             isOpen={modal.isOpen}
             hasHeader={modal.hasHeader}
             hasToolbar={modal.hasToolbar}
+            dimClose={modal.dimClose}
             fullscreen={modal.fullscreen}
             fullscreenbutton={modal.fullscreenbutton}
             draggable={modal.draggable}
