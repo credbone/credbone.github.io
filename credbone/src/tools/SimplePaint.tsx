@@ -758,10 +758,13 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
       data-height="fit"
       data-contain=""
       data-background="adaptive-gray"
+      data-space="25"
+      data-gap="25"
     >
       <group
-        data-space="25"
-        data-space-bottom="0"
+       
+       data-order={isMobile ? "2" : undefined}
+
          data-wrap="no"
         // data-sticky=""
         // data-bottom="0"
@@ -1142,7 +1145,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
 
         data-max-height="fit"
         data-height="fit"
-        data-space="25"
+       
         data-width="auto"
         data-wrap="no"
         data-gap="25"

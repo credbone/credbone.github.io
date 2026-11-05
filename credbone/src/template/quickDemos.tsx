@@ -16,8 +16,12 @@ import TemplatePageHeader from "./TemplatePageHeader";
 import StopWatch from "../tools/StopWatch";
 import { isMobile } from "react-device-detect";
 import { IconCarousel, IconViewWindow } from "../components/icon/credIcons";
-import { SvgPaint } from "../components/icon/svgRes";
-import { ArrowUpRight } from "lucide-react";
+
+
+
+
+import sample_4 from "../styles/images/samples/res_007.webp";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 //import { isMobile } from "react-device-detect";
 
@@ -133,7 +137,9 @@ const QuickDemos: React.FC = () => {
   const paintLaunch = (
     <Ripple>
       <group
-      data-background="adaptive-gray"
+     
+
+      data-ink-color="gray-shade-20" data-over-color="neutral"
         data-contain=""
         data-space="15"
         data-interactive=""
@@ -141,8 +147,9 @@ const QuickDemos: React.FC = () => {
         data-radius="15"
         data-wrap="no"
         data-height="45"
+        data-gap="10"
         data-align="center"
-        data-justify="center"
+      //  data-justify="center"
        // data-direction="column"
         onClick={() =>
           openModal({
@@ -174,10 +181,13 @@ const QuickDemos: React.FC = () => {
           })
         }
       >
-        <text data-ellipsis="" >
+        <text data-ellipsis=""  >
           Launch
         </text>
 
+<group data-width="auto" data-position="right" data-interact="" data-opacity="40">
+  <SquareArrowOutUpRight size={20}  strokeWidth={1.5}/>
+</group>
       </group>
     </Ripple>
   );
@@ -246,18 +256,29 @@ const QuickDemos: React.FC = () => {
           },
           // Placeholder preview until a real one is designed
           content: (
-            <group data-gap="10">
-              <group
-                data-ratio="1:1"
+            <group data-gap="10" >
+<group >
+                <group
+                data-ratio="4:5"
                 //data-background="adaptive-gray"
                 data-align="center"
                 data-justify="center"
-                data-space="20"
+           data-radius="15"
+               data-contain=""
               >
 
-                <SvgPaint/>
+                          <picture
+            
+            data-brightness="adaptive"
+            data-position="absolute"
+
+           // data-space="20"
+          >
+            <img src={sample_4} alt="" />
+          </picture>
               </group>
-              <separator data-horizontal="dotted" data-opacity="20"></separator>
+</group>
+            
               {paintLaunch}
             </group>
           ),
@@ -266,7 +287,10 @@ const QuickDemos: React.FC = () => {
       content: (
         <group data-gap="10">
           <separator data-horizontal="dotted" data-opacity="20"></separator>
-          {paintLaunch}
+          <group  data-background="adaptive-gray" data-contain="" data-radius="15">
+{paintLaunch}
+          </group>
+          
         </group>
       ),
     },
