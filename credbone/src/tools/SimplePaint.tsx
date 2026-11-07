@@ -123,8 +123,11 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
   // Mobile tool | size picker
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [isSizeOpen, setIsSizeOpen] = useState(false);
+  // Desktop custom-swatch picker
+  const [isCustomPickerOpen, setIsCustomPickerOpen] = useState(false);
 
   const closePickers = () => {
+    setIsCustomPickerOpen(false);
     setIsBrushOpen(false);
     setIsColorsOpen(false);
     setIsSwatchesOpen(false);
@@ -993,7 +996,9 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
               data-contain="visible"
               data-elevation="none"
               content={customColorPicker}
+              open={isCustomPickerOpen}
               onOpenChange={(isOpen) => {
+                setIsCustomPickerOpen(isOpen);
                 if (isOpen) selectCustom();
               }}
             >

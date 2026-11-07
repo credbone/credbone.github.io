@@ -2,7 +2,6 @@ import { ArrowDown, Copy, Eraser, Grid3x3, Pencil } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-import DotDisplay from "./dotDisplay";
 import Ripple from "../components/Ripple";
 
 import { IconMoreHoriz } from "../components/icon/credIcons";
@@ -23,7 +22,7 @@ const CURSOR_SIZE_CONFIG: Record<
 };
 
 // Encoded dot: index (default) or "index.2" / "index.3" (sized)
-type EncodedDot = { index: number; size: CursorSize };
+export type EncodedDot = { index: number; size: CursorSize };
 
 const encodeDot = (dot: EncodedDot): string => {
   const suffix = CURSOR_SIZE_CONFIG[dot.size].suffix;
@@ -42,11 +41,14 @@ const DotDisplayEdit: React.FC<{
   predefinedEncodedDots?: string;
   onNewIcon?: () => void;
   onStartEdit?: () => void;
+  // Reports the live dot map so the parent can render its own preview
+  onDotsChange?: (dots: Map<number, EncodedDot>) => void;
 }> = ({
   predefinedActiveIndexes,
   predefinedEncodedDots,
   onNewIcon,
   onStartEdit,
+  onDotsChange,
 }) => {
   // Map of index -> EncodedDot (stores size per dot)
   const [activeDots, setActiveDots] = useState<Map<number, EncodedDot>>(() => {
@@ -70,6 +72,10 @@ const DotDisplayEdit: React.FC<{
     }
     return new Map();
   });
+
+  useEffect(() => {
+    onDotsChange?.(activeDots);
+  }, [activeDots, onDotsChange]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
@@ -250,12 +256,6 @@ const DotDisplayEdit: React.FC<{
   const toggleEraser = () => setIsEraserActive(true);
 
   const svgRef = React.useRef<SVGSVGElement>(null);
-
-  const [isInverted, setIsInverted] = useState(true);
-
-  const toggleInvert = () => {
-    setIsInverted((prev) => !prev);
-  };
 
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
   const [importValue, setImportValue] = useState("");
@@ -439,6 +439,7 @@ const DotDisplayEdit: React.FC<{
           data-space="20"
           data-gap="20"
           data-align="center"
+          data-justify="space-between"
         >
           <group
             data-gap="10"
@@ -765,6 +766,41 @@ const DotDisplayEdit: React.FC<{
 </group>
                     </group>
                   </Ripple>
+
+<group data-hide={isBottomSheet ? "" : "true"}>
+  <group data-height="20"></group>
+
+
+                    
+                    <group
+                      data-wrap="no"
+                      data-align="center"
+                     // data-space="30"
+                      data-gap="10"
+                    >
+
+
+                      <group
+                        data-cursor="pointer"
+                        data-interactive=""
+                        data-space-vertical="15"
+                        data-radius="30"
+                        data-space-horizontal="20"
+                        data-background="text"
+                        data-color="main-background"
+                        onClick={closePopover}
+                        data-align="center"
+                        data-justify="center"
+                        data-weight="600"
+                      >
+                        <text>Close</text>
+                      </group>
+                    </group>
+</group>
+
+
+
+
                 </group>
               )}
             >
@@ -1068,69 +1104,6 @@ const DotDisplayEdit: React.FC<{
               </group>
             </group>
           </group>
-        </group>
-      </group>
-
-      <group
-        data-width="auto"
-        data-radius="40"
-        data-border=""
-        data-background={isInverted ? "text" : "context"}
-        data-color={isInverted ? "main-background" : "text"}
-        data-direction="column"
-        data-justify="center"
-        data-wrap="no"
-      >
-        <group
-          data-direction="column"
-          data-space="30"
-          data-gap="30"
-          data-height="fit"
-        >
-          <group data-direction="column" data-gap="5">
-            <text
-              data-weight="700"
-              data-wrap="preline"
-              data-text-size="large"
-              data-ellipsis=""
-              data-font-type="hero"
-              data-line="1"
-            >
-              Preview
-            </text>
-            <text data-opacity="30" data-max-length="160" data-wrap="wrap">
-              Your edits and icons update here live.
-            </text>
-          </group>
-          <group data-position="center" data-justify="center" data-space="30">
-            <DotDisplay size={130} activeDots={activeDots} />
-          </group>
-        </group>
-        <group data-space-horizontal="20">
-          <separator data-horizontal="dotted" data-opacity="20"></separator>
-        </group>
-
-        <group data-space="20">
-          <Ripple>
-            <group
-              data-ink-color="neutral"
-              data-contain=""
-              data-space-vertical="15"
-              data-space-horizontal="20"
-              data-align="center"
-              data-justify="center"
-              data-background="adaptive-gray"
-              // data-border="outline"
-
-              data-interactive=""
-              data-over-color="neutral"
-              data-radius="30"
-              data-cursor="pointer"
-              onClick={toggleInvert}
-            >
-              <text>Invert Colors</text>
-            </group>
-          </Ripple>
         </group>
       </group>
     </>

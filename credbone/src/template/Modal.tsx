@@ -28,6 +28,22 @@ const BasicModalOptions: React.FC<{ modalId: string }> = ({ modalId }) => {
 
     <group data-direction="column" data-gap="20">
       <Checkbox
+
+
+checkboxProps={
+
+{
+  
+ 
+   "data-radius":"15",
+   "data-length":"fit",
+   "data-direction": "row-reverse",
+   "data-space-right":"10"
+  
+}
+
+}
+
         simple
         label="Drag by header"
         checked={draggable}
@@ -36,7 +52,23 @@ const BasicModalOptions: React.FC<{ modalId: string }> = ({ modalId }) => {
           updateModal(modalId, { draggable: e.target.checked });
         }}
       />
+      <separator data-horizontal="dotted"></separator>
       <Checkbox
+
+checkboxProps={
+
+{
+  
+ 
+   "data-radius":"15",
+   "data-length":"fit",
+   "data-direction": "row-reverse",
+      "data-space-right":"10"
+  
+}
+
+}
+
         simple
         label="Dim background"
         checked={dim}
@@ -47,7 +79,25 @@ const BasicModalOptions: React.FC<{ modalId: string }> = ({ modalId }) => {
           });
         }}
       />
+
+      <separator data-horizontal="dotted"></separator>
+
       <Checkbox
+
+checkboxProps={
+
+{
+  
+ 
+   "data-radius":"15",
+   "data-length":"fit",
+   "data-direction": "row-reverse",
+      "data-space-right":"10"
+  
+}
+
+}
+
         simple
         label="Enable fullscreen"
         checked={fullscreenButton}
@@ -67,13 +117,14 @@ const Modal: React.FC = () => {
 
   const renderSampleContent = (extra?: React.ReactNode) => (
     <group
-      data-space="40"
+      data-space="30"
       data-max-length="400"
       data-max-height="fit"
       data-scroll=""
       data-gap="20"
     >
-      <text
+<group data-space="10" data-direction="column" data-gap="20">
+        <text
         data-ellipsis=""
         data-font-type="hero"
         data-text-size="large"
@@ -87,6 +138,7 @@ const Modal: React.FC = () => {
         It uses context to manage multiple modals and ensures only the topmost
         modal can be interacted with when multiple are open.
       </text>
+</group>
 
       {extra}
     </group>
