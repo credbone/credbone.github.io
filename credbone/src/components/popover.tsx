@@ -70,35 +70,30 @@ const Popover: React.FC<PopoverProps> = ({
     }
   }, [containerId]);
 
-  let isInteractionInside = false;
+  // Set by a React mousedown on the popover. React events bubble through
+  // portals, so a press inside a nested popover also marks its parent.
+  const reactInsideRef = useRef(false);
+  const interactionInsideRef = useRef(false);
 
   const handleMouseDown = (event: MouseEvent) => {
-    isInteractionInside =
+    interactionInsideRef.current =
+      reactInsideRef.current ||
       popoverRef.current?.contains(event.target as Node) ||
-      false ||
       childRef.current?.contains(event.target as Node) ||
       false;
+    reactInsideRef.current = false;
   };
 
   const handleDocumentClick = (event: MouseEvent) => {
     if (
-      !isInteractionInside &&
+      !interactionInsideRef.current &&
       !(popoverRef.current?.contains(event.target as Node) || false) &&
       !(childRef.current?.contains(event.target as Node) || false)
     ) {
       setIsVisible(false);
     }
-    isInteractionInside = false;
+    interactionInsideRef.current = false;
   };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("click", handleDocumentClick);
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
 
   const handleDocumentContextMenu = (event: MouseEvent) => {
     if (
@@ -451,7 +446,9 @@ useEffect(() => {
 
 
              {...(isBottomSheet ? bottomsheetProps : rest)}
-              
+              onMouseDown={() => {
+                reactInsideRef.current = true;
+              }}
             >
               {isBottomSheet && (
                 <group

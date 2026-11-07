@@ -41,13 +41,14 @@ openModal({
 | `customAttributes` | `{}` | `data-*` attributes spread onto the panel, last, so they override its defaults |
 | `dimAttributes` | `{}` | `data-*` attributes spread onto the backdrop |
 | `spacing` | `20` | `data-space` of the outer layer, i.e. the gap between panel and viewport |
+| `onClose` | unset | Called when the user closes the modal (Esc, header X, toolbar, backdrop), just before it's removed. Not called by `closeModal(id)` |
 
 ## Provider behavior
 
 - **Stack:** `openModal` appends an entry to `modals[]`, and `closeModal(id)` removes it. Closed entries are filtered out right away, so every entry is open.
 - **Topmost:** the last entry. Only the topmost modal reacts to Esc, so stacked modals close one at a time.
 - **Wrapper:** everything renders inside `<div data-name="modal-wrapper">`, which `controls/popup.css` puts at `z-index: 9995`.
-- **Route change:** a `pathname` change clears all modals. A change to the query string or hash alone keeps them, so `?item=` deep links (`template/Cards.tsx`) can open and close a modal without wiping it.
+- **Route change:** a `pathname` change clears the modals that were open before it. A modal the new page opens while mounting is kept, so a link from another page to `?demo=paint` lands with Paint open (child effects run before the provider's, so clearing everything would wipe it). A change to the query string or hash alone keeps them all, so `?item=` / `?demo=` deep links (`template/Cards.tsx`, `template/quickDemos.tsx`) can open and close a modal without wiping it. Search links to Paint this way (`pages/search/routesData.ts`).
 
 ## Modal layers
 
@@ -77,6 +78,7 @@ The maximized state is local to each `Modal` and starts from `fullscreen`.
 - The header X
 - Either toolbar button (both just close)
 - Backdrop click: `dimClose` decides when it's set. When it's unset, **only when both `hasHeader` and `hasToolbar` are off**, since then there may be no other way out. A headerless modal with its own close button (Paint in `template/quickDemos.tsx`) passes `dimClose: false`.
+- All of the above call the `onClose` option first. `closeModal(id)` from code doesn't.
 
 ## Patterns in use
 
@@ -84,15 +86,17 @@ The maximized state is local to each `Modal` and starts from `fullscreen`.
 - **Entrance animation** (`template/Modal.tsx`): pass `data-animation-name` / `data-fill-mode` / `data-animation-duration` through `customAttributes`.
 - **Custom action buttons** (`template/dotDisplayEdit.tsx`): leave `hasToolbar` off and build the buttons inside `content`, calling `closeModal(id)` yourself.
 - **Live content** (`template/Cards.tsx`): `content` is a component that holds its own state (see known issue 2).
+- **URL-driven modal** (`template/Cards.tsx` `?item=`, `template/quickDemos.tsx` `?demo=paint`): an effect on the search params opens the modal when the param appears and calls `closeModal` when it goes, with a ref so it opens only once. Opening, Back and deep links all go through the URL. Pass `onClose` so Esc also clears the param. Quick Demos also remembers whether Launch pushed the history entry: if it did, Exit calls `navigate(-1)` so Back doesn't reopen; for a direct link it removes the param with `replace`.
 
 ## Known issues
 
-1. **Search: Ctrl+K stops working after Esc.** `Searchshortcutlistener.tsx` passes `onClose` to `openModal`, but `openModal` has no such option, and the `as ModalControls["openModal"]` cast hides the type error. Esc closes the modal without resetting `isSearchOpen`, so Ctrl+K does nothing until the route changes. Clicking outside works, because the content has its own click handler.
+1. ~~**Search: Ctrl+K stops working after Esc.**~~ Fixed 2026-11-07: `openModal` now has `onClose`, and the `onClose` that `Searchshortcutlistener.tsx` already passed resets `isSearchOpen`. The `as ModalControls["openModal"]` cast is still there and still hides type errors.
 2. **`content` is a snapshot.** It's stored in provider state when the modal opens, so it won't re-render when the opener's state changes. Anything dynamic has to live in a component inside the modal.
 3. **No duplicate-id guard.** Opening the same `id` twice gives duplicate React keys, and the two close together.
 4. **The `id` prop on `Modal` is unused.** (`dimClose` used to be missing from `openModal` too; fixed 2026-11-04.)
 5. **The toolbar can't confirm anything.** OK and Cancel both call `onClose`; there's no `onConfirm`. It's only useful for demos.
 6. **Leftover code:** `className="modal-container"` has no CSS behind it; `data-modal-backdrop="dark"` in the search config lands on the panel and has no CSS either; some blocks are commented out.
 7. **Accessibility:** no `role="dialog"` / `aria-modal`, no focus trap, and focus isn't returned to where it was on close.
+8. **Cards: closing adds a history entry.** Closing a card modal calls `setSearchParams({})`, which pushes, so Back afterwards reopens the item. Quick Demos' `navigate(-1)` pattern would fix it.
 
-A likely fix for 1 and 5 together: add optional `onClose` and `onConfirm` to `openModal` and call `onClose` on every close path.
+For 5: add an optional `onConfirm` next to `onClose`.

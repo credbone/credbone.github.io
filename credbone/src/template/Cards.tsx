@@ -78,6 +78,8 @@ const useOpenCustomModal = () => {
       hasToolbar: false,
       customAttributes: modalConfig,
       spacing: 0,
+      // Esc / backdrop: clear the URL too, like the close button
+      onClose: () => setSearchParams({}),
     });
   };
 
@@ -429,46 +431,38 @@ const ViewSwitch = [
   },
 ];
 
+// Touch long press (500ms) opens the item modal; releasing or moving cancels it
+const useLongPress = (onLongPress: (key: string) => void) => {
+  const timer = useRef<NodeJS.Timeout | null>(null);
+
+  const cancel = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+  };
+
+  useEffect(() => cancel, []);
+
+  return (key: string) => ({
+    onTouchStart: () => {
+      cancel();
+      timer.current = setTimeout(() => {
+        timer.current = null;
+        onLongPress(key);
+      }, 500);
+    },
+    onTouchEnd: cancel,
+    onTouchMove: cancel,
+    onTouchCancel: cancel,
+  });
+};
+
 const CardTemplate: React.FC<TemplateProps> = ({
   selectedKey,
   selectedRef,
   onSelect,
   onOpenModalRequest,
 }) => {
-  const [pressTimer, setPressTimer] = React.useState<NodeJS.Timeout | null>(
-    null,
-  );
-  const [isPressing, setIsPressing] = React.useState(false);
-
-  const handleLongPress = (item: any) => {
-    // Trigger modal on long press
-    onOpenModalRequest(item.key);
-  };
-
-  const handleTouchStart = (item: any) => {
-    setIsPressing(true);
-    setPressTimer(
-      setTimeout(() => {
-        setIsPressing(false); // Ensure the state is updated after delay
-        handleLongPress(item); // Call long press action after delay
-      }, 500), // 1000 ms = 1 second for long press
-    );
-  };
-
-  const handleTouchEnd = () => {
-    if (pressTimer) {
-      clearTimeout(pressTimer); // Clear the timer if the user releases early
-    }
-    setIsPressing(false);
-  };
-
-  const handleTouchMove = () => {
-    // Optionally handle touch move, to clear the timer if the user drags the finger
-    if (pressTimer) {
-      clearTimeout(pressTimer); // Clear the timer if the user moves their finger
-    }
-    setIsPressing(false);
-  };
+  const longPress = useLongPress(onOpenModalRequest);
 
   return (
     <>
@@ -500,9 +494,7 @@ const CardTemplate: React.FC<TemplateProps> = ({
           data-react="scale"
           data-cursor="pointer"
           onDoubleClick={() => onOpenModalRequest(item.key)}
-          onTouchStart={() => handleTouchStart(item)} // Use onTouchStart for touch event
-          onTouchEnd={handleTouchEnd} // Use onTouchEnd for touch release
-          onTouchMove={handleTouchMove} // Optional: Handle touch move to cancel long press
+          {...longPress(item.key)}
           data-animation-name="zoom-in"
           data-fill-mode="backwards"
           data-animation-duration={2 + index * 0.5}
@@ -839,6 +831,7 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
   onOpenModalRequest,
 }) => {
   const selectedIndex = ContentData.findIndex((item) => item.key === selectedKey);
+  const longPress = useLongPress(onOpenModalRequest);
 
   const carouselItems: Carousel3DItem[] = ContentData.map((item) => ({
     id: item.key,
@@ -850,6 +843,7 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
      //   data-space="5"
         data-radius="25"
         onDoubleClick={() => onOpenModalRequest(item.key)}
+        {...longPress(item.key)}
       >
         <group data-ratio="2:3" data-contain="" data-radius="25" data-react="scale">
           <picture

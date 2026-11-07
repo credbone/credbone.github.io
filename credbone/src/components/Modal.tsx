@@ -374,6 +374,8 @@ interface ModalContextType {
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
+    /** Called when the user closes it (Esc, X, toolbar, backdrop); not on closeModal(). */
+    onClose?: () => void;
   }) => void;
   closeModal: (id: string) => void;
   // Change options of an open modal (e.g. from controls inside its content)
@@ -413,6 +415,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       customAttributes?: { [key: string]: string };
       dimAttributes?: { [key: string]: string };
       spacing?: number;
+      onClose?: () => void;
     }[]
   >([]);
 
@@ -429,6 +432,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     customAttributes = {},
     dimAttributes = {},
     spacing = 20,
+    onClose,
   }: {
     id: string;
     title: string;
@@ -442,6 +446,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     customAttributes?: { [key: string]: string };
     dimAttributes?: { [key: string]: string };
     spacing?: number;
+    onClose?: () => void;
   }) => {
     setModals((prev) => [
       ...prev,
@@ -459,6 +464,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
         customAttributes,
         dimAttributes,
         spacing,
+        onClose,
       },
     ]);
   };
@@ -496,10 +502,15 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
   if (prevLocationRef.current !== location) {
     if (prevLocationRef.current.pathname !== location.pathname) {
-      setModals([]);
+      // Clear only modals open before the navigation. `modals` is this render's
+      // committed stack; one the new page opens on mount (e.g. ?demo=paint) is
+      // still queued, and child effects run first, so a plain [] would wipe it.
+      const stale = new Set(modals.map((modal) => modal.id));
+      setModals((prev) => prev.filter((modal) => !stale.has(modal.id)));
     }
     prevLocationRef.current = location;
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [location]);
 
   const topmostIndex = modals.reduce((highestIndex, modal, index) => {
@@ -525,7 +536,10 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
             draggable={modal.draggable}
             customAttributes={modal.customAttributes}
             dimAttributes={modal.dimAttributes}
-            onClose={() => closeModal(modal.id)}
+            onClose={() => {
+              modal.onClose?.();
+              closeModal(modal.id);
+            }}
             isTopmost={modal.id === modals[topmostIndex]?.id}
             spacing={modal.spacing}
           />

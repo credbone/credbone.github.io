@@ -117,6 +117,14 @@ export const routesData: RouteData[] = [
     "tags": ["demo", "interactive", "showcase", "app", "calculator", "converter", "weather", "paint", "stopwatch"]
   },
   {
+    // Not a route: ?demo=paint opens the Paint modal on Quick Demos
+    "path": "/Components/QuickDemos?demo=paint",
+    "title": "Simple Paint",
+    "description": "Sketch and doodle with brush, marker, calligraphy and oil strokes in any color.",
+    "tags": ["paint", "draw", "drawing", "sketch", "doodle", "brush", "marker", "calligraphy", "canvas", "demo"],
+    "tagsVisible": false
+  },
+  {
     "path": "../Components/Overview",
     "title": "Overview",
     "description": "Contains all routes and a summary of components.",

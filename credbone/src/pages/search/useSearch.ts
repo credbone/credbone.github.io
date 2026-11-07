@@ -1,40 +1,17 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import { RouteData, routesData } from "./routesData";
+import { searchRoutes } from "./searchEngine";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
-const STOP_WORDS = ["and", "or", "the", "a", "an", "in", "on", "at", "with", "by", "for", "to"];
 const MIN_QUERY_LENGTH = 2;
 const MAX_QUERY_LENGTH = 100;
 const RANDOM_TAG_COUNT = 3;
 
 function scoreAndFilter(query: string): RouteData[] {
-  const lower = query.toLowerCase();
-
-  if (lower.length < MIN_QUERY_LENGTH || lower.length > MAX_QUERY_LENGTH) return [];
-
-  const terms = lower
-    .split(/\s+/)
-    .filter((t) => t.trim() !== "" && !STOP_WORDS.includes(t));
-
-  if (terms.length === 0) return [];
-
-  return routesData
-    .map((route) => ({
-      route,
-      score:
-        terms.reduce((acc, term) => {
-          const exactIdx = route.tags.findIndex((tag) => tag.toLowerCase() === term);
-          const partialIdx = route.tags.findIndex((tag) => tag.toLowerCase().includes(term));
-          const exactScore = exactIdx !== -1 ? 10 - exactIdx * 0.1 : 0;
-          const partialScore = partialIdx !== -1 ? 1 - partialIdx * 0.01 : 0;
-          const titleScore = route.title.toLowerCase().includes(term) ? 5 : 0;
-          return acc + exactScore + partialScore + titleScore;
-        }, 0) / route.tags.length,
-    }))
-    .filter(({ score }) => score > 0)
-    .sort((a, b) => b.score - a.score)
-    .map(({ route }) => route);
+  const trimmed = query.trim();
+  if (trimmed.length < MIN_QUERY_LENGTH || trimmed.length > MAX_QUERY_LENGTH) return [];
+  return searchRoutes(query);
 }
 
 function getRandomTags(count = RANDOM_TAG_COUNT): string[] {

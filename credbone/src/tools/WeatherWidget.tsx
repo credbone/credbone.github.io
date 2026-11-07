@@ -367,7 +367,7 @@ const WeatherWidget: React.FC = () => {
                   data-interactive=""
                   data-cursor="pointer"
                   data-radius="15"
-                  data-width={isBottomSheet ? undefined :"auto"}
+               //   data-width={isBottomSheet ? undefined :"auto"}
                   data-contain=""
                   data-space="15"
                   data-wrap="no"

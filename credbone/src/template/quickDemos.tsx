@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 
 import Radio, { RadioType } from "../components/inputs/radio";
@@ -28,6 +29,11 @@ import { SquareArrowOutUpRight } from "lucide-react";
 type DemoView = "grid" | "carousel";
 
 const VIEW_KEY = "quick_demos_view";
+
+// ?demo=paint opens Simple Paint (deep link, Back closes)
+const DEMO_PARAM = "demo";
+const PAINT_DEMO = "paint";
+const PAINT_MODAL_ID = "paint-modal";
 
 const viewOptions: { id: DemoView; label: string; icon: React.ReactElement }[] =
   [
@@ -146,6 +152,72 @@ const QuickDemos: React.FC = () => {
     localStorage.setItem(VIEW_KEY, view);
   }, [view]);
 
+  // ─── Paint modal tied to ?demo=paint: Back closes it, links open it ───────
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const paintOpenRef = useRef(false);
+  // True when Launch pushed the entry; a direct link has nothing to go back to
+  const pushedPaintRef = useRef(false);
+
+  // Exit / Esc: drop the param; the effect below then closes the modal
+  const leavePaint = () => {
+    if (pushedPaintRef.current) {
+      pushedPaintRef.current = false;
+      navigate(-1);
+    } else {
+      setSearchParams(
+        (p) => {
+          p.delete(DEMO_PARAM);
+          return p;
+        },
+        { replace: true },
+      );
+    }
+  };
+
+  const openPaint = () =>
+    openModal({
+      id: PAINT_MODAL_ID,
+      title: "Simple Paint",
+      content: (
+        <group
+          data-min-length="600"
+          data-max-height="fit"
+          data-height="fit"
+          data-contain=""
+          data-shrink="initial"
+        >
+          <SimplePaint onExit={leavePaint} />
+        </group>
+      ),
+      hasHeader: false,
+      fullscreen: isMobile,
+      hasToolbar: false,
+      // Exit button only: a stray backdrop click would lose the drawing
+      dimClose: false,
+      onClose: leavePaint,
+      customAttributes: {
+        "data-radius": "40",
+        "data-background": "main-background",
+        "data-animation-name": "zoom-in-9",
+        "data-animation-duration": "2.75",
+        "data-fill-mode": "backwards",
+      },
+    });
+
+  useEffect(() => {
+    const wantPaint = searchParams.get(DEMO_PARAM) === PAINT_DEMO;
+    if (wantPaint && !paintOpenRef.current) {
+      paintOpenRef.current = true;
+      openPaint();
+    } else if (!wantPaint && paintOpenRef.current) {
+      paintOpenRef.current = false;
+      pushedPaintRef.current = false;
+      closeModal(PAINT_MODAL_ID);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
   const paintLaunch = (
     <Ripple>
       <group
@@ -163,35 +235,14 @@ const QuickDemos: React.FC = () => {
         data-align="center"
       //  data-justify="center"
        // data-direction="column"
-        onClick={() =>
-          openModal({
-            id: "paint-modal",
-            title: "Simple Paint",
-            content: (
-              <group
-                data-min-length="600"
-                data-max-height="fit"
-                data-height="fit"
-                data-contain=""
-                data-shrink="initial"
-              >
-                <SimplePaint onExit={() => closeModal("paint-modal")} />
-              </group>
-            ),
-            hasHeader: false,
-            fullscreen: isMobile,
-            hasToolbar: false,
-            // Exit button only: a stray backdrop click would lose the drawing
-            dimClose: false,
-            customAttributes: {
-              "data-radius": "40",
-              "data-background": "main-background",
-              "data-animation-name": "zoom-in-9",
-              "data-animation-duration": "2.75",
-              "data-fill-mode": "backwards",
-            },
-          })
-        }
+        onClick={() => {
+          // New history entry, so Back (or Exit) returns to the page
+          pushedPaintRef.current = true;
+          setSearchParams((p) => {
+            p.set(DEMO_PARAM, PAINT_DEMO);
+            return p;
+          });
+        }}
       >
         <text data-ellipsis=""  >
           Launch

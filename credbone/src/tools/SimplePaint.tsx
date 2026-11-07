@@ -21,6 +21,7 @@ import {
   PenTool,
   X,
 } from "lucide-react";
+import { HexColorPicker } from "react-colorful";
 import { getStroke, getStrokePoints } from "perfect-freehand";
 import { IconAdd, IconBrush, IconMarker } from "../components/icon/credIcons";
 
@@ -70,7 +71,7 @@ const shadeHex = (hex: string, amount: number) => {
   );
 };
 
-type BrushType = "brush" | "marker" | "calligraphy" | "oil";
+type BrushType ="brush" | "marker" | "calligraphy" | "oil";
 
 const brushTypeLabels: { type: BrushType; label: string; icon: ReactNode }[] = [
   { type: "brush", icon: <Pencil size={20} />, label: "Brush" },
@@ -96,7 +97,10 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
   );
 
   const [isDrawing, setIsDrawing] = useState(false);
-  const [brushColor, setBrushColor] = useState("#F5745E");
+  // Default = custom swatch, seeded as a darker take on the first preset
+  const [brushColor, setBrushColor] = useState(() =>
+    shadeHex(colors[0].value, -0.3),
+  );
   const [brushSize, setBrushSize] = useState(16);
   const [brushType, setBrushType] = useState<BrushType>("calligraphy");
 
@@ -106,6 +110,16 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
 
   const [isBrushOpen, setIsBrushOpen] = useState(false);
   const [isColorsOpen, setIsColorsOpen] = useState(false);
+  // Custom swatch (first in the palette); resets on reload
+  const [customColor, setCustomColor] = useState(brushColor);
+  // Explicit flag: custom can equal a preset, so selection isn't color-derived
+  const [isCustomSelected, setIsCustomSelected] = useState(true);
+  const selectCustom = () => {
+    setBrushColor(customColor);
+    setIsCustomSelected(true);
+  };
+  // Narrow layouts: Color popover shows the picker; swatches nest over it
+  const [isSwatchesOpen, setIsSwatchesOpen] = useState(false);
   // Mobile tool | size picker
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [isSizeOpen, setIsSizeOpen] = useState(false);
@@ -113,9 +127,101 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
   const closePickers = () => {
     setIsBrushOpen(false);
     setIsColorsOpen(false);
+    setIsSwatchesOpen(false);
     setIsToolsOpen(false);
     setIsSizeOpen(false);
   };
+
+  // ─── Color swatches ───────────────────────────────────────────────────────
+  const renderSwatch = (opts: {
+    key?: React.Key;
+    index: number;
+    name: string;
+    value: string;
+    selected: boolean;
+    onClick?: () => void;
+  }) => (
+    <group key={opts.key} data-height="40" data-length="40">
+      <Tooltip content={opts.name} delay={300}>
+        <group
+          data-animation-name="appear-left"
+          data-over-color="neutral"
+          data-fill-mode="backwards"
+          data-animation-duration={2 + opts.index * 0.25}
+          data-radius="30"
+          data-align="center"
+          data-justify="center"
+          data-direction="column"
+          data-cursor="pointer"
+          data-interactive=""
+          data-transition-prop="padding"
+          data-duration=".125"
+          data-background={opts.selected ? "context" : ""}
+          data-index={opts.selected ? "1" : ""}
+          data-space={opts.selected ? "15" : "10"}
+          onClick={opts.onClick}
+        >
+          <group
+            data-border="outline-soft"
+            data-interact=""
+            data-radius="30"
+            data-height="fit"
+            style={{ backgroundColor: opts.value }}
+          ></group>
+        </group>
+      </Tooltip>
+    </group>
+  );
+
+  const customColorPicker = (
+    <group
+      data-animation-name="appear-bottom"
+      data-fill-mode="backwards"
+      data-animation-duration="2.25"
+      data-elevation="2"
+      data-background="context"
+      data-space="5"
+      data-radius="20"
+      data-direction="column"
+      data-name="cred-react-colorful"
+      data-width="auto"
+      data-gap="5"
+      data-index="2"
+      // Close the nested swatches as soon as a picker drag starts; popovers
+      // otherwise wait for a click, which a touch drag never fires
+      onPointerDown={() => setIsSwatchesOpen(false)}
+    >
+      <HexColorPicker
+        color={customColor}
+        onChange={(c) => {
+          setCustomColor(c);
+          setBrushColor(c);
+          setIsCustomSelected(true);
+        }}
+      />
+    </group>
+  );
+
+  const customSwatchProps = {
+    index: 0,
+    name: "Custom color",
+    value: customColor,
+    selected: isCustomSelected,
+  };
+
+  const presetSwatches = colors.map((color, index) =>
+    renderSwatch({
+      key: color.value,
+      index: index + 1,
+      name: color.name,
+      value: color.value,
+      selected: !isCustomSelected && brushColor === color.value,
+      onClick: () => {
+        setBrushColor(color.value);
+        setIsCustomSelected(false);
+      },
+    }),
+  );
 
   // ─── HiDPI ────────────────────────────────────────────────────────────────
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
@@ -875,42 +981,26 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
           data-radius="30"
           data-adaptive="desktop-1200"
           //       data-backdrop="20-contrast"
+
+          data-clip="toolbar-pill"
         >
-          <group data-wrap="no" data-space="5">
-            {colors.map((color, index) => (
-              <group key={index} data-height="40" data-length="40">
-                <Tooltip content={color.name} delay={300}>
-                  <group
-                    data-animation-name="appear-left"
-                    data-over-color="neutral"
-                    data-fill-mode="backwards"
-                    data-animation-duration={2 + index * 0.25}
-                    data-radius="30"
-                    data-align="center"
-                    data-justify="center"
-                    data-direction="column"
-                    data-cursor="pointer"
-                    data-interactive=""
-                    data-transition-prop="padding"
-                    data-duration=".125"
-                    data-background={
-                      brushColor === color.value ? "context" : ""
-                    }
-                    data-index={brushColor === color.value ? "1" : ""}
-                    data-space={brushColor === color.value ? "15" : "10"}
-                    onClick={() => setBrushColor(color.value)}
-                  >
-                    <group
-                      data-border="outline-soft"
-                      data-interact=""
-                      data-radius="30"
-                      data-height="fit"
-                      style={{ backgroundColor: color.value }}
-                    ></group>
-                  </group>
-                </Tooltip>
-              </group>
-            ))}
+          <group data-wrap="no" data-space="5" data-align="center">
+            {/* Popover overrides its child's onClick, so select via onOpenChange */}
+            <Popover
+              data-space="0"
+              data-radius="0"
+              data-background="none"
+              data-contain="visible"
+              data-elevation="none"
+              content={customColorPicker}
+              onOpenChange={(isOpen) => {
+                if (isOpen) selectCustom();
+              }}
+            >
+              {renderSwatch(customSwatchProps)}
+            </Popover>
+<group data-length="20"></group>
+            {presetSwatches}
           </group>
         </group>
 
@@ -1005,63 +1095,95 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
           data-background="adaptive-gray"
           data-adaptive="mobile-1200"
         >
+          {/* Picker first; "Swatches" opens a nested popover over it, and the
+              custom swatch there closes it back to the picker.
+              hideOnScroll off: scrolling the swatch row would close this one. */}
           <Popover
             open={isColorsOpen}
-            onOpenChange={setIsColorsOpen}
+            onOpenChange={(isOpen) => {
+              setIsColorsOpen(isOpen);
+              if (!isOpen) setIsSwatchesOpen(false);
+            }}
+            hideOnScroll={false}
             data-space="0"
-            data-radius="30"
-            //   data-backdrop="20-adaptive"
+            data-radius="0"
+            data-background="none"
+            data-contain="visible"
+            data-elevation="none"
             content={
-              <group
-                data-direction="column"
-                data-length="400"
-                data-snap-button="15"
-              >
-                <Scroll
-                  wheelEnabled
-                  buttonProps={{ "data-radius": "30", "data-contain": "" }}
+              <group data-width="auto" data-direction="column" data-gap="5">
+                {customColorPicker}
+                <group
+                  data-animation-name="appear-top"
+                  data-fill-mode="backwards"
+                  data-animation-duration="3.75"
+                  data-space="5"
+                  data-radius="20"
+                  data-elevation="2"
+                  data-background="context"
+                  data-direction="column"
                 >
-                  <group data-wrap="no" data-space="10">
-                    {colors.map((color, index) => (
-                      <group key={index} data-height="40" data-length="40">
-                        <Tooltip content={color.name} delay={300}>
+                  <Popover
+                    open={isSwatchesOpen}
+                    onOpenChange={setIsSwatchesOpen}
+                    data-space="0"
+                    data-radius="30"
+                    data-elevation="2"
+                    content={
+                      <group
+                        data-direction="column"
+                        data-length="400"
+                        data-snap-button="15"
+                      >
+                        <Scroll
+                          wheelEnabled
+                          buttonProps={{
+                            "data-radius": "30",
+                            "data-contain": "",
+                          }}
+                        >
                           <group
-                            data-animation-name="appear-left"
-                            data-over-color="neutral"
-                            data-fill-mode="backwards"
-                            data-animation-duration={2 + index * 0.25}
-                            data-radius="30"
+                            data-wrap="no"
+                            data-space="10"
                             data-align="center"
-                            data-justify="center"
-                            data-direction="column"
-                            data-cursor="pointer"
-                            data-interactive=""
-                            data-transition-prop="padding"
-                            data-duration=".125"
-                            data-background={
-                              brushColor === color.value ? "context" : ""
-                            }
-                            data-index={brushColor === color.value ? "1" : ""}
-                            data-space={
-                              brushColor === color.value ? "15" : "10"
-                            }
-                            onClick={() => setBrushColor(color.value)}
-
-                            // onClick={closePopover}
                           >
-                            <group
-                              data-border="outline-soft"
-                              data-interact=""
-                              data-radius="30"
-                              data-height="fit"
-                              style={{ backgroundColor: color.value }}
-                            ></group>
+                            {renderSwatch({
+                              ...customSwatchProps,
+                              onClick: () => {
+                                selectCustom();
+                                setIsSwatchesOpen(false);
+                              },
+                            })}
+                            <separator
+                              data-vertical=""
+                              data-height="20"
+                              data-margin-horizontal="5"
+                            ></separator>
+                            {presetSwatches}
                           </group>
-                        </Tooltip>
+                        </Scroll>
                       </group>
-                    ))}
-                  </group>
-                </Scroll>
+                    }
+                  >
+                    <group data-direction="column">
+                      <Ripple>
+                        <group
+                          data-space="15"
+                          data-interactive=""
+                          data-over-color="neutral"
+                          data-cursor="pointer"
+                          data-radius="15"
+                          data-align="center"
+                          data-direction="column"
+                          data-contain=""
+                          data-ink-color="neutral"
+                        >
+                          <text>Swatches</text>
+                        </group>
+                      </Ripple>
+                    </group>
+                  </Popover>
+                </group>
               </group>
             }
           >
