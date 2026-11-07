@@ -277,11 +277,15 @@ input[type=number][data-name="input-reset"] {
 
 
     height: 30px;
-    width: 60px;
-    -webkit-appearance: none; 
+    width: var(--range-slider-thumb-width, 60px);
+    -webkit-appearance: none;
     appearance: none;
     opacity: 0;
     cursor: pointer;
+
+
+    
+
 }
 
 
@@ -291,8 +295,9 @@ input[type=number][data-name="input-reset"] {
     /* background: blue; */
 
     height: 30px;
-    width: 60px;
-    -webkit-appearance: none; 
+    width: var(--range-slider-thumb-width, 60px);
+    border: 0;
+    -webkit-appearance: none;
     appearance: none;
     opacity: 0;
     cursor: pointer;

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { CanvasConfig, PathPoint, PointType } from "./types";
 import CustomSlider from "../../../components/inputs/slider";
+import TickComponent from "../../../components/inputs/TickComponent";
 import Ripple from "../../../components/Ripple";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
 
@@ -44,29 +45,61 @@ export const SliderRow: React.FC<SliderRowProps> = ({
   step = 1,
   onChange,
 }) => (
-  <group data-type="group"  data-gap="10"   data-direction="column" >
-    <group   data-width="auto" data-wrap="no"  data-opacity="30" data-space-horizontal="10">
-      <text data-ellipsis="">
-        {label}
-      </text>
-
-      {/* <text data-position="right">{Math.round(value)}</text> */}
+  <group data-space="3" data-radius="15" data-border="" data-contain="">
+    <group
+      data-position="absolute"
+      data-width="fit"
+      data-left="0"
+      data-top="0"
+      data-space-horizontal="25"
+      data-height="fit"
+      data-align="center"
+      data-mask="left-right"
+      data-pointer-event="none"
+    >
+      <TickComponent
+        tickCount={18}
+        emphasizeCenter={false}
+        data-opacity="70"
+        data-align="center"
+        heights={{ minor: 8, major: 8, center: 30 }}
+      />
     </group>
 
-    <group   data-fit="1">
+    <group data-radius="12" data-contain="">
       <CustomSlider
-        //  showvalue={false}
-        handlerWidth={50}
-        edgeGap={20}
+        label=""
         start={min}
         end={max}
         step={step}
         value={Math.round(value)}
         onValueChange={(v) => onChange(v)}
-         handlerProps={{ "data-radius": "10"}}
-        trackLeftProps={{"data-margin-right": "0", "data-height": "1" }}
-        trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
+        handlerProps={{ "data-height": "40", "data-background": "none" }}
+        fillProps={{
+          "data-background": "neutral-light",
+          "data-height": "40",
+          "data-radius": "12",
+          "data-opacity": "80",
+        }}
+        trackLeftProps={{ "data-background": "none" }}
+        trackRightProps={{ "data-background": "none" }}
       />
+    </group>
+
+    <group
+      data-position="absolute"
+      data-pointer-event="none"
+      data-height="fit"
+      data-width="fit"
+      data-left="0"
+      data-top="0"
+      data-align="center"
+      data-wrap="no"
+      data-gap="10"
+      data-space-horizontal="15"
+    >
+      <text data-ellipsis="">{label}</text>
+      <text data-position="right">{Math.round(value)}</text>
     </group>
   </group>
 );
@@ -498,14 +531,14 @@ const types: { type: PointType; label: string }[] = [
           >
             <>
               <SliderRow
-                label="Point X Position"
+                label="Point X"
                 value={point?.x ?? 0}
                 min={0}
                 max={config.width}
                 onChange={(v) => onUpdate({ x: v })}
               />
               <SliderRow
-                label="Point Y Position"
+                label="Point Y"
                 value={point?.y ?? 0}
                 min={0}
                 max={config.height}
@@ -518,14 +551,14 @@ const types: { type: PointType; label: string }[] = [
         {point && point.type === "Q" && !isFirst && (
             <>
               <SliderRow
-                label="Control Point X Position"
+                label="Control X"
                 value={point.cx ?? 0}
                 min={0}
                 max={config.width}
                 onChange={(v) => onUpdate({ cx: v })}
               />
               <SliderRow
-                label="Control Point Y Position"
+                label="Control Y"
                 value={point.cy ?? 0}
                 min={0}
                 max={config.height}
@@ -538,14 +571,14 @@ const types: { type: PointType; label: string }[] = [
         {point && point.type === "C" && !isFirst && (
               <>
                 <SliderRow
-                  label="First control point X"
+                  label="Control 1 X"
                   value={point.cx1 ?? 0}
                   min={0}
                   max={config.width}
                   onChange={(v) => onUpdate({ cx1: v })}
                 />
                 <SliderRow
-                  label="First control point Y"
+                  label="Control 1 Y"
                   value={point.cy1 ?? 0}
                   min={0}
                   max={config.height}
@@ -553,14 +586,14 @@ const types: { type: PointType; label: string }[] = [
                 />
 
                 <SliderRow
-                  label="Second control point X"
+                  label="Control 2 X"
                   value={point.cx2 ?? 0}
                   min={0}
                   max={config.width}
                   onChange={(v) => onUpdate({ cx2: v })}
                 />
                 <SliderRow
-                  label="Second control point Y"
+                  label="Control 2 Y"
                   value={point.cy2 ?? 0}
                   min={0}
                   max={config.height}
@@ -573,21 +606,21 @@ const types: { type: PointType; label: string }[] = [
         {point && point.type === "A" && !isFirst && (
             <>
               <SliderRow
-                label="X Radius"
+                label="Radius X"
                 value={point.rx ?? 50}
                 min={0}
                 max={400}
                 onChange={(v) => onUpdate({ rx: v })}
               />
               <SliderRow
-                label="Y Radius"
+                label="Radius Y"
                 value={point.ry ?? 50}
                 min={0}
                 max={400}
                 onChange={(v) => onUpdate({ ry: v })}
               />
               <SliderRow
-                label="X Rotation"
+                label="Rotation"
                 value={point.xrot ?? 0}
                 min={0}
                 max={360}

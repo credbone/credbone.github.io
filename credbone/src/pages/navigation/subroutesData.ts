@@ -9,7 +9,7 @@ export const navItems = [
 
   { to: "Components/Motion",  label: "Motion & Animation",new:"true" },
 
-  { to: "Components/CardsAndList",  label: "Cards & List",separator:"true" },
+  { to: "Components/CardsAndList",  label: "Cards & List",separator:"true",new:"true" },
   { to: "Components/CheckboxSwitchers",  label: "Checkbox & Switchers" },
   { to: "Components/Buttons",  label: "Buttons" },
   { to: "Components/InputsAndForms",  label: "Input & Forms" },
@@ -21,12 +21,12 @@ export const navItems = [
 
 
   { to: "Components/Navigation",  label: "Navigation & Tabs",separator:"true" },
-  { to: "Components/Layout",  label: "Layout & Switches",new:"true" },
+  { to: "Components/Layout",  label: "Layout & Switches", },
 
 
 
   { to: "Components/Miscellaneous",  label: "Miscellaneous",separator:"true"  },
   { to: "Components/Dashboard",  label: "Dashboard"  },
-  { to: "Components/QuickDemos",  label: "Quick Demos"},
+  { to: "Components/QuickDemos",  label: "Quick Demos",new:"true"},
 
 ];

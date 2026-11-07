@@ -45,11 +45,12 @@ It's fully controlled: it keeps no value of its own and renders whatever `value`
 | `showValueOnDrag` | `false` | With `label` set, shows the value and unit instead while dragging, then goes back to the label on release |
 | `handlerProps` | none | Attributes spread onto the handle, last, so they override its defaults |
 | `trackLeftProps` / `trackRightProps` | none | Attributes spread onto each track, last |
+| `fillProps` | none | Renders an extra fill bar from the start edge, `width: value%`, so it's empty at min and full at max. Passing it also widens the invisible input by `handlerWidth` (half off each side, clipped by `data-contain`), so the thumb center lands exactly on the fill edge: no drift, and tap-to-jump picks the value under the finger. The handle (and the track wrapper) is then centered on the fill edge (`left: calc(p% − handlerWidth/2)`), so a visible handle is half clipped at the ends. Same glide as the handle (`data-transition-prop="width"`, off while dragging). Not rendered unless passed. The consumer sets its look (background, height, radius, opacity). Used by the Grain demo |
 | `onDragStart` / `onDragEnd` | none | Called on press and release on the input |
 
 ## How it works
 
-1. **Native input on top.** A real `<input type="range">` fills the slider at `opacity: 0` and takes all the input, so mouse, touch, keyboard and step snapping come from the browser. Its thumb is sized 60×30 in CSS so the hit area roughly matches the default handle.
+1. **Native input on top.** A real `<input type="range">` fills the slider at `opacity: 0` and takes all the input, so mouse, touch, keyboard and step snapping come from the browser. Its thumb is 30px tall and as wide as `handlerWidth`: the input sets `--range-slider-thumb-width` inline and the thumb rules in `inputs.css` read it (fallback `60px`). Because both use the same width, the browser's thumb position `p × (W − width)` equals the handle's `left`, so the hit area sits exactly under the handle at every value.
 2. **Visual layers below**, all `pointer-events: none`:
    - **Handle:** `data-background="text"`, `data-color="main-background"`, height 30, `data-radius="40"`, showing the value and unit at weight 700.
    - **Tracks:** two 2px bars inside a wrapper that moves with the handle. The left one is attached at `right: 100%` and the right one at `left: 100%` (with `data-margin-left="5"`), so they stick out from either side of the handle. Each is 700px long (`data-min-length="700"`), and the outer `data-contain` clips them, so they look like they fill the slider up to the handle.
@@ -85,11 +86,12 @@ To line ticks up with a slider, inset the tick row by half the handle width so t
 - **Outlined handle with unit** (demo, gauge card): `data-background="none"` + `data-border="inset-2"` on the handle, `unit="°"`.
 - **Text label** (demo, size card): a 0–4 slider with `label={sizes[sizeIndex]}` showing XS…XL.
 - **Handle as a window over a tick strip** (demo, "Deep Customization" section, four variants, each with its own value): text labels (Grain, Exposure, Warmth, Contrast) + `showValueOnDrag`, `handlerWidth={100}`, both tracks `data-background="none"`, ticks positioned absolutely behind the slider.
+- **Filled bar** (demo, Grain): default 60px handle with `data-background="none"`, both tracks `data-background="none"`, and `fillProps` drawing a 40px rounded `neutral-light` fill from the left edge to the value. Label and value overlay the bar; decorative ticks sit behind it.
 - **Elsewhere:** tool panels (ColorMixer, BlobGenerator, AvatarMaker, PathBuilder `SliderRow`, SimplePaint), `FontSizeControl`, and several template pages.
 
 ## Known issues
 
-1. **Thumb hit area ignores `handlerWidth`.** The native thumb is fixed at 60×30 in `inputs.css`. With any other `handlerWidth` (100 in the demo), the invisible thumb and the visible handle drift apart: grabbing the edge of a wide handle makes the value jump, and a narrow handle has a hit area bigger than itself.
+1. **Very narrow handles on iOS.** The thumb width now follows `handlerWidth` (fixed 2026-11-07; it used to be a fixed 60px, so the thumb and handle drifted apart). With a very small or `0` `handlerWidth`, the thumb has little or nothing to grab. Tap-to-position works on current iOS, so this is mostly a drag-comfort concern. For a filled look, prefer `fillProps` with a normal-width invisible handle over a 0-width handle. Also, passing `data-length` through `handlerProps` changes the visual width without the thumb, so always set the width through `handlerWidth`.
 2. **Drag can get stuck.** Release is only caught by `mouseup`/`touchend` on the input. Releasing outside it leaves `isDragging` true, so the glide transition stays off and `onDragEnd` never fires. There's no `touchcancel` either.
 3. **Stale drag callbacks.** The listener `useEffect` has `[]` deps, so `onDragStart` / `onDragEnd` stay the first render's versions.
 4. **Tracks are 700px long.** A slider wider than about 700px plus the handle shows a gap at the far end of a track.

@@ -14,6 +14,7 @@ interface SliderProps {
   handlerProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackLeftProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
+  fillProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }; // Optional fill from the start edge to the value (width = value %); rendered only when passed
   showvalue?: boolean;
 
   onDragStart?: () => void;
@@ -38,6 +39,7 @@ const CustomSlider: React.FC<SliderProps> = ({
   handlerProps,
   trackLeftProps,
   trackRightProps,
+  fillProps,
   showvalue = true,
 
   onDragStart,
@@ -88,6 +90,21 @@ const handleDragEnd = () => {
 
   const showLabel = label !== undefined && !(showValueOnDrag && isDragging);
 
+  // With a fill, the input is widened by one thumb (half on each side) so the
+  // thumb center lands exactly on the fill edge (value %), and the handle is
+  // centered there too. Without a fill, the handle travels edge to edge.
+  const hasFill = !!fillProps;
+  const handleLeft = hasFill
+    ? `calc(${percentage}% - ${handlerWidth / 2}px)`
+    : `calc(${percentage}% - ${handlerWidth * (percentage / 100)}px)`;
+  const inputStyle = {
+    "--range-slider-thumb-width": `${handlerWidth}px`,
+    ...(hasFill && {
+      width: `calc(100% + ${handlerWidth}px)`,
+      left: `${-handlerWidth / 2}px`,
+    }),
+  } as React.CSSProperties;
+
 
   
 
@@ -110,6 +127,7 @@ const handleDragEnd = () => {
         aria-valuetext={label}
         data-height="fit"
         step={step}
+        style={inputStyle}
       />
 
       <group
@@ -134,13 +152,29 @@ const handleDragEnd = () => {
             left: `${-halfGap}px`,
           }}
         >
+          {fillProps && (
+            <group
+              data-position="absolute"
+              data-left="0"
+              data-duration={isDragging ? undefined : "2.25"}
+              data-transition-prop="width"
+              style={{ width: `${percentage}%` }}
+              {...fillProps}
+            >
+              {/* <group data-position="absolute"  data-opacity="20" data-space="10" data-height="fit" data-right="0" data-top="0" data-width="auto">
+
+                <group data-length="3" data-height="fit" data-background="text" data-radius="10">
+
+                </group>
+
+              </group> */}
+            </group>
+          )}
           <group
             data-duration={isDragging ? undefined : "2.25"}
             data-transition-prop="position"
             data-length={handlerWidth}
-            style={{
-              left: `calc(${percentage}% - ${handlerWidth * (percentage / 100)}px)`,
-            }}
+            style={{ left: handleLeft }}
              data-align="center"
           >
             <group
@@ -178,9 +212,7 @@ const handleDragEnd = () => {
         data-justify="center"
         data-gap="5"
         data-radius="40"
-        style={{
-          left: `calc(${percentage}% - ${handlerWidth * (percentage / 100)}px)`,
-        }}
+        style={{ left: handleLeft }}
         {...handlerProps}
       >
         <text data-weight={showLabel ? undefined : "700"}>

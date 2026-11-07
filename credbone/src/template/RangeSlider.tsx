@@ -374,10 +374,12 @@ Custom handle using different properties
 
           <group
             data-space="3"
-            data-background="adaptive-gray"
+          //  data-background="adaptive-gray"
             data-length="300"
-            data-radius="30"
+            data-radius="15"
             data-border=""
+            data-contain=""
+         //   data-height="40"
           >
             <group
               data-position="absolute"
@@ -387,38 +389,54 @@ Custom handle using different properties
               data-space-horizontal="25"
               data-height="fit"
               data-align="center"
+              data-mask="left-right"
+data-pointer-event="none" 
             >
               <TickComponent
-                tickCount={20}
-                majorEvery={5}
+                tickCount={18}
+              //  majorEvery={5}
                 emphasizeCenter={false}
                 data-opacity="70"
                 data-align="center"
-                data-height="40"
-                heights={{ minor: 8, major: 18, center: 30 }}
+             //   data-height="40"
+                heights={{ minor: 8, major: 8, center: 30 }}
               ></TickComponent>
             </group>
 
-            <CustomSlider
+
+
+<group             data-radius="12"
+            data-contain="">
+              <CustomSlider
+
               // edgeGap={30}
-              label="Grain"
-              showValueOnDrag
+              label=""
+             // showValueOnDrag
               start={0}
               end={360}
               step={5}
               value={grainValue}
               onValueChange={(value) => setGrainValue(value)}
-              handlerWidth={100}
               handlerProps={{
                 "data-height": "40",
-                "data-background": "white",
-                "data-color": "black",
-                "data-border": "outline",
+                "data-background": "none",
               }}
+              fillProps={{ "data-background": "neutral-light", "data-height": "40", "data-radius": "12", "data-opacity": "80" }}
               trackLeftProps={{ "data-background": "none" }}
               trackRightProps={{ "data-background": "none" }}
             />
+</group>
+
+             <group data-position="absolute" data-pointer-event="none" data-height="fit" data-left="0" data-top="0" data-width="auto" data-align="center" data-space-horizontal="15" data-justify="center">
+              <text>Grain</text>
+            </group>
+
+             <group data-position="absolute" data-pointer-event="none"  data-height="fit" data-right="0" data-top="0" data-width="auto" data-align="center" data-space-horizontal="15" data-justify="center">
+              <text>{grainValue}</text>
+            </group>
           </group>
+
+
 
           <group
             data-space="3"
