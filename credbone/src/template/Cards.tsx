@@ -349,7 +349,12 @@ const menuItems = [
           data-animation-duration="2.75"
 
         >
-          <IconShare size={20} />
+          <group
+          data-interact=""
+          >
+<IconShare size={20} />
+          </group>
+          
         </group>
       </Popover>
 
@@ -375,13 +380,18 @@ const menuItems = [
 
         >
           <group
+          
             data-animation-duration="4.75"
             data-fill-mode="backwards"
             key={favorite ? `${itemKey}-fav` : itemKey}
             data-animation-name={favorite ? "bounce" : ""}
             data-color={favorite && color ? "ember" : ""}
           >
-            <IconHeart size={20} fill={favorite} />
+<group data-interact="">
+  <IconHeart size={20} fill={favorite} />
+</group>
+            
+
           </group>
 
           <text data-weight="700">

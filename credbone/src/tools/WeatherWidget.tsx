@@ -48,24 +48,24 @@ const cities = [
 ];
 
 const iconMap: Record<string, JSX.Element> = {
-  "01d": <Sun size={20} />,
-  "01n": <Moon size={20} />,
-  "02d": <CloudSun size={20} />,
-  "02n": <CloudMoon size={20} />,
-  "03d": <Cloud size={20} />,
-  "03n": <Cloud size={20} />,
-  "04d": <Cloudy size={20} />,
-  "04n": <Cloudy size={20} />,
-  "09d": <CloudDrizzle size={20} />,
-  "09n": <CloudDrizzle size={20} />,
-  "10d": <CloudRain size={20} />,
-  "10n": <CloudRain size={20} />,
-  "11d": <CloudLightning size={20} />,
-  "11n": <CloudLightning size={20} />,
-  "13d": <Snowflake size={20} />,
-  "13n": <Snowflake size={20} />,
-  "50d": <CloudFog size={20} />,
-  "50n": <CloudFog size={20} />,
+  "01d": <Sun size={20} strokeWidth={1.5}/>,
+  "01n": <Moon size={20} strokeWidth={1.5}/>,
+  "02d": <CloudSun size={20} strokeWidth={1.5}/>,
+  "02n": <CloudMoon size={20} strokeWidth={1.5}/>,
+  "03d": <Cloud size={20} strokeWidth={1.5}/>,
+  "03n": <Cloud size={20} strokeWidth={1.5}/>,
+  "04d": <Cloudy size={20} strokeWidth={1.5}/>,
+  "04n": <Cloudy size={20} strokeWidth={1.5}/>,
+  "09d": <CloudDrizzle size={20} strokeWidth={1.5}/>,
+  "09n": <CloudDrizzle size={20} strokeWidth={1.5}/>,
+  "10d": <CloudRain size={20} strokeWidth={1.5}/>,
+  "10n": <CloudRain size={20} strokeWidth={1.5}/>,
+  "11d": <CloudLightning size={20} strokeWidth={1.5}/>,
+  "11n": <CloudLightning size={20} strokeWidth={1.5}/>,
+  "13d": <Snowflake size={20} strokeWidth={1.5}/>,
+  "13n": <Snowflake size={20} strokeWidth={1.5}/>,
+  "50d": <CloudFog size={20} strokeWidth={1.5}/>,
+  "50n": <CloudFog size={20} strokeWidth={1.5}/>,
 };
 
 const WeatherWidget: React.FC = () => {
@@ -143,14 +143,20 @@ const WeatherWidget: React.FC = () => {
     setShowForecast((prev) => !prev); // Toggle show/hide forecast
   };
 
-  const selectCity = (
+  const selectCity = (closeParent: () => void) => (
     <Popover
     bottomsheet
       data-radius="15"
       data-space="5"
       placement="middle"
       content={(closePopover) => (
-        <group data-direction="column" onClick={closePopover}>
+        <group
+          data-direction="column"
+          onClick={() => {
+            closePopover();
+            closeParent();
+          }}
+        >
           {cities.map((city, index) => (
             <group
               data-radius="10"
@@ -438,7 +444,7 @@ const WeatherWidget: React.FC = () => {
                 </group>
                 <separator data-horizontal="dotted"></separator>
 
-                <group>{selectCity}</group>
+                <group>{selectCity(closePopover)}</group>
               </group>
             )}
           >
