@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import Radio, { RadioType } from "../components/inputs/radio";
@@ -26,6 +26,8 @@ import { SquareArrowOutUpRight } from "lucide-react";
 //import { isMobile } from "react-device-detect";
 
 type DemoView = "grid" | "carousel";
+
+const VIEW_KEY = "quick_demos_view";
 
 const viewOptions: { id: DemoView; label: string; icon: React.ReactElement }[] =
   [
@@ -129,10 +131,20 @@ const DemoBlock: React.FC<{
 
 const QuickDemos: React.FC = () => {
   const { openModal, closeModal } = useModal();
+  // Remember the selected view; fall back to grid if the stored value is missing or stale
+  const savedView = localStorage.getItem(VIEW_KEY);
+  const initialView: DemoView = viewOptions.some((o) => o.id === savedView)
+    ? (savedView as DemoView)
+    : "grid";
+
   const { control, watch } = useForm<{ view: DemoView }>({
-    defaultValues: { view: "grid" },
+    defaultValues: { view: initialView },
   });
   const view = watch("view");
+
+  useEffect(() => {
+    localStorage.setItem(VIEW_KEY, view);
+  }, [view]);
 
   const paintLaunch = (
     <Ripple>
