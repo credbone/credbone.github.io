@@ -5,9 +5,7 @@ import TickComponent from "../../../components/inputs/TickComponent";
 import Ripple from "../../../components/Ripple";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
 
-import { isIOS, isMacOs } from "react-device-detect";
-
-const isApple = isMacOs || isIOS;
+import { isApple, isTouchFirst } from "./pathUtils";
 
 // ─── Primitives ───────────────────────────────────────────────────────────────
 
@@ -732,14 +730,24 @@ export const PathOutput: React.FC<{ d: string }> = ({ d }) => {
 };
 
 // ─── Hints ───────────────────────────────────────────────────────────────────
-export const HintsPanel: React.FC = () => (
-  <group data-space="10">
-    {[
+// Touch-first devices get gesture hints; keyboards get Apple symbols on macOS / iOS
+const HINTS: [string, string][] = isTouchFirst
+  ? [
+      ["Long-press", "Add point & drag"],
+      ["Tap", "Select point"],
+      ["Long-press point", "Move point / handle"],
+    ]
+  : [
       [`${isApple ? "⌘" : "Ctrl"} + Click`, "Add point"],
+      ["Hold", "Add point & drag"],
       ["Click", "Select point"],
       ["Drag", "Move point / handle"],
-      ["Delele", "Remove selected"],
-    ].map(([key, desc], index) => (
+      [isApple ? "⌫" : "Delete", "Remove selected"],
+    ];
+
+export const HintsPanel: React.FC = () => (
+  <group data-space="10">
+    {HINTS.map(([key, desc], index) => (
       <group
         data-space="5"
         data-gap="10"

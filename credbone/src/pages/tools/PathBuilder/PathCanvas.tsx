@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { CanvasConfig, DragRole, PathPoint } from './types';
-import { buildPathD, r } from './pathUtils';
+import { buildPathD, isTouchFirst, r } from './pathUtils';
+import type { TouchTarget } from './useEditorState';
+
+type TouchStart = (e: React.TouchEvent, target: TouchTarget | null) => void;
+
+// Finger-sized invisible hit area around anchors and handles on touch devices
+const HIT_RADIUS = isTouchFirst ? 22 : 0;
 
 interface Props {
   points: PathPoint[];
@@ -12,6 +18,7 @@ interface Props {
   onCtrlMouseDown: (e: React.MouseEvent, id: string, role: DragRole) => void;
   onMouseMove: (e: MouseEvent) => void;
   onMouseUp: (e: MouseEvent) => void;
+  onTouchStart: TouchStart;
 }
 
 export const PathCanvas: React.FC<Props> = ({
@@ -24,6 +31,7 @@ export const PathCanvas: React.FC<Props> = ({
   onCtrlMouseDown,
   onMouseMove,
   onMouseUp,
+  onTouchStart,
 }) => {
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
@@ -50,7 +58,10 @@ export const PathCanvas: React.FC<Props> = ({
       viewBox={`0 0 ${width} ${height}`}
       style={{ display: 'block', cursor: 'crosshair' }}
       xmlns="http://www.w3.org/2000/svg"
+      data-user-select="none"
+      data-touch-callout="none"
       onMouseDown={onCanvasMouseDown}
+      onTouchStart={e => onTouchStart(e, null)}
     >
       <defs>
         <pattern id="grid-pat" patternUnits="userSpaceOnUse" width={gs} height={gs}>
@@ -107,12 +118,12 @@ export const PathCanvas: React.FC<Props> = ({
           return (
             <React.Fragment key={p.id}>
               {p.type === 'Q' && (
-                <CtrlDot cx={p.cx!} cy={p.cy!} pointId={p.id} role="cx_cy" onMouseDown={onCtrlMouseDown} />
+                <CtrlDot cx={p.cx!} cy={p.cy!} pointId={p.id} role="cx_cy" onMouseDown={onCtrlMouseDown} onTouchStart={onTouchStart} />
               )}
               {p.type === 'C' && (
                 <>
-                  <CtrlDot cx={p.cx1!} cy={p.cy1!} pointId={p.id} role="cx1_cy1" onMouseDown={onCtrlMouseDown} />
-                  <CtrlDot cx={p.cx2!} cy={p.cy2!} pointId={p.id} role="cx2_cy2" onMouseDown={onCtrlMouseDown} />
+                  <CtrlDot cx={p.cx1!} cy={p.cy1!} pointId={p.id} role="cx1_cy1" onMouseDown={onCtrlMouseDown} onTouchStart={onTouchStart} />
+                  <CtrlDot cx={p.cx2!} cy={p.cy2!} pointId={p.id} role="cx2_cy2" onMouseDown={onCtrlMouseDown} onTouchStart={onTouchStart} />
                 </>
               )}
             </React.Fragment>
@@ -129,6 +140,7 @@ export const PathCanvas: React.FC<Props> = ({
             isSelected={p.id === selectedId}
             isFirst={i === 0}
             onMouseDown={onAnchorMouseDown}
+            onTouchStart={onTouchStart}
           />
         ))}
       </g>
@@ -171,20 +183,25 @@ interface CtrlDotProps {
   pointId: string;
   role: DragRole;
   onMouseDown: (e: React.MouseEvent, id: string, role: DragRole) => void;
+  onTouchStart: TouchStart;
 }
 
-const CtrlDot: React.FC<CtrlDotProps> = ({ cx, cy, pointId, role, onMouseDown }) => (
-  <circle
-    cx={r(cx)}
-    cy={r(cy)}
-    r={5}
-    fill="var(--background)"
-    stroke="var(--amber)"
-    strokeWidth="5"
+const CtrlDot: React.FC<CtrlDotProps> = ({ cx, cy, pointId, role, onMouseDown, onTouchStart }) => (
+  <g
     style={{ cursor: 'pointer' }}
     onMouseDown={e => onMouseDown(e, pointId, role)}
-    
-  />
+    onTouchStart={e => onTouchStart(e, { pointId, role })}
+  >
+    {HIT_RADIUS > 0 && <circle cx={r(cx)} cy={r(cy)} r={HIT_RADIUS} fill="transparent" />}
+    <circle
+      cx={r(cx)}
+      cy={r(cy)}
+      r={5}
+      fill="var(--background)"
+      stroke="var(--amber)"
+      strokeWidth="5"
+    />
+  </g>
 );
 
 interface AnchorPointProps {
@@ -192,9 +209,10 @@ interface AnchorPointProps {
   isSelected: boolean;
   isFirst: boolean;
   onMouseDown: (e: React.MouseEvent, id: string) => void;
+  onTouchStart: TouchStart;
 }
 
-const AnchorPoint: React.FC<AnchorPointProps> = ({ point, isSelected, isFirst, onMouseDown }) => {
+const AnchorPoint: React.FC<AnchorPointProps> = ({ point, isSelected, isFirst, onMouseDown, onTouchStart }) => {
   const [hovered, setHovered] = React.useState(false);
   const strokeColor = isFirst ? '#f4511e' : 'currentColor';
   const fill = isSelected ? strokeColor : 'var(--background)';
@@ -203,6 +221,7 @@ const AnchorPoint: React.FC<AnchorPointProps> = ({ point, isSelected, isFirst, o
     <g
       style={{ cursor: 'pointer' }}
       onMouseDown={e => onMouseDown(e, point.id)}
+      onTouchStart={e => onTouchStart(e, { pointId: point.id, role: 'anchor' })}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -216,6 +235,7 @@ const AnchorPoint: React.FC<AnchorPointProps> = ({ point, isSelected, isFirst, o
 
         />
       )}
+      {HIT_RADIUS > 0 && <circle cx={r(point.x)} cy={r(point.y)} r={HIT_RADIUS} fill="transparent" />}
       <circle
         cx={r(point.x)} cy={r(point.y)} r={5}
         fill={fill}

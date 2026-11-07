@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { PathCanvas } from "./PathCanvas";
 import { ConfigPanel, HintsPanel, PathOutput, PointPanel } from "./Panel";
 import { useEditorState } from "./useEditorState";
-import { buildPathD } from "./pathUtils";
+import { buildPathD, isApple, isTouchFirst } from "./pathUtils";
 import { CanvasConfig, PointType } from "./types";
 import Popover from "../../../components/popover";
 import Ripple from "../../../components/Ripple";
@@ -21,6 +21,7 @@ export default function App() {
     onCtrlMouseDown,
     onMouseMove,
     onMouseUp,
+    onCanvasTouchStart,
     updateSelected,
     setSelectedType,
     removeSelected,
@@ -124,8 +125,9 @@ export default function App() {
                 Path Builder
               </text>
               <text data-wrap="wrap" data-max-length="300" data-opacity="40">
-                Ctrl + Click to add points. Use the right panel to change segment
-                type and adjust the path.
+                {isTouchFirst
+                  ? "Long-press the canvas to add a point, long-press a point or handle to move it. Use the point panel to change segment type and adjust the path."
+                  : `${isApple ? "⌘" : "Ctrl"} + Click or hold to add points. Use the point panel to change segment type and adjust the path.`}
               </text>
             </group>
           </group>
@@ -233,6 +235,7 @@ data-direction="column"
                 onCtrlMouseDown={onCtrlMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
+                onTouchStart={onCanvasTouchStart}
               />
             </group>
           </group>

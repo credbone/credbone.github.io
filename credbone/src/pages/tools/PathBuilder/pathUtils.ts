@@ -1,4 +1,10 @@
+import { isIOS, isMacOs } from 'react-device-detect';
 import { PathPoint } from './types';
+
+// Device hints: Apple keyboards show ⌘ / ⌫, touch-first devices get touch hints
+export const isApple = isMacOs || isIOS;
+export const isTouchFirst =
+  typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches;
 
 export function r(n: number): number {
   return Math.round(n);

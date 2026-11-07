@@ -1463,6 +1463,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-touch-action="manipulation"]{touch-action: manipulation;}
 [data-touch-action="none"]{touch-action: none;}
 [data-touch-action="pan-y"]{touch-action: pan-y;}
+[data-touch-callout="none"]{-webkit-touch-callout: none;}
 
 [data-text-transform="capitalize"] { text-transform: capitalize; }
 [data-text-transform="uppercase"] { text-transform: uppercase; }
