@@ -224,30 +224,94 @@ Custom handle using different properties
         </group>
 
         <group
-          data-background="adaptive-gray"
+          data-background="context"
           data-radius="30"
-          data-space="30"
-          data-gap="30"
+          data-space="15"
+          data-gap="15"
           data-direction="column"
           data-justify="end"
+          data-border=""
         >
-          <text
+<group data-space="15">
+            <text
             data-wrap="wrap"
             data-max-length="200"
             data-weight="600"
             data-line="1.5"
           >
-            Custom text label on the handle instead of the value
+            Filled track with tick marks and inline label and value
           </text>
+</group>
 
-          <CustomSlider
-            start={0}
-            end={sizes.length - 1}
-            value={sizeIndex}
-            onValueChange={(value) => setSizeIndex(value)}
-            label={sizes[sizeIndex]}
-            trackRightProps={{ "data-opacity": "10" }}
-          />
+
+
+
+
+          <group
+            data-space="3"
+          //  data-background="adaptive-gray"
+            data-length="300"
+            data-radius="15"
+            data-border=""
+            data-contain=""
+         //   data-height="40"
+          >
+            <group
+              data-position="absolute"
+              data-width="fit"
+              data-left="0"
+              data-top="0"
+              data-space-horizontal="25"
+              data-height="fit"
+              data-align="center"
+              data-mask="left-right"
+data-pointer-event="none" 
+            >
+              <TickComponent
+                tickCount={18}
+              //  majorEvery={5}
+                emphasizeCenter={false}
+                data-opacity="70"
+                data-align="center"
+             //   data-height="40"
+                heights={{ minor: 8, major: 8, center: 30 }}
+              ></TickComponent>
+            </group>
+
+
+
+<group             data-radius="12"
+            data-contain="">
+              <CustomSlider
+
+              // edgeGap={30}
+              label=""
+             // showValueOnDrag
+              start={0}
+              end={360}
+              step={5}
+              value={grainValue}
+              onValueChange={(value) => setGrainValue(value)}
+              handlerProps={{
+                "data-height": "40",
+                "data-background": "none",
+              }}
+              fillProps={{ "data-background": "neutral-light", "data-height": "40", "data-radius": "12", "data-opacity": "80" }}
+              trackLeftProps={{ "data-background": "none" }}
+              trackRightProps={{ "data-background": "none" }}
+            />
+</group>
+
+             <group data-position="absolute" data-pointer-event="none" data-height="fit" data-left="0" data-top="0" data-width="auto" data-align="center" data-space-horizontal="15" data-justify="center">
+              <text>Grain</text>
+            </group>
+
+             <group data-position="absolute" data-pointer-event="none"  data-height="fit" data-right="0" data-top="0" data-width="auto" data-align="center" data-space-horizontal="15" data-justify="center">
+              <text>{grainValue}</text>
+            </group>
+          </group>
+
+
         </group>
       </group>
 
@@ -436,7 +500,14 @@ data-pointer-event="none"
             </group>
           </group>
 
-
+          <CustomSlider
+            start={0}
+            end={sizes.length - 1}
+            value={sizeIndex}
+            onValueChange={(value) => setSizeIndex(value)}
+            label={sizes[sizeIndex]}
+            trackRightProps={{ "data-opacity": "10" }}
+          />
 
           <group
             data-space="3"

@@ -428,7 +428,7 @@ const PatternMaker: React.FC = () => {
                   data-animation-name="appear-bottom"
                   data-animation-duration="4"
                 >
-                  <text>New</text>
+                  <text>Clear</text>
                 </group>
               </Ripple>
 

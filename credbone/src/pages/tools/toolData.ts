@@ -20,7 +20,7 @@ export const links =
 
 { title: "Color Converter", content: ColorSpace, description: "Convert colors between formats.", url: "/Tools/ColorSpaceConverter", new:"true" },
 
-{ title: "Path Builder", content: PathBuilder, description: "Easly create and modify paths.", url: "/Tools/PathBuilder", new:"true" },
+{ title: "Path Builder", content: PathBuilder, description: "Easily create and modify paths.", url: "/Tools/PathBuilder", new:"true" },
 
 
 
