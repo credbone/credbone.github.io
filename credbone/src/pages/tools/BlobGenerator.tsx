@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect } from "react"; // add useCallback, useRef back with the segmented toggle
 import CustomSlider from "../../components/inputs/slider";
 import TickComponent from "../../components/inputs/TickComponent";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
@@ -97,7 +97,7 @@ const _createSvgPath = (points: string | any[]) => {
   return svgPath;
 };
 
-interface DialSliderProps {
+interface ConfigSliderProps {
   label: string;
   start: number;
   end: number;
@@ -105,57 +105,84 @@ interface DialSliderProps {
   onValueChange: (value: number) => void;
 }
 
-// Dial-style slider: ticks behind a wide labelled handle that shows the value while dragging
-const DialSlider: React.FC<DialSliderProps> = ({
+// Config slider (the "Grain" style from the slider demos): a bordered bar whose fill follows the value,
+// decorative ticks behind it, the label on the left and the current value on the right
+const ConfigSlider: React.FC<ConfigSliderProps> = ({
   label,
   start,
   end,
   value,
   onValueChange,
 }) => (
-  <group data-align="center" data-gap="15" data-space="15">
-    <group>
-      <group
-        data-position="absolute"
-        data-width="fit"
-        data-left="0"
-        data-top="0"
-        data-space-horizontal="15"
-        data-height="fit"
+  <group data-space="3" data-radius="15" data-border="" data-contain="">
+    <group
+      data-position="absolute"
+      data-width="fit"
+      data-left="0"
+      data-top="0"
+      data-space-horizontal="25"
+      data-height="fit"
+      data-align="center"
+      data-mask="left-right"
+      data-pointer-event="none"
+    >
+      <TickComponent
+        tickCount={18}
+        emphasizeCenter={false}
+        data-opacity="70"
         data-align="center"
-      >
-        <TickComponent
-          tickCount={30}
-          majorEvery={5}
-          emphasizeCenter={false}
-          //      data-opacity="90"
-          data-align="center"
-          data-height="40"
-          heights={{ minor: 8, major: 18, center: 30 }}
-        ></TickComponent>
-      </group>
+        heights={{ minor: 8, major: 8, center: 30 }}
+      ></TickComponent>
+    </group>
 
+    <group data-radius="12" data-contain="">
       <CustomSlider
-        label={label}
-        showValueOnDrag
+        label=""
         start={start}
         end={end}
         value={value}
         onValueChange={onValueChange}
-        handlerWidth={120}
         handlerProps={{
           "data-height": "40",
-          "data-background": "text",
-          "data-color": "main-background",
+          "data-background": "none",
+        }}
+        fillProps={{
+          "data-background": "neutral-light",
+          "data-height": "40",
+          "data-radius": "12",
+          "data-opacity": "80",
         }}
         trackLeftProps={{ "data-background": "none" }}
-        trackRightProps={{
-          "data-background": "main-background",
-          "data-height": "30",
-          "data-opacity": "70",
-          "data-margin-left": undefined,
-        }}
+        trackRightProps={{ "data-background": "none" }}
       />
+    </group>
+
+    <group
+      data-position="absolute"
+      data-pointer-event="none"
+      data-height="fit"
+      data-left="0"
+      data-top="0"
+      data-width="auto"
+      data-align="center"
+      data-space-horizontal="15"
+      data-justify="center"
+    >
+      <text>{label}</text>
+    </group>
+
+    <group
+      data-position="absolute"
+      data-pointer-event="none"
+      data-height="fit"
+      data-right="0"
+      data-top="0"
+      data-width="auto"
+      data-align="center"
+      data-space-horizontal="15"
+      data-justify="center"
+    >
+      <text>{value}</text>
     </group>
   </group>
 );
@@ -163,12 +190,13 @@ const DialSlider: React.FC<DialSliderProps> = ({
 const BlobGenerator: React.FC = () => {
   const [mode, setMode] = useState<"fill" | "stroke">("stroke");
   const [strokeWidth, setStrokeWidth] = useState(10);
-  const [blobCount, setBlobCount] = useState(10);
+  const [blobCount, setBlobCount] = useState(9);
 
-  const [points, setPoints] = useState(12);
+  const [points, setPoints] = useState(10);
   const [growth, setGrowth] = useState(3);
   const [paths, setPaths] = useState<string[]>([""]);
 
+  /* Segmented mode toggle indicator: kept for later use with the commented toggle below
   const modeToggleRef = useRef<HTMLDivElement>(null);
   const modeIndicatorRef = useRef<HTMLDivElement>(null);
   const [modeIndicatorStyle, setModeIndicatorStyle] = useState({
@@ -217,6 +245,7 @@ const BlobGenerator: React.FC = () => {
     if (modeToggleRef.current) ro.observe(modeToggleRef.current);
     return () => ro.disconnect();
   }, [updateModeIndicator]);
+  */
 
   useEffect(() => {
     let current = 3;
@@ -323,7 +352,7 @@ const BlobGenerator: React.FC = () => {
       data-type="grid"
       data-grid-template="280"
       data-gap="30"
-      data-align="start"
+      data-align="center"
     >
       <group
         data-border=""
@@ -333,6 +362,7 @@ const BlobGenerator: React.FC = () => {
         data-elevation="2"
         data-space="30"
         data-gap="30"
+        data-index="2"
       >
         <SvgPattern_1 />
 
@@ -486,8 +516,17 @@ const BlobGenerator: React.FC = () => {
         </group>
       </group>
 
-      <group data-direcion="column">
-        <group data-space-vertical="30" data-direction="column" data-gap="10">
+      <group data-direcion="column" >
+
+
+        <group 
+    //    data-border=""
+          //data-radius="40"
+          
+          >
+
+
+        <group  data-direction="column" data-space="30" data-space-bottom="0" data-gap="10">
           <text
             data-weight="700"
             data-wrap="preline"
@@ -504,14 +543,8 @@ const BlobGenerator: React.FC = () => {
           </text>
         </group>
 
-        <group data-gap="15">
-          <group
-            data-index="2"
-            data-elevation="2"
-            data-radius="20"
-            data-contain=""
-          >
-            <DialSlider
+          <group data-direction="column" data-gap="15" data-space="30">
+            <ConfigSlider
               label="Edges"
               start={3}
               end={12}
@@ -519,24 +552,15 @@ const BlobGenerator: React.FC = () => {
               onValueChange={(value) => setPoints(value)}
             />
 
-            <separator data-horizontal="dotted" data-opacity="20"></separator>
-
-            <DialSlider
+            <ConfigSlider
               label="Smoothness"
               start={2}
               end={9}
               value={growth}
               onValueChange={(value) => setGrowth(value)}
             />
-          </group>
 
-          <group
-            data-radius="20"
-            data-contain=""
-            data-elevation="2"
-            data-justify="center"
-          >
-            <DialSlider
+            <ConfigSlider
               label="Amount"
               start={1}
               end={10}
@@ -545,7 +569,8 @@ const BlobGenerator: React.FC = () => {
             />
           </group>
 
-          {/* Mode toggle */}
+          {/* Mode toggle (segmented, sliding indicator): kept for later use.
+              Restore together with the indicator logic above and the useCallback/useRef imports.
           <group
             //  data-radius="25"
             // data-contain=""
@@ -568,11 +593,12 @@ const BlobGenerator: React.FC = () => {
                 data-fit="1"
                 data-gap="3"
                 data-space="3"
-                data-radius="40"
+                data-radius="15"
                 data-wrap="no"
-                data-border=""
+                data-background="adaptive-gray"
+             //   data-border=""
               >
-                {/* Rendered before the options so their labels paint above the fill */}
+                // Rendered before the options so their labels paint above the fill
                 <group
                   ref={modeIndicatorRef}
                   data-position="absolute"
@@ -591,14 +617,15 @@ const BlobGenerator: React.FC = () => {
                 >
                   <group
                     data-height="fit"
-                    data-radius="30"
-                    data-background="text"
+                    data-radius="12"
+                    data-background="white"
+                    data-border="outline"
                   ></group>
                 </group>
                 {(["fill", "stroke"] as const).map((m) => (
                   <Ripple key={m}>
                     <group
-                      data-ink-color="neutral"
+                      data-ink-color="none"
                       data-over-color="neutral"
                       key={m}
                       // data-width="auto"
@@ -608,8 +635,8 @@ const BlobGenerator: React.FC = () => {
                       data-align="center"
                       data-justify="center"
                       data-selected={mode === m ? "true" : undefined}
-                      data-color={mode === m ? "main-background" : ""}
-                      data-radius="30"
+                      data-color={mode === m ? "black" : ""}
+                      data-radius="12"
                       data-cursor="pointer"
                       data-interactive=""
                       onClick={() => setMode(m)}
@@ -621,23 +648,77 @@ const BlobGenerator: React.FC = () => {
               </group>
             </group>
           </group>
+          */}
+
+
+  <separator data-horizontal="" data-opacity="5"></separator>
+
+<group data-space="30">
+            {/* Mode toggle: same as the Color Mixer "Mode" button */}
+          <Ripple>
+            <group
+            data-ink-color="neutral-light"
+              data-gap="15"
+              data-wrap="no"
+              data-width="auto"
+              data-contain=""
+              data-space="15"
+              data-radius="15"
+             // data-background="adaptive-gray"
+             data-border=""
+              data-interactive=""
+              data-over-color="neutral"
+              data-cursor="pointer"
+              onClick={() => setMode(mode === "fill" ? "stroke" : "fill")}
+            >
+              <group data-width="auto">
+                <text data-ellipsis="" data-opacity="40">
+                  Blob Style
+                </text>
+              </group>
+              <separator data-vertical="" data-height="autofit"></separator>
+              <group
+                data-align="center"
+                data-justify="center"
+                data-width="auto"
+                data-contain=""
+              >
+                <text
+                  data-ellipsis=""
+                  data-transition-prop="font-size"
+                  data-duration="2"
+                  data-text-size={mode === "fill" ? "" : "0"}
+                >
+                  Solid
+                </text>
+                <text
+                  data-ellipsis=""
+                  data-transition-prop="font-size"
+                  data-duration="2"
+                  data-text-size={mode === "stroke" ? "" : "0"}
+                >
+                  Outline
+                </text>
+              </group>
+            </group>
+          </Ripple>
 
           <group
+          
             data-opacity={mode === "stroke" ? undefined : "0"}
+          //   data-hide={mode === "stroke" ? undefined : "true"}
             data-translate-vertical={mode === "stroke" ? undefined : "50%"}
             data-duration=".125"
             data-pointer-event={mode === "stroke" ? undefined : "none"}
-            data-transition-behavior="allow-discrete"
-            data-radius="20"
-            data-contain=""
-            data-elevation="2"
-            data-justify="center"
+            //data-transition-behavior="allow-discrete"
+            data-max-height={mode === "stroke" ? "70" : "0"}
           >
+            <group data-height="15"></group>
             <group
               data-translate-vertical={mode === "stroke" ? undefined : "50%"}
               data-duration=".225"
             >
-              <DialSlider
+              <ConfigSlider
                 label="Stroke"
                 start={1}
                 end={20}
@@ -646,6 +727,7 @@ const BlobGenerator: React.FC = () => {
               />
             </group>
           </group>
+</group>
         </group>
       </group>
     </group>
