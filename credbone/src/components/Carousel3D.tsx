@@ -38,11 +38,13 @@ interface Carousel3DProps {
 const DEFAULT_DESKTOP: Carousel3DSpread = { spread: 0.22, maxSpread: 240, sideCount: 2 };
 const DEFAULT_MOBILE: Carousel3DSpread = { spread: 0.3, maxSpread: 140, sideCount: 1 };
 
-// Elements that keep their own pointer behavior inside the active card
-const INTERACTIVE_SELECTOR =
-  "input, textarea, select, button, canvas, a, [contenteditable], [data-interactive]";
+// Text fields keep their own drag (text selection) while focused
+const TEXT_FIELD_SELECTOR =
+  'textarea, [contenteditable], input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"])';
 
 const DRAG_THRESHOLD = 8;
+const WHEEL_IDLE = 120; // ms without wheel events that ends a touchpad swipe
+const WHEEL_LINE = 16; // px per line, for wheels that report in lines
 const FLICK_VELOCITY = 0.5; // px per ms
 const MOMENTUM_TIME = 250; // ms of coasting projected from release velocity
 const SNAP_DURATION = 450; // ms
@@ -67,6 +69,26 @@ const mod = (v: number, n: number) => ((v % n) + n) % n;
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 const easeOutQuint = (t: number) => 1 - Math.pow(1 - t, 5);
+
+// True when something between the target and the stage can still scroll
+// sideways in the swipe's direction, so the swipe belongs to it
+const innerScrollsX = (from: EventTarget | null, root: HTMLElement, dx: number) => {
+  let el = from instanceof HTMLElement ? from : null;
+  while (el && el !== root) {
+    const { overflowX } = getComputedStyle(el);
+    if (
+      (overflowX === "auto" || overflowX === "scroll") &&
+      el.scrollWidth > el.clientWidth &&
+      (dx < 0
+        ? el.scrollLeft > 0
+        : el.scrollLeft + el.clientWidth < el.scrollWidth - 1)
+    ) {
+      return true;
+    }
+    el = el.parentElement;
+  }
+  return false;
+};
 
 const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -115,6 +137,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     stepSize: 0, // px of pointer travel per item: card spacing on the stage, tick spacing on the rail
     pointerId: -1,
     startX: 0,
+    startY: 0,
     startPos: 0,
     lastX: 0,
     lastT: 0,
@@ -252,9 +275,10 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     // but isn't in the carousel: leave its swipes alone
     if (!e.currentTarget.contains(e.target as Node)) return;
     drag.current.moved = false;
-    const target = e.target as HTMLElement;
-    const inActiveCard = target.closest('[data-carousel-active="true"]');
-    if (inActiveCard && target.closest(INTERACTIVE_SELECTOR)) return;
+    // Any press can become a swipe (buttons included): the first movement decides.
+    // Only a focused text field keeps the drag, for selecting text
+    const field = (e.target as HTMLElement).closest(TEXT_FIELD_SELECTOR);
+    if (field && field === document.activeElement) return;
 
     // Grab the rail mid-animation where it is
     stopAnimation();
@@ -264,6 +288,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
       stepSize,
       pointerId: e.pointerId,
       startX: e.clientX,
+      startY: e.clientY,
       startPos: positionRef.current,
       lastX: e.clientX,
       lastT: e.timeStamp,
@@ -279,7 +304,14 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
 
     const dx = e.clientX - d.startX;
     if (!d.moved) {
-      if (Math.abs(dx) < DRAG_THRESHOLD) return;
+      // Axis lock on the first real movement: horizontal swipes the carousel,
+      // vertical leaves the gesture to the page and the content
+      const dy = e.clientY - d.startY;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < DRAG_THRESHOLD) return;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        d.active = false;
+        return;
+      }
       d.moved = true;
       setDragging(true);
       window.dispatchEvent(new Event(POPOVER_DISMISS_EVENT));
@@ -327,6 +359,65 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     }
     animateTo(target);
   };
+
+  // Touchpad swipes (and Shift + wheel) arrive as wheel events, not pointers.
+  // Cards follow deltaX like a drag; a short pause in events ends the swipe
+  // and snaps. macOS momentum events keep it coasting before the pause
+  const wheel = useRef({
+    axis: null as "x" | "y" | null, // locked for the whole gesture
+    timer: null as number | null,
+  });
+
+  const handleWheel = useRef<(e: WheelEvent) => void>(() => {});
+  handleWheel.current = (e: WheelEvent) => {
+    const stage = stageRef.current;
+    if (!stage || spacing <= 0 || drag.current.active) return;
+
+    const unit =
+      e.deltaMode === 1 ? WHEEL_LINE : e.deltaMode === 2 ? stageWidth : 1;
+    const dx = e.deltaX * unit;
+    const dy = e.deltaY * unit;
+    const w = wheel.current;
+
+    if (w.axis === null) {
+      if (dx === 0 && dy === 0) return;
+      // Vertical, or a sideways scroll something inside should take: not ours
+      w.axis =
+        Math.abs(dx) > Math.abs(dy) && !innerScrollsX(e.target, stage, dx)
+          ? "x"
+          : "y";
+      if (w.axis === "x") {
+        stopAnimation();
+        window.dispatchEvent(new Event(POPOVER_DISMISS_EVENT));
+      }
+    }
+
+    if (w.timer !== null) window.clearTimeout(w.timer);
+    w.timer = window.setTimeout(() => {
+      w.timer = null;
+      const wasOurs = w.axis === "x";
+      w.axis = null;
+      if (wasOurs) animateTo(Math.round(positionRef.current));
+    }, WHEEL_IDLE);
+
+    if (w.axis !== "x") return;
+    // Also keeps the browser's two-finger back/forward swipe from firing
+    e.preventDefault();
+    setPosition(positionRef.current + dx / spacing);
+  };
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => handleWheel.current(e);
+    // Non-passive so preventDefault works (React's onWheel is passive)
+    el.addEventListener("wheel", onWheel, { passive: false });
+    const w = wheel.current;
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      if (w.timer !== null) window.clearTimeout(w.timer);
+    };
+  }, []);
 
   // Swallow the click that follows a drag so cards/widgets don't fire
   const handleClickCapture = (e: React.MouseEvent) => {
