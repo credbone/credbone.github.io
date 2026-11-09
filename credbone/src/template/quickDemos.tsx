@@ -18,9 +18,6 @@ import StopWatch from "../tools/StopWatch";
 import { isMobile } from "react-device-detect";
 import { IconCarousel, IconViewWindow } from "../components/icon/credIcons";
 
-
-
-
 import sample_4 from "../styles/images/samples/res_007.webp";
 import { SquareArrowOutUpRight } from "lucide-react";
 
@@ -221,9 +218,8 @@ const QuickDemos: React.FC = () => {
   const paintLaunch = (
     <Ripple>
       <group
-     
-
-      data-ink-color="gray-shade-20" data-over-color="neutral"
+        data-ink-color="gray-shade-20"
+        data-over-color="neutral"
         data-contain=""
         data-space="15"
         data-interactive=""
@@ -233,8 +229,8 @@ const QuickDemos: React.FC = () => {
         data-height="45"
         data-gap="10"
         data-align="center"
-      //  data-justify="center"
-       // data-direction="column"
+        //  data-justify="center"
+        // data-direction="column"
         onClick={() => {
           // New history entry, so Back (or Exit) returns to the page
           pushedPaintRef.current = true;
@@ -244,13 +240,16 @@ const QuickDemos: React.FC = () => {
           });
         }}
       >
-        <text data-ellipsis=""  >
-          Launch
-        </text>
+        <text data-ellipsis="">Launch</text>
 
-<group data-width="auto" data-position="right" data-interact="" data-opacity="40">
-  <SquareArrowOutUpRight size={20}  strokeWidth={1.5}/>
-</group>
+        <group
+          data-width="auto"
+          data-position="right"
+          data-interact=""
+          data-opacity="40"
+        >
+          <SquareArrowOutUpRight size={20} strokeWidth={1.5} />
+        </group>
       </group>
     </Ripple>
   );
@@ -267,18 +266,16 @@ const QuickDemos: React.FC = () => {
       description:
         "Demonstrates state-driven UI, dynamic controls, and animation within a token-based system",
       content: <StopWatch />,
-      wrappers:{
-        carousel:{
+      wrappers: {
+        carousel: {
           wrapperProps: {
-
-            "data-radius":"35",
-            "data-space":"15",
-            "data-background":"main-background",
-            "data-border":""
-
+            "data-radius": "35",
+            "data-space": "15",
+            "data-background": "main-background",
+            "data-border": "",
           },
-        }
-      }
+        },
+      },
     },
     {
       id: "paint",
@@ -319,29 +316,41 @@ const QuickDemos: React.FC = () => {
           },
           // Placeholder preview until a real one is designed
           content: (
-            <group data-gap="10" >
-<group >
+            <group data-gap="10">
+              <group  data-interactive="" data-over-color="none">
                 <group
-                data-ratio="4:5"
-                //data-background="adaptive-gray"
-                data-align="center"
-                data-justify="center"
-           data-radius="15"
-               data-contain=""
-              >
+                
+                  data-ratio="4:5"
+                  //data-background="adaptive-gray"
+                  data-align="center"
+                  data-justify="center"
+                  data-radius="15"
+                  data-contain=""
+                  data-cursor="pointer"
+                 data-interact=""
 
-                          <picture
-            
-            data-brightness="adaptive"
-            data-position="absolute"
+                          onClick={() => {
+          // New history entry, so Back (or Exit) returns to the page
+          pushedPaintRef.current = true;
+          setSearchParams((p) => {
+            p.set(DEMO_PARAM, PAINT_DEMO);
+            return p;
+          });
+        }}
 
-           // data-space="20"
-          >
-            <img src={sample_4} alt="" />
-          </picture>
+                >
+                  <picture
+                  
+                    data-brightness="adaptive"
+                    data-position="absolute"
+
+                    // data-space="20"
+                  >
+                    <img src={sample_4} alt="" />
+                  </picture>
+                </group>
               </group>
-</group>
-            
+
               {paintLaunch}
             </group>
           ),
@@ -350,10 +359,13 @@ const QuickDemos: React.FC = () => {
       content: (
         <group data-gap="10">
           <separator data-horizontal="dotted" data-opacity="20"></separator>
-          <group  data-background="adaptive-gray" data-contain="" data-radius="15">
-{paintLaunch}
+          <group
+            data-background="adaptive-gray"
+            data-contain=""
+            data-radius="15"
+          >
+            {paintLaunch}
           </group>
-          
         </group>
       ),
     },
