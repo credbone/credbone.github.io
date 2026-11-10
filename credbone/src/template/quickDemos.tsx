@@ -18,6 +18,7 @@ import StopWatch from "../tools/StopWatch";
 import { isMobile } from "react-device-detect";
 import { IconCarousel, IconViewWindow } from "../components/icon/credIcons";
 
+import sample_3 from "../styles/images/samples/res_008.webp";
 import sample_4 from "../styles/images/samples/res_007.webp";
 import { SquareArrowOutUpRight } from "lucide-react";
 
@@ -358,14 +359,40 @@ const QuickDemos: React.FC = () => {
       },
       content: (
         <group data-gap="10">
-          <separator data-horizontal="dotted" data-opacity="20"></separator>
-          <group
-            data-background="adaptive-gray"
-            data-contain=""
-            data-radius="15"
-          >
-            {paintLaunch}
-          </group>
+                        <group  data-interactive="" data-over-color="none">
+                <group
+                
+                  data-ratio="2:1"
+                  //data-background="adaptive-gray"
+                  data-align="center"
+                  data-justify="center"
+                  data-radius="15"
+                  data-contain=""
+                  data-cursor="pointer"
+                 data-interact=""
+
+                          onClick={() => {
+          // New history entry, so Back (or Exit) returns to the page
+          pushedPaintRef.current = true;
+          setSearchParams((p) => {
+            p.set(DEMO_PARAM, PAINT_DEMO);
+            return p;
+          });
+        }}
+
+                >
+                  <picture
+                  
+                    data-brightness="adaptive"
+                    data-position="absolute"
+
+                    // data-space="20"
+                  >
+                    <img src={sample_3} alt="" />
+                  </picture>
+                </group>
+              </group>
+{paintLaunch}
         </group>
       ),
     },

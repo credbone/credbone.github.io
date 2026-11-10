@@ -12,18 +12,19 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Scroll from "../components/scroll";
 import Ripple from "../components/Ripple";
 import CustomSlider from "../components/inputs/slider";
+import MenuItem from "../components/MenuItem";
 import {
-  Brush,
+  ArrowDown,
+  Ellipsis,
   Feather,
-  Highlighter,
+  Plus,
   Pencil,
-  PenIcon,
-  PenTool,
   X,
+  Share,
 } from "lucide-react";
 import { HexColorPicker } from "react-colorful";
 import { getStroke, getStrokePoints } from "perfect-freehand";
-import { IconAdd, IconBrush, IconMarker } from "../components/icon/credIcons";
+import { IconBrush, IconMarker } from "../components/icon/credIcons";
 
 /** Turn a perfect-freehand outline into a smooth closed SVG path. */
 const getSvgPathFromStroke = (points: number[][]) => {
@@ -110,6 +111,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
 
   const [isBrushOpen, setIsBrushOpen] = useState(false);
   const [isColorsOpen, setIsColorsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Custom swatch (first in the palette); resets on reload
   const [customColor, setCustomColor] = useState(brushColor);
   // Explicit flag: custom can equal a preset, so selection isn't color-derived
@@ -133,6 +135,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
     setIsSwatchesOpen(false);
     setIsToolsOpen(false);
     setIsSizeOpen(false);
+    setIsMenuOpen(false);
   };
 
   // ─── Color swatches ───────────────────────────────────────────────────────
@@ -778,6 +781,75 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
     addSnackbar(<text>Canvas cleared</text>, 1500, "paint-clear", true);
   };
 
+  // ─── Save / Share ─────────────────────────────────────────────────────────
+
+  // PNG of the drawing on the canvas background (white, see containerRef)
+  const getCanvasBlob = () =>
+    new Promise<Blob | null>((resolve) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return resolve(null);
+      const out = document.createElement("canvas");
+      out.width = canvas.width;
+      out.height = canvas.height;
+      const ctx = out.getContext("2d");
+      if (!ctx) return resolve(null);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, out.width, out.height);
+      ctx.drawImage(canvas, 0, 0);
+      out.toBlob(resolve, "image/png");
+    });
+
+  const getFileName = () =>
+    `paint-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.png`;
+
+  const saveImage = async () => {
+    const blob = await getCanvasBlob();
+    if (!blob) {
+      addSnackbar(<text>Couldn't save the image</text>, 1500, "paint-save", true);
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = getFileName();
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Native share sheet when files are supported, else copy to clipboard
+  const shareImage = async () => {
+    const blob = await getCanvasBlob();
+    if (!blob) {
+      addSnackbar(<text>Couldn't share the image</text>, 1500, "paint-share", true);
+      return;
+    }
+    const file = new File([blob], getFileName(), { type: "image/png" });
+    if (navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file] });
+      } catch (err) {
+        if ((err as Error).name !== "AbortError")
+          addSnackbar(<text>Couldn't share the image</text>, 1500, "paint-share", true);
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+      addSnackbar(<text>Image copied to clipboard</text>, 1500, "paint-share", true);
+    } catch {
+      addSnackbar(<text>Sharing isn't supported here</text>, 1500, "paint-share", true);
+    }
+  };
+
+  const menuItems = [
+    { icon: <Plus size={20} strokeWidth={1.5} />, title: "New", description: "Start a blank canvas", onClick: clearCanvas },
+    { icon: <ArrowDown size={20} strokeWidth={1.5}/>, title: "Save", description: "Download as PNG", onClick: saveImage },
+    { icon: <Share size={20} strokeWidth={1.5}/>, title: "Share", description: "Send or copy the image", onClick: shareImage },
+    ...(onExit
+      ? [{  title: "Exit", description: "Close Paint", onClick: onExit }]
+      : []),
+  ];
+
   // ─── SVG cursor ───────────────────────────────────────────────────────────
   const buildCursorSvg = () => {
     const pad = 4;
@@ -885,37 +957,99 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
         // data-background="adaptive-gray"
         //  data-wrap="no"
       >
-        {/* TODO: confirm (or offer undo) before clearing a drawing */}
-        <Ripple>
-          <group
-            //    data-backdrop="20-contrast"
-            data-ink-color="neutral"
-            data-over-color="neutral"
-            onClick={clearCanvas}
-            data-cursor="pointer"
-            data-radius="30"
-            data-width="auto"
-            data-contain=""
-            data-interactive=""
-            data-height="50"
-            data-wrap="no"
-            data-align="center"
-            data-gap="15"
-            data-background="adaptive-gray"
-            //   data-adaptive="desktop"
-          >
-            <group data-width="auto" data-wrap="no">
-              <group data-adaptive="desktop" data-space-horizontal="25">
-                <text data-weight="700" data-length="autofit">
-                  New
-                </text>
-              </group>
-              <group data-adaptive="mobile" data-space="15" data-interact="">
-                <IconAdd size={20} />
-              </group>
+        {/* ── File menu: New, Save, Share, Exit (mobile shows only this) ── */}
+        <Popover
+          bottomsheet
+          data-background="fg"
+          open={isMenuOpen}
+          onOpenChange={setIsMenuOpen}
+          placement="bottom"
+          data-space="5"
+          data-radius="20"
+          content={(closePopover, isBottomSheet) => (
+            <group
+              data-direction="column"
+              data-length={isBottomSheet ? undefined : "240"}
+              onClick={closePopover}
+              data-contain=""
+            >
+              {menuItems.map((item, index) => (
+                <group
+                  key={item.title}
+                  data-name="autoseparation"
+                  data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                  data-fill-mode="backwards"
+                  data-animation-duration={2 + index * 0.5}
+                >
+                  <separator
+                    data-horizontal=""
+                    data-margin-horizontal="10"
+                    data-opacity="5"
+                  ></separator>
+                  <MenuItem
+                    icon={item.icon}
+                    title={item.title}
+                    description={item.description}
+                    onClick={item.onClick}
+                    data-space={isBottomSheet ? "20" : "15"}
+                    data-gap={isBottomSheet ? "20" : "15"}
+                  />
+                </group>
+              ))}
             </group>
+          )}
+        >
+          <group data-width="auto">
+            <Tooltip content="Menu" delay={300}>
+              <group data-width="auto">
+                <Ripple>
+                  <group
+                    data-ink-color="neutral"
+                    data-over-color="neutral"
+                    data-cursor="pointer"
+                    data-radius="full"
+                    data-contain=""
+                    data-interactive=""
+                    data-height="50"
+                    data-length="50"
+                    data-align="center"
+                    data-justify="center"
+                    data-background="adaptive-gray"
+                  >
+                    <icon>
+                      <Ellipsis size={20} />
+                    </icon>
+                  </group>
+                </Ripple>
+              </group>
+            </Tooltip>
           </group>
-        </Ripple>
+        </Popover>
+
+        {/* TODO: confirm (or offer undo) before clearing a drawing */}
+        <group data-adaptive="desktop" data-width="auto">
+          <Ripple>
+            <group
+              data-ink-color="neutral"
+              data-over-color="neutral"
+              onClick={clearCanvas}
+              data-cursor="pointer"
+              data-radius="30"
+              data-width="auto"
+              data-contain=""
+              data-interactive=""
+              data-height="50"
+              data-wrap="no"
+              data-align="center"
+              data-background="adaptive-gray"
+              data-space-horizontal="25"
+            >
+              <text data-weight="700" data-length="autofit">
+                New
+              </text>
+            </group>
+          </Ripple>
+        </group>
 
         {/* ── Brush type selector ── */}
         <group
