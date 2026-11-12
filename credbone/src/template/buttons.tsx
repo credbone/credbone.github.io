@@ -78,7 +78,7 @@ tint="var(--background)"
 data-align="center"
 data-justify="center"
 >
-<group data-wrap="no" data-ratio="1:1"  data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain=""  data-interactive="" data-space="20" data-radius="25" data-gap="20">
+<group data-wrap="no" data-ratio="1:1"  data-justify="center" data-theme="dark"    data-align="center" data-cursor="pointer" data-contain=""  data-interactive="" data-space="20" data-radius="25" data-gap="20">
 <group data-interact="" data-width="auto">
   <IconHome size={60} />
 </group>
