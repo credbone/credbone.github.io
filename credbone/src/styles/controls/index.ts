@@ -16,4 +16,5 @@ import './popup.css';
 import './color.css';
 import './animation.css';
 import './tooltip.css';
+import './glass.css';
 

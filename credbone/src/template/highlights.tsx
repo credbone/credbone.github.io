@@ -4,6 +4,7 @@ import { avatars } from "../pages/tools/avatars/avatars";
 import sampleImage_3 from "../styles/images/samples/res_3.webp";
 import sampleImage_2 from "../styles/images/samples/res_2.webp";
 import { Link } from "react-router-dom";
+import Glass from "../components/Glass";
 
 
 
@@ -219,14 +220,35 @@ aria-label={avatar.name}
           </group>
         </group>
         <group data-height="110"  data-pointer-event="none"></group>
+<Glass
+
+
+ data-pointer-event="none"
+
+lightAngle={-70}
+lightIntensity={70}
+refraction={60}
+depth={50}
+dispersion={60}
+frost={20}
+radius={30}
+
+
+tintOpacity={40}
+
+tint="var(--background)"
+
+>
+
+
 
         <group
           data-space="30"
           data-position="center"
-          data-backdrop="20-adaptive"
+     //     data-backdrop="20-adaptive"
           data-width="auto"
           data-radius="25"
-          data-pointer-event="none"
+         
           data-elevation="2"
         >
           <group
@@ -262,6 +284,10 @@ aria-label={avatar.name}
             </group>
           </group>
         </group>
+
+
+</Glass>
+
          <group data-height="110"  data-pointer-event="none"></group>
       </group>
       

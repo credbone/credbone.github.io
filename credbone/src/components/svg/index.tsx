@@ -1,4 +1,9 @@
-export const SvgHamburger: React.FC<{ toLeft?: boolean; toRight?: never; } | { toLeft?: never; toRight?: boolean; }> = ({ toLeft, toRight }) => {
+type SvgHamburgerProps = ({ toLeft?: boolean; toRight?: never; } | { toLeft?: never; toRight?: boolean; }) & {
+    /** Rotation in degrees. When set, overrides the `.open` rotation (e.g. pass an ever-growing value for a one-direction loop). */
+    rotate?: number;
+};
+
+export const SvgHamburger: React.FC<SvgHamburgerProps> = ({ toLeft, toRight, rotate }) => {
     let dataIcon = 'hamburger';
     if (toLeft) {
         dataIcon = 'hamburgertoleft';
@@ -13,6 +18,8 @@ export const SvgHamburger: React.FC<{ toLeft?: boolean; toRight?: never; } | { t
             height="20"
             viewBox="0 0 20 20"
         data-icon={dataIcon}
+        data-rotate={rotate !== undefined ? "var" : undefined}
+        style={rotate !== undefined ? ({ "--icon-rotate": `${rotate}deg` } as React.CSSProperties) : undefined}
         fill="currentColor"
         >
         <rect rx="1" x="3" y="4" width="14" height="2"></rect>
@@ -22,8 +29,8 @@ export const SvgHamburger: React.FC<{ toLeft?: boolean; toRight?: never; } | { t
     );
 };
 
-export const SvgHamburgerToRight: React.FC = () => {
-    return <SvgHamburger toRight={true} />;
+export const SvgHamburgerToRight: React.FC<{ rotate?: number }> = ({ rotate }) => {
+    return <SvgHamburger toRight={true} rotate={rotate} />;
 };
 
 export const SvgHamburgerToLeft: React.FC = () => {

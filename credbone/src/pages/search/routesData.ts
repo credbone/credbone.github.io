@@ -96,7 +96,7 @@ export const routesData: RouteData[] = [
     "path": "../Components/Miscellaneous",
     "title": "Miscellaneous",
     "description": "Various unique UI components and handy design tools.",
-    "tags": ["miscellaneous","component", "marquee", "counter", "digit", "ripple", "ink", "material", "text"]
+    "tags": ["miscellaneous","component", "marquee", "counter", "digit", "ripple", "ink", "material", "text", "glass", "liquid glass", "refraction", "frost", "blur"]
   },
   {
     "path": "../Components/Dashboard",

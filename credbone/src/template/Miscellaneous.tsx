@@ -6,13 +6,14 @@ import Count from "../components/Coutner";
 import sampleImage from "../styles/images/samples/wide_res_68.webp";
 import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
 import sampleImage_3 from "../styles/images/samples/wide_res_67.webp";
+import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 import Ripple from "../components/Ripple";
 import TemplatePageHeader from "./TemplatePageHeader";
+import GlassPropsDemo from "./GlassPropsDemo";
 
 
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
-
 
 
   const handleRestartCount = () => {
@@ -40,7 +41,7 @@ const Miscellaneous: React.FC = () => {
       <TemplatePageHeader
         title="Miscellaneous"
         description="Encompasses a variety of small, diverse UI components that don't fit
-          into other categories, including elements like marquees and counters."
+          into other categories, including elements like marquees, counters and liquid glass."
         // version="1.0.2"
           type="Component"
         descriptionProps={{ "data-length": "500" }}
@@ -199,6 +200,51 @@ const Miscellaneous: React.FC = () => {
 </Ripple>
         </group>
 
+
+        <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
+
+        <group data-radius="50" data-contain="">
+          <group data-direction="column" data-justify="end">
+            <picture
+              data-contain=""
+              data-brightness="adaptive"
+              data-position="absolute"
+              data-background="grey-light"
+            >
+              <img src={sampleImage_4} alt="" />
+            </picture>
+
+            <group data-space="15">
+              <group
+                data-width="auto"
+                data-background="context"
+                data-direction="column"
+                data-space="40"
+                data-gap="10"
+                data-radius="35"
+                data-backdrop="20-adaptive"
+              >
+                <text
+                  data-font-type="hero"
+                  data-text-size="large"
+                  data-wrap="wrap"
+                  data-ellipsis=""
+                >
+                  Glass
+                </text>
+
+                <text data-wrap="wrap" data-line="1.5" data-length="300">
+                  Liquid glass surface that bends, splits and frosts whatever
+                  sits behind it, lit by a movable <b>light</b> source.
+                </text>
+              </group>
+            </group>
+          </group>
+        </group>
+
+        <GlassPropsDemo />
+
+
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
         <group data-radius="50" data-contain="">
@@ -340,6 +386,8 @@ const Miscellaneous: React.FC = () => {
           </group>   
 </Ripple>
         </group>
+
+
 
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 

@@ -16,6 +16,7 @@ import { IconHeart, IconHome, IconSearch } from "../components/icon/credIcons";
 import sectionImage from "../styles/images/samples/wide_res_73.webp";
 import { ArrowDown, ArrowRight, ArrowUpRight, Camera, CreditCard, Printer, X } from "lucide-react";
 import TemplatePageHeader from "./TemplatePageHeader";
+import Glass from "../components/Glass";
 
 
 
@@ -25,8 +26,12 @@ const Buttons: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(true);
 
+  // Counts toggles so the hero icon keeps rotating clockwise (+180° per click), even on fast clicks.
+  const [turns, setTurns] = useState(0);
+
   const toggleClass = () => {
     setIsOpen(prevState => !prevState);
+    setTurns(prev => prev + 1);
   };
   
 
@@ -58,14 +63,30 @@ const Buttons: React.FC = () => {
           </picture>
 
 <group data-type="grid" data-grid-template="100" data-space="15" data-gap="15"  >
+<Glass
 
-<group data-wrap="no" data-ratio="1:1" data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-backdrop="20" data-interactive="" data-space="20" data-radius="25" data-gap="20">
-<IconHome size={60}/>
+lightAngle={-40}
+lightIntensity={70}
+refraction={70}
+depth={35}
+dispersion={40}
+frost={5}
+radius={25}
+tintOpacity={15}
+saturation={120}
+tint="var(--background)"
+data-align="center"
+data-justify="center"
+>
+<group data-wrap="no" data-ratio="1:1"  data-justify="center" data-theme="dark"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain=""  data-interactive="" data-space="20" data-radius="25" data-gap="20">
+<group data-interact="" data-width="auto">
+  <IconHome size={60} />
 </group>
+</group></Glass>
 
 <Ripple>
 <group data-ink-color="main-dark" data-wrap="no"  data-ratio="1:1" data-justify="center" data-width="auto"  data-align="center" data-cursor="pointer"  data-contain="" data-background="main" data-color="main-text" data-interactive=""  data-space="20" data-radius="25" data-gap="20">
-<group data-width="auto">
+<group data-width="auto" data-interact="">
 <IconSearch size={60}/>
 </group>
 </group>
@@ -74,8 +95,8 @@ const Buttons: React.FC = () => {
 <group className={isOpen ? 'open' : ''} onClick={toggleClass} data-wrap="no" data-ratio="1:1" data-justify="center" data-mix-blend-mode="screen"  data-color="black"  data-width="auto"  data-align="center" data-cursor="pointer" data-contain="" data-background="white" data-interactive="" data-space="20" data-radius="25" data-gap="20">
 
 
-<group data-width="auto" data-loop="smooth" data-over-color="none" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">
-<SvgHamburgerToRight />
+<group data-width="auto" data-over-color="none" data-svg-icon-size="55"  data-justify="center" data-align="center" data-interact="" data-direction="column">
+<SvgHamburgerToRight rotate={(turns + 1) * 180} />
 </group>
 
 </group>

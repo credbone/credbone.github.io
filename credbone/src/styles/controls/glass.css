@@ -1,0 +1,60 @@
+/* CredBone UI Framefork Component / Layout / Version 3.0.0 */
+
+/* Liquid glass light layer (components/Glass.tsx sets the variables inline).
+   Highlights are white in every theme on purpose: they stand for physical light
+   on the glass, not for a UI color. */
+
+:root {
+  --glass-angle: 135deg;
+  --glass-highlight: 0.8;
+  --glass-light-x: 15%;
+  --glass-light-y: 15%;
+  --glass-edge-x: -0.707;
+  --glass-edge-y: -0.707;
+  --glass-light: 255, 255, 255;
+  --glass-shade: 0, 0, 0;
+  --glass-tint-color: rgb(var(--glass-light));
+  --glass-tint-amount: 8%;
+}
+
+[data-glass] {
+  isolation: isolate;
+  background: color-mix(in srgb, var(--glass-tint-color) var(--glass-tint-amount), transparent);
+  box-shadow:
+    inset calc(var(--glass-edge-x) * -2px) calc(var(--glass-edge-y) * -2px) 2px rgba(var(--glass-light), calc(var(--glass-highlight) * 0.45)),
+    inset calc(var(--glass-edge-x) * 2px) calc(var(--glass-edge-y) * 2px) 4px rgba(var(--glass-shade), calc(var(--glass-highlight) * 0.12)),
+    0 10px 30px rgba(var(--glass-shade), 0.15),
+    0 2px 6px rgba(var(--glass-shade), 0.08);
+}
+
+/* Specular rim, rotated by the light angle */
+[data-glass]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: linear-gradient(var(--glass-angle),
+    rgba(var(--glass-light), var(--glass-highlight)) 0%,
+    rgba(var(--glass-light), 0) 32%,
+    rgba(var(--glass-light), 0) 68%,
+    rgba(var(--glass-light), calc(var(--glass-highlight) * 0.55)) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Soft sheen on the lit side, behind the content */
+[data-glass]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at var(--glass-light-x) var(--glass-light-y),
+    rgba(var(--glass-light), calc(var(--glass-highlight) * 0.16)),
+    rgba(var(--glass-light), 0) 60%);
+}

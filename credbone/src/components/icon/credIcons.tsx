@@ -607,6 +607,29 @@ export const IconAdd: React.FC<IconProps> = ({
 };
 
 
+export const IconPlaySolid: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g>
+
+	<path fill="currentColor" d="M19.543 9.428a2.998 2.998 0 0 1 0 5.144l-10 6A2.998 2.998 0 0 1 5 18V6a3 3 0 0 1 4.543-2.572Z" />
+
+      </g>
+    </Icon>
+  );
+};
+
+
+
+
+
+
+
+
 
 
 

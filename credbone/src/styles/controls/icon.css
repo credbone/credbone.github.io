@@ -116,6 +116,11 @@ icon[micro] { width: 15px; height: 15px; font-size: 15px; } */
 .open [data-loop="smooth"] [data-icon="hamburgertoright"] { transition-duration:0.35s; animation: none;}
 
 
+/* Rotation driven by --icon-rotate (set by the component). Placed after the .open rules so it wins at equal specificity. */
+:root { --icon-rotate: 0deg; }
+[data-icon][data-rotate="var"] { transform: rotate(var(--icon-rotate)); }
+
+
 [data-icon="plus"]{transition:transform 0.25s;}
 [data-icon="plus"] rect{transition-duration: 0.25s;transition-property: transform;transform-origin: center;}
 [data-icon="plus"] rect:nth-child(2) { transition-duration: 0.25s;}
