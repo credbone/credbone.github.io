@@ -54,6 +54,7 @@ const Miscellaneous: React.FC = () => {
         data-gap="30"
       >
         <group
+          id="marquee"
           //      data-max-length="500"
           data-height="auto"
           data-max-height="fit"
@@ -203,7 +204,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
-        <group data-radius="50" data-contain="">
+        <group id="glass" data-radius="50" data-contain="">
           <group data-direction="column" data-justify="end">
             <picture
               data-contain=""
@@ -247,7 +248,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
-        <group data-radius="50" data-contain="">
+        <group id="count" data-radius="50" data-contain="">
           <group data-direction="column" data-justify="end">
             <picture
               data-contain=""
@@ -391,7 +392,7 @@ const Miscellaneous: React.FC = () => {
 
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>
 
-        <group data-radius="50" data-contain="">
+        <group id="ripple" data-radius="50" data-contain="">
           <group  data-contain="">
             <group data-direction="column" data-justify="end">
               <picture

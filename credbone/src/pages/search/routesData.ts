@@ -96,7 +96,36 @@ export const routesData: RouteData[] = [
     "path": "../Components/Miscellaneous",
     "title": "Miscellaneous",
     "description": "Various unique UI components and handy design tools.",
-    "tags": ["miscellaneous","component", "marquee", "counter", "digit", "ripple", "ink", "material", "text", "glass", "liquid glass", "refraction", "frost", "blur"]
+    "tags": ["miscellaneous","component", "marquee", "counter", "ripple", "glass"]
+  },
+  {
+    // Not a route: #glass scrolls Miscellaneous to its Glass section
+    "path": "/Components/Miscellaneous#glass",
+    "title": "Glass",
+    "description": "Liquid glass surface that bends, splits and frosts whatever sits behind it.",
+    "tags": ["glass", "liquid glass", "refraction", "frost", "blur", "component"],
+    "tagsVisible": false
+  },
+  {
+    "path": "/Components/Miscellaneous#ripple",
+    "title": "Ripple",
+    "description": "Visual feedback effect for touch interactions.",
+    "tags": ["ripple", "ink", "material", "touch", "feedback", "component"],
+    "tagsVisible": false
+  },
+  {
+    "path": "/Components/Miscellaneous#marquee",
+    "title": "Marquee",
+    "description": "Scrolling marquee effect for its children, supporting LTR and RTL directions.",
+    "tags": ["marquee", "ticker", "scroll", "text", "component"],
+    "tagsVisible": false
+  },
+  {
+    "path": "/Components/Miscellaneous#count",
+    "title": "Count",
+    "description": "Smoothly transitions a number from a starting value to an ending value.",
+    "tags": ["counter", "count", "digit", "number", "component"],
+    "tagsVisible": false
   },
   {
     "path": "../Components/Dashboard",

@@ -31,12 +31,11 @@ const TooltipPropsDemo: React.FC = () => {
   });
 
   const colorOptions = [
-    { background: "tooltip", color: "white" },
-
-    { background: "main", color: "main-text" },
-    { background: "neutral-light", color: "default" },
-    { background: "neutral-lighter", color: "default" },
-    { background: "neutral-lightest", color: "default" },
+    { label: "Default", background: "tooltip", color: "white" },
+    { label: "Primary", background: "main", color: "main-text" },
+    { label: "Neutral Light", background: "neutral-light", color: "default" },
+    { label: "Neutral Lighter", background: "neutral-lighter", color: "default" },
+    { label: "Neutral Lightest", background: "neutral-lightest", color: "default" },
   ];
 
   const handleColorSelect = (option: {
@@ -353,40 +352,52 @@ const TooltipPropsDemo: React.FC = () => {
                   data-grid-template="30"
                        
                   data-gap="2"
+                  role="radiogroup"
+                  aria-label="Color"
                 >
-                  {colorOptions.map((option, index) => (
-                    <group
-                      data-ratio="1:1"
-                      data-interactive=""
-                      data-over-color="none"
-                      data-cursor="pointer"
-                      key={index}
-                      onClick={() => handleColorSelect(option)}
-                    >
-                      <group
-                        data-duration=".125"
-                        data-transition-prop="border-radius-margin"
-                        data-over-color="neutral-10"
-                        data-react="background"
-                        data-border="none"
-                        data-margin={
-                          selectedColor.background === option.background
-                            ? "5"
-                            : undefined
-                        }
-                        data-align="center"
-                        data-justify="center"
-                        data-space="5"
-                        data-background={option.background}
-                        data-color={option.color}
-                        data-radius={
-                          selectedColor.background === option.background
-                            ? "30"
-                            : "25%"
-                        }
-                      ></group>
-                    </group>
-                  ))}
+                  {colorOptions.map((option) => {
+                    const isSelected =
+                      selectedColor.background === option.background;
+                    const { background, color } = option;
+                    return (
+                      <Tooltip key={background} content={option.label}>
+                        <group
+                          data-length="30"
+                          data-height="30"
+                          data-radius="30"
+                          data-space={isSelected ? "10" : "5"}
+                          data-transition-prop="padding"
+                          data-duration="1.25"
+                          data-align="center"
+                          data-justify="center"
+                          data-background={isSelected ? "context" : undefined}
+                          data-border={isSelected ? "outline" : undefined}
+                          data-interactive=""
+                          data-over-color="neutral"
+                          data-cursor="pointer"
+                          role="radio"
+                          aria-checked={isSelected}
+                          aria-label={option.label}
+                          tabIndex={0}
+                          onClick={() => handleColorSelect({ background, color })}
+                          onKeyDown={(e: React.KeyboardEvent) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              handleColorSelect({ background, color });
+                            }
+                          }}
+                        >
+                          <group
+                            data-interact=""
+                            data-height="fit"
+                            data-radius="30"
+                            data-border="outline"
+                            data-background={background}
+                          ></group>
+                        </group>
+                      </Tooltip>
+                    );
+                  })}
                 </group>
               </group>
             </group>

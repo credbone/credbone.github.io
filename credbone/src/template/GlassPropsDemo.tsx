@@ -447,7 +447,7 @@ const GlassPropsDemo: React.FC = () => {
             }}
           >
 
-            <text>Copy Parameters</text>
+            <text data-weight="600">Copy Parameters</text>
           </group>
 </Ripple>
 
@@ -470,7 +470,7 @@ const GlassPropsDemo: React.FC = () => {
               data-animation-duration="2.25"
               onClick={resetValues}
             >
-              <text>Reset</text>
+              <text data-weight="600">Reset</text>
             </group>
           )}
 

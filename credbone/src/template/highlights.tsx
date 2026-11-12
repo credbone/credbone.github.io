@@ -225,17 +225,15 @@ aria-label={avatar.name}
 
  data-pointer-event="none"
 
-lightAngle={-70}
+lightAngle={-40}
 lightIntensity={70}
-refraction={60}
-depth={50}
-dispersion={60}
-frost={20}
+refraction={70}
+depth={56}
+dispersion={40}
+frost={15}
 radius={30}
-
-
-tintOpacity={40}
-
+tintOpacity={45}
+saturation={120}
 tint="var(--background)"
 
 >

@@ -33,6 +33,9 @@ import BottomNav from "../pages/navigation/bottomNav";
 import Motion from "./Motion";
 
 
+// Matches the page's data-space="30" so a section lands with breathing room
+const SECTION_SCROLL_OFFSET = 30;
+
 const Template: React.FC = () => {
   const location = useLocation();
   const viewRef = useRef<HTMLDivElement>(null);
@@ -66,14 +69,37 @@ const Template: React.FC = () => {
   //   return () => document.removeEventListener("click", handleOutsideClick);
   // }, [isSubNavOpen]);
 
+// Scroll to top on page change, or to the #section in the hash (search deep links).
+// location.key re-runs it when the same section link is followed again.
 useEffect(() => {
-  if (viewRef.current) {
-    viewRef.current.scrollTo({
-      top: 0,
-      behavior: isDesktop ? "smooth" : "auto",
-    });
+  const view = viewRef.current;
+  if (!view) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior: ScrollBehavior = isDesktop && !reduceMotion ? "smooth" : "auto";
+  const id = decodeURIComponent(location.hash.slice(1));
+
+  if (!id) {
+    view.scrollTo({ top: 0, behavior });
+    return;
   }
-}, [location.pathname]);
+
+  // Wait two frames so the routed page has rendered and laid out
+  let frame = requestAnimationFrame(() => {
+    frame = requestAnimationFrame(() => {
+      const target = view.querySelector<HTMLElement>(`[id="${CSS.escape(id)}"]`);
+      if (!target) {
+        view.scrollTo({ top: 0, behavior });
+        return;
+      }
+      const top =
+        target.getBoundingClientRect().top - view.getBoundingClientRect().top + view.scrollTop - SECTION_SCROLL_OFFSET;
+      view.scrollTo({ top: Math.max(0, top), behavior });
+    });
+  });
+
+  return () => cancelAnimationFrame(frame);
+}, [location.pathname, location.hash, location.key]);
 
   return (
     <>
