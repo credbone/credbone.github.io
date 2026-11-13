@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { SvgHamburgerToRight, SvgPlus } from "../components/svg";
 import Switchable from "../components/Switchable";
@@ -6,6 +6,9 @@ import { Columns2 } from "lucide-react";
 import TemplatePageHeader from "./TemplatePageHeader";
 import CustomSlider from "../components/inputs/slider";
 import StuckReporter from "../components/StuckReporter";
+import Ripple from "../components/Ripple";
+import TickComponent from "../components/inputs/TickComponent";
+import Popover from "../components/popover";
 
 const Layout: React.FC = () => {
   const [count, setCount] = useState(8);
@@ -14,9 +17,59 @@ const Layout: React.FC = () => {
 
   const [isshowoverlay, setshowoverlay] = useState(true);
 
-  const toggleoverlay = () => {
-    setshowoverlay((prev) => !prev);
-  };
+  const gapOptions = [
+    { value: 5, name: "Tight" },
+    { value: 10, name: "Default" },
+    { value: 15, name: "Comfortable" },
+    { value: 20, name: "Spacious" },
+  ];
+
+  // Segmented guides toggle: the indicator tracks the selected option
+  const guidesToggleRef = useRef<HTMLDivElement>(null);
+  const guidesIndicatorRef = useRef<HTMLDivElement>(null);
+  const [guidesIndicatorStyle, setGuidesIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+  });
+
+  const updateGuidesIndicator = useCallback(() => {
+    if (!guidesToggleRef.current) return;
+
+    const container = guidesToggleRef.current;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-selected="true"]',
+    );
+    if (!selected) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
+    const indicatorStyle = guidesIndicatorRef.current
+      ? getComputedStyle(guidesIndicatorRef.current)
+      : null;
+    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
+    const padRight = indicatorStyle
+      ? parseFloat(indicatorStyle.paddingRight)
+      : 0;
+
+    setGuidesIndicatorStyle({
+      // clientLeft offsets the container border, since absolute positioning starts inside it
+      left:
+        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
+      width: selectedRect.width + padLeft + padRight,
+    });
+  }, []);
+
+  useEffect(() => {
+    updateGuidesIndicator();
+  }, [isshowoverlay, updateGuidesIndicator]);
+
+  useEffect(() => {
+    const ro = new ResizeObserver(updateGuidesIndicator);
+    if (guidesToggleRef.current) ro.observe(guidesToggleRef.current);
+    return () => ro.disconnect();
+  }, [updateGuidesIndicator]);
 
   const [hasChanged, setHasChanged] = useState(false);
 
@@ -121,23 +174,62 @@ const Layout: React.FC = () => {
                     data-contain=""
                   >
                     <group
-                      onClick={toggleoverlay}
-                      data-align="center"
-                      data-justify="center"
-                      data-background="text"
-                      data-color="main-background"
+                      ref={guidesToggleRef}
                       data-width="auto"
-                      data-interactive=""
-                      data-over-color="neutral"
+                      data-gap="3"
+                      data-space="3"
                       data-radius="15"
-                      data-cursor="pointer"
-                      data-space-vertical="15"
-                      data-space-horizontal="25"
-                      data-contain=""
+                      data-wrap="no"
+                      data-background="adaptive-gray"
                     >
-                      <text data-ellipsis="">
-                        {isshowoverlay ? "Hide" : "Show"}
-                      </text>
+                      {/* Rendered before the options so their labels paint above the fill */}
+                      <group
+                        ref={guidesIndicatorRef}
+                        data-position="absolute"
+                        data-top="0"
+                        data-left="0"
+                        data-height="fit"
+                        data-space="3"
+                        data-pointer-event="none"
+                        data-transition-prop="transform"
+                        data-duration=".325"
+                        data-timing="fancy"
+                        style={{
+                          width: guidesIndicatorStyle.width,
+                          transform: `translateX(${guidesIndicatorStyle.left}px)`,
+                        }}
+                      >
+                        <group
+                          data-height="fit"
+                          data-radius="12"
+                          data-background="text"
+                      //    data-border="outline"
+                        ></group>
+                      </group>
+                      {([true, false] as const).map((show) => (
+                        <Ripple key={show ? "show" : "hide"}>
+                          <group
+                            data-ink-color="neutral"
+                            data-over-color="neutral"
+                            data-width="auto"
+                            data-contain=""
+                            data-height="40"
+                            data-space-horizontal="20"
+                            data-align="center"
+                            data-justify="center"
+                            data-selected={
+                              isshowoverlay === show ? "true" : undefined
+                            }
+                            data-color={isshowoverlay === show ? "main-background" : ""}
+                            data-radius="12"
+                            data-cursor="pointer"
+                            data-interactive=""
+                            onClick={() => setshowoverlay(show)}
+                          >
+                            <text data-ellipsis="">{show ? "Show" : "Hide"}</text>
+                          </group>
+                        </Ripple>
+                      ))}
                     </group>
 
                     {hasChanged && (
@@ -187,142 +279,242 @@ const Layout: React.FC = () => {
           </group>
         </group>
 
-        <group data-gap="15" data-type="grid" data-grid-template="300">
+        <group
+          data-elevation="2"
+          data-background="context"
+          data-radius="30"
+          data-contain=""
+        >
           <group
-data-elevation="2" data-background="context" data-radius="20" data-index="2"
-            data-contain=""
-
+            data-type="grid"
+            data-grid-template="300"
+            data-gap="15"
+            data-space="15"
           >
-            <group data-align="center" data-gap="15" data-space="20">
-              <group
-                data-width="auto"
-                //data-min-length="80"
+            <group data-space="3" data-radius="15" data-border="" data-contain="">
+              <Popover
+           //     bottomsheet
+                placement="middle"
+                data-radius="15"
+                data-space="0"
+                data-space-vertical="10"
+                content={(closePopover, isbottomsheet) => (
+                  <group data-direction="column" onClick={closePopover}>
+                    {gapOptions.map(({ value, name }, index) => {
+                      const midIndex = Math.floor(gapOptions.length / 2);
+                      const distance = Math.abs(index - midIndex);
+                      const fromBottom = index >= midIndex;
+
+                      return (
+                        <group
+                          key={value}
+                          onClick={() => setgap(value)}
+                          data-background={gap === value ? "main" : ""}
+                          data-color={gap === value ? "main-text" : ""}
+                          data-animation-name={
+                            isbottomsheet
+                              ? "appear-bottom"
+                              : fromBottom
+                                ? "appear-top"
+                                : "appear-bottom"
+                          }
+                          data-fill-mode="backwards"
+                          data-animation-duration={
+                            isbottomsheet
+                              ? 2 + index * 0.25
+                              : 2 + distance * 0.25
+                          }
+                          data-align="center"
+                          data-interactive=""
+                          data-over-color="neutral"
+                          data-radius={isbottomsheet ? "10" : undefined}
+                          data-cursor="pointer"
+                          data-space="15"
+                          data-gap="10"
+                        >
+                          <text>{value}</text>
+                          <text data-opacity="40">{name}</text>
+                        </group>
+                      );
+                    })}
+                  </group>
+                )}
               >
-                <group
-                  data-space-horizontal="15"
-                  data-space-vertical="10"
-                  data-background="text"
-                  data-width="auto"
-                  data-color="main-background"
-                  data-radius="30"
-                >
-                  <text>Grid Gap</text>
+                <group>
+                  <Ripple>
+                    <group
+                      data-height="40"
+                      data-radius="12"
+                      data-align="center"
+                      data-justify="space-between"
+                      data-gap="10"
+                      data-wrap="no"
+                      data-space-horizontal="15"
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-ink-color="neutral"
+                      data-cursor="pointer"
+                      data-contain=""
+                    >
+                      <text data-ellipsis="">Grid Gap</text>
+                      <group
+                        data-width="auto"
+                        data-align="center"
+                        data-gap="10"
+                        data-wrap="no"
+                      >
+                        <text data-opacity="30">Change</text>
+                        <text>{gap}</text>
+                      </group>
+                    </group>
+                  </Ripple>
                 </group>
-              </group>
-
-              <separator data-vertical=""></separator>
-
-              <group data-fit="1">
-                <CustomSlider
-                  handlerWidth={50}
-                  step={5}
-                  start={5}
-                  end={20}
-                  value={gap}
-                  onValueChange={(value) => setgap(value)}
-                  handlerProps={{
-                    "data-background": "none",
-                    "data-color": "text",
-                    "data-border": "inset",
-                    "data-radius": "10",
-                    "data-height": "initial",
-                    "data-space-vertical": "10",
-                  }}
-                  trackLeftProps={{ "data-margin": "0", "data-height": "1" }}
-                  trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
-                />
-              </group>
+              </Popover>
             </group>
-          </group>
 
-          <group
-        data-elevation="2" data-background="context" data-radius="20" data-index="1"
-            data-contain=""
-          >
-            <group data-align="center" data-gap="15" data-space="20">
+            <group data-space="3" data-radius="15" data-border="" data-contain="">
               <group
-                data-width="auto"
-                //data-min-length="80"
+                data-position="absolute"
+                data-width="fit"
+                data-left="0"
+                data-top="0"
+                data-space-horizontal="25"
+                data-height="fit"
+                data-align="center"
+                data-mask="left-right"
+                data-pointer-event="none"
               >
-                <group
-                  data-space-horizontal="15"
-                  data-space-vertical="10"
-                  data-background="text"
-                  data-width="auto"
-                  data-color="main-background"
-                  data-radius="30"
-                >
-                  <text>Items</text>
-                </group>
+                <TickComponent
+                  tickCount={18}
+                  emphasizeCenter={false}
+                  data-opacity="70"
+                  data-align="center"
+                  heights={{ minor: 8, major: 8, center: 30 }}
+                ></TickComponent>
               </group>
 
-              <separator data-vertical=""></separator>
-
-              <group data-fit="1">
+              <group data-radius="12" data-contain="">
                 <CustomSlider
-                  handlerWidth={50}
-                  step={1}
+                  label=""
                   start={1}
                   end={20}
+                  step={1}
                   value={count}
                   onValueChange={(value) => setCount(value)}
                   handlerProps={{
+                    "data-height": "40",
                     "data-background": "none",
-                    "data-color": "text",
-                    "data-border": "inset",
-                    "data-radius": "10",
-                    "data-height": "initial",
-                    "data-space-vertical": "10",
                   }}
-                  trackLeftProps={{ "data-margin": "0", "data-height": "1" }}
-                  trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
+                  fillProps={{
+                    "data-background": "neutral-light",
+                    "data-height": "40",
+                    "data-radius": "12",
+                    "data-opacity": "80",
+                  }}
+                  trackLeftProps={{ "data-background": "none" }}
+                  trackRightProps={{ "data-background": "none" }}
                 />
               </group>
-            </group>
-          </group>
 
-          <group
-data-elevation="2" data-background="context" data-radius="20" 
-            data-contain=""
-          >
-            <group data-align="center" data-gap="15" data-space="20">
               <group
+                data-position="absolute"
+                data-pointer-event="none"
+                data-height="fit"
+                data-left="0"
+                data-top="0"
                 data-width="auto"
-                //data-min-length="80"
+                data-align="center"
+                data-space-horizontal="15"
+                data-justify="center"
               >
-                <group
-                  data-space-horizontal="15"
-                  data-space-vertical="10"
-                  data-background="text"
-                  data-width="auto"
-                  data-color="main-background"
-                  data-radius="30"
-                >
-                  <text>Column Size</text>
-                </group>
+                <text>Items</text>
               </group>
 
-              <separator data-vertical=""></separator>
+              <group
+                data-position="absolute"
+                data-pointer-event="none"
+                data-height="fit"
+                data-right="0"
+                data-top="0"
+                data-width="auto"
+                data-align="center"
+                data-space-horizontal="15"
+                data-justify="center"
+              >
+                <text>{count}</text>
+              </group>
+            </group>
 
-              <group data-fit="1">
+            <group data-space="3" data-radius="15" data-border="" data-contain="">
+              <group
+                data-position="absolute"
+                data-width="fit"
+                data-left="0"
+                data-top="0"
+                data-space-horizontal="25"
+                data-height="fit"
+                data-align="center"
+                data-mask="left-right"
+                data-pointer-event="none"
+              >
+                <TickComponent
+                  tickCount={18}
+                  emphasizeCenter={false}
+                  data-opacity="70"
+                  data-align="center"
+                  heights={{ minor: 8, major: 8, center: 30 }}
+                ></TickComponent>
+              </group>
+
+              <group data-radius="12" data-contain="">
                 <CustomSlider
-                  handlerWidth={50}
-                  step={20}
+                  label=""
                   start={60}
                   end={300}
+                  step={20}
                   value={template}
                   onValueChange={(value) => settemplate(value)}
                   handlerProps={{
+                    "data-height": "40",
                     "data-background": "none",
-                    "data-color": "text",
-                    "data-border": "inset",
-                    "data-radius": "10",
-                    "data-height": "initial",
-                    "data-space-vertical": "10",
                   }}
-                  trackLeftProps={{ "data-margin": "0", "data-height": "1" }}
-                  trackRightProps={{ "data-opacity": "10", "data-height": "1" }}
+                  fillProps={{
+                    "data-background": "neutral-light",
+                    "data-height": "40",
+                    "data-radius": "12",
+                    "data-opacity": "80",
+                  }}
+                  trackLeftProps={{ "data-background": "none" }}
+                  trackRightProps={{ "data-background": "none" }}
                 />
+              </group>
+
+              <group
+                data-position="absolute"
+                data-pointer-event="none"
+                data-height="fit"
+                data-left="0"
+                data-top="0"
+                data-width="auto"
+                data-align="center"
+                data-space-horizontal="15"
+                data-justify="center"
+              >
+                <text>Column Size</text>
+              </group>
+
+              <group
+                data-position="absolute"
+                data-pointer-event="none"
+                data-height="fit"
+                data-right="0"
+                data-top="0"
+                data-width="auto"
+                data-align="center"
+                data-space-horizontal="15"
+                data-justify="center"
+              >
+                <text>{template}</text>
               </group>
             </group>
           </group>
