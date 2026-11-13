@@ -434,7 +434,7 @@ const GlassPropsDemo: React.FC = () => {
             data-wrap="no"
             data-width="auto"
             data-interactive=""
-            data-over-color="neutral"
+         //   data-over-color="neutral"
             data-cursor="pointer"
             role="button"
             tabIndex={0}
@@ -452,7 +452,9 @@ const GlassPropsDemo: React.FC = () => {
 </Ripple>
 
           {hasChanged && (
-            <group
+<Ripple>
+              <group
+              data-contain=""
               data-space-vertical="15"
               data-space-horizontal="20"
               data-radius="15"
@@ -463,7 +465,7 @@ const GlassPropsDemo: React.FC = () => {
               data-direction="column"
               data-width="auto"
               data-interactive=""
-              data-over-color="neutral"
+            //  data-over-color="neutral"
               data-cursor="pointer"
               data-animation-name="appear-bottom"
               data-fill-mode="backwards"
@@ -472,6 +474,7 @@ const GlassPropsDemo: React.FC = () => {
             >
               <text data-weight="600">Reset</text>
             </group>
+</Ripple>
           )}
 
         </group>

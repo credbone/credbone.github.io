@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { SvgHamburgerToRight, SvgPlus } from "../components/svg";
 import Switchable from "../components/Switchable";
@@ -23,53 +23,6 @@ const Layout: React.FC = () => {
     { value: 15, name: "Comfortable" },
     { value: 20, name: "Spacious" },
   ];
-
-  // Segmented guides toggle: the indicator tracks the selected option
-  const guidesToggleRef = useRef<HTMLDivElement>(null);
-  const guidesIndicatorRef = useRef<HTMLDivElement>(null);
-  const [guidesIndicatorStyle, setGuidesIndicatorStyle] = useState({
-    left: 0,
-    width: 0,
-  });
-
-  const updateGuidesIndicator = useCallback(() => {
-    if (!guidesToggleRef.current) return;
-
-    const container = guidesToggleRef.current;
-    const selected = container.querySelector<HTMLElement>(
-      '[data-selected="true"]',
-    );
-    if (!selected) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const selectedRect = selected.getBoundingClientRect();
-
-    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
-    const indicatorStyle = guidesIndicatorRef.current
-      ? getComputedStyle(guidesIndicatorRef.current)
-      : null;
-    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
-    const padRight = indicatorStyle
-      ? parseFloat(indicatorStyle.paddingRight)
-      : 0;
-
-    setGuidesIndicatorStyle({
-      // clientLeft offsets the container border, since absolute positioning starts inside it
-      left:
-        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
-      width: selectedRect.width + padLeft + padRight,
-    });
-  }, []);
-
-  useEffect(() => {
-    updateGuidesIndicator();
-  }, [isshowoverlay, updateGuidesIndicator]);
-
-  useEffect(() => {
-    const ro = new ResizeObserver(updateGuidesIndicator);
-    if (guidesToggleRef.current) ro.observe(guidesToggleRef.current);
-    return () => ro.disconnect();
-  }, [updateGuidesIndicator]);
 
   const [hasChanged, setHasChanged] = useState(false);
 
@@ -142,12 +95,22 @@ const Layout: React.FC = () => {
               data-duration=".125"
               data-width="auto"
             >
-              <group
+
+
+
+<group 
+
+                data-top={isSticky ? "30" : undefined}
+                data-gap="10"
+                data-align="center"
+
+>
+                <group
                 data-backdrop="20"
                 data-contain=""
                 data-radius="20"
                 data-width="auto"
-                data-top={isSticky ? "30" : undefined}
+
               >
                 <group
                   data-align="center"
@@ -156,84 +119,48 @@ const Layout: React.FC = () => {
                   data-wrap="no"
                 >
                   <group
-                    data-width="auto"
-                    //data-min-length="80"
-                    data-contain=""
-                  >
-                    <group data-space="15" data-width="auto" data-contain="">
-                      <text data-ellipsis="">Guides</text>
-                    </group>
-                  </group>
-
-                  {/* <separator data-vertical=""></separator> */}
-
-                  <group
                     data-fit="1"
                     data-gap="5"
                     data-wrap="no"
                     data-contain=""
                   >
-                    <group
-                      ref={guidesToggleRef}
-                      data-width="auto"
-                      data-gap="3"
-                      data-space="3"
-                      data-radius="15"
-                      data-wrap="no"
-                      data-background="adaptive-gray"
-                    >
-                      {/* Rendered before the options so their labels paint above the fill */}
+                    <Ripple>
                       <group
-                        ref={guidesIndicatorRef}
-                        data-position="absolute"
-                        data-top="0"
-                        data-left="0"
-                        data-height="fit"
-                        data-space="3"
-                        data-pointer-event="none"
-                        data-transition-prop="transform"
-                        data-duration=".325"
-                        data-timing="fancy"
-                        style={{
-                          width: guidesIndicatorStyle.width,
-                          transform: `translateX(${guidesIndicatorStyle.left}px)`,
-                        }}
+                        data-contain=""
+                        data-space-horizontal="20"
+                        data-height="45"
+                        data-interactive=""
+                        data-cursor="pointer"
+                        data-radius="15"
+                        data-width="auto"
+                        data-wrap="no"
+                        data-align="center"
+                        data-gap="15"
+                        onClick={() => setshowoverlay((prev) => !prev)}
+                        // data-background={isshowoverlay ? "text" : undefined}
+                        // data-color={isshowoverlay ? "main-background" : ""}
+                        data-ink-color="neutral"
+                        data-over-color="neutral"
                       >
-                        <group
-                          data-height="fit"
-                          data-radius="12"
-                          data-background="text"
-                      //    data-border="outline"
-                        ></group>
+                        <text>Guides</text>
+                        <separator data-vertical="" data-height="20"></separator>
+                        <text>
+                          {isshowoverlay ? "Shown" : "Hidden"}
+                        </text>
                       </group>
-                      {([true, false] as const).map((show) => (
-                        <Ripple key={show ? "show" : "hide"}>
-                          <group
-                            data-ink-color="neutral"
-                            data-over-color="neutral"
-                            data-width="auto"
-                            data-contain=""
-                            data-height="40"
-                            data-space-horizontal="20"
-                            data-align="center"
-                            data-justify="center"
-                            data-selected={
-                              isshowoverlay === show ? "true" : undefined
-                            }
-                            data-color={isshowoverlay === show ? "main-background" : ""}
-                            data-radius="12"
-                            data-cursor="pointer"
-                            data-interactive=""
-                            onClick={() => setshowoverlay(show)}
-                          >
-                            <text data-ellipsis="">{show ? "Show" : "Hide"}</text>
-                          </group>
-                        </Ripple>
-                      ))}
-                    </group>
+                    </Ripple>
 
-                    {hasChanged && (
+
+                  </group>
+                </group>
+              </group>
+
+
+             
+                                    {hasChanged && (
+                                       <group   data-backdrop="20" data-space="5"  data-radius="20"     data-width="auto">
                       <group
+                    
                         data-align="center"
                         data-justify="center"
                         data-width="auto"
@@ -242,18 +169,24 @@ const Layout: React.FC = () => {
                         data-radius="15"
                         data-cursor="pointer"
                         data-space="15"
+                        data-space-horizontal="25"
                         data-contain=""
                         data-animation-name="appear-bottom"
                         data-fill-mode="backwards"
-                        data-animation-duration="1.25"
+                        data-animation-duration="1.75"
                         onClick={resetValues}
+                        data-background="text"
+                        data-color="main-background"
+                        
                       >
                         <text data-ellipsis="">Reset</text>
                       </group>
+                       </group>
                     )}
-                  </group>
-                </group>
-              </group>
+             
+</group>
+
+
             </group>
           )}
         </StuckReporter>
