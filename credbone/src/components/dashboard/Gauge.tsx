@@ -87,7 +87,7 @@ const Gauge: React.FC<GaugeProps> = ({ value, max, size, unit }) => {
           data-weight="700"
           dominantBaseline="auto"
           textAnchor="middle"
-          fontSize={25}
+          fontSize={22}
         >
           {unit && <tspan opacity={0}>{unit}</tspan>}
           {value}

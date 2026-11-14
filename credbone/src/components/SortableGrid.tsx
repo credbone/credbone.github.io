@@ -19,6 +19,10 @@ import React, {
 interface SortableGridProps extends HTMLAttributes<HTMLElement> {
   order: string[];
   onOrderChange: (order: string[]) => void;
+  // Called once a drag actually starts (past the move threshold or long-press)
+  onSortStart?: (id: string) => void;
+  // Called when that drag ends (drop or cancel)
+  onSortEnd?: (id: string) => void;
 }
 
 interface DragState {
@@ -67,6 +71,8 @@ const SHAPE_ATTRIBUTES = [
 const SortableGrid: React.FC<SortableGridProps> = ({
   order,
   onOrderChange,
+  onSortStart,
+  onSortEnd,
   children,
   ...rest
 }) => {
@@ -92,6 +98,10 @@ const SortableGrid: React.FC<SortableGridProps> = ({
   sortedRef.current = sorted;
   const onOrderChangeRef = useRef(onOrderChange);
   onOrderChangeRef.current = onOrderChange;
+  const onSortStartRef = useRef(onSortStart);
+  onSortStartRef.current = onSortStart;
+  const onSortEndRef = useRef(onSortEnd);
+  onSortEndRef.current = onSortEnd;
 
   useEffect(() => () => cancel.current?.(), []);
 
@@ -195,6 +205,7 @@ const SortableGrid: React.FC<SortableGridProps> = ({
       });
       frame = requestAnimationFrame(autoScroll);
       if (touch) navigator.vibrate?.(10);
+      onSortStartRef.current?.(id);
     };
 
     const move = (p: Point) => {
@@ -226,6 +237,16 @@ const SortableGrid: React.FC<SortableGridProps> = ({
         rects.set(id, el.getBoundingClientRect());
         snapshot.current = rects;
         dropped.current = id;
+        // Swallow the click that follows the release so a drop isn't
+        // treated as a click on the item. Touch may deliver it a little
+        // later than mouse, hence the short window rather than a 0 timeout.
+        const swallow = (ev: MouseEvent) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+        };
+        window.addEventListener("click", swallow, { capture: true, once: true });
+        setTimeout(() => window.removeEventListener("click", swallow, true), 300);
+        onSortEndRef.current?.(id);
       }
       el.style.transform = "";
       cancel.current = undefined;
@@ -312,8 +333,8 @@ const SortableGrid: React.FC<SortableGridProps> = ({
           cloneElement(child, {
             "data-position": "fixed",
             "data-index": "999",
-            "data-elevation": "2",
-            "data-backdrop": "20-clear",
+      //      "data-elevation": "2",
+        //    "data-backdrop": "20-clear",
             "data-cursor": "grabbing",
             "data-user-select": "none",
             onPointerDown: handlePointerDown(id),
