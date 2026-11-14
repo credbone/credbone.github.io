@@ -1,10 +1,16 @@
-import { useState, MouseEventHandler, RefObject } from "react";
+import React, { useState, MouseEventHandler, RefObject } from "react";
 import classNames from "classnames";
 
 interface MaterialEffectProps {
   ref?: RefObject<HTMLDivElement>;
   isMaterial?: boolean;
+  /** Grow time in ms. Fade and cleanup scale with it. Omit for the CSS default (300). */
+  duration?: number;
 }
+
+const DEFAULT_DURATION = 300;
+// Fade-to-grow ratio of the CSS defaults (0.55s / 0.3s)
+const FADE_RATIO = 550 / 300;
 
 interface Circle {
   key: number;
@@ -12,8 +18,20 @@ interface Circle {
   element: JSX.Element;
 }
 
-export const useMaterialEffect = ({ ref, isMaterial }: MaterialEffectProps) => {
+export const useMaterialEffect = ({ ref, isMaterial, duration }: MaterialEffectProps) => {
   const [circles, setCircles] = useState<Circle[]>([]);
+
+  const growMs = duration ?? DEFAULT_DURATION;
+  const fadeMs = Math.round(growMs * FADE_RATIO);
+  // A release before "ready" waits for the grow, then fades, so cover both
+  const removeMs = growMs + fadeMs + 150;
+  const inkStyle =
+    duration !== undefined
+      ? ({
+          "--ink-duration": `${growMs}ms`,
+          "--ink-fade-duration": `${fadeMs}ms`,
+        } as React.CSSProperties)
+      : undefined;
 
 const effectStart: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
   ? (e) => {
@@ -53,7 +71,7 @@ const effectStart: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
                   : circle
               )
             );
-          }, 300);
+          }, growMs);
         });
       }
     }
@@ -81,7 +99,7 @@ const onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
                 !currentCircles.some((c) => c.key === circle.key)
             )
           );
-        }, 1000);
+        }, removeMs);
       });
     }
   : undefined;
@@ -97,6 +115,7 @@ const onEffectEnd: MouseEventHandler<HTMLDivElement> | undefined = isMaterial
           <svg
             key={circle.key}
             className={classNames("material_ink", ...circle.classNames)}
+            style={inkStyle}
           >
             {circle.element}
           </svg>

@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SvgQR } from "../components/icon/svgRes";
 import { avatars } from "../pages/tools/avatars/avatars";
 import sampleImage_3 from "../styles/images/samples/res_3.webp";
-import sampleImage_2 from "../styles/images/samples/res_2.webp";
+import sampleImage_2 from "../styles/images/samples/wide_res_75.webp";
 import { Link } from "react-router-dom";
 import Glass from "../components/Glass";
 
@@ -18,7 +18,7 @@ const Highlights: React.FC = () => {
         data-justify="center"
       >
         <picture
-          data-mask="top"
+       //   data-mask="top"
           data-brightness="adaptive"
           data-position="absolute"
           data-background="grey-light"
@@ -36,7 +36,7 @@ const Highlights: React.FC = () => {
           data-background="white"
           data-color="black"
           data-width="auto"
-          data-radius="25"
+          data-radius="30"
         >
           <group
             data-gap="15"
@@ -83,7 +83,7 @@ const Highlights: React.FC = () => {
           <path d="M36 0C27.7157 0 21 6.71573 21 15C21 23.2843 27.7157 30 36 30H0C8.28427 30 15 23.2843 15 15C15 6.71573 8.28427 0 0 0H36Z" />
         </svg>
 
-        <group data-contain="" data-radius="25">
+        <group data-contain="" data-radius="30">
           <SvgQR />
         </group>
       </group>
@@ -230,7 +230,7 @@ const Highlights: React.FC = () => {
             data-position="center"
             //     data-backdrop="20-adaptive"
             data-width="auto"
-            data-radius="25"
+            data-radius="30"
             data-elevation="2"
           >
             <group
@@ -305,7 +305,7 @@ const Highlights: React.FC = () => {
           data-background="white"
           data-color="black"
           data-width="auto"
-          data-radius="25"
+          data-radius="30"
         >
           <group
             data-gap="15"

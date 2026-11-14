@@ -7,6 +7,8 @@
 
 :root {
     --ink-color: var(--main-color-alpha-15);
+    --ink-duration: 0.3s;
+    --ink-fade-duration: 0.55s;
 }
 
 
@@ -33,12 +35,12 @@
     left: 0;
     top: 0;
     pointer-events: none;
-    transition: 0.55s;
+    transition: var(--ink-fade-duration);
     overflow: hidden;
 }
 
 .material_ink circle {
-    animation: ink_anim 0.3s;
+    animation: ink_anim var(--ink-duration);
     animation-timing-function: linear;
     fill: var(--ink-color);
     will-change: transorm, opacity;

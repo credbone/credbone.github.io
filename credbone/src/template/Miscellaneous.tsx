@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import Marquee from "../components/Marquee";
 import Count from "../components/Coutner";
@@ -10,10 +10,72 @@ import sampleImage_4 from "../styles/images/samples/wide_res_70.webp";
 import Ripple from "../components/Ripple";
 import TemplatePageHeader from "./TemplatePageHeader";
 import GlassPropsDemo from "./GlassPropsDemo";
+import CustomSlider from "../components/inputs/slider";
+import TickComponent from "../components/inputs/TickComponent";
+
+// Ripple demo speed, in seconds of ink grow time (used in "slow" mode)
+const RIPPLE_SPEED_SLOW = 2;
+const RIPPLE_SPEED_MIN = 0.3;
+const RIPPLE_SPEED_MAX = 3;
 
 
 const Miscellaneous: React.FC = () => {
   const [restartKey, setRestartKey] = useState(0);
+  const [rippleSpeed, setRippleSpeed] = useState(RIPPLE_SPEED_SLOW);
+  const [rippleMode, setRippleMode] = useState<"slow" | "default">("slow");
+  // Default mode passes no duration, so the ripple uses its own CSS timing
+  const rippleDuration =
+    rippleMode === "slow" ? Math.round(rippleSpeed * 1000) : undefined;
+
+  // Segmented toggle indicator (same logic as the Blob Generator mode toggle)
+  const rippleModeToggleRef = useRef<HTMLDivElement>(null);
+  const rippleModeIndicatorRef = useRef<HTMLDivElement>(null);
+  const [rippleModeIndicatorStyle, setRippleModeIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+  });
+
+  // Tracks the selected option relative to the toggle container
+  const updateRippleModeIndicator = useCallback(() => {
+    if (!rippleModeToggleRef.current) return;
+
+    const container = rippleModeToggleRef.current;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-selected="true"]',
+    );
+    if (!selected) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
+    const indicatorStyle = rippleModeIndicatorRef.current
+      ? getComputedStyle(rippleModeIndicatorRef.current)
+      : null;
+    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
+    const padRight = indicatorStyle
+      ? parseFloat(indicatorStyle.paddingRight)
+      : 0;
+
+    setRippleModeIndicatorStyle({
+      // clientLeft offsets the container border, since absolute positioning starts inside it
+      left:
+        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
+      width: selectedRect.width + padLeft + padRight,
+    });
+  }, []);
+
+  // Fire on selection change
+  useEffect(() => {
+    updateRippleModeIndicator();
+  }, [rippleMode, updateRippleModeIndicator]);
+
+  // Fire on resize
+  useEffect(() => {
+    const ro = new ResizeObserver(updateRippleModeIndicator);
+    if (rippleModeToggleRef.current) ro.observe(rippleModeToggleRef.current);
+    return () => ro.disconnect();
+  }, [updateRippleModeIndicator]);
 
 
   const handleRestartCount = () => {
@@ -435,7 +497,7 @@ const Miscellaneous: React.FC = () => {
         </group>
 
         <group data-gap="15">
-          <Ripple>
+          <Ripple duration={rippleDuration}>
             <group
               data-width="auto"
               data-direction="column"
@@ -468,7 +530,7 @@ const Miscellaneous: React.FC = () => {
             </group>
           </Ripple>
 
-          <Ripple>
+          <Ripple duration={rippleDuration}>
             <group
               data-length="forcefit"
               data-width="auto"
@@ -484,7 +546,7 @@ const Miscellaneous: React.FC = () => {
             </group>
           </Ripple>
 
-          <Ripple>
+          <Ripple duration={rippleDuration}>
             <group
               data-length="forcefit"
               data-width="auto"
@@ -501,6 +563,158 @@ const Miscellaneous: React.FC = () => {
               <text data-opacity="30">Primary Color</text>
             </group>
           </Ripple>
+        </group>
+
+        {/* Demo only: slows the ripple down so the animation is visible */}
+        <group data-direction="column" data-gap="30">
+<group >
+          <text data-wrap="wrap" data-line="1.5" data-opacity="60" data-length="300">
+          The ripple normally lasts 0.3s. Slow it down to watch it grow from the
+          touch point and fade out.
+        </text>
+</group>
+        <group data-gap="15" data-align="center">
+          <group
+            data-max-length="300"
+            data-opacity={rippleMode === "slow" ? undefined : "40"}
+            data-disabled={rippleMode === "slow" ? undefined : "true"}
+            data-space="3"
+            data-radius="15"
+            data-border=""
+            data-contain=""
+          >
+            <group
+              data-position="absolute"
+              data-width="fit"
+              data-left="0"
+              data-top="0"
+              data-space-horizontal="25"
+              data-height="fit"
+              data-align="center"
+              data-mask="left-right"
+              data-pointer-event="none"
+            >
+              <TickComponent
+                tickCount={18}
+                emphasizeCenter={false}
+                data-opacity="70"
+                data-align="center"
+                heights={{ minor: 8, major: 8, center: 30 }}
+              ></TickComponent>
+            </group>
+
+            <group data-radius="12" data-contain="">
+              <CustomSlider
+                label=""
+                start={RIPPLE_SPEED_MIN}
+                end={RIPPLE_SPEED_MAX}
+                step={0.1}
+                value={rippleSpeed}
+                onValueChange={(value) =>
+                  setRippleSpeed(Math.round(value * 10) / 10)
+                }
+                handlerProps={{
+                  "data-height": "40",
+                  "data-background": "none",
+                }}
+                fillProps={{
+                  "data-background": "neutral-light",
+                  "data-height": "40",
+                  "data-radius": "12",
+                  "data-opacity": "80",
+                }}
+                trackLeftProps={{ "data-background": "none" }}
+                trackRightProps={{ "data-background": "none" }}
+              />
+            </group>
+
+            <group
+              data-position="absolute"
+              data-pointer-event="none"
+              data-height="fit"
+              data-left="0"
+              data-top="0"
+              data-width="auto"
+              data-align="center"
+              data-space-horizontal="15"
+              data-justify="center"
+            >
+              <text>Duration</text>
+            </group>
+
+            <group
+              data-position="absolute"
+              data-pointer-event="none"
+              data-height="fit"
+              data-right="0"
+              data-top="0"
+              data-width="auto"
+              data-align="center"
+              data-space-horizontal="15"
+              data-justify="center"
+            >
+              <text>{rippleSpeed}s</text>
+            </group>
+          </group>
+
+          {/* Segmented toggle, same as the (commented) Blob Generator mode toggle */}
+          <group data-width="auto">
+            <group
+              ref={rippleModeToggleRef}
+              data-gap="3"
+              data-space="3"
+              data-radius="15"
+              data-wrap="no"
+              data-width="auto"
+              data-background="adaptive-gray"
+            >
+              {/* Rendered before the options so their labels paint above the fill */}
+              <group
+                ref={rippleModeIndicatorRef}
+                data-position="absolute"
+                data-top="0"
+                data-left="0"
+                data-height="fit"
+                data-space="3"
+                data-pointer-event="none"
+                data-transition-prop="transform"
+                data-duration=".325"
+                data-timing="fancy"
+                style={{
+                  width: rippleModeIndicatorStyle.width,
+                  transform: `translateX(${rippleModeIndicatorStyle.left}px)`,
+                }}
+              >
+                <group
+                  data-height="fit"
+                  data-radius="12"
+                  data-background="white"
+                  data-border="outline"
+                ></group>
+              </group>
+              {(["slow", "default"] as const).map((m) => (
+                  <group
+                  key={m}
+                    data-ink-color="neutral"
+                    data-over-color="neutral"
+                    data-contain=""
+                    data-height="40"
+                    data-space-horizontal="20"
+                    data-align="center"
+                    data-justify="center"
+                    data-selected={rippleMode === m ? "true" : undefined}
+                    data-color={rippleMode === m ? "black" : ""}
+                    data-radius="12"
+                    data-cursor="pointer"
+                    data-interactive=""
+                    onClick={() => setRippleMode(m)}
+                  >
+                    <text>{m === "slow" ? "Slow" : "Default"}</text>
+                  </group>
+              ))}
+            </group>
+          </group>
+        </group>
         </group>
       </group>
     </group>
