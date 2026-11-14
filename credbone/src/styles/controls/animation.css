@@ -274,6 +274,20 @@
 [data-animation-timeline="main-scroll"] {animation-timeline: --main-scroll;}
 
 
+/* Scroll-driven column drift, paired with a named scroll timeline (e.g. data-animation-timeline="main-scroll").
+   A named timeline is used because view() binds to the nearest overflow:hidden ancestor (data-contain),
+   which never scrolls. Unsupported browsers and reduced-motion users get static columns. */
+@keyframes scroll-up {from {transform: translateY(0);} to {transform: translateY(-100%);}}
+@keyframes scroll-down {from {transform: translateY(-100%);} to {transform: translateY(0);}}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animation-name="scroll-up"] {animation-name: scroll-up;}
+    [data-animation-name="scroll-down"] {animation-name: scroll-down;}
+  }
+}
+
+
 
 [data-animate="parallax"] {animation-name: object-position;  animation-timeline: --main-scroll;}
 

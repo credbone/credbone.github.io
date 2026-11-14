@@ -6,6 +6,73 @@ import sampleImage_2 from "../styles/images/samples/wide_res_75.webp";
 import { Link } from "react-router-dom";
 import Glass from "../components/Glass";
 
+type AvatarItem = (typeof avatars)[number];
+
+// One avatar tile. `avatarIndex` is the avatar's position in `avatars` (used by the
+// AvatarMaker link); `uid` is unique per tile so repeated avatars don't share a clipPath id or key.
+const renderAvatar = (avatar: AvatarItem, avatarIndex: number, uid: string) => {
+  const clipId = `highlight-avatar-${uid}`;
+  return (
+    <Link
+      data-type="group"
+      data-drag="none"
+      to={`/Tools/AvatarMaker?avatar=${avatarIndex}`}
+      aria-label={avatar.name}
+      key={uid}
+    >
+      <group
+        data-interactive="avatar"
+        data-over-color="none"
+        data-ink-color="neutral"
+        data-gap="10"
+      >
+        <group data-interact="">
+          <svg
+            data-pointer-event="none"
+            data-name="avatar"
+            data-contain="visible"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 620 620"
+            fill="none"
+          >
+            <defs>
+              <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+                <rect x="0" y="-54" width="620" height="310" />
+                <circle cx="310" cy="310" r="256" />
+              </clipPath>
+            </defs>
+            <circle cx="310" cy="310" r="256" fill={avatar.color} />
+            <image
+              x="0"
+              y="-54"
+              width="620"
+              height="620"
+              clipPath={`url(#${clipId})`}
+              href={avatar.image_2x}
+            />
+          </svg>
+        </group>
+      </group>
+    </Link>
+  );
+};
+
+// Avatars shown in each column, by index in `avatars`, in display order.
+// Pick exactly the ones you want; leave an index out to exclude it. Repeats are fine.
+// Excluded: 0 Sound Buddy, 6 Cozy Beat, 15 Urban Pulse, 17 Warm Hug.
+const COLUMN_A = [9, 1, 2, 3, 4, 5, 7, 8, 9];
+const COLUMN_B = [19, 10, 11, 12, 13, 8, 7, 11, 19];
+
+const renderColumn = (indices: number[], column: string) =>
+  indices
+    .map((i, position) => ({ i, position }))
+    .filter(({ i }) => avatars[i]) // skip indices that don't exist
+    .map(({ i, position }) =>
+      renderAvatar(avatars[i], i, `${column}-${position}`)
+    );
+
 const Highlights: React.FC = () => {
   return (
     <group data-gap="10" data-type="grid" data-grid-template="200">
@@ -104,111 +171,34 @@ const Highlights: React.FC = () => {
           data-position="absolute"
           data-height="fit"
           data-wrap="no"
-          data-align="center"
+        //  data-align="center"
         >
-          <group>
-            {avatars.slice(1, 6).map((avatar, index) => (
-              <Link
-                data-type="group"
-                data-drag="none"
-                to={`/Tools/AvatarMaker?avatar=${index + 1}`}
-                aria-label={avatar.name}
-                key={avatar.key}
-              >
-                <group
-                  data-interactive="avatar"
-                  data-over-color="none"
-                  data-ink-color="neutral"
-                  data-gap="10"
-                >
-                  <group data-interact="">
-                    <svg
-                      data-pointer-event="none"
-                      data-name="avatar"
-                      data-contain="visible"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 620 620"
-                      fill="none"
-                    >
-                      <defs>
-                        <clipPath
-                          id={`${avatar.key}`}
-                          clipPathUnits="userSpaceOnUse"
-                        >
-                          <rect x="0" y="-54" width="620" height="310" />
-                          <circle cx="310" cy="310" r="256" />
-                        </clipPath>
-                      </defs>
-                      <circle cx="310" cy="310" r="256" fill={avatar.color} />
-                      <image
-                        x="0"
-                        y="-54"
-                        width="620"
-                        height="620"
-                        clipPath={`url(#${avatar.key})`}
-                        href={avatar.image_2x}
-                      />
-                    </svg>
-                  </group>
-                </group>
-              </Link>
-            ))}
+          <group
+            data-direction="column"
+            data-animation-name="scroll-down"
+            data-animation-timeline="main-scroll"
+            data-animation-timing="linear"
+            data-fill-mode="both"
+            data-wrap="no"
+          >
+
+            {renderColumn(COLUMN_A, "a")}
+
           </group>
 
-          <group data-align="start" data-direction="column">
-            {avatars.slice(8, 12).map((avatar, index) => (
-              <Link
-                aria-label={avatar.name}
-                data-type="group"
-                data-drag="none"
-                to={`/Tools/AvatarMaker?avatar=${index + 8}`}
-                key={avatar.key}
-                //  data-border=""
+          <group
+            data-align="start"
+            data-direction="column"
+            data-animation-name="scroll-up"
+            data-animation-timeline="main-scroll"
+            data-animation-timing="linear"
+            data-fill-mode="both"
+              data-wrap="no"
+          >
+                                    <group data-ratio="2:1">
 
-                //  data-cursor="pointer"
-              >
-                <group
-                  data-interactive="avatar"
-                  data-over-color="none"
-                  data-ink-color="neutral"
-                  data-gap="10"
-                >
-                  <group data-interact="">
-                    <svg
-                      data-pointer-event="none"
-                      data-name="avatar"
-                      data-contain="visible"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 620 620"
-                      fill="none"
-                    >
-                      <defs>
-                        <clipPath
-                          id={`${avatar.key}`}
-                          clipPathUnits="userSpaceOnUse"
-                        >
-                          <rect x="0" y="-54" width="620" height="310" />
-                          <circle cx="310" cy="310" r="256" />
-                        </clipPath>
-                      </defs>
-                      <circle cx="310" cy="310" r="256" fill={avatar.color} />
-                      <image
-                        x="0"
-                        y="-54"
-                        width="620"
-                        height="620"
-                        clipPath={`url(#${avatar.key})`}
-                        href={avatar.image_2x}
-                      />
-                    </svg>
-                  </group>
-                </group>
-              </Link>
-            ))}
+            </group>
+            {renderColumn(COLUMN_B, "b")}
           </group>
         </group>
         <group data-height="110" data-pointer-event="none"></group>
@@ -216,7 +206,7 @@ const Highlights: React.FC = () => {
           data-pointer-event="none"
           lightAngle={-40}
           lightIntensity={70}
-          refraction={120}
+          refraction={150}
           depth={56}
           dispersion={40}
           frost={15}
