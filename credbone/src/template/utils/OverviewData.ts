@@ -75,10 +75,10 @@ export const linksArray = [
   { title: "Typography", content:typefacecontent,  description: "Scalable tokens for managing text styles.", to: "/Components/Typography", color: true, new:""},
   { title: "Cards\n& Lists", description: "Structured containers for displaying content.", to: "/Components/CardsAndList", new:""},
   { title: "Tooltip\n& Popover", description: "Interactive elements on hover, focus, or click.", to: "/Components/TooltipAndPopover", new:"true" },
-  { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers",new:"" },
+  // { title: "Checkbox\n& Switches", description: "Customizable toggles for user actions.", to: "/Components/CheckboxSwitchers",new:"" },
 
-  { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal", new:"" },
-  { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos",new:"true" },
+  // { title: "Modals\n& Alerts", description: "Dynamic modals for prompts and notifications.", to: "/Components/Modal", new:"" },
+  // { title: "Demos\n& Samples", description: "Quick apps showcasing design patterns.", to: "/Components/QuickDemos",new:"true" },
   { title: "Full\nOverview", description: "Discover all components and features.", to: "/Components/Overview" ,new:""}
   
 

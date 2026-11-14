@@ -721,8 +721,8 @@ picture[data-object-position="top"]  img{object-position: top;}
 
 picture[data-object-position="right-bottom"]  img{object-position: bottom right;}
 
-[data-react="scale"] picture {transition: .425s;}
-[data-react="scale"]:hover picture {transform: scale(1.025);transition: .125s;}
+[data-react="scale"] picture {transition-duration: .425s;}
+[data-react="scale"]:hover picture {transform: scale(1.025);transition-duration: .125s;}
 [data-react="scale"]:active  picture {transform:none; transition: none;}
 
 
