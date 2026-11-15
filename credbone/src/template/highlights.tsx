@@ -644,6 +644,7 @@ const Highlights: React.FC = () => {
           data-align="center"
           data-wrap="no"
           data-space-horizontal="20"
+          data-shrink="no"
         >
           <text data-ellipsis="">Create</text>
           <group

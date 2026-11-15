@@ -301,13 +301,7 @@ const Components: React.FC = () => {
                 data-radius="40"
                 data-direction="column"
                 data-wrap="no"
-                data-background={
-                  link.color
-                    ? "main"
-                    : index === 0
-                      ? "adaptive-gray"
-                      : undefined
-                }
+                data-background={ link.color ? "main" : index === 0 ? "adaptive-gray" : undefined }
                 data-color={link.color ? "main-text" : undefined}
                 data-border={link.color ? "1-primary" : "inset"}
                 data-index={link.color ? "2" : undefined}

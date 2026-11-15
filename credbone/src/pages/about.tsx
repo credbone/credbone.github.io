@@ -418,7 +418,7 @@ function About() {
           </group>
 
           <group data-gap="30" data-type="grid" data-grid-template="200">
-            <group data-direction="column" data-width="auto" data-align="start">
+            <group data-direction="column" data-width="auto" data-gap="5" data-align="start">
               {links.map((link, index) => (
                 <Ripple key={index}>
                   <Link
@@ -443,7 +443,7 @@ function About() {
               ))}
             </group>
 
-            <group data-direction="column" data-width="auto" data-align="start">
+            <group data-direction="column" data-gap="5" data-width="auto" data-align="start">
               <Ripple>
                 <Link
                   data-drag="none"

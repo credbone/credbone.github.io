@@ -227,6 +227,7 @@ export const IconBook: React.FC<IconProps> = ({
 
 export const IconInfo: React.FC<IconProps> = ({
   fill = false,
+  stroke= 2,
   ...restProps
 }) => {
   return (
@@ -235,13 +236,14 @@ export const IconInfo: React.FC<IconProps> = ({
         stroke="currentColor"
         strokeLinecap="round"
         strokeMiterlimit="10"
-        strokeWidth="2"
+        strokeWidth={stroke}
         fill={fill ? "currentColor" : "none"}
       >
-        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
-        <circle cx="12" cy="12" r="9" />
-        <line x1="12" x2="12.01" y1="8" y2="8" />
-        <polyline points="11 12 12 12 12 16 13 16" />
+
+		<circle cx="12" cy="12" r="10" />
+		<path d="M12 7h.01" />
+		<path d="M10 11h2v5m-2 0h4" />
+
       </g>
     </Icon>
   );
@@ -326,7 +328,7 @@ export const IconTableRows: React.FC<IconProps> = ({
       <path
         fill="currentColor"
         d="m19,19v-3H5v3h14Zm0-5v-4H5v4h14Zm0-6v-3H5v3h14Zm-14,13c-.55,0-1.02-.2-1.41-.59-.39-.39-.59-.86-.59-1.41V5c0-.55.2-1.02.59-1.41.39-.39.86-.59,1.41-.59h14c.55,0,1.02.2,1.41.59s.59.86.59,1.41v14c0,.55-.2,1.02-.59,1.41-.39.39-.86.59-1.41.59H5Z"
-      />{" "}
+      />
     </Icon>
   );
 };

@@ -1045,6 +1045,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space-top="0"] {padding-top:0px;}
 [data-space-top="5"] {padding-top:5px;}
 [data-space-top="10"] {padding-top:10px;}
+[data-space-top="15"] {padding-top:15px;}
+
 [data-space-top="20"] {padding-top:20px;}
 [data-space-top="30"] {padding-top:30px;}
 [data-space-top="40"] {padding-top:40px;}

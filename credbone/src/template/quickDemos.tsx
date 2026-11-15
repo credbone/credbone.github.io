@@ -271,7 +271,7 @@ const QuickDemos: React.FC = () => {
         carousel: {
           wrapperProps: {
             "data-radius": "35",
-            "data-space": "15",
+            "data-space": "5",
             "data-background": "main-background",
             "data-border": "",
           },
