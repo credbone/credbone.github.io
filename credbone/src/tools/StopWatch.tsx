@@ -143,7 +143,7 @@ data-weight="300"
             {formatTime(elapsed)}
           </text>
         </group>
-        <separator data-horizontal=""></separator>
+        <separator data-horizontal="dotted" data-opacity="20"></separator>
       </group>
 
       <group data-gap="10">
@@ -331,7 +331,7 @@ data-weight="300"
                   isIdle ? handleStart : isRunning ? handleStop : handleStart
                 }
               >
-                <text data-weight="700">
+                <text >
                   {isIdle ? "Start" : isRunning ? "Stop" : "Resume"}
                 </text>
               </group>
