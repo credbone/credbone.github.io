@@ -6,25 +6,19 @@ import Ripple from "../components/Ripple";
 import { IconSearch } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 
-// import sampleImage_2 from "../styles/images/samples/tool_res.webp";
- import sampleImage_3 from "../styles/images/samples/res_82.webp";
-import sampleImage_4 from "../styles/images/samples/wide_res_66.webp";
-
 import buildInfo from "../buildInfo.json";
-// import ThemePicker from "./themePicker";
+
 import { linksArray } from "./utils/OverviewData";
-// import DemoThemeToggle from "../components/DemoThemeToggle";
 
 import Content from "./content";
-//import SearchFloating from "../pages/search/SearchFloating";
+
 import { ChevronRight } from "lucide-react";
-import { openSearchModal, ModalControls } from "../pages/search/Searchshortcutlistener";
-import { SvgQR } from "../components/icon/svgRes";
-import { avatars } from "../pages/tools/avatars/avatars";
+import {
+  openSearchModal,
+  ModalControls,
+} from "../pages/search/Searchshortcutlistener";
+
 import Highlights from "./highlights";
-
-
-
 
 const links = [
   { name: "Get Started", url: "../Components/Overview" },
@@ -49,8 +43,6 @@ const Components: React.FC = () => {
 
   const { openModal, closeModal } = useModal();
 
-
-
   return (
     <group
       data-scroll=""
@@ -73,8 +65,6 @@ const Components: React.FC = () => {
           data-index="3"
           data-wrap="no"
         >
-
-
           <text
             // data-wrap="wrap"
             // data-ellipsis=""
@@ -90,7 +80,7 @@ const Components: React.FC = () => {
             <br></br> evolve and adapt.
           </text>
 
-            <group data-width="auto" data-align="center" data-wrap="no">
+          <group data-width="auto" data-align="center" data-wrap="no">
             <Ripple>
               <group
                 data-over-color="neutral-10"
@@ -106,64 +96,65 @@ const Components: React.FC = () => {
                 data-color="main-background"
                 data-space="20"
                 data-radius="60"
-              //   onClick={() =>
-              //     openModal({
-              //       id: "modal-2",
-              //       title: "Customized Popup",
-              //       content: (
-              //         <group
-              //           data-min-height="fit"
-              //           data-justify="center"
-              //           data-align="start"
-              //           data-space="30"
-              //           data-contain="scroll"
-              //         >
-              //           <group
-              //             data-top="0"
-              //             data-position="absolute"
-              //             data-height="fit"
-              //             onClick={() => closeModal("modal-2")}
-              //           ></group>
+                //   onClick={() =>
+                //     openModal({
+                //       id: "modal-2",
+                //       title: "Customized Popup",
+                //       content: (
+                //         <group
+                //           data-min-height="fit"
+                //           data-justify="center"
+                //           data-align="start"
+                //           data-space="30"
+                //           data-contain="scroll"
+                //         >
+                //           <group
+                //             data-top="0"
+                //             data-position="absolute"
+                //             data-height="fit"
+                //             onClick={() => closeModal("modal-2")}
+                //           ></group>
 
-              //           <group
-              //             data-animation-name="appear-top"
-              //             data-fill-mode="backwards"
-              //             data-animation-duration="2.75"
-              //             data-max-length="500"
-              //             //  data-border=""
-              //             // data-background="context"
-              //             // data-radius="25"
-              //             data-space="10"
-              //             data-gap="20"
-              //             // data-elevation="2"
-              //             //    data-animation-name="appear-top"
-              //             //    data-fill-mode="backwards"
-              //             //     data-animation-duration="2"
-              //           >
-              //             <SearchFloating showRandomTagsByDefault={false} 
+                //           <group
+                //             data-animation-name="appear-top"
+                //             data-fill-mode="backwards"
+                //             data-animation-duration="2.75"
+                //             data-max-length="500"
+                //             //  data-border=""
+                //             // data-background="context"
+                //             // data-radius="25"
+                //             data-space="10"
+                //             data-gap="20"
+                //             // data-elevation="2"
+                //             //    data-animation-name="appear-top"
+                //             //    data-fill-mode="backwards"
+                //             //     data-animation-duration="2"
+                //           >
+                //             <SearchFloating showRandomTagsByDefault={false}
 
+                //                             onClose={() => {
+                // //    isOpen.current = false;
+                //     closeModal("modal-2");
+                //   }}
 
-              //                             onClose={() => {
-              // //    isOpen.current = false;
-              //     closeModal("modal-2");
-              //   }}
+                //             />
+                //           </group>
+                //         </group>
+                //       ),
+                //       hasHeader: false,
+                //       hasToolbar: false,
+                //       customAttributes: modalConfig,
+                //       //    dimAttributes: {"data-background" : "dark-shade-10"},
+                //       spacing: 0,
+                //     })
+                //   }
 
-
-              //             />
-              //           </group>
-              //         </group>
-              //       ),
-              //       hasHeader: false,
-              //       hasToolbar: false,
-              //       customAttributes: modalConfig,
-              //       //    dimAttributes: {"data-background" : "dark-shade-10"},
-              //       spacing: 0,
-              //     })
-              //   }
-
-
-              onClick={() => openSearchModal({ openModal: openModal as ModalControls["openModal"], closeModal })}
-
+                onClick={() =>
+                  openSearchModal({
+                    openModal: openModal as ModalControls["openModal"],
+                    closeModal,
+                  })
+                }
               >
                 <group
                   //data-height="fit"
@@ -171,6 +162,7 @@ const Components: React.FC = () => {
                   data-justify="center"
                   data-length="30"
                   data-height="30"
+                  data-interact=""
                 >
                   <IconSearch stroke={1.5} />
                 </group>
@@ -239,7 +231,7 @@ const Components: React.FC = () => {
                   data-interact=""
                   data-length="30"
 
-                 // data-adaptive="desktop"
+                  // data-adaptive="desktop"
                 >
                   <ChevronRight strokeWidth={1.5} />
                 </group>
@@ -247,29 +239,20 @@ const Components: React.FC = () => {
             </Ripple>
           </group>
 
-
           <text
             data-wrap="wrap"
             data-max-length="280"
             data-line="1.5"
             data-opacity="70"
-           // data-weight="500"
+            // data-weight="500"
             //  data-text-size="medium-small"
           >
             A hybrid, atomic, and declarative design system that brings
             flexibility, control and speed to projects.
           </text>
 
-        <Content />
-
+          <Content />
         </group>
-
-
-
-
-
-
-
 
         <group
           data-space="adaptive-30-50"
@@ -389,9 +372,6 @@ const Components: React.FC = () => {
           ))}
         </group>
 
-
-
-
         <group
           data-space="adaptive-30-50"
           data-gap="10"
@@ -417,17 +397,12 @@ const Components: React.FC = () => {
             data-opacity="70"
             // data-text-size="medium-small"
           >
-           Browse interactive examples, utilities, and design patterns built with the system.
+            Browse interactive examples, utilities, and design patterns built
+            with the system.
           </text>
         </group>
 
-
-
-
-<Highlights/>
-
-
-
+        <Highlights />
 
         <group
           //  data-width="auto"
@@ -461,7 +436,7 @@ const Components: React.FC = () => {
           </text>
         </group>
 
-        <group data-direction="column">
+        {/* <group data-direction="column">
           <picture
             data-radius="50"
             data-brightness="adaptive"
@@ -510,12 +485,52 @@ const Components: React.FC = () => {
               </group>
             </group>
           </group>
-        </group>
+        </group> */}
 
-        <group data-contain="" data-direction="column" data-gap="30">
+        <group
+          data-direction="column"
+          data-gap="30"
+          data-radius="50"
+          data-space="adaptive-10-30"
+          data-space-vertical="0"
+        >
           <group data-gap="30" data-type="grid" data-grid-template="200">
-            <group data-direction="column" data-width="auto" data-align="start">
+            <group
+              data-direction="column"
+              data-width="auto"
+              data-align="start"
+              data-gap="5"
+            >
               {links.map((link, index) => (
+                <Ripple key={index}>
+                  <Link
+                    data-contain=""
+                    data-ink-color="neutral"
+                    data-drag="none"
+                    data-width="auto"
+                    data-type="group"
+                    data-interactive=""
+                    data-over-color="neutral"
+                    data-space-vertical="15"
+                    data-space-horizontal="20"
+                    data-radius="15"
+                    data-weight="600"
+                    to={link.url}
+                    key={index}
+                  >
+                    <text data-ellipsis="">{link.name}</text>
+                  </Link>
+                </Ripple>
+              ))}
+            </group>
+
+            <group
+              data-direction="column"
+              data-width="auto"
+              data-gap="5"
+              data-align="start"
+            >
+              <Ripple>
                 <Link
                   data-drag="none"
                   data-width="auto"
@@ -526,51 +541,44 @@ const Components: React.FC = () => {
                   data-space-horizontal="20"
                   data-radius="15"
                   data-weight="600"
-                  to={link.url}
-                  key={index}
+                  to="https://calendly.com/sargsyanrubens/15-minute-chat"
+                  target="_blank"
+                  data-ink-color="neutral"
+                  data-contain=""
                 >
-                  <text data-ellipsis="">{link.name}</text>
+                  <text>Reserve 15-Minute Call</text>
                 </Link>
-              ))}
-            </group>
-
-            <group data-direction="column" data-width="auto" data-align="start">
-              <Link
-                data-drag="none"
-                data-width="auto"
-                data-type="group"
-                data-interactive=""
-                data-over-color="neutral"
-                data-space-vertical="15"
-                data-space-horizontal="20"
-                data-radius="15"
-                data-weight="600"
-                to="https://calendly.com/sargsyanrubens/15-minute-chat"
-                target="_blank"
-              >
-                <text>Reserve 15-Minute Call</text>
-              </Link>
-              <Link
-                data-drag="none"
-                data-width="auto"
-                data-type="group"
-                data-interactive=""
-                data-over-color="neutral"
-                data-space-vertical="15"
-                data-space-horizontal="20"
-                data-radius="15"
-                data-weight="600"
-                to="https://t.me/sargsyanruben"
-                target="_blank"
-              >
-                <text>Message Me</text>
-              </Link>
+              </Ripple>
+              <Ripple>
+                <Link
+                  data-drag="none"
+                  data-width="auto"
+                  data-type="group"
+                  data-interactive=""
+                  data-over-color="neutral"
+                  data-space-vertical="15"
+                  data-space-horizontal="20"
+                  data-radius="15"
+                  data-weight="600"
+                  to="https://t.me/sargsyanruben"
+                  target="_blank"
+                  data-ink-color="neutral"
+                  data-contain=""
+                >
+                  <text>Message Me</text>
+                </Link>
+              </Ripple>
             </group>
           </group>
         </group>
 
         <separator data-horizontal=""></separator>
-        <group data-space="15" data-direction="column" data-contain="">
+        <group
+          data-space="adaptive-30-50"
+          data-space-vertical="15"
+          data-direction="column"
+          data-contain=""
+        >
           <group data-direction="column" data-gap="5">
             <text data-wrap="wrap" data-weight="700">
               Copyright {currentYear}, Credbone.

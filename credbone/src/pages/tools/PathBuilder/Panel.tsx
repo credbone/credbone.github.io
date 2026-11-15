@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { CanvasConfig, PathPoint, PointType } from "./types";
 import CustomSlider from "../../../components/inputs/slider";
 import TickComponent from "../../../components/inputs/TickComponent";
 import Ripple from "../../../components/Ripple";
+import Tooltip from "../../../components/tooltip";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
 
 import { isApple, isTouchFirst } from "./pathUtils";
@@ -268,7 +269,7 @@ export const NumberRow: React.FC<NumberRowProps> = ({
         data-name="input-indicator"
         data-height="fit"
         data-background="adaptive-gray"
-        data-radius="15"
+        data-radius="12"
         data-left="0"
       ></group>
     </label>
@@ -429,6 +430,60 @@ const types: { type: PointType; label: string }[] = [
   { type: 'C', label: 'Cubic' },
   { type: 'A', label: 'Arc' },
 ];
+  const selectedType = point && !isFirst ? point.type : null;
+
+  // Segmented toggle indicator (same logic as the Ripple demo mode toggle in Miscellaneous)
+  const typeToggleRef = useRef<HTMLDivElement>(null);
+  const typeIndicatorRef = useRef<HTMLDivElement>(null);
+  const [typeIndicatorStyle, setTypeIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+  });
+
+  // Tracks the selected option relative to the toggle container
+  const updateTypeIndicator = useCallback(() => {
+    const container = typeToggleRef.current;
+    if (!container) return;
+    const selected = container.querySelector<HTMLElement>(
+      '[data-selected="true"]',
+    );
+    // No selection (no point, or the fixed starting point): collapse the fill
+    if (!selected) {
+      setTypeIndicatorStyle((s) => ({ ...s, width: 0 }));
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
+    const indicatorStyle = typeIndicatorRef.current
+      ? getComputedStyle(typeIndicatorRef.current)
+      : null;
+    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
+    const padRight = indicatorStyle
+      ? parseFloat(indicatorStyle.paddingRight)
+      : 0;
+
+    setTypeIndicatorStyle({
+      // clientLeft offsets the container border, since absolute positioning starts inside it
+      left:
+        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
+      width: selectedRect.width + padLeft + padRight,
+    });
+  }, []);
+
+  // Fire on selection change
+  useEffect(() => {
+    updateTypeIndicator();
+  }, [selectedType, updateTypeIndicator]);
+
+  // Fire on resize
+  useEffect(() => {
+    const ro = new ResizeObserver(updateTypeIndicator);
+    if (typeToggleRef.current) ro.observe(typeToggleRef.current);
+    return () => ro.disconnect();
+  }, [updateTypeIndicator]);
 
   return (
     <>
@@ -441,7 +496,7 @@ const types: { type: PointType; label: string }[] = [
           data-background="text"
           data-color="main-background"
           //  data-backdrop="20"
-
+ data-space="3"
           data-radius="15"
           data-wrap="no"
           data-direction="column"
@@ -449,12 +504,13 @@ const types: { type: PointType; label: string }[] = [
           data-contain=""
         >
           <group
-            data-space="5"
+           
          //   data-position="absolute"
             data-translate-vertical={isFirst ? "" : "-100%"}
             data-transition-prop="transform"
+             data-timing="fancy"
             data-duration="3"
-     //       data-height="45"
+            data-height="40"
             data-align="center"
           >
             <group data-space="10" data-align="center" data-direction="column">
@@ -463,37 +519,61 @@ const types: { type: PointType; label: string }[] = [
           </group>
 
           <group
+            ref={typeToggleRef}
             data-position="absolute"
-            data-space="5"
+         //   data-height="40"
+            data-wrap="no"
             data-translate-vertical={isFirst ? "100%" : ""}
+             data-timing="fancy"
             data-transition-prop="transform"
             data-duration="3"
+            data-space="3"
+            data-top="0"
+            data-left="0"
           >
-           {types.map(({ type: t, label }) => (
+            {/* Rendered before the options so their labels paint above the fill */}
+            <group
+              ref={typeIndicatorRef}
+              data-position="absolute"
+              data-top="0"
+              data-left="0"
+              data-height="fit"
+               data-space="3"
+              data-pointer-event="none"
+              data-transition-prop="transform"
+              data-duration=".325"
+              data-timing="fancy"
+              style={{
+                width: typeIndicatorStyle.width,
+                transform: `translateX(${typeIndicatorStyle.left}px)`,
+              }}
+            >
+              <group
+                data-height="fit"
+                data-radius="12"
+                data-background="context"
+              ></group>
+            </group>
+            {types.map(({ type: t, label }) => (
+              <Tooltip content={label} key={t} delay={500}>
               <group
                 data-interactive=""
-                data-radius="10"
-                data-space="10"
-                data-space-horizontal="15"
-                //  data-duration=".125"
-
-                data-fit={point && !isFirst && point.type === t ? "2" : "1"}
-                data-transition-prop="flex"
-                data-duration=".225"
-                // data-length={
-                //   point && !isFirst && point.type === t ? "90" : "auto"
-                // }
+                data-ink-color="neutral"
+                data-over-color="neutral"
+                data-contain=""
+                data-radius="12"
+                // data-transition-prop="flex"
+                // data-duration=".225"
+               // data-space="10"
+               data-justify="center"
+                data-height="40"
+              //  data-space-horizontal="15"
+                data-fit={selectedType === t ? "1.5" : "1"}
                 data-cursor="pointer"
-                data-background={
-                  point && !isFirst && point.type === t ? "context" : ""
-                }
-                data-color={
-                  point && !isFirst && point.type === t ? "text" : undefined
-                }
+                data-selected={selectedType === t ? "true" : undefined}
+                data-color={selectedType === t ? "text" : undefined}
                 data-align="center"
                 data-direction="column"
-                data-over-color="neutral"
-                key={t}
                 data-disabled={isFirst}
                 data-opacity={disabled ? "30" : undefined}
                 data-pointer-event={disabled ? "none" : undefined}
@@ -501,6 +581,7 @@ const types: { type: PointType; label: string }[] = [
               >
                 <text>{t}</text>
               </group>
+              </Tooltip>
             ))}
           </group>
         </group>
