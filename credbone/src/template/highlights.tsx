@@ -305,8 +305,10 @@ const Highlights: React.FC = () => {
         data-space="30"
         data-radius="50"
         data-contain=""
-        data-justify="center"
+        data-justify="end"
         data-gap="30"
+        data-direction="column"
+       
       >
         <picture
           //   data-mask="top"
@@ -321,11 +323,11 @@ const Highlights: React.FC = () => {
           <img src={sampleImage_2}  alt="" />
         </picture>
 
-        <group data-height="90"></group>
+        <group data-height="90" data-position="bottom"></group>
 
         <group
           data-space="30"
-          data-position="bottom"
+          
           //  data-backdrop="20-adaptive"
 
           data-background="white"
@@ -370,7 +372,7 @@ const Highlights: React.FC = () => {
         <group
           data-pointer-event="none"
           data-ink-color="gray-shade-20"
-          data-position="bottom"
+          
           data-contain=""
           data-drag="none"
           data-type="group"
