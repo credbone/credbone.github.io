@@ -1,5 +1,14 @@
-import { ArrowDown, Copy, Eraser, Grid3x3, Pencil } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import {
+  ArrowDown,
+  Copy,
+  Eraser,
+  FlipHorizontal2,
+  Grid3x3,
+  Pencil,
+  SquareSplitHorizontal,
+} from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { useDotSprings } from "./useDotSprings";
 import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
@@ -20,6 +29,9 @@ const CURSOR_SIZE_CONFIG: Record<
   default: { r: 4, suffix: null, label: "M", dotSize: 4 },
   large: { r: 6, suffix: ".3", label: "L", dotSize: 6 },
 };
+
+// Grid cell size in SVG units (viewBox is 160 = 16 cells)
+const CELL = 10;
 
 // Encoded dot: index (default) or "index.2" / "index.3" (sized)
 export type EncodedDot = { index: number; size: CursorSize };
@@ -80,8 +92,6 @@ const DotDisplayEdit: React.FC<{
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
 
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [isTouchActive, setIsTouchActive] = useState(false);
   const [isEraserActive, setIsEraserActive] = useState(false);
   const [cursorSize, setCursorSize] = useState<CursorSize>("default");
 
@@ -109,56 +119,142 @@ const DotDisplayEdit: React.FC<{
     return next;
   };
 
-  const handleCircleClick = (index: number) => {
-    onStartEdit?.();
-    setActiveDots((prev) => {
-      if (isEraserActive) return eraseDot(index, prev);
-      // Toggle: if dot exists at same size, remove it; otherwise paint
-      const existing = prev.get(index);
-      if (existing && existing.size === cursorSize) {
-        return eraseDot(index, prev);
-      }
-      return paintDot(index, prev, cursorSize);
-    });
-  };
-
   const [isshowoverlay, setshowoverlay] = useState(true);
   const toggleoverlay = () => setshowoverlay((prev) => !prev);
 
-  const handleMouseDown = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) =>
-    setIsMouseDown(true);
-  const handleMouseUp = () => setIsMouseDown(false);
+  // Symmetry: mirror every stroke across the vertical centre axis (between cols 7 and 8)
+  const [isSymmetry, setIsSymmetry] = useState(false);
+  const toggleSymmetry = () => setIsSymmetry((prev) => !prev);
+  const mirrorOf = (index: number) =>
+    Math.floor(index / cols) * cols + (cols - 1 - (index % cols));
 
-  const handleMouseMove = (index: number) => {
-    if (!isMouseDown) return;
-    onStartEdit?.();
-    setActiveDots((prev) => {
-      if (isEraserActive) return eraseDot(index, prev);
-      return paintDot(index, prev, cursorSize);
-    });
+  // ---- Drawing: one pointer handler for mouse, touch and pen ----
+  // dotsRef mirrors the dot map synchronously so a fast stroke never reads stale state.
+  const dotsRef = useRef(activeDots);
+  dotsRef.current = activeDots;
+
+  const svgRef = useRef<SVGSVGElement>(null);
+  const springs = useDotSprings(
+    rows * cols,
+    cols,
+    CELL,
+    (i) => dotsRef.current.get(i)?.size,
+  );
+
+  // Pencil strokes always paint; eraser strokes always erase.
+  // `toggle`: a pencil press on a same-size dot removes it, but only as a direct click —
+  // it's applied on release, and cancelled if the pointer moves to another cell.
+  const strokeRef = useRef<{
+    mode: "paint" | "erase";
+    last: number;
+    toggle: number;
+  } | null>(null);
+
+  const cellFromPointer = (e: React.PointerEvent) => {
+    const ctm = svgRef.current?.getScreenCTM();
+    if (!ctm) return -1;
+    const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(
+      ctm.inverse(),
+    );
+    const col = Math.floor(pt.x / CELL);
+    const row = Math.floor(pt.y / CELL);
+    if (col < 0 || col >= cols || row < 0 || row >= rows) return -1;
+    return row * cols + col;
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => setIsTouchActive(true);
-  const handleTouchEnd = (e: React.TouchEvent) => setIsTouchActive(false);
+  // Returns true when the cell actually changed
+  const applyOne = (
+    index: number,
+    mode: "paint" | "erase",
+    dir?: { x: number; y: number },
+  ) => {
+    const existing = dotsRef.current.get(index);
+    if (mode === "erase") {
+      if (!existing) return false;
+      dotsRef.current = eraseDot(index, dotsRef.current);
+      springs.erase(index);
+    } else {
+      if (existing && existing.size === cursorSize) return false;
+      dotsRef.current = paintDot(index, dotsRef.current, cursorSize);
+      springs.pop(index, dir);
+    }
+    return true;
+  };
 
-  const handleTouchMove = (e: React.TouchEvent, svgElement: SVGSVGElement) => {
+  const applyCell = (
+    index: number,
+    mode: "paint" | "erase",
+    dir?: { x: number; y: number },
+  ) => {
+    let changed = applyOne(index, mode, dir);
+    if (isSymmetry) {
+      // The mirrored wave pushes the mirrored way
+      const mirrorDir = dir && { x: -dir.x, y: dir.y };
+      changed = applyOne(mirrorOf(index), mode, mirrorDir) || changed;
+    }
+    if (changed) setActiveDots(dotsRef.current);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    setIsMenuOpen(false);
+    setIsExportOpen(false);
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    const index = cellFromPointer(e);
+    if (index < 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    const existing = dotsRef.current.get(index);
+    const mode = isEraserActive ? "erase" : "paint";
+    const isToggle = !isEraserActive && existing?.size === cursorSize;
+    strokeRef.current = { mode, last: index, toggle: isToggle ? index : -1 };
     onStartEdit?.();
-    if (!isTouchActive || !svgElement) return;
+    if (!isToggle) applyCell(index, mode);
+  };
 
-    const touch = e.touches[0];
-    const svgRect = svgElement.getBoundingClientRect();
-    const x = touch.clientX - svgRect.left;
-    const y = touch.clientY - svgRect.top;
+  const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+    const index = cellFromPointer(e);
+    if (e.pointerType !== "touch") {
+      springs.hover(index, isSymmetry && index >= 0 ? mirrorOf(index) : -1);
+    }
 
-    const col = Math.floor(x / (svgRect.width / cols));
-    const row = Math.floor(y / (svgRect.height / rows));
+    const stroke = strokeRef.current;
+    if (!stroke || index < 0 || index === stroke.last) return;
+    stroke.toggle = -1; // it's a swipe now, not a click
 
-    if (col >= 0 && col < cols && row >= 0 && row < rows) {
-      const index = row * cols + col;
-      setActiveDots((prev) => {
-        if (isEraserActive) return eraseDot(index, prev);
-        return paintDot(index, prev, cursorSize);
-      });
+    // Walk every cell between the last one and this one so fast strokes leave no gaps
+    let c = stroke.last % cols;
+    let r = Math.floor(stroke.last / cols);
+    const c1 = index % cols;
+    const r1 = Math.floor(index / cols);
+    const len = Math.hypot(c1 - c, r1 - r);
+    const dir = { x: (c1 - c) / len, y: (r1 - r) / len };
+    const dc = Math.abs(c1 - c);
+    const dr = -Math.abs(r1 - r);
+    const sc = c < c1 ? 1 : -1;
+    const sr = r < r1 ? 1 : -1;
+    let err = dc + dr;
+    while (c !== c1 || r !== r1) {
+      const e2 = 2 * err;
+      if (e2 >= dr) {
+        err += dr;
+        c += sc;
+      }
+      if (e2 <= dc) {
+        err += dc;
+        r += sr;
+      }
+      applyCell(r * cols + c, stroke.mode, dir);
+    }
+    stroke.last = index;
+  };
+
+  const handlePointerEnd = (e: React.PointerEvent<SVGSVGElement>) => {
+    const stroke = strokeRef.current;
+    strokeRef.current = null;
+    if (e.type === "pointerup" && stroke && stroke.toggle >= 0) {
+      applyCell(stroke.toggle, "erase");
+    }
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
     }
   };
 
@@ -221,17 +317,6 @@ const DotDisplayEdit: React.FC<{
   };
 
   useEffect(() => {
-    const handleGlobalMouseUp = () => setIsMouseDown(false);
-    const handleGlobalTouchEnd = () => setIsTouchActive(false);
-    document.addEventListener("mouseup", handleGlobalMouseUp);
-    document.addEventListener("touchend", handleGlobalTouchEnd);
-    return () => {
-      document.removeEventListener("mouseup", handleGlobalMouseUp);
-      document.removeEventListener("touchend", handleGlobalTouchEnd);
-    };
-  }, []);
-
-  useEffect(() => {
     // Encoded string takes priority — preserves size suffixes
     if (predefinedEncodedDots) {
       const dots = predefinedEncodedDots
@@ -255,7 +340,6 @@ const DotDisplayEdit: React.FC<{
   const togglePencil = () => setIsEraserActive(false);
   const toggleEraser = () => setIsEraserActive(true);
 
-  const svgRef = React.useRef<SVGSVGElement>(null);
 
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
   const [importValue, setImportValue] = useState("");
@@ -713,6 +797,63 @@ const DotDisplayEdit: React.FC<{
 
                   <Ripple>
                     <group
+                      data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                      data-fill-mode="backwards"
+                      data-animation-duration="2.5"
+                      data-wrap="no"
+                      data-contain=""
+                      data-space={isBottomSheet ? "20" : "15"}
+                      data-radius="15"
+                      onClick={toggleSymmetry}
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-cursor="pointer"
+                      data-align="center"
+                    >
+                      <group data-wrap="no" data-gap="15" data-align="center">
+                        <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <SquareSplitHorizontal strokeWidth={1.5} size={20} />
+                        </group>
+
+                        <group>
+                          <text data-ellipsis="" data-opacity="40">
+                            Symmetry
+                          </text>
+                        </group>
+                        <separator data-vertical="" data-height="fit"></separator>
+                        <group
+                          data-align="center"
+                          data-justify="center"
+                          data-width="auto"
+                          data-wrap="no"
+                        >
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={isSymmetry ? "" : "0"}
+                          >
+                            On
+                          </text>
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={!isSymmetry ? "" : "0"}
+                          >
+                            Off
+                          </text>
+                        </group>
+                      </group>
+                    </group>
+                  </Ripple>
+
+                  <Ripple>
+                    <group
 
                                             data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
                         data-fill-mode="backwards"
@@ -933,19 +1074,11 @@ const DotDisplayEdit: React.FC<{
               height="100%"
               data-length="260"
               viewBox="0 0 160 160"
-              onMouseDown={(e) => {
-                setIsMenuOpen(false);
-                setIsExportOpen(false);
-                handleMouseDown(e);
-              }}
-              onMouseUp={handleMouseUp}
-              onTouchStart={(e) => {
-                setIsMenuOpen(false);
-                setIsExportOpen(false);
-                handleTouchStart(e);
-              }}
-              onTouchEnd={handleTouchEnd}
-              onTouchMove={(e) => handleTouchMove(e, svgRef.current!)}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerEnd}
+              onPointerCancel={handlePointerEnd}
+              onPointerLeave={() => springs.hover(-1)}
               style={{ touchAction: "none" }}
             >
 
@@ -965,8 +1098,8 @@ const DotDisplayEdit: React.FC<{
 </g>
 
               {Array.from({ length: rows * cols }).map((_, index) => {
-                const x = (index % cols) * 10 + 5;
-                const y = Math.floor(index / cols) * 10 + 5;
+                const x = (index % cols) * CELL + CELL / 2;
+                const y = Math.floor(index / cols) * CELL + CELL / 2;
                 const dot = activeDots.get(index);
 
                 return (
@@ -976,11 +1109,34 @@ const DotDisplayEdit: React.FC<{
                     y={y}
                     active={!!dot}
                     r={dot ? CURSOR_SIZE_CONFIG[dot.size].r : 4}
-                    onClick={() => handleCircleClick(index)}
-                    onMouseMove={() => handleMouseMove(index)}
+                    circleRef={springs.refs[index]}
                   />
                 );
               })}
+
+              {/* Symmetry axis: two half-lines that draw outward from the centre */}
+              <g
+                data-color="red"
+                stroke="currentColor"
+                strokeWidth={0.6}
+                strokeLinecap="round"
+                opacity={isSymmetry ? 0.6 : 0}
+                pointerEvents="none"
+                data-duration=".325"
+              >
+                {[-20, 180].map((end) => (
+                  <line
+                    key={end}
+                    x1="80"
+                    y1="80"
+                    x2="80"
+                    y2={end}
+                    strokeDasharray="100"
+                    strokeDashoffset={isSymmetry ? 0 : 100}
+                    data-duration=".325"
+                  />
+                ))}
+              </g>
             </svg>
           </group>
 
@@ -1110,40 +1266,24 @@ const DotDisplayEdit: React.FC<{
   );
 };
 
-const Dot: React.FC<{
+// Purely visual: input is handled once on the <svg>, motion is written by useDotSprings
+// through circleRef (React never sets `transform`, so the two don't fight).
+const Dot = React.memo<{
   x: number;
   y: number;
   active: boolean;
   r: number;
-  onClick: () => void;
-  onMouseMove: () => void;
-}> = ({ x, y, active, r, onClick, onMouseMove }) => {
-  const rectX = x - 5;
-  const rectY = y - 5;
-
-  return (
-    <g>
-      <rect
-        // strokeWidth={1}
-        // stroke="red"
-        x={rectX}
-        y={rectY}
-        width="10"
-        height="10"
-        fill="transparent"
-        onClick={onClick}
-        onMouseMove={onMouseMove}
-      />
-      <circle
-        opacity={active ? "1" : ".1"}
-        cx={x}
-        cy={y}
-        r={active ? r : "3"}
-        fill="currentcolor"
-        pointerEvents="none"
-      />
-    </g>
-  );
-};
+  circleRef: (el: SVGCircleElement | null) => void;
+}>(({ x, y, active, r, circleRef }) => (
+  <circle
+    ref={circleRef}
+    opacity={active ? "1" : ".1"}
+    cx={x}
+    cy={y}
+    r={active ? r : "3"}
+    fill="currentcolor"
+    pointerEvents="none"
+  />
+));
 
 export default DotDisplayEdit;
