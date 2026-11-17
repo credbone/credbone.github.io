@@ -506,7 +506,7 @@ const GlassPropsDemo: React.FC = () => {
             data-opacity="60"
           >
             The first six match the Glass effect in Figma. Refraction and
-            dispersion need a Chromium browser; others show a frosted blur.
+            dispersion need a Chromium browser, others show a frosted blur.
           </text>
         </group>
 

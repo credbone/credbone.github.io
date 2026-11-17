@@ -20,14 +20,24 @@ export interface Carousel3DSpread {
   sideCount: number; // cards visible on each side of the center
 }
 
+// Cylinder layout: cards stand around a ring, facing out
+export interface Carousel3DCylinder {
+  gap: number; // px between neighbouring card edges; sets the ring radius
+  tilt: number; // deg the ring leans on X; negative = seen from above
+  arc: number; // deg all items span: 360 = full ring, less = open arc
+  back: number; // opacity (0..1) of cards turned away; 0 hides them
+}
+
 interface Carousel3DProps {
   items: Carousel3DItem[];
   initialIndex?: number;
   onChange?: (index: number) => void;
   desktop?: Partial<Carousel3DSpread>;
   mobile?: Partial<Carousel3DSpread>; // below MOBILE_BREAKPOINT
-  depth?: number; // px each step sits further back
-  tilt?: number; // deg side cards turn
+  layout?: "spread" | "cylinder";
+  cylinder?: Partial<Carousel3DCylinder>; // cylinder layout only
+  depth?: number; // px each step sits further back (spread layout)
+  tilt?: number; // deg side cards turn (spread layout)
   fade?: number; // opacity lost per step (0..1)
   cardWidth?: string; // data-length value of each card
   perspective?: string; // data-perspective value of the stage
@@ -37,6 +47,9 @@ interface Carousel3DProps {
 
 const DEFAULT_DESKTOP: Carousel3DSpread = { spread: 0.22, maxSpread: 240, sideCount: 2 };
 const DEFAULT_MOBILE: Carousel3DSpread = { spread: 0.3, maxSpread: 140, sideCount: 1 };
+const DEFAULT_CYLINDER: Carousel3DCylinder = { gap: 30, tilt: 0, arc: 360, back: 0 };
+const BACK_BLEND = 0.15; // cos range either side of edge-on where front fades to back opacity
+const MAX_STEP_ANGLE = 170; // deg; the radius formula breaks down at 180
 
 // Text fields keep their own drag (text selection) while focused
 const TEXT_FIELD_SELECTOR =
@@ -99,6 +112,8 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
   onChange,
   desktop,
   mobile,
+  layout: layoutType = "spread",
+  cylinder,
   depth = 160,
   tilt = 35,
   fade = 0.3,
@@ -153,7 +168,24 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     : { ...DEFAULT_DESKTOP, ...desktop };
   // Cards visible per side; capped so the wrap point stays out of view
   const sideCount = Math.min(layout.sideCount, Math.floor((count - 1) / 2));
-  const spacing = Math.min(layout.maxSpread, stageWidth * layout.spread);
+
+  // Cylinder: items share `arc` degrees; the radius keeps `gap` px between
+  // neighbouring card edges (cards are the sides of a regular polygon)
+  const isCylinder = layoutType === "cylinder";
+  const ring = { ...DEFAULT_CYLINDER, ...cylinder };
+  const [cardW, setCardW] = useState(0);
+  const firstCardRef = useRef<HTMLElement>(null);
+  const stepAngle = Math.min(clamp(ring.arc, 1, 360) / count, MAX_STEP_ANGLE);
+  const radius =
+    (cardW + ring.gap) / (2 * Math.tan((stepAngle * Math.PI) / 360));
+  // A full ring wraps out of sight behind, so every card can show
+  const fullRing = isCylinder && ring.arc >= 360 && !reducedMotion;
+  const showBack = isCylinder && ring.back > 0 && !reducedMotion;
+
+  // Px of travel per item: card spacing, or the front arc length on a cylinder
+  const spacing = isCylinder
+    ? cardW + ring.gap
+    : Math.min(layout.maxSpread, stageWidth * layout.spread);
 
   useEffect(() => {
     const el = stageRef.current;
@@ -161,6 +193,15 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     const ro = new ResizeObserver(([entry]) =>
       setStageWidth(entry.contentRect.width)
     );
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // offsetWidth ignores transforms, so it's the card's real width
+  useEffect(() => {
+    const el = firstCardRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setCardW(el.offsetWidth));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -450,21 +491,35 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     const turn = clamp(offset, -1, 1);
 
     // Full fade between the last visible card and half a step past it,
-    // so the card is invisible by the time it wraps to the other side
-    const fadeEnd = sideCount + 0.5;
-    const opacity = clamp(
-      distance <= sideCount
+    // so the card is invisible by the time it wraps to the other side.
+    // A full ring has no visible wrap, so it shows every card
+    const sides = fullRing ? count / 2 : sideCount;
+    const fadeEnd = sides + 0.5;
+    let opacity = clamp(
+      distance <= sides
         ? 1 - distance * fade
-        : (1 - sideCount * fade) * clamp((fadeEnd - distance) / 0.5, 0, 1),
+        : (1 - sides * fade) * clamp((fadeEnd - distance) / 0.5, 0, 1),
       0,
       1
     );
-    // Until the stage is measured, spacing is 0 and every card would sit in the center
-    const hidden = opacity <= 0 || stageWidth <= 0;
+    // Cards turned away: `back` opacity, blended around edge-on so there's no pop
+    if (showBack) {
+      const facing = Math.cos((offset * stepAngle * Math.PI) / 180);
+      const front = clamp((facing + BACK_BLEND) / (2 * BACK_BLEND), 0, 1);
+      opacity *= ring.back + (1 - ring.back) * front;
+    }
+    // Until the stage (and on a cylinder, the card) is measured, spacing is 0
+    // and every card would sit in the center
+    const hidden =
+      opacity <= 0 || stageWidth <= 0 || (isCylinder && cardW <= 0);
 
+    // Cylinder: the ring tilts around the front card, so the centered card
+    // stays in place and the far side rises or sinks
     const transform = reducedMotion
       ? `translateX(${offset * spacing}px)`
-      : `translateX(${offset * spacing}px) translateZ(${-distance * depth}px) rotateY(${-turn * tilt}deg)`;
+      : isCylinder
+        ? `rotateX(${ring.tilt}deg) translateZ(${-radius}px) rotateY(${offset * stepAngle}deg) translateZ(${radius}px)`
+        : `translateX(${offset * spacing}px) translateZ(${-distance * depth}px) rotateY(${-turn * tilt}deg)`;
 
     return {
       transform,
@@ -524,7 +579,9 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
           return (
             <group
               key={item.id}
+              ref={index === 0 ? firstCardRef : undefined}
               data-length={cardWidth}
+              data-backface-visibility={isCylinder && !showBack ? "hidden" : undefined}
               data-carousel-active={isActive ? "true" : "false"}
               data-cursor={isActive ? undefined : "pointer"}
               aria-hidden={!isActive}

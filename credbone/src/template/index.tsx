@@ -25,6 +25,7 @@ import Modal from "./Modal";
 import VerticalSubNav from "../pages/navigation/verticalSubNav";
 
 import QuickDemos from "./quickDemos";
+import CarouselPage from "./Carousel";
 import Overview from "./Overview";
 import Snackbar from "./Snackbar";
 import RangeSlider from "./RangeSlider";
@@ -157,6 +158,7 @@ useEffect(() => {
               <Route path="Dashboard" element={<Dashboard />} />
               <Route path="Modal" element={<Modal />} />
               <Route path="QuickDemos" element={<QuickDemos/>} />
+              <Route path="Carousel" element={<CarouselPage />} />
 
             </Routes>
 

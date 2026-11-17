@@ -834,6 +834,9 @@ const GridTemplate: React.FC<TemplateProps> = ({
   );
 };
 
+// Times the items repeat in the carousel, for a fuller cylinder
+const CAROUSEL_REPEAT = 2;
+
 const CarouselTemplate: React.FC<TemplateProps> = ({
   selectedKey,
   selectedRef,
@@ -843,8 +846,11 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
   const selectedIndex = ContentData.findIndex((item) => item.key === selectedKey);
   const longPress = useLongPress(onOpenModalRequest);
 
-  const carouselItems: Carousel3DItem[] = ContentData.map((item) => ({
-    id: item.key,
+  // Items repeat to fill the ring; each ring slot maps back with % ContentData.length
+  const ringData = Array.from({ length: CAROUSEL_REPEAT }, () => ContentData).flat();
+
+  const carouselItems: Carousel3DItem[] = ringData.map((item, slot) => ({
+    id: `${item.key}-${slot}`,
     title: item.title,
     node: ({ centered }) => (
       <group
@@ -905,20 +911,25 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
   return (
     <group ref={selectedRef}>
     <group data-animation-name="appear-bottom" data-fill-mode="backwards" data-contain="" >
+      <group data-height="30"></group>
       <Carousel3D
 
 fade={0}
   desktop={{ spread: 0.15, maxSpread: 300, sideCount: 3 }}
-  mobile={{ spread: 0.35 }}
- // depth={100}
+  mobile={{ spread: 0.25  }}
+  // depth={400}
   tilt={45}
+  // layout="cylinder"
+  // cardWidth="200"
+  // perspective="3000"
+  // cylinder={{ gap: 30, tilt:-5, arc: 360, back: 0.3 }}
 
 
         items={carouselItems}
         initialIndex={Math.max(selectedIndex, 0)}
         // The centered card is the selected one; onSelect toggles, so skip the current key
         onChange={(index) => {
-          const key = ContentData[index].key;
+          const key = ContentData[index % ContentData.length].key;
           if (key !== selectedKey) onSelect(key);
         }}
       />
@@ -1033,13 +1044,16 @@ const Cards: React.FC = () => {
 
   return (
     <>
-      <group data-space="30">
-        <TemplatePageHeader
+      <group data-space-vertical="30">
+
+<group data-space-horizontal="30">
+          <TemplatePageHeader
           title="Cards & List"
           description="A card is an excellent tool for displaying content and actions related
     to a single subject, offering a cohesive presentation of multiple
     elements that vary in type and size."
         />
+</group>
 
         <StuckReporter>
           {(isSticky) => (
@@ -1047,8 +1061,8 @@ const Cards: React.FC = () => {
               data-sticky="top"
               data-index="3"
               data-width="auto"
-              data-space-vertical="30"
-              data-space-horizontal={isSticky ? "30" : ""}
+              data-space-top="30"
+              data-space-horizontal={isSticky ? "60" : "30"}
               data-duration=".125"
             >
               <group
@@ -1107,7 +1121,9 @@ const Cards: React.FC = () => {
             onOpenModalRequest={(key) => setSearchParams({ item: key })}
           />
         ) : (
+<group data-space="30">
           <group
+        
             data-type="grid"
             data-grid-template={gridTemplate}
             data-gap={gridGap}
@@ -1120,6 +1136,7 @@ const Cards: React.FC = () => {
               onOpenModalRequest={(key) => setSearchParams({ item: key })} // Pass the URL setter here
             />
           </group>
+  </group>
         )}
       </group>
 

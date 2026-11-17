@@ -27,6 +27,7 @@ export const navItems = [
 
   { to: "Components/Miscellaneous",  label: "Miscellaneous",separator:"true"  },
   { to: "Components/Dashboard",  label: "Dashboard"  },
+  { to: "Components/Carousel",  label: "3D Carousel",new:"true"},
   { to: "Components/QuickDemos",  label: "Quick Demos",new:"true"},
 
 ];

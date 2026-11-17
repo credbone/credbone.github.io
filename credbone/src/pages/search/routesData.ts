@@ -134,6 +134,12 @@ export const routesData: RouteData[] = [
     "tags": ["dashboard","component", "widget", "monitoring", "gauge", "temperature", "hardware", "pattern"]
   },
   {
+    "path": "../Components/Carousel",
+    "title": "3D Carousel",
+    "description": "Looping 3D carousel in a row or around a cylinder, with live layout tuning.",
+    "tags": ["carousel", "component", "3d", "cylinder", "ring", "slider", "gallery", "swipe", "perspective"]
+  },
+  {
     "path": "../Components/Modal",
     "title": "Modals",
     "description": "Modal components for creating overlays and popup dialogs.",

@@ -45,6 +45,7 @@ const routeTitles: {
   Resume: { title: "Ruben Sargsyan", header: "Ruben Sargsyan" },
   Dashboard: { title: "Dashboard", header: "Dashboard" },
   QuickDemos: { title: "Quick Demos", header: "Quick Demos" },
+  Carousel: { title: "3D Carousel", header: "3D Carousel" },
   Modal: { title: "Modal", header: "Modal" },
   Overview: { title: "Overview", header: "Overview" },
   SideBar: { title: "Sidebar", header: "Sidebar" },

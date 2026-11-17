@@ -45,8 +45,10 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 | `onChange` | – | `(index)` called when a snap **starts**, with the target item |
 | `desktop` | `{ spread: .22, maxSpread: 240, sideCount: 2 }` | Layout at stage width ≥ 600px. Partial, merged over the default |
 | `mobile` | `{ spread: .3, maxSpread: 140, sideCount: 1 }` | Layout at stage width < 600px |
-| `depth` | `160` | px each step sits further back (`translateZ`) |
-| `tilt` | `35` | deg the side cards turn (`rotateY`), full from one step out |
+| `layout` | `"spread"` | `"spread"` (flat row, below) or `"cylinder"` (cards around a ring, see **Cylinder layout**) |
+| `cylinder` | `{ gap: 30, tilt: 0, arc: 360, back: 0 }` | Cylinder settings. Partial, merged over the default. Ignored in spread layout |
+| `depth` | `160` | px each step sits further back (`translateZ`). Spread layout only |
+| `tilt` | `35` | deg the side cards turn (`rotateY`), full from one step out. Spread layout only |
 | `fade` | `0.3` | Opacity lost per step. `0` keeps every visible card opaque |
 | `cardWidth` | `"260"` | `data-length` of each card |
 | `perspective` | `"1200"` | `data-perspective` of the stage |
@@ -58,6 +60,23 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 `node` can be a render function `({ centered }) => …` to style the card differently while it's in the center. `centered` is true for the nearest card, even mid-drag.
 
 **Layout (`Carousel3DSpread`):** `spread` is the card spacing as a share of the stage width, capped at `maxSpread` px. `sideCount` is how many cards show on each side; it's capped at `floor((count - 1) / 2)` so the wrap point stays out of view. The breakpoint is the **stage's** width (ResizeObserver), not the viewport's.
+
+## Cylinder layout
+
+`layout="cylinder"` stands the cards around a ring, each facing out, with the centered card at the front.
+
+- **`gap`:** px between neighbouring card edges. With the card width `W` (the first card's `offsetWidth`, measured with a ResizeObserver), the cards are the sides of a regular polygon: `R = (W + gap) / (2·tan(θ/2))`.
+- **`arc`:** deg all items span. `360` is a full ring, and the wrap point sits right behind the front card, so it's seamless. Less opens the ring into an arc: the step angle is `θ = arc / count` (capped at 170°), so a smaller arc means a bigger radius and a flatter curve. On an arc a wrapping card jumps across the open side, but the usual fade hides it first (`sideCount` is capped so cards are gone by `count/2`).
+- **`tilt`:** deg the whole ring leans on X. Negative is seen from above. It pivots on the front card, so the centered card stays in place and the far side rises.
+- **Transform:** `rotateX(tilt) translateZ(-R) rotateY(offset·θ) translateZ(R)` per card. No wrapper or `preserve-3d` needed; the stage's `perspective` applies to each card.
+- **`back`:** opacity (0..1) of cards turned past 90°. `0` gives them `data-backface-visibility="hidden"`, so they vanish. Above 0 they stay visible, seen from behind (mirrored) at that opacity, blended over a small band around edge-on (`BACK_BLEND`) so they don't pop.
+- **Visible cards:** a full ring (`arc: 360`) shows every card and ignores `sideCount`, since its wrap is out of sight behind. An arc still uses `sideCount` to hide the wrap. `fade` applies to both; `depth` and `tilt` (the props) don't.
+- One step of drag, wheel or keyboard is `W + gap` px, the arc length at the front, so cards follow the pointer like in spread layout.
+- Cards stay hidden until both the stage and the first card are measured. Reduced motion falls back to a flat `translateX`.
+
+Example: 7 cards of 260px with gap 30 → R ≈ 300px on a full ring, ≈ 655px with `arc: 180`.
+
+**Perspective vs radius:** the look depends on `R / perspective`. Around 0.2 (e.g. R 590, `perspective="3000"`) the ring reads flat and even: the back and edge cards stay close to front size. Around 0.5 (R 590 at 1200) the back shrinks to about half and the ring looks deep. `data-perspective` has 500, 1200, 2000 and 3000.
 
 ## How it moves
 
@@ -82,7 +101,8 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 
 ## Patterns in use
 
-- **Cards page, Carousel view** (`template/Cards.tsx`, `CarouselTemplate`): wide, deep layout (`desktop={{ spread: .15, maxSpread: 300, sideCount: 3 }}`, `mobile={{ spread: .35 }}`, `depth={400}`, `tilt={45}`, `fade={0}`). `node` uses `centered` to lift the card (`context` + elevation) and to play its video only in the center. Double-click or a touch long press (500ms, shared `useLongPress` with the Card view) opens the item modal. Only the centered card gets it, since side cards are `pointer-event: none`. `initialIndex` starts on the selected item, and `onChange` syncs the selection, skipping the key that's already selected because `onSelect` toggles. The scroll `ref` sits outside the `appear-bottom` group so it measures the final position.
+- **Cards page, Carousel view** (`template/Cards.tsx`, `CarouselTemplate`): full-ring cylinder with the back of the ring showing (`layout="cylinder"`, `cylinder={{ gap: 20, tilt: -5, arc: 360, back: 0.3 }}`, `fade={0}`). The items repeat `CAROUSEL_REPEAT` (2) times for a fuller ring: ids are `key-slot`, and `onChange` maps the slot back with `index % ContentData.length`. `node` uses `centered` to lift the card (`context` + elevation) and to play its video only in the center. Double-click or a touch long press (500ms, shared `useLongPress` with the Card view) opens the item modal. Only the centered card gets it, since side cards are `pointer-event: none`. `initialIndex` starts on the selected item, and `onChange` syncs the selection, skipping the key that's already selected because `onSelect` toggles. The scroll `ref` sits outside the `appear-bottom` group so it measures the final position.
+- **3D Carousel page** (`template/Carousel.tsx`, route `Components/Carousel`, under Miscellaneous): a tuning playground with numbered gray blocks. a Preset selector (Cylinder / Spread, popover like the Layout page's Grid Gap) and a Fade toggle; sliders for item count, perspective (picks from the `data-perspective` values), the cylinder's gap/tilt/arc/back or the spread's tilt/depth. Copy Parameters puts the current props on the clipboard; Reset appears after the first change. All props are live, no remount.
 - **Quick Demos** (`template/quickDemos.tsx`): live apps as cards (`DemoBlock mode="carousel" active={centered}`), `align="end"` so apps of different heights sit on one baseline, `fade={0}`. The interactive-selector rule is what keeps the apps usable.
 - Both pages wrap it in `data-animation-name="appear-bottom" data-fill-mode="backwards" data-contain=""`.
 
@@ -91,10 +111,12 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 1. **Empty `items` crashes.** With `count = 0`, `mod` divides by zero and `items[tick.index].title` throws in the rail.
 2. **`initialIndex` is mount-only.** If the selection changes elsewhere (Cards page list, deep link), the carousel doesn't follow until it remounts.
 3. **`onChange` fires on no-op snaps.** Clicking the current tick, or a tap that finishes an interrupted snap, calls it with the index that's already centered. Cards guards against it; other callers have to as well. (The intro is silent, so it doesn't add to this.)
-4. **`cardWidth` and `perspective` are only as good as the CSS.** They go straight into `data-length` / `data-perspective`, and `control.css` only defines `data-perspective` 500 and 1200. Any other value silently does nothing.
+4. **`cardWidth` and `perspective` are only as good as the CSS.** They go straight into `data-length` / `data-perspective`, and `control.css` only defines `data-perspective` 500, 1200, 2000 and 3000. Any other value silently does nothing.
 5. ~~**First frame is collapsed.**~~ Fixed: cards stay hidden until `stageWidth` is measured.
 6. **Every frame re-renders every card.** Position is React state, so each animation frame re-renders all `node`s. Fine for images, heavier for live apps like Quick Demos.
 7. **Magic numbers tied to markup.** `RAIL_HALF = 120` must match the rail's `data-length="240"`, and `TICK_SPACING = 15` the ticks' `data-length="15"`.
 8. **Controls are inconsistent.** Previous uses `data-radius="40"` inside a `data-width="auto"` wrapper; Next uses `data-radius="full"` inside a bare `<group>`.
 9. **Accessibility:** the stage has `aria-roledescription="carousel"` but no `aria-label`. Ticks have labels but no role and aren't focusable. Side cards are `aria-hidden` yet clickable. Arrow keys also move the carousel while a button inside the active card has focus.
-10. **Leftover code:** commented-out `data-contain` on the stage and caption, a commented `data-radius` on the ticks, and stray blank lines in the stage props.
+10. **Small rings look odd.** A cylinder with 3 or fewer items is a triangle or a pair of cards; with few items and `arc: 360`, only the front card and its neighbours face forward, the rest are turned away and hidden.
+11. **Cylinder assumes equal card widths.** The radius comes from the first card's width only.
+12. **Leftover code:** commented-out `data-contain` on the stage and caption, a commented `data-radius` on the ticks, and stray blank lines in the stage props.
