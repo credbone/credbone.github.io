@@ -4,8 +4,6 @@ import {
   Eraser,
   Grid3x3,
   Pencil,
-  Sparkles,
-  SquareSplitHorizontal,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import { useDotSprings } from "./useDotSprings";
@@ -13,7 +11,7 @@ import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
 
-import { IconEase, IconMoreHoriz } from "../components/icon/credIcons";
+import { IconEase, IconMoreHoriz, IconSplit } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import MenuItem from "../components/MenuItem";
 
@@ -753,7 +751,7 @@ const DotDisplayEdit: React.FC<{
                           data-opacity="30"
                           data-interact=""
                         >
-                          <SquareSplitHorizontal strokeWidth={1.5} size={20} />
+                          <IconSplit stroke={1.5} size={20} />
                         </group>
 
                         <group>

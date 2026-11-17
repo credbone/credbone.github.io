@@ -718,6 +718,31 @@ export const IconEase: React.FC<IconProps> = ({
 
 
 
+export const IconSplit: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+<path d="M12 1V23" />
+<path d="M12 4H6C4.34315 4 3 5.34315 3 7V17C3 18.6569 4.34315 20 6 20H12" />
+<path d="M16 4H18C19.6569 4 21 5.34315 21 7V17C21 18.6569 19.6569 20 18 20H16" />
+
+      </g>
+    </Icon>
+  );
+};
+
+
+
 
 
 export const IconDemo: React.FC = () => {

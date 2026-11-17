@@ -580,7 +580,7 @@ const ColorSpaceConverter: React.FC = () => {
 
         <group data-index="3">
           <group
-            data-radius="30"
+            data-radius="40"
             data-interactive=""
             data-contain=""
             data-border="outline-soft"
