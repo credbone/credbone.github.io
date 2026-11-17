@@ -21,7 +21,7 @@ const BottomNav: React.FC = () => {
   return (
     <group data-space="30" data-gap="30">
   
-  <group data-opacity="30">
+  <group data-opacity="20">
     <SvgWaves/>
   </group>
 

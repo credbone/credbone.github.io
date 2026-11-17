@@ -15,11 +15,11 @@ const ButtonTemplate: React.FC<{
 }> = ({ vertical, direction, show, onClick, buttonProps }) => {
   const icon = vertical
     ? direction === "prev"
-      ? <ChevronUp size={20}/>
-      : <ChevronDown size={20}/>
+      ? <ChevronUp strokeWidth={1.5} size={20}/>
+      : <ChevronDown strokeWidth={1.5} size={20}/>
     : direction === "prev"
-    ? <ChevronLeft size={20}/>
-    : <ChevronRight size={20}/>;
+    ? <ChevronLeft strokeWidth={1.5} size={20}/>
+    : <ChevronRight strokeWidth={1.5} size={20}/>;
 
   return (
     <Button

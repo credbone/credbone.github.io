@@ -259,7 +259,7 @@ const SystemColorPicker: React.FC<ColorPickerProps> = ({
         </group>
 
         <group
-          data-space={isBottomSheet ? "30" : "20"}
+          data-space={isBottomSheet ? "30" : "15"}
           data-background="main-background-bottom"
           data-shrink="no"
           data-position="sticky"
@@ -273,7 +273,7 @@ const SystemColorPicker: React.FC<ColorPickerProps> = ({
               data-ink-color="neutral"
               data-contain=""
               data-space="15"
-              data-radius="30"
+              data-radius={isBottomSheet ? "30" : "15"}
               data-interactive=""
               data-align="center"
               data-justify="center"

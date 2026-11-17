@@ -501,7 +501,7 @@ const Divider: React.FC = () => {
               data-cursor="pointer"
             >
               <group data-interact="">
-                <ArrowRight size={20} />
+                <ArrowRight strokeWidth={1.5} size={20} />
               </group>
             </group>
             <separator data-horizontal=""></separator>

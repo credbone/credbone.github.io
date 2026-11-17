@@ -314,6 +314,7 @@ const resetValues = () => {
                       data-weight="700"
                       data-text-size="large"
                       data-ellipsis=""
+                      data-font-type="hero"
                     >
                       Lucide Icons Demo
                     </text>
@@ -369,7 +370,7 @@ const resetValues = () => {
                         data-interactive=""
                         data-space="30"
                         data-cursor="pointer"
-                        data-radius="20"
+                        data-radius="30"
                       >
                         <group
                           data-index="1"
@@ -471,7 +472,7 @@ const resetValues = () => {
                         data-interactive=""
                         data-space="30"
                         data-cursor="pointer"
-                        data-radius="20"
+                        data-radius="30"
                       >
                         <group
                           data-index="1"
