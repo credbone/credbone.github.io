@@ -55,9 +55,12 @@ export const useDotSprings = (
   cols: number,
   cell: number,
   getSize: (i: number) => DotSize | undefined,
+  enabled = true,
 ): DotSprings => {
   const getSizeRef = useRef(getSize);
   getSizeRef.current = getSize;
+  const enabledRef = useRef(enabled);
+  enabledRef.current = enabled;
 
   const st = useMemo(
     () => ({
@@ -94,9 +97,27 @@ export const useDotSprings = (
     };
   }, [st]);
 
+  // Turning motion off mid-bounce snaps every dot back to rest
+  useEffect(() => {
+    if (enabled) return;
+    cancelAnimationFrame(st.raf);
+    st.raf = 0;
+    st.last = 0;
+    st.acc = 0;
+    st.queue = [];
+    st.awake.clear();
+    for (const arr of [st.s, st.vs, st.x, st.vx, st.y, st.vy, st.target]) {
+      arr.fill(0);
+    }
+    st.els.forEach((el) => el?.removeAttribute("transform"));
+  }, [enabled, st]);
+
   return useMemo(() => {
     const clamp = (v: number, lo: number, hi: number) =>
       v < lo ? lo : v > hi ? hi : v;
+
+    // Motion is skipped for reduced-motion users and when the editor turns it off
+    const off = () => st.reduced || !enabledRef.current;
 
     const write = (i: number) => {
       const el = st.els[i];
@@ -229,7 +250,7 @@ export const useDotSprings = (
       const prev = [st.hovered, st.ghost];
       st.hovered = i;
       st.ghost = ghost;
-      if (st.reduced) return;
+      if (off()) return;
       prev.forEach((p) => {
         if (p >= 0 && p !== i && p !== ghost) {
           st.target[p] = 0;
@@ -248,7 +269,7 @@ export const useDotSprings = (
     };
 
     const pop = (i: number, dir?: { x: number; y: number }) => {
-      if (st.reduced) return;
+      if (off()) return;
       st.s[i] = POP_SCALE;
       st.vs[i] = 0;
       write(i);
@@ -257,7 +278,7 @@ export const useDotSprings = (
     };
 
     const erase = (i: number) => {
-      if (st.reduced) return;
+      if (off()) return;
       st.s[i] = ERASE_SCALE;
       st.vs[i] = 0;
       write(i);

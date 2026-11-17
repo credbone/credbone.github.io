@@ -227,7 +227,7 @@ export const IconBook: React.FC<IconProps> = ({
 
 export const IconInfo: React.FC<IconProps> = ({
   fill = false,
-  stroke= 2,
+  stroke = 2,
   ...restProps
 }) => {
   return (
@@ -239,11 +239,9 @@ export const IconInfo: React.FC<IconProps> = ({
         strokeWidth={stroke}
         fill={fill ? "currentColor" : "none"}
       >
-
-		<circle cx="12" cy="12" r="10" />
-		<path d="M12 7h.01" />
-		<path d="M10 11h2v5m-2 0h4" />
-
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 7h.01" />
+        <path d="M10 11h2v5m-2 0h4" />
       </g>
     </Icon>
   );
@@ -599,15 +597,11 @@ export const IconAdd: React.FC<IconProps> = ({
         strokeMiterlimit="10"
         strokeWidth={stroke}
       >
-        <path
-         d="M14 2.27V6.4c0 .56 0 .84.109 1.054a1 1 0 0 0 .437.437C14.76 8 15.04 8 15.6 8h4.13M20 9.988V17.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C17.72 22 16.88 22 15.2 22H8.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C4 19.72 4 18.88 4 17.2V6.8c0-1.68 0-2.52.327-3.162a3 3 0 0 1 1.311-1.311C6.28 2 7.12 2 8.8 2h3.212c.733 0 1.1 0 1.446.083.306.073.598.195.867.36.303.185.562.444 1.08.963l3.19 3.188c.518.519.777.778.963 1.081a3 3 0 0 1 .36.867c.082.346.082.712.082 1.446"
-  
-         />
+        <path d="M14 2.27V6.4c0 .56 0 .84.109 1.054a1 1 0 0 0 .437.437C14.76 8 15.04 8 15.6 8h4.13M20 9.988V17.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C17.72 22 16.88 22 15.2 22H8.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C4 19.72 4 18.88 4 17.2V6.8c0-1.68 0-2.52.327-3.162a3 3 0 0 1 1.311-1.311C6.28 2 7.12 2 8.8 2h3.212c.733 0 1.1 0 1.446.083.306.073.598.195.867.36.303.185.562.444 1.08.963l3.19 3.188c.518.519.777.778.963 1.081a3 3 0 0 1 .36.867c.082.346.082.712.082 1.446" />
       </g>
     </Icon>
   );
 };
-
 
 export const IconPlaySolid: React.FC<IconProps> = ({
   fill = false,
@@ -617,24 +611,14 @@ export const IconPlaySolid: React.FC<IconProps> = ({
   return (
     <Icon {...restProps}>
       <g>
-
-	<path fill="currentColor" d="M19.543 9.428a2.998 2.998 0 0 1 0 5.144l-10 6A2.998 2.998 0 0 1 5 18V6a3 3 0 0 1 4.543-2.572Z" />
-
+        <path
+          fill="currentColor"
+          d="M19.543 9.428a2.998 2.998 0 0 1 0 5.144l-10 6A2.998 2.998 0 0 1 5 18V6a3 3 0 0 1 4.543-2.572Z"
+        />
       </g>
     </Icon>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
 
 // export const IconAdaptiveTheme: React.FC<IconProps> = (props) => {
 //   const id = useId();
@@ -711,6 +695,30 @@ export const IconDelete: React.FC<IconProps> = ({
     </Icon>
   );
 };
+
+export const IconEase: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path d="M17 20a2 2 0 1 0 4 0a2 2 0 0 0-4 0m0 0h-2M7 4a2 2 0 1 1-4 0a2 2 0 0 1 4 0m0 0h2m5 0h-2m0 16h-2m-7 0c8 0 10-16 18-16" />
+      </g>
+    </Icon>
+  );
+};
+
+
+
+
 
 export const IconDemo: React.FC = () => {
   return (

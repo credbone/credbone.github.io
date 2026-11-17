@@ -102,7 +102,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
   const [brushColor, setBrushColor] = useState(() =>
     shadeHex(colors[0].value, -0.3),
   );
-  const [brushSize, setBrushSize] = useState(16);
+  const [brushSize, setBrushSize] = useState(24);
   const [brushType, setBrushType] = useState<BrushType>("calligraphy");
 
   const [width, setWidth] = useState(200);

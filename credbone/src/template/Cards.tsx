@@ -910,7 +910,7 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
 fade={0}
   desktop={{ spread: 0.15, maxSpread: 300, sideCount: 3 }}
   mobile={{ spread: 0.35 }}
-  depth={400}
+ // depth={100}
   tilt={45}
 
 

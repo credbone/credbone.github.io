@@ -2,9 +2,9 @@ import {
   ArrowDown,
   Copy,
   Eraser,
-  FlipHorizontal2,
   Grid3x3,
   Pencil,
+  Sparkles,
   SquareSplitHorizontal,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
@@ -13,7 +13,7 @@ import Popover from "../components/popover";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
 
-import { IconMoreHoriz } from "../components/icon/credIcons";
+import { IconEase, IconMoreHoriz } from "../components/icon/credIcons";
 import { useModal } from "../components/Modal";
 import MenuItem from "../components/MenuItem";
 
@@ -124,7 +124,32 @@ const DotDisplayEdit: React.FC<{
 
   // Symmetry: mirror every stroke across the vertical centre axis (between cols 7 and 8)
   const [isSymmetry, setIsSymmetry] = useState(false);
-  const toggleSymmetry = () => setIsSymmetry((prev) => !prev);
+  const toggleSymmetry = () => {
+    const next = !isSymmetry;
+    setIsSymmetry(next);
+    addSnackbar(next ? "Symmetry on" : "Symmetry off", 1000);
+  };
+  // Drawing animation (dot springs), remembered across visits
+  const [isAnimated, setIsAnimated] = useState(() => {
+    try {
+      return localStorage.getItem("dotEditor_animation") !== "off";
+    } catch {
+      return true;
+    }
+  });
+  const toggleAnimated = () => {
+    const next = !isAnimated;
+    setIsAnimated(next);
+    addSnackbar(next ? "Animation on" : "Animation off", 1000);
+  };
+  useEffect(() => {
+    try {
+      localStorage.setItem("dotEditor_animation", isAnimated ? "on" : "off");
+    } catch {
+      // storage unavailable: keep the in-memory value
+    }
+  }, [isAnimated]);
+
   const mirrorOf = (index: number) =>
     Math.floor(index / cols) * cols + (cols - 1 - (index % cols));
 
@@ -139,6 +164,7 @@ const DotDisplayEdit: React.FC<{
     cols,
     CELL,
     (i) => dotsRef.current.get(i)?.size,
+    isAnimated,
   );
 
   // Pencil strokes always paint; eraser strokes always erase.
@@ -340,7 +366,6 @@ const DotDisplayEdit: React.FC<{
   const togglePencil = () => setIsEraserActive(false);
   const toggleEraser = () => setIsEraserActive(true);
 
-
   const { openModal, closeModal } = useModal(); // Use the modal hook to control modal behavior
   const [importValue, setImportValue] = useState("");
 
@@ -501,17 +526,31 @@ const DotDisplayEdit: React.FC<{
     </group>
   );
 
-
   const menuItems = [
-  { icon: <ArrowDown strokeWidth={1.5} size={20} />, title: "Download", description: "Save icon for later", onClick: exportSVG, },
-  { icon: <Copy strokeWidth={1.5} size={20} />, title: "Copy", description: "Paste in Figma or code ...", onClick: copySVGToClipboard, },
-  { icon: "", title: "Matrix", description: "Grab Raw Data", onClick: copyRawData, },
-];
+    {
+      icon: <ArrowDown strokeWidth={1.5} size={20} />,
+      title: "Download",
+      description: "Save icon for later",
+      onClick: exportSVG,
+    },
+    {
+      icon: <Copy strokeWidth={1.5} size={20} />,
+      title: "Copy",
+      description: "Paste in Figma or code ...",
+      onClick: copySVGToClipboard,
+    },
+    {
+      icon: "",
+      title: "Matrix",
+      description: "Grab Raw Data",
+      onClick: copyRawData,
+    },
+  ];
 
   return (
     <>
       <group
-       data-background="context"
+        data-background="context"
         data-width="auto"
         data-radius="40"
         data-contain=""
@@ -551,8 +590,8 @@ const DotDisplayEdit: React.FC<{
             </Ripple>
 
             <Popover
-            bottomsheet
-          data-background="fg"
+              bottomsheet
+              data-background="fg"
               open={isExportOpen}
               onOpenChange={setIsExportOpen}
               placement="bottom"
@@ -565,136 +604,32 @@ const DotDisplayEdit: React.FC<{
                   onClick={closePopover}
                   data-contain=""
                 >
-                  {/* <group
-                    onClick={exportSVG}
-                    data-animation-name="appear-top"
-                    data-fill-mode="backwards"
-                    data-animation-duration="2.75"
-                    data-name="autoseparation"
-                  >
+                  {menuItems.map((item, index) => (
                     <group
-                       data-space={isBottomSheet ? "20" : "15"}
-                      data-align="center"
-                      data-gap="15"
-                      data-interactive=""
-                      data-radius="15"
-                      data-cursor="pointer"
-                      data-wrap="no"
-                    >
-                      <group
-                        data-length="20"
-                        data-opacity="30"
-                        data-interact=""
-                      >
-                        <ArrowDown strokeWidth={1.5} size={20} />
-                      </group>
-                      <group data-direction="column" data-width="auto">
-                        <text data-weight="700">Download</text>
-                        <text data-opacity="30">Save icon for later</text>
-                      </group>
-                    </group>
-                  </group>
-
-                  <group
-                    onClick={copySVGToClipboard}
-                    data-animation-name="appear-top"
-                    data-fill-mode="backwards"
-                    data-animation-duration="3.25"
-                    data-name="autoseparation"
-                  >
-                    <separator
-                      data-horizontal=""
-                      data-margin-horizontal="10"
-                      data-opacity="5"
-                    ></separator>
-                    <group
-                       data-space={isBottomSheet ? "20" : "15"}
-                      data-align="center"
-                      data-gap="15"
-                      data-interactive=""
-                      data-radius="15"
-                      data-cursor="pointer"
-                       data-wrap="no"
-                    >
-                      <group
-                        data-length="20"
-                        data-opacity="30"
-                        data-interact=""
-                      >
-                        <Copy strokeWidth={1.5} size={20} />
-                      </group>
-                      <group data-direction="column" data-width="auto">
-                        <text data-weight="700">Copy</text>
-                        <text data-opacity="30">
-                          Paste in Figma or code ...
-                        </text>
-                      </group>
-                    </group>
-                  </group>
-
-                  <group
-                    onClick={copyRawData}
-                    data-animation-name="appear-top"
-                    data-fill-mode="backwards"
-                    data-animation-duration="3.75"
-                    data-name="autoseparation"
-                  >
-                    <separator
-                      data-horizontal=""
-                      data-margin-horizontal="10"
-                      data-opacity="5"
-                    ></separator>
-                    <group
-                      data-space={isBottomSheet ? "20" : "15"}
-                      data-align="center"
-                      data-gap="15"
-                      data-interactive=""
-                      data-radius="15"
-                      data-cursor="pointer"
-                       data-wrap="no"
-                    >
-                                            <group
-                        data-length="20"
-
-                      >
-                        
-                      </group>
-                      <group data-direction="column" data-width="auto">
-                        <text data-weight="700">Matrix</text>
-                        <text data-opacity="30">Grab Raw Data</text>
-                      </group>
-                    </group>
-                  </group> */}
-
-
-                    {menuItems.map((item, index) => (
-                      <group
                       key={item.title}
-                        data-name="autoseparation"
-                        data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
-                        data-fill-mode="backwards"
-                        data-animation-duration={2 + index * 0.5}
-                      >
-                        <separator
-                          data-horizontal=""
-                          data-margin-horizontal="10"
-                          data-opacity="5"
-                        ></separator>
+                      data-name="autoseparation"
+                      data-animation-name={
+                        isBottomSheet ? "appear-bottom" : "appear-top"
+                      }
+                      data-fill-mode="backwards"
+                      data-animation-duration={2 + index * 0.5}
+                    >
+                      <separator
+                        data-horizontal=""
+                        data-margin-horizontal="10"
+                        data-opacity="5"
+                      ></separator>
 
-                        <MenuItem
-                          
-                          icon={item.icon}
-                          title={item.title}
-                          description={item.description}
-                          onClick={item.onClick}
-                          data-space={isBottomSheet ? "20" : "15"}
-                          data-gap={isBottomSheet ? "20" : "15"}
-                        />
-                      </group>
-                    ))}
-
-
-
+                      <MenuItem
+                        icon={item.icon}
+                        title={item.title}
+                        description={item.description}
+                        onClick={item.onClick}
+                        data-space={isBottomSheet ? "20" : "15"}
+                        data-gap={isBottomSheet ? "20" : "15"}
+                      />
+                    </group>
+                  ))}
                 </group>
               )}
             >
@@ -721,8 +656,8 @@ const DotDisplayEdit: React.FC<{
             </Popover>
 
             <Popover
-            data-background="fg"
-             bottomsheet
+              data-background="fg"
+              bottomsheet
               dim={false}
               open={isMenuOpen}
               onOpenChange={setIsMenuOpen}
@@ -730,74 +665,76 @@ const DotDisplayEdit: React.FC<{
               data-radius="20"
               data-space="5"
               content={(closePopover, isBottomSheet) => (
-                <group data-length={isBottomSheet ? undefined: "200"}>
+                <group data-length={isBottomSheet ? undefined : "200"}>
                   <Ripple>
                     <group
-                     
-
-                        data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
-                        data-fill-mode="backwards"
-                        data-animation-duration="2.25"
-
+                      data-animation-name={
+                        isBottomSheet ? "appear-bottom" : "appear-top"
+                      }
+                      data-fill-mode="backwards"
+                      data-animation-duration="2.25"
                       data-wrap="no"
                       data-contain=""
-                       data-space={isBottomSheet ? "20" : "15"}
+                      data-space={isBottomSheet ? "20" : "15"}
                       data-radius="15"
                       //    data-background="adaptive-gray"
                       onClick={toggleoverlay}
                       data-interactive=""
                       data-over-color="neutral"
                       data-cursor="pointer"
-                      data-align='center'
+                      data-align="center"
                       data-name="autoseparation"
                     >
-
-
-<group  data-wrap="no"  data-gap="15"  data-align='center'>
+                      <group data-wrap="no" data-gap="15" data-align="center">
                         <group
-                        data-length="20"
-                        data-opacity="30"
-                        data-interact=""
-                      >
-                        <Grid3x3 strokeWidth={1.5} size={20} />
-                      </group>
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <Grid3x3 strokeWidth={1.5} size={20} />
+                        </group>
 
-                      <group>
-                        <text data-ellipsis="" data-opacity="40">
-                          Guides
-                        </text>
-                      </group>
-                      <separator data-vertical="" data-height="fit"></separator>
-                      <group
-                        data-align="center"
-                        data-justify="center"
-                        data-width="auto"
-                        data-wrap="no"
-                      >
-                        <text
-                          data-ellipsis=""
-                          data-transition-prop="font-size"
-                          data-duration="2"
-                          data-text-size={isshowoverlay ? "" : "0"}
+                        <group>
+                          <text data-ellipsis="" data-opacity="40">
+                            Guides
+                          </text>
+                        </group>
+                        <separator
+                          data-vertical=""
+                          data-height="fit"
+                        ></separator>
+                        <group
+                          data-align="center"
+                          data-justify="center"
+                          data-width="auto"
+                          data-wrap="no"
                         >
-                          Hide
-                        </text>
-                        <text
-                          data-ellipsis=""
-                          data-transition-prop="font-size"
-                          data-duration="2"
-                          data-text-size={!isshowoverlay ? "" : "0"}
-                        >
-                          Show
-                        </text>
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={isshowoverlay ? "" : "0"}
+                          >
+                            Hide
+                          </text>
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={!isshowoverlay ? "" : "0"}
+                          >
+                            Show
+                          </text>
+                        </group>
                       </group>
-</group>
                     </group>
                   </Ripple>
 
                   <Ripple>
                     <group
-                      data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
+                      data-animation-name={
+                        isBottomSheet ? "appear-bottom" : "appear-top"
+                      }
                       data-fill-mode="backwards"
                       data-animation-duration="2.5"
                       data-wrap="no"
@@ -824,7 +761,10 @@ const DotDisplayEdit: React.FC<{
                             Symmetry
                           </text>
                         </group>
-                        <separator data-vertical="" data-height="fit"></separator>
+                        <separator
+                          data-vertical=""
+                          data-height="fit"
+                        ></separator>
                         <group
                           data-align="center"
                           data-justify="center"
@@ -854,14 +794,77 @@ const DotDisplayEdit: React.FC<{
 
                   <Ripple>
                     <group
+                      data-animation-name={
+                        isBottomSheet ? "appear-bottom" : "appear-top"
+                      }
+                      data-fill-mode="backwards"
+                      data-animation-duration="2.75"
+                      data-wrap="no"
+                      data-contain=""
+                      data-space={isBottomSheet ? "20" : "15"}
+                      data-radius="15"
+                      onClick={toggleAnimated}
+                      data-interactive=""
+                      data-over-color="neutral"
+                      data-cursor="pointer"
+                      data-align="center"
 
-                                            data-animation-name={isBottomSheet ? "appear-bottom" : "appear-top"}
-                        data-fill-mode="backwards"
-                        data-animation-duration="2.75"
-                   
+                        data-name="autoseparation"
+                    >
+                      <group data-wrap="no" data-gap="15" data-align="center" >
+                        <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <IconEase stroke={1.5} size={20} />
+                        </group>
+
+                        <group>
+                          <text data-ellipsis="" data-opacity="40">
+                            Animation
+                          </text>
+                        </group>
+                        <separator
+                          data-vertical=""
+                          data-height="fit"
+                        ></separator>
+                        <group
+                          data-align="center"
+                          data-justify="center"
+                          data-width="auto"
+                          data-wrap="no"
+                        >
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={isAnimated ? "" : "0"}
+                          >
+                            On
+                          </text>
+                          <text
+                            data-ellipsis=""
+                            data-transition-prop="font-size"
+                            data-duration="2"
+                            data-text-size={!isAnimated ? "" : "0"}
+                          >
+                            Off
+                          </text>
+                        </group>
+                      </group>
+                    </group>
+                  </Ripple>
+
+                  <Ripple>
+                    <group
+                      data-animation-name={
+                        isBottomSheet ? "appear-bottom" : "appear-top"
+                      }
+                      data-fill-mode="backwards"
+                      data-animation-duration="3"
                       data-direction="column"
                       data-contain=""
-                     
                       data-radius="15"
                       data-interactive=""
                       data-over-color="neutral"
@@ -887,40 +890,40 @@ const DotDisplayEdit: React.FC<{
                         });
                       }}
                     >
-                        <separator data-horizontal=""                      
-                      data-opacity="5"></separator>
-<group data-wrap="no"   data-space={isBottomSheet ? "20" : "15"} data-gap="15"  data-align='center'>
-  
-
-
+                      <separator
+                        data-horizontal=""
+                        data-opacity="5"
+                      ></separator>
                       <group
-                        data-length="20"
-                        data-opacity="30"
-                        data-interact=""
+                        data-wrap="no"
+                        data-space={isBottomSheet ? "20" : "15"}
+                        data-gap="15"
+                        data-align="center"
                       >
-                        <ArrowDown strokeWidth={1.5} size={20} />
+                        <group
+                          data-length="20"
+                          data-opacity="30"
+                          data-interact=""
+                        >
+                          <ArrowDown strokeWidth={1.5} size={20} />
+                        </group>
+
+                        <group>
+                          <text data-ellipsis="">Import</text>
+                        </group>
                       </group>
-                      
-                      <group>
-                        <text data-ellipsis="">Import</text>
-                      </group>
-</group>
                     </group>
                   </Ripple>
 
-<group data-hide={isBottomSheet ? "" : "true"}>
-  <group data-height="20"></group>
+                  <group data-hide={isBottomSheet ? "" : "true"}>
+                    <group data-height="20"></group>
 
-
-                    
                     <group
                       data-wrap="no"
                       data-align="center"
-                     // data-space="30"
+                      // data-space="30"
                       data-gap="10"
                     >
-
-
                       <group
                         data-cursor="pointer"
                         data-interactive=""
@@ -937,11 +940,7 @@ const DotDisplayEdit: React.FC<{
                         <text>Close</text>
                       </group>
                     </group>
-</group>
-
-
-
-
+                  </group>
                 </group>
               )}
             >
@@ -973,106 +972,12 @@ const DotDisplayEdit: React.FC<{
             data-fill-mode="backwards"
             data-animation-duration="2.25"
           >
-            {/* <group
-              data-disabled="true"
-              data-position="absolute"
-              data-ratio="1:1"
-              data-width="auto"
-              data-height="fit"
-              data-top="0"
-              data-opacity="20"
-              
-              
-
-            >
-              <group
-                data-position="absolute"
-                data-height="fit"
-                data-wrap="no"
-                data-top="0"
-                data-justify="space-evenly"
-                data-align="space"
-              >
-                <group
-                  data-length="1"
-                  data-height="fit"
-                  data-background="text"
-                ></group>
-                <group
-                  data-length="1"
-                  data-height="fit"
-                  data-background="text"
-                ></group>
-                <group
-                  data-length="1"
-                  data-height="fit"
-                  data-background="text"
-                ></group>
-              </group>
-
-              <group
-                data-top="0"
-                data-position="absolute"
-                data-justify="space-evenly"
-                data-height="fit"
-                data-wrap="no"
-                data-direction="column"
-              >
-                <group
-                  data-height="1"
-                  data-length="fit"
-                  data-background="text"
-                ></group>
-                <group
-                  data-height="1"
-                  data-length="fit"
-                  data-background="text"
-                ></group>
-                <group
-                  data-height="1"
-                  data-length="fit"
-                  data-background="text"
-                ></group>
-              </group>
-
-              <group
-                data-top="0"
-                data-position="absolute"
-                data-height="fit"
-                data-wrap="no"
-                data-direction="column"
-              >
-                <group
-                  data-radius="full"
-                  data-border="text"
-                  data-height="fit"
-                ></group>
-              </group>
-              <group
-                data-top="0"
-                data-position="absolute"
-                data-height="fit"
-                data-wrap="no"
-                data-direction="column"
-                data-space="25%"
-              >
-                <group
-                  data-radius="full"
-                  data-border="text"
-                  data-height="fit"
-                ></group>
-              </group>
-
-
-
-            </group> */}
-
             <svg
-            data-contain="visible"
+              data-contain="visible"
               ref={svgRef}
               width="100%"
               height="100%"
-              data-length="260"
+              data-length="280"
               viewBox="0 0 160 160"
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
@@ -1081,21 +986,71 @@ const DotDisplayEdit: React.FC<{
               onPointerLeave={() => springs.hover(-1)}
               style={{ touchAction: "none" }}
             >
+              <g
+                data-hide={isshowoverlay ? undefined : "true"}
+                opacity={0.15}
+                stroke="currentColor"
+                fill="none"
+              >
+                <circle
+                  cx="80"
+                  cy="80"
+                  data-duration=".225"
+                  r={isshowoverlay ? 50 : 40}
+                  vectorEffect="non-scaling-stroke"
+                />
+                <circle
+                  cx="80"
+                  cy="80"
+                  data-duration=".175"
+                  r={isshowoverlay ? 90 : 40}
+                  vectorEffect="non-scaling-stroke"
+                />
 
-<g data-hide={isshowoverlay ? undefined : "true"} opacity={.15} stroke="currentColor" fill="none">
-     <circle cx="80" cy="80" data-duration=".225" r={isshowoverlay ? 50 : 40}  vectorEffect="non-scaling-stroke" />
-    <circle cx="80" cy="80" data-duration=".175" r={isshowoverlay ? 100 : 40} vectorEffect="non-scaling-stroke"/>
+                <line
+                  x1="130"
+                  x2="130"
+                  y2="170"
+                  y1="-10"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <line
+                  x1="80"
+                  x2="80"
+                  y2="170"
+                  y1="-10"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <line
+                  x1="30"
+                  x2="30"
+                  y2="170"
+                  y1="-10"
+                  vectorEffect="non-scaling-stroke"
+                />
 
-    <line x1="130" x2="130" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
-    <line x1="80" x2="80" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
-    <line x1="30" x2="30" y2="180" y1="-20" vectorEffect="non-scaling-stroke"/>
-    
-
-<line x1="180" y1="80" x2="-20" y2="80" vectorEffect="non-scaling-stroke"/>
-<line x1="180" y1="30" x2="-20" y2="30" vectorEffect="non-scaling-stroke"/>
-<line x1="180" y1="130" x2="-20" y2="130" vectorEffect="non-scaling-stroke"/>
-
-</g>
+                <line
+                  x1="170"
+                  y1="80"
+                  x2="-10"
+                  y2="80"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <line
+                  x1="170"
+                  y1="30"
+                  x2="-10"
+                  y2="30"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <line
+                  x1="170"
+                  y1="130"
+                  x2="-10"
+                  y2="130"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </g>
 
               {Array.from({ length: rows * cols }).map((_, index) => {
                 const x = (index % cols) * CELL + CELL / 2;
@@ -1119,12 +1074,12 @@ const DotDisplayEdit: React.FC<{
                 data-color="red"
                 stroke="currentColor"
                 strokeWidth={0.6}
-                strokeLinecap="round"
+                //  strokeLinecap="round"
                 opacity={isSymmetry ? 0.6 : 0}
                 pointerEvents="none"
-                data-duration=".325"
+                data-duration=".225"
               >
-                {[-20, 180].map((end) => (
+                {[-10, 170].map((end) => (
                   <line
                     key={end}
                     x1="80"
@@ -1133,7 +1088,7 @@ const DotDisplayEdit: React.FC<{
                     y2={end}
                     strokeDasharray="100"
                     strokeDashoffset={isSymmetry ? 0 : 100}
-                    data-duration=".325"
+                    data-duration=".225"
                   />
                 ))}
               </g>
