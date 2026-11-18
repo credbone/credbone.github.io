@@ -834,8 +834,6 @@ const GridTemplate: React.FC<TemplateProps> = ({
   );
 };
 
-// Times the items repeat in the carousel, for a fuller cylinder
-const CAROUSEL_REPEAT = 2;
 
 const CarouselTemplate: React.FC<TemplateProps> = ({
   selectedKey,
@@ -846,11 +844,8 @@ const CarouselTemplate: React.FC<TemplateProps> = ({
   const selectedIndex = ContentData.findIndex((item) => item.key === selectedKey);
   const longPress = useLongPress(onOpenModalRequest);
 
-  // Items repeat to fill the ring; each ring slot maps back with % ContentData.length
-  const ringData = Array.from({ length: CAROUSEL_REPEAT }, () => ContentData).flat();
-
-  const carouselItems: Carousel3DItem[] = ringData.map((item, slot) => ({
-    id: `${item.key}-${slot}`,
+  const carouselItems: Carousel3DItem[] = ContentData.map((item) => ({
+    id: item.key,
     title: item.title,
     node: ({ centered }) => (
       <group
@@ -929,7 +924,7 @@ fade={0}
         initialIndex={Math.max(selectedIndex, 0)}
         // The centered card is the selected one; onSelect toggles, so skip the current key
         onChange={(index) => {
-          const key = ContentData[index % ContentData.length].key;
+          const key = ContentData[index].key;
           if (key !== selectedKey) onSelect(key);
         }}
       />

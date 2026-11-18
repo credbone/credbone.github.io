@@ -309,6 +309,7 @@ const CarouselPage: React.FC = () => {
             data-height="40"
             data-align="center"
             data-space-horizontal="15"
+            data-space-right="10"
             data-radius="12"
             data-contain=""
             data-interactive=""
@@ -330,14 +331,14 @@ const CarouselPage: React.FC = () => {
               <text data-ellipsis="">{label}</text>
             </group>
 <group data-width="auto" data-position="right" data-gap="15">
-              <separator data-vertical="" data-height="20"></separator>
+              {/* <separator data-vertical="" data-height="20"></separator> */}
             <group
               data-align="center"
               data-justify="center"
               data-width="auto"
               data-contain=""
             >
-              <text
+              {/* <text
                 data-ellipsis=""
                 data-transition-prop="font-size"
                 data-duration="2"
@@ -352,7 +353,23 @@ const CarouselPage: React.FC = () => {
                 data-text-size={on ? "0" : ""}
               >
                 Off
-              </text>
+              </text> */}
+
+
+
+  <group
+    data-interact=""
+    data-width="auto"
+    checkbox=""
+    simple=""
+    data-checked={on ? "true" : "false"}
+  >
+    <box>
+      <check> </check>
+    </box>
+  </group>
+
+
             </group>
 </group>
           </group>
@@ -378,6 +395,9 @@ const CarouselPage: React.FC = () => {
         data-space-vertical="30"
         
       >
+        <group data-height="30">
+
+        </group>
         <Carousel3D
           items={items}
           cardWidth="220"
@@ -402,23 +422,6 @@ const CarouselPage: React.FC = () => {
         data-gap="30"
         data-align="start"
       >
-        <group data-direction="column" data-gap="10">
-          {/* <text data-weight="700" data-space-left="15">
-            General
-          </text> */}
-          {renderPresetSelector()}
-          {renderToggle("fade", "Fade Side Cards")}
-          {GENERAL_CONTROLS.map(renderSlider)}
-        </group>
-
-        <group data-direction="column" data-gap="10">
-          {/* <text data-weight="700" data-space-left="15">
-            {presetName}
-          </text> */}
-          {(isCylinder ? CYLINDER_CONTROLS : SPREAD_CONTROLS).map(
-            renderSlider,
-          )}
-        </group>
 
         <group data-direction="column" data-gap="30" data-align="start">
           <text data-wrap="wrap" data-line="1.5" data-opacity="60">
@@ -489,6 +492,26 @@ const CarouselPage: React.FC = () => {
           </group>
 </group>
         </group>
+
+        <group data-direction="column" data-gap="10">
+          {/* <text data-weight="700" data-space-left="15">
+            General
+          </text> */}
+          {renderPresetSelector()}
+          {renderToggle("fade", "Fade Side Cards")}
+          {GENERAL_CONTROLS.map(renderSlider)}
+        </group>
+
+        <group data-direction="column" data-gap="10">
+          {/* <text data-weight="700" data-space-left="15">
+            {presetName}
+          </text> */}
+          {(isCylinder ? CYLINDER_CONTROLS : SPREAD_CONTROLS).map(
+            renderSlider,
+          )}
+        </group>
+
+
       </group>
     </group>
   );
