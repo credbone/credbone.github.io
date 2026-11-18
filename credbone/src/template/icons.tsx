@@ -370,7 +370,7 @@ const resetValues = () => {
                         data-interactive=""
                         data-space="30"
                         data-cursor="pointer"
-                        data-radius="30"
+                        data-radius="25"
                       >
                         <group
                           data-index="1"
@@ -472,7 +472,7 @@ const resetValues = () => {
                         data-interactive=""
                         data-space="30"
                         data-cursor="pointer"
-                        data-radius="30"
+                        data-radius="25"
                       >
                         <group
                           data-index="1"

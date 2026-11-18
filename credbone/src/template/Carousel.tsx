@@ -8,7 +8,33 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
 import TickComponent from "../components/inputs/TickComponent";
 
+import sample1 from "../styles/images/samples/sample_res/res-1.jpg";
+import sample2 from "../styles/images/samples/sample_res/res-2.jpg";
+import sample3 from "../styles/images/samples/sample_res/res-3.jpg";
+import sample4 from "../styles/images/samples/sample_res/res-4.jpg";
+import sample5 from "../styles/images/samples/sample_res/res-5.jpg";
+import sample6 from "../styles/images/samples/sample_res/res-6.jpg";
+import sample7 from "../styles/images/samples/sample_res/res-7.jpg";
+import sample8 from "../styles/images/samples/sample_res/res-8.jpg";
+import sample9 from "../styles/images/samples/sample_res/res-9.jpg";
+import sample10 from "../styles/images/samples/sample_res/res-10.jpg";
+import sample11 from "../styles/images/samples/sample_res/res-11.jpg";
+import sample12 from "../styles/images/samples/sample_res/res-12.jpg";
+import sample13 from "../styles/images/samples/sample_res/res-13.jpg";
+import sample14 from "../styles/images/samples/sample_res/res-14.jpg";
+import sample15 from "../styles/images/samples/sample_res/res-15.jpg";
+import sample16 from "../styles/images/samples/sample_res/res-16.jpg";
+import sample17 from "../styles/images/samples/sample_res/res-17.jpg";
+import sample18 from "../styles/images/samples/sample_res/res-18.jpg";
+import sample19 from "../styles/images/samples/sample_res/res-19.jpg";
+import sample20 from "../styles/images/samples/sample_res/res-20.jpg";
 
+// One image per item, in order (Items maxes out at 20, one per image)
+const SAMPLE_IMAGES = [
+  sample1, sample2, sample3, sample4, sample5, sample6, sample7,
+  sample8, sample9, sample10, sample11, sample12, sample13, sample14,
+  sample15, sample16, sample17, sample18, sample19, sample20
+];
 
 
 // Values data-perspective supports in control.css; the slider picks one by index
@@ -37,7 +63,8 @@ const WIDTHS = [140, 160, 180, 200, 220, 240, 260, 280, 300];
 const DEFAULTS = {
   preset: "cylinder" as Preset,
   ratio: "1:1",
-  width: 2, // index into WIDTHS
+  images: true,
+  width: 3, // index into WIDTHS
   radius: 35, // px; every multiple of 5 up to 50 is a data-radius value
   fade: false,
   count: 12,
@@ -47,7 +74,10 @@ const DEFAULTS = {
   arc: 360,
   back: 30, // %
   tilt: 35,
-  depth: 160,
+  depth: 200,
+  spread: 22, // % of the stage width between cards
+  maxSpread: 130, // px cap on that distance
+  sideCount: 3,
 };
 
 type Params = typeof DEFAULTS;
@@ -118,7 +148,33 @@ const RADIUS_CONTROL: Control = {
 const SPREAD_CONTROLS: Control[] = [
   { key: "tilt", label: "Tilt", start: -60, end: 60, step: 5, format: deg },
   { key: "depth", label: "Depth", start: 0, end: 400, step: 10, format: px },
+  {
+    key: "spread",
+    label: "Spread",
+    start: 5,
+    end: 50,
+    step: 1,
+    format: (v) => `${v}%`,
+  },
+  {
+    key: "maxSpread",
+    label: "Max Spread",
+    start: 60,
+    end: 400,
+    step: 10,
+    format: px,
+  },
+  { key: "sideCount", label: "Side Cards", start: 1, end: 5, step: 1 },
 ];
+
+// The demo applies one spread to both breakpoints
+const spreadOf = (p: Params) => ({
+  spread: p.spread / 100,
+  maxSpread: p.maxSpread,
+  sideCount: p.sideCount,
+});
+const spreadText = (p: Params) =>
+  `spread: ${p.spread / 100}, maxSpread: ${p.maxSpread}, sideCount: ${p.sideCount}`;
 
 // Current config as Carousel3D props, one per line, ready to paste
 const getConfigText = (p: Params) =>
@@ -128,7 +184,12 @@ const getConfigText = (p: Params) =>
           `layout="cylinder"`,
           `cylinder={{ gap: ${p.gap}, tilt: ${p.ringTilt}, arc: ${p.arc}, back: ${p.back / 100} }}`,
         ]
-      : [`tilt={${p.tilt}}`, `depth={${p.depth}}`]),
+      : [
+          `tilt={${p.tilt}}`,
+          `depth={${p.depth}}`,
+          `desktop={{ ${spreadText(p)} }}`,
+          `mobile={{ ${spreadText(p)} }}`,
+        ]),
     `perspective="${PERSPECTIVES[p.perspective]}"`,
     `fade={${p.fade ? FADE : 0}}`,
   ].join("\n");
@@ -169,10 +230,27 @@ const CarouselPage: React.FC = () => {
           data-ratio={params.ratio}
           data-radius={String(params.radius)}
           data-background={centered ? "context" : "adaptive-gray"}
-          data-border={centered ? "" : undefined}
+          data-border={centered ? "outline" : undefined}
           data-align="center"
           data-justify="center"
+          data-contain=""
         >
+
+
+        {params.images && (
+        <picture
+
+          data-contain=""
+          data-brightness={centered ? undefined : "adaptive"}
+          data-background="grey-light"
+          data-position="absolute"
+          data-object-position="right"
+        >
+          <img src={SAMPLE_IMAGES[i % SAMPLE_IMAGES.length]} alt="" />
+        </picture>
+        )}
+
+          {!params.images && (
           <text
             data-text-size="large"
           //  data-weight="700"
@@ -182,6 +260,7 @@ const CarouselPage: React.FC = () => {
           >
             {i + 1}
           </text>
+          )}
         </group>
       ),
     }),
@@ -476,6 +555,9 @@ const CarouselPage: React.FC = () => {
           }}
           tilt={params.tilt}
           depth={params.depth}
+          // Spread layout only; a cylinder takes its spacing from gap
+          desktop={isCylinder ? undefined : spreadOf(params)}
+          mobile={isCylinder ? undefined : spreadOf(params)}
         />
       </group>
 
@@ -613,6 +695,7 @@ const CarouselPage: React.FC = () => {
 
 
           {renderSelector("ratio", "Ratio", RATIOS)}
+          {renderToggle("images", "Show Images")}
           {renderSlider(WIDTH_CONTROL)}
           {renderSlider(RADIUS_CONTROL)}
 
