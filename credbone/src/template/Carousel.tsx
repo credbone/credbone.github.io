@@ -6,6 +6,10 @@ import CustomSlider from "../components/inputs/slider";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
+import TickComponent from "../components/inputs/TickComponent";
+
+
+
 
 // Values data-perspective supports in control.css; the slider picks one by index
 const PERSPECTIVES = [500, 1200, 2000, 3000];
@@ -18,8 +22,23 @@ const PRESETS: { value: Preset; name: string; hint: string }[] = [
   { value: "spread", name: "Spread", hint: "Row" },
 ];
 
+// Item shape: demo-only, not copied with the carousel props.
+// Ratios and widths are values data-ratio / data-length support in control.css
+const RATIOS = [
+  { value: "1:1", name: "1:1", hint: "Square" },
+  { value: "4:5", name: "4:5", hint: "Portrait" },
+  { value: "3:4", name: "3:4", hint: "Portrait" },
+  { value: "2:3", name: "2:3", hint: "Tall" },
+  { value: "4:3", name: "4:3", hint: "Landscape" },
+  { value: "16:9", name: "16:9", hint: "Wide" },
+];
+const WIDTHS = [140, 160, 180, 200, 220, 240, 260, 280, 300];
+
 const DEFAULTS = {
   preset: "cylinder" as Preset,
+  ratio: "1:1",
+  width: 2, // index into WIDTHS
+  radius: 35, // px; every multiple of 5 up to 50 is a data-radius value
   fade: false,
   count: 12,
   perspective: 3, // index into PERSPECTIVES
@@ -35,6 +54,7 @@ type Params = typeof DEFAULTS;
 type NumberKey = {
   [K in keyof Params]: Params[K] extends number ? K : never;
 }[keyof Params];
+type SelectKey = "preset" | "ratio";
 type ToggleKey = {
   [K in keyof Params]: Params[K] extends boolean ? K : never;
 }[keyof Params];
@@ -76,6 +96,24 @@ const CYLINDER_CONTROLS: Control[] = [
     format: (v) => `${v}%`,
   },
 ];
+
+const WIDTH_CONTROL: Control = {
+  key: "width",
+  label: "Width",
+  start: 0,
+  end: WIDTHS.length - 1,
+  step: 1,
+  format: (v) => px(WIDTHS[v]),
+};
+
+const RADIUS_CONTROL: Control = {
+  key: "radius",
+  label: "Radius",
+  start: 0,
+  end: 50,
+  step: 5,
+  format: px,
+};
 
 const SPREAD_CONTROLS: Control[] = [
   { key: "tilt", label: "Tilt", start: -60, end: 60, step: 5, format: deg },
@@ -128,17 +166,18 @@ const CarouselPage: React.FC = () => {
       title: `Item ${i + 1}`,
       node: ({ centered }) => (
         <group
-          data-ratio="1:1"
-          data-radius="25"
+          data-ratio={params.ratio}
+          data-radius={String(params.radius)}
           data-background={centered ? "context" : "adaptive-gray"}
-          data-elevation={centered ? "2" : undefined}
+          data-border={centered ? "" : undefined}
           data-align="center"
           data-justify="center"
         >
           <text
-            data-text-size="xx-large"
-            data-weight="700"
-            data-font-type="hero"
+            data-text-size="large"
+          //  data-weight="700"
+           // data-font-type="hero"
+           data-font-feature="tnum"
             data-opacity={centered ? undefined : "40"}
           >
             {i + 1}
@@ -160,6 +199,28 @@ const CarouselPage: React.FC = () => {
         data-border=""
       >
         <group data-radius="12" data-contain="">
+
+
+      <group
+        data-position="absolute"
+        data-width="fit"
+        data-left="0"
+        data-top="0"
+        data-space-horizontal="25"
+        data-height="fit"
+        data-align="center"
+        data-mask="left-right"
+        data-pointer-event="none"
+      >
+        <TickComponent
+          tickCount={18}
+          emphasizeCenter={false}
+          data-opacity="70"
+          data-align="center"
+          heights={{ minor: 8, major: 8, center: 30 }}
+        ></TickComponent>
+      </group>
+
           <CustomSlider
             label=""
             start={control.start}
@@ -209,10 +270,13 @@ const CarouselPage: React.FC = () => {
   };
 
   const isCylinder = params.preset === "cylinder";
-  const presetName = PRESETS.find((p) => p.value === params.preset)?.name;
 
-  // Same pattern as the Grid Gap selector on the Layout page
-  const renderPresetSelector = () => (
+  // Popover picker, same pattern as the Grid Gap selector on the Layout page
+  const renderSelector = (
+    key: SelectKey,
+    label: string,
+    options: { value: string; name: string; hint: string }[],
+  ) => (
     <group data-space="3" data-radius="15" data-border="" data-contain="">
       <Popover
         placement="middle"
@@ -221,17 +285,17 @@ const CarouselPage: React.FC = () => {
         data-space-vertical="10"
         content={(closePopover, isbottomsheet) => (
           <group data-direction="column" onClick={closePopover}>
-            {PRESETS.map(({ value, name, hint }, index) => {
-              const midIndex = Math.floor(PRESETS.length / 2);
+            {options.map(({ value, name, hint }, index) => {
+              const midIndex = Math.floor(options.length / 2);
               const distance = Math.abs(index - midIndex);
               const fromBottom = index >= midIndex;
-              const selected = params.preset === value;
+              const selected = params[key] === value;
 
               return (
                 <group
                   key={value}
                   onClick={() => {
-                    if (!selected) setParam("preset", value);
+                    if (!selected) setParam(key, value as Params[SelectKey]);
                   }}
                   data-background={selected ? "main" : ""}
                   data-color={selected ? "main-text" : ""}
@@ -278,7 +342,7 @@ const CarouselPage: React.FC = () => {
               data-cursor="pointer"
               data-contain=""
             >
-              <text data-ellipsis="">Preset</text>
+              <text data-ellipsis="">{label}</text>
               <group
                 data-width="auto"
                 data-align="center"
@@ -286,7 +350,7 @@ const CarouselPage: React.FC = () => {
                 data-wrap="no"
               >
                 <text data-opacity="30">Change</text>
-                <text>{presetName}</text>
+                <text>{options.find((o) => o.value === params[key])?.name}</text>
               </group>
             </group>
           </Ripple>
@@ -400,7 +464,7 @@ const CarouselPage: React.FC = () => {
         </group>
         <Carousel3D
           items={items}
-          cardWidth="220"
+          cardWidth={String(WIDTHS[params.width])}
           fade={params.fade ? FADE : 0}
           perspective={String(PERSPECTIVES[params.perspective])}
           layout={params.preset}
@@ -421,9 +485,10 @@ const CarouselPage: React.FC = () => {
         data-grid-template="300"
         data-gap="30"
         data-align="start"
+        data-row-gap="15"
       >
 
-        <group data-direction="column" data-gap="30" data-align="start">
+        <group data-direction="column" data-gap="30"  data-align="start">
           <text data-wrap="wrap" data-line="1.5" data-opacity="60">
             Arc sets how far the cards wrap around. At 360° they form a full
             ring, and lower values open it into an arc. Back Opacity controls
@@ -437,11 +502,13 @@ const CarouselPage: React.FC = () => {
             <Ripple>
               <group
                 data-contain=""
+                data-ink-color="main-deep"
                 data-space-horizontal="20"
                 data-radius="15"
                 data-align="center"
                 data-justify="center"
-                data-background="adaptive-gray"
+                data-background="main"
+                data-color="main-text"
                 data-height="45"
                 data-width="auto"
                 data-interactive=""
@@ -493,16 +560,16 @@ const CarouselPage: React.FC = () => {
 </group>
         </group>
 
-        <group data-direction="column" data-gap="10">
+        <group data-direction="column" data-gap="15">
           {/* <text data-weight="700" data-space-left="15">
             General
           </text> */}
-          {renderPresetSelector()}
+          {renderSelector("preset", "Preset", PRESETS)}
           {renderToggle("fade", "Fade Side Cards")}
           {GENERAL_CONTROLS.map(renderSlider)}
         </group>
 
-        <group data-direction="column" data-gap="10">
+        <group data-direction="column" data-gap="15">
           {/* <text data-weight="700" data-space-left="15">
             {presetName}
           </text> */}
@@ -513,6 +580,46 @@ const CarouselPage: React.FC = () => {
 
 
       </group>
+
+
+
+<group data-space="30">
+  <separator data-horizontal="dotted" data-opacity="20"></separator>
+</group>
+
+
+{/* Item shape: demo-only, not part of Copy Parameters */}
+
+
+
+        <group data-direction="column" data-gap="10" data-space-horizontal="30" data-length="340">
+
+          <text data-wrap="wrap" data-line="1.5" data-opacity="60" >
+            Shape of the sample cards. The ring adapts to the card width on
+            its own.
+          </text>
+        </group>
+
+
+
+      <group
+        data-space="30"
+        data-type="grid"
+        data-grid-template="300"
+        data-gap="30"
+        data-row-gap="15"
+        data-align="start"
+      >
+
+
+          {renderSelector("ratio", "Ratio", RATIOS)}
+          {renderSlider(WIDTH_CONTROL)}
+          {renderSlider(RADIUS_CONTROL)}
+
+      </group>
+
+
+
     </group>
   );
 };
