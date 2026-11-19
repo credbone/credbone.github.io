@@ -62,21 +62,21 @@ const WIDTHS = [140, 160, 180, 200, 220, 240, 260, 280, 300];
 
 const DEFAULTS = {
   preset: "cylinder" as Preset,
-  ratio: "1:1",
+  ratio: "3:4",
   images: true,
-  width: 3, // index into WIDTHS
-  radius: 35, // px; every multiple of 5 up to 50 is a data-radius value
+  width: 2, // index into WIDTHS
+  radius: 30, // px; every multiple of 5 up to 50 is a data-radius value
   fade: false,
   count: 12,
-  perspective: 3, // index into PERSPECTIVES
+  perspective: 1, // index into PERSPECTIVES
   gap: 20,
-  ringTilt: -5,
+  ringTilt: -10,
   arc: 360,
   back: 30, // %
-  tilt: 35,
-  depth: 200,
+  tilt: 45,
+  depth: 270,
   spread: 22, // % of the stage width between cards
-  maxSpread: 130, // px cap on that distance
+  maxSpread: 170, // px cap on that distance
   sideCount: 3,
 };
 
