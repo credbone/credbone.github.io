@@ -8,15 +8,15 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
 import TickComponent from "../components/inputs/TickComponent";
 
-import sample1 from "../styles/images/samples/sample_res/res-1.jpg";
-import sample2 from "../styles/images/samples/sample_res/res-2.jpg";
-import sample3 from "../styles/images/samples/sample_res/res-3.jpg";
-import sample4 from "../styles/images/samples/sample_res/res-4.jpg";
-import sample5 from "../styles/images/samples/sample_res/res-5.jpg";
-import sample6 from "../styles/images/samples/sample_res/res-6.jpg";
-import sample7 from "../styles/images/samples/sample_res/res-7.jpg";
-import sample8 from "../styles/images/samples/sample_res/res-8.jpg";
-import sample9 from "../styles/images/samples/sample_res/res-9.jpg";
+import sample1 from "../styles/images/samples/sample_res/res-01.jpg";
+import sample2 from "../styles/images/samples/sample_res/res-02.jpg";
+import sample3 from "../styles/images/samples/sample_res/res-03.jpg";
+import sample4 from "../styles/images/samples/sample_res/res-04.jpg";
+import sample5 from "../styles/images/samples/sample_res/res-05.jpg";
+import sample6 from "../styles/images/samples/sample_res/res-06.jpg";
+import sample7 from "../styles/images/samples/sample_res/res-07.jpg";
+import sample8 from "../styles/images/samples/sample_res/res-08.jpg";
+import sample9 from "../styles/images/samples/sample_res/res-09.jpg";
 import sample10 from "../styles/images/samples/sample_res/res-10.jpg";
 import sample11 from "../styles/images/samples/sample_res/res-11.jpg";
 import sample12 from "../styles/images/samples/sample_res/res-12.jpg";
@@ -234,6 +234,7 @@ const CarouselPage: React.FC = () => {
           data-align="center"
           data-justify="center"
           data-contain=""
+         
         >
 
 
