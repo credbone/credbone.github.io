@@ -256,7 +256,7 @@ Custom handle using different properties
             data-contain=""
          //   data-height="40"
           >
-            <group
+            {/* <group
               data-position="absolute"
               data-width="fit"
               data-left="0"
@@ -268,7 +268,7 @@ Custom handle using different properties
 data-pointer-event="none" 
             >
               <TickComponent
-                tickCount={18}
+                tickCount={10}
               //  majorEvery={5}
                 emphasizeCenter={false}
                 data-opacity="70"
@@ -276,7 +276,7 @@ data-pointer-event="none"
              //   data-height="40"
                 heights={{ minor: 8, major: 8, center: 30 }}
               ></TickComponent>
-            </group>
+            </group> */}
 
 
 
