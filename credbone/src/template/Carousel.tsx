@@ -581,9 +581,9 @@ const CarouselPage: React.FC = () => {
           </text>
 
 <group data-width="auto" data-gap="30">
-            <separator data-horizontal=""></separator>
+            <separator data-horizontal="dotted" data-opacity="20"></separator>
 
-          <group data-gap="10" data-width="auto">
+          <group data-gap="10" data-width="auto" data-space-bottom="15">
             <Ripple>
               <group
                 data-contain=""
