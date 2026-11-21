@@ -38,7 +38,8 @@ const SAMPLE_IMAGES = [
 
 
 // Values data-perspective supports in control.css; the slider picks one by index
-const PERSPECTIVES = [500, 1200, 2000, 3000];
+// Short = dramatic depth, long = flat and even
+const PERSPECTIVES = [300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000, 5000];
 const FADE = 0.3; // opacity lost per step when Fade is on
 
 type Preset = "cylinder" | "spread";
@@ -68,7 +69,7 @@ const DEFAULTS = {
   radius: 30, // px; every multiple of 5 up to 50 is a data-radius value
   fade: false,
   count: 12,
-  perspective: 1, // index into PERSPECTIVES
+  perspective: PERSPECTIVES.indexOf(1200), // index into PERSPECTIVES
   gap: 20,
   ringTilt: -10,
   arc: 360,
@@ -528,6 +529,7 @@ const CarouselPage: React.FC = () => {
         <TemplatePageHeader
           title="3D Carousel"
           description="A looping 3D carousel that lays cards out in a row or around a cylinder. Drag, swipe or use the arrow keys, and tune the layout below."
+          version="1.0.0"
           type="Component"
           descriptionProps={{ "data-length": "500" }}
         />

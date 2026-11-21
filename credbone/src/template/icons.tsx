@@ -198,6 +198,8 @@ const resetValues = () => {
       data-direction="column"
     >
       <TemplatePageHeader
+                version="1.8.0"
+          type="Component"
         title="Icons"
         description="Currently, Lucide serves as the standard icon set, integrated into existing components, with additional custom-designed icons for specific use cases."
       />

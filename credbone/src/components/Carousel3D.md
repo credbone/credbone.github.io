@@ -76,7 +76,7 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 
 Example: 7 cards of 260px with gap 30 → R ≈ 300px on a full ring, ≈ 655px with `arc: 180`.
 
-**Perspective vs radius:** the look depends on `R / perspective`. Around 0.2 (e.g. R 590, `perspective="3000"`) the ring reads flat and even: the back and edge cards stay close to front size. Around 0.5 (R 590 at 1200) the back shrinks to about half and the ring looks deep. `data-perspective` has 500, 1200, 2000 and 3000.
+**Perspective vs radius:** the look depends on `R / perspective`. Around 0.2 (e.g. R 590, `perspective="3000"`) the ring reads flat and even: the back and edge cards stay close to front size. Around 0.5 (R 590 at 1200) the back shrinks to about half and the ring looks deep. `data-perspective` has 300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000 and 5000.
 
 ## How it moves
 
@@ -111,7 +111,7 @@ Example: 7 cards of 260px with gap 30 → R ≈ 300px on a full ring, ≈ 655px 
 1. **Empty `items` crashes.** With `count = 0`, `mod` divides by zero and `items[tick.index].title` throws in the rail.
 2. **`initialIndex` is mount-only.** If the selection changes elsewhere (Cards page list, deep link), the carousel doesn't follow until it remounts.
 3. **`onChange` fires on no-op snaps.** Clicking the current tick, or a tap that finishes an interrupted snap, calls it with the index that's already centered. Cards guards against it; other callers have to as well. (The intro is silent, so it doesn't add to this.)
-4. **`cardWidth` and `perspective` are only as good as the CSS.** They go straight into `data-length` / `data-perspective`, and `control.css` only defines `data-perspective` 500, 1200, 2000 and 3000. Any other value silently does nothing.
+4. **`cardWidth` and `perspective` are only as good as the CSS.** They go straight into `data-length` / `data-perspective`, and `control.css` only defines `data-perspective` 300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000 and 5000. Any other value silently does nothing.
 5. ~~**First frame is collapsed.**~~ Fixed: cards stay hidden until `stageWidth` is measured.
 6. **Every frame re-renders every card.** Position is React state, so each animation frame re-renders all `node`s. Fine for images, heavier for live apps like Quick Demos.
 7. **Magic numbers tied to markup.** `RAIL_HALF = 120` must match the rail's `data-length="240"`, and `TICK_SPACING = 15` the ticks' `data-length="15"`.

@@ -140,6 +140,12 @@ export const routesData: RouteData[] = [
     "tags": ["carousel", "component", "3d", "cylinder", "ring", "slider", "gallery", "swipe", "perspective"]
   },
   {
+    "path": "../Components/TiltedCard",
+    "title": "Tilted Card",
+    "description": "A card that floats and tilts toward the pointer in 3D.",
+    "tags": ["card", "component", "3d", "tilt", "tilted", "float", "hover", "perspective", "parallax", "glare"]
+  },
+  {
     "path": "../Components/Modal",
     "title": "Modals",
     "description": "Modal components for creating overlays and popup dialogs.",

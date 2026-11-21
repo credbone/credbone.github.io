@@ -51,6 +51,7 @@ export const groupedLinksArray = [
       { title: "Navigation\n& Tabs", description: "Elements to navigate between different views or sections within an app.", to: "/Components/Navigation", },
       { title: "Layout\n& Switches", description: "Arrangement and organization of elements in a design.", to: "/Components/Layout", },
       { title: "3D\nCarousel", description: "Looping 3D carousel in a row or around a cylinder.", to: "/Components/Carousel", },
+      { title: "Tilted\nCard", description: "A card that tilts and floats toward the pointer.", to: "/Components/TiltedCard", },
     ],
   },
 

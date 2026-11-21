@@ -54,11 +54,11 @@ const TemplatePageHeader: React.FC<HeaderProps> = ({
 
         </>
       )}
-      <group data-height="70" data-adaptive="desktop"></group>
+      <group data-height="40" data-adaptive="desktop"></group>
       <group data-direction="column" data-gap="10">
         <text
           data-weight="700"
-          data-text-size="xx-large"
+          data-text-size="x-large"
           data-wrap="wrap"
           data-ellipsis=""
           data-font-type="hero"

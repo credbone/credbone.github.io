@@ -20,7 +20,7 @@ const GLASS_DEFAULTS = {
   depth: 56,
   dispersion: 40,
   frost: 0,
-  radius: 65,
+  radius: 40,
   tintOpacity: 15,
   saturation: 120,
 };

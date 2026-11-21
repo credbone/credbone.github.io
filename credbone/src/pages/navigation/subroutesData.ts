@@ -23,6 +23,7 @@ export const navItems = [
   { to: "Components/Navigation",  label: "Navigation & Tabs",separator:"true" },
   { to: "Components/Layout",  label: "Layout & Switches", },
   { to: "Components/Carousel",  label: "3D Carousel",new:"true"},
+  { to: "Components/TiltedCard",  label: "Tilted Card",new:"true"},
 
 
 

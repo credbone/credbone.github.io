@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Heights that have a matching data-height value in control.css
-type TickHeight = 5 | 6 | 8 | 10 | 12 | 14 | 15 | 16 | 18 | 20 | 25 | 30 | 35 | 36 | 40 | 45 | 50;
+type TickHeight = 0 | 5 | 6 | 8 | 10 | 12 | 14 | 15 | 16 | 18 | 20 | 25 | 30 | 35 | 36 | 40 | 45 | 50;
 
 interface TickHeights {
   minor?: TickHeight;
