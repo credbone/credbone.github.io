@@ -15,7 +15,7 @@ import {
 } from "../components/icon/credIcons";
 import Popover from "../components/popover";
 import Tooltip from "../components/tooltip";
-// import Count from "../components/Coutner";
+// import Count from "../components/Counter";
 import StuckReporter from "../components/StuckReporter";
 import { Link, useSearchParams } from "react-router-dom";
 import { useModal } from "../components/Modal";

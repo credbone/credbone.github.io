@@ -3,7 +3,7 @@ import Ripple from "../components/Ripple";
 import Popover from "../components/popover";
 
 import Tooltip from "../components/tooltip";
-import Count from "../components/Coutner";
+import Count from "../components/Counter";
 
 import Calculator from "../tools/Calculator";
 

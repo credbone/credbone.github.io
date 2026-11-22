@@ -6,6 +6,7 @@ import TiltedCard, {
 } from "../components/TiltedCard";
 import Popover from "../components/popover";
 import ConfigSlider from "../components/inputs/ConfigSlider";
+import Count from "../components/Counter";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -235,8 +236,15 @@ const MainCardFace: React.FC<MainCardFaceProps> = ({ layers }) => (
               data-wrap="wrap"
               data-font-type="hero"
               data-weight="700"
+           //   data-font-feature="tnum"
             >
-              $1,499
+              <Count
+                from={0}
+                to={1499}
+                duration={1500}
+                prefix="$"
+                separator=","
+              />
             </text>
           </group>
         </group>

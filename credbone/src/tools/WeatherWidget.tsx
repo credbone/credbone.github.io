@@ -2,7 +2,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import axios from "axios";
 import Popover from "../components/popover";
-import Count from "../components/Coutner";
+import Count from "../components/Counter";
 import { SvgLoaderCircle } from "../components/svg";
 
 import {

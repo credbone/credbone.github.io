@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import Marquee from "../components/Marquee";
-import Count from "../components/Coutner";
+import CountPropsDemo from "./CountPropsDemo";
 
 import sampleImage from "../styles/images/samples/wide_res_68.webp";
 import sampleImage_2 from "../styles/images/samples/wide_res_66.webp";
@@ -20,7 +20,6 @@ const RIPPLE_SPEED_MAX = 3;
 
 
 const Miscellaneous: React.FC = () => {
-  const [restartKey, setRestartKey] = useState(0);
   const [rippleSpeed, setRippleSpeed] = useState(RIPPLE_SPEED_SLOW);
   const [rippleMode, setRippleMode] = useState<"slow" | "default">("slow");
   // Default mode passes no duration, so the ripple uses its own CSS timing
@@ -76,12 +75,6 @@ const Miscellaneous: React.FC = () => {
     if (rippleModeToggleRef.current) ro.observe(rippleModeToggleRef.current);
     return () => ro.disconnect();
   }, [updateRippleModeIndicator]);
-
-
-  const handleRestartCount = () => {
-    // Increment the restart key to trigger a re-render of the Count component
-    setRestartKey((prevKey) => prevKey + 1);
-  };
 
   const [dir, setDir] = useState<"rtl" | "ltr">("ltr"); // Initialize dir state
 
@@ -342,113 +335,15 @@ const Miscellaneous: React.FC = () => {
                 </text>
 
                 <text data-wrap="wrap" data-line="1.5" data-length="300">
-                  Component that smoothly transitions a number from a starting
-                  value <b>from</b> to an ending value <b>to</b> over a set
-                  period of time <b>duration</b>.
+                  Animates a number from one value to another, with optional
+                  formatting and easing.
                 </text>
               </group>
             </group>
           </group>
         </group>
 
-        <group
-          data-border=""
-          data-radius="30"
-          data-gap="1"
-          data-direction="column"
-          data-type="grid"
-          data-grid-template="120"
-          data-contain=""
-          data-length="600"
-        >
-          <group
-            data-ratio="1:1"
-            data-align="center"
-            data-border=""
-            data-justify="center"
-          >
-            <text data-text-size="xx-large" data-weight="700">
-              <Count
-                key={restartKey}
-                from={128}
-                to={256}
-                duration={2000}
-              ></Count>
-            </text>
-          </group>
-
-          <group
-            data-ratio="1:1"
-            data-align="center"
-            data-border=""
-            data-justify="center"
-          >
-            <text data-text-size="xx-large" data-weight="700">
-              <Count
-                key={restartKey}
-                from={128}
-                to={64}
-                //  direction="down"
-                duration={2000}
-              ></Count>
-            </text>
-          </group>
-
-          <group
-            data-ratio="1:1"
-            data-align="center"
-            data-border=""
-            data-justify="center"
-          >
-            <text data-text-size="xx-large" data-weight="700">
-              <Count
-                key={restartKey}
-                from={512}
-                to={128}
-                //   direction="down"
-                duration={5000}
-              ></Count>
-            </text>
-          </group>
-
-          <group
-            data-ratio="1:1"
-            data-align="center"
-            data-border=""
-            data-justify="center"
-          >
-            <text data-text-size="xx-large" data-weight="700">
-              <Count
-                key={restartKey}
-                from={128}
-                to={512}
-                duration={8000}
-              ></Count>
-            </text>
-          </group>
-        </group>
-
-        <group>
-<Ripple>
-            <group
-            data-contain=""
-                      data-space-vertical="15"
-            data-space-horizontal="20"
-            data-interactive=""
-            data-cursor="pointer"
-            data-radius="15"
-            data-width="auto"
-            data-align="center"
-            data-direction="column"
-            data-background="highlight"
-            onClick={handleRestartCount}
-          >
-            <text data-ellipsis="" data-weight="600">
-              Restart Counters
-            </text>
-          </group>   
-</Ripple>
-        </group>
+        <CountPropsDemo />
 
 
 

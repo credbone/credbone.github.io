@@ -1,5 +1,5 @@
 import React from "react";
-import Count from "../components/Coutner";
+import Count from "../components/Counter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import sectionImage from "../styles/images/samples/wide_res_67.webp";
 import Ripple from "../components/Ripple";
