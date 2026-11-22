@@ -227,7 +227,7 @@ const MainCardFace: React.FC<MainCardFaceProps> = ({ layers }) => (
         <group data-width="auto" data-gap="40">
           <separator data-horizontal=""></separator>
 
-          <group data-direction="column">
+          <group data-direction="column" data-gap="5">
             <text data-opacity="60" data-wrap="wrap">
               Per person from
             </text>

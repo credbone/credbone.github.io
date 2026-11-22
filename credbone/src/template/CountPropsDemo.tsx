@@ -333,6 +333,7 @@ const CountPropsDemo: React.FC = () => {
           data-justify="center"
           data-gap="30"
         >
+          <group data-height="30"></group>
           {/* <text data-opacity="0">symmetry</text> */}
           <text
             //  data-font-feature="tnum"
@@ -382,10 +383,56 @@ const CountPropsDemo: React.FC = () => {
                   onKeyDown={onKeyActivate(replay)}
                   data-gap="15"
                 >
-                  <text data-opacity="40">{STATUS_TEXT[status]}</text>
+
+                  {/* Duration progress: grows over the count's duration, restarts with each play.
+                      Rendered first so the labels paint above it */}
+                  {playKey > 0 && (
+                    <group
+                      key={playKey}
+                      data-position="absolute"
+                      data-height="fit"
+                      data-left="0"
+                      data-top="0"
+                      data-length="fit"
+                      data-background="main-alpha-15"
+                      data-pointer-event="none"
+                      // Visible only while a count runs; fades out once it's done
+                      data-opacity={status === "counting" ? undefined : "0"}
+                      data-transition-prop="opacity"
+                      data-duration="2"
+                      data-animation-name="grow-width"
+                      data-animation-timing="linear"
+                      style={{ animationDuration: `${params.duration}ms` }}
+                    ></group>
+                  )}
+
+                  {/* Status swap: same font-size transition as the Blob Generator "Blob Style" button */}
+                  <group
+                    data-align="center"
+                    data-justify="center"
+                    data-width="auto"
+                    data-contain=""
+                    data-opacity="40"
+                  >
+                    {(Object.keys(STATUS_TEXT) as Status[]).map((s) => (
+                      <text
+                        key={s}
+                        data-ellipsis=""
+                        data-transition-prop="font-size"
+                        data-duration="2"
+                        data-text-size={status === s ? "" : "0"}
+                      >
+                        {STATUS_TEXT[s]}
+                      </text>
+                    ))}
+                  </group>
                   <separator data-vertical="" data-height="20"></separator>
 
                   <text data-weight="700">Replay</text>
+
+
+
+
                 </group>
               </Ripple>
             </group>
