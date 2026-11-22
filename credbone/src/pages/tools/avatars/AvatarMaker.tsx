@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { avatars } from "./avatars";
 import Ripple from "../../../components/Ripple";
 import CustomSlider from "../../../components/inputs/slider";
@@ -96,6 +96,44 @@ const AvatarMaker: React.FC = () => {
   const selectedIndexRef = useRef(initial.index);
   const radiusRef = useRef(initial.radius);
   const bgColorRef = useRef(initial.bgColor);
+
+  // Mobile character strip (the Scroll's scroll container)
+  const stripRef = useRef<HTMLElement | null>(null);
+
+  // Scroll the selected avatar into the center of the strip
+  const centerSelected = useCallback((behavior: ScrollBehavior) => {
+    const container = stripRef.current;
+    if (!container) return;
+    const selectedEl = container.children[selectedIndexRef.current] as
+      | HTMLElement
+      | undefined;
+    if (!selectedEl) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = selectedEl.getBoundingClientRect();
+
+    container.scrollTo({
+      left:
+        container.scrollLeft +
+        (itemRect.left - containerRect.left) -
+        (container.clientWidth - itemRect.width) / 2,
+      behavior,
+    });
+  }, []);
+
+  // Strip mounts when the sheet opens: center instantly once laid out
+  const setStripRef = useCallback(
+    (el: HTMLElement | null) => {
+      stripRef.current = el;
+      if (el) requestAnimationFrame(() => centerSelected("auto"));
+    },
+    [centerSelected],
+  );
+
+  // Re-center smoothly on every selection while the sheet is open
+  useEffect(() => {
+    centerSelected("smooth");
+  }, [selectedIndex, centerSelected]);
 
   const getImageY = (r: number) => Math.round((-54 * (310 - r)) / (310 - 256));
 
@@ -415,6 +453,7 @@ const AvatarMaker: React.FC = () => {
           key={avatar.key}
           data-border=""
           data-background={selectedIndex === index ? "adaptive-gray" : ""}
+          aria-current={selectedIndex === index ? "true" : undefined}
           onClick={() => handleSelect(avatar, index)}
           data-cursor="pointer"
           {...itemProps}
@@ -430,8 +469,8 @@ const AvatarMaker: React.FC = () => {
             >
               <group data-interact="">
                 <svg
-                data-pointer-event="none"
-                data-name="avatar"
+                  data-pointer-event="none"
+                  data-name="avatar"
                   data-contain="visible"
                   xmlns="http://www.w3.org/2000/svg"
                   width="100%"
@@ -474,7 +513,6 @@ const AvatarMaker: React.FC = () => {
 
   const [isColorOpen, setIsColorOpen] = useState(false);
 
-
   return (
     <group data-wrap="no" data-gap="30" data-align="start">
       <group
@@ -487,7 +525,7 @@ const AvatarMaker: React.FC = () => {
         data-length="395"
       >
         <group
-          data-space="30"
+          data-space="25"
           data-shrink="no"
           data-elevation="2"
           //    data-gap="30"
@@ -499,7 +537,7 @@ const AvatarMaker: React.FC = () => {
         >
           <SvgPattern_1 />
           <group data-wrap="no" data-justify="center">
-            <group data-direction="column" data-space="8" data-contain="" >
+            <group data-direction="column" data-space="8" data-contain="">
               <text
                 data-text-size="medium"
                 data-ellipsis=""
@@ -507,7 +545,9 @@ const AvatarMaker: React.FC = () => {
               >
                 {selected.name}
               </text>
-              <text  data-ellipsis="" data-opacity="40">{selected.description}</text>
+              <text data-ellipsis="" data-opacity="40">
+                {selected.description}
+              </text>
             </group>
 
             <Popover
@@ -725,21 +765,25 @@ const AvatarMaker: React.FC = () => {
           <group
             onMouseDown={() => {
               setIsColorOpen(false);
-           
             }}
             onTouchStart={() => {
               setIsColorOpen(false);
-
             }}
             data-gap="30"
           >
-            <group  data-position="center" data-length="260" data-wrap="no" data-gap="15" data-align="center">
+            <group
+              data-position="center"
+              data-length="260"
+              data-wrap="no"
+              data-gap="15"
+              data-align="center"
+            >
               <text>Size</text>
               <separator data-vertical=""></separator>
               <CustomSlider
                 showvalue={false}
                 handlerWidth={50}
-               // edgeGap={30}
+                // edgeGap={30}
                 start={220}
                 end={310}
                 value={tempRadius}
@@ -755,7 +799,9 @@ const AvatarMaker: React.FC = () => {
                   "data-height": "1",
                 }}
               />
-               <text data-font-feature="tnum" data-opacity="30">{tempRadius}</text>
+              <text data-font-feature="tnum" data-opacity="30">
+                {tempRadius}
+              </text>
             </group>
 
             <group data-adaptive="mobile" data-contain="">
@@ -763,13 +809,16 @@ const AvatarMaker: React.FC = () => {
                 bottomsheet
                 dim={false}
                 bottomsheetProps={bottomsheetConfig}
-
-
-
                 placement="middle"
                 data-space="0"
                 data-radius="30"
                 data-length="600"
+
+
+                                        data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.25"
+
                 content={(closePopover, isBottomSheet) => (
                   <group data-direction="column" data-wrap="no" data-contain="">
                     <group
@@ -783,7 +832,11 @@ const AvatarMaker: React.FC = () => {
                           "data-hide": "true",
                         }}
                       >
-                        <group data-wrap="no" data-gap="1">
+                        <group
+                          ref={setStripRef}
+                          data-wrap="no"
+                          data-gap="1"
+                        >
                           {avatarGrid("grid-b", { "data-length": "160" })}
                         </group>
                       </Scroll>
@@ -794,7 +847,7 @@ const AvatarMaker: React.FC = () => {
                     <group
                       data-wrap="no"
                       data-align="center"
-                      data-space="30"
+                      data-space={isBottomSheet ? "30" : "20"}
                       data-gap="10"
                     >
                       {/* <group
@@ -814,7 +867,7 @@ const AvatarMaker: React.FC = () => {
                         data-cursor="pointer"
                         data-interactive=""
                         data-space-vertical="15"
-                        data-radius="30"
+                        data-radius={isBottomSheet ? "30" : "15"}
                         data-space-horizontal="20"
                         data-background="text"
                         data-color="main-background"
@@ -822,6 +875,11 @@ const AvatarMaker: React.FC = () => {
                         data-align="center"
                         data-justify="center"
                         data-weight="600"
+
+                                                                data-animation-name="appear-bottom"
+                        data-fill-mode="backwards"
+                        data-animation-duration="2.75"
+
                       >
                         <text>Done</text>
                       </group>
@@ -861,7 +919,6 @@ const AvatarMaker: React.FC = () => {
                 bottomsheet
                 data-space="5"
                 data-radius="20"
- 
                 content={(closePopover, isBottomSheet) => (
                   <group
                     data-direction="column"

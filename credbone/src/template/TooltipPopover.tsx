@@ -19,7 +19,7 @@ const SimplePopover = (
     data-length="200"
     data-space="20"
   >
-    <text data-weight="700" data-text-size="large">
+    <text data-weight="700" data-font-type="hero" data-text-size="large">
       Popover
     </text>
     <text data-wrap="wrap" data-line="1.3">
@@ -160,18 +160,30 @@ const SampleData = <></>;
 
 const SampleTooltipData = (
   <group data-direction="column" data-gap="15">
-    <text data-weight="700" data-text-size="xxx-large">
-      <Count from={0} duration={1500} to={128} />
-    </text>
+
     <text
       data-weight="700"
-      data-text-size="large"
+       data-text-size="medium-small"
+      data-font-type="hero"
       data-wrap="wrap"
       data-ellipsis=""
     >
       Rich Content
     </text>
-    <text data-wrap="wrap" data-length="300" data-line="1.5" data-light="">
+
+    <text data-weight="700" data-text-size="xxx-large" data-font-feature="tnum">
+      <Count
+        from={0}
+        to={120.0}
+        duration={500}
+        decimals={2}
+        separator=","
+        prefix="$"
+        decimalProps={{ "data-weight": "100","data-opacity":"40" }}
+      />
+    </text>
+
+    <text data-wrap="wrap" data-line="1.3" data-light="">
       Tooltips display informative text when users hover over, focus on, or tap
       an element.
     </text>
@@ -228,14 +240,8 @@ const TooltipPopover: React.FC = () => {
               </text>
             </group>
 
-
-  <group>
-      {ShowPopover}
-  </group>
-
+            <group>{ShowPopover}</group>
           </group>
-
-
         </group>
       </group>
 
@@ -258,7 +264,7 @@ const TooltipPopover: React.FC = () => {
               <Popover
                 content={SimplePopover}
                 data-width="auto"
-                data-radius="20"
+                data-radius="30"
               >
                 <group
                   data-interactive=""
@@ -298,7 +304,6 @@ const TooltipPopover: React.FC = () => {
                         <img src={sampleImage} alt="" />
                       </picture>
                     </group>
-
 
                     <group
                       data-direction="column"
@@ -360,11 +365,6 @@ const TooltipPopover: React.FC = () => {
                   <text decoration="">Show Rich Popover</text>
                 </group>
               </Popover>
-
-
-
-
-
             </group>
             <separator data-horizontal=""></separator>
 
@@ -443,7 +443,7 @@ const TooltipPopover: React.FC = () => {
                 data-space="30"
                 // data-elevation="2"
                 content={SampleTooltipData}
-                data-length="200"
+                data-length="300"
               >
                 <group
                   data-interactive=""

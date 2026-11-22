@@ -245,7 +245,7 @@ const CountPropsDemo: React.FC = () => {
           <group data-height="30"></group>
           {/* <text data-opacity="0">symmetry</text> */}
           <text
-            //  data-font-feature="tnum"
+              data-font-feature="tnum"
             data-wrap="no"
             data-text-clamp="64"
             data-weight="700"
