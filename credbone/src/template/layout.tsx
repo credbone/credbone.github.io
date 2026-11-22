@@ -8,7 +8,7 @@ import CustomSlider from "../components/inputs/slider";
 import StuckReporter from "../components/StuckReporter";
 import Ripple from "../components/Ripple";
 import TickComponent from "../components/inputs/TickComponent";
-import Popover from "../components/popover";
+import ConfigSelect from "../components/inputs/ConfigSelect";
 
 const Layout: React.FC = () => {
   const [count, setCount] = useState(8);
@@ -224,86 +224,16 @@ const Layout: React.FC = () => {
             data-gap="15"
             data-space="15"
           >
-            <group data-space="3" data-radius="15" data-border="" data-contain="">
-              <Popover
-           //     bottomsheet
-                placement="middle"
-                data-radius="15"
-                data-space="0"
-                data-space-vertical="10"
-                content={(closePopover, isbottomsheet) => (
-                  <group data-direction="column" onClick={closePopover}>
-                    {gapOptions.map(({ value, name }, index) => {
-                      const midIndex = Math.floor(gapOptions.length / 2);
-                      const distance = Math.abs(index - midIndex);
-                      const fromBottom = index >= midIndex;
-
-                      return (
-                        <group
-                          key={value}
-                          onClick={() => setgap(value)}
-                          data-background={gap === value ? "main" : ""}
-                          data-color={gap === value ? "main-text" : ""}
-                          data-animation-name={
-                            isbottomsheet
-                              ? "appear-bottom"
-                              : fromBottom
-                                ? "appear-top"
-                                : "appear-bottom"
-                          }
-                          data-fill-mode="backwards"
-                          data-animation-duration={
-                            isbottomsheet
-                              ? 2 + index * 0.25
-                              : 2 + distance * 0.25
-                          }
-                          data-align="center"
-                          data-interactive=""
-                          data-over-color="neutral"
-                          data-radius={isbottomsheet ? "10" : undefined}
-                          data-cursor="pointer"
-                          data-space="15"
-                          data-gap="10"
-                        >
-                          <text>{value}</text>
-                          <text data-opacity="40">{name}</text>
-                        </group>
-                      );
-                    })}
-                  </group>
-                )}
-              >
-                <group>
-                  <Ripple>
-                    <group
-                      data-height="40"
-                      data-radius="12"
-                      data-align="center"
-                      data-justify="space-between"
-                      data-gap="10"
-                      data-wrap="no"
-                      data-space-horizontal="15"
-                      data-interactive=""
-                      data-over-color="neutral"
-                      data-ink-color="neutral"
-                      data-cursor="pointer"
-                      data-contain=""
-                    >
-                      <text data-ellipsis="">Grid Gap</text>
-                      <group
-                        data-width="auto"
-                        data-align="center"
-                        data-gap="10"
-                        data-wrap="no"
-                      >
-                        <text data-opacity="30">Change</text>
-                        <text>{gap}</text>
-                      </group>
-                    </group>
-                  </Ripple>
-                </group>
-              </Popover>
-            </group>
+            <ConfigSelect
+              label="Grid Gap"
+              options={gapOptions.map(({ value, name }) => ({
+                value: String(value),
+                name: value,
+                hint: name,
+              }))}
+              value={String(gap)}
+              onSelect={(v) => setgap(Number(v))}
+            />
 
             <group data-space="3" data-radius="15" data-border="" data-contain="">
               <group

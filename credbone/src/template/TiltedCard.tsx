@@ -4,8 +4,8 @@ import TiltedCard, {
   TiltedCardAxis,
   TiltedCardLayer,
 } from "../components/TiltedCard";
-import Popover from "../components/popover";
 import ConfigSlider from "../components/inputs/ConfigSlider";
+import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
 import Count from "../components/Counter";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
@@ -431,94 +431,17 @@ const TiltedCardPage: React.FC = () => {
     />
   );
 
-  // Popover picker, same pattern as the selectors on the Carousel page
   const renderSelector = (
     key: SelectKey,
     label: string,
-    options: { value: string; name: string; hint: string }[],
+    options: SelectOption[],
   ) => (
-    <group data-space="3" data-radius="15" data-border="" data-contain="">
-      <Popover
-        placement="middle"
-        data-radius="15"
-        data-space="0"
-        data-space-vertical="10"
-        content={(closePopover, isbottomsheet) => (
-          <group data-direction="column" onClick={closePopover}>
-            {options.map(({ value, name, hint }, index) => {
-              const midIndex = Math.floor(options.length / 2);
-              const distance = Math.abs(index - midIndex);
-              const fromBottom = index >= midIndex;
-              const selected = params[key] === value;
-
-              return (
-                <group
-                  key={value}
-                  onClick={() => {
-                    if (!selected) setParam(key, value as Params[SelectKey]);
-                  }}
-                  data-background={selected ? "main" : ""}
-                  data-color={selected ? "main-text" : ""}
-                  data-animation-name={
-                    isbottomsheet
-                      ? "appear-bottom"
-                      : fromBottom
-                        ? "appear-top"
-                        : "appear-bottom"
-                  }
-                  data-fill-mode="backwards"
-                  data-animation-duration={
-                    isbottomsheet ? 2 + index * 0.25 : 2 + distance * 0.25
-                  }
-                  data-align="center"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-radius={isbottomsheet ? "10" : undefined}
-                  data-cursor="pointer"
-                  data-space="15"
-                  data-gap="10"
-                >
-                  <text>{name}</text>
-                  <text data-opacity="40">{hint}</text>
-                </group>
-              );
-            })}
-          </group>
-        )}
-      >
-        <group>
-          <Ripple>
-            <group
-              data-height="40"
-              data-radius="12"
-              data-align="center"
-              data-justify="space-between"
-              data-gap="10"
-              data-wrap="no"
-              data-space-horizontal="15"
-              data-interactive=""
-              data-over-color="neutral"
-              data-ink-color="neutral"
-              data-cursor="pointer"
-              data-contain=""
-            >
-              <text data-ellipsis="">{label}</text>
-              <group
-                data-width="auto"
-                data-align="center"
-                data-gap="10"
-                data-wrap="no"
-              >
-                <text data-opacity="30">Change</text>
-                <text>
-                  {options.find((o) => o.value === params[key])?.name}
-                </text>
-              </group>
-            </group>
-          </Ripple>
-        </group>
-      </Popover>
-    </group>
+    <ConfigSelect
+      label={label}
+      options={options}
+      value={params[key]}
+      onSelect={(v) => setParam(key, v as Params[SelectKey])}
+    />
   );
 
   // Click-to-flip switch, same pattern as the toggles on the Carousel page

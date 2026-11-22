@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import Count, { CountEasing, formatCount } from "../components/Counter";
-import Popover from "../components/popover";
 import ConfigSlider from "../components/inputs/ConfigSlider";
+import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
@@ -22,8 +22,6 @@ type Params = {
   suffix: string;
   easing: CountEasing;
 };
-
-type Option = { value: string; name: string; hint: string };
 
 // Each preset sets every value, so switching presets is a clean starting point
 const PRESET_VALUES: Record<Preset, Omit<Params, "preset">> = {
@@ -86,7 +84,7 @@ const PRESET_VALUES: Record<Preset, Omit<Params, "preset">> = {
 
 const DEFAULTS: Params = { preset: "counter", ...PRESET_VALUES.counter };
 
-const PRESETS: Option[] = [
+const PRESETS: SelectOption[] = [
   { value: "counter", name: "Counter", hint: "128 to 512" },
   { value: "currency", name: "Currency", hint: "$12,500.00" },
   { value: "percent", name: "Percent", hint: "98.5%" },
@@ -94,32 +92,32 @@ const PRESETS: Option[] = [
   { value: "temperature", name: "Temperature", hint: "30° to 22°" },
 ];
 
-const SCALES: Option[] = [
+const SCALES: SelectOption[] = [
   { value: "1", name: "×1", hint: "Up to 1,000" },
   { value: "100", name: "×100", hint: "Up to 100,000" },
   { value: "1000", name: "×1,000", hint: "Up to 1,000,000" },
 ];
 
-const SEPARATORS: Option[] = [
+const SEPARATORS: SelectOption[] = [
   { value: "none", name: "None", hint: formatCount(12450.5, 2) },
   { value: ",", name: "Comma", hint: formatCount(12450.5, 2, ",") },
   { value: ".", name: "Dot", hint: formatCount(12450.5, 2, ".") },
 ];
 
-const DECIMALS: Option[] = [0, 1, 2, 3].map((d) => ({
+const DECIMALS: SelectOption[] = [0, 1, 2, 3].map((d) => ({
   value: String(d),
   name: d === 0 ? "None" : String(d),
   hint: formatCount(98.6, d),
 }));
 
-const PREFIXES: Option[] = [
+const PREFIXES: SelectOption[] = [
   { value: "", name: "None", hint: "128" },
   { value: "$", name: "$", hint: "$128" },
   { value: "€", name: "€", hint: "€128" },
   { value: "+", name: "+", hint: "+128" },
 ];
 
-const SUFFIXES: Option[] = [
+const SUFFIXES: SelectOption[] = [
   { value: "", name: "None", hint: "128" },
   { value: "%", name: "%", hint: "128%" },
   { value: "°", name: "°", hint: "128°" },
@@ -127,7 +125,7 @@ const SUFFIXES: Option[] = [
   { value: "K", name: "K", hint: "128K" },
 ];
 
-const EASINGS: Option[] = [
+const EASINGS: SelectOption[] = [
   { value: "out", name: "Out", hint: "Fast, then slows" },
   { value: "linear", name: "Linear", hint: "Even pace" },
   { value: "in-out", name: "In-out", hint: "Slow at both ends" },
@@ -224,95 +222,6 @@ const CountPropsDemo: React.FC = () => {
       params.prefix,
       params.suffix,
     );
-
-  // Popover picker, same pattern as the selectors on the Carousel page
-  const renderSelector = (
-    label: string,
-    options: Option[],
-    current: string,
-    onSelect: (value: string) => void,
-  ) => (
-    <group data-space="3" data-radius="15" data-border="" data-contain="">
-      <Popover
-        placement="middle"
-        data-radius="15"
-        data-space="0"
-        data-space-vertical="10"
-        content={(closePopover, isbottomsheet) => (
-          <group data-direction="column" onClick={closePopover}>
-            {options.map(({ value, name, hint }, index) => {
-              const midIndex = Math.floor(options.length / 2);
-              const distance = Math.abs(index - midIndex);
-              const fromBottom = index >= midIndex;
-              const selected = current === value;
-
-              return (
-                <group
-                  key={value}
-                  onClick={() => {
-                    if (!selected) onSelect(value);
-                  }}
-                  data-background={selected ? "main" : ""}
-                  data-color={selected ? "main-text" : ""}
-                  data-animation-name={
-                    isbottomsheet
-                      ? "appear-bottom"
-                      : fromBottom
-                        ? "appear-top"
-                        : "appear-bottom"
-                  }
-                  data-fill-mode="backwards"
-                  data-animation-duration={
-                    isbottomsheet ? 2 + index * 0.25 : 2 + distance * 0.25
-                  }
-                  data-align="center"
-                  data-interactive=""
-                  data-over-color="neutral"
-                  data-radius={isbottomsheet ? "10" : undefined}
-                  data-cursor="pointer"
-                  data-space="15"
-                  data-gap="10"
-                >
-                  <text>{name}</text>
-                  <text data-opacity="40">{hint}</text>
-                </group>
-              );
-            })}
-          </group>
-        )}
-      >
-        <group>
-          <Ripple>
-            <group
-              data-height="40"
-              data-radius="12"
-              data-align="center"
-              data-justify="space-between"
-              data-gap="10"
-              data-wrap="no"
-              data-space-horizontal="15"
-              data-interactive=""
-              data-over-color="neutral"
-              data-ink-color="neutral"
-              data-cursor="pointer"
-              data-contain=""
-            >
-              <text data-ellipsis="">{label}</text>
-              <group
-                data-width="auto"
-                data-align="center"
-                data-gap="10"
-                data-wrap="no"
-              >
-                <text data-opacity="30">Change</text>
-                <text>{options.find((o) => o.value === current)?.name}</text>
-              </group>
-            </group>
-          </Ripple>
-        </group>
-      </Popover>
-    </group>
-  );
 
   return (
     <group data-direction="column" data-gap="30">
@@ -448,9 +357,12 @@ const CountPropsDemo: React.FC = () => {
         data-align="start"
       >
         <group data-direction="column" data-gap="30" data-align="start">
-          {renderSelector("Preset", PRESETS, params.preset, (v) =>
-            selectPreset(v as Preset),
-          )}
+          <ConfigSelect
+            label="Preset"
+            options={PRESETS}
+            value={params.preset}
+            onSelect={(v) => selectPreset(v as Preset)}
+          />
 
           <text data-wrap="wrap" data-line="1.5" data-opacity="60">
             From and To are multiplied by Scale, so larger numbers can show the
@@ -528,9 +440,12 @@ const CountPropsDemo: React.FC = () => {
             onValueChange={(v) => setParam("to", v)}
             format={formatValue}
           />
-          {renderSelector("Scale", SCALES, String(params.scale), (v) =>
-            setParam("scale", Number(v)),
-          )}
+          <ConfigSelect
+            label="Scale"
+            options={SCALES}
+            value={String(params.scale)}
+            onSelect={(v) => setParam("scale", Number(v))}
+          />
           <ConfigSlider
             label="Duration"
             start={300}
@@ -540,24 +455,41 @@ const CountPropsDemo: React.FC = () => {
             onValueChange={(v) => setParam("duration", v)}
             format={(v) => `${(v / 1000).toFixed(1)}s`}
           />
-          {renderSelector("Easing", EASINGS, params.easing, (v) =>
-            setParam("easing", v as CountEasing),
-          )}
+          <ConfigSelect
+            label="Easing"
+            options={EASINGS}
+            value={params.easing}
+            onSelect={(v) => setParam("easing", v as CountEasing)}
+          />
         </group>
 
         <group data-direction="column" data-gap="15">
-          {renderSelector("Separator", SEPARATORS, params.separator, (v) =>
-            setParam("separator", v as Separator),
-          )}
-          {renderSelector("Decimals", DECIMALS, String(params.decimals), (v) =>
-            setParam("decimals", Number(v) as Params["decimals"]),
-          )}
-          {renderSelector("Prefix", PREFIXES, params.prefix, (v) =>
-            setParam("prefix", v),
-          )}
-          {renderSelector("Suffix", SUFFIXES, params.suffix, (v) =>
-            setParam("suffix", v),
-          )}
+          <ConfigSelect
+            label="Separator"
+            options={SEPARATORS}
+            value={params.separator}
+            onSelect={(v) => setParam("separator", v as Separator)}
+          />
+          <ConfigSelect
+            label="Decimals"
+            options={DECIMALS}
+            value={String(params.decimals)}
+            onSelect={(v) =>
+              setParam("decimals", Number(v) as Params["decimals"])
+            }
+          />
+          <ConfigSelect
+            label="Prefix"
+            options={PREFIXES}
+            value={params.prefix}
+            onSelect={(v) => setParam("prefix", v)}
+          />
+          <ConfigSelect
+            label="Suffix"
+            options={SUFFIXES}
+            value={params.suffix}
+            onSelect={(v) => setParam("suffix", v)}
+          />
         </group>
       </group>
     </group>

@@ -82,8 +82,10 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
       data-gap="10"
       data-space-horizontal="15"
     >
-      <text data-ellipsis="">{label}</text>
+<group data-space="3">
+        <text data-ellipsis="">{label}</text>
       <text data-position="right">{format ? format(value) : value}</text>
+</group>
     </group>
   </group>
 );

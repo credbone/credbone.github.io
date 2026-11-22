@@ -564,28 +564,30 @@ const BlobGenerator: React.FC = () => {
 
 <group data-space="30">
             {/* Mode toggle: same as the Color Mixer "Mode" button */}
-          <Ripple>
+          
             <group
-            data-ink-color="neutral-light"
-              data-gap="15"
+          
+             
               data-wrap="no"
               data-width="auto"
               data-contain=""
-              data-space="15"
+             data-space="3"
               data-radius="15"
              // data-background="adaptive-gray"
              data-border=""
-              data-interactive=""
-              data-over-color="neutral"
+
               data-cursor="pointer"
               onClick={() => setMode(mode === "fill" ? "stroke" : "fill")}
             >
-              <group data-width="auto">
+              <Ripple>
+<group  data-radius="12"               data-interactive=""
+              data-over-color="neutral" data-height="40" data-align="center" data-space-horizontal="15"  data-gap="15" data-contain="" data-ink-color="neutral-light" data-space="3">
+                <group data-width="auto">
                 <text data-ellipsis="" data-opacity="40">
                   Blob Style
                 </text>
               </group>
-              <separator data-vertical="" data-height="autofit"></separator>
+              <separator data-vertical="" data-height="20"></separator>
               <group
                 data-align="center"
                 data-justify="center"
@@ -609,8 +611,9 @@ const BlobGenerator: React.FC = () => {
                   Outline
                 </text>
               </group>
+</group></Ripple>
             </group>
-          </Ripple>
+ 
 
           <group
           
