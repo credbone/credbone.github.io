@@ -2,11 +2,10 @@ import React, { useState } from "react";
 
 import Carousel3D, { Carousel3DItem } from "../components/Carousel3D";
 import Popover from "../components/popover";
-import CustomSlider from "../components/inputs/slider";
+import ConfigSlider from "../components/inputs/ConfigSlider";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
-import TickComponent from "../components/inputs/TickComponent";
 
 import sample1 from "../styles/images/samples/sample_res/res-01.jpg";
 import sample2 from "../styles/images/samples/sample_res/res-02.jpg";
@@ -268,87 +267,18 @@ const CarouselPage: React.FC = () => {
     }),
   );
 
-  const renderSlider = (control: Control) => {
-    const value = params[control.key];
-    return (
-      <group
-        key={control.key}
-        data-space="3"
-        data-radius="15"
-       // data-background="adaptive-gray"
-        data-contain=""
-        data-border=""
-      >
-        <group data-radius="12" data-contain="">
-
-
-      <group
-        data-position="absolute"
-        data-width="fit"
-        data-left="0"
-        data-top="0"
-        data-space-horizontal="25"
-        data-height="fit"
-        data-align="center"
-        data-mask="left-right"
-        data-pointer-event="none"
-      >
-        <TickComponent
-          tickCount={18}
-          emphasizeCenter={false}
-          data-opacity="70"
-          data-align="center"
-          heights={{ minor: 8, major: 8, center: 30 }}
-        ></TickComponent>
-      </group>
-
-          <CustomSlider
-            label=""
-            start={control.start}
-            end={control.end}
-            step={control.step}
-            value={value}
-            onValueChange={(v) => setParam(control.key, v)}
-            handlerProps={{ "data-height": "40", "data-background": "none" }}
-            fillProps={{
-              "data-background": "neutral-light",
-              "data-height": "40",
-              "data-radius": "12",
-              "data-opacity": "80",
-            }}
-            trackLeftProps={{ "data-background": "none" }}
-            trackRightProps={{ "data-background": "none" }}
-          />
-        </group>
-
-        <group
-          data-position="absolute"
-          data-pointer-event="none"
-          data-height="fit"
-          data-left="0"
-          data-top="0"
-          data-width="auto"
-          data-align="center"
-          data-space-horizontal="15"
-        >
-          <text>{control.label}</text>
-        </group>
-
-        <group
-          data-position="absolute"
-          data-pointer-event="none"
-          data-height="fit"
-          data-right="0"
-          data-top="0"
-          data-width="auto"
-          data-align="center"
-          data-space-horizontal="15"
-        >
-          <text>{control.format ? control.format(value) : value}</text>
-        </group>
-      </group>
-    );
-  };
+  const renderSlider = (control: Control) => (
+    <ConfigSlider
+      key={control.key}
+      label={control.label}
+      start={control.start}
+      end={control.end}
+      step={control.step}
+      value={params[control.key]}
+      onValueChange={(v) => setParam(control.key, v)}
+      format={control.format}
+    />
+  );
 
   const isCylinder = params.preset === "cylinder";
 

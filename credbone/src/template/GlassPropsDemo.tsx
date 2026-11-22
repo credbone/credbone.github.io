@@ -3,8 +3,7 @@ import { Copy } from "lucide-react";
 
 import Glass from "../components/Glass";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-import CustomSlider from "../components/inputs/slider";
-import TickComponent from "../components/inputs/TickComponent";
+import ConfigSlider from "../components/inputs/ConfigSlider";
 import Tooltip from "../components/tooltip";
 
 import glassBackdrop from "../styles/images/samples/glass_demo.mp4";
@@ -210,87 +209,16 @@ const GlassPropsDemo: React.FC = () => {
   };
 
   const renderSlider = (control: GlassControl) => (
-    <group
+    <ConfigSlider
       key={control.key}
-      data-space="3"
-      data-radius="15"
-      data-border=""
-      data-contain=""
-    >
-      <group
-        data-position="absolute"
-        data-width="fit"
-        data-left="0"
-        data-top="0"
-        data-space-horizontal="25"
-        data-height="fit"
-        data-align="center"
-        data-mask="left-right"
-        data-pointer-event="none"
-      >
-        <TickComponent
-          tickCount={18}
-          emphasizeCenter={false}
-          data-opacity="70"
-          data-align="center"
-          heights={{ minor: 8, major: 8, center: 30 }}
-        ></TickComponent>
-      </group>
-
-      <group data-radius="12" data-contain="">
-        <CustomSlider
-          label=""
-          start={control.start}
-          end={control.end}
-          step={control.step}
-          value={params[control.key]}
-          onValueChange={(value) => setParam(control.key, value)}
-          handlerProps={{
-            "data-height": "40",
-            "data-background": "none",
-          }}
-          fillProps={{
-            "data-background": "neutral-light",
-            "data-height": "40",
-            "data-radius": "12",
-            "data-opacity": "80",
-          }}
-          trackLeftProps={{ "data-background": "none" }}
-          trackRightProps={{ "data-background": "none" }}
-        />
-      </group>
-
-      <group
-        data-position="absolute"
-        data-pointer-event="none"
-        data-height="fit"
-        data-left="0"
-        data-top="0"
-        data-width="auto"
-        data-align="center"
-        data-space-horizontal="15"
-        data-justify="center"
-      >
-        <text>{control.label}</text>
-      </group>
-
-      <group
-        data-position="absolute"
-        data-pointer-event="none"
-        data-height="fit"
-        data-right="0"
-        data-top="0"
-        data-width="auto"
-        data-align="center"
-        data-space-horizontal="15"
-        data-justify="center"
-      >
-        <text>
-          {params[control.key]}
-          {control.unit}
-        </text>
-      </group>
-    </group>
+      label={control.label}
+      start={control.start}
+      end={control.end}
+      step={control.step}
+      value={params[control.key]}
+      onValueChange={(v) => setParam(control.key, v)}
+      format={(v) => `${v}${control.unit ?? ""}`}
+    />
   );
 
   return (

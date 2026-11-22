@@ -107,7 +107,7 @@ function Tools() {
           </text>
         </group>
 
-        <group data-type="grid" data-grid-template="140/120" data-gap="15">
+        <group data-type="grid" data-grid-template="140/120" data-gap="25">
           {links.map((link, index) => (
             <Link
               key={index}

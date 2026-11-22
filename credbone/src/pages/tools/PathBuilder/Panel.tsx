@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { CanvasConfig, PathPoint, PointType } from "./types";
-import CustomSlider from "../../../components/inputs/slider";
-import TickComponent from "../../../components/inputs/TickComponent";
+import ConfigSlider from "../../../components/inputs/ConfigSlider";
 import Ripple from "../../../components/Ripple";
 import Tooltip from "../../../components/tooltip";
 import { useSnackbar } from "../../../components/snackbar/SnackbarContainer";
@@ -25,81 +24,6 @@ export const Toggle: React.FC<ToggleProps> = ({ checked, onChange }) => (
     <box>
       <check> </check>
     </box>
-  </group>
-);
-
-interface SliderRowProps {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step?: number;
-  onChange: (v: number) => void;
-}
-export const SliderRow: React.FC<SliderRowProps> = ({
-  label,
-  value,
-  min,
-  max,
-  step = 1,
-  onChange,
-}) => (
-  <group data-space="3" data-radius="15" data-border="" data-contain="">
-    <group
-      data-position="absolute"
-      data-width="fit"
-      data-left="0"
-      data-top="0"
-      data-space-horizontal="25"
-      data-height="fit"
-      data-align="center"
-      data-mask="left-right"
-      data-pointer-event="none"
-    >
-      <TickComponent
-        tickCount={18}
-        emphasizeCenter={false}
-        data-opacity="70"
-        data-align="center"
-        heights={{ minor: 8, major: 8, center: 30 }}
-      />
-    </group>
-
-    <group data-radius="12" data-contain="">
-      <CustomSlider
-        label=""
-        start={min}
-        end={max}
-        step={step}
-        value={Math.round(value)}
-        onValueChange={(v) => onChange(v)}
-        handlerProps={{ "data-height": "40", "data-background": "none" }}
-        fillProps={{
-          "data-background": "neutral-light",
-          "data-height": "40",
-          "data-radius": "12",
-          "data-opacity": "80",
-        }}
-        trackLeftProps={{ "data-background": "none" }}
-        trackRightProps={{ "data-background": "none" }}
-      />
-    </group>
-
-    <group
-      data-position="absolute"
-      data-pointer-event="none"
-      data-height="fit"
-      data-width="fit"
-      data-left="0"
-      data-top="0"
-      data-align="center"
-      data-wrap="no"
-      data-gap="10"
-      data-space-horizontal="15"
-    >
-      <text data-ellipsis="">{label}</text>
-      <text data-position="right">{Math.round(value)}</text>
-    </group>
   </group>
 );
 
@@ -378,13 +302,13 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({
           onChange={(v) => onChange({ gridSize: v })}
         />
 
-        {/* <SliderRow
+        {/* <ConfigSlider
                 label="Grid Size"
-          value={config.gridSize}
-          min={5}
-          max={200}
+          value={Math.round(config.gridSize)}
+          start={5}
+          end={200}
           step={5}
-                 onChange={(v) => onChange({ gridSize: v })}
+                 onValueChange={(v) => onChange({ gridSize: v })}
               /> */}
 
         <ToggleRow
@@ -609,19 +533,19 @@ const types: { type: PointType; label: string }[] = [
             data-pointer-event={disabled ? "none" : undefined}
           >
             <>
-              <SliderRow
+              <ConfigSlider
                 label="Point X"
-                value={point?.x ?? 0}
-                min={0}
-                max={config.width}
-                onChange={(v) => onUpdate({ x: v })}
+                value={Math.round(point?.x ?? 0)}
+                start={0}
+                end={config.width}
+                onValueChange={(v) => onUpdate({ x: v })}
               />
-              <SliderRow
+              <ConfigSlider
                 label="Point Y"
-                value={point?.y ?? 0}
-                min={0}
-                max={config.height}
-                onChange={(v) => onUpdate({ y: v })}
+                value={Math.round(point?.y ?? 0)}
+                start={0}
+                end={config.height}
+                onValueChange={(v) => onUpdate({ y: v })}
               />
             </>
           </group>
@@ -629,19 +553,19 @@ const types: { type: PointType; label: string }[] = [
         {/* Q controls */}
         {point && point.type === "Q" && !isFirst && (
             <>
-              <SliderRow
+              <ConfigSlider
                 label="Control X"
-                value={point.cx ?? 0}
-                min={0}
-                max={config.width}
-                onChange={(v) => onUpdate({ cx: v })}
+                value={Math.round(point.cx ?? 0)}
+                start={0}
+                end={config.width}
+                onValueChange={(v) => onUpdate({ cx: v })}
               />
-              <SliderRow
+              <ConfigSlider
                 label="Control Y"
-                value={point.cy ?? 0}
-                min={0}
-                max={config.height}
-                onChange={(v) => onUpdate({ cy: v })}
+                value={Math.round(point.cy ?? 0)}
+                start={0}
+                end={config.height}
+                onValueChange={(v) => onUpdate({ cy: v })}
               />
             </>
         )}
@@ -649,34 +573,34 @@ const types: { type: PointType; label: string }[] = [
         {/* C controls */}
         {point && point.type === "C" && !isFirst && (
               <>
-                <SliderRow
+                <ConfigSlider
                   label="Control 1 X"
-                  value={point.cx1 ?? 0}
-                  min={0}
-                  max={config.width}
-                  onChange={(v) => onUpdate({ cx1: v })}
+                  value={Math.round(point.cx1 ?? 0)}
+                  start={0}
+                  end={config.width}
+                  onValueChange={(v) => onUpdate({ cx1: v })}
                 />
-                <SliderRow
+                <ConfigSlider
                   label="Control 1 Y"
-                  value={point.cy1 ?? 0}
-                  min={0}
-                  max={config.height}
-                  onChange={(v) => onUpdate({ cy1: v })}
+                  value={Math.round(point.cy1 ?? 0)}
+                  start={0}
+                  end={config.height}
+                  onValueChange={(v) => onUpdate({ cy1: v })}
                 />
 
-                <SliderRow
+                <ConfigSlider
                   label="Control 2 X"
-                  value={point.cx2 ?? 0}
-                  min={0}
-                  max={config.width}
-                  onChange={(v) => onUpdate({ cx2: v })}
+                  value={Math.round(point.cx2 ?? 0)}
+                  start={0}
+                  end={config.width}
+                  onValueChange={(v) => onUpdate({ cx2: v })}
                 />
-                <SliderRow
+                <ConfigSlider
                   label="Control 2 Y"
-                  value={point.cy2 ?? 0}
-                  min={0}
-                  max={config.height}
-                  onChange={(v) => onUpdate({ cy2: v })}
+                  value={Math.round(point.cy2 ?? 0)}
+                  start={0}
+                  end={config.height}
+                  onValueChange={(v) => onUpdate({ cy2: v })}
                 />
               </>
         )}
@@ -684,26 +608,26 @@ const types: { type: PointType; label: string }[] = [
         {/* A controls */}
         {point && point.type === "A" && !isFirst && (
             <>
-              <SliderRow
+              <ConfigSlider
                 label="Radius X"
-                value={point.rx ?? 50}
-                min={0}
-                max={400}
-                onChange={(v) => onUpdate({ rx: v })}
+                value={Math.round(point.rx ?? 50)}
+                start={0}
+                end={400}
+                onValueChange={(v) => onUpdate({ rx: v })}
               />
-              <SliderRow
+              <ConfigSlider
                 label="Radius Y"
-                value={point.ry ?? 50}
-                min={0}
-                max={400}
-                onChange={(v) => onUpdate({ ry: v })}
+                value={Math.round(point.ry ?? 50)}
+                start={0}
+                end={400}
+                onValueChange={(v) => onUpdate({ ry: v })}
               />
-              <SliderRow
+              <ConfigSlider
                 label="Rotation"
-                value={point.xrot ?? 0}
-                min={0}
-                max={360}
-                onChange={(v) => onUpdate({ xrot: v })}
+                value={Math.round(point.xrot ?? 0)}
+                start={0}
+                end={360}
+                onValueChange={(v) => onUpdate({ xrot: v })}
               />
 
 <group></group>

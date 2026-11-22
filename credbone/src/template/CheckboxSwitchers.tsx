@@ -272,7 +272,7 @@ const CheckboxAndSwitchers: React.FC = () => {
                 <Checkbox
                   name="7"
                   minimal
-                  label="Disabled Checkbox 7"
+                  label="Disabled Checkbox"
                   disabled
                   control={control}
                 />
