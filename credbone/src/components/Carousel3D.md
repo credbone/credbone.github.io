@@ -42,6 +42,7 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 |---|---|---|
 | `items` | required | `Carousel3DItem[]`, see below |
 | `initialIndex` | `0` | Starting item. Read on mount only |
+| `index` | – | Controlled item. When it changes, the carousel glides there the shortest way. Values that match the last snap target (e.g. echoed back from `onChange`) are ignored |
 | `onChange` | – | `(index)` called when a snap **starts**, with the target item |
 | `desktop` | `{ spread: .22, maxSpread: 240, sideCount: 2 }` | Layout at stage width ≥ 600px. Partial, merged over the default |
 | `mobile` | `{ spread: .3, maxSpread: 140, sideCount: 1 }` | Layout at stage width < 600px |
@@ -53,11 +54,12 @@ Wrap it in a `data-contain=""` group: the stage has no `data-contain` of its own
 | `cardWidth` | `"260"` | `data-length` of each card |
 | `perspective` | `"1200"` | `data-perspective` of the stage |
 | `align` | `"center"` | Vertical alignment of cards of different heights |
+| `controls` | `"full"` | Navigation under the stage: `"full"` (arrows + tick rail), `"arrows"`, `"rail"` or `"none"`. Drag, wheel, keys and side-card clicks work in every mode |
 | `intro` | `true` | On mount, slide in from this many cards before `initialIndex`. `true` = 3, `false` / `0` = off, negative slides the other way. Mount-only |
 
 **`Carousel3DItem`:** `id` (React key), `title` (card and tick `aria-label`), `node` (the card), `caption` (optional).
 
-`node` can be a render function `({ centered }) => …` to style the card differently while it's in the center. `centered` is true for the nearest card, even mid-drag.
+`node` can be a render function `({ centered, settled }) => …` to style the card differently while it's in the center. `centered` is true for the nearest card, even mid-drag. `settled` is `centered` and at rest: not dragged, and the position sits on a whole step (within 1e-4), so it is false during snaps, the intro, momentum and wheel swipes. Use it for things that should only appear once the card stops, like Base Colors' Copy button.
 
 **Layout (`Carousel3DSpread`):** `spread` is the card spacing as a share of the stage width, capped at `maxSpread` px. `sideCount` is how many cards show on each side; it's capped at `floor((count - 1) / 2)` so the wrap point stays out of view. The breakpoint is the **stage's** width (ResizeObserver), not the viewport's.
 
@@ -102,14 +104,15 @@ Example: 7 cards of 260px with gap 30 → R ≈ 300px on a full ring, ≈ 655px 
 ## Patterns in use
 
 - **Cards page, Carousel view** (`template/Cards.tsx`, `CarouselTemplate`): full-ring cylinder with the back of the ring showing (`layout="cylinder"`, `cylinder={{ gap: 20, tilt: -5, arc: 360, back: 0.3 }}`, `fade={0}`). `node` uses `centered` to lift the card (`context` + elevation) and to play its video only in the center. Double-click or a touch long press (500ms, shared `useLongPress` with the Card view) opens the item modal. Only the centered card gets it, since side cards are `pointer-event: none`. `initialIndex` starts on the selected item, and `onChange` syncs the selection, skipping the key that's already selected because `onSelect` toggles. The scroll `ref` sits outside the `appear-bottom` group so it measures the final position.
-- **3D Carousel page** (`template/Carousel.tsx`, route `Components/Carousel`, nav after Layout & Switches): a tuning playground with numbered gray blocks. a Preset selector (Cylinder / Spread, popover like the Layout page's Grid Gap) and a Fade toggle; sliders for item count, perspective (picks from the `data-perspective` values), the cylinder's gap/tilt/arc/back or the spread's tilt/depth. An Item section sets the sample cards' ratio (popover) and width (slider over existing `data-length` values); these are demo-only and not copied. Copy Parameters puts the current carousel props on the clipboard; Reset appears after the first change. All props are live, no remount.
+- **3D Carousel page** (`template/Carousel.tsx`, route `Components/Carousel`, nav after Layout & Switches): a tuning playground with sample cards. General has a Preset selector (Cylinder / Spread, popover like the Layout page's Grid Gap), a Controls selector (Full / Arrows / Rail / None, same popover) and a Fade toggle, plus sliders for item count and perspective (picks from the `data-perspective` values). The second group holds the cylinder's gap/tilt/arc/back or the spread's tilt/depth/spread/max spread/side cards. An Item section sets the sample cards' ratio (popover), images on/off (numbered gray blocks when off), width (slider over existing `data-length` values) and radius; these are demo-only and not copied. Copy Parameters puts the current carousel props on the clipboard, with `controls` only when it isn't the default `"full"`. Reset appears after the first change. All props are live, no remount.
 - **Quick Demos** (`template/quickDemos.tsx`): live apps as cards (`DemoBlock mode="carousel" active={centered}`), `align="end"` so apps of different heights sit on one baseline, `fade={0}`. The interactive-selector rule is what keeps the apps usable.
+- **Base Colors** (`template/BaseColorsDemo.tsx`, Colors page): one card per color × shade (Soft / Base / Deep), spread layout, `fade={0}`, `controls="none"` (the swatch grid is the navigation). Two-way sync with the swatch grid through `index` + `onChange`. The Copy button renders only when `settled` (a 45px slot keeps card heights equal) and works because it is `data-interactive`.
 - Both pages wrap it in `data-animation-name="appear-bottom" data-fill-mode="backwards" data-contain=""`.
 
 ## Known issues
 
 1. **Empty `items` crashes.** With `count = 0`, `mod` divides by zero and `items[tick.index].title` throws in the rail.
-2. **`initialIndex` is mount-only.** If the selection changes elsewhere (Cards page list, deep link), the carousel doesn't follow until it remounts.
+2. ~~**`initialIndex` is mount-only.**~~ Use the controlled `index` prop to follow outside selection changes (Base Colors does). Cards still relies on `initialIndex`.
 3. **`onChange` fires on no-op snaps.** Clicking the current tick, or a tap that finishes an interrupted snap, calls it with the index that's already centered. Cards guards against it; other callers have to as well. (The intro is silent, so it doesn't add to this.)
 4. **`cardWidth` and `perspective` are only as good as the CSS.** They go straight into `data-length` / `data-perspective`, and `control.css` only defines `data-perspective` 300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000 and 5000. Any other value silently does nothing.
 5. ~~**First frame is collapsed.**~~ Fixed: cards stay hidden until `stageWidth` is measured.

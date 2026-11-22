@@ -14,6 +14,7 @@ import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import Ripple from "../components/Ripple";
 import MenuItem from "../components/MenuItem";
 
+
 export const ColorPalette = [
   {
     textcolor: "-darker",
@@ -776,7 +777,7 @@ bottomsheet
                     data-contain=""
                       key={shade.key}
                       data-background={undefined}
-                      data-length="140"
+                      data-length="180"
                       data-space={undefined}
                       data-radius="25"
                       data-elevation={undefined}
@@ -800,7 +801,7 @@ bottomsheet
                                 color.light_text,
                               )}
                               data-react="brightness"
-                              data-gap="15"
+                              data-gap="25"
                               data-space="25"
                               data-direction="column"
                               data-align="start"
@@ -811,17 +812,15 @@ bottomsheet
                             >
                               <group
                                 data-width="auto"
-                                data-gap="15"
+                                data-gap="25"
                                 data-animation-name="appear-bottom"
                                 data-fill-mode="backwards"
                                 data-animation-duration="2.25"
                               >
                                 <text
                                   data-wrap="wrap"
-                                  data-weight="700"
-                                  data-text-size="medium"
-                                  data-font-type="hero"
-                                  data-line="1"
+                                //  data-weight="700"
+
                                 >
                                   {shade.label}
                                   <br />
@@ -829,8 +828,10 @@ bottomsheet
                                 </text>
                                 <text
                                   data-wrap="wrap"
-                                  data-line="1.2"
-                                  data-opacity="70"
+                                  data-line="1"
+                                 // data-opacity="70"
+                                  data-text-size="large"
+                                  data-font-type="hero"
                                 >
                                   {color.description}
                                 </text>
@@ -838,7 +839,7 @@ bottomsheet
 
                               <group
                                 data-width="auto"
-                                data-gap="15"
+                                data-gap="25"
                                 data-animation-name="appear-bottom"
                                 data-fill-mode="backwards"
                                 data-animation-duration="2.75"
@@ -847,6 +848,7 @@ bottomsheet
                                   data-horizontal=""
                                   data-interact=""
                                 />
+                             
                                 <text
                                   data-wrap="wrap"
                                   data-line="1.2"

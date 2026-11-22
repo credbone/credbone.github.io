@@ -8,7 +8,10 @@ export interface Carousel3DItem {
   id: string;
   title?: string;
   // Or a render function, to style the card differently while it's centered
-  node: React.ReactNode | ((state: { centered: boolean }) => React.ReactNode);
+  // centered: nearest card, even mid-drag. settled: centered and at rest (no drag, snap or wheel)
+  node:
+    | React.ReactNode
+    | ((state: { centered: boolean; settled: boolean }) => React.ReactNode);
   // Shown under the stage for the centered item; slides with the cards
   caption?: React.ReactNode;
 }
@@ -31,6 +34,7 @@ export interface Carousel3DCylinder {
 interface Carousel3DProps {
   items: Carousel3DItem[];
   initialIndex?: number;
+  index?: number; // controlled: glides here whenever it changes (shortest way around)
   onChange?: (index: number) => void;
   desktop?: Partial<Carousel3DSpread>;
   mobile?: Partial<Carousel3DSpread>; // below MOBILE_BREAKPOINT
@@ -42,6 +46,7 @@ interface Carousel3DProps {
   cardWidth?: string; // data-length value of each card
   perspective?: string; // data-perspective value of the stage
   align?: "start" | "center" | "end"; // vertical alignment of cards with different heights
+  controls?: "full" | "arrows" | "rail" | "none"; // which navigation controls show under the stage
   intro?: boolean | number; // slide in from this many cards before initialIndex; true = INTRO_STEPS, negative slides the other way
 }
 
@@ -109,6 +114,7 @@ const prefersReducedMotion = () =>
 const Carousel3D: React.FC<Carousel3DProps> = ({
   items,
   initialIndex = 0,
+  index: controlledIndex,
   onChange,
   desktop,
   mobile,
@@ -121,8 +127,11 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
   perspective = "1200",
   align = "center",
   intro = true,
+  controls = "full",
 }) => {
   const count = items.length;
+  const showArrows = controls === "full" || controls === "arrows";
+  const showRail = controls === "full" || controls === "rail";
 
   // Where the intro starts; fixed on mount. Capped so it never laps the items
   const [introStart] = useState(() => {
@@ -147,6 +156,8 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
 
   const stageRef = useRef<HTMLElement>(null);
   const animation = useRef<number | null>(null);
+  // Last snap target, so a controlled index echoed back from onChange is a no-op
+  const targetRef = useRef(initialIndex);
   const drag = useRef({
     el: null as HTMLElement | null,
     stepSize: 0, // px of pointer travel per item: card spacing on the stage, tick spacing on the rail
@@ -162,6 +173,8 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
   });
 
   const activeIndex = mod(Math.round(position), count);
+  // At rest: on a whole step (snaps and wheel swipes end exactly there) and not held
+  const atRest = !dragging && Math.abs(position - Math.round(position)) < 1e-4;
   const isMobile = stageWidth > 0 && stageWidth < MOBILE_BREAKPOINT;
   const layout = isMobile
     ? { ...DEFAULT_MOBILE, ...mobile }
@@ -262,6 +275,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
       { duration = SNAP_DURATION, ease = easeOutCubic, silent = false } = {}
     ) => {
       stopAnimation();
+      targetRef.current = target;
       if (!silent) onChange?.(mod(target, count));
 
       const from = positionRef.current;
@@ -308,6 +322,14 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
     if (delta > count / 2) delta -= count;
     animateTo(current + delta);
   };
+
+  // Controlled index: follow outside changes, skip echoes of our own snaps
+  useEffect(() => {
+    if (controlledIndex === undefined || !introDone.current) return;
+    if (mod(targetRef.current, count) === mod(controlledIndex, count)) return;
+    goTo(controlledIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [controlledIndex]);
 
   // Shared by the stage (cards) and the tick rail; only the step size differs
   const startDrag = (e: React.PointerEvent<HTMLElement>, stepSize: number) => {
@@ -591,7 +613,10 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
             >
               <group data-pointer-event={isActive ? undefined : "none"}>
                 {typeof item.node === "function"
-                  ? item.node({ centered: index === activeIndex })
+                  ? item.node({
+                      centered: index === activeIndex,
+                      settled: index === activeIndex && atRest,
+                    })
                   : item.node}
               </group>
             </group>
@@ -630,6 +655,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
         </group>
       )}
 
+      {controls !== "none" && (
       <group
         data-gap="5"
         data-align="center"
@@ -637,6 +663,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
         data-wrap="no"
         data-width="auto"
       >
+        {showArrows && (
         <Tooltip content="Previous">
 <group data-width="auto">
             <Ripple>
@@ -661,8 +688,10 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
           </Ripple>
 </group>
         </Tooltip>
+        )}
 
         {/* Infinite tick rail: scrolls with the carousel and can be dragged to scroll it */}
+        {showRail && (
         <group
           data-length="240"
           data-height="30"
@@ -708,7 +737,9 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
             </group>
           ))}
         </group>
+        )}
 
+        {showArrows && (
         <Tooltip content="Next">
 <group>
             <Ripple>
@@ -733,7 +764,9 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
           </Ripple>
 </group>
         </Tooltip>
+        )}
       </group>
+      )}
     </group>
   );
 };

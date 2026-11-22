@@ -30,15 +30,33 @@ import sample20 from "../styles/images/samples/sample_res/res-20.jpg";
 
 // One image per item, in order (Items maxes out at 20, one per image)
 const SAMPLE_IMAGES = [
-  sample1, sample2, sample3, sample4, sample5, sample6, sample7,
-  sample8, sample9, sample10, sample11, sample12, sample13, sample14,
-  sample15, sample16, sample17, sample18, sample19, sample20
+  sample1,
+  sample2,
+  sample3,
+  sample4,
+  sample5,
+  sample6,
+  sample7,
+  sample8,
+  sample9,
+  sample10,
+  sample11,
+  sample12,
+  sample13,
+  sample14,
+  sample15,
+  sample16,
+  sample17,
+  sample18,
+  sample19,
+  sample20,
 ];
-
 
 // Values data-perspective supports in control.css; the slider picks one by index
 // Short = dramatic depth, long = flat and even
-const PERSPECTIVES = [300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000, 5000];
+const PERSPECTIVES = [
+  300, 500, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000, 5000,
+];
 const FADE = 0.3; // opacity lost per step when Fade is on
 
 type Preset = "cylinder" | "spread";
@@ -46,6 +64,15 @@ type Preset = "cylinder" | "spread";
 const PRESETS: { value: Preset; name: string; hint: string }[] = [
   { value: "cylinder", name: "Cylinder", hint: "Ring" },
   { value: "spread", name: "Spread", hint: "Row" },
+];
+
+type Controls = "full" | "arrows" | "rail" | "none";
+
+const CONTROLS: { value: Controls; name: string; hint: string }[] = [
+  { value: "full", name: "Full", hint: "Arrows + rail" },
+  { value: "arrows", name: "Arrows", hint: "Buttons only" },
+  { value: "rail", name: "Rail", hint: "Ticks only" },
+  { value: "none", name: "None", hint: "Drag & keys" },
 ];
 
 // Item shape: demo-only, not copied with the carousel props.
@@ -62,6 +89,7 @@ const WIDTHS = [140, 160, 180, 200, 220, 240, 260, 280, 300];
 
 const DEFAULTS = {
   preset: "cylinder" as Preset,
+  controls: "full" as Controls,
   ratio: "3:4",
   images: true,
   width: 2, // index into WIDTHS
@@ -84,7 +112,7 @@ type Params = typeof DEFAULTS;
 type NumberKey = {
   [K in keyof Params]: Params[K] extends number ? K : never;
 }[keyof Params];
-type SelectKey = "preset" | "ratio";
+type SelectKey = "preset" | "controls" | "ratio";
 type ToggleKey = {
   [K in keyof Params]: Params[K] extends boolean ? K : never;
 }[keyof Params];
@@ -192,6 +220,8 @@ const getConfigText = (p: Params) =>
         ]),
     `perspective="${PERSPECTIVES[p.perspective]}"`,
     `fade={${p.fade ? FADE : 0}}`,
+    // Default "full" is left out to keep the paste short
+    ...(p.controls !== DEFAULTS.controls ? [`controls="${p.controls}"`] : []),
   ].join("\n");
 
 const CarouselPage: React.FC = () => {
@@ -234,33 +264,29 @@ const CarouselPage: React.FC = () => {
           data-align="center"
           data-justify="center"
           data-contain=""
-         
         >
-
-
-        {params.images && (
-        <picture
-
-          data-contain=""
-          data-brightness={centered ? undefined : "adaptive"}
-          data-background="grey-light"
-          data-position="absolute"
-          data-object-position="right"
-        >
-          <img src={SAMPLE_IMAGES[i % SAMPLE_IMAGES.length]} alt="" />
-        </picture>
-        )}
+          {params.images && (
+            <picture
+              data-contain=""
+              data-brightness={centered ? undefined : "adaptive"}
+              data-background="grey-light"
+              data-position="absolute"
+              data-object-position="right"
+            >
+              <img src={SAMPLE_IMAGES[i % SAMPLE_IMAGES.length]} alt="" />
+            </picture>
+          )}
 
           {!params.images && (
-          <text
-            data-text-size="large"
-          //  data-weight="700"
-           // data-font-type="hero"
-           data-font-feature="tnum"
-            data-opacity={centered ? undefined : "40"}
-          >
-            {i + 1}
-          </text>
+            <text
+              data-text-size="large"
+              //  data-weight="700"
+              // data-font-type="hero"
+              data-font-feature="tnum"
+              data-opacity={centered ? undefined : "40"}
+            >
+              {i + 1}
+            </text>
           )}
         </group>
       ),
@@ -361,7 +387,9 @@ const CarouselPage: React.FC = () => {
                 data-wrap="no"
               >
                 <text data-opacity="30">Change</text>
-                <text>{options.find((o) => o.value === params[key])?.name}</text>
+                <text>
+                  {options.find((o) => o.value === params[key])?.name}
+                </text>
               </group>
             </group>
           </Ripple>
@@ -375,7 +403,13 @@ const CarouselPage: React.FC = () => {
   const renderToggle = (key: ToggleKey, label: string) => {
     const on = params[key];
     return (
-      <group key={key} data-space="3" data-radius="15" data-border="" data-contain="">
+      <group
+        key={key}
+        data-space="3"
+        data-radius="15"
+        data-border=""
+        data-contain=""
+      >
         <Ripple>
           <group
             data-ink-color="neutral-light"
@@ -405,15 +439,15 @@ const CarouselPage: React.FC = () => {
             <group data-width="auto">
               <text data-ellipsis="">{label}</text>
             </group>
-<group data-width="auto" data-position="right" data-gap="15">
+            <group data-width="auto" data-position="right" data-gap="15">
               {/* <separator data-vertical="" data-height="20"></separator> */}
-            <group
-              data-align="center"
-              data-justify="center"
-              data-width="auto"
-              data-contain=""
-            >
-              {/* <text
+              <group
+                data-align="center"
+                data-justify="center"
+                data-width="auto"
+                data-contain=""
+              >
+                {/* <text
                 data-ellipsis=""
                 data-transition-prop="font-size"
                 data-duration="2"
@@ -430,23 +464,19 @@ const CarouselPage: React.FC = () => {
                 Off
               </text> */}
 
-
-
-  <group
-    data-interact=""
-    data-width="auto"
-    checkbox=""
-    simple=""
-    data-checked={on ? "true" : "false"}
-  >
-    <box>
-      <check> </check>
-    </box>
-  </group>
-
-
+                <group
+                  data-interact=""
+                  data-width="auto"
+                  checkbox=""
+                  simple=""
+                  data-checked={on ? "true" : "false"}
+                >
+                  <box>
+                    <check> </check>
+                  </box>
+                </group>
+              </group>
             </group>
-</group>
           </group>
         </Ripple>
       </group>
@@ -459,7 +489,7 @@ const CarouselPage: React.FC = () => {
         <TemplatePageHeader
           title="3D Carousel"
           description="A looping 3D carousel that lays cards out in a row or around a cylinder. Drag, swipe or use the arrow keys, and tune the layout below."
-          version="1.0.0"
+          version="1.1.0"
           type="Component"
           descriptionProps={{ "data-length": "500" }}
         />
@@ -469,17 +499,15 @@ const CarouselPage: React.FC = () => {
         data-animation-name="appear-bottom"
         data-fill-mode="backwards"
         data-space-vertical="30"
-        
       >
-        <group data-height="30">
-
-        </group>
+        <group data-height="30"></group>
         <Carousel3D
           items={items}
           cardWidth={String(WIDTHS[params.width])}
           fade={params.fade ? FADE : 0}
           perspective={String(PERSPECTIVES[params.perspective])}
           layout={params.preset}
+          controls={params.controls}
           cylinder={{
             gap: params.gap,
             tilt: params.ringTilt,
@@ -502,84 +530,87 @@ const CarouselPage: React.FC = () => {
         data-align="start"
         data-row-gap="15"
       >
+        <group data-direction="column" data-gap="30" data-align="start">
 
-        <group data-direction="column" data-gap="30"  data-align="start">
+ {renderSelector("preset", "Preset", PRESETS)}
+
           <text data-wrap="wrap" data-line="1.5" data-opacity="60">
             Arc sets how far the cards wrap around. At 360° they form a full
             ring, and lower values open it into an arc. Back Opacity controls
             how visible the cards on the far side remain.
           </text>
 
-<group data-width="auto" data-gap="30">
+          <group data-width="auto" data-gap="30">
             <separator data-horizontal="dotted" data-opacity="20"></separator>
 
-          <group data-gap="10" data-width="auto" data-space-bottom="15">
-            <Ripple>
-              <group
-                data-contain=""
-                data-ink-color="main-deep"
-                data-space-horizontal="20"
-                data-radius="15"
-                data-align="center"
-                data-justify="center"
-                data-background="main"
-                data-color="main-text"
-                data-height="45"
-                data-width="auto"
-                data-interactive=""
-                data-cursor="pointer"
-                role="button"
-                tabIndex={0}
-                onClick={copyConfig}
-                onKeyDown={(e: React.KeyboardEvent) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    copyConfig();
-                  }
-                }}
-              >
-                <text data-weight="600">Copy Parameters</text>
-              </group>
-            </Ripple>
-
-            {hasChanged && (
+            <group data-gap="10" data-width="auto" data-space-bottom="15">
               <Ripple>
                 <group
                   data-contain=""
+                  data-ink-color="main-deep"
                   data-space-horizontal="20"
                   data-radius="15"
                   data-align="center"
                   data-justify="center"
-                  data-background="adaptive-gray"
+                  data-background="main"
+                  data-color="main-text"
                   data-height="45"
                   data-width="auto"
                   data-interactive=""
                   data-cursor="pointer"
-                  data-animation-name="appear-bottom"
-                  data-fill-mode="backwards"
                   role="button"
                   tabIndex={0}
-                  onClick={resetValues}
+                  onClick={copyConfig}
                   onKeyDown={(e: React.KeyboardEvent) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      resetValues();
+                      copyConfig();
                     }
                   }}
                 >
-                  <text data-weight="600">Reset</text>
+                  <text data-weight="600">Copy Parameters</text>
                 </group>
               </Ripple>
-            )}
+
+              {hasChanged && (
+                <Ripple>
+                  <group
+                    data-contain=""
+                    data-space-horizontal="20"
+                    data-radius="15"
+                    data-align="center"
+                    data-justify="center"
+                    data-background="adaptive-gray"
+                    data-height="45"
+                    data-width="auto"
+                    data-interactive=""
+                    data-cursor="pointer"
+                    data-animation-name="appear-bottom"
+                    data-fill-mode="backwards"
+                    role="button"
+                    tabIndex={0}
+                    onClick={resetValues}
+                    onKeyDown={(e: React.KeyboardEvent) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        resetValues();
+                      }
+                    }}
+                  >
+                    <text data-weight="600">Reset</text>
+                  </group>
+                </Ripple>
+              )}
+            </group>
           </group>
-</group>
         </group>
 
         <group data-direction="column" data-gap="15">
           {/* <text data-weight="700" data-space-left="15">
             General
           </text> */}
-          {renderSelector("preset", "Preset", PRESETS)}
+         
+          {renderSelector("controls", "Controls", CONTROLS)}
           {renderToggle("fade", "Fade Side Cards")}
           {GENERAL_CONTROLS.map(renderSlider)}
         </group>
@@ -588,34 +619,27 @@ const CarouselPage: React.FC = () => {
           {/* <text data-weight="700" data-space-left="15">
             {presetName}
           </text> */}
-          {(isCylinder ? CYLINDER_CONTROLS : SPREAD_CONTROLS).map(
-            renderSlider,
-          )}
+          {(isCylinder ? CYLINDER_CONTROLS : SPREAD_CONTROLS).map(renderSlider)}
         </group>
-
-
       </group>
 
+      <group data-space="30">
+        <separator data-horizontal="dotted" data-opacity="20"></separator>
+      </group>
 
+      {/* Item shape: demo-only, not part of Copy Parameters */}
 
-<group data-space="30">
-  <separator data-horizontal="dotted" data-opacity="20"></separator>
-</group>
-
-
-{/* Item shape: demo-only, not part of Copy Parameters */}
-
-
-
-        <group data-direction="column" data-gap="10" data-space-horizontal="30" data-length="340">
-
-          <text data-wrap="wrap" data-line="1.5" data-opacity="60" >
-            Shape of the sample cards. The ring adapts to the card width on
-            its own.
-          </text>
-        </group>
-
-
+      <group
+        data-direction="column"
+        data-gap="10"
+        data-space-horizontal="30"
+        data-length="340"
+      >
+        <text data-wrap="wrap" data-line="1.5" data-opacity="60">
+          Shape of the sample cards. The ring adapts to the card width on its
+          own.
+        </text>
+      </group>
 
       <group
         data-space="30"
@@ -625,17 +649,11 @@ const CarouselPage: React.FC = () => {
         data-row-gap="15"
         data-align="start"
       >
-
-
-          {renderSelector("ratio", "Ratio", RATIOS)}
-          {renderToggle("images", "Show Images")}
-          {renderSlider(WIDTH_CONTROL)}
-          {renderSlider(RADIUS_CONTROL)}
-
+        {renderSelector("ratio", "Ratio", RATIOS)}
+        {renderToggle("images", "Show Images")}
+        {renderSlider(WIDTH_CONTROL)}
+        {renderSlider(RADIUS_CONTROL)}
       </group>
-
-
-
     </group>
   );
 };
