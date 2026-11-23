@@ -231,7 +231,7 @@ const CountPropsDemo: React.FC = () => {
 
         data-direction="column"
         data-gap="10"
-        data-space="30"
+        data-space-vertical="30"
         data-contain=""
         data-align="start"
       >
@@ -320,7 +320,7 @@ const CountPropsDemo: React.FC = () => {
                     data-align="center"
                     data-justify="center"
                     data-width="auto"
-                    data-contain=""
+                   // data-contain=""
                     data-opacity="40"
                   >
                     {(Object.keys(STATUS_TEXT) as Status[]).map((s) => (
