@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
-import Marquee from "../components/Marquee";
+import MarqueePropsDemo from "./MarqueePropsDemo";
 import CountPropsDemo from "./CountPropsDemo";
 
 import sampleImage from "../styles/images/samples/wide_res_68.webp";
@@ -76,19 +76,6 @@ const Miscellaneous: React.FC = () => {
     return () => ro.disconnect();
   }, [updateRippleModeIndicator]);
 
-  const [dir, setDir] = useState<"rtl" | "ltr">("ltr"); // Initialize dir state
-
-  // Function to toggle dir attribute
-  const toggleDir = () => {
-    setDir((prevDir) => (prevDir === "rtl" ? "ltr" : "rtl"));
-  };
-
-  const [isAutoMode, setIsAutoMode] = useState(true);
-
-  const toggleAutoMode = () => {
-    setIsAutoMode((prevMode) => !prevMode);
-  };
-
   return (
     <group data-space="30" data-gap="30" data-align="start">
 
@@ -152,109 +139,16 @@ const Miscellaneous: React.FC = () => {
                   data-line="1.5"
                   data-ellipsis=""
                 >
-                  Functional component that provides a marquee effect for its
-                  children elements, supporting both <b>LTR</b> and <b>RTL</b>{" "}
-                  directions
+                  Scrolls its children in an endless loop, with adjustable
+                  speed, drag and flick, in both <b>LTR</b> and <b>RTL</b>{" "}
+                  directions.
                 </text>
               </group>
             </group>
           </group>
         </group>
 
-        <group
-          data-contain=""
-          data-align="center"
-          data-border=""
-          data-index="2"
-          data-radius="20"
-        >
-          <group data-contain="" dir={dir}>
-            <Marquee auto={isAutoMode}>
-              <group data-space="30">
-                <text data-weight="600">
-                  Did you know? The first computer mouse was invented in{" "}
-                  <b>1964</b> by Douglas Engelbart and was made of wood. It
-                  revolutionized how we interact with computers, paving the way
-                  for modern UI designs we use today.
-                </text>
-              </group>
-            </Marquee>
-          </group>
-        </group>
-
-        <group data-gap="10">
-<Ripple>
-            <group
-            data-contain=""
-            data-space-vertical="15"
-            data-space-horizontal="20"
-            data-interactive=""
-            data-cursor="pointer"
-            data-radius="15"
-            data-width="auto"
-            // data-length="180"
-            data-align="center"
-            data-direction="column"
-            data-background="highlight"
-            onClick={toggleDir}
-          >
-            <text data-weight="600">Toggle Direction </text>
-          </group>
-</Ripple>
-
-<Ripple>
-            <group
-            data-contain=""
-       //   data-space-vertical="15"
-            data-space-horizontal="20"
-            data-height="45"
-            data-interactive=""
-            data-cursor="pointer"
-            data-radius="15"
-            data-width="auto"
-            data-wrap="no"
-            //   data-length="180"
-            data-align="center"
-           data-gap="15"
-            onClick={toggleAutoMode}
-            data-background={isAutoMode ? "main" : "highlight"}
-            data-color={isAutoMode ? "main-text" : ""}
-            data-ink-color={isAutoMode ? "main-dark" : ""}
-          >
-            <text>Automode</text>
-                <separator data-vertical="" data-height="20"></separator>
-            <text data-weight="600">
-              {isAutoMode ? "Enabled" : "Disabled"}
-            </text>
-
-
-
-{/* <group data-wrap="no">
-                    <text
-                  data-weight="600"
-                    data-ellipsis=""
-                    data-transition-prop="font-size"
-                    data-duration="2"
-                    data-text-size={isAutoMode ? "" : "0"}
-                  >
-                    Enabled
-                  </text>
-                  <text
-                  data-weight="600"
-                    data-ellipsis=""
-                    data-transition-prop="font-size"
-                    data-duration="2"
-                    data-text-size={!isAutoMode ? "" : "0"}
-                  >
-                    Disabled
-                  </text>
-</group> */}
-
-
-        
-          </group>
-</Ripple>
-        </group>
+        <MarqueePropsDemo />
 
 
         <separator data-horizontal="dotted" data-opacity="20" data-interval="30"></separator>

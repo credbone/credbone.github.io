@@ -145,19 +145,6 @@ transition: background-color 5000s 0s, color 5000s 0s;
 
 
 
-[data-name="marquee_cont"] [data-marquee]{ animation-fill-mode: both;animation-name: marquee_back;animation-duration: .325s;animation-timing-function: cubic-bezier(.6, .35, 0, 1.21); }
-[data-name="marquee_cont"].start [data-marquee]{animation-name:marquee; padding-right:20px; animation-duration: var(--duration-value);animation-timing-function: linear; animation-iteration-count: infinite; }
-[dir="rtl"] [data-name="marquee_cont"].start [data-marquee]{animation-name:marquee_left;padding-left:20px; padding-right:initial;}
-[data-name="marquee_cont"]{ -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 40px), rgba(0, 0, 0, 0) calc(100% - 10px)); mask-image: linear-gradient(to right, #000 calc(100% - 40px), rgba(0, 0, 0, 0) calc(100% - 10px)); }
-[dir="rtl"] [data-name="marquee_cont"]{ -webkit-mask-image:linear-gradient(to left, #000 calc(100% - 40px), rgba(0, 0, 0, 0) calc(100% - 10px)); mask-image: linear-gradient(to left, #000 calc(100% - 40px), rgba(0, 0, 0, 0) calc(100% - 10px)); }
-
-
-
-[data-name="marquee_cont"].start{ -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000 20px, #000 calc(100% - 20px), rgba(0, 0, 0, 0) 100%); mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000 20px, #000 calc(100% - 20px), rgba(0, 0, 0, 0) 100%); }
-
-@keyframes marquee{to{transform:translateX(-100%)}}
-@keyframes marquee_left{to{transform:translateX(100%)}}
-@keyframes marquee_back{from{transform:var(--transform-value)}to{}}
 
 
 /* stylelint-enable */

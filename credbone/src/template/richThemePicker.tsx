@@ -143,7 +143,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
                 >
                   <group style={{ backgroundColor: c.code }} data-space="15">
                     <group
-                      data-name="marquee_cont"
+                      data-mask="end"
                       data-justify="end"
                       data-contain=""
                       data-duration={
@@ -252,7 +252,7 @@ const RichThemePicker: React.FC<RichThemePickerProps> = ({
                     data-contain=""
                     key={c.code}
                     data-direction="column"
-                    data-name="marquee_cont"
+                    data-mask="end"
                   >
                     <text data-ellipsis="" data-weight="700">
                       {c.name}

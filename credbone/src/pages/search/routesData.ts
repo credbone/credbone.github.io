@@ -116,8 +116,8 @@ export const routesData: RouteData[] = [
   {
     "path": "/Components/Miscellaneous#marquee",
     "title": "Marquee",
-    "description": "Scrolling marquee effect for its children, supporting LTR and RTL directions.",
-    "tags": ["marquee", "ticker", "scroll", "text", "component"],
+    "description": "Scrolling marquee for its children, with speed control, pause on hover, drag and flick, in LTR and RTL directions.",
+    "tags": ["marquee", "ticker", "scroll", "drag", "swipe", "text", "component"],
     "tagsVisible": false
   },
   {
