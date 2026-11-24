@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 interface SnackbarProps {
   id: string;
-  message: string;
+  message: ReactNode;
   duration?: number;
   onClose: (id: string) => void;
 }

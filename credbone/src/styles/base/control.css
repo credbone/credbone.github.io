@@ -114,7 +114,7 @@ text[data-line="1.1"] {line-height:1.1}
 text[data-line="1.2"] {line-height:1.2}
 text[data-line="1.3"] {line-height:1.3}
 text[data-line="1.4"] {line-height:1.4}
-text[data-line="1.5"] {line-height:1.5}
+text[data-line="1.5"] {line-height:1.5;}
 
 
 
@@ -954,6 +954,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-min-height="240"]{min-height:240px;}
 [data-min-height="280"]{min-height:280px;}
 [data-min-height="300"]{min-height:300px;}
+[data-min-height="320"]{min-height:320px;}
 [data-min-height="400"]{min-height:400px;}
 [data-min-height="fit"]{min-height: 100%;}
 
@@ -1142,8 +1143,10 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-border="30-neutral-lighter"]{box-shadow: 0 0 0 30px var(--neutral-color-lighter)}
 
 
-
-
+[data-edge="1"]{border: 1px var(--border-color) solid;}
+[data-edge-top="0"]{border-top: none;}
+[data-edge-top="1-text"]{border-top: 1px var(--text-color) solid;}
+[data-edge-bottom="1-text"]{border-bottom: 1px var(--text-color) solid;}
 
 [data-border="1-primary"]{box-shadow: 0 0 0 1px var(--main-color)}
 

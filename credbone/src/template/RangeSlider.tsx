@@ -58,7 +58,7 @@ const RangeSlider: React.FC = () => {
           >
             <group data-length="300" data-gap="30">
               <group>
-                <text data-wrap="wrap" data-weight="600" data-line="1.5">
+                <text data-wrap="wrap"  data-line="1.5">
                   By default, the slider is configured to fit the available
                   space, use a neutral palette, and display the current value on
                   the handle.
@@ -89,7 +89,7 @@ const RangeSlider: React.FC = () => {
           data-gap="30"
         >
           <group data-direction="column" data-gap="30">
-            <group data-text-size="64" data-weight="700">
+            <group data-text-size="64" data-weight="300">
               <text data-line="1">{sliderValue_2}</text>
               <text data-line="1">°</text>
             </group>
@@ -97,13 +97,14 @@ const RangeSlider: React.FC = () => {
           <text
             data-wrap="wrap"
             data-max-length="300"
-            data-weight="600"
+            
             data-line="1.5"
           >
             Showcases range ticks with primary color applied to slider UI
           </text>
           <group data-gap="15" data-radius="30">
             <TickComponent
+            data-opacity="50"
               tickCount={15}
               emphasizeEdges
               emphasizeCenter
@@ -142,7 +143,7 @@ const RangeSlider: React.FC = () => {
           <text
             data-wrap="wrap"
             data-max-length="200"
-            data-weight="600"
+            
             data-line="1.5"
           >
             Adapts to various environments and backgrounds
@@ -194,7 +195,7 @@ const RangeSlider: React.FC = () => {
 <text
   data-wrap="wrap"
 data-text-align="center"
-  data-weight="600"
+  
   data-line="1.5"
 
 
@@ -223,7 +224,7 @@ Custom handle using different properties
           </group>
         </group>
 
-        <group
+        {/* <group
           data-background="context"
           data-radius="30"
           data-space="15"
@@ -236,7 +237,7 @@ Custom handle using different properties
             <text
             data-wrap="wrap"
             data-max-length="200"
-            data-weight="600"
+            
             data-line="1.5"
           >
             Filled track with tick marks and inline label and value
@@ -256,7 +257,7 @@ Custom handle using different properties
             data-contain=""
          //   data-height="40"
           >
-            {/* <group
+            <group
               data-position="absolute"
               data-width="fit"
               data-left="0"
@@ -276,7 +277,7 @@ data-pointer-event="none"
              //   data-height="40"
                 heights={{ minor: 8, major: 8, center: 30 }}
               ></TickComponent>
-            </group> */}
+            </group>
 
 
 
@@ -312,7 +313,7 @@ data-pointer-event="none"
           </group>
 
 
-        </group>
+        </group> */}
       </group>
 
       {/* <group data-gap="30">
@@ -577,7 +578,7 @@ data-pointer-event="none"
             data-gap="20"
             data-direction="column"
           >
-            <text data-weight="600">{label}</text>
+            <text >{label}</text>
             <TickComponent {...props} />
           </group>
         ))}

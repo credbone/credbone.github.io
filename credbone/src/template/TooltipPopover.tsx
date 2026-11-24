@@ -233,7 +233,7 @@ const TooltipPopover: React.FC = () => {
             data-backdrop="20-adaptive"
           >
             <group data-space="15">
-              <text data-wrap="wrap" data-line="1.5" data-max-length="300">
+              <text data-wrap="wrap" data-line="1.5" data-max-length="360">
                 Click to view a sample popover. The default placement is on top,
                 but if there's not enough space, it will find a way to display
                 itself.
@@ -402,6 +402,7 @@ const TooltipPopover: React.FC = () => {
                 data-wrap="wrap"
                 data-opacity="40"
                 data-line="1.5"
+                data-weight="400"
               >
                 The popover content can be a separate fully functional
                 component.
