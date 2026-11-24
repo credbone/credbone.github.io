@@ -1,4 +1,11 @@
-import React, { useState, useRef, useEffect, CSSProperties } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useId,
+  CSSProperties,
+} from 'react';
 import ReactDOM from 'react-dom';
 
 interface TooltipProps {
@@ -24,6 +31,13 @@ const Tooltip: React.FC<TooltipProps> = ({
   const touchTimeout = useRef<NodeJS.Timeout | null>(null);
   const showTimeout = useRef<NodeJS.Timeout | null>(null);
   const cursorPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  // What holds the tooltip open: the pointer, keyboard focus, or both
+  const hovered = useRef(false);
+  const focused = useRef(false);
+  // A mouse is over the trigger. Without one (touch, keyboard), placement
+  // "cursor" works like "auto"
+  const mouseOver = useRef(false);
+  const tooltipId = useId();
 
   const CURSOR_OFFSET_X = 12;
   const CURSOR_OFFSET_Y = -8; // slightly above cursor
@@ -47,11 +61,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     const popoverRect = tooltipRef.current.getBoundingClientRect();
     const position: CSSProperties = {};
 
-    const spaceAbove = targetRect.top;
-    const spaceBelow = window.innerHeight - targetRect.bottom;
-
-    const fitTop = spaceAbove >= popoverRect.height + distance;
-    const fitBottom = spaceBelow >= popoverRect.height + distance;
+    const fitTop = targetRect.top >= popoverRect.height + distance;
 
     const determinePosition = (placement: string) => {
       const minDistance = Math.max(10, Math.abs(distance));
@@ -110,13 +120,8 @@ const Tooltip: React.FC<TooltipProps> = ({
 
     switch (placement) {
       case 'auto':
-        if (fitTop) {
-          determinePosition('top');
-        } else if (fitBottom) {
-          determinePosition('bottom');
-        } else {
-          determinePosition('bottom');
-        }
+      case 'cursor': // no mouse to follow
+        determinePosition(fitTop ? 'top' : 'bottom');
         break;
       default:
         determinePosition(placement);
@@ -126,11 +131,29 @@ const Tooltip: React.FC<TooltipProps> = ({
     return position;
   };
 
+  const updatePosition = () => {
+    const tooltip = tooltipRef.current;
+    if (!tooltip) return;
+
+    // Measure at the left edge: near the right one the width would be squeezed
+    const { left } = tooltip.style;
+    tooltip.style.left = '0px';
+
+    setTooltipPosition(
+      placement === 'cursor' && mouseOver.current
+        ? calculateCursorPosition(cursorPos.current.x, cursorPos.current.y)
+        : calculatePosition()
+    );
+
+    tooltip.style.left = left;
+  };
+
   // Track mouse position globally when cursor placement is active
   useEffect(() => {
     if (placement !== 'cursor') return;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (!mouseOver.current) return;
       cursorPos.current = { x: e.clientX, y: e.clientY };
       if (isVisible) {
         setTooltipPosition(calculateCursorPosition(e.clientX, e.clientY));
@@ -141,16 +164,23 @@ const Tooltip: React.FC<TooltipProps> = ({
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, [placement, isVisible]);
 
-  useEffect(() => {
-    if (isVisible) {
-      if (placement === 'cursor') {
-        setTooltipPosition(calculateCursorPosition(cursorPos.current.x, cursorPos.current.y));
-      } else {
-        const position = calculatePosition();
-        setTooltipPosition(position);
-      }
-    }
-  }, [isVisible]);
+  // Position before paint, and again when anything that affects it changes
+  useLayoutEffect(() => {
+    if (!isVisible) return;
+
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, [isVisible, content, placement, distance]);
+
+  // Clear pending timers on unmount
+  useEffect(
+    () => () => {
+      if (showTimeout.current) clearTimeout(showTimeout.current);
+      if (touchTimeout.current) clearTimeout(touchTimeout.current);
+    },
+    []
+  );
 
   useEffect(() => {
     const handleOutsideClickOrMouseDown = (event: MouseEvent) => {
@@ -160,7 +190,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         childRef.current &&
         !childRef.current.contains(event.target as Node)
       ) {
-        setIsVisible(false);
+        dismiss();
       }
     };
 
@@ -169,39 +199,42 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, []);
 
   useEffect(() => {
+    if (!isVisible) return;
+
+    const isOutside = (event: Event) =>
+      tooltipRef.current &&
+      !tooltipRef.current.contains(event.target as Node) &&
+      childRef.current &&
+      !childRef.current.contains(event.target as Node);
+
     const handleScroll = (event: Event) => {
-      if (
-        tooltipRef.current &&
-        !tooltipRef.current.contains(event.target as Node) &&
-        childRef.current &&
-        !childRef.current.contains(event.target as Node)
-      ) {
-        setIsVisible(false);
+      if (!isOutside(event)) return;
+      // Tabbing to an element scrolls it into view, so follow instead of hiding
+      if (focused.current) {
+        updatePosition();
+      } else {
+        dismiss();
       }
     };
 
     const handleDocumentClick = (event: MouseEvent) => {
-      if (
-        tooltipRef.current &&
-        !tooltipRef.current.contains(event.target as Node) &&
-        childRef.current &&
-        !childRef.current.contains(event.target as Node)
-      ) {
-        setIsVisible(false);
-      }
+      if (isOutside(event)) dismiss();
     };
 
-    if (isVisible) {
-      document.addEventListener('click', handleDocumentClick);
-      window.addEventListener('scroll', handleScroll, true);
-    } else {
-      window.removeEventListener('scroll', handleScroll, true);
-    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') dismiss();
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('scroll', handleScroll, true);
 
     return () => {
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', handleScroll, true);
     };
-  }, [isVisible]);
+  }, [isVisible, placement, distance]);
 
   const handleTooltipTrigger = (showTooltip: boolean) => {
     if (showTimeout.current) {
@@ -220,48 +253,87 @@ const Tooltip: React.FC<TooltipProps> = ({
     }
   };
 
-  const handlePointerDown = (e: React.PointerEvent) => {
-    touchTimeout.current = setTimeout(() => {
-      handleTooltipTrigger(true);
-    }, 300);
+  // Hide whatever opened it
+  const dismiss = () => {
+    hovered.current = false;
+    mouseOver.current = false;
+    focused.current = false;
+    handleTooltipTrigger(false);
   };
 
-  const handlePointerUp = (e: React.PointerEvent) => {
-    if (e.pointerType === 'touch' && touchTimeout.current) {
-      clearTimeout(touchTimeout.current);
-    }
-    handleTooltipTrigger(false);
+  const handlePointerDown = (e: React.PointerEvent) => {
+    touchTimeout.current = setTimeout(() => {
+      hovered.current = true;
+      mouseOver.current = false;
+      handleTooltipTrigger(true);
+    }, 300);
   };
 
   const handlePointerLeave = (e: React.PointerEvent) => {
     if (e.pointerType === 'touch' && touchTimeout.current) {
       clearTimeout(touchTimeout.current);
     }
-    handleTooltipTrigger(false);
+    hovered.current = false;
+    mouseOver.current = false;
+    if (focused.current) {
+      if (placement === 'cursor') updatePosition();
+    } else {
+      handleTooltipTrigger(false);
+    }
   };
+
+  // Keyboard focus only. React events also bubble here from portals opened
+  // inside the trigger (a popover, a modal), so check it's really inside
+  const handleFocus = (e: React.FocusEvent) => {
+    const target = e.target as HTMLElement;
+    if (!childRef.current?.contains(target) || !target.matches(':focus-visible')) return;
+    focused.current = true;
+    if (!isVisible) handleTooltipTrigger(true);
+  };
+
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!focused.current || childRef.current?.contains(e.relatedTarget as Node | null)) return;
+    focused.current = false;
+    if (!hovered.current) handleTooltipTrigger(false);
+  };
+
+  const child = children as React.ReactElement<any>;
+  const isShown = isVisible && content;
 
   return (
     <>
-      {React.cloneElement(children as React.ReactElement, {
+      {React.cloneElement(child, {
         ref: childRef,
+        'aria-describedby':
+          [child.props['aria-describedby'], isShown && tooltipId].filter(Boolean).join(' ') ||
+          undefined,
+        onFocus: (e: React.FocusEvent) => {
+          child.props.onFocus?.(e);
+          handleFocus(e);
+        },
+        onBlur: (e: React.FocusEvent) => {
+          child.props.onBlur?.(e);
+          handleBlur(e);
+        },
         onPointerDown: (e: React.PointerEvent) => {
-          if (e.pointerType === 'touch' && placement !== 'cursor') {
+          // The pointer takes over from the keyboard
+          focused.current = false;
+          if (e.pointerType === 'touch') {
             handlePointerDown(e);
           }
         },
         onPointerEnter: (e: React.PointerEvent) => {
           if (e.pointerType === 'mouse') {
-            if (placement === 'cursor') {
-              cursorPos.current = { x: e.clientX, y: e.clientY };
-            }
+            cursorPos.current = { x: e.clientX, y: e.clientY };
+            hovered.current = true;
+            mouseOver.current = true;
             handleTooltipTrigger(true);
           }
         },
         onPointerLeave: handlePointerLeave,
       })}
 
-      {isVisible &&
-        content &&
+      {isShown &&
         ReactDOM.createPortal(
           <group
           data-animation-name="tooltip"
@@ -281,6 +353,8 @@ const Tooltip: React.FC<TooltipProps> = ({
               // pointerEvents: 'none', // cursor-following tooltips shouldn't block mouse events
             }}
             {...rest}
+            id={tooltipId}
+            role="tooltip"
           >
             {content}
           </group>,

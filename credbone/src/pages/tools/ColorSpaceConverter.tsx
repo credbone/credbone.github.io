@@ -769,7 +769,7 @@ const ColorSpaceConverter: React.FC = () => {
                         data-background="adaptive-gray"
                         data-backdrop="20"
                         data-clip="tab-top"
-    
+                        data-clip-size="12"
                         onClick={() =>
                           copySVGToClipboard(harmony.name, harmony.colors)
                         }
@@ -860,25 +860,27 @@ const ColorSpaceConverter: React.FC = () => {
               <Ripple>
                 <group
                   data-interactive=""
-                  data-over-color="neutral"
+                  data-over-color={activeTab === "spaces" ? "none" : "neutral"}
+                  data-ink-color={activeTab === "spaces" ? "transparent" : "neutral"}
                   data-cursor="pointer"
                   data-contain=""
                   data-align="center"
                   data-gap="15"
 
-                  data-space-vertical={ activeTab === "spaces" ? "20" : "15" }
+                  data-space-vertical="15"
                   data-width="auto"
                   data-space-horizontal="30"
-                  data-background={ activeTab === "spaces" ? "text" : "adaptive-gray" }
-                  data-color={activeTab === "spaces" ? "main-background" : ""}
-                  data-index={activeTab === "spaces" ? "2" : ""}
+                  data-background={activeTab === "spaces" ? "text" : ""}
+                  data-color={activeTab === "spaces" ? "main-background" : undefined}
+                  data-index={activeTab === "spaces" ? "2" : undefined}
                   data-clip="tab-top"
+                  data-clip-size="12"
                   onClick={() => setActiveTab("spaces")}
                 >
                   <group data-width="auto" data-contain="">
                     <text
                       data-ellipsis=""
-                      data-opacity={activeTab === "spaces" ? "100" : "40"}
+                      data-opacity={activeTab === "spaces" ? "100" : "60"}
                     >
                       Color Spaces
                     </text>
@@ -889,26 +891,28 @@ const ColorSpaceConverter: React.FC = () => {
               <Ripple>
                 <group
                   data-interactive=""
-                  data-over-color="neutral"
+                  data-over-color={activeTab === "css" ? "none" : "neutral"}
+                  data-ink-color={activeTab === "css" ? "transparent" : "neutral"}
                   data-cursor="pointer"
                   data-contain=""
                   data-align="center"
                   data-gap="15"
 
-                  data-space-vertical={ activeTab === "css" ? "20" : "15" }
+                  data-space-vertical="15"
                   data-space-horizontal="30"
                   data-width="auto"
-                  data-background={ activeTab === "css" ? "text" : "adaptive-gray" }
-                  data-color={activeTab === "css" ? "main-background" : ""}
-                  data-index={activeTab === "css" ? "2" : ""}
+                  data-background={activeTab === "css" ? "text" : ""}
+                  data-color={activeTab === "css" ? "main-background" : undefined}
+                  data-index={activeTab === "css" ? "2" : undefined}
                   data-clip="tab-top"
-                  data-margin-left="-20"
+                  data-clip-size="12"
+                  data-margin-left="-tab"
                   onClick={() => setActiveTab("css")}
                 >
                   <group data-width="auto" data-contain="">
                     <text
                       data-ellipsis=""
-                      data-opacity={activeTab === "css" ? "100" : "40"}
+                      data-opacity={activeTab === "css" ? "100" : "60"}
                     >
                       CSS Values
                     </text>
@@ -917,7 +921,7 @@ const ColorSpaceConverter: React.FC = () => {
               </Ripple>
             </group>
 
-            <group data-height="2" data-background="text"></group>
+            <group data-height="1" data-background="text"></group>
           </group>
 
           <group

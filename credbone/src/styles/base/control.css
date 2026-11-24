@@ -262,6 +262,8 @@ text[data-width="auto"]{width: initial;}
 [data-left="20"] { left: 20px; }
 [data-left="25"] { left: 25px; }
 [data-left="30"] { left: 30px; }
+[data-left="35"] { left: 35px; }
+[data-left="40"] { left: 40px; }
 [data-left="50"] { left: 50px; }
 [data-left="60"] { left: 60px; }
 [data-left="full"] { left: 100%; }
@@ -885,7 +887,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-top="-170"] {margin-top:-170px}
 
 
-
+[margin-inline-end="-10"]{margin-inline-end: -10px;}
 
 
 
@@ -910,6 +912,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-margin-left="-20"]{margin-left:-20px;}
 [data-margin-left="-25"]{margin-left:-25px;}
 [data-margin-left="-30"]{margin-left:-30px;}
+[data-margin-left="-tab"]{margin-left:calc(var(--tbr) * -2);}
 
 [data-margin-left="-15"]{margin-left:-15px;}
 [data-margin-left="5"]{margin-left:5px;}
@@ -985,6 +988,7 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 [data-space="0"] { padding:0px;}
 [data-space="2"] { padding:2px;}
 [data-space="3"] { padding:3px;}
+[data-space="4"] { padding:4px;}
 [data-space="5"] { padding:5px;}
 [data-space="7"] { padding:7px;}
 [data-space="8"] { padding:8px;}
@@ -1593,6 +1597,7 @@ view[data-scroll],
 
 [data-clip="tab-top"]{clip-path: shape(from 0 100%, arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr), vline to var(--tbr), arc by var(--tbr) calc(-1 * var(--tbr)) of var(--tbr) cw, hline to calc(100% - 2 * var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr) cw, vline to calc(100% - var(--tbr)), arc by var(--tbr) var(--tbr) of var(--tbr));--tbr: 10px;}
 
+[data-clip="tab-top"][data-clip-size="12"]{--tbr: 12px;}
 
 [data-clip="toolbar-pill"]{clip-path: shape(from 85px 0, hline to calc(100% - 25px), arc to calc(100% - 25px) 100% of 25px cw, hline to 85px, arc to 64.8733px 39.8298px of 25px cw, curve to 55px 34px with 62.4864px 36.5953px / 59.0199px 34px, curve to 45.1267px 39.8298px with 50.9801px 34px / 47.5136px 36.5953px, arc to 45.1267px 10.1702px of 25px large cw, curve to 55px 16px with 47.5136px 13.4047px / 50.9801px 16px, curve to 64.8733px 10.1702px with 59.0199px 16px / 62.4864px 13.4047px, arc to 85px 0 of 25px cw, close);}
 

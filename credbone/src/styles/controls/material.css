@@ -25,7 +25,7 @@
 [data-ink-color="neutral-light"]{--ink-color: var(--hover);}
 [data-ink-color="dark-shade-10"]{--ink-color: var(--dark-shade-10);}
 
-
+[data-ink-color="transparent"]{--ink-color: transparent;}
 
 
 .material_ink {

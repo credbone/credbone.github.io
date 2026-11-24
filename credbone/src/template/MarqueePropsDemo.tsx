@@ -11,7 +11,8 @@ import sampleImage_3 from "../styles/images/samples/sample_res/res-03.jpg";
 import sampleImage_2 from "../styles/images/samples/sample_res/res-01.jpg";
 
 import { IconSearch, IconShare } from "../components/icon/credIcons";
-import { ArrowRight } from "lucide-react";
+
+
 
 type Content = "text" | "elements";
 type Mode = "auto" | "hover";
@@ -234,15 +235,26 @@ const MarqueePropsDemo: React.FC = () => {
                 <group
                   data-length="40"
                   data-height="40"
-                  data-contain=""
+                  //   data-contain=""
                   data-radius="50"
                   data-justify="center"
                   data-align="center"
                   data-background="yellow-light"
                   data-color="brown-darker"
                   data-weight="700"
-                 
                 >
+                  <group
+                    data-background="ember"
+                    data-border="3-main-background"
+                    data-space="4"
+                    data-position="absolute"
+                    data-width="auto"
+                    data-radius="5"
+                    data-right="0"
+                    data-top="0"
+                    data-index="2"
+                  ></group>
+
                   <text>23</text>
                 </group>
 
@@ -253,6 +265,7 @@ const MarqueePropsDemo: React.FC = () => {
                   data-radius="40"
                   data-background="adaptive-gray"
                   //   data-color="main-background"
+                  data-align="center"
                 >
                   <group
                     data-height="40"
@@ -260,8 +273,10 @@ const MarqueePropsDemo: React.FC = () => {
                     data-justify="center"
                     data-align="center"
                   >
-                    <IconSearch stroke={1} />
+                    <IconSearch stroke={1.5} />
+
                   </group>
+
                 </group>
 
                 <group
@@ -275,7 +290,7 @@ const MarqueePropsDemo: React.FC = () => {
                   <IconShare stroke={1.5} />
                 </group>
 
-                <group
+                {/* <group
                   data-border="outline"
                   data-width="auto"
                   data-space="5"
@@ -298,10 +313,10 @@ const MarqueePropsDemo: React.FC = () => {
                   </group>
                   <text>Notifications</text>
                   <group data-length="5"></group>
-                </group>
+                </group> */}
 
-                <group data-type="grid" data-grid-template-columns="30-30-40">
-                  <group>
+                <group data-wrap="no">
+                  <group margin-inline-end="-10">
                     <group
                       data-length="40"
                       data-height="40"
@@ -320,7 +335,7 @@ const MarqueePropsDemo: React.FC = () => {
                     </group>
                   </group>
 
-                  <group>
+                  <group margin-inline-end="-10">
                     <group
                       data-length="40"
                       data-height="40"
@@ -340,7 +355,7 @@ const MarqueePropsDemo: React.FC = () => {
                     </group>
                   </group>
 
-                  <group>
+                  <group margin-inline-end="-10">
                     <group
                       data-length="40"
                       data-height="40"
@@ -359,6 +374,21 @@ const MarqueePropsDemo: React.FC = () => {
                       </picture>
                     </group>
                   </group>
+
+                  <group
+                    data-length="40"
+                    data-height="40"
+                    data-contain=""
+                    data-radius="50"
+                    data-justify="center"
+                    data-align="center"
+                    data-background="text"
+                    data-weight="700"
+                    data-border="3-main-background"
+                    data-color="main-background"
+                  >
+                    <text>+2</text>
+                  </group>
                 </group>
 
                 <separator data-vertical=""> </separator>
@@ -369,7 +399,7 @@ const MarqueePropsDemo: React.FC = () => {
                     key={tag}
                     data-height="40"
                     data-width="auto"
-                    data-space-horizontal="30"
+                    data-space-horizontal="20"
                     data-align="center"
                     data-radius="30"
                     data-border="outline"
