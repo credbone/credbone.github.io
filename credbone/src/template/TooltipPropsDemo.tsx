@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import ConfigSlider from "../components/inputs/ConfigSlider";
@@ -122,80 +122,44 @@ const TooltipPropsDemo: React.FC = () => {
     }
   };
 
-  // Segmented toggle indicator (same logic as the Ripple demo mode toggle in Miscellaneous)
-  const tabToggleRef = useRef<HTMLDivElement>(null);
-  const tabIndicatorRef = useRef<HTMLDivElement>(null);
-  const [tabIndicatorStyle, setTabIndicatorStyle] = useState({
-    left: 0,
-    width: 0,
-  });
-
-  // Tracks the selected option relative to the toggle container
-  const updateTabIndicator = useCallback(() => {
-    const container = tabToggleRef.current;
-    if (!container) return;
-    const selected = container.querySelector<HTMLElement>(
-      '[data-selected="true"]',
-    );
-    if (!selected) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const selectedRect = selected.getBoundingClientRect();
-
-    // The indicator's own data-space pads the fill inward, so grow and shift the wrapper by it
-    const indicatorStyle = tabIndicatorRef.current
-      ? getComputedStyle(tabIndicatorRef.current)
-      : null;
-    const padLeft = indicatorStyle ? parseFloat(indicatorStyle.paddingLeft) : 0;
-    const padRight = indicatorStyle
-      ? parseFloat(indicatorStyle.paddingRight)
-      : 0;
-
-    setTabIndicatorStyle({
-      // clientLeft offsets the container border, since absolute positioning starts inside it
-      left:
-        selectedRect.left - containerRect.left - container.clientLeft - padLeft,
-      width: selectedRect.width + padLeft + padRight,
-    });
-  }, []);
-
-  // Fire on selection change
-  useEffect(() => {
-    updateTabIndicator();
-  }, [activeTab, updateTabIndicator]);
-
-  // Fire on resize
-  useEffect(() => {
-    const ro = new ResizeObserver(updateTabIndicator);
-    if (tabToggleRef.current) ro.observe(tabToggleRef.current);
-    return () => ro.disconnect();
-  }, [updateTabIndicator]);
-
-  const renderTab = ({ value, title }: (typeof TABS)[number]) => {
+  // Clipped tabs, same as Color Formats in the Color Converter
+  const renderTab = (
+    { value, title }: (typeof TABS)[number],
+    index: number,
+  ) => {
     const isActive = activeTab === value;
     return (
-      <group
-        key={value}
-        data-ink-color="neutral"
-        data-over-color="neutral"
-        data-contain=""
-        data-height="40"
-        data-space-horizontal="20"
-        data-align="center"
-        data-justify="center"
-        data-selected={isActive ? "true" : undefined}
-        data-color={isActive ? "black" : ""}
-        data-radius="12"
-        data-cursor="pointer"
-        data-interactive=""
-        role="tab"
-        aria-selected={isActive}
-        tabIndex={0}
-        onClick={() => setActiveTab(value)}
-        onKeyDown={onKeyActivate(() => setActiveTab(value))}
-      >
-        <text>{title}</text>
-      </group>
+      <Ripple key={value}>
+        <group
+          data-interactive=""
+          data-over-color={isActive ? "none" : "neutral"}
+          data-ink-color={isActive ? "transparent" : "neutral"}
+          data-cursor="pointer"
+          data-contain=""
+          data-align="center"
+          data-gap="15"
+          data-space-vertical="15"
+          data-space-horizontal="40"
+          data-width="auto"
+          data-background={isActive ? "text" : "adaptive-gray"}
+          data-color={isActive ? "main-background" : undefined}
+          data-index={isActive ? "2" : undefined}
+          data-clip="tab-top"
+          data-clip-size="12"
+          data-margin-left={index > 0 ? "-tab" : undefined}
+          role="tab"
+          aria-selected={isActive}
+          tabIndex={0}
+          onClick={() => setActiveTab(value)}
+          onKeyDown={onKeyActivate(() => setActiveTab(value))}
+        >
+          <group data-width="auto" data-contain="">
+            <text data-ellipsis="" data-opacity={isActive ? "100" : "60"}>
+              {title}
+            </text>
+          </group>
+        </group>
+      </Ripple>
     );
   };
 
@@ -205,69 +169,54 @@ const TooltipPropsDemo: React.FC = () => {
         <separator data-horizontal="dotted" data-opacity="20"></separator>
       </group>
 
-      <group data-direction="column" data-align="start" data-gap="30">
+      <group data-direction="column" data-align="start">
 
+
+
+<group data-direction="column" data-gap="15" data-space-horizontal="30">
+  <text data-weight="700" data-text-size="large" data-font-type="hero">Configure</text>
 
         <text data-wrap="wrap" data-line="1.5" data-max-length="400">
           Set where the tooltip appears, how quickly and how it looks. The code
           follows the controls below, and Preview lets you try the result.
         </text>
+</group>
+    <group data-height="60"></group>
 
         <group
-          ref={tabToggleRef}
-          data-gap="3"
-          data-space="3"
-          data-radius="15"
-          data-wrap="no"
           data-width="auto"
-          data-background="adaptive-gray"
+          data-wrap="no"
+          data-align="end"
           role="tablist"
           aria-label="Tooltip demo"
+          data-space-horizontal="20"
         >
-          {/* Rendered before the options so their labels paint above the fill */}
-          <group
-            ref={tabIndicatorRef}
-            data-position="absolute"
-            data-top="0"
-            data-left="0"
-            data-height="fit"
-            data-space="3"
-            data-pointer-event="none"
-            data-transition-prop="transform"
-            data-duration=".325"
-            data-timing="fancy"
-            style={{
-              width: tabIndicatorStyle.width,
-              transform: `translateX(${tabIndicatorStyle.left}px)`,
-            }}
-          >
-            <group
-              data-height="fit"
-              data-radius="12"
-              data-background="white"
-              data-border="outline"
-            ></group>
-          </group>
           {TABS.map(renderTab)}
         </group>
 
+<group data-height="1" data-index="3" data-background="text"></group>
+      
+  
 
-      </group>
-
-        <group>
+        <group >
           {activeTab === "preview" && (
             <group
-              data-background="adaptive-gray"
-              data-radius="35"
+           //   data-border=""
+         //     data-background="main-background"
+           //    data-elevation="2"
+           
+              data-index="2"
+              data-radius-bottom="35"
               data-align="center"
               data-justify="center"
-              data-min-height="240"
+               data-min-height="280"
               data-space="30"
               data-direction="column"
               role="tabpanel"
               aria-label="Preview"
               data-contain=""
             >
+              <group data-height="30"></group>
               <Tooltip
                 delay={DelayValue}
                 distance={usesDistance ? GapValue : undefined}
@@ -307,11 +256,11 @@ const TooltipPropsDemo: React.FC = () => {
               data-theme="dark"
               data-text-size="14"
               data-user-select="text"
-              // data-min-height="280"
+               data-min-height="280"
               role="tabpanel"
               aria-label="Code"
               data-border=""
-              data-radius="35"
+             data-radius-bottom="35"
             >
               <pre
                 data-scroll=""
@@ -356,7 +305,7 @@ const TooltipPropsDemo: React.FC = () => {
             </group>
           )}
         </group>
-
+</group>
       <group
         data-type="grid"
         data-grid-template="300"

@@ -1,8 +1,8 @@
 import React from "react";
 import Count from "../components/Counter";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
-import sectionImage from "../styles/images/samples/wide_res_67.webp";
-import Ripple from "../components/Ripple";
+import sectionImage from "../styles/images/samples/wide_res_68.webp";
+
 import TemplatePageHeader from "./TemplatePageHeader";
 import SnackbarPropsDemo from "./SnackbarPropsDemo";
 

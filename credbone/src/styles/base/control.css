@@ -1232,6 +1232,8 @@ picture[data-object-position="right-bottom"]  img{object-position: bottom right;
 
 
 [data-radius-bottom="30"]{border-bottom-left-radius:30px;border-bottom-right-radius: 30px;}
+[data-radius-bottom="35"]{border-bottom-left-radius:35px;border-bottom-right-radius: 35px;}
+
 [data-radius-bottom="40"]{border-bottom-left-radius:40px;border-bottom-right-radius: 40px;}
 [data-radius-bottom="50"]{border-bottom-left-radius:50px;border-bottom-right-radius: 50px;}
 
