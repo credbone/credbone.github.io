@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Marquee, { MarqueeGap, MarqueeLoop } from "../components/Marquee";
 import ConfigSlider from "../components/inputs/ConfigSlider";
 import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
+import ConfigSwap from "../components/inputs/ConfigSwap";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
@@ -32,7 +33,7 @@ type Params = {
   fade: boolean;
 };
 
-type ToggleKey = "reverse" | "pauseOnHover" | "draggable" | "fade";
+type ToggleKey = "pauseOnHover" | "draggable" | "fade";
 
 const DEFAULTS: Params = {
   content: "text",
@@ -66,6 +67,12 @@ const LOOPS: SelectOption[] = [
 const DIRECTIONS: SelectOption[] = [
   { value: "ltr", name: "LTR", hint: "Left to right" },
   { value: "rtl", name: "RTL", hint: "Right to left" },
+];
+
+// reverse prop
+const SCROLLS: SelectOption[] = [
+  { value: "forward", name: "Forward" },
+  { value: "reverse", name: "Reverse" },
 ];
 
 const GAPS: MarqueeGap[] = [0, 5, 10, 15, 20, 30, 50];
@@ -537,7 +544,12 @@ const MarqueePropsDemo: React.FC = () => {
             value={params.dir}
             onSelect={(v) => setParam("dir", v as TextDirection)}
           />
-          {renderToggle("reverse", "Reverse")}
+          <ConfigSwap
+            label="Scroll"
+            options={SCROLLS}
+            value={params.reverse ? "reverse" : "forward"}
+            onSelect={(v) => setParam("reverse", v === "reverse")}
+          />
           {renderToggle(
             "pauseOnHover",
             "Pause on Hover",

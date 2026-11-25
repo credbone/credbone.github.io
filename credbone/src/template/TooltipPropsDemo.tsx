@@ -3,6 +3,7 @@ import Tooltip from "../components/tooltip";
 import Ripple from "../components/Ripple";
 import ConfigSlider from "../components/inputs/ConfigSlider";
 import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
+import ConfigSwap from "../components/inputs/ConfigSwap";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 type Placement = "top" | "bottom" | "left" | "right" | "auto" | "cursor";
@@ -12,6 +13,11 @@ type DemoTab = "preview" | "code";
 const TABS: { value: DemoTab; title: string }[] = [
   { value: "preview", title: "Preview" },
   { value: "code", title: "Code" },
+];
+
+const FLIP_OPTIONS: SelectOption[] = [
+  { value: "off", name: "Off" },
+  { value: "on", name: "On" },
 ];
 
 const TooltipPropsDemo: React.FC = () => {
@@ -213,16 +219,8 @@ const TooltipPropsDemo: React.FC = () => {
     label: string,
     on: boolean,
     setOn: (on: boolean) => void,
-    off = false,
   ) => (
-    <group
-      data-space="3"
-      data-radius="15"
-      data-border=""
-      data-contain=""
-      data-opacity={off ? "40" : undefined}
-      data-disabled={off ? "true" : undefined}
-    >
+    <group data-space="3" data-radius="15" data-border="" data-contain="">
       <Ripple>
         <group
           data-ink-color="neutral-light"
@@ -239,9 +237,8 @@ const TooltipPropsDemo: React.FC = () => {
           data-cursor="pointer"
           role="switch"
           aria-checked={on}
-          aria-disabled={off}
           aria-label={label}
-          tabIndex={off ? -1 : 0}
+          tabIndex={0}
           onClick={() => setOn(!on)}
           onKeyDown={onKeyActivate(() => setOn(!on))}
         >
@@ -501,20 +498,16 @@ const TooltipPropsDemo: React.FC = () => {
         </group>
 
         <group data-direction="column" data-gap="15">
-          <group
-            data-opacity={usesDistance ? undefined : "40"}
-            data-disabled={usesDistance ? undefined : "true"}
-          >
-            <ConfigSlider
-              label="Distance"
-              start={-10}
-              end={30}
-              step={5}
-              value={GapValue}
-              onValueChange={setGapValue}
-              format={(v) => `${v}px`}
-            />
-          </group>
+          <ConfigSlider
+            label="Distance"
+            start={-10}
+            end={30}
+            step={5}
+            value={GapValue}
+            onValueChange={setGapValue}
+            format={(v) => `${v}px`}
+            disabled={!usesDistance}
+          />
           <ConfigSlider
             label="Delay"
             start={0}
@@ -533,7 +526,14 @@ const TooltipPropsDemo: React.FC = () => {
             onValueChange={setHideDelayValue}
             format={(v) => `${v}ms`}
           />
-          {renderToggle("Flip", flip, setFlip, !usesFlip)}
+          <ConfigSwap
+            label="Flip"
+            hint="If it doesn't fit"
+            options={FLIP_OPTIONS}
+            value={flip ? "on" : "off"}
+            onSelect={(v) => setFlip(v === "on")}
+            disabled={!usesFlip}
+          />
           {renderToggle("Disabled", disabled, setDisabled)}
         </group>
 
@@ -572,7 +572,7 @@ const TooltipPropsDemo: React.FC = () => {
                   const isSelected = selectedColor.background === background;
                   const select = () => handleColorSelect({ background, color });
                   return (
-                    <Tooltip key={background} content={label}>
+                    <Tooltip key={background} content={label} motion="zoom">
                       <group
                         data-length="30"
                         data-height="30"

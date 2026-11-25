@@ -6,6 +6,7 @@ import TiltedCard, {
 } from "../components/TiltedCard";
 import ConfigSlider from "../components/inputs/ConfigSlider";
 import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
+import ConfigSwap from "../components/inputs/ConfigSwap";
 import Count from "../components/Counter";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
@@ -43,6 +44,12 @@ const DEMOS: { value: Demo; name: string; hint: string }[] = [
   { value: "card", name: "Card", hint: "Single" },
   { value: "gallery", name: "Gallery", hint: "Three cards" },
  // { value: "product", name: "Product", hint: "Configurator" },
+];
+
+// reverse prop
+const DIRECTIONS: SelectOption[] = [
+  { value: "toward", name: "Toward" },
+  { value: "away", name: "Away" },
 ];
 
 // Depth Layers off flattens every layer onto the card (demo markup, not a card prop)
@@ -664,7 +671,13 @@ const TiltedCardPage: React.FC = () => {
 
           <group data-direction="column" data-gap="15">
             {renderSelector("axis", "Axis", AXES)}
-            {renderToggle("reverse", "Reverse")}
+            <ConfigSwap
+              label="Tilt"
+              hint="Pointer"
+              options={DIRECTIONS}
+              value={params.reverse ? "away" : "toward"}
+              onSelect={(v) => setParam("reverse", v === "away")}
+            />
             {renderToggle("float", "Idle Float")}
             {renderToggle("layers", "Depth Layers")}
           </group>

@@ -46,6 +46,7 @@ It's fully controlled: it keeps no value of its own and renders whatever `value`
 | `handlerProps` | none | Attributes spread onto the handle, last, so they override its defaults |
 | `trackLeftProps` / `trackRightProps` | none | Attributes spread onto each track, last |
 | `fillProps` | none | Renders an extra fill bar from the start edge, `width: value%`, so it's empty at min and full at max. Passing it also widens the invisible input by `handlerWidth` (half off each side, clipped by `data-contain`), so the thumb center lands exactly on the fill edge: no drift, and tap-to-jump picks the value under the finger. The handle (and the track wrapper) is then centered on the fill edge (`left: calc(p% − handlerWidth/2)`), so a visible handle is half clipped at the ends. Same glide as the handle (`data-transition-prop="width"`, off while dragging). Not rendered unless passed. The consumer sets its look (background, height, radius, opacity). Used by the Grain demo |
+| `disabled` | none | Native `disabled`: no dragging, tapping or keyboard. It doesn't dim anything, the caller does (`ConfigSlider` has its own `disabled` that does both) |
 | `onDragStart` / `onDragEnd` | none | Called on press and release on the input |
 
 ## How it works

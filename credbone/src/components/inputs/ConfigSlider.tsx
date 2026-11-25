@@ -11,6 +11,8 @@ interface ConfigSliderProps {
   onValueChange: (value: number) => void;
   /** Formats the value shown on the right (units, rounding…). Defaults to the raw value. */
   format?: (value: number) => React.ReactNode;
+  /** Dims the content (not the border) and can't be used or focused */
+  disabled?: boolean;
 }
 
 // Config slider (the "Grain" style from the slider demos): a bordered bar whose fill follows the value,
@@ -23,6 +25,7 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
   value,
   onValueChange,
   format,
+  disabled = false,
 }) => (
   <group data-space="3" data-radius="15" data-border="" data-contain="">
     <group
@@ -35,6 +38,7 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
       data-align="center"
       data-mask="left-right"
       data-pointer-event="none"
+      data-opacity={disabled ? "40" : undefined}
     >
       <TickComponent
         tickCount={18}
@@ -45,7 +49,14 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
       />
     </group>
 
-    <group data-radius="12" data-contain="" data-interactive="" data-over-color="none">
+    <group
+      data-radius="12"
+      data-contain=""
+      data-interactive=""
+      data-over-color="none"
+      data-opacity={disabled ? "40" : undefined}
+      data-disabled={disabled ? "true" : undefined}
+    >
       <CustomSlider
         label=""
         start={start}
@@ -53,6 +64,7 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
         step={step}
         value={value}
         onValueChange={onValueChange}
+        disabled={disabled}
         handlerProps={{
           "data-height": "40",
           "data-background": "none",
@@ -73,6 +85,7 @@ const ConfigSlider: React.FC<ConfigSliderProps> = ({
     <group
       data-position="absolute"
       data-pointer-event="none"
+      data-opacity={disabled ? "40" : undefined}
       data-height="fit"
       data-width="fit"
       data-left="0"

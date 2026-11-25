@@ -16,6 +16,7 @@ interface SliderProps {
   trackRightProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any };
   fillProps?: React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }; // Optional fill from the start edge to the value (width = value %); rendered only when passed
   showvalue?: boolean;
+  disabled?: boolean; // Turns the input off; the look is up to the caller
 
   onDragStart?: () => void;
   onDragEnd?: () => void;
@@ -41,6 +42,7 @@ const CustomSlider: React.FC<SliderProps> = ({
   trackRightProps,
   fillProps,
   showvalue = true,
+  disabled,
 
   onDragStart,
   onDragEnd,
@@ -124,6 +126,7 @@ const handleDragEnd = () => {
         max={end}
         value={value}
         onChange={handleChange}
+        disabled={disabled}
         aria-valuetext={label}
         data-height="fit"
         step={step}

@@ -148,7 +148,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
     onClick?: () => void;
   }) => (
     <group key={opts.key} data-height="40" data-length="40">
-      <Tooltip content={opts.name} delay={300}>
+      <Tooltip content={opts.name} delay={300} motion="zoom">
         <group
           data-animation-name="appear-left"
           data-over-color="neutral"
@@ -872,7 +872,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
   // Shared by the desktop toolbar and the mobile tool | size picker
   const renderToolButtons = (onPick?: () => void) =>
     brushTypeLabels.map(({ type, label, icon }) => (
-      <Tooltip key={type} content={label} delay={300}>
+      <Tooltip key={type} content={label} delay={300} motion="zoom">
         <group data-width="auto">
           <Ripple>
             <group
@@ -1000,7 +1000,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
           )}
         >
           <group data-width="auto">
-            <Tooltip content="Menu" delay={300}>
+            <Tooltip content="Menu" delay={300} motion="zoom">
               <group data-width="auto">
                 <Ripple>
                   <group
@@ -1373,7 +1373,7 @@ const SimplePaint: React.FC<SimplePaintProps> = ({ onExit }) => {
         {/* <separator data-vertical="" data-height="20"></separator> */}
 
         {onExit && (
-          <Tooltip content="Exit" delay={300}>
+          <Tooltip content="Exit" delay={300} motion="zoom">
             <group data-width="auto" data-position="right">
               <Ripple>
                 <group

@@ -21,8 +21,9 @@ interface SelectOptionsProps {
   stagger?: number;
 }
 
-// Option list for a popover picker. In a popover, items animate outward from the middle;
-// in a bottom sheet they animate in order. The selected item gets the main color
+// Option list for a popover picker. In a popover, items animate outward from the selected one
+// (the middle if none is); in a bottom sheet they animate in order. The selected item gets the
+// main color, and data-selected for the popover's "align-selected" placement
 export const SelectOptions: React.FC<SelectOptionsProps> = ({
   options,
   value,
@@ -30,13 +31,15 @@ export const SelectOptions: React.FC<SelectOptionsProps> = ({
   isBottomSheet,
   stagger = 0.25,
 }) => {
-  const midIndex = Math.floor(options.length / 2);
+  const selectedIndex = options.findIndex((option) => option.value === value);
+  const originIndex =
+    selectedIndex >= 0 ? selectedIndex : Math.floor(options.length / 2);
 
   return (
     <>
       {options.map((option, index) => {
-        const distance = Math.abs(index - midIndex);
-        const fromBottom = index >= midIndex;
+        const distance = Math.abs(index - originIndex);
+        const belowOrigin = index >= originIndex;
         const selected = value === option.value;
 
         return (
@@ -45,14 +48,17 @@ export const SelectOptions: React.FC<SelectOptionsProps> = ({
               onClick={() => {
                 if (!selected) onSelect(option.value);
               }}
+              data-selected={selected ? "true" : undefined}
               data-background={selected ? "main" : ""}
               data-color={selected ? "main-text" : ""}
               data-animation-name={
                 isBottomSheet
                   ? "appear-bottom"
-                  : fromBottom
-                    ? "appear-top"
-                    : "appear-bottom"
+                  : selected
+                    ? undefined
+                    : belowOrigin
+                      ? "appear-top"
+                      : "appear-bottom"
               }
               data-fill-mode="backwards"
               data-animation-duration={
@@ -88,20 +94,24 @@ interface ConfigSelectProps {
   onSelect: (value: string) => void;
   /** Show as a bottom sheet on mobile */
   bottomsheet?: boolean;
+  /** Dims the content (not the border) and can't be used or focused */
+  disabled?: boolean;
 }
 
 // Config selector (pairs with ConfigSlider): a bordered bar with the label on the left and
-// "Change" + the current option on the right. Opens a popover over itself to pick an option
+// "Change" + the current option on the right. Opens a popover over itself to pick an option,
+// with the selected one lined up with the bar
 const ConfigSelect: React.FC<ConfigSelectProps> = ({
   label,
   options,
   value,
   onSelect,
   bottomsheet,
+  disabled = false,
 }) => (
   <group data-space="3" data-radius="15" data-border="" data-contain="">
     <Popover
-      placement="middle"
+      placement="align-selected"
       bottomsheet={bottomsheet}
       data-radius="15"
       data-space="0"
@@ -117,7 +127,12 @@ const ConfigSelect: React.FC<ConfigSelectProps> = ({
         </group>
       )}
     >
-      <group>
+      {/* The popover's trigger, so it has to be the one that ignores presses */}
+      <group
+        data-opacity={disabled ? "40" : undefined}
+        data-disabled={disabled ? "true" : undefined}
+        aria-disabled={disabled || undefined}
+      >
         <Ripple>
           <group
             data-height="40"

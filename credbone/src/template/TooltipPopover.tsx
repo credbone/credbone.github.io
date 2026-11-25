@@ -445,6 +445,7 @@ const TooltipPopover: React.FC = () => {
                 // data-elevation="2"
                 content={SampleTooltipData}
                 data-length="300"
+                motion="zoom"
               >
                 <group
                   data-interactive=""

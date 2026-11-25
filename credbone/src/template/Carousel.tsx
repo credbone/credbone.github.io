@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Carousel3D, { Carousel3DItem } from "../components/Carousel3D";
 import ConfigSlider from "../components/inputs/ConfigSlider";
 import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
+import ConfigSwap from "../components/inputs/ConfigSwap";
 import Ripple from "../components/Ripple";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 import TemplatePageHeader from "./TemplatePageHeader";
@@ -84,6 +85,12 @@ const RATIOS = [
   { value: "2:3", name: "2:3", hint: "Tall" },
   { value: "4:3", name: "4:3", hint: "Landscape" },
   { value: "16:9", name: "16:9", hint: "Wide" },
+];
+
+// What the sample cards show
+const CONTENTS: SelectOption[] = [
+  { value: "images", name: "Images" },
+  { value: "numbers", name: "Numbers" },
 ];
 const WIDTHS = [140, 160, 180, 200, 220, 240, 260, 280, 300];
 
@@ -573,7 +580,12 @@ const CarouselPage: React.FC = () => {
         data-align="start"
       >
         {renderSelector("ratio", "Ratio", RATIOS)}
-        {renderToggle("images", "Show Images")}
+        <ConfigSwap
+          label="Content"
+          options={CONTENTS}
+          value={params.images ? "images" : "numbers"}
+          onSelect={(v) => setParam("images", v === "images")}
+        />
         {renderSlider(WIDTH_CONTROL)}
         {renderSlider(RADIUS_CONTROL)}
       </group>

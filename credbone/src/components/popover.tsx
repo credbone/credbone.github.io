@@ -15,7 +15,7 @@ export const POPOVER_DISMISS_EVENT = "popover-dismiss";
 interface PopoverProps {
 content: ReactNode | ((closePopover: () => void, isBottomSheet: boolean) => ReactNode);
   children: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right" | "auto" | "middle" | "mouse";
+  placement?: "top" | "bottom" | "left" | "right" | "auto" | "middle" | "align-selected" | "mouse";
   hideOnScroll?: boolean;
   containerId?: string;
   trigger?: "click" | "contextmenu";
@@ -145,6 +145,23 @@ const Popover: React.FC<PopoverProps> = ({
     const fitTop = spaceAbove >= popoverRect.height + 10;
     const fitBottom = spaceBelow >= popoverRect.height + 10;
 
+    // Center of the [data-selected="true"] item from the popover's top edge.
+    // Layout offsets, because items may still be animating in with a transform
+    const getSelectedCenter = () => {
+      const popover = popoverRef.current;
+      const item = popover?.querySelector<HTMLElement>('[data-selected="true"]');
+      if (!popover || !item) return null;
+
+      let center = item.offsetHeight / 2;
+      let el: HTMLElement | null = item;
+      while (el && el !== popover) {
+        center += el.offsetTop;
+        el = el.offsetParent as HTMLElement | null;
+        center += el?.clientTop ?? 0;
+      }
+      return center;
+    };
+
     const determinePosition = (placement: string) => {
       switch (placement) {
         case "bottomsheet":
@@ -218,6 +235,22 @@ const Popover: React.FC<PopoverProps> = ({
             ),
           );
           break;
+        // Like "middle", but with the selected item over the trigger's center
+        case "align-selected": {
+          determinePosition("middle");
+          // Measure at the final width, text may wrap in it
+          popoverRef.current!.style.width = `${position.width}px`;
+          const selectedCenter = getSelectedCenter();
+          if (selectedCenter === null) break;
+          position.top = Math.max(
+            10,
+            Math.min(
+              targetRect.top + targetRect.height / 2 - selectedCenter,
+              window.innerHeight - popoverRef.current!.offsetHeight - 10,
+            ),
+          );
+          break;
+        }
         case "mouse":
           if (clickPosition) {
             position.top = Math.max(

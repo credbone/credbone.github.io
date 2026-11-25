@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react"; // add useCallback, useRef back with the segmented toggle
 import ConfigSlider from "../../components/inputs/ConfigSlider";
+import ConfigSwap from "../../components/inputs/ConfigSwap";
+import { SelectOption } from "../../components/inputs/ConfigSelect";
 import { useSnackbar } from "../../components/snackbar/SnackbarContainer";
 import Popover from "../../components/popover";
 import Ripple from "../../components/Ripple";
 import { ArrowDown, Copy } from "lucide-react";
 import MenuItem from "../../components/MenuItem";
 import { SvgPattern_1 } from "../../components/icon/svgRes";
+
+type Mode = "fill" | "stroke";
+
+const MODES: SelectOption[] = [
+  { value: "fill", name: "Solid" },
+  { value: "stroke", name: "Outline" },
+];
 
 const generator = ({ size = 100, growth = 6, edges = 6, seed = null } = {}) => {
   var { destPoints, seedValue } = _createPoints(size, growth, edges, seed);
@@ -97,7 +106,7 @@ const _createSvgPath = (points: string | any[]) => {
 };
 
 const BlobGenerator: React.FC = () => {
-  const [mode, setMode] = useState<"fill" | "stroke">("stroke");
+  const [mode, setMode] = useState<Mode>("stroke");
   const [strokeWidth, setStrokeWidth] = useState(10);
   const [blobCount, setBlobCount] = useState(9);
 
@@ -563,55 +572,13 @@ const BlobGenerator: React.FC = () => {
   <separator data-horizontal="" data-opacity="5"></separator>
 
 <group data-space="30">
-            {/* Mode toggle: same as the Color Mixer "Mode" button */}
-          
-            <group
-          
-             
-              data-wrap="no"
-              data-width="auto"
-              data-contain=""
-             data-space="3"
-              data-radius="15"
-             // data-background="adaptive-gray"
-             data-border=""
-
-              data-cursor="pointer"
-              onClick={() => setMode(mode === "fill" ? "stroke" : "fill")}
-            >
-              <Ripple>
-<group  data-radius="12"               data-interactive=""
-              data-over-color="neutral" data-height="40" data-align="center" data-space-horizontal="15"  data-gap="15" data-contain="" data-ink-color="neutral-light" data-space="3">
-                <group data-width="auto">
-                <text data-ellipsis="" data-opacity="40">
-                  Blob Style
-                </text>
-              </group>
-              <separator data-vertical="" data-height="20"></separator>
-              <group
-                data-align="center"
-                data-justify="center"
-                data-width="auto"
-                data-contain=""
-              >
-                <text
-                  data-ellipsis=""
-                  data-transition-prop="font-size"
-                  data-duration="2"
-                  data-text-size={mode === "fill" ? "" : "0"}
-                >
-                  Solid
-                </text>
-                <text
-                  data-ellipsis=""
-                  data-transition-prop="font-size"
-                  data-duration="2"
-                  data-text-size={mode === "stroke" ? "" : "0"}
-                >
-                  Outline
-                </text>
-              </group>
-</group></Ripple>
+            <group data-width="auto">
+              <ConfigSwap
+                label="Blob Style"
+                options={MODES}
+                value={mode}
+                onSelect={(v) => setMode(v as Mode)}
+              />
             </group>
  
 
