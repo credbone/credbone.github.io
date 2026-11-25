@@ -716,8 +716,6 @@ export const IconEase: React.FC<IconProps> = ({
   );
 };
 
-
-
 export const IconSplit: React.FC<IconProps> = ({
   fill = false,
   stroke = 2,
@@ -732,16 +730,13 @@ export const IconSplit: React.FC<IconProps> = ({
         strokeMiterlimit="10"
         strokeWidth={stroke}
       >
-<path d="M12 1V23" />
-<path d="M12 4H6C4.34315 4 3 5.34315 3 7V17C3 18.6569 4.34315 20 6 20H12" />
-<path d="M16 4H18C19.6569 4 21 5.34315 21 7V17C21 18.6569 19.6569 20 18 20H16" />
-
+        <path d="M12 1V23" />
+        <path d="M12 4H6C4.34315 4 3 5.34315 3 7V17C3 18.6569 4.34315 20 6 20H12" />
+        <path d="M16 4H18C19.6569 4 21 5.34315 21 7V17C21 18.6569 19.6569 20 18 20H16" />
       </g>
     </Icon>
   );
 };
-
-
 
 export const IconCopy: React.FC<IconProps> = ({
   fill = false,
@@ -757,22 +752,180 @@ export const IconCopy: React.FC<IconProps> = ({
         strokeMiterlimit="10"
         strokeWidth={stroke}
       >
-
-	{/* <path fill="currentColor" opacity=".1" d="M22.24 7.92c0-2.83 0-4.24-.88-5.12s-2.3-.88-5.12-.88H10.8a3 3 0 0 0-2.88 2.92v.52a3 3 0 0 0 2.89 2.85h1.04c.78 0 1.16 0 1.5.08a3 3 0 0 1 2.14 1.88c.12.32.17.7.27 1.48l.24 1.89l.03.2a3 3 0 0 0 2.87 2.52h.42a3 3 0 0 0 2.9-2.9V7.92"  /> */}
-		<path  d="M8.76 7.93h.35c3.3 0 4.95 0 5.97 1.02c1.03 1.03 1.03 2.68 1.03 5.98v.34c0 3.3 0 4.95-1.03 5.97c-1.02 1.03-2.67 1.03-5.97 1.03h-.35c-3.3 0-4.95 0-5.97-1.03c-1.03-1.02-1.03-2.67-1.03-5.97v-.34c0-3.3 0-4.95 1.03-5.98c1.02-1.02 2.67-1.02 5.97-1.02" />
-		<path  d="M7.9 7.59c0-2.2 0-3.3.47-4.13q.47-.79 1.26-1.25c.81-.48 1.92-.48 4.12-.48h1.49c3.3 0 4.95 0 5.97 1.03c1.03 1.02 1.03 2.67 1.03 5.97v1.45c0 2.24 0 3.36-.5 4.18q-.46.76-1.21 1.22c-.83.5-1.95.5-4.19.5" />
-	
-
+        {/* <path fill="currentColor" opacity=".1" d="M22.24 7.92c0-2.83 0-4.24-.88-5.12s-2.3-.88-5.12-.88H10.8a3 3 0 0 0-2.88 2.92v.52a3 3 0 0 0 2.89 2.85h1.04c.78 0 1.16 0 1.5.08a3 3 0 0 1 2.14 1.88c.12.32.17.7.27 1.48l.24 1.89l.03.2a3 3 0 0 0 2.87 2.52h.42a3 3 0 0 0 2.9-2.9V7.92"  /> */}
+        <path d="M8.76 7.93h.35c3.3 0 4.95 0 5.97 1.02c1.03 1.03 1.03 2.68 1.03 5.98v.34c0 3.3 0 4.95-1.03 5.97c-1.02 1.03-2.67 1.03-5.97 1.03h-.35c-3.3 0-4.95 0-5.97-1.03c-1.03-1.02-1.03-2.67-1.03-5.97v-.34c0-3.3 0-4.95 1.03-5.98c1.02-1.02 2.67-1.02 5.97-1.02" />
+        <path d="M7.9 7.59c0-2.2 0-3.3.47-4.13q.47-.79 1.26-1.25c.81-.48 1.92-.48 4.12-.48h1.49c3.3 0 4.95 0 5.97 1.03c1.03 1.02 1.03 2.67 1.03 5.97v1.45c0 2.24 0 3.36-.5 4.18q-.46.76-1.21 1.22c-.83.5-1.95.5-4.19.5" />
       </g>
     </Icon>
   );
 };
 
+export const IconDots: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <circle cx="8.5" cy="7.5" r="5.5" />
+        <circle cx="17.5" cy="6.5" r="3.5" />
+        <circle cx="16.5" cy="15.5" r="5.5" />
+        <circle cx="7.5" cy="16.5" r="3.5" />
+      </g>
+    </Icon>
+  );
+};
 
+export const IconPattern: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        // strokeLinecap="round"
+        // strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path d="M8.25 22L22 8.25" />
+        <path d="M2 15.75L15.75 2" />
+        <path d="M20.75 22L22 20.75" />
+        <path d="M2 3.25L3.25 2" />
+        <path d="M14.5 22L22 14.5" />
+        <path d="M2 9.5L9.5 2" />
+        <path d="M2 22L22 2" />
+      </g>
+    </Icon>
+  );
+};
 
+export const IconColor: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        {/* <path opacity=".2" d="M17.2 8.4c0 2.8-2.28 4.55-5.1 4.55-2.46-1.27-5.08-1.74-5.08-4.56a5.09 5.09 0 1 1 10.17 0" fill="currentColor" ></path>
+        <path opacity=".1" d="M21.44 15.91a5.1 5.1 0 0 1-5.1 5.09c-2.8 0-4.16-1.9-4.16-4.7 0-2.82 1.73-4.1 4.17-5.48a5.1 5.1 0 0 1 5.09 5.1" fill="currentColor" ></path>
+      */}
+        <circle cx="7.65" cy="15.91" r="5.09"></circle>
+        <path d="M16.35 10.82a5.09 5.09 0 1 1-4.2 7.97"></path>
+        <path d="M7.2 10.5a5.08 5.08 0 1 1 4.98 2.88"></path>
+      </g>
+    </Icon>
+  );
+};
 
+export const IconSpline: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        {/* <path opacity=".2" d="m13.98 18.5-.99-3c-.54-1.64-.8-2.45-.37-2.89s1.25-.17 2.88.36l3.02.97c1.18.38 1.77.57 1.96.85a1 1 0 0 1 .03 1.07c-.17.3-.75.52-1.9.98-.43.16-.64.25-.82.37a2 2 0 0 0-.55.54c-.12.19-.2.4-.37.83-.44 1.14-.66 1.7-.95 1.88a1 1 0 0 1-1.08-.03c-.28-.19-.47-.77-.86-1.92" fill="currentColor" ></path>
+        <path opacity=".1" d="M8.09 18.6a2.72 2.72 0 1 1-5.44 0 2.72 2.72 0 0 1 5.44 0" fill="currentColor" ></path>
+        <path opacity=".1" d="M21.56 6.23a2.72 2.72 0 1 1-5.44 0 2.72 2.72 0 0 1 5.44 0" fill="currentColor" ></path> */}
+        <path d="M16.12 5.82s-5.12-1.29-8.4 2c-3.87 3.87-2.35 8.06-2.35 8.06"></path>
+        <path d="M8.08 18.6a2.7 2.7 0 0 1-2.71 2.71 2.72 2.72 0 1 1 2.71-2.72"></path>
+        <path d="M21.56 6.23a2.7 2.7 0 0 1-2.72 2.72 2.72 2.72 0 1 1 2.72-2.72"></path>
+        {/* <path d="m13.98 18.5-.99-3c-.54-1.64-.8-2.45-.37-2.89s1.25-.17 2.88.36l3.02.97c1.18.38 1.77.57 1.96.85a1 1 0 0 1 .03 1.07c-.17.3-.75.52-1.9.98h0c-.43.16-.64.25-.82.37a2 2 0 0 0-.55.54c-.12.19-.2.4-.37.83-.44 1.14-.66 1.7-.95 1.88a1 1 0 0 1-1.08-.03c-.28-.19-.47-.77-.86-1.92"></path>
+         */}
+      </g>
+    </Icon>
+  );
+};
 
+export const IconLayers: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path d="M12.9857 21.8213L20.1708 18.7754C21.2797 18.3053 21.9999 17.2177 21.9999 16.0133V10.0201C21.9999 8.58767 20.5382 7.61966 19.2194 8.17873L12.0342 11.2246C10.9253 11.6947 10.2051 12.7823 10.2051 13.9867V19.9799C10.2051 21.4123 11.6668 22.3803 12.9857 21.8213Z" />
+        <path d="M10.2051 18.0952L8.94476 18.6804C7.61913 19.2959 6.10254 18.3279 6.10254 16.8664V10.9867C6.10254 9.7823 6.8228 8.69467 7.93166 8.22461L15.1168 5.17873C16.4357 4.61966 17.8974 5.58767 17.8974 7.02011V9" />
+        <path d="M6.10256 15.0952L4.84222 15.6804C3.51659 16.2959 2 15.3279 2 13.8664V7.98668C2 6.7823 2.72026 5.69467 3.82912 5.22461L11.0143 2.17873C12.3331 1.61966 13.7949 2.58767 13.7949 4.02011V6" />
+      </g>
+    </Icon>
+  );
+};
 
+export const IconBlob: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <path
+          xmlns="http://www.w3.org/2000/svg"
+          d="M10.8323 3C8.02046 3 5.70349 4.34916 4.29756 6.78888C2.50922 9.8807 2.5767 13.9844 4.45502 17.2336C5.98468 19.8645 8.59408 21 10.956 21C11.7884 21 12.5982 20.8651 13.318 20.5953C13.8804 20.3929 15.6687 19.5946 15.3763 18.0094C14.6677 14.2879 16.8047 13.2986 18.3569 12.5903C19.8415 11.9044 21 11.376 21 8.71143C21 5.8782 17.8507 3.01124 10.8211 3.01124L10.8323 3Z"
+        />
+      </g>
+    </Icon>
+  );
+};
+
+export const IconDonut: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+      <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="3" />{" "}
+      </g>
+    </Icon>
+  );
+};
 
 export const IconDemo: React.FC = () => {
   return (

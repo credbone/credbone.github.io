@@ -1,5 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { Link, Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Link,
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+  matchPath,
+  useLocation,
+} from "react-router-dom";
 import DotIconMaker from "./DotIconMaker";
 
 import { links } from "./toolData";
@@ -17,38 +25,90 @@ import Marquee from "../../components/Marquee";
 import AvatarMaker from "./avatars/AvatarMaker";
 
 function ToolsCollection() {
+  const location = useLocation();
+  const viewRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (viewRef.current) {
+      viewRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [location]);
 
-    const location = useLocation();
-    const viewRef = useRef<HTMLDivElement>(null);
-  
-    useEffect(() => {
-      if (viewRef.current) {
-        viewRef.current.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-    }, [location]);
+  // Rail indicator: same behavior as the pre-designed strip in DotIconMaker
+  const railRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  });
+
+  const selected = links.findIndex((link) =>
+    matchPath({ path: link.url, end: false }, location.pathname),
+  );
+
+  // Tile box in the list's content coordinates, so it stays correct at any scroll.
+  // The tile is the item's last child (the separator comes first).
+  const getSelectedBox = useCallback(() => {
+    if (selected < 0) return null;
+    const item = listRef.current?.children[selected] as HTMLElement | undefined;
+    const tile = item?.lastElementChild as HTMLElement | null | undefined;
+    if (!item || !tile) return null;
+
+    return {
+      left: item.offsetLeft + tile.offsetLeft,
+      top: item.offsetTop + tile.offsetTop,
+      width: tile.offsetWidth,
+      height: tile.offsetHeight,
+    };
+  }, [selected]);
+
+  const updateIndicator = useCallback(() => {
+    setIndicatorStyle(
+      getSelectedBox() ?? { left: 0, top: 0, width: 0, height: 0 },
+    );
+  }, [getSelectedBox]);
+
+  // Follow the selection and any size change (viewport, font size)
+  useEffect(() => {
+    updateIndicator();
+
+    const ro = new ResizeObserver(updateIndicator);
+    if (listRef.current) ro.observe(listRef.current);
+    return () => ro.disconnect();
+  }, [updateIndicator]);
+
+  // Scroll the selected tile into the center of the rail
+  useEffect(() => {
+    const rail = railRef.current;
+    const list = listRef.current;
+    const box = getSelectedBox();
+    if (!rail || !list || !box) return;
+
+    rail.scrollTo({
+      top: list.offsetTop + box.top - (rail.clientHeight - box.height) / 2,
+      behavior: "smooth",
+    });
+  }, [getSelectedBox]);
 
   return (
     <group
       data-wrap="no"
-      data-direction="column"
-      data-scroll=""
+      //data-direction="column"
+      //  data-scroll=""
       data-index="1"
-      data-space="adaptive-30-50"
       // data-gap="30"
       data-align="start"
-      data-min-height="fit"
+      data-height="fit"
       data-space-top="0"
-      ref={viewRef}
+      
     >
-      <group data-height="30" data-shrink="no" data-adaptive="desktop"></group>
-      <group data-height="20" data-shrink="no" data-adaptive="600"></group>
-
-      <StuckReporter>
+      {/* <StuckReporter>
         {(isSticky) => (
           <group data-sticky="top" data-width="auto" data-adaptive="desktop">
             <group
@@ -188,10 +248,125 @@ function ToolsCollection() {
             </group>
           </group>
         )}
-      </StuckReporter>
+      </StuckReporter> */}
 
-      <group data-height="30" data-shrink="no"></group>
-      <group data-max-length="1200">
+      <group
+        data-width="auto"
+        data-shrink="no"
+        data-height="fit"
+        data-wrap="no"
+        data-adaptive="desktop"
+      >
+        <group
+          ref={railRef}
+          data-space="30"
+          data-scroll=""
+          data-scrollbar="none"
+          data-align="start"
+        >
+          <group
+            ref={listRef}
+            data-length="100"
+            data-direction="column"
+            data-contain=""
+          >
+            {links.map((link, index) => (
+              <group
+                key={index}
+                data-name="autoseparation"
+                data-selected={index === selected ? "true" : undefined}
+              >
+                <separator data-horizontal="" data-length="40"></separator>
+  
+                  <group
+                    data-ink-color="neutral"
+                    data-contain=""
+                    data-radius="20"
+                  >
+                    <NavLink to={link.url} data-type="group" data-drag="none">
+                      {({ isActive }) => (
+                        <group
+                          data-space="10"
+                          data-interactive="border"
+                          data-over-color="neutral"
+                        >
+                          {link.new === "true" && (
+                            <group
+                              data-background="red"
+                              data-space="3"
+                              data-position="absolute"
+                              data-width="auto"
+                              data-radius="5"
+                              data-right="20"
+                              data-top="20"
+                            ></group>
+                          )}
+
+                          <group
+                            data-contain=""
+                            data-space="10"
+                            data-width="auto"
+                            data-animation-name="appear-left"
+                            data-fill-mode="backwards"
+                            data-animation-duration={2 + index * 0.5}
+                            data-animation-timing="fancy"
+                            // data-name="nav-item"
+                            data-direction="column"
+                            data-gap="15"
+                          >
+                            <group data-position="center" data-space="5" data-width="auto" data-interact="">
+                              {link.icon}
+                            </group>
+                            <group data-pointer-event="none" data-interact="">
+
+                                <text
+                                  data-wrap="wrap"
+                                  data-opacity={isActive ? "" : "40"}
+                                  data-text-align="center"
+                                >
+                                  {link.title}
+                                </text>
+
+                            </group>
+                          </group>
+                        </group>
+                      )}
+                    </NavLink>
+                  </group>
+        
+              </group>
+            ))}
+
+            {/* Mounts once measured, so it doesn't slide in from the top on load */}
+            {indicatorStyle.height > 0 && (
+              <group
+                data-pointer-event="none"
+                data-name="grid-indicator"
+                data-position="absolute"
+                data-index="2"
+                style={{
+                  width: indicatorStyle.width,
+                  height: indicatorStyle.height,
+                  transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
+                }}
+              >
+                <group
+                  data-radius="20"
+                  data-background="main-alpha-15"
+                  data-height="fit"
+                ></group>
+              </group>
+            )}
+          </group>
+        </group>
+
+        <group data-space-vertical="30" data-width="auto">
+          <separator data-vertical="" data-height="fit"></separator>
+        </group>
+      </group>
+
+<group data-scroll="" data-height="fit" ref={viewRef} data-align="start">
+      <group data-max-length="1200" data-space="adaptive-30-50" >
         <Routes>
           <Route path="/*" element={<Navigate replace to="./" />} />
           <Route path="DotIconMaker" element={<DotIconMaker />} />
@@ -203,7 +378,7 @@ function ToolsCollection() {
           <Route path="AvatarMaker" element={<AvatarMaker />} />
         </Routes>
       </group>
-      <group data-position="bottom" data-height="200" data-shrink="no"></group>
+      </group>
     </group>
   );
 }

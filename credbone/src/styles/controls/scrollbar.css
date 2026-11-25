@@ -79,8 +79,6 @@ ul[section]::-webkit-scrollbar,
 /* .snapcont.vertical .snapscroll > * { overflow-x: hidden; scroll-snap-type: var(--scroll-snap); width:100%;scrollbar-width: none; }
 .snapscroll.dragging > *{scroll-snap-type:initial; scroll-behavior: initial; } */
 
-html.desktop .snapscroll.dragging > * > * {pointer-events: none;}
-
 /* .snapscroll > * > * {scroll-snap-stop: always;scroll-snap-align: start;}
 .snapscroll.dragging > * > * {scroll-snap-stop: initial;scroll-snap-align: initial;} */
 

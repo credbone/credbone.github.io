@@ -151,6 +151,7 @@ const Navigation: React.FC = () => {
             </NavLink>
 
             <Popover
+           
               bottomsheet
               bottomsheetProps={{
                 "data-space": "0",
@@ -196,7 +197,7 @@ const Navigation: React.FC = () => {
                     </group>
                   </NavLink>
                   {links.map((link, index) => (
-                    <group key={index} data-border="">
+                    <group key={index} data-border="" >
                       <Ripple>
                         <group data-ink-color="neutral">
                           <NavLink
