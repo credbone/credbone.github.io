@@ -927,6 +927,30 @@ export const IconDonut: React.FC<IconProps> = ({
   );
 };
 
+
+export const IconArrow: React.FC<IconProps> = ({
+  fill = false,
+  stroke = 2,
+  ...restProps
+}) => {
+  return (
+    <Icon {...restProps}>
+           <g
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth={stroke}
+      >
+<path d="M8 16L15.5 8.5" />
+<rect x="2" y="2" width="20" height="20" rx="4" />
+<path d="M8 8H15C15.5523 8 16 8.44772 16 9V16" />
+</g>
+    </Icon>
+  );
+};
+
+
 export const IconDemo: React.FC = () => {
   return (
     <svg

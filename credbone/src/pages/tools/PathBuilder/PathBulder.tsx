@@ -262,7 +262,7 @@ data-direction="column"
         data-direction="column"
         data-gap="10"
         data-position="sticky"
-        data-bottom="0"
+        data-bottom="30"
         data-index="2"
       >
         <group>

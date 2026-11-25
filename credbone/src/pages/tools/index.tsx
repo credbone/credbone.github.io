@@ -37,41 +37,33 @@ function ToolsCollection() {
     }
   }, [location]);
 
-  // Rail indicator: same behavior as the pre-designed strip in DotIconMaker
+  // Rail indicator: the same bar as in the main navigation
   const railRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const [indicatorStyle, setIndicatorStyle] = useState({
-    left: 0,
-    top: 0,
-    width: 0,
-    height: 0,
-  });
+  const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
 
   const selected = links.findIndex((link) =>
     matchPath({ path: link.url, end: false }, location.pathname),
   );
 
-  // Tile box in the list's content coordinates, so it stays correct at any scroll.
+  // Tile box in the rail's content coordinates, so it stays correct at any scroll.
   // The tile is the item's last child (the separator comes first).
   const getSelectedBox = useCallback(() => {
     if (selected < 0) return null;
-    const item = listRef.current?.children[selected] as HTMLElement | undefined;
+    const list = listRef.current;
+    const item = list?.children[selected] as HTMLElement | undefined;
     const tile = item?.lastElementChild as HTMLElement | null | undefined;
-    if (!item || !tile) return null;
+    if (!list || !item || !tile) return null;
 
     return {
-      left: item.offsetLeft + tile.offsetLeft,
-      top: item.offsetTop + tile.offsetTop,
-      width: tile.offsetWidth,
+      top: list.offsetTop + item.offsetTop + tile.offsetTop,
       height: tile.offsetHeight,
     };
   }, [selected]);
 
   const updateIndicator = useCallback(() => {
-    setIndicatorStyle(
-      getSelectedBox() ?? { left: 0, top: 0, width: 0, height: 0 },
-    );
+    setIndicatorStyle(getSelectedBox() ?? { top: 0, height: 0 });
   }, [getSelectedBox]);
 
   // Follow the selection and any size change (viewport, font size)
@@ -86,12 +78,11 @@ function ToolsCollection() {
   // Scroll the selected tile into the center of the rail
   useEffect(() => {
     const rail = railRef.current;
-    const list = listRef.current;
     const box = getSelectedBox();
-    if (!rail || !list || !box) return;
+    if (!rail || !box) return;
 
     rail.scrollTo({
-      top: list.offsetTop + box.top - (rail.clientHeight - box.height) / 2,
+      top: box.top - (rail.clientHeight - box.height) / 2,
       behavior: "smooth",
     });
   }, [getSelectedBox]);
@@ -269,26 +260,37 @@ function ToolsCollection() {
             data-length="100"
             data-direction="column"
             data-contain=""
+            data-gap="5"
           >
             {links.map((link, index) => (
               <group
                 key={index}
                 data-name="autoseparation"
                 data-selected={index === selected ? "true" : undefined}
+                data-gap="5"
               >
-                <separator data-horizontal="" data-length="40"></separator>
+                <separator data-horizontal=""  ></separator>
   
                   <group
                     data-ink-color="neutral"
                     data-contain=""
-                    data-radius="20"
+                   
+                    
                   >
                     <NavLink to={link.url} data-type="group" data-drag="none">
                       {({ isActive }) => (
                         <group
                           data-space="10"
-                          data-interactive="border"
+                          data-interactive=""
                           data-over-color="neutral"
+                           data-radius="20"
+                          data-background={isActive ? "main-alpha-15" : undefined}
+
+                                                  data-animation-name="appear-left"
+                            data-fill-mode="backwards"
+                            data-animation-duration={2 + index * 0.5}
+                             data-animation-timing="fancy"
+                         
                         >
                           {link.new === "true" && (
                             <group
@@ -306,10 +308,8 @@ function ToolsCollection() {
                             data-contain=""
                             data-space="10"
                             data-width="auto"
-                            data-animation-name="appear-left"
-                            data-fill-mode="backwards"
-                            data-animation-duration={2 + index * 0.5}
-                            data-animation-timing="fancy"
+     
+                           
                             // data-name="nav-item"
                             data-direction="column"
                             data-gap="15"
@@ -317,7 +317,7 @@ function ToolsCollection() {
                             <group data-position="center" data-space="5" data-width="auto" data-interact="">
                               {link.icon}
                             </group>
-                            <group data-pointer-event="none" data-interact="">
+                            <group data-pointer-event="none" >
 
                                 <text
                                   data-wrap="wrap"
@@ -336,28 +336,21 @@ function ToolsCollection() {
         
               </group>
             ))}
-
-            {/* Mounts once measured, so it doesn't slide in from the top on load */}
-            {indicatorStyle.height > 0 && (
-              <group
-                data-pointer-event="none"
-                data-name="grid-indicator"
-                data-position="absolute"
-                data-index="2"
-                style={{
-                  width: indicatorStyle.width,
-                  height: indicatorStyle.height,
-                  transform: `translate(${indicatorStyle.left}px, ${indicatorStyle.top}px)`,
-                }}
-              >
-                <group
-                  data-radius="20"
-                  data-background="main-alpha-15"
-                  data-height="fit"
-                ></group>
-              </group>
-            )}
           </group>
+
+          {/* Mounts once measured, so it doesn't slide in from the top on load */}
+          {indicatorStyle.height > 0 && (
+            <group
+              data-pointer-event="none"
+              data-name="vertical-indicator"
+              data-position="absolute"
+              data-background="main-color-font"
+              style={{
+                transform: `translateY(${indicatorStyle.top}px)`,
+                height: `${indicatorStyle.height}px`,
+              }}
+            ></group>
+          )}
         </group>
 
         <group data-space-vertical="30" data-width="auto">

@@ -13,12 +13,12 @@ import {
 
 
 import res_1_2x from "../../styles/images/samples/avatar_res/2x/res_2.webp";
-import { IconBlob, IconColor, IconDonut, IconDots, IconLayers, IconPattern, IconSpline } from "../../components/icon/credIcons";
+import { IconArrow, IconColor, IconDonut, IconDots, IconPattern, IconSpline } from "../../components/icon/credIcons";
 
 export const avatarIcon = <SmilePlus strokeWidth={1.5} />;
 export const colorMixerIcon = <IconColor  stroke={1.5} />;
-export const iconCreatorIcon = <IconDots  stroke={1.5} />;
-export const blobIcon = <IconBlob  stroke={1.5}/>;
+export const iconCreatorIcon = <IconArrow  stroke={1.5} />;
+export const blobIcon = <IconDots  stroke={1.5}/>;
 export const patternIcon = <IconPattern stroke={1.5}  />;
 export const colorConverterIcon = <IconDonut  stroke={1.5}  />;
 export const pathIcon = <IconSpline stroke={1.5}/>;
