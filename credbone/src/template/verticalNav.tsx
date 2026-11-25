@@ -282,7 +282,12 @@ return () => {
             
             data-transition-prop="padding"
           >
-            <Tooltip content={isNavOpen ? "" : "Open"} placement="right">
+            <Tooltip
+              motion="zoom"
+              placement="right"
+              disabled={isNavOpen}
+              content="Open"
+            >
               <group data-adaptive="desktop">
                 <Ripple>
                   <group
@@ -398,19 +403,16 @@ return () => {
         //      data-adaptive="desktop"
             ></separator>
             <Tooltip
+              motion="zoom"
               placement="right"
+              disabled={isNavOpen}
               content={
-                isNavOpen ? null : (
-<group data-align="center" data-gap="10" data-wrap="no">
-                        <text data-ellipsis="">Version</text>
-                        <separator
-                          data-vertical=""
-                          data-height="20"
-                        ></separator>
+                <group data-align="center" data-gap="10" data-wrap="no">
+                  <text data-ellipsis="">Version</text>
+                  <separator data-vertical="" data-height="20"></separator>
 
-                        <text data-weight="700">{buildInfo.version}</text>
-                      </group>
-                )
+                  <text data-weight="700">{buildInfo.version}</text>
+                </group>
               }
             >
 <group>

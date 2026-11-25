@@ -6,6 +6,7 @@ import ConfigSelect, { SelectOption } from "../components/inputs/ConfigSelect";
 import { useSnackbar } from "../components/snackbar/SnackbarContainer";
 
 type Placement = "top" | "bottom" | "left" | "right" | "auto" | "cursor";
+type Motion = "fade" | "slide" | "zoom" | "none";
 type DemoTab = "preview" | "code";
 
 const TABS: { value: DemoTab; title: string }[] = [
@@ -19,12 +20,26 @@ const TooltipPropsDemo: React.FC = () => {
   const [selectedPlacement, setSelectedPlacement] = useState<Placement>("auto");
 
   const placementOptions: SelectOption[] = [
-    { value: "auto", name: "Auto", hint: "Top if it fits" },
+    { value: "auto", name: "Auto", hint: "Top or bottom" },
+    {
+      value: "cursor",
+      name: "Cursor",
+      hint: "Follows the mouse",
+      separator: true,
+    },
     { value: "top", name: "Top" },
     { value: "bottom", name: "Bottom" },
     { value: "left", name: "Left" },
     { value: "right", name: "Right" },
-    { value: "cursor", name: "Cursor", hint: "Follows the mouse" },
+  ];
+
+  const [selectedMotion, setSelectedMotion] = useState<Motion>("fade");
+
+  const motionOptions: SelectOption[] = [
+    { value: "fade", name: "Fade" },
+    { value: "slide", name: "Slide", hint: "From the trigger" },
+    { value: "zoom", name: "Zoom", hint: "From the trigger" },
+    { value: "none", name: "None" },
   ];
 
   const [selectedColor, setSelectedColor] = useState<{
@@ -58,10 +73,16 @@ const TooltipPropsDemo: React.FC = () => {
   const [GapValue, setGapValue] = useState(10);
   const [RadiusValue, setRadiusValue] = useState(10);
   const [DelayValue, setDelayValue] = useState(0);
+  const [HideDelayValue, setHideDelayValue] = useState(0);
+  const [flip, setFlip] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   // The cursor placement has its own fixed offset. Distance only reaches its
   // touch and keyboard fallback, so the demo leaves it at the default
   const usesDistance = selectedPlacement !== "cursor";
+
+  // Auto picks its own side, and Cursor falls back to it
+  const usesFlip = selectedPlacement !== "auto" && selectedPlacement !== "cursor";
 
   const [hasChanged, setHasChanged] = useState(false);
 
@@ -73,17 +94,35 @@ const TooltipPropsDemo: React.FC = () => {
       GapValue !== 10 ||
       RadiusValue !== 10 ||
       DelayValue !== 0 ||
+      HideDelayValue !== 0 ||
+      selectedMotion !== "fade" ||
+      flip ||
+      disabled ||
       selectedPlacement !== "auto"
     ) {
       setHasChanged(true);
     }
-  }, [selectedColor, GapValue, RadiusValue, DelayValue, selectedPlacement]);
+  }, [
+    selectedColor,
+    GapValue,
+    RadiusValue,
+    DelayValue,
+    HideDelayValue,
+    selectedMotion,
+    flip,
+    disabled,
+    selectedPlacement,
+  ]);
 
   const resetValues = () => {
     setSelectedColor({ background: "tooltip", color: "white" });
     setGapValue(10);
     setRadiusValue(10);
     setDelayValue(0);
+    setHideDelayValue(0);
+    setSelectedMotion("fade");
+    setFlip(false);
+    setDisabled(false);
     setSelectedPlacement("auto");
     setHasChanged(false); // Hide the reset button after reset
   };
@@ -95,6 +134,12 @@ const TooltipPropsDemo: React.FC = () => {
   ];
   if (usesDistance) configProps.push(["distance", `{${GapValue}}`]);
   if (DelayValue !== 0) configProps.push(["delay", `{${DelayValue}}`]);
+  if (HideDelayValue !== 0)
+    configProps.push(["hideDelay", `{${HideDelayValue}}`]);
+  if (selectedMotion !== "fade")
+    configProps.push(["motion", `"${selectedMotion}"`]);
+  if (flip && usesFlip) configProps.push(["flip", "{true}"]);
+  if (disabled) configProps.push(["disabled", "{true}"]);
   if (RadiusValue !== 10) configProps.push(["data-radius", `"${RadiusValue}"`]);
   if (selectedColor.background !== "tooltip") {
     configProps.push(
@@ -163,6 +208,64 @@ const TooltipPropsDemo: React.FC = () => {
     );
   };
 
+  // Click-to-flip switch, same pattern as the toggles on the Marquee page
+  const renderToggle = (
+    label: string,
+    on: boolean,
+    setOn: (on: boolean) => void,
+    off = false,
+  ) => (
+    <group
+      data-space="3"
+      data-radius="15"
+      data-border=""
+      data-contain=""
+      data-opacity={off ? "40" : undefined}
+      data-disabled={off ? "true" : undefined}
+    >
+      <Ripple>
+        <group
+          data-ink-color="neutral-light"
+          data-gap="15"
+          data-wrap="no"
+          data-height="40"
+          data-align="center"
+          data-space-horizontal="15"
+          data-space-right="10"
+          data-radius="12"
+          data-contain=""
+          data-interactive=""
+          data-over-color="neutral"
+          data-cursor="pointer"
+          role="switch"
+          aria-checked={on}
+          aria-disabled={off}
+          aria-label={label}
+          tabIndex={off ? -1 : 0}
+          onClick={() => setOn(!on)}
+          onKeyDown={onKeyActivate(() => setOn(!on))}
+        >
+          <group data-width="auto">
+            <text data-ellipsis="">{label}</text>
+          </group>
+          <group data-width="auto" data-position="right">
+            <group
+              data-interact=""
+              data-width="auto"
+              checkbox=""
+              simple=""
+              data-checked={on ? "true" : "false"}
+            >
+              <box>
+                <check> </check>
+              </box>
+            </group>
+          </group>
+        </group>
+      </Ripple>
+    </group>
+  );
+
   return (
     <>
       <group data-space-vertical="30">
@@ -219,6 +322,10 @@ const TooltipPropsDemo: React.FC = () => {
               <group data-height="30"></group>
               <Tooltip
                 delay={DelayValue}
+                hideDelay={HideDelayValue}
+                motion={selectedMotion}
+                flip={flip}
+                disabled={disabled}
                 distance={usesDistance ? GapValue : undefined}
                 content="I am a tooltip"
                 placement={selectedPlacement}
@@ -314,12 +421,23 @@ const TooltipPropsDemo: React.FC = () => {
         data-align="start"
       >
         <group data-direction="column" data-gap="30" data-align="start">
-          <ConfigSelect
+
+
+<group data-gap="15">
+            <ConfigSelect
             label="Placement"
             options={placementOptions}
             value={selectedPlacement}
             onSelect={(v) => setSelectedPlacement(v as Placement)}
           />
+
+          <ConfigSelect
+            label="Motion"
+            options={motionOptions}
+            value={selectedMotion}
+            onSelect={(v) => setSelectedMotion(v as Motion)}
+          />
+</group>
 
           <text data-wrap="wrap" data-line="1.5" data-opacity="60">
             A tooltip can take almost any system attribute and rich content. But
@@ -406,6 +524,17 @@ const TooltipPropsDemo: React.FC = () => {
             onValueChange={setDelayValue}
             format={(v) => `${v}ms`}
           />
+          <ConfigSlider
+            label="Hide Delay"
+            start={0}
+            end={500}
+            step={100}
+            value={HideDelayValue}
+            onValueChange={setHideDelayValue}
+            format={(v) => `${v}ms`}
+          />
+          {renderToggle("Flip", flip, setFlip, !usesFlip)}
+          {renderToggle("Disabled", disabled, setDisabled)}
         </group>
 
         <group data-direction="column" data-gap="15">

@@ -541,19 +541,15 @@ const LeftNavigation: React.FC<{
           >
             <Tooltip
               data-gap="10"
-              content={
-                isNavOpen ? (
-                  ""
-                ) : item.vertical ? (
-                  ""
-                ) : (
-                  <>
-                    <text>{item.label}</text>
-                    {item.hint && <text data-opacity="40"> {item.hint}</text>}
-                  </>
-                )
-              }
+              motion="zoom"
               placement="right"
+              disabled={isNavOpen || Boolean(item.vertical)}
+              content={
+                <>
+                  <text>{item.label}</text>
+                  {item.hint && <text data-opacity="40"> {item.hint}</text>}
+                </>
+              }
             >
               <group>
                 <Ripple>

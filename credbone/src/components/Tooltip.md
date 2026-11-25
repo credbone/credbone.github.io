@@ -11,7 +11,7 @@ Shows a short hint next to its trigger on hover, touch hold or keyboard focus. I
 1. **Trigger:** the single child, cloned with a ref, focus and pointer handlers and `aria-describedby`. No wrapper is added.
 2. **Bubble:** a `<group>` portaled into `#tooltip-container` (`index.tsx`), so no parent can clip it. It exists only while shown.
 
-The CSS is in `styles/controls/tooltip.css`, and the fade-in is `data-animation-name="tooltip"` (`animation.css`).
+The CSS is in `styles/controls/tooltip.css`, and the entrance animations are in `animation.css` (`motion` picks the `data-animation-name`; the default fade is `"tooltip"`).
 
 ## Usage
 
@@ -37,7 +37,11 @@ The bubble lives outside the trigger's tree, so a nested `data-theme` around the
 | `children` | | The trigger. |
 | `placement` | `"top"` | `"top"`, `"bottom"`, `"left"`, `"right"`, `"auto"` (top if it fits, otherwise bottom) or `"cursor"` (follows the mouse; `"auto"` on touch and keyboard). |
 | `distance` | `10` | Px to the trigger. Negative overlaps it. `"cursor"` uses it only when it falls back to `"auto"`. |
-| `delay` | `0` | Ms before showing. Hiding is instant. |
+| `delay` | `0` | Ms before showing. |
+| `hideDelay` | `0` | Ms before hiding when the pointer or focus leaves. Dismissing is always instant. |
+| `motion` | `"fade"` | Entrance: `"fade"`, `"slide"`, `"zoom"` or `"none"`. Slide and zoom start from the trigger's side, and are a fade under reduced motion. Hiding isn't animated. |
+| `flip` | `false` | Moves a fixed placement to the opposite side when it doesn't fit and that side has more room. `"auto"` and `"cursor"` ignore it. |
+| `disabled` | `false` | Never shows, and hides right away if shown. Once enabled again, it takes a new hover or focus to show. |
 
 Other `data-*` props go on the bubble and override its defaults: `data-background="tooltip"`, `data-color="white"`, `data-radius="10"`, `data-space="12"`.
 
@@ -47,6 +51,7 @@ Other `data-*` props go on the bubble and override its defaults: `data-backgroun
 - **Touch:** after holding 300ms plus `delay`, until the finger lifts.
 - **Keyboard:** while the trigger, or something inside it, has `:focus-visible`. Focus from a click doesn't count, except in text fields, where browsers always set it.
 - **Both:** hover and focus are tracked separately, and it stays until neither holds it. Pressing the trigger ends the focus hold, so it then hides when the pointer leaves.
+- **Leaving:** with `hideDelay` it lingers after the last hold ends, and coming back keeps it. Another tooltip showing closes it, so two never show side by side (`closeLingering`, shared by all instances).
 - **Dismissed by:** Escape, a press or click outside the trigger, or scrolling outside it. While keyboard focus holds it, scrolling moves it instead, because tabbing to an element scrolls it into view.
 
 Focus events bubble through React portals, so focus inside a popover or modal opened from the trigger is ignored.
@@ -54,7 +59,9 @@ Focus events bubble through React portals, so focus inside a popover or modal op
 ## How it's positioned
 
 - **Measuring:** it renders, is measured and is placed in a layout effect, before paint. It's measured with `left: 0`, since near the right edge the width would be squeezed.
-- **Repositions** when `content`, `placement`, `distance` or the window size changes.
+- **Size** is read with `offsetWidth` / `offsetHeight`, because a running zoom shrinks the bounding rect.
+- **Side:** the one it ended up on is kept in state and passed as `data-animation-from` (the edge facing the trigger), which `slide-in` and `zoom-in-9` start from (`animation.css`).
+- **Repositions** when `content`, `placement`, `distance`, `flip` or the window size changes.
 - **Coordinates:** viewport values on an absolute element. That's safe only because `html` and `body` don't scroll.
 - **Edges:** kept at least 10px from the screen edge, or `distance` if that's larger.
 - **Cursor:** up and to the right of the mouse. With no mouse over the trigger (touch hold, keyboard focus) it's placed like `"auto"`.
@@ -67,7 +74,7 @@ The bubble has `role="tooltip"`, and the trigger gets `aria-describedby` while i
 
 1. **Only focusable triggers work by keyboard.** Many are plain `<group>`s without a `tabIndex`.
 2. **`aria-describedby` goes on the trigger.** When the focusable element is inside it (the input in a checkbox label), screen readers may not read it.
-3. **Fixed placements don't flip.** They're clamped to the screen edge, so they can cover the trigger.
+3. **Fixed placements don't flip by default.** Without `flip` they're clamped to the screen edge, so they can cover the trigger. With it, they still can when neither side fits.
 4. **`"cursor"` near edges:** no left limit, and near the top it's clamped onto the cursor.
 5. **Pen input** never opens it.
 6. **Not repositioned** when the trigger moves without a scroll or resize, or the bubble changes size on its own (a loaded image, changed `data-*` props).

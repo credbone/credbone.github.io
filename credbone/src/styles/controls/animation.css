@@ -303,3 +303,19 @@
 @keyframes tooltip { from { opacity: 0; } }
 [data-animation-name="tooltip"] {animation-name: tooltip;}
 
+
+/* Short slide from a side. data-animation-from sets the side, and the edge that zoom animations grow from */
+@keyframes slide-in {from{opacity: 0;transform: translate(var(--animation-from-x), var(--animation-from-y));}}
+[data-animation-name="slide-in"] {animation-name: slide-in;}
+
+[data-animation-from="top"] {--animation-from-x: 0px; --animation-from-y: -10px; transform-origin: top;}
+[data-animation-from="bottom"] {--animation-from-x: 0px; --animation-from-y: 10px; transform-origin: bottom;}
+[data-animation-from="left"] {--animation-from-x: -10px; --animation-from-y: 0px; transform-origin: left;}
+[data-animation-from="right"] {--animation-from-x: 10px; --animation-from-y: 0px; transform-origin: right;}
+
+/* Reduced-motion users get a plain fade */
+@media (prefers-reduced-motion: reduce) {
+  [data-animation-name="slide-in"],
+  [data-animation-name="zoom-in-9"][data-animation-from] {animation-name: tooltip;}
+}
+

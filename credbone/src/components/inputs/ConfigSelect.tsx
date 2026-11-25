@@ -7,6 +7,8 @@ export interface SelectOption {
   value: string;
   name: React.ReactNode;
   hint?: React.ReactNode;
+  /** Draws a separator after this option */
+  separator?: boolean;
 }
 
 interface SelectOptionsProps {
@@ -38,37 +40,41 @@ export const SelectOptions: React.FC<SelectOptionsProps> = ({
         const selected = value === option.value;
 
         return (
-          <group
-            key={option.value}
-            onClick={() => {
-              if (!selected) onSelect(option.value);
-            }}
-            data-background={selected ? "main" : ""}
-            data-color={selected ? "main-text" : ""}
-            data-animation-name={
-              isBottomSheet
-                ? "appear-bottom"
-                : fromBottom
-                  ? "appear-top"
-                  : "appear-bottom"
-            }
-            data-fill-mode="backwards"
-            data-animation-duration={
-              isBottomSheet ? 2 + index * stagger : 2 + distance * stagger
-            }
-            data-align="center"
-            data-interactive=""
-            data-over-color="neutral"
-            data-radius={isBottomSheet ? "10" : undefined}
-            data-cursor="pointer"
-            data-space="15"
-            data-gap="10"
-          >
-            <text>{option.name}</text>
-            {option.hint !== undefined && (
-              <text data-opacity="40">{option.hint}</text>
+          <React.Fragment key={option.value}>
+            <group
+              onClick={() => {
+                if (!selected) onSelect(option.value);
+              }}
+              data-background={selected ? "main" : ""}
+              data-color={selected ? "main-text" : ""}
+              data-animation-name={
+                isBottomSheet
+                  ? "appear-bottom"
+                  : fromBottom
+                    ? "appear-top"
+                    : "appear-bottom"
+              }
+              data-fill-mode="backwards"
+              data-animation-duration={
+                isBottomSheet ? 2 + index * stagger : 2 + distance * stagger
+              }
+              data-align="center"
+              data-interactive=""
+              data-over-color="neutral"
+              data-radius={isBottomSheet ? "10" : undefined}
+              data-cursor="pointer"
+              data-space="15"
+              data-gap="10"
+            >
+              <text>{option.name}</text>
+              {option.hint !== undefined && (
+                <text data-opacity="40">{option.hint}</text>
+              )}
+            </group>
+            {option.separator && (
+              <separator data-horizontal="" data-interval="10"></separator>
             )}
-          </group>
+          </React.Fragment>
         );
       })}
     </>

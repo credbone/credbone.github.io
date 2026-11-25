@@ -8,12 +8,39 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 
+type Side = 'top' | 'bottom' | 'left' | 'right';
+
+const OPPOSITE: Record<Side, Side> = {
+  top: 'bottom',
+  bottom: 'top',
+  left: 'right',
+  right: 'left',
+};
+
+const MOTIONS = {
+  fade: 'tooltip',
+  slide: 'slide-in',
+  zoom: 'zoom-in-9',
+  none: undefined,
+};
+
+// Closes the tooltip waiting out its hideDelay, so two never show side by side
+let closeLingering: (() => void) | null = null;
+
 interface TooltipProps {
   content: any;
   children: React.ReactNode;
-  placement?: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'cursor';
+  placement?: Side | 'auto' | 'cursor';
   distance?: number;
   delay?: number;
+  /** Ms before hiding when the pointer or focus leaves. */
+  hideDelay?: number;
+  /** Entrance animation. Slide and zoom start from the trigger's side. */
+  motion?: keyof typeof MOTIONS;
+  /** Switch a fixed placement to the opposite side when it doesn't fit. */
+  flip?: boolean;
+  /** Never show, and hide right away if shown. */
+  disabled?: boolean;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -22,14 +49,22 @@ const Tooltip: React.FC<TooltipProps> = ({
   placement = 'top',
   distance = 10,
   delay = 0,
+  hideDelay = 0,
+  motion = 'fade',
+  flip = false,
+  disabled = false,
   ...rest
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<CSSProperties>({});
+  // The side of the trigger it ended up on
+  const [side, setSide] = useState<Side>('top');
   const tooltipRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLElement>(null);
   const touchTimeout = useRef<NodeJS.Timeout | null>(null);
-  const showTimeout = useRef<NodeJS.Timeout | null>(null);
+  // Pending show or hide
+  const toggleTimeout = useRef<NodeJS.Timeout | null>(null);
+  const hideNow = useRef(() => setIsVisible(false));
   const cursorPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   // What holds the tooltip open: the pointer, keyboard focus, or both
   const hovered = useRef(false);
@@ -45,27 +80,51 @@ const Tooltip: React.FC<TooltipProps> = ({
   const calculateCursorPosition = (x: number, y: number): CSSProperties => {
     if (!tooltipRef.current) return { top: y, left: x };
 
-    const rect = tooltipRef.current.getBoundingClientRect();
+    const { offsetWidth, offsetHeight } = tooltipRef.current;
     const minDistance = 10;
 
-    const left = Math.min(x + CURSOR_OFFSET_X, window.innerWidth - rect.width - minDistance);
-    const top = Math.max(minDistance, y + CURSOR_OFFSET_Y - rect.height);
+    const left = Math.min(x + CURSOR_OFFSET_X, window.innerWidth - offsetWidth - minDistance);
+    const top = Math.max(minDistance, y + CURSOR_OFFSET_Y - offsetHeight);
 
     return { top, left };
   };
 
-  const calculatePosition = () => {
-    if (!childRef.current || !tooltipRef.current) return {};
+  const calculatePosition = (): { position: CSSProperties; side: Side } => {
+    if (!childRef.current || !tooltipRef.current) return { position: {}, side };
 
     const targetRect = childRef.current.getBoundingClientRect();
-    const popoverRect = tooltipRef.current.getBoundingClientRect();
+    // Layout size: a running zoom would shrink the bounding rect
+    const popoverRect = {
+      width: tooltipRef.current.offsetWidth,
+      height: tooltipRef.current.offsetHeight,
+    };
     const position: CSSProperties = {};
 
     const fitTop = targetRect.top >= popoverRect.height + distance;
 
-    const determinePosition = (placement: string) => {
-      const minDistance = Math.max(10, Math.abs(distance));
+    const minDistance = Math.max(10, Math.abs(distance));
 
+    // Flips to the opposite side when there's no room and that side has more
+    const resolveSide = (preferred: Side): Side => {
+      if (!flip) return preferred;
+
+      const room: Record<Side, number> = {
+        top: targetRect.top,
+        bottom: window.innerHeight - targetRect.bottom,
+        left: targetRect.left,
+        right: window.innerWidth - targetRect.right,
+      };
+      const isVertical = preferred === 'top' || preferred === 'bottom';
+      const needed =
+        (isVertical ? popoverRect.height : popoverRect.width) + distance + minDistance;
+      const opposite = OPPOSITE[preferred];
+
+      return room[preferred] < needed && room[opposite] > room[preferred]
+        ? opposite
+        : preferred;
+    };
+
+    const determinePosition = (placement: Side) => {
       switch (placement) {
         case 'top':
           position.top = Math.max(minDistance, targetRect.top - popoverRect.height - distance);
@@ -118,17 +177,21 @@ const Tooltip: React.FC<TooltipProps> = ({
       }
     };
 
+    let nextSide: Side;
+
     switch (placement) {
       case 'auto':
       case 'cursor': // no mouse to follow
-        determinePosition(fitTop ? 'top' : 'bottom');
+        nextSide = fitTop ? 'top' : 'bottom';
         break;
       default:
-        determinePosition(placement);
+        nextSide = resolveSide(placement);
         break;
     }
 
-    return position;
+    determinePosition(nextSide);
+
+    return { position, side: nextSide };
   };
 
   const updatePosition = () => {
@@ -139,11 +202,14 @@ const Tooltip: React.FC<TooltipProps> = ({
     const { left } = tooltip.style;
     tooltip.style.left = '0px';
 
-    setTooltipPosition(
-      placement === 'cursor' && mouseOver.current
-        ? calculateCursorPosition(cursorPos.current.x, cursorPos.current.y)
-        : calculatePosition()
-    );
+    if (placement === 'cursor' && mouseOver.current) {
+      setTooltipPosition(calculateCursorPosition(cursorPos.current.x, cursorPos.current.y));
+      setSide('top'); // it sits above the cursor
+    } else {
+      const next = calculatePosition();
+      setTooltipPosition(next.position);
+      setSide(next.side);
+    }
 
     tooltip.style.left = left;
   };
@@ -171,12 +237,12 @@ const Tooltip: React.FC<TooltipProps> = ({
     updatePosition();
     window.addEventListener('resize', updatePosition);
     return () => window.removeEventListener('resize', updatePosition);
-  }, [isVisible, content, placement, distance]);
+  }, [isVisible, content, placement, distance, flip]);
 
   // Clear pending timers on unmount
   useEffect(
     () => () => {
-      if (showTimeout.current) clearTimeout(showTimeout.current);
+      clearToggleTimeout();
       if (touchTimeout.current) clearTimeout(touchTimeout.current);
     },
     []
@@ -234,26 +300,48 @@ const Tooltip: React.FC<TooltipProps> = ({
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', handleScroll, true);
     };
-  }, [isVisible, placement, distance]);
+  }, [isVisible, placement, distance, flip]);
 
-  const handleTooltipTrigger = (showTooltip: boolean) => {
-    if (showTimeout.current) {
-      clearTimeout(showTimeout.current);
-      showTimeout.current = null;
+  // Once enabled again, it takes a new hover or focus to show
+  useEffect(() => {
+    if (!disabled) return;
+    if (touchTimeout.current) clearTimeout(touchTimeout.current);
+    dismiss();
+  }, [disabled]);
+
+  const clearToggleTimeout = () => {
+    if (toggleTimeout.current) {
+      clearTimeout(toggleTimeout.current);
+      toggleTimeout.current = null;
     }
+    if (closeLingering === hideNow.current) closeLingering = null;
+  };
+
+  const showNow = () => {
+    closeLingering?.();
+    closeLingering = null;
+    setIsVisible(true);
+  };
+
+  const handleTooltipTrigger = (showTooltip: boolean, wait = showTooltip ? delay : 0) => {
+    clearToggleTimeout();
 
     if (showTooltip) {
-      if (delay > 0) {
-        showTimeout.current = setTimeout(() => setIsVisible(true), delay);
+      if (disabled) return;
+      if (wait > 0) {
+        toggleTimeout.current = setTimeout(showNow, wait);
       } else {
-        setIsVisible(true);
+        showNow();
       }
+    } else if (wait > 0 && isVisible) {
+      closeLingering = hideNow.current;
+      toggleTimeout.current = setTimeout(hideNow.current, wait);
     } else {
-      setIsVisible(false);
+      hideNow.current();
     }
   };
 
-  // Hide whatever opened it
+  // Hide right away, whatever opened it
   const dismiss = () => {
     hovered.current = false;
     mouseOver.current = false;
@@ -278,7 +366,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     if (focused.current) {
       if (placement === 'cursor') updatePosition();
     } else {
-      handleTooltipTrigger(false);
+      handleTooltipTrigger(false, hideDelay);
     }
   };
 
@@ -288,17 +376,17 @@ const Tooltip: React.FC<TooltipProps> = ({
     const target = e.target as HTMLElement;
     if (!childRef.current?.contains(target) || !target.matches(':focus-visible')) return;
     focused.current = true;
-    if (!isVisible) handleTooltipTrigger(true);
+    handleTooltipTrigger(true, isVisible ? 0 : delay);
   };
 
   const handleBlur = (e: React.FocusEvent) => {
     if (!focused.current || childRef.current?.contains(e.relatedTarget as Node | null)) return;
     focused.current = false;
-    if (!hovered.current) handleTooltipTrigger(false);
+    if (!hovered.current) handleTooltipTrigger(false, hideDelay);
   };
 
   const child = children as React.ReactElement<any>;
-  const isShown = isVisible && content;
+  const isShown = isVisible && !disabled && content;
 
   return (
     <>
@@ -336,7 +424,8 @@ const Tooltip: React.FC<TooltipProps> = ({
       {isShown &&
         ReactDOM.createPortal(
           <group
-          data-animation-name="tooltip"
+          data-animation-name={MOTIONS[motion]}
+          data-animation-from={OPPOSITE[side]}
           data-animation-duration="2.25"
           data-fill-mode="backwards"
             data-contain=""
