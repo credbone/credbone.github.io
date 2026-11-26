@@ -180,7 +180,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                   data-animation-duration={2 + index * 0.25}
                   onClick={() => searchByTag(tag)}
                 >
-                  <text data-text-transform="capitalize" data-ellipsis="" data-weight="600">
+                  <text data-text-transform="capitalize" data-ellipsis="">
                     {tag}
                   </text>
                 </group>
@@ -192,19 +192,26 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
 
       {searchQuery && results.length === 0 && (
         <group data-direction="column" data-gap="30" data-max-length="600">
-          <group data-gap="15" data-radius="20" data-wrap="no" data-align="center">
+          <group data-gap="15" data-background="adaptive-gray"
+          data-index="2"
+
+                        data-animation-name="appear-bottom"
+              data-fill-mode="backwards"
+              data-animation-duration="2.75"
+          
+          data-space="20" data-radius="20" data-wrap="no" data-align="center">
             <group
               data-direction="column"
               data-gap="5"
-              data-animation-name="appear-bottom"
-              data-fill-mode="backwards"
-              data-animation-duration="2.75"
+
             >
               <group>
                 <text data-text-size="medium" data-font-type="hero" data-wrap="preline" data-ellipsis="" data-line="1">
                   No results found
                 </text>
+
               </group>
+              
               <group>
                 <text data-opacity="50" data-wrap="wrap" data-max-length="260" data-line="1.2">
                   Try one of the suggested tags below or adjust your keywords.
@@ -233,7 +240,7 @@ function SearchComponent({ showRandomTagsByDefault = true }: SearchComponentProp
                 data-animation-duration={2 + index * 0.25}
                 onClick={() => searchByTag(tag)}
               >
-                <text data-text-transform="capitalize" data-ellipsis="" data-weight="600">
+                <text data-text-transform="capitalize" data-ellipsis="">
                   {tag}
                 </text>
               </group>

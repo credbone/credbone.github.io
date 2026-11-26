@@ -159,7 +159,7 @@ function Tools() {
                 </group>
               </Ripple>
               <group
-                data-gap="5"
+                data-gap="10"
                 data-space="20"
                 data-wrap="no"
                 data-direction="column"
