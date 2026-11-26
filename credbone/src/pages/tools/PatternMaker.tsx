@@ -332,9 +332,12 @@ const PatternMaker: React.FC = () => {
                       data-contain=""
                     >
                       <group   data-scroll-mask="false" >
-<Scroll wheelEnabled                      buttonProps={{
+<Scroll wheelEnabled           
+           buttonProps={{
                           "data-hide": "true",
-                        }}>
+                        }}
+                        
+                        >
                           <group
                           data-space="30"
                           data-gap="15"
@@ -352,14 +355,14 @@ const PatternMaker: React.FC = () => {
                       <group
                         data-wrap="no"
                         data-align="center"
-                        data-space="30"
+                         data-space={isBottomSheet ? "30" : "20"}
                         data-gap="10"
                       >
                         <group
                           data-cursor="pointer"
                           data-interactive=""
                           data-space-vertical="15"
-                          data-radius="30"
+                          data-radius={isBottomSheet ? "30" : "15"}
                           data-space-horizontal="30"
                           data-background="adaptive-gray"
                           onClick={resetSelection}
@@ -372,7 +375,7 @@ const PatternMaker: React.FC = () => {
                           data-cursor="pointer"
                           data-interactive=""
                           data-space-vertical="15"
-                          data-radius="30"
+                          data-radius={isBottomSheet ? "30" : "15"}
                           data-space-horizontal="20"
                           data-background="text"
                           data-color="main-background"

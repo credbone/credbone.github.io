@@ -61,7 +61,7 @@ const ConfigSwap: React.FC<ConfigSwapProps> = ({
           }}
         >
           <group data-width="auto">
-            <text data-ellipsis="" data-opacity="40">
+            <text data-ellipsis="">
               {label}
             </text>
           </group>

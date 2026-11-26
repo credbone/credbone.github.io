@@ -238,10 +238,13 @@ text[data-width="auto"]{width: initial;}
 
 [data-top="adaptive-30-50"] { top: 50px; }
 
+[data-gap="adaptive-30-50"] { gap: 50px; }
+
 
 @media (max-width: 600px)
 {
 [data-top="adaptive-30-50"] { top: 30px; }
+[data-gap="adaptive-30-50"] { gap: 30px; }
 }
 
 

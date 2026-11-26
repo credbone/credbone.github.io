@@ -582,6 +582,8 @@ const ColorSpaceConverter: React.FC = () => {
           <group
             data-radius="40"
             data-interactive=""
+            data-over-color="neutral"
+data-react="brightness"
             data-contain=""
             data-border="outline-soft"
             data-direction="column"
@@ -646,7 +648,7 @@ const ColorSpaceConverter: React.FC = () => {
                 ></group>
               </Popover>
 
-              <group data-space="30" data-gap="30" data-interactive="">
+              <group data-space="30" data-gap="30" >
                 <group
                   data-gap="20"
                   data-wrap="no"
@@ -816,6 +818,10 @@ const ColorSpaceConverter: React.FC = () => {
                               data-ink-color="neutral"
                               data-interactive=""
                               data-cursor="pointer"
+
+                                          data-over-color="neutral"
+data-react="brightness"
+
                               onClick={() =>
                                 copyToClipboard(
                                   harmonyColor.toUpperCase(),
