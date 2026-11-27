@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { CanvasConfig, DragRole, DragState, PathPoint, PointType } from './types';
-import { makePoint, snapToGrid, uid } from './pathUtils';
+import { CANVAS_SIZE, GRID_SIZE, isSmallScreen, makePoint, snapToGrid, uid } from './pathUtils';
 
 // ─── Interaction tuning ──────────────────────────────────────────────────────
 const LONG_PRESS = 400;          // ms before a press adds / picks up a point
@@ -25,7 +25,41 @@ type Action =
   | { type: 'RESET' }
   | { type: 'SET_POINT_TYPE'; id: string; pointType: PointType }
   | { type: 'UPDATE_POINT'; id: string; patch: Partial<PathPoint> }
-  | { type: 'SET_CONFIG'; patch: Partial<CanvasConfig> };
+  | { type: 'SET_CONFIG'; patch: Partial<CanvasConfig> }
+  // Corner-handle resize: points come from a snapshot taken at drag start,
+  // shifted by offsetX/offsetY (left/top handles) and kept inside the canvas
+  | { type: 'RESIZE'; width: number; height: number; offsetX: number; offsetY: number; base: PathPoint[] };
+
+// Canvas size limits for the corner handles
+const RESIZE_MIN = CANVAS_SIZE.min;
+const RESIZE_MAX = CANVAS_SIZE.max;
+
+// Which edges the active handle moves: -1 = left/top, 1 = right/bottom
+interface ResizeState {
+  dirX: number;
+  dirY: number;
+  startX: number;
+  startY: number;
+  startW: number;
+  startH: number;
+  // 2 when the canvas is centered on that axis (it grows from both sides)
+  factorX: number;
+  factorY: number;
+  base: PathPoint[];
+}
+
+// Shift every coordinate of a point and keep it inside w × h
+const shiftPoint = (p: PathPoint, dx: number, dy: number, w: number, h: number): PathPoint => {
+  const fx = (v?: number) => (v != null ? Math.max(0, Math.min(w, v + dx)) : v);
+  const fy = (v?: number) => (v != null ? Math.max(0, Math.min(h, v + dy)) : v);
+  return {
+    ...p,
+    x: fx(p.x)!, y: fy(p.y)!,
+    cx: fx(p.cx), cy: fy(p.cy),
+    cx1: fx(p.cx1), cy1: fy(p.cy1),
+    cx2: fx(p.cx2), cy2: fy(p.cy2),
+  };
+};
 
 function reducer(state: EditorState, action: Action): EditorState {
   switch (action.type) {
@@ -85,9 +119,9 @@ function reducer(state: EditorState, action: Action): EditorState {
 
     case 'SET_CONFIG': {
       const patch = { ...action.patch };
-      if (patch.width !== undefined) patch.width = isNaN(patch.width) ? state.config.width : Math.min(2000, Math.max(100, patch.width));
-      if (patch.height !== undefined) patch.height = isNaN(patch.height) ? state.config.height : Math.min(2000, Math.max(100, patch.height));
-      if (patch.gridSize !== undefined) patch.gridSize = isNaN(patch.gridSize) ? state.config.gridSize : Math.min(200, Math.max(5, patch.gridSize));
+      if (patch.width !== undefined) patch.width = isNaN(patch.width) ? state.config.width : Math.min(CANVAS_SIZE.max, Math.max(CANVAS_SIZE.min, patch.width));
+      if (patch.height !== undefined) patch.height = isNaN(patch.height) ? state.config.height : Math.min(CANVAS_SIZE.max, Math.max(CANVAS_SIZE.min, patch.height));
+      if (patch.gridSize !== undefined) patch.gridSize = isNaN(patch.gridSize) ? state.config.gridSize : Math.min(GRID_SIZE.max, Math.max(GRID_SIZE.min, patch.gridSize));
 
       const newW = patch.width  ?? state.config.width;
       const newH = patch.height ?? state.config.height;
@@ -107,32 +141,48 @@ function reducer(state: EditorState, action: Action): EditorState {
       return { ...state, config: { ...state.config, ...patch }, points: clampedPoints };
     }
 
+    case 'RESIZE': {
+      const { width, height, offsetX, offsetY, base } = action;
+      if (width === state.config.width && height === state.config.height) return state;
+      return {
+        ...state,
+        config: { ...state.config, width, height },
+        points: base.map(p => shiftPoint(p, offsetX, offsetY, width, height)),
+      };
+    }
+
     default:
       return state;
   }
 }
 
 
+// Default canvas: 360×480, or 280×320 at phone widths
 const DEFAULT_CONFIG = {
-  width: 420,
-  height: 420,
+  width: isSmallScreen ? 280 : 360,
+  height: isSmallScreen ? 320 : 480,
   closePath: false,
-  gridSize: 30,
+  gridSize: 40,
   snapGrid: true,
   showGrid: true,
 };
 
+// Starting path, centered on the default canvas:
+//   360×480: M 80 240 C 160 160 200 320 280 240
+//   280×320: M 80 160 C 120 120 160 200 200 160
+const START = isSmallScreen
+  ? { x0: 80, x1: 200, y: 160, cx1: 120, cy1: 120, cx2: 160, cy2: 200 }
+  : { x0: 80, x1: 280, y: 240, cx1: 160, cy1: 160, cx2: 200, cy2: 320 };
+const TARGET_Y = START.y;
 
-const TARGET_Y = 210;
-
-const p0 = makePoint(90, TARGET_Y, undefined, true);
+const p0 = makePoint(START.x0, TARGET_Y, undefined, true);
 const p1 = {
-  ...makePoint(330, TARGET_Y, p0, false),
+  ...makePoint(START.x1, TARGET_Y, p0, false),
   type: 'C' as PointType,
-  cx1: 180,
-  cy1: 120,
-  cx2: 240,
-  cy2: 300,
+  cx1: START.cx1,
+  cy1: START.cy1,
+  cx2: START.cx2,
+  cy2: START.cy2,
 };
 
 const TARGET_POINTS = [p0, p1];
@@ -187,6 +237,8 @@ export function useEditorState() {
 
   const dragRef = useRef<DragState | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
+  // Canvas root (svg + resize handles), so the work area can skip presses on it
+  const canvasRef = useRef<HTMLDivElement | null>(null);
 
   // Latest points for handlers that fire later (long-press timers)
   const pointsRef = useRef(state.points);
@@ -299,6 +351,19 @@ export function useEditorState() {
     [getSvgCoords, snap, addAndDrag, isEmulatedMouse, clampX, clampY, cancelPress]
   );
 
+  // Pressing the work area around the canvas deselects. Mousedown, not click:
+  // a click after dragging a point out over the padding would land here too.
+  // Taps arrive as emulated mousedowns, so touch is covered; scrolling isn't.
+  const onWorkAreaMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.button !== 0) return;
+      if (canvasRef.current?.contains(e.target as Node)) return;
+      cancelPress();
+      dispatch({ type: 'SELECT', id: null });
+    },
+    [cancelPress]
+  );
+
   // Pressing an anchor or handle drags it right away
   const onAnchorMouseDown = useCallback(
     (e: React.MouseEvent, pointId: string) => {
@@ -401,10 +466,93 @@ export function useEditorState() {
     [beginDrag, addAndDrag, dragTo]
   );
 
+  // ── Canvas resize (corner handles, ported from tools/SimplePaint.tsx) ──
+  const [isResizing, setIsResizing] = useState(false);
+  const resizeRef = useRef<ResizeState | null>(null);
+  const resizeEndRef = useRef<(() => void) | null>(null);
+
+  const startResize = useCallback((e: React.PointerEvent, dirX: number, dirY: number) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const svg = svgRef.current;
+    if (!svg) return;
+    cancelPress();
+    touchEndRef.current?.();
+    resizeEndRef.current?.();
+
+    // The canvas is centered in its scroll area, so it grows from both sides.
+    // Detect that per axis so the dragged corner tracks the pointer exactly.
+    const r = svg.getBoundingClientRect();
+    const area = svg.parentElement?.closest('[data-scroll]') ?? svg.parentElement;
+    const w = area?.getBoundingClientRect();
+    const centeredX = !!w && Math.abs(r.left - w.left - (w.right - r.right)) < 2;
+    const centeredY = !!w && Math.abs(r.top - w.top - (w.bottom - r.bottom)) < 2;
+
+    const { width, height } = configRef.current;
+    resizeRef.current = {
+      dirX, dirY,
+      startX: e.clientX, startY: e.clientY,
+      startW: width, startH: height,
+      factorX: centeredX ? 2 : 1,
+      factorY: centeredY ? 2 : 1,
+      base: pointsRef.current,
+    };
+
+    const onMove = (ev: PointerEvent | TouchEvent) => {
+      const rs = resizeRef.current;
+      if (!rs) return;
+      let cx: number, cy: number;
+      if ('touches' in ev) {
+        if (!ev.touches[0]) return;
+        if (ev.cancelable) ev.preventDefault();
+        cx = ev.touches[0].clientX;
+        cy = ev.touches[0].clientY;
+      } else {
+        cx = ev.clientX;
+        cy = ev.clientY;
+      }
+      const { gridSize, snapGrid } = configRef.current;
+      const size = (start: number, delta: number) =>
+        Math.min(RESIZE_MAX, Math.max(RESIZE_MIN, Math.round(snapToGrid(start + delta, gridSize, snapGrid))));
+      const nw = size(rs.startW, (cx - rs.startX) * rs.dirX * rs.factorX);
+      const nh = size(rs.startH, (cy - rs.startY) * rs.dirY * rs.factorY);
+      // Left/top handles keep the path pinned to the opposite edge
+      dispatch({
+        type: 'RESIZE',
+        width: nw,
+        height: nh,
+        offsetX: rs.dirX < 0 ? nw - rs.startW : 0,
+        offsetY: rs.dirY < 0 ? nh - rs.startH : 0,
+        base: rs.base,
+      });
+    };
+
+    const end = () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', end);
+      window.removeEventListener('pointercancel', end);
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('touchend', end);
+      resizeRef.current = null;
+      resizeEndRef.current = null;
+      setIsResizing(false);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('touchend', end);
+    resizeEndRef.current = end;
+    setIsResizing(true);
+  }, [cancelPress]);
+
   // Drop pending timers / listeners on unmount
   useEffect(() => () => {
     cancelPress();
     touchEndRef.current?.();
+    resizeEndRef.current?.();
   }, [cancelPress]);
 
   // Selected point helpers
@@ -431,16 +579,20 @@ export function useEditorState() {
     state,
     dispatch,
     svgRef,
+    canvasRef,
     dragRef,
     selectedPoint,
     selectedIdx,
     isFirstSelected,
     onCanvasMouseDown,
+    onWorkAreaMouseDown,
     onAnchorMouseDown,
     onCtrlMouseDown,
     onMouseMove,
     onMouseUp,
     onCanvasTouchStart,
+    startResize,
+    isResizing,
     updateSelected,
     setSelectedType,
     removeSelected,

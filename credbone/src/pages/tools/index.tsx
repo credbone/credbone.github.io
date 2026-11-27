@@ -96,7 +96,7 @@ function ToolsCollection() {
       // data-gap="30"
       data-align="start"
       data-height="fit"
-      data-space-top="0"
+data-contain=""
       
     >
       {/* <StuckReporter>
@@ -359,7 +359,7 @@ function ToolsCollection() {
       </group>
 
 <group data-scroll="" data-height="fit" ref={viewRef} data-align="start">
-      <group data-max-length="1200" data-space="adaptive-30-50" >
+
         <Routes>
           <Route path="/*" element={<Navigate replace to="./" />} />
           <Route path="DotIconMaker" element={<DotIconMaker />} />
@@ -370,7 +370,7 @@ function ToolsCollection() {
           <Route path="PathBuilder" element={<PathBulder />} />
           <Route path="AvatarMaker" element={<AvatarMaker />} />
         </Routes>
-      </group>
+
       </group>
     </group>
   );

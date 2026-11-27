@@ -312,6 +312,22 @@ if (isBottomSheet) {
     };
   }, [isVisible, hideOnScroll]);
 
+  // Content can change size while open (e.g. a menu that swaps to a panel):
+  // place it again so it stays next to the trigger and inside the viewport.
+  // Only on a real size change; moving it doesn't resize it, so no loop.
+  useEffect(() => {
+    const el = popoverRef.current;
+    if (!isVisible || !el) return;
+    let last = { w: el.offsetWidth, h: el.offsetHeight };
+    const observer = new ResizeObserver(() => {
+      if (el.offsetWidth === last.w && el.offsetHeight === last.h) return;
+      last = { w: el.offsetWidth, h: el.offsetHeight };
+      setPopoverPosition(calculatePosition());
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   const handlePopoverTrigger = (event: React.MouseEvent) => {
     if (trigger === "contextmenu") event.preventDefault();
     setClickPosition({ x: event.clientX, y: event.clientY });

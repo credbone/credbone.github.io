@@ -5,6 +5,9 @@ import { PathPoint } from './types';
 export const isApple = isMacOs || isIOS;
 export const isTouchFirst =
   typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches;
+// Phone widths (the page's 600px breakpoint) start with a smaller canvas
+export const isSmallScreen =
+  typeof window !== 'undefined' && !!window.matchMedia?.('(max-width: 600px)').matches;
 
 export function r(n: number): number {
   return Math.round(n);
@@ -71,3 +74,8 @@ export function makePoint(
     sweep: false,
   };
 }
+
+// ─── Limits ──────────────────────────────────────────────────────────────────
+// Shared by SET_CONFIG, the corner resize handles and the Canvas Settings sliders
+export const CANVAS_SIZE = { min: 100, max: 1000 };
+export const GRID_SIZE = { min: 5, max: 200 };

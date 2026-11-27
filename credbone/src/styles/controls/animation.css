@@ -14,6 +14,7 @@
 @keyframes to-position {from{transform: translateX(0);}}
 
 @keyframes appear-left {from{opacity: 0;transform: translateX(-50px);}to{}}
+@keyframes appear-right {from{opacity: 0;transform: translateX(50px);}to{}}
 @keyframes appear-bottom {from{opacity: 0;transform: translateY(50px);}to{}}
 @keyframes appear-top {from{opacity: 0;transform: translateY(-50px);}to{}}
 
@@ -78,6 +79,7 @@
 
 
 [data-animation-name="appear-left"]{animation-name: appear-left;}
+[data-animation-name="appear-right"]{animation-name: appear-right;}
 [data-animation-name="appear-bottom"]{animation-name: appear-bottom;}
 [data-animation-name="appear-top"]{animation-name: appear-top;}
 [data-animation-name="appear-top-small"]{animation-name: appear-top-small;}

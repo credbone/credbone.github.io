@@ -13,25 +13,40 @@ interface Props {
   selectedId: string | null;
   config: CanvasConfig;
   svgRef: React.RefObject<SVGSVGElement | null> | React.MutableRefObject<SVGSVGElement | null>;
+  // Root element (svg + resize handles); the work area skips presses inside it
+  canvasRef: React.MutableRefObject<HTMLDivElement | null>;
   onCanvasMouseDown: (e: React.MouseEvent<SVGSVGElement>) => void;
   onAnchorMouseDown: (e: React.MouseEvent, id: string) => void;
   onCtrlMouseDown: (e: React.MouseEvent, id: string, role: DragRole) => void;
   onMouseMove: (e: MouseEvent) => void;
   onMouseUp: (e: MouseEvent) => void;
   onTouchStart: TouchStart;
+  onResizeStart: (e: React.PointerEvent, dirX: number, dirY: number) => void;
+  isResizing: boolean;
 }
+
+// Corner handles: -1 = left/top edge, 1 = right/bottom edge
+const RESIZE_CORNERS = [
+  { dirX: 1, dirY: 1 },
+  { dirX: -1, dirY: 1 },
+  { dirX: 1, dirY: -1 },
+  { dirX: -1, dirY: -1 },
+];
 
 export const PathCanvas: React.FC<Props> = ({
   points,
   selectedId,
   config,
   svgRef,
+  canvasRef,
   onCanvasMouseDown,
   onAnchorMouseDown,
   onCtrlMouseDown,
   onMouseMove,
   onMouseUp,
   onTouchStart,
+  onResizeStart,
+  isResizing,
 }) => {
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
@@ -40,14 +55,24 @@ export const PathCanvas: React.FC<Props> = ({
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, [onMouseMove, onMouseUp]);
+  }, [onMouseMove, onMouseUp]); 
 
   const pathD = buildPathD(points, config.closePath);
   const gs = config.gridSize;
   const { width, height } = config;
 
   return (
-    <svg
+    <group
+      ref={canvasRef}
+      data-width="auto"
+      data-position="relative"
+      data-max-length="auto"
+    >
+
+
+
+<group data-contain="" data-radius="25" data-elevation="2" data-max-length="auto" data-background="context">
+      <svg
     data-shrink="no"
     data-margin-top="-1"
     data-margin-left="-1"
@@ -162,6 +187,49 @@ export const PathCanvas: React.FC<Props> = ({
         </text>
       )} */}
     </svg>
+</group>
+
+      {/* Corner resize handles, sitting just outside the canvas */}
+      {RESIZE_CORNERS.map(({ dirX, dirY }) => (
+        <group
+          key={`${dirX}${dirY}`}
+          data-position="absolute"
+          data-height="30"
+          data-length="30"
+          data-space="10"
+          data-touch-action="none"
+          {...(dirY > 0 ? { 'data-bottom': '-20' } : { 'data-top': '-20' })}
+          {...(dirX > 0 ? { 'data-right': '-20' } : { 'data-left': '-20' })}
+          // Dot at the corner closest to the canvas
+          data-align={dirY < 0 ? 'end' : undefined}
+          data-justify={dirX < 0 ? 'end' : undefined}
+          style={{ cursor: dirX === dirY ? 'nwse-resize' : 'nesw-resize' }}
+          onPointerDown={(e: React.PointerEvent) => onResizeStart(e, dirX, dirY)}
+        >
+          <group data-height="5" data-length="5" data-radius="10" data-background="text" />
+        </group>
+      ))}
+
+      {/* Live size while resizing */}
+      {isResizing && (
+        <group
+          data-position="absolute"
+          data-top="15"
+          data-left="15"
+          data-width="auto"
+          data-pointer-event="none"
+          data-space-horizontal="15"
+          data-space-vertical="10"
+          data-radius="10"
+          data-background="text"
+data-color="main-background"
+        >
+          <text>
+            {width} × {height}
+          </text>
+        </group>
+      )}
+    </group>
   );
 };
 
